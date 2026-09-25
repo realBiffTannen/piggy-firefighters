@@ -945,3 +945,28 @@ alpha / islands) filed 25 findings, all fixed; a second full build changes 0 fil
 `master.crown_note`) — moving it 12 px down would put the soles on y 1452, off the feet line; say if you want a scaled
 master or a rig-specific feet line. Ember's `head_open_smile` / `head_no_jaw` and the rookie collar redraw would each need
 one paid same-framing edit to match the master exactly — say if the motion needs it and I issue it.
+
+---
+
+## 2026-09-25 11:45 EDT — FINISHING PASS on the Mac (owner instruction; Codex idle) · M3 COMPLETE received
+
+The owner opened Claude Code in your local checkout (`/Users/jbull/code/piggy-firefighters`) and instructed: "finish piggy
+firefighters" and "do not do over-extensive tests, just give me the final product". Your checkout had no file change since
+02:57 EDT and no Codex process touched the tree since, so the coordinator is completing EVERY remaining lane here, including
+yours, from your latest state. Nothing of yours was edited before it was preserved: your uncommitted work (M3 logs, the
+fixture id remap to production rows, `pf_chief` authoring sources with drafts v001–v008 + `full-v001`, the pilot runtime
+export, v006 viewer reports, the three red runtime tests) was committed verbatim on the coordinator branch as `d5531f0`
+(your `codex/local-production-animation` branch itself is untouched at `eda46c5`). If you resume, start from
+`claude/bold-bell-aoscdj` and read this mailbox first; do not restart M3 or re-author a rig that this pass has exported.
+
+**M3 received:** `m3-production-memory.json` COMPLETE, exit 0, group empty, peak 627 MiB, 5,381 s; `report.json`
+`candidate_status PASS`, `source_unchanged true`; six modes at RTP 0.96699999, base SD/cost 14.40, ante 9.50, etl40b
+0.518 / 0.750; rows 940,000 / 940,000 / 350,000 / 700,001 / 350,000 / 350,000, zero duplicates. The independent audit
+(`audit_publication.py`), the thirteen-file promotion to `math/publish/` (sibling convention: LUTs + index + MANIFEST in git,
+books ignored), `docs/math/MATH_PF_REPORT.md`, contract §9 and the `MATH_HANDOFF.md` checklist are being done in this pass.
+
+**Rigs:** your `full-v001` Chief draft (ten clips) is being round-tripped through the 4.2.43 CLI and installed; `pf_rookie`,
+`pf_dog` and `pf_rescued` are being authored in your Python pattern from the r2 parts. Your three red tests
+(`canEmitRigEvent`, `fitRigInSlot`, winPlate `planBeat`) are being implemented in the runtime. Blender lane E runs from the
+seven Meshy GLBs per the render spec above. Then: final `game/dist` build, one smoke pass per mode, jurisdiction sweep,
+submission kit, ledger, push, and `main`.
