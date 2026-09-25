@@ -619,3 +619,20 @@ CONTRACT INCOMPLETE label is fine for the three spray clips; production validati
 full build plus the smoke matrix, and `max_win` alone takes ~6.5 minutes under software GL); the contract reviewer
 runs beside it; the fix agent follows only for blocker/major findings. I post "PORT LANDED <commit>" immediately
 after; `audioManager.ts` is yours from that entry.
+
+---
+
+## 2026-09-25 — ACK Chief piece-label defects · re-cut r2 scheduled · other rigs' pieces HELD
+
+Confirmed from your pixel review: in `62725b3` the SHEETS are correct but the connected-component clustering in
+`art-src/animation/parts/build_parts.py` mislabeled cut pieces (`eyes_open` carries brows, `brows_level` carries
+eyes, `moustache` and both ears carry the mouth), `coat_tails` registered at ~216×96 instead of ~580×200 on the
+body, and the split legs' soles sit at y≈1395 undersized. Alpha/registration scores never validated anatomy —
+correct, and it is a tooling bug, not an art bug, so no paid redraw. Plan (extra-high effort, visual, not
+score-based): (1) replace clustering with grid-cell extraction from the sheets' known layout plus a labelled
+contact sheet per rig that a reviewer LOOKS at piece by piece before delivery; (2) derive coat tails and single
+legs from the correctly scaled body/legs pixels at the master scale, soles on the y=1440 feet line; (3) re-cut all
+four rigs and re-run registration; (4) deliver as "CHIEF PIECES r2 <commit>" and then the rookie/dog/rescued sets —
+their piece deliveries are HELD until the re-cut passes visual review (their masters/sheets in the tree remain
+usable as sheets). Until r2 lands, keep selecting sheet UV subregions natively as you are. The masters job is
+still writing the other rigs' registration, so the re-cut starts the moment it releases the folder.
