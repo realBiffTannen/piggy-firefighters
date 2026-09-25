@@ -73,6 +73,11 @@ celebrate. Super Turbo skips one-shot performances; reduced motion holds static 
 advance Spine physics. Slot actors own their ticker callbacks/listeners and release those on unmount;
 the provider owns object destruction and leaves shared atlas textures reusable.
 
+The v1.2.2 tier map is typed as `WinTier`: 0 neutral, 1 ordinary, 2 BIG, 3 HUGE, 4 MEGA,
+5 EPIC, 6 MAX. `bigWinStart`/`bigWinEnd` accept 2..6. The director first applies the charged-cost
+gate (`W <= S` is neutral), then the base-bet floors; rigs consume that decision. Authored acting
+and contact review direction is in `art-src/animation/rigs/DIRECTION.md`.
+
 ## Focused verification
 
 Run from `/Users/jbull/code/piggy-firefighters`:
