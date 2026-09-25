@@ -1,5 +1,19 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **PRE-SUBMISSION GATES + KIT**: remediator `fc2fe02`/`5a0686f` (18 probes on the staged artefact: 1 fix — 330×190
+  popout spin-group padding; subpath serving, renderer backend at five DPR cells, a 10-round session with every overlay and
+  back-to-back buys, social=true scrape, replay mode, money formatting all PASS with 0 console errors; report
+  `qa/precheck/REMEDIATION_REPORT.md`); jurisdiction sweep `20f6e0d` clean on the game's own copy (disclaimer verbatim,
+  "Engine", donor wording absent, 15,000x / titles / prices / 96.70% single-sourced); its one finding — the donor sample
+  bet-mode copy in `packages/state-shared` — scrubbed in `dda8b38` together with the build provenance stamp
+  (`qa/gate/check_provenance.mjs`, run by `build_dist.sh`). Submission kit `4682f45`: `docs/submission/{PRE_UPLOAD_CHECKLIST,
+  STAKE_REVIEW_INTRODUCTION_COMMENT,GENERAL_DISCLAIMER_AUDIT}.md`, tile upload set `thumbnail/submission/` (BG+FG ≤ 3 MB, provider
+  logo), `qa/submission/math_package_manifest.json` (EQUAL to MANIFEST). Live Engine guideline pages re-scraped at 11:55 EDT
+  (disclaimer template = `rulesContent.ts` byte for byte). **FINAL TREE STAGED** at `dda8b38`: 671 files / 60,512 KiB,
+  `bundle.CQq44m1H.js`, provenance digest `a422782d2344…` PASS, sumsSha256 `d8b37183c0da…`, subpath-serving PASS
+  (`docs/submission/BUILD_RECORD.md`). The rsync into `game/dist` was refused to this session by the permission gate
+  ("Modify Shared Resources"): the owner runs `./tools/build_dist.sh` once to sync. Open (HUD package, next release): base-mode
+  replay label prints `BASE`. Human gates NOT RUN: listening pass, real-phone pass, recorded rig motion review.
 - 2026-09-25 — **FINISHING PASS (owner, on the Mac)**: owner instruction "finish piggy firefighters", "no over-extensive tests, just the
   final product"; Codex idle since 02:57 EDT, so the coordinator completes every lane here from Codex's preserved state (`d5531f0`,
   verbatim; mailbox `8c556a3`). **MATH PROMOTED** `de57dad` + fixtures `80d4a18`: M3 COMPLETE (1,840,000 trials / 3,630,001 rows,

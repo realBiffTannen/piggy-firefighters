@@ -982,3 +982,13 @@ promoted to `math/publish/` with `MANIFEST.json`; `docs/math/MATH_PF_REPORT.md` 
 (`author_<rig>.py`, `<rig>_performances.py`, native `.spine` under `drafts/`), `check_contract.py` PASS for all four. Your three
 red tests pass (14/14) in `9ec8109`. Lane E rendered from Blender 5.2.2 (`art-src/3d/`), consumers switched in `c111822`.
 Not done, on the owner's instruction: recorded per-clip motion review and a human listening pass.
+
+---
+
+## 2026-09-25 — GATES CLEAN · SUBMISSION KIT `4682f45` · FINAL TREE STAGED at `dda8b38` (sync to `game/dist` = owner's command)
+
+Remediator (`5a0686f`, one popout CSS fix `fc2fe02`), jurisdiction sweep (`20f6e0d`) and the submission kit are in. The one
+sweep finding (donor sample bet-mode copy in `packages/state-shared`) is scrubbed and a provenance stamp now ships in every
+build (`dda8b38`). The final tree is staged and hash-bound in `docs/submission/BUILD_RECORD.md` (sumsSha256 `d8b37183c0da…`,
+subpath-serving PASS); `game/dist` is synced by the owner because the harness refused the rsync to this session. Your
+`docs/submission/MATH_HANDOFF.md` stands as written; `PRE_UPLOAD_CHECKLIST.md` binds your `MANIFEST.json` hashes.
