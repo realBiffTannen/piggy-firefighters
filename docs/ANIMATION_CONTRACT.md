@@ -20,7 +20,7 @@ centre for characters; skeleton units = pixels at 1080p desktop board scale (Chi
 
 | Rig | Skeleton | Animations (name → loop? → notes) | Events | Size |
 |---|---|---|---|---|
-| `pf_chief` (Chief Hamm, mascot left of the reels; WILD sign holder) | `pf_chief` | `idle` loop 4–6 s breathing + helmet wobble · `idle_alt` loop (checks watch / bugle) · `win` once 1.2 s (fist pump) · `big_win` once 2.4 s · `point_reels` once 0.8 s · `spray_start` once 0.6 s → `spray_loop` loop → `spray_end` once 0.5 s · `celebrate` once 2.0 s · `sad` once 1.5 s (false alarm) | `step` (foot down), `spray_on`, `spray_off`, `sign_hit` | 420 px tall |
+| `pf_chief` (Chief Hamm, mascot left of the reels; holds NO sign — see v1.3 note) | `pf_chief` | `idle` loop 4–6 s breathing + helmet wobble · `idle_alt` loop (checks watch / bugle) · `win` once 1.2 s (fist pump) · `big_win` once 2.4 s · `point_reels` once 0.8 s · `spray_start` once 0.6 s → `spray_loop` loop → `spray_end` once 0.5 s · `celebrate` once 2.0 s · `sad` once 1.5 s (false alarm) | `step` (foot down), `spray_on`, `spray_off`, `sign_hit` (= decisive contact frame of `point_reels` / `big_win`, v1.3) | 420 px tall |
 | `pf_rookie` (Sprocket, ambient/dispatch) | `pf_rookie` | `idle` loop · `fumble` once 2.5 s (hose tangle) · `card_flip` once 1.0 s · `hold_sheet` loop (jump sheet) · `catch` once 0.7 s · `celebrate` once 1.5 s · `sad` once 1.5 s (false alarm) | `flip`, `catch` | 380 px |
 | `pf_dog` (Ember) | `pf_dog` | `sit_idle` loop · `bark` once 0.6 s · `run_loop` loop · `celebrate` once 1.5 s · `hold_sheet` loop | `bark` | 220 px |
 | `pf_rescued` (Trotter family; ONE asset, five runtime instances `rescued_0..4` = rooms 0..4) | `pf_rescued` with 5 skins `grandma`, `twins`, `dad`, `baby`, `teen`; room r of building b shows skin `[(r + b) mod 5]` | `wave_window` loop · `slide` once 1.2 s (pose only; the runtime moves the actor along the ladder) · `land` once 0.6 s · `cheer` loop | `land` | 260 px |
@@ -93,3 +93,14 @@ Turbo skips clips longer than 400 ms; every clip returns to its loop; nothing Co
 or the HUD bar; phone layout uses `scale` from the slot. Until a rig's export exists at its path, `RigActor`
 renders nothing and Claude's procedural fallback (in Claude's scene files) shows; the fallback hides when
 `rigRegistry.has(rig)` (Codex exports this from `game/anim/rigRegistry.ts`) is true.
+
+## v1.3 — `sign_hit` semantics and the WILD badge (2026-09-25, Codex art-direction question)
+
+The mascot rig carries **no sign and no lettering** (baked text is prohibited; the "WILD sign holder" phrase was
+donor wording and is struck). `sign_hit` stays as an event name for compatibility but means **the decisive contact
+frame of a gesture**: key it at the pointing arm's full extension in `point_reels` and at the peak of `big_win`.
+The runtime owns what happens on that frame (a plate, badge flash or emphasis on the reel WILD — lettered locally
+by the runtime, never by the rig). The reel `W` symbol (Chief bust holding the WILD badge) is a static tile from the
+art lane and is not the mascot rig. The `badge_blank` piece may be used as a hand-held prop in `celebrate` at the
+author's discretion, blank; if used, expose bone `badge` so the runtime can overlay its lettering. No new prop
+commission. Anchors and events otherwise unchanged.

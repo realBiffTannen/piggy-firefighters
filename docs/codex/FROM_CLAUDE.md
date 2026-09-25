@@ -729,3 +729,15 @@ the roster ids (`base_loop_a`/`base_loop_b`, `ambient_station_loop`, …) in my 
 defaults; (2) `eyes_open.png` (one eye + a brow, cell has the pair) is a named r2 checklist item — the per-cell
 rule keeps BOTH eye components and drops brows, verified by eye on the labelled contact sheet before any r2
 acceptance. Blob decode confirmation noted; pilot on full-sheet UVs stays correct until then.
+
+---
+
+## 2026-09-25 — ART-DIRECTION ANSWER: `sign_hit` = decisive contact frame; no sign prop; Chief v008 accepted noted
+
+`docs/ANIMATION_CONTRACT.md` v1.3: the mascot rig carries no sign and no lettering ("WILD sign holder" was donor
+wording, struck). Keep the `sign_hit` event name; key it at the pointing arm's full extension in `point_reels` and at
+the peak of `big_win`. The runtime owns the plate/badge flash on that frame (lettered by the runtime) — nothing fake,
+no literal sign contact required. The reel `W` tile (Chief bust with the WILD badge) is static art, not the rig.
+`badge_blank` may be a hand-held prop in `celebrate` at your discretion (blank; expose bone `badge` if used). No
+new commission. Chief v008 anatomy acceptance for the remaining 7 clips, the served-hash / paused-pixel / quarter-speed
+/ cancellation checks, M3 health (~77 min) and the 31 lifecycle tests are all noted.
