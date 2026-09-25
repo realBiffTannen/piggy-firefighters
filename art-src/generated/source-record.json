@@ -1386,5 +1386,2193 @@
       "total_tokens": 2999
     },
     "seconds": 37.5
+  },
+  {
+    "asset": "sym_tall_galarm",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the finished tall ALARM reel symbol from our 2D cartoon slot game. Redraw it as the rare GOLDEN ALARM: the SAME silhouette, the SAME design, pose, size, position and framing EXACTLY (do not move, zoom or recentre it), the same thick dark-brown ink and flat cel shading, but the whole thing is now precious gold: the bell a rich bright gold with warm cream-yellow highlights, the box beneath it gold too (a deeper brass-gold with a hard darker gold shadow tone) instead of red, the round button cream, and the curved ringing strokes bright hydrant yellow. One or two small flat four-point cream sparkles with an ink outline on the bell. It must still read as the same bell at 40 pixels but clearly more valuable than the red one. Genuinely transparent background, no glow haze, no gradients, no text, no letters, no numbers, no logos.",
+    "prompt_files": [
+      "art-src/generated/prompts/symbols_sym_tall_galarm.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_alarm.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall source for GALARM: same-framing gold edit of accepted tall ALARM",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_galarm.png",
+    "sha256": "3a18aee6a769e112ff04fb7672f3b2666a70cdb169ef726f471c039b3e77c88c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1747,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 211
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3119
+    },
+    "seconds": 25.3
+  },
+  {
+    "asset": "sym_tall_h1_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows the WIN pose drawn for the square version of the same symbol: apply the same win-pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The win pose:\nthe same fire engine bouncing up on its front wheels with joyful energy, tilted a little back, the brass roof bell swung to one side mid-ring with two short curved ringing strokes, the headlights blazing bright cream, the ladder raised a little higher.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h1_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h1.png",
+      "art-src/generated/symbols/sym_sq_h1_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose B for H1: edit of accepted tall pose A with square pose B as pose ref",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h1_b.png",
+    "sha256": "7a11e92f863b6d770cd89f79cb70ab2bb497b36a1adb61ae709b9301aa82b9d0",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2859,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 299
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4231
+    },
+    "seconds": 28.0
+  },
+  {
+    "asset": "sym_tall_h3_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows the WIN pose drawn for the square version of the same symbol: apply the same win-pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The win pose:\nthe same axe and halligan swung into a tighter, more dramatic X as if just clashed together, heads flaring out, a bright cream highlight glint along the axe blade and one small flat four-point cream sparkle where the handles cross.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h3_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h3.png",
+      "art-src/generated/symbols/sym_sq_h3_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose B for H3: edit of accepted tall pose A with square pose B as pose ref",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h3_b.png",
+    "sha256": "97e7c72d86fd00145b8d3ec62cee098acc10a2f6464662b21f38610f85586053",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2859,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 299
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4231
+    },
+    "seconds": 28.7
+  },
+  {
+    "asset": "sym_tall_h2_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows the WIN pose drawn for the square version of the same symbol: apply the same win-pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The win pose:\nthe same fire helmet tipped at a jaunty tilt as if just tossed up in celebration, the brass shield plate gleaming with a bright cream highlight band and one small flat four-point cream sparkle at its corner.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h2_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h2.png",
+      "art-src/generated/symbols/sym_sq_h2_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose B for H2: edit of accepted tall pose A with square pose B as pose ref",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h2_b.png",
+    "sha256": "8835887a46db8d29c211789f6ef75799a7d56bb8348e454b5e4caa06305ddd24",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2852,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 292
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4224
+    },
+    "seconds": 29.7
+  },
+  {
+    "asset": "sym_tall_h4_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows the WIN pose drawn for the square version of the same symbol: apply the same win-pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The win pose:\nthe same extinguisher tilted with energy, its black hose whipping up in an S-curve and the brass nozzle firing one chunky puff of cream-white foam drawn as flat rounded cel blobs with an ink outline, the brass valve gleaming.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h4_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h4.png",
+      "art-src/generated/symbols/sym_sq_h4_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose B for H4: edit of accepted tall pose A with square pose B as pose ref",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h4_b.png",
+    "sha256": "abb27ce425a2d568ba7e16f9ebf787d4b2e09a993f9b9076ceb8fb37262be616",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2858,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 298
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4230
+    },
+    "seconds": 30.1
+  },
+  {
+    "asset": "sym_tall_w",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Rules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our finished WILD reel symbol, a chest-up bust of Chief Hamm holding up a big badge. Redraw THIS SAME symbol re-composed for a TALL portrait 2:3 canvas so the figure is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height): show a little more of him (a waist-up crop), his big head with the helmet at the top, the badge held in front of his chest with both hands in the lower half, the same expression, same costume, same style and colours, the figure slightly narrower so it fits the tall shape.",
+    "prompt_files": [
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_tall_w.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_w.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall source for W: 1024x1536 edit of accepted square W",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_w.png",
+    "sha256": "373969dfbdb006e6ac5d80058859fbf8b7f84d7b864e0e930e94e6feaac1d1d5",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1385,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 361
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2757
+    },
+    "seconds": 30.3
+  },
+  {
+    "asset": "sym_sq_w_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Rules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our finished WILD reel symbol (resting pose). Draw its WIN pose at EXACTLY the same size, position and framing on the canvas (do not zoom, shrink, move or recentre; the outer bounds stay where they are): Chief Hamm lifts the badge up a little higher toward the viewer with both hands, his head tipped back slightly in a big, delighted, open-mouthed cheer, brows raised happily, eyes bright and open, the moustache lifted by the grin, one small flat four-point cream sparkle with an ink outline on the badge's brass edge.",
+    "prompt_files": [
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_sq_w_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_w.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win cut) for W: same-framing edit of accepted W",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_w_b.png",
+    "sha256": "912903dd7f3b4cd72c21dd5b2cc1a3ee82e01d20e5ffc268eb113201829def87",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1368,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 344
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3124
+    },
+    "seconds": 32.8
+  },
+  {
+    "asset": "sym_sq_w_blaze",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Rules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our finished WILD reel symbol. Draw the BLAZE WILD version: the SAME image with Chief Hamm in EXACTLY the same pose, size, position and framing (do not zoom, shrink, move or recentre him), but the whole symbol is now wrapped in fire: bold flat cel-shaded flame tongues in flame orange (#FF7A1A) with hydrant-yellow inner cores and a dark red outer edge, each outlined in the same thick dark-brown ink, licking up from behind his shoulders and around the helmet brim and wrapping the badge's red rim, plus five or six small round glowing embers (flat orange dots with yellow centres) drifting upward. The flames stay mostly BEHIND him and inside the same outer bounds as the figure, never covering his face, eyes or hands. He is unharmed, grinning, fearless and heroic. His colours stay the same; do not tint him orange.",
+    "prompt_files": [
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_sq_w_blaze.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_w.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "W_blaze Blaze Wild: same-framing flame edit of accepted W",
+    "attempt": 1,
+    "ts": "2026-09-25T04:38:42",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_w_blaze.png",
+    "sha256": "b2ac2cf6d4561bb8a39daa33d607da628adf43b1401cbf84536d11a764d67a04",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1440,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 416
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3196
+    },
+    "seconds": 44.6
+  },
+  {
+    "asset": "head_no_helmet",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the head, exactly in place: face, eyes, brows, snout, moustache, mouth, cheeks and both ears. Remove the helmet completely and remove the whole body, arms and everything below the chin. Paint the full top and back of the head that the helmet was hiding: a smooth rounded pink bald crown with the ears complete and attached, in the same ink and cel style. Add a short rounded pink neck stub under the chin that would tuck inside a coat collar.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_head_no_helmet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part head_no_helmet (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:39:26",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/head_no_helmet.png",
+    "sha256": "3a55256991fb2b3d467df8de798b8a188ad384547d89430e165ac98a36be31f5",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1929,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 393
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3301
+    },
+    "seconds": 25.6
+  },
+  {
+    "asset": "arms_down",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two arms, exactly in place: both red sleeves with their yellow bands and the navy cuffs, and both open pink hands. Remove the head, the torso, the coat, the belt, the bugle, the legs and the boots. Paint each shoulder end as a smooth, closed, rounded coat-red shoulder cap with generous overlap (the part that tucks under the coat's shoulder), and paint any sleeve surface that the torso was hiding. The two arms must stay completely separate from each other with empty space between them.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_arms_down.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part arms_down (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:39:26",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/arms_down.png",
+    "sha256": "a26fb372951df898510476465cc5f193ea24ffdd0a670bfb109928fd2dc01f8f",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1938,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 402
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3310
+    },
+    "seconds": 26.1
+  },
+  {
+    "asset": "body_no_head_no_arms",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nRemove completely: the head (helmet, ears, face, moustache), both arms including the sleeves and hands, and the brass bugle with its ring. Keep ONLY the torso in the red turnout coat with its yellow bands and brass clasps, the collar, the belt and buckle, the coat hem, the curly tail, both legs in dusk-navy trousers and both black boots, all exactly in place. Paint: a short rounded pink neck stub rising from inside the collar (so the head can sit on it); both shoulders as clean closed rounded coat-red shoulder caps where the sleeves attached; the coat front and sides and the trouser leg that the arms and the bugle were covering.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_body_no_head_no_arms.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part body_no_head_no_arms (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:39:26",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/body_no_head_no_arms.png",
+    "sha256": "a62882fe58fedf8643c9c0778ed4de1bd2a1e47cac57534bddc56ce6a2baeaa6",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1970,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 434
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3342
+    },
+    "seconds": 26.9
+  },
+  {
+    "asset": "sym_tall_w_blaze",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Rules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our finished TALL WILD reel symbol. Draw the BLAZE WILD version: the SAME image with Chief Hamm in EXACTLY the same pose, size, position and framing (do not zoom, shrink, move or recentre him), but the whole symbol is now wrapped in fire: bold flat cel-shaded flame tongues in flame orange (#FF7A1A) with hydrant-yellow inner cores and a dark red outer edge, each outlined in the same thick dark-brown ink, licking up from behind his shoulders and around the helmet brim and wrapping the badge's red rim, plus five or six small round glowing embers (flat orange dots with yellow centres) drifting upward. The flames stay mostly BEHIND him and inside the same outer bounds as the figure, never covering his face, eyes or hands. He is unharmed, grinning, fearless and heroic. His colours stay the same; do not tint him orange.",
+    "prompt_files": [
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_tall_w_blaze.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_w.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall W_blaze: same-framing flame edit of accepted tall W",
+    "attempt": 1,
+    "ts": "2026-09-25T04:39:45",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_w_blaze.png",
+    "sha256": "8c90852667e375ac1672b060a580ef64480b32ce954f95eab3aa3f29fe089e5e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1954,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 418
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3326
+    },
+    "seconds": 28.4
+  },
+  {
+    "asset": "sym_tall_w_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Rules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is the finished TALL version of our WILD reel symbol (resting pose). Image 2 shows the WIN pose drawn for the square version: apply the same win-pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The win pose:\nChief Hamm lifts the badge up a little higher toward the viewer with both hands, his head tipped back slightly in a big, delighted, open-mouthed cheer, brows raised happily, eyes bright and open, the moustache lifted by the grin, one small flat four-point cream sparkle with an ink outline on the badge's brass edge.",
+    "prompt_files": [
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_tall_w_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_w.png",
+      "art-src/generated/symbols/sym_sq_w_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose B for W: edit of accepted tall W with square W_b as pose ref",
+    "attempt": 1,
+    "ts": "2026-09-25T04:39:45",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_w_b.png",
+    "sha256": "1334becd11a0a84ecf5670d4e0be5931bcb32448384d35078e50b6132feb73ed",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2926,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 366
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4298
+    },
+    "seconds": 32.4
+  },
+  {
+    "asset": "helmet_only",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the white fire helmet, exactly in place, with its BLANK smooth brass shield plate on the front. Remove the head, face, ears and the whole body. Paint the parts of the helmet that the head was hiding: the underside of the brim and the inside of the helmet as a dark dusk-navy lining visible under the brim, with a closed clean ink outline all round.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_helmet_only.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part helmet_only (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:21",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/helmet_only.png",
+    "sha256": "2d5637f0e2c9f5f9f3090ca1991820a4b8f78b86c0c72cddbbdeda97d98aeee3",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1909,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 373
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3281
+    },
+    "seconds": 22.9
+  },
+  {
+    "asset": "arms_raised",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two arms, but RAISED: rotate each arm up at its shoulder into a cheering pose, both arms up and out in a V above shoulder height, elbows slightly bent, hands open with the thumb and separated fingers visible. The shoulder joint of each arm stays exactly at the same place on the canvas as in Image 1 and the arms keep the same length, thickness, sleeves, yellow bands and cuffs. Remove the head, the torso, the coat, the belt, the bugle, the legs and the boots. Each shoulder end is a smooth closed rounded coat-red shoulder cap with generous overlap. The two arms stay completely separate with empty space between them.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_arms_raised.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part arms_raised (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:21",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/arms_raised.png",
+    "sha256": "62ac4c4e7ea9bf461af5c469def182dbc4ee2dbeee72055765bdde57d1a8718a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1967,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 431
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3339
+    },
+    "seconds": 23.0
+  },
+  {
+    "asset": "coat_tails",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the lower skirt of the red turnout coat below the belt, exactly in place: the red coat panels from just under the belt down to the hem, including the yellow hem band, the front opening edges and the part of the curly tail that shows at the back hem. Remove the head, arms, the upper coat, the belt, the bugle, the legs and the boots. Paint the inside of the coat skirt that the legs were hiding (a darker red lining), and paint the top edge of the skirt as a clean straight closed edge with extra overlap so it can tuck under the belt.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_coat_tails.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part coat_tails (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:21",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/coat_tails.png",
+    "sha256": "746a9748665f0aa72facad05de9f84c7dfdf3092680a2ff4e102711351909a2d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1952,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 416
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3324
+    },
+    "seconds": 24.3
+  },
+  {
+    "asset": "head_blank",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the head shape, exactly in place, WITHOUT the helmet, WITHOUT the ears and WITHOUT any facial features: remove the eyes, brows, moustache and mouth and paint that area as smooth plain pig-pink skin with the same soft cheek blush and the same one hard shadow tone; KEEP the snout (with its two nostrils) exactly in place. Paint the full rounded bald crown that the helmet was hiding. Remove the whole body. Add a short rounded pink neck stub under the chin. This is the blank head base onto which separate eyes, brows, mouth, moustache and ears are layered.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_head_blank.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part head_blank (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:21",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/head_blank.png",
+    "sha256": "f492098ea9ceb40a333f17c071c248a8df08437eb1e655e634f68794d877a735",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1954,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 418
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3326
+    },
+    "seconds": 27.0
+  },
+  {
+    "asset": "legs",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two legs, exactly in place: the dusk-navy trousers with their yellow bands and both black fire boots. Remove the head, the arms, the coat, the belt, the bugle and the tail. Paint the top of each trouser leg that the coat was hiding up to the hip as a smooth closed rounded navy hip end with generous overlap, so each leg can rotate under the coat. Keep a clear gap between the two legs.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_chief_legs.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief same-framing part legs (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:21",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/legs.png",
+    "sha256": "873a0294ddaed495aaddeb3d9e9adacf2f9a41b76c118668f7ce95e9b0387f37",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1922,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 386
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3294
+    },
+    "seconds": 27.6
+  },
+  {
+    "asset": "body_no_head_no_arms",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nRemove completely: the head (the too-big helmet, ears, face) and both arms including the sleeves and hands. Keep ONLY the torso in the red turnout coat with its yellow bands and brass clasps, the collar, the belt and buckle, the coat hem, the curly tail, both legs in dusk-navy trousers and both black boots, all exactly in place. Paint: a slim rounded pink neck stub rising from inside the collar (so the head can sit on it); both shoulders as clean closed rounded coat-red shoulder caps where the sleeves attached; the coat front and sides that the arms were covering.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_body_no_head_no_arms.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part body_no_head_no_arms (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:21",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/body_no_head_no_arms.png",
+    "sha256": "5fa92ee680a82c986142fe9012933ed4fcf8660f15e69b747bd3da680f4417c8",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1953,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 417
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3325
+    },
+    "seconds": 29.3
+  },
+  {
+    "asset": "head_blank",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the head shape, exactly in place, WITHOUT the helmet, WITHOUT the ears and WITHOUT any facial features: remove the eyes, brows and mouth and paint that area as smooth plain pig-pink skin with the same soft cheek blush and one hard shadow tone; KEEP the snout with its nostrils and freckles exactly in place. Paint the full rounded crown with the small hair tuft that the helmet was hiding. Remove the whole body. Add a slim rounded neck stub under the chin. This is the blank head base onto which separate eyes, brows, mouth and ears are layered.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_head_blank.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part head_blank (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:44",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/head_blank.png",
+    "sha256": "8d65364327bbcfa37bc731358eeb557713394eeed19646fa935edb4eb94d3111",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1948,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 412
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3320
+    },
+    "seconds": 25.7
+  },
+  {
+    "asset": "helmet_only",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the too-big white fire helmet, exactly in place, with its BLANK smooth brass shield plate on the front. Remove the head, face, ears and the whole body. Paint the parts of the helmet that the head was hiding: the underside of the brim and the inside of the helmet as a dark dusk-navy lining visible under the brim, with a closed clean ink outline all round.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_helmet_only.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part helmet_only (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:45",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/helmet_only.png",
+    "sha256": "65f78578ae36dd2f23288f59b7412e884c0399bfe265301120e3076cbe5cc00a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1911,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 375
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3283
+    },
+    "seconds": 27.5
+  },
+  {
+    "asset": "head_no_helmet",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the head, exactly in place: face, eyes, brows, snout with its freckles, mouth, cheeks and both ears. Remove the too-big helmet completely and remove the whole body, arms and everything below the chin. Paint the full top and back of the head that the helmet was hiding: a rounded pink crown with a small tuft of unruly hair on top, the ears complete and attached, in the same ink and cel style. Add a slim rounded pink neck stub under the chin that would tuck inside a coat collar.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_head_no_helmet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part head_no_helmet (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:43",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/head_no_helmet.png",
+    "sha256": "faae5a807554e77c375cf41738b80bfdcff180a7e3eb801b748415d1b18e376c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1939,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 403
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3311
+    },
+    "seconds": 29.9
+  },
+  {
+    "asset": "arms_raised",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two arms, but RAISED: rotate each arm up at its shoulder into a cheering pose, both arms up and out in a V above shoulder height, elbows slightly bent, hands open with the thumb and separated fingers visible. The shoulder joint of each arm stays exactly at the same place on the canvas as in Image 1 and the arms keep the same length, thickness, sleeves, yellow bands and cuffs. Remove the head, the torso, the coat, the belt, the legs and the boots. Each shoulder end is a smooth closed rounded coat-red shoulder cap with generous overlap. The two arms stay completely separate with empty space between them.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_arms_raised.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part arms_raised (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:48",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/arms_raised.png",
+    "sha256": "1e1a0af9c7b8f102cd73569ff0dc0ccdb98407cdee1252e6187c8d5a5989fc38",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1963,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 427
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3335
+    },
+    "seconds": 25.5
+  },
+  {
+    "asset": "legs",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two legs, exactly in place: the dusk-navy trousers with their yellow bands and both black fire boots. Remove the head, the arms, the coat, the belt and the tail. Paint the top of each trouser leg that the coat was hiding up to the hip as a smooth closed rounded navy hip end with generous overlap, so each leg can rotate under the coat. Keep a clear gap between the two legs.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_legs.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part legs (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:50",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/legs.png",
+    "sha256": "fe57594798a654ae0fdbe435e7d7eb56f2f5b8b85655243131c528fff71b57f9",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1918,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 382
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3290
+    },
+    "seconds": 25.2
+  },
+  {
+    "asset": "arms_down",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two arms, exactly in place: both red sleeves with their yellow bands and the navy cuffs, and both open pink hands (the sleeves a little too long). Remove the head, the torso, the coat, the belt, the legs and the boots. Paint each shoulder end as a smooth, closed, rounded coat-red shoulder cap with generous overlap (the part that tucks under the coat's shoulder), and paint any sleeve surface that the torso was hiding. The two arms must stay completely separate from each other with empty space between them.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_arms_down.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part arms_down (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:41:48",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/arms_down.png",
+    "sha256": "7235bd0fef0d0346774267fee348fa13c48cc9a5e4f61d00dd7059ff2309428a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1941,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 405
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3313
+    },
+    "seconds": 28.3
+  },
+  {
+    "asset": "coat_tails",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the lower skirt of the red turnout coat below the belt, exactly in place: the red coat panels from just under the belt down to the hem, including the yellow hem band, the front opening edges and the part of the curly tail that shows at the back hem. Remove the head, arms, the upper coat, the belt, the legs and the boots. Paint the inside of the coat skirt that the legs were hiding (a darker red lining), and paint the top edge of the skirt as a clean straight closed edge with extra overlap so it can tuck under the belt.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rookie_coat_tails.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie same-framing part coat_tails (hidden surfaces painted)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:09",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/coat_tails.png",
+    "sha256": "2ff7d6eb3edc4f20dbb4cca93b154058f7828d982c12da40ff1a300ac3bc00cc",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1948,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 412
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3320
+    },
+    "seconds": 24.8
+  },
+  {
+    "asset": "hands_sheet",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows the chief's pink cartoon pig hands, each with a visible thumb and fingers separated by ink lines, each ending at the wrist in a navy coat cuff with a smooth rounded overlap end. Arrange eight hands in a 4-by-2 grid: top row, right hands: 1 open relaxed palm, 2 firm fist gripping (with a round hollow tunnel through the fist, empty, where a hose nozzle would pass), 3 pointing index finger with the other fingers curled and the thumb visible, 4 thumbs-up fist-pump fist; bottom row, the same four gestures as left hands (mirrored). All hands at the same scale as the hands in Image 1.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_chief_hands_sheet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief parts sheet hands_sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:13",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/hands_sheet.png",
+    "sha256": "c459b5c43536bc60d4b2fd9eacb6efb3fdef36e82005914563ced6486fe2aa2a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1900,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 364
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3272
+    },
+    "seconds": 27.3
+  },
+  {
+    "asset": "hands_sheet",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows the rookie's slim pink cartoon pig hands, each with a visible thumb and fingers separated by ink lines, each ending at the wrist in a navy coat cuff with a smooth rounded overlap end. Arrange ten hands in a 5-by-2 grid: top row, right hands: 1 open relaxed palm, 2 firm fist gripping (with a round hollow tunnel through the fist, empty, where a fire hose would pass), 3 pointing index finger with the thumb visible, 4 catching hand with fingers spread and curled forward as if gripping the edge of a rescue jump sheet, 5 pinch grip between thumb and index finger as if holding the corner of a flat card; bottom row, the same five gestures as left hands (mirrored). All at the same scale as the hands in Image 1.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_rookie_hands_sheet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie parts sheet hands_sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:13",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/hands_sheet.png",
+    "sha256": "73e089ab3f150375eb7abfaba1de72bf3461f5e595978f63a5530789fe3ce311",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1926,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 390
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3298
+    },
+    "seconds": 27.3
+  },
+  {
+    "asset": "props",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows four separate props for the chief, arranged in a 2-by-2 grid with wide gaps, each at the same scale as they would appear with the character in Image 1. Top left: a hand-held blank badge sign, a large shield-shaped plate with a thick polished brass rim and a flat engine-red face that is completely EMPTY and flat, facing the viewer straight on, not tilted, about the width of his torso. Top right: the small brass shield plate from the front of his helmet on its own, blank and smooth. Bottom left: a polished brass fire-hose nozzle attached to a short straight length of hose-cream canvas fire hose, lying perfectly HORIZONTAL, the nozzle tip pointing to the right, the hose end on the left cut cleanly with a closed rounded end. Bottom right: his polished brass bugle with its hanging ring, lying horizontal with the bell to the right.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_chief_props.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief parts sheet props",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:16",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/props.png",
+    "sha256": "1af01e60b68072369c3981f29c3e478b831ea4dce85196102c90c5b3a7df2dd0",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1946,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 410
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3318
+    },
+    "seconds": 27.1
+  },
+  {
+    "asset": "face_sheet",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows the chief's separate facial features, each drawn at exactly the same scale as on his face in Image 1, arranged in a 4-by-4 grid with wide gaps. Row 1, eye pairs (both eyes together as they sit on the face, three-quarter view): eyes open (white eyes, round black pupils, one hard white catch-light upper-left); eyes closed (two curved ink lines with lashes); eyes happy (upturned arches); eyes wide surprised. Row 2, brow pairs in dark brown: level confident; raised; worried (inner ends up); determined (inner ends slightly lowered, not angry). Row 3, mouths drawn WITHOUT the moustache: closed smile; open talking mouth with pink tongue; big open grin; open shout (wide oval, tongue, teeth top). Row 4: his thick dark-brown chevron moustache on its own; the moustache again with the ends lifted in a grin; his left ear on its own; his right ear on its own (pink, triangular, with the inner ear shade, rounded overlap at the base).",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_chief_face_sheet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_chief/master_pf_chief.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_chief parts sheet face_sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:14",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/face_sheet.png",
+    "sha256": "73bce7c58f526773e50dcd45882d96f9f4bd1bb07300fd890f3cf4a11cedf9ae",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1985,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 449
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3357
+    },
+    "seconds": 30.7
+  },
+  {
+    "asset": "face_sheet",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows the rookie's separate facial features, each at exactly the same scale as on his face in Image 1, arranged in a 4-by-4 grid with wide gaps. Row 1, eye pairs (both eyes together as they sit on the face, three-quarter view): eyes open (big round white eyes, round black pupils, one hard white catch-light upper-left); eyes closed (curved ink lines); eyes happy (upturned arches); eyes darting to the side (pupils shifted, a nervous look). Row 2, brow pairs in dark brown: neutral; raised eager; worried (inner ends up); embarrassed (one up, one down). Row 3, mouths: closed hopeful smile; open talking mouth with pink tongue; big open grin; wobbly oops mouth (small open wavy mouth). Row 4: a sad frown mouth; an open shout; his left ear on its own; his right ear on its own (pink, with the inner ear shade, rounded overlap at the base).",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_rookie_face_sheet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie parts sheet face_sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:15",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/face_sheet.png",
+    "sha256": "7b70ab66be1fea57ef649adf66eaacc342e003af9a19cdede980cd4456da68b7",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1975,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 439
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3347
+    },
+    "seconds": 30.1
+  },
+  {
+    "asset": "props",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows the rookie's separate props, arranged with wide gaps, at the same scale as they would appear with the character in Image 1. Top half: one LONG straight length of hose-cream canvas fire hose with thin engine-red stripe lines along its length, lying perfectly HORIZONTAL across almost the whole width of the canvas, uniform thickness from end to end (so it can be bent by mesh deformation), with a brass hose coupling at the left end and a polished brass nozzle at the right end. Middle: the same fire hose on its own tangled into one loose loop, like a fumbled coil. Bottom left: a playing-card-sized alarm dispatch card seen straight on, its FRONT face completely BLANK flat hose-cream with a thin engine-red border and rounded corners, not tilted. Bottom right: the same card's BACK seen straight on, engine-red with a brass border and a simple brass fire-bell emblem in the centre, no letters.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_rookie_props.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rookie parts sheet props",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:34",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/props.png",
+    "sha256": "8c00111b63e60fdad39fa94443f13a52f6051e8b8d387242dd750a4e3e48fc38",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1953,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 417
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3325
+    },
+    "seconds": 26.0
+  },
+  {
+    "asset": "helmet_only",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the tiny red fire helmet, exactly in place, with its BLANK smooth brass shield plate. Remove the head, ears, face and the whole body. Paint the underside of the brim and the inside of the helmet that the head was hiding as a dark dusk-navy lining, with a closed clean ink outline all round.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_dog_helmet_only.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_dog same-framing part helmet_only",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:43",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/helmet_only.png",
+    "sha256": "c018da05591cf1bb6d0a8e90d8e859ecc3c962de73e199b0ec2b2a15c0ba59ab",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1897,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 361
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3269
+    },
+    "seconds": 22.4
+  },
+  {
+    "asset": "head_no_helmet",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the puppy's head, exactly in place: face, eyes, brows, nose, muzzle, mouth, spots and both floppy ears. Remove the tiny helmet completely and remove the collar and the whole body, legs and tail. Paint the top of the head that the helmet was hiding (white with one or two black spots) and a short rounded white neck stub under the head that tucks inside the collar.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_dog_head_no_helmet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_dog same-framing part head_no_helmet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:41",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/head_no_helmet.png",
+    "sha256": "ae76ca0866acce9577da629cdc65d47af94e0a1807b65f8bb79f019c1640c8ae",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1914,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 378
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3286
+    },
+    "seconds": 25.1
+  },
+  {
+    "asset": "legs",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the four legs with their paws, exactly in place. Remove the head, helmet, collar, torso and tail. Paint the top of each leg that the torso was hiding as a smooth closed rounded white spotted end with generous overlap (shoulder or hip), so each leg can rotate under the body. The four legs stay separate from each other with empty space between them.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_dog_legs.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_dog same-framing part legs",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:45",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/legs.png",
+    "sha256": "7d61df86a98694fc2ffe5e416f78e5bf088c83ce69e22b33700d31a15e9d4411",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1906,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 370
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3278
+    },
+    "seconds": 26.5
+  },
+  {
+    "asset": "body_no_head_no_legs",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nRemove completely: the head (the tiny helmet, ears, face, muzzle), all four legs, and the tail. Keep ONLY the spotted torso and the red collar with its brass tag, exactly in place. Paint: the neck as a smooth rounded stub inside the collar where the head attached; each leg attachment (two shoulders, two hips) as a clean closed rounded white spotted end where the legs were; the rump where the tail attached, closed and rounded; any torso surface that the legs, head or tail were covering.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_dog_body_no_head_no_legs.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_dog same-framing part body_no_head_no_legs",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:40",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/body_no_head_no_legs.png",
+    "sha256": "b82d90548ee19965647fd0ffcaf6e39dca08a33bf5218eb2ea8ed9b5e859b46d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1936,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 400
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3308
+    },
+    "seconds": 32.5
+  },
+  {
+    "asset": "parts_sheet",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows the puppy's separate animation parts, arranged in a 3-by-2 grid with wide gaps, all at exactly the same scale as in Image 1. Top row: 1 the left floppy ear alone, 2 the right floppy ear alone (each with a rounded overlap at its base), 3 the tail alone, curved up, with a rounded overlap at its base. Bottom row: 4 the lower jaw alone, open for a bark, with the pink tongue inside and a rounded overlap at the hinge; 5 the head without the lower jaw (muzzle and upper lip complete, the open mouth's dark inside painted), no helmet; 6 the pink tongue alone hanging out in a happy pant.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_dog_parts_sheet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_dog parts sheet parts_sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:45",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/parts_sheet.png",
+    "sha256": "08b2a74342298bad8aad91a6b425ec6b0aaf9d825006da225750b40501a629f7",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1908,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 372
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3280
+    },
+    "seconds": 30.1
+  },
+  {
+    "asset": "sym_tall_l1_r2",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same coiled cream fire hose and brass nozzle, but the coil is now WIDE and generous: a big round coil of three chunky loops seen from slightly above fills the whole lower half of the canvas edge to edge (the coil is about 85 percent of the canvas width), and from its top the hose rises in one short thick curve into the big brass nozzle, which points diagonally up and to the right with its red bail handle, filling the upper half. The whole object is a bold, wide, heavy shape that is about 1.3 to 1.4 times taller than wide, never a thin stick.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l1_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "REDRAW (named defect): tall L1 ink was only 60% of the tile width; at 40 px it read as a thin stick instead of a coiled hose",
+    "attempt": 1,
+    "ts": "2026-09-25T04:42:52",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l1_r2.png",
+    "sha256": "8014cff14bb1544848910909d70f39a9ef36bd3a5d1110d61780ec0fd8463f6e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1392,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 368
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2764
+    },
+    "seconds": 27.0
+  },
+  {
+    "asset": "face_sheet",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows the puppy's separate facial features, each at exactly the same scale as on his face in Image 1, arranged in a 4-by-3 grid with wide gaps. Row 1, eye pairs (both eyes together as they sit on the face): eyes open (white eyes, round black pupils, one hard white catch-light); eyes closed (curved ink lines); eyes happy (upturned arches); eyes sad (droopy, looking down). Row 2, brow pairs: neutral; raised alert; sad (inner ends up); excited. Row 3, mouths: closed smile; open bark (wide open with tongue and small teeth); happy pant with tongue out; small sad frown.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_dog_face_sheet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_dog parts sheet face_sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:00",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/face_sheet.png",
+    "sha256": "e0b1907a71734542e5f752016638ebd40670d95a5b1e74fc63fb743d7481c0f3",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1906,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 370
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3278
+    },
+    "seconds": 30.5
+  },
+  {
+    "asset": "body_no_head_no_arms",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nRemove completely: the head (ears and face), both arms including the sleeves and hands. Keep ONLY the torso in the hose-cream shirt, the curly tail, both legs in dusk-navy trousers and both slippers, all exactly in place. Paint: a short rounded pink neck stub rising from inside the shirt collar (so the head can sit on it); both shoulders as clean closed rounded shirt-cream shoulder caps where the sleeves attached; the shirt front and sides that the arms were covering.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rescued_body_no_head_no_arms.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template same-framing part body_no_head_no_arms",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:06",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/body_no_head_no_arms.png",
+    "sha256": "0b2cf3683e54cf7848053bb2aaaca2c9438621b994bb638b43b39896aa6bc385",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1929,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 393
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3301
+    },
+    "seconds": 26.8
+  },
+  {
+    "asset": "arms_down",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two arms, exactly in place: both short cream shirt sleeves and the bare pink arms with open pink hands (visible thumb, separated fingers). Remove the head, the torso, the shirt body, the legs and the slippers. Paint each shoulder end as a smooth, closed, rounded shirt-cream shoulder cap with generous overlap (the part that tucks under the shirt's shoulder), and paint any arm surface that the torso was hiding. The two arms stay completely separate from each other with empty space between them.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rescued_arms_down.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template same-framing part arms_down",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:06",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/arms_down.png",
+    "sha256": "84aa47074621ed49d28073a1590c68fbbca93cdbbdbf843c8e7a63a3b8ae3fff",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1935,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 399
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3307
+    },
+    "seconds": 27.0
+  },
+  {
+    "asset": "legs",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the two legs, exactly in place: the dusk-navy trousers and both brown slippers. Remove the head, the arms, the shirt and the tail. Paint the top of each trouser leg that the shirt was hiding up to the hip as a smooth closed rounded navy hip end with generous overlap, so each leg can rotate under the shirt. Keep a clear gap between the two legs.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rescued_legs.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template same-framing part legs",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:11",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/legs.png",
+    "sha256": "30c1387730881167f2499d1bb0ea728a478f66cc5fa3b773495eff173e49566a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1910,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 374
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3282
+    },
+    "seconds": 24.2
+  },
+  {
+    "asset": "head_blank",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the head shape, exactly in place, WITHOUT the ears and WITHOUT any facial features: remove the eyes, brows and mouth and paint that area as smooth plain pig-pink skin with the same soft cheek blush and one hard shadow tone; KEEP the snout with its nostrils exactly in place. Remove the whole body. Add a short rounded neck stub under the chin. This is the blank head base onto which separate eyes, brows, mouth and ears are layered for every family member.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rescued_head_blank.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template same-framing part head_blank",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:13",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/head_blank.png",
+    "sha256": "242983d969fbfe94b17b3927c06f36eaff53d9af42f696fad4eb7dc2c69e649b",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1930,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 394
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3302
+    },
+    "seconds": 25.3
+  },
+  {
+    "asset": "head",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nKeep ONLY the head, exactly in place: face, eyes, brows, snout, mouth, cheeks and both ears. Remove the whole body, arms and everything below the chin. Add a short rounded pink neck stub under the chin that would tuck inside a shirt collar, and paint any part of the head outline that the shirt collar was hiding.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_rescued_head.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template same-framing part head",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:15",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/head.png",
+    "sha256": "dc81a719db250c079c7b225672d55a1930dba9897f5c8175e000b07fab7dbefe",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1900,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 364
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3272
+    },
+    "seconds": 25.9
+  },
+  {
+    "asset": "wave_arm",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows ONE arm of this character (bare pink arm with a short cream shirt sleeve, open hand with visible thumb and separated fingers) raised above the head in a call-for-help WAVE, drawn three times side by side with wide gaps: 1 the arm raised straight up with the palm open to the viewer; 2 the same arm tilted to the left mid-wave; 3 the same arm tilted to the right mid-wave. Each arm keeps the same length and thickness as the arms in Image 1 and ends at the shoulder in a smooth closed rounded shirt-cream shoulder cap with generous overlap. Also, in a second row, the same character's open waving hand alone in three angles (palm forward, tilted left, tilted right), each ending at the wrist with a rounded overlap.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_rescued_wave_arm.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template sheet wave_arm",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:32",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/wave_arm.png",
+    "sha256": "3e932a3061ea59a1e1f5b26bb6a6dfe98e26ada4f8ce85048896a2185305d3ca",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1922,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 386
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3294
+    },
+    "seconds": 28.6
+  },
+  {
+    "asset": "face_sheet",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows this character's separate facial features, each at exactly the same scale as on the face in Image 1, arranged in a 4-by-4 grid with wide gaps. Row 1, eye pairs (both eyes together as they sit on the face): eyes open (white, round black pupils, one hard white catch-light); eyes closed; eyes happy (upturned arches); eyes scared wide. Row 2, brow pairs: neutral; raised relieved; worried (inner ends up); joyful. Row 3, mouths: closed smile; open calling for help (round open mouth with tongue); big open cheer grin; worried wavy mouth. Row 4: the left ear alone; the right ear alone (pink, inner ear shade, rounded overlap at the base); a small relieved sigh mouth; a surprised small o mouth.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_rescued_face_sheet.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template sheet face_sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:31",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/face_sheet.png",
+    "sha256": "a31ea5cf3282e7ccd09c7a2137e17b7147b49d2e2eeed13944b767250d83ad13",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1932,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 396
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3304
+    },
+    "seconds": 30.3
+  },
+  {
+    "asset": "slide_poses",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation; it defines the character, the scale and the style. Draw a PARTS SHEET of separate pieces of THIS character, each piece drawn at exactly the SAME scale, colours, line weight and style as in Image 1 (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients, no 3D look). Arrange the pieces in a tidy grid on the canvas with WIDE empty transparent gaps between them so that no two pieces touch or overlap; each piece is complete and closed, fully painted including any surface normally hidden, with a smooth rounded painted overlap at any joint end. Genuinely transparent background, no labels, no frame, no guide lines, no shadows on the ground. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nThe sheet shows THIS SAME character (same face, body, shirt, trousers, slippers, same scale as Image 1) in three full-body poses in a row, with wide gaps between them, each complete: 1 SLIDE: sitting leaning back as if sliding down a ladder rail on its bottom, legs stretched forward and together, both hands raised holding onto nothing, a thrilled wide-eyed open mouth; 2 LAND: feet flat on the ground, knees bent deep in a squat absorbing the landing, arms out to the sides for balance, eyes squeezed; 3 CHEER: standing tall, both arms up in a V, big open happy grin, eyes happy arches. Same ink and cel style, transparent background.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigsheet.txt",
+      "art-src/generated/prompts/rs_rescued_slide_poses.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued template sheet slide_poses",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:33",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/slide_poses.png",
+    "sha256": "eab1847830c6443bcd5b737bfa4b7ace4a16a26f4673e3e28a4c8e0b11b394e4",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1906,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 370
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3278
+    },
+    "seconds": 28.6
+  },
+  {
+    "asset": "skin_grandma",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG TEMPLATE character for 2D cut-out skeletal animation. This is a SAME-FRAMING COSTUME EDIT: keep the SAME canvas, SAME scale, SAME position on the canvas, SAME pose, SAME joint positions (neck, shoulders, elbows, wrists, hips, knees, ankles), the same arm and leg positions with the same gaps between the arms and the torso, the same feet on the same ground line and the same ink and cel style (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone, one small cream highlight, light from the top left). Change ONLY the character's costume, age details and accessories as described, so this becomes a different family member that the SAME skeleton can animate. The head stays in the same place and the same size. Anything added (an animal, a second child, a sling) must be firmly attached to and in contact with the body so it moves with it, never floating. Genuinely transparent background, no floor, no ground shadow, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark (no writing on clothes). No firefighter gear, no hard hat, no construction, no police, no lantern, no dragon imagery.\n\nFamily member GRANDMA: an elderly pig lady with a neat silver-grey hair bun on top of her head, small round brass-rimmed glasses, rosy cheeks, a kind worried-but-brave smile; a knitted hose-cream cardigan over a smoke blue-grey dress to below the knee, sensible brown slippers. Her pet cat, a plump ginger tabby with a white chest, sits on her near shoulder and clings to her with its front paws wrapped around her neck, its body resting across her shoulder and upper back, so the cat touches her the whole time (the cat does not cover her hands, her arms stay free).",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_skin_edit.txt",
+      "art-src/generated/prompts/sk_grandma.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued skin grandma (same-framing costume edit of the template)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:35",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/skin_grandma.png",
+    "sha256": "1bfafac733cb55d9c3e932a629115acb3ea1b27073098bc2eefa20f359051e91",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1936,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 400
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3308
+    },
+    "seconds": 31.0
+  },
+  {
+    "asset": "skin_twins",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG TEMPLATE character for 2D cut-out skeletal animation. This is a SAME-FRAMING COSTUME EDIT: keep the SAME canvas, SAME scale, SAME position on the canvas, SAME pose, SAME joint positions (neck, shoulders, elbows, wrists, hips, knees, ankles), the same arm and leg positions with the same gaps between the arms and the torso, the same feet on the same ground line and the same ink and cel style (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone, one small cream highlight, light from the top left). Change ONLY the character's costume, age details and accessories as described, so this becomes a different family member that the SAME skeleton can animate. The head stays in the same place and the same size. Anything added (an animal, a second child, a sling) must be firmly attached to and in contact with the body so it moves with it, never floating. Genuinely transparent background, no floor, no ground shadow, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark (no writing on clothes). No firefighter gear, no hard hat, no construction, no police, no lantern, no dragon imagery.\n\nFamily member TWINS: two young twin piglets (about eight years old, identical faces with round eyes and cheeky grins). The lower twin occupies exactly the template's body and pose (a slimmer child's build, same joints): a red-and-cream horizontally striped t-shirt, dusk-navy shorts, white sneakers. The second twin rides PIGGYBACK on the lower twin's back: only its head, shoulders and both arms show above and around the lower twin's shoulders, its arms wrapped around the lower twin's neck and its chin resting on the lower twin's head, wearing the same striped t-shirt; both twins are clearly in contact and move as one. The lower twin's arms stay free.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_skin_edit.txt",
+      "art-src/generated/prompts/sk_twins.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued skin twins (same-framing costume edit of the template)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:38",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/skin_twins.png",
+    "sha256": "5f66acc0bbe90b1d4b5782045389555e61c871b413ced546f72a3f4bb75fc136",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1952,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 416
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3324
+    },
+    "seconds": 30.7
+  },
+  {
+    "asset": "skin_dad",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG TEMPLATE character for 2D cut-out skeletal animation. This is a SAME-FRAMING COSTUME EDIT: keep the SAME canvas, SAME scale, SAME position on the canvas, SAME pose, SAME joint positions (neck, shoulders, elbows, wrists, hips, knees, ankles), the same arm and leg positions with the same gaps between the arms and the torso, the same feet on the same ground line and the same ink and cel style (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone, one small cream highlight, light from the top left). Change ONLY the character's costume, age details and accessories as described, so this becomes a different family member that the SAME skeleton can animate. The head stays in the same place and the same size. Anything added (an animal, a second child, a sling) must be firmly attached to and in contact with the body so it moves with it, never floating. Genuinely transparent background, no floor, no ground shadow, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark (no writing on clothes). No firefighter gear, no hard hat, no construction, no police, no lantern, no dragon imagery.\n\nFamily member DAD: a middle-aged pig with a slightly round belly, messy just-woke-up hair tuft, a short stubble shadow, a sheepish relieved smile; a fluffy dusk-navy bathrobe with a hose-cream collar and cuffs, tied with a belt at the waist, striped pyjama trousers showing below the robe (cream with thin red stripes), big fluffy brown slippers. A toothbrush is NOT in his hands; his hands are empty.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_skin_edit.txt",
+      "art-src/generated/prompts/sk_dad.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued skin dad (same-framing costume edit of the template)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:43:42",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/skin_dad.png",
+    "sha256": "62e48a601d35e75d1ac5ea128e68f05e77a06d729b921fef380830ea8243078c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1900,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 364
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3272
+    },
+    "seconds": 30.6
+  },
+  {
+    "asset": "skin_baby",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG TEMPLATE character for 2D cut-out skeletal animation. This is a SAME-FRAMING COSTUME EDIT: keep the SAME canvas, SAME scale, SAME position on the canvas, SAME pose, SAME joint positions (neck, shoulders, elbows, wrists, hips, knees, ankles), the same arm and leg positions with the same gaps between the arms and the torso, the same feet on the same ground line and the same ink and cel style (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone, one small cream highlight, light from the top left). Change ONLY the character's costume, age details and accessories as described, so this becomes a different family member that the SAME skeleton can animate. The head stays in the same place and the same size. Anything added (an animal, a second child, a sling) must be firmly attached to and in contact with the body so it moves with it, never floating. Genuinely transparent background, no floor, no ground shadow, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark (no writing on clothes). No firefighter gear, no hard hat, no construction, no police, no lantern, no dragon imagery.\n\nFamily member BABY: the family's mum, a young pig mother with a short ponytail and a gentle calm smile, in a smoke blue-grey jumper and navy trousers and brown slippers, carrying a BABY piglet in a front baby-carrier sling strapped securely across her chest and shoulders. The baby piglet is swaddled in a soft hose-cream blanket with a thin red trim, only its round sleepy face and tiny ears peeking out, snugly supported by the sling against her chest the whole time. Her arms stay free (the sling holds the baby).",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_skin_edit.txt",
+      "art-src/generated/prompts/sk_baby.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued skin baby (same-framing costume edit of the template)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:44:01",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/skin_baby.png",
+    "sha256": "81d534e9028b27fa2777e56e3abf9fe735b4ca64c48ee48f4b9ad3a7c91c88c7",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1923,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 387
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3295
+    },
+    "seconds": 28.4
+  },
+  {
+    "asset": "skin_teen",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG TEMPLATE character for 2D cut-out skeletal animation. This is a SAME-FRAMING COSTUME EDIT: keep the SAME canvas, SAME scale, SAME position on the canvas, SAME pose, SAME joint positions (neck, shoulders, elbows, wrists, hips, knees, ankles), the same arm and leg positions with the same gaps between the arms and the torso, the same feet on the same ground line and the same ink and cel style (bold thick dark-brown ink outline, flat fills, ONE hard shadow tone, one small cream highlight, light from the top left). Change ONLY the character's costume, age details and accessories as described, so this becomes a different family member that the SAME skeleton can animate. The head stays in the same place and the same size. Anything added (an animal, a second child, a sling) must be firmly attached to and in contact with the body so it moves with it, never floating. Genuinely transparent background, no floor, no ground shadow, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark (no writing on clothes). No firefighter gear, no hard hat, no construction, no police, no lantern, no dragon imagery.\n\nFamily member TEEN: a gangly teenage pig, oblivious and relaxed, half-closed bored eyes, a small unimpressed smile, big dusk-navy over-ear headphones on the head with the band over the crown and the cups on both ears, a baggy engine-red hoodie with the hood down, dusk-navy jeans, hose-cream sneakers. The hands are empty.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_skin_edit.txt",
+      "art-src/generated/prompts/sk_teen.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: pf_rescued skin teen (same-framing costume edit of the template)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:44:01",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/skin_teen.png",
+    "sha256": "2a28493590dd223733393a5e1912d80256d3affdac64f88db9c9d6e57814b5d7",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1885,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 349
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3257
+    },
+    "seconds": 30.8
   }
 ]

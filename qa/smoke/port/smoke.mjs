@@ -17,7 +17,7 @@
  * Results: qa/smoke/port/results.json.
  */
 import { createRequire } from 'node:module';
-import { mkdirSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readdirSync, existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -61,6 +61,16 @@ const launch = async () => {
 	}
 };
 
+// the booked payout of each fixture (server/fixtures/index.json): the round must end on exactly this finalWin
+const EXPECTED = (() => {
+	try {
+		const index = JSON.parse(readFileSync(join(HERE, '..', '..', '..', 'server', 'fixtures', 'index.json'), 'utf8'));
+		return Object.fromEntries(index.fixtures.map((f) => [f.name, f.payoutMultiplier]));
+	} catch {
+		return {};
+	}
+})();
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const runOne = async (browser, fixture) => {
@@ -71,7 +81,8 @@ const runOne = async (browser, fixture) => {
 		if (msg.type() === 'error') errors.push(msg.text().slice(0, 400));
 	});
 	page.on('pageerror', (err) => errors.push(`pageerror: ${String(err?.message ?? err).slice(0, 400)}`));
-	const url = `${GAME}?sessionID=local&rgs_url=${RGS}&device=desktop&fixture=${fixture}`;
+	// one session per fixture run: a round left open by an earlier run would otherwise be RESUMED instead of played
+	const url = `${GAME}?sessionID=local-${fixture}-${Date.now()}&rgs_url=${RGS}&device=desktop&fixture=${fixture}`;
 	const t0 = Date.now();
 	const result = { fixture, passed: false, console_errors: 0, finalWin: null, ms: 0, errors };
 	try {
@@ -86,9 +97,11 @@ const runOne = async (browser, fixture) => {
 		await page.keyboard.press('Space');
 		await page.waitForFunction(() => ((window).__pffFinalWins ?? []).length > 0, null, { timeout: 900000, polling: 250 });
 		result.finalWin = await page.evaluate(() => (window).__pffFinalWins?.[0] ?? null);
+		result.expected = EXPECTED[fixture] ?? null;
+		if (result.expected !== null && result.finalWin !== result.expected) errors.push(`driver: finalWin ${result.finalWin} != booked ${result.expected}`);
 		await sleep(1800); // let the last presentation (outro / shutter lift) settle for the capture
 		await page.screenshot({ path: join(HERE, `${fixture}.png`) });
-		result.passed = true;
+		result.passed = !errors.some((e) => e.startsWith('driver:'));
 	} catch (error) {
 		errors.push(`driver: ${String(error?.message ?? error).split('\n')[0]}`);
 		try {

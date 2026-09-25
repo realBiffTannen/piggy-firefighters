@@ -108,7 +108,9 @@ spins / prizes, cap clipping per v1.1 §6); boards are chosen, not drawn — dev
 `base_trigger_inferno` (GALARM, prizes), `rescue_buy` (a building cleared), `inferno_buy`, `alarm_call_rescue`,
 `alarm_call_false`, `backdraft_spins` (multiplier Blaze Wilds, v1.1 §7), `max_win` (natural Inferno to the 15,000x cap).
 Run: `PORT=3036 BOOKS_DIR=none node server/mock-rgs.mjs`, then `…?sessionID=local&rgs_url=127.0.0.1:3036&device=desktop&fixture=<name>`.
-Smoke: `node qa/smoke/port/smoke.mjs [fixtures]` (screenshots + `results.json` in `qa/smoke/port/`).
+Smoke: `node qa/smoke/port/smoke.mjs [fixtures]` (screenshots + `results.json` in `qa/smoke/port/`; a warm-up load
+first, one session per fixture so an open round is never resumed by mistake, pass = booked payout + 0 console errors).
+Under SwiftShader a bonus fixture takes minutes (max_win ≈ 6.5 min even in turbo).
 
 ## 6. Open items
 
