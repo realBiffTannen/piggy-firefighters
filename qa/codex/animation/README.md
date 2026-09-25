@@ -48,7 +48,7 @@ The validator reads files only and emits JSON to stdout:
 - Exit 2 / `BLOCKED`: required inputs or texture pages are missing.
 
 Checks cover Spine 4.2.x metadata, positive-duration nonempty pose timelines, numeric bone keys and known
-animated bones, ordered nonnegative frame times, declared animation events (required events must also be
+animated bones, case-sensitive bone and 4.2 slot timeline names, ordered nonnegative frame times, declared animation events (required events must also be
 keyed in at least one clip), required anchor bones, neutral root setup/direct
 timelines, every skin's texture attachments (including linked meshes and sequences), atlas regions,
 straight alpha declaration, PNG headers and dimensions, region containment, and maximum 2048×2048 pages.
@@ -72,7 +72,9 @@ Focused synthetic regressions:
 python3 -B -m unittest discover -s tools/codex/animation -p 'test_validate_rig.py' -v
 ```
 
-19 tests passed after observed failing tests on 2026-09-25 UTC. Tests exercise the CLI, temporary synthetic
+23 focused tests pass, including observed false positives for capitalized `Rotate` and legacy slot
+`color` timelines (now rejected), plus explicit `angle` rejection and `value`/`rgba` acceptance.
+Tests exercise the CLI, temporary synthetic
 PNG/JSON/atlas inputs, both missing and invalid inputs, and verify that input bytes remain unchanged.
 No game simulation or broad application suite is part of this bounded tool verification.
 
