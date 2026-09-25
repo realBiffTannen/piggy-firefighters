@@ -19,12 +19,13 @@
 	import { getContext } from '../game/context';
 	import { prefersReducedMotion } from '../game/fx/timing';
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
-	import { stateRig } from '../game/fx/stateRig.svelte';
+	import { stateRig, setChiefHandle } from '../game/fx/stateRig.svelte';
 	import { stateSpeed } from '../game/stateSpeed.svelte';
 	import { winLevelMap } from '../game/winLevelMap';
 	import { rungLevelOfTier, type WinTier } from '../game/roundTier';
 	import { rescueProp } from '../game/artMeta';
-	import type { RigAnimationEvent } from '../game/anim/rigTypes';
+	import type { RigAnimationEvent, RigHandle } from '../game/anim/rigTypes';
+	import type { RigName } from '../game/anim/rigLogic';
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const context = getContext();
@@ -141,9 +142,17 @@
 			}
 		}
 	};
-	const onDispose = () => {
+	const onReady = (handle: RigHandle) => {
+		if (handle.rig === 'pf_chief') setChiefHandle(handle);
+	};
+	const onDispose = (rig: RigName) => {
+		if (rig === 'pf_chief') setChiefHandle(null);
 		stateRig.nozzleTip = null;
 	};
+	// the Rescue scene keeps its own hose while the chief has no gutter to stand in (stacked layouts)
+	$effect(() => {
+		stateRig.chiefOnStage = slots.visible;
+	});
 
 	onMount(() => {
 		const ticker = app.stateApp.pixiApplication?.ticker;
@@ -153,13 +162,15 @@
 			plate?.destroy({ children: true });
 			plate = undefined;
 			stateRig.nozzleTip = null;
+			stateRig.chiefOnStage = false;
+			setChiefHandle(null);
 		};
 	});
 </script>
 
 <MainContainer>
 	<Container x={slots.left.x} y={slots.left.y} visible={slots.visible}>
-		<RigStage {...{ slot: 'mascotLeft' as const }} width={slots.left.w} height={slots.left.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} onrigEvent={onRigEvent} ondispose={onDispose} />
+		<RigStage {...{ slot: 'mascotLeft' as const }} width={slots.left.w} height={slots.left.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} onrigEvent={onRigEvent} onready={onReady} ondispose={onDispose} />
 	</Container>
 	<Container x={slots.right.x} y={slots.right.y} visible={slots.visible}>
 		<RigStage {...{ slot: 'mascotRight' as const }} width={slots.right.w} height={slots.right.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} />

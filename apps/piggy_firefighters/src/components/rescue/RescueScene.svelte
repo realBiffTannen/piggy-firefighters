@@ -33,13 +33,13 @@
 	import { boardTicker } from '../../game/reels/boardTicker';
 	import { sceneTex } from '../../game/fx/sceneTextures.svelte';
 	import { audioDirector } from '../../game/fx/audioDirector';
-	import { stateRig } from '../../game/fx/stateRig.svelte';
+	import { stateRig, chiefNozzleTip } from '../../game/fx/stateRig.svelte';
 	import { stateSpeed } from '../../game/stateSpeed.svelte';
 	import { stateRescue, stateBackdraftSpins } from '../../game/rescue/stateRescue.svelte';
 	import { BOARD_FRAME, RESCUE_ART, rescueProp } from '../../game/artMeta';
 	import { rigRegistry } from '../../game/anim/rigRegistry';
 	import { landingBus } from '../../game/anim/playbackControl';
-	import type { RigName } from '../../game/anim/rigLogic';
+	import { fitRigInSlot, type RigName } from '../../game/anim/rigLogic';
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const context = getContext();
@@ -135,10 +135,14 @@
 	const nozzleAt = $derived(
 		ladder ? { x: ladder.foot.x + S * 1.25, y: frameBottom + S * 0.3, rot: -0.55 } : { x: S * 0.55, y: frameBottom + S * 0.42, rot: -0.7 },
 	);
-	/** where the water leaves the nozzle (board units): the nozzle's tip, or the chief rig's `nozzle_tip` while it sprays */
+	/** the chief rig stands in his gutter: he holds the hose, so the scene's own hose and nozzle stay away */
+	const chiefHoldsHose = $derived(rigRegistry.has('pf_chief') && stateRig.chiefOnStage);
+	/** where the water leaves the nozzle (board units): the chief rig's `nozzle_tip` (the spraying tip the rig
+	 *  published, else the mounted chief's bone right now), or the prop nozzle's tip */
 	const nozzleTip = () => {
-		if (fxNode && stateRig.nozzleTip) {
-			const p = fxNode.toLocal(new PIXI.Point(stateRig.nozzleTip.x, stateRig.nozzleTip.y));
+		const tip = stateRig.nozzleTip ?? (chiefHoldsHose ? chiefNozzleTip() : null);
+		if (fxNode && tip) {
+			const p = fxNode.toLocal(new PIXI.Point(tip.x, tip.y));
 			return { x: p.x, y: p.y };
 		}
 		const n = nozzleAt;
@@ -161,8 +165,9 @@
 	const fitScale = (rig: RigName, w: number, h: number, wantH: number) => {
 		const data = (app.stateApp.loadedAssets as any)?.[rig];
 		if (!data?.width || !data?.height) return 1;
-		const fit = Math.min(w / data.width, h / data.height);
-		return fit > 0 ? wantH / (fit * data.height) : 1;
+		// the same bounds-aware fit RigStage applies (feet centred, motion gutter); the layout scale it accepts is <= 1
+		const fit = fitRigInSlot({ x: data.x ?? 0, y: data.y ?? 0, width: data.width, height: data.height }, w, h, 1).scale;
+		return fit > 0 ? Math.min(1, wantH / (fit * data.height)) : 1;
 	};
 
 	// ---- textures ----------------------------------------------------------------------------------------------------------
@@ -391,7 +396,7 @@
 <Container x={bl().x} y={bl().y} scale={bl().zoomScale} pivot={{ x: W / 2, y: H / 2 }}>
 	{#if stateRescue.active && bandH > 0}
 		<!-- the hose from the truck (off the left edge) to the nozzle; hidden when the chief rig sprays himself -->
-		{#if !rigRegistry.has('pf_chief')}
+		{#if !chiefHoldsHose}
 			{#if tex('rescue_hose_segment')}
 				{#each hoseTiles as hx (hx)}
 					<BaseSprite texture={tex('rescue_hose_segment')} x={hx} y={nozzleAt.y + NOZZLE_H * 0.12} width={HOSE_TILE_W + 0.5} height={HOSE_H} anchor={{ x: 0, y: 0.5 }} />

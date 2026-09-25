@@ -25,6 +25,7 @@
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
 	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
 	import { audioDirector } from '../game/fx/audioDirector';
+	import { CUES } from '../game/audio/cueManifest';
 	import { MODE_TITLE, MECHANIC } from '../game/names';
 	import { stateAlarmCall } from '../game/rescue/stateRescue.svelte';
 	import { animBeats } from '../game/fx/animBeats';
@@ -64,7 +65,8 @@
 				showing = true;
 				revealed = false;
 				release = holdPressGate();
-				const ring = prefersReducedMotion() ? 200 : isTurbo() ? 500 : 1100;
+				// the card rings for the bell cue's authored length (cueManifest durationMs, never a typed number)
+				const ring = prefersReducedMotion() ? 200 : isTurbo() ? 500 : Math.round(CUES.alarm_call_ring?.durationMs ?? 1100);
 				timer = setTimeout(() => {
 					revealed = true;
 					stateAlarmCall.phase = 'revealed';
