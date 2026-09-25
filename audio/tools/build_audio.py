@@ -7,8 +7,13 @@ adapted for this title. Same kit (kit.py: load / fine_tempo / time_scale / loopk
   * beds come from audio/tools/plans.json (cue, bpm, bars, target LUFS, hook) + bed_overrides.json (measured source picks);
   * the hook is the Firefighters call G C E G | A G E C in firehouse timbres (hook_layer.py: glock / bugle / bell / vibes);
   * EVERY ladder root is snapped to the TONIC (the LUCKY bug: a root snapped to A3 gave an A-major-pentatonic ladder
-    with C# and F#); the reel-stop ladder is C D E G A, the ignition ladder C5 D5 E5 G5 A5, the ta-da ladder
-    C D E G A C' D' E' (built from three snapped brass sources so no rung is shifted more than a few semitones);
+    with C# and F#); the reel-stop ladder is C D E G A (drawn thunk + a tuned wood knock C5 D5 E5 G5 A5 per stop), the
+    ignition ladder C5 D5 E5 G5 A5, the ta-da ladder C4 D4 E4 G4 A4 C5 D5 E5 (brass sources labelled by their FUNDAMENTAL,
+    cleaned to one note, smallest upward shift: lo 0/2/4, mid 0/2/5/7/9);
+  * r2 (2026-09-25) build fixes: level-only stereo on synthesised layers (hook_layer.stereo), M/S narrowing of anti-phase draws
+    and a 20 Hz DC block on every draw, tuned layers that ring out (kit.ring_out), loud-tail releases (kit.trim), whole
+    pickups or none, reel-stop knock voiced on the 400 Hz phone proxy, alarm top voice +6 dB, turbo cap 0.70 s, rung-bed
+    tail fills, 8x true peak in ship() -- see assets/SOUND_BIBLE.md section 13;
   * the ALARM ladder is deliberately NOT pentatonic: ii -> V -> V7 -> V9 -> V13 (synthesised chime chords under the drawn
     bell strike), unresolved until trigger_fanfare, whose pickup (G C E G) resolves it — never key-fitted;
   * no donor durations exist for a new title, so a one-shot's trim cap is its drawn length + 50 ms;
@@ -210,8 +215,9 @@ def add_hook(x, bpm, colour, octave, places, rel):
 def tail_fill(y, s, L, X, bars, tf, loop):
     """r2 (2026-09-25): a loop whose last beats sit in a composed rest dips at EVERY loop point (rung_bed_big's final beat
     -18 dB under the bed median, rung_bed_mega's -5 dB: +25 / +20.6 dB head-tail at 250 ms, repeating every 19.2 s under
-    the whole count-up). Fill the loop's last `beats` beats with the SAME beats of phrase bar `fromBar` (1-based; the
-    same position in the 4-bar phrase) from the time-scaled draw `y`: a 30 ms equal-power splice just before the fill's
+    the whole count-up). Fill the loop's last `beats` beats with the SAME beats (beat positions) of bar `fromBar` (1-based)
+    of the time-scaled draw `y` -- a half-bar that leads into a downbeat WITHOUT the phrase-end breath (bed_overrides.json
+    records the measured choice) -- through a 30 ms equal-power splice just before the fill's
     first beat, and the head blend re-made from the FILL's own continuation (y after the end of `fromBar`), so the wrap
     stays sample-continuous by construction. The grid is untouched (same length, sample-exact)."""
     BAR = L / bars; beat = BAR / 4; nb = float(tf.get('beats', 2)); fb = float(tf['fromBar'])
@@ -384,9 +390,9 @@ def hybrid_ping(drawn, note, rel_db=0.0, dur=LAYER_S, colours=(('glock', 0.6), (
     return out, on
 
 
-def hybrid_chord(strike, notes, dur=LAYER_S, strike_db=-4.0, top_glock=True, top_w=1.6, damp_s=0.6):
+def hybrid_chord(strike, notes, dur=LAYER_S, strike_db=-4.0, top_glock=True, top_w=2.0, damp_s=0.6):
     """a short drawn strike (the bell's clapper transient) + a synthesised chime chord (+ the top note on glockenspiel).
-    r2: the TOP voice is weighted `top_w` (+4 dB over each inner voice) so the ladder's top line (alarm A4 D5 F5 A5 B5)
+    r2: the TOP voice is weighted `top_w` (+6 dB over each inner voice) so the ladder's top line (alarm A4 D5 F5 A5 B5)
     is the loudest partial of every rung: r1's alarm 3 carried the same G4 B4 D5 triad as alarm 2 with its added F5
     11 dB under the loudest partial, so the 2 -> 3 step barely read as a rise."""
     w = [1.0] * (len(notes) - 1) + [top_w]; order = np.argsort(notes); ws = [0.0] * len(notes)
@@ -570,7 +576,7 @@ def derived(only=None):
             d = CUES[cid]['derive']; s = K.pitch(strike, d['strikeSemis'], True) if d['strikeSemis'] else strike
             y = hybrid_chord(s, d['chord'], strike_db=-3.0); y, ro = K.ring_out(y)
             y = K.norm_rms(y, -20.0 + 0.5 * (n_ - 1), peak_db=-3.0)
-            put(cid, y, {'from': 'alarm_land_src', 'op': 'hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord (top voice +4 dB), rings out', 'chord': [HL.name(m) for m in d['chord']],
+            put(cid, y, {'from': 'alarm_land_src', 'op': 'hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord (top voice +6 dB), rings out', 'chord': [HL.name(m) for m in d['chord']],
                          'topVoice': HL.name(max(d['chord'])), 'strikeSemis': d['strikeSemis'], 'ringOut': ro}, fade_ms=2)
     else: report['skipped'].append('alarm ladder: no alarm_land_src')
     # anticipation riser, stepped up
@@ -606,7 +612,10 @@ def derived(only=None):
         CLAD = [0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24, 26]
         for i in range(2, 13):
             if base is not None and want(f'count_ticker_{i}'):
-                put(f'count_ticker_{i}', K.pitch(base, CLAD[i - 1], False), {'from': 'count_ticker_1', 'semis': CLAD[i - 1], 'op': 'pentatonic ladder (resampled)'}, fade_ms=6)
+                # r2: the resampled blip keeps its shape but shrinks (250 -> 56 ms), so the top ticks ended 30-40 dB under their peak;
+                # an exponential release over the last 45 % of each tick lands every one at silence (measure.py tails gate)
+                y = K.pitch(base, CLAD[i - 1], False); y = K.release(y, 0.45 * len(y) / SR * 1000)
+                put(f'count_ticker_{i}', y, {'from': 'count_ticker_1', 'semis': CLAD[i - 1], 'op': 'pentatonic ladder (resampled, release over the last 45 %)'}, fade_ms=2)
     # rescue ta-da ladder C4 D4 E4 G4 A4 C5 D5 E5 (perceived pitch = the FUNDAMENTAL). r2: every source is labelled by its
     # SHS fundamental (lo C4, mid G4, hi C4 -- r1 read lo / hi as C5 / C6 from their loudest partials, and its smallest-
     # shift planner built rungs 4-8 from hi, so the ladder fell a minor sixth at 3 -> 4 and rungs 6-8 repeated 1-3). The

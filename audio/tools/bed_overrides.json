@@ -24,16 +24,16 @@
  },
  "rung_bed_big": {
   "tailFill": {
-   "fromBar": 4,
+   "fromBar": 7,
    "beats": 2
   },
-  "why": "measure.py 2026-09-25: the loop's last beat sits in the draw's composed rest (-18 dB under the bed median; head-tail +25.0 dB at 250 ms), and a rung bed loops for the whole count-up, so the dip repeats every 19.2 s. Fill the final half-bar (beats 31-32) with beats 15-16 (the end of bar 4, the same place in the 4-bar phrase) through a 30 ms splice and a re-made head blend; grid unchanged."
+  "why": "measure.py 2026-09-25: the loop's last beat sat in the draw's composed rest (-17.9 dB under the median beat; head-tail +25.0 dB at 250 ms, 6.8 dB at 1000 ms), and a rung bed loops for the whole count-up, so the dip repeated every 19.2 s. The end of bar 4 (the literal same phrase position) carries the same 2-bar phrase-end breath in the draw (its last 400 ms at -10.9 dB re the median, like bar 6 at -10.7), so the final half-bar (beats 31-32) is filled from the end of bar 7 (beats 27-28: the half-bar that leads into a downbeat without a breath), through a 30 ms splice and a re-made head blend; grid unchanged. Result: last 400 ms -3.0 dB re the median, head-tail 10.7 / 4.5 dB at 250 / 1000 ms (beat phase, like rung_bed_huge's 11.7)."
  },
  "rung_bed_mega": {
   "tailFill": {
-   "fromBar": 4,
+   "fromBar": 7,
    "beats": 2
   },
-  "why": "measure.py 2026-09-25: the loop's last beat sits in the draw's composed rest (-5 dB under the bed median; head-tail +20.6 dB at 250 ms), and a rung bed loops for the whole count-up, so the dip repeats every 19.2 s. Fill the final half-bar (beats 31-32) with beats 15-16 (the end of bar 4, the same place in the 4-bar phrase) through a 30 ms splice and a re-made head blend; grid unchanged."
+  "why": "measure.py 2026-09-25: the loop's last 0.4 s sat at -14 .. -21 dB (head-tail +20.6 dB at 250 ms): the draw's 2-bar phrase-end breath (bar 6 ends the same way, -13.7 dB; bar 4's end is a breath too, so a fill from bar 4 changed nothing: measured -15.8 -> -15.8). The final half-bar is filled from the end of bar 7 (beats 27-28, no breath) through a 30 ms splice and a re-made head blend; grid unchanged. Result: last 400 ms -1.6 dB re the median, head-tail 6.4 / 2.4 dB at 250 / 1000 ms."
  }
 }

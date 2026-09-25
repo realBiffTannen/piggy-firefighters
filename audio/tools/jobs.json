@@ -1111,7 +1111,10 @@
   "cue": "rescue_tada_src_mid",
   "feeds": [
    "rescue_tada_4",
-   "rescue_tada_5"
+   "rescue_tada_5",
+   "rescue_tada_6",
+   "rescue_tada_7",
+   "rescue_tada_8"
   ],
   "s": 1.0,
   "group": "rescue",
@@ -1125,11 +1128,7 @@
  "rescue_tada_src_hi": {
   "route": "sfx",
   "cue": "rescue_tada_src_hi",
-  "feeds": [
-   "rescue_tada_6",
-   "rescue_tada_7",
-   "rescue_tada_8"
-  ],
+  "feeds": [],
   "s": 1.0,
   "group": "rescue",
   "loop": false,

@@ -20,7 +20,7 @@ r2 gates (2026-09-25; summary.gates, PASS = all of them):
   * monoSum: every cue, both codecs: inter-channel correlation >= 0 and loudest-400 ms loss of the (L+R)/2 sum <= 3 dB;
   * tails: every one-shot (master, ogg, m4a): the 10 ms that ends 10 ms before the last sample <= -40 dB re peak and
     |last sample| < 0.002 (a ring cut short, or a short fade into a loud ring, reads high);
-  * turbo700ms: every _turbo variant <= 700 ms (both codecs) unless the cue records turboCapExempt (held risers);
+  * turbo700ms: every _turbo variant's AUDIBLE length (last sample > -80 dBFS; AAC pads to whole frames) <= 700 ms (both codecs) unless the cue records turboCapExempt (held risers);
   * tadaLadderRising: the SHS fundamental (kit.shs_f0) of rescue_tada_1..8 rises strictly (>= 0.5 st per rung);
   * reelStopsPhone: every reel stop's effective 400 Hz phone-proxy level >= reel_spin_loop's + 6 dB, stops within 1 dB;
   * chains_st_mono_phone: every mix.CHAINS entry rising on stereo power, the mono sum and the phone proxy (gain x file);
@@ -196,6 +196,8 @@ def one(c):
             I, TP4 = K.measure(p); d.update(I_LUFS=I, TP_dBFS=round(K.true_peak(p), 2), TP_ebur128_4x=TP4)
             d['sameAsRuntime'] = os.path.exists(r) and sha(r) == sha(p)
             x = lk.decode(p); d['samples'] = len(x); d['ms'] = round(len(x) / SR * 1000, 1)
+            nz = np.nonzero(np.abs(x).max(axis=1) > 1e-4)[0]  # audible length: AAC in MP4 decodes to whole 1024-sample frames (silent padding)
+            d['audibleMs'] = round((int(nz[-1]) + 1) / SR * 1000, 1) if len(nz) else 0.0
             if m is not None: d['lenDiff'] = len(x) - len(m)
             d['levels'] = K.levels(x)
             if not out['loop']: d['tail'] = K.tail_metrics(x)
@@ -262,8 +264,10 @@ def shipped():
     def tail_fail(t): return t and (t['endLevel_dB'] > -40.0 or t['lastSample'] >= 0.002)
     tail_bad = [(r['id'], w, (r.get(w) or {}).get('tail') if w in E else r.get('masterTail')) for r in rows if not r['loop'] for w in ('master', 'ogg', 'm4a')
                 if tail_fail((r.get(w) or {}).get('tail') if w in E else r.get('masterTail'))]
-    turbo_long = [(r['id'], max(r[e]['ms'] for e in E if r.get(e, {}).get('ms'))) for r in rows if r['id'].endswith('_turbo') and r.get('ogg', {}).get('ms')
-                  and max(r[e]['ms'] for e in E if r.get(e, {}).get('ms')) > 700.0 and not by0[r['id']].get('turboCapExempt')]
+    turbo_long = [(r['id'], max(r[e]['audibleMs'] for e in E if r.get(e, {}).get('ms'))) for r in rows if r['id'].endswith('_turbo') and r.get('ogg', {}).get('ms')
+                  and max(r[e]['audibleMs'] for e in E if r.get(e, {}).get('ms')) > 700.0 and not by0[r['id']].get('turboCapExempt')]
+    turbo_max = max((max(r[e]['audibleMs'] for e in E if r.get(e, {}).get('ms')), r['id']) for r in rows if r['id'].endswith('_turbo')
+                    and r.get('ogg', {}).get('ms') and not by0[r['id']].get('turboCapExempt'))
     turbo_exempt = {r['id']: by0[r['id']].get('turboCapExempt') for r in rows if r['id'].endswith('_turbo') and by0[r['id']].get('turboCapExempt')}
     rb = {r['id']: r for r in rows}
     tada = [rb[f'rescue_tada_{i}']['ogg'].get('shsMidi') for i in range(1, 9) if f'rescue_tada_{i}' in rb and rb[f'rescue_tada_{i}'].get('ogg', {}).get('shsMidi') is not None]
@@ -293,7 +297,7 @@ def shipped():
                'bedTailDipOver6dB_1000ms': tail_dip, 'bedLUFSoffTarget': lufs_off,
                'rungBedsLUFS': rung, 'rungBedsStrictlyRising': bool(rung and None not in rung and all(b > a for a, b in zip(rung, rung[1:]))),
                'nearCopyGridSections': copy_grid, 'selfSimSliding': sliding,
-               'monoNotCompatible': mono_bad, 'tailCutOrClick': tail_bad, 'turboOver700ms': turbo_long, 'turboCapExempt': turbo_exempt,
+               'monoNotCompatible': mono_bad, 'tailCutOrClick': tail_bad, 'turboOver700ms': turbo_long, 'turboLongestAudibleMs': turbo_max, 'turboCapExempt': turbo_exempt,
                'tadaShsMidi': tada, 'tadaStrictlyRising': tada_ok, 'reelStopsPhoneEffective_dBFS': stops, 'reelSpinLoopPhoneEffective_dBFS': spin,
                'reelStopsPhoneOK': reel_ok, 'chains3': chains, 'chainsNotRising3': chains_bad, 'alarmTopVoice': alarm_top, 'alarmTopVoiceNotLeading': alarm_bad}
     gates = {'files': summary['filesPresent'] == summary['filesExpected'] and not notsame, 'truePeak8x': not over, 'loopSeams': not seam_bad,

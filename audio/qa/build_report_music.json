@@ -1,40 +1,111 @@
 {
  "music": {
-  "backdraft_spins_layer": {
-   "I_LUFS": -16.0,
-   "TP_dBFS": -1.7,
-   "TP_m4a_dBFS": -1.6,
-   "samples": 1380522,
-   "source": "pf_backdraft92__1",
-   "measuredBpm": 91.996,
+  "rung_bed_big": {
+   "I_LUFS": -15.2,
+   "TP_dBFS": -1.75,
+   "TP_m4a_dBFS": -1.78,
+   "I_m4a_LUFS": -15.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 846720,
+   "source": "pf_rung100_big__1",
+   "measuredBpm": 100.0,
    "bpmOverride": false,
-   "gridBpm": 92,
-   "bars": 12,
-   "startSeconds": 5.286,
-   "materialEnd_s": 45.0,
+   "gridBpm": 100,
+   "bars": 8,
+   "startSeconds": 0.01,
+   "materialEnd_s": 23.75,
    "transposeSemis": null,
    "barLift_dB": null,
    "padSamples": 2646,
-   "barSamples": 115043.5,
-   "blend": "head; start nudged -0.66 ms to the smallest seam step",
-   "wrap": 0.0006,
-   "bodyP999": 0.1175,
+   "barSamples": 105840.0,
+   "blend": "head; start nudged -1.27 ms to the smallest seam step",
+   "wrap": 0.0198,
+   "bodyP999": 0.168,
    "headTail_dB": {
-    "50": 12.28,
-    "250": 5.49,
-    "1000": -0.07
+    "50": 11.7,
+    "250": 10.7,
+    "1000": 4.45
    },
    "sectionRMS_raw": [
-    -16.3,
-    -15.0,
-    -15.3,
-    -14.5,
-    -14.8,
-    -13.7
+    -18.9,
+    -18.6,
+    -18.8,
+    -19.0
    ],
    "sectionRide_dB": [
     0.0,
     0.0,
+    0.0,
+    0.0
+   ],
+   "limiterCeiling_dB": -2.0,
+   "limitedFraction": 0.2068,
+   "shippedBpmEst": 100.0,
+   "cpentShare": 0.846,
+   "chug": 1.07,
+   "selfSim": {
+    "sections": 1,
+    "pairs": {},
+    "maxPair": null,
+    "nearCopy": false
+   },
+   "tailFill": {
+    "beats": 2.0,
+    "fromBar": 7.0,
+    "fillStartBeat": 30.0,
+    "why": null
+   },
+   "stereo": null,
+   "levels": {
+    "st": -14.2,
+    "mono": -14.69,
+    "phone": -18.68,
+    "corr": 0.897,
+    "monoLoss": 0.49
+   },
+   "hook": {
+    "colour": "glock",
+    "octave": 1,
+    "bars": [
+     0
+    ],
+    "relDb": -4.0,
+    "notes": "G C E G | A G E C x2"
+   }
+  },
+  "rung_bed_mega": {
+   "I_LUFS": -14.8,
+   "TP_dBFS": -2.93,
+   "TP_m4a_dBFS": -2.9,
+   "I_m4a_LUFS": -14.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 846720,
+   "source": "pf_rung100_mega__1",
+   "measuredBpm": 100.0,
+   "bpmOverride": false,
+   "gridBpm": 100,
+   "bars": 8,
+   "startSeconds": 0.004,
+   "materialEnd_s": 23.75,
+   "transposeSemis": null,
+   "barLift_dB": null,
+   "padSamples": 2646,
+   "barSamples": 105840.0,
+   "blend": "head; start nudged -0.43 ms to the smallest seam step",
+   "wrap": 0.0032,
+   "bodyP999": 0.1584,
+   "headTail_dB": {
+    "50": 7.71,
+    "250": 6.42,
+    "1000": 2.39
+   },
+   "sectionRMS_raw": [
+    -16.4,
+    -16.9,
+    -16.6,
+    -16.4
+   ],
+   "sectionRide_dB": [
     0.0,
     0.0,
     0.0,
@@ -42,16 +113,38 @@
    ],
    "limiterCeiling_dB": -2.0,
    "limitedFraction": 0.0,
-   "shippedBpmEst": 91.95,
-   "cpentShare": 0.715,
-   "chug": 0.85,
+   "shippedBpmEst": 100.0,
+   "cpentShare": 0.845,
+   "chug": 0.32,
    "selfSim": {
     "sections": 1,
     "pairs": {},
     "maxPair": null,
     "nearCopy": false
    },
-   "hook": null
+   "tailFill": {
+    "beats": 2.0,
+    "fromBar": 7.0,
+    "fillStartBeat": 30.0,
+    "why": null
+   },
+   "stereo": null,
+   "levels": {
+    "st": -16.1,
+    "mono": -16.37,
+    "phone": -16.96,
+    "corr": 0.826,
+    "monoLoss": 0.27
+   },
+   "hook": {
+    "colour": "bugle",
+    "octave": 0,
+    "bars": [
+     0
+    ],
+    "relDb": -3.5,
+    "notes": "G C E G | A G E C x2"
+   }
   }
  },
  "sfx": {},

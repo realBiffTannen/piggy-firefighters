@@ -442,8 +442,10 @@ cue('hose_loop', 'douse:spray sustain (sfx loop while the arc is visible)', 'hos
 cue('hose_end', 'douse:spray ends', 'hose', (6, 2, 60), source='hose_end', seam='NEW audioDirector.douse (end)')
 cue('steam', 'douse:steam (spray on a rescued room, or as a fire goes out)', 'hose', (5, 2, 80), source='steam', seam='NEW audioDirector.steam')
 cue('room_down', 'douse:room fire level drops by 1', 'hose', (7, 3, 40), source='room_down', seam='NEW audioDirector.roomDown')
-TADA = [('lo', 0), ('lo', 2), ('lo', 4), ('mid', 0), ('mid', 2), ('hi', 0), ('hi', 2), ('hi', 4)]
-TADA_NOTE = ['C', 'D', 'E', 'G', 'A', "C'", "D'", "E'"]
+# r2 (2026-09-25): labelled by FUNDAMENTAL (build_audio SHS): lo = C4, mid = G4, hi = C4 (not C5 / C6: those were its loudest
+# partials); rungs 6-8 are mid +5 / +7 / +9 (rubberband, formants kept), hi is not used (same register as lo).
+TADA = [('lo', 0), ('lo', 2), ('lo', 4), ('mid', 0), ('mid', 2), ('mid', 5), ('mid', 7), ('mid', 9)]
+TADA_NOTE = ['C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5']
 for i, (src, st) in enumerate(TADA, 1):
     cue(f'rescue_tada_{i}', f'douse.rescues: rescue ta-da at multiplier x{i}{"+" if i == 8 else ""} (held note {TADA_NOTE[i - 1]})', 'tada', (8, 2, 120),
         derive={'from': f'rescue_tada_src_{src}', 'op': 'snap-ladder', 'semis': st}, seam='audioDirector.rescue(multiplier)')
@@ -529,6 +531,11 @@ COVERAGE = {  # moment (GAME_CONTRACT.md / THEME §4-6 / AUDIO_DESIGN_NOTES) -> 
 }
 
 # --------------------------------------------------------------------------------------------------- compile + validate
+# drawn (paid, ledgered) sources that no longer feed a cue, each with its measured reason; kept on disk, never redrawn
+RETIRED_SOURCES = {'rescue_tada_src_hi': 'r2 2026-09-25: its fundamental is C4 by subharmonic summation (r1 read its 4th harmonic as C6), the same '
+                                         'register as rescue_tada_src_lo, so the ladder takes rungs 6-8 from mid +5 / +7 / +9 instead'}
+
+
 def feeds(draw_name):
     out = [cid for cid, c in CUES.items() if c.get('source') == draw_name or (c.get('derive') or {}).get('from') == draw_name]
     return sorted(set(out))
@@ -541,7 +548,7 @@ def validate():
         if len(full) > 450: errs.append(f'{n}: prompt {len(full)} chars > 450')
         if not (0.5 <= d['s'] <= 30): errs.append(f'{n}: duration {d["s"]} outside 0.5..30 s')
         if not (0.0 <= d['influence'] <= 1.0): errs.append(f'{n}: influence')
-        if not feeds(n): errs.append(f'{n}: draw feeds no cue')
+        if not feeds(n) and n not in RETIRED_SOURCES: errs.append(f'{n}: draw feeds no cue')
     texts = [(n, d['prompt']) for n, d in DRAWS.items()] + [(n, json.dumps(p['positive'] + p['negative'] + p['sections'])) for n, p in PLANS.items()]
     texts += [(k, v) for k, v in PALETTES.items()]
     for n, t in texts:

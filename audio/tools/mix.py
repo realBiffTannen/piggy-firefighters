@@ -148,10 +148,43 @@ CHAIN_MARGIN_DB = 0.25              # every chain step must rise by at least thi
 G_MIN_DB, G_MAX_DB = 20 * np.log10(0.12), 20 * np.log10(2.0)
 
 
+def solve_chains(chains, lv, g, log):
+    """r2 (2026-09-25): every chain must rise by >= CHAIN_MARGIN_DB on st, mono AND phone with ONE gain per cue. Solved jointly
+    over all chains (they share members) as a linear programme: minimise 10 x the largest |gain - family-target gain| plus the
+    sum of them, subject to  g_a - g_b <= L_b[k] - L_a[k] - margin  for every consecutive pair and metric k, and the gain
+    clamp. So a chain whose members differ in spectral balance (a bass-heavy impact loses 4-6 dB through the phone proxy)
+    is spread evenly around its family targets instead of piling the whole correction onto its last member. Falls back to the
+    iterative raise when the programme is infeasible (reported)."""
+    from scipy.optimize import linprog
+    ids = sorted({c for ch in chains.values() if all(x in lv for x in ch) for c in ch})
+    if not ids: return g, True
+    n = len(ids); ix = {c: i for i, c in enumerate(ids)}; g0 = np.array([g[c] for c in ids])
+    # variables: g (n), a (n) = |g - g0|, t = max a
+    A, b = [], []
+    for ch in chains.values():
+        if not all(x in lv for x in ch): continue
+        for p, q in zip(ch, ch[1:]):
+            for k in METRICS:
+                row = np.zeros(2 * n + 1); row[ix[p]] = 1; row[ix[q]] = -1; A.append(row); b.append(lv[q][k] - lv[p][k] - CHAIN_MARGIN_DB)
+    for i in range(n):
+        r1 = np.zeros(2 * n + 1); r1[i] = 1; r1[n + i] = -1; A.append(r1); b.append(g0[i])      # g - g0 <= a
+        r2 = np.zeros(2 * n + 1); r2[i] = -1; r2[n + i] = -1; A.append(r2); b.append(-g0[i])    # g0 - g <= a
+        r3 = np.zeros(2 * n + 1); r3[n + i] = 1; r3[2 * n] = -1; A.append(r3); b.append(0.0)    # a <= t
+    cost = np.concatenate([np.zeros(n), np.ones(n), [10.0]])
+    bounds = [(G_MIN_DB, G_MAX_DB)] * n + [(0, None)] * (n + 1)
+    res = linprog(cost, A_ub=np.array(A), b_ub=np.array(b), bounds=bounds, method='highs')
+    if res.status != 0:
+        log.append(('LP', 'infeasible', res.message)); return enforce_chains(chains, lv, g, log), False
+    for c in ids:
+        v = float(res.x[ix[c]])
+        if abs(v - g[c]) >= 0.005: log.append(('LP', c, round(v - g[c], 2)))
+        g[c] = v
+    return g, True
+
+
 def enforce_chains(chains, lv, g, log):
-    """r2 (2026-09-25): raise (or, at the clamp, lower the previous entry) so every chain rises strictly on st, mono AND phone.
-    r1 checked stereo power only; the mono sum of partly anti-phase draws / comb-filtered layers fell along several chains
-    (rung hits BIG..MAX -16.0 / -16.7 / -17.5 / -18.0 / -14.9 in mono). Iterates to a fixpoint (chains share members)."""
+    """Fallback: raise a later entry (or, at the clamp, lower the previous one) until every chain rises on st, mono and phone;
+    iterates to a fixpoint (chains share members)."""
     for _ in range(40):
         changed = False
         for name, chain in chains.items():
@@ -200,13 +233,13 @@ def main():
             c.setdefault('build', {})['remaster'] = r
         lv[c['id']] = L; tgt[c['id']] = t; g[c['id']] = float(min(G_MAX_DB, max(G_MIN_DB, t - L['st'])))
     base = dict(g); log = []
-    g = enforce_chains(CHAINS, lv, g, log)
+    g, lp_ok = solve_chains(CHAINS, lv, g, log)
     # a _turbo variant follows its parent's nudge, then its own chains are enforced the same way
     for cid in g:
         if cid.endswith('_turbo') and cid[:-6] in g and abs(g[cid[:-6]] - base[cid[:-6]]) > 1e-6:
             g[cid] = float(min(G_MAX_DB, max(G_MIN_DB, g[cid] + g[cid[:-6]] - base[cid[:-6]])))
     turbo_chains = {f'{k}_turbo': [f'{c}_turbo' for c in v] for k, v in CHAINS.items() if all(f'{c}_turbo' in lv for c in v)}
-    g = enforce_chains(turbo_chains, lv, g, log)
+    g, lp_ok_t = solve_chains(turbo_chains, lv, g, log)
     rows = []
     for cid, L in lv.items():
         c = cues[cid]; gl = round(float(10 ** (g[cid] / 20)), 3); old = c.get('gain', 1.0); c['gain'] = gl; gd = 20 * np.log10(gl)
@@ -232,7 +265,8 @@ def main():
     json.dump({'pass': 'pf_0925r2', 'metrics': {'st': 'loudest 400 ms, per-channel stereo power', 'mono': 'loudest 400 ms of (L+R)/2',
                                                  'phone': 'loudest 400 ms of (L+R)/2 through a 4th-order 400 Hz high-pass'},
                'chainMargin_dB': CHAIN_MARGIN_DB, 'levelled': len(rows), 'unmatched': unmatched, 'notBuilt': len(unbuilt), 'remastered': remastered,
-               'clampedOffTarget': clamped, 'chainNudges_dB': nudged, 'chainsNotRising': failing, 'checks': checks}, open(f'{QA}/mix_ladder.json', 'w'), indent=1, default=str)
+               'clampedOffTarget': clamped, 'chainSolver': {'method': 'linear programme (scipy HiGHS): min 10 x max|nudge| + sum|nudge|', 'feasible': lp_ok, 'feasibleTurbo': lp_ok_t},
+               'chainNudges_dB': nudged, 'chainsNotRising': failing, 'checks': checks}, open(f'{QA}/mix_ladder.json', 'w'), indent=1, default=str)
     print(len(rows), 'cues levelled;', len(unbuilt), 'not built;', len(unmatched), 'unmatched:', unmatched)
     print('remastered (> +6 dB):', {k: v['raised_dB'] for k, v in remastered.items()})
     print('chain nudges (dB over the family target):', nudged)

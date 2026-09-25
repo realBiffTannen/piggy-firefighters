@@ -246,51 +246,51 @@
   }
  },
  "clampedOffTarget": [],
- "chainNudges_dB": {
-  "blaze_mult_10": 0.43,
-  "win_max": 3.07,
-  "rung_hit_huge": 0.79,
-  "sign_impact_huge": 0.32,
-  "rung_hit_mega": 1.15,
-  "sign_impact_mega": 3.73,
-  "rung_hit_epic": 1.14,
-  "sign_impact_epic": 2.26,
-  "rung_hit_max": 3.32,
-  "sign_impact_max": 2.02,
-  "burst_water": -0.02,
-  "burst_embers": 1.98,
-  "burst_badges": 1.73,
-  "burst_coins": 1.48,
-  "burst_gold": 1.38,
-  "inferno_enter": 1.4,
-  "rescue_tada_4": 0.02,
-  "rescue_total_mid": 0.94,
-  "rescue_total_big": 1.48,
-  "blaze_mult_10_turbo": 0.39,
-  "win_max_turbo": 3.07,
-  "rung_hit_big_turbo": -0.21,
-  "rung_hit_huge_turbo": 0.54,
-  "sign_impact_huge_turbo": -0.98,
-  "rung_hit_mega_turbo": 1.15,
-  "sign_impact_mega_turbo": 0.09,
-  "rung_hit_epic_turbo": 1.18,
-  "sign_impact_epic_turbo": 1.1,
-  "rung_hit_max_turbo": 3.26,
-  "sign_impact_max_turbo": 2.02,
-  "burst_water_turbo": -0.02,
-  "burst_embers_turbo": 1.98,
-  "burst_badges_turbo": 1.73,
-  "burst_coins_turbo": 1.48,
-  "burst_gold_turbo": 1.48,
-  "inferno_enter_turbo": 1.54,
-  "rescue_tada_4_turbo": 0.05,
-  "rescue_total_mid_turbo": 1.61,
-  "rescue_total_big_turbo": 1.85
+ "chainSolver": {
+  "method": "linear programme (scipy HiGHS): min 10 x max|nudge| + sum|nudge|",
+  "feasible": true,
+  "feasibleTurbo": true
  },
- "chainsNotRising": [
-  "sign_impacts",
-  "sign_impacts_turbo"
- ],
+ "chainNudges_dB": {
+  "blaze_mult_5": -0.25,
+  "blaze_mult_10": 0.15,
+  "win_max": 1.93,
+  "rung_hit_big": -1.14,
+  "sign_impact_big": -2.55,
+  "rung_hit_huge": -0.35,
+  "sign_impact_huge": -2.23,
+  "rung_hit_mega": 0.01,
+  "sign_impact_mega": 1.22,
+  "sign_impact_epic": 2.26,
+  "rung_hit_max": 2.18,
+  "sign_impact_max": 2.02,
+  "burst_water": -1.75,
+  "burst_embers": 0.25,
+  "inferno_enter": 1.4,
+  "rescue_tada_3": -0.02,
+  "rescue_total_small": -0.94,
+  "rescue_total_big": 0.54,
+  "blaze_mult_5_turbo": -0.25,
+  "blaze_mult_10_turbo": 0.15,
+  "win_max_turbo": 1.93,
+  "rung_hit_big_turbo": -1.14,
+  "sign_impact_big_turbo": -3.5,
+  "rung_hit_huge_turbo": -0.35,
+  "sign_impact_huge_turbo": -3.22,
+  "rung_hit_mega_turbo": -0.03,
+  "sign_impact_mega_turbo": 0.09,
+  "sign_impact_epic_turbo": 1.1,
+  "rung_hit_max_turbo": 2.18,
+  "sign_impact_max_turbo": 2.02,
+  "burst_water_turbo": -1.75,
+  "burst_embers_turbo": 0.25,
+  "inferno_enter_turbo": 1.54,
+  "rescue_tada_3_turbo": -0.02,
+  "rescue_tada_4_turbo": 0.03,
+  "rescue_total_small_turbo": -1.61,
+  "rescue_total_big_turbo": 0.54
+ },
+ "chainsNotRising": [],
  "checks": {
   "alarm_ladder": {
    "chain": [
@@ -302,24 +302,24 @@
    ],
    "effective_dBFS": [
     -20.0,
-    -19.5,
+    -19.51,
     -19.0,
     -18.5,
     -18.0
    ],
    "effective_mono_dBFS": [
     -20.02,
-    -19.53,
+    -19.54,
     -19.02,
     -18.52,
     -18.02
    ],
    "effective_phone_dBFS": [
-    -21.8,
-    -19.93,
-    -19.64,
-    -18.6,
-    -18.05
+    -21.62,
+    -19.88,
+    -19.57,
+    -18.58,
+    -18.04
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -362,20 +362,20 @@
    "effective_dBFS": [
     -18.0,
     -17.5,
-    -17.0,
-    -15.57
+    -17.25,
+    -15.85
    ],
    "effective_mono_dBFS": [
     -18.02,
     -17.52,
-    -17.02,
-    -16.39
+    -17.27,
+    -16.65
    ],
    "effective_phone_dBFS": [
     -18.29,
     -17.57,
-    -17.04,
-    -16.79
+    -17.29,
+    -17.04
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -445,25 +445,25 @@
     "rung_hit_max"
    ],
    "effective_dBFS": [
-    -16.0,
-    -14.71,
-    -13.85,
-    -13.36,
-    -10.68
+    -17.14,
+    -15.85,
+    -14.99,
+    -14.5,
+    -11.82
    ],
    "effective_mono_dBFS": [
-    -16.04,
-    -15.79,
-    -14.44,
-    -14.19,
-    -11.61
+    -17.18,
+    -16.93,
+    -15.58,
+    -15.33,
+    -12.75
    ],
    "effective_phone_dBFS": [
-    -20.36,
-    -15.88,
-    -15.63,
-    -14.5,
-    -14.25
+    -21.5,
+    -17.02,
+    -16.77,
+    -15.64,
+    -15.39
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -481,31 +481,31 @@
     "sign_impact_max"
    ],
    "effective_dBFS": [
-    -18.5,
-    -17.68,
-    -13.77,
+    -21.05,
+    -20.23,
+    -16.28,
     -14.74,
     -14.48
    ],
    "effective_mono_dBFS": [
-    -18.5,
-    -18.25,
-    -14.09,
+    -21.05,
+    -20.8,
+    -16.6,
     -14.74,
     -14.49
    ],
    "effective_phone_dBFS": [
-    -18.99,
-    -18.63,
-    -18.42,
+    -21.54,
+    -21.18,
+    -20.93,
     -20.68,
     -18.11
    ],
-   "strictlyRising": false,
+   "strictlyRising": true,
    "risingBy": {
-    "st": false,
-    "mono": false,
-    "phone": false
+    "st": true,
+    "mono": true,
+    "phone": true
    }
   },
   "bursts": {
@@ -517,25 +517,25 @@
     "burst_gold"
    ],
    "effective_dBFS": [
-    -19.02,
-    -16.52,
-    -16.27,
-    -16.02,
-    -15.62
+    -20.75,
+    -18.25,
+    -18.0,
+    -17.5,
+    -17.0
    ],
    "effective_mono_dBFS": [
-    -19.02,
-    -18.75,
-    -16.27,
-    -16.02,
-    -15.66
+    -20.75,
+    -20.48,
+    -18.0,
+    -17.5,
+    -17.04
    ],
    "effective_phone_dBFS": [
-    -19.03,
-    -18.78,
-    -16.27,
-    -16.02,
-    -15.77
+    -20.76,
+    -20.51,
+    -18.0,
+    -17.5,
+    -17.15
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -558,8 +558,8 @@
    "effective_dBFS": [
     -19.0,
     -18.5,
-    -18.01,
-    -17.48,
+    -18.02,
+    -17.5,
     -17.0,
     -16.5,
     -16.0,
@@ -568,8 +568,8 @@
    "effective_mono_dBFS": [
     -19.01,
     -18.55,
-    -18.1,
-    -17.48,
+    -18.11,
+    -17.5,
     -17.12,
     -16.54,
     -16.06,
@@ -578,8 +578,8 @@
    "effective_phone_dBFS": [
     -19.54,
     -19.17,
-    -18.82,
-    -18.56,
+    -18.83,
+    -18.58,
     -17.85,
     -16.67,
     -16.11,
@@ -599,19 +599,19 @@
     "rescue_total_big"
    ],
    "effective_dBFS": [
-    -18.0,
-    -15.56,
-    -13.52
+    -18.94,
+    -16.5,
+    -14.46
    ],
    "effective_mono_dBFS": [
-    -19.14,
-    -15.61,
-    -15.36
+    -20.08,
+    -16.55,
+    -16.3
    ],
    "effective_phone_dBFS": [
-    -19.78,
-    -19.53,
-    -16.46
+    -20.72,
+    -20.47,
+    -17.4
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -736,18 +736,18 @@
    ],
    "effective_dBFS": [
     -15.0,
-    -10.68,
-    -10.43
+    -11.82,
+    -11.57
    ],
    "effective_mono_dBFS": [
     -15.71,
-    -11.61,
-    -10.97
+    -12.75,
+    -12.11
    ],
    "effective_phone_dBFS": [
     -16.43,
-    -14.25,
-    -11.17
+    -15.39,
+    -12.31
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -772,17 +772,17 @@
     -18.0
    ],
    "effective_mono_dBFS": [
-    -20.03,
+    -20.02,
     -19.53,
     -19.02,
-    -18.52,
-    -18.02
+    -18.53,
+    -18.03
    ],
    "effective_phone_dBFS": [
-    -21.81,
-    -19.93,
-    -19.68,
-    -18.59,
+    -21.64,
+    -19.87,
+    -19.6,
+    -18.58,
     -18.05
    ],
    "strictlyRising": true,
@@ -826,20 +826,20 @@
    "effective_dBFS": [
     -18.0,
     -17.5,
-    -17.0,
-    -15.61
+    -17.25,
+    -15.85
    ],
    "effective_mono_dBFS": [
     -18.03,
     -17.53,
-    -17.03,
-    -16.37
+    -17.28,
+    -16.52
    ],
    "effective_phone_dBFS": [
     -18.32,
     -17.59,
-    -17.05,
-    -16.79
+    -17.3,
+    -16.92
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -909,25 +909,25 @@
     "rung_hit_max_turbo"
    ],
    "effective_dBFS": [
-    -16.21,
-    -14.96,
-    -13.85,
-    -13.32,
-    -10.74
+    -17.14,
+    -15.85,
+    -15.03,
+    -14.5,
+    -11.82
    ],
    "effective_mono_dBFS": [
-    -16.25,
-    -16.0,
-    -14.38,
-    -14.13,
-    -11.57
+    -17.18,
+    -16.89,
+    -15.56,
+    -15.31,
+    -12.65
    ],
    "effective_phone_dBFS": [
-    -20.97,
-    -16.08,
-    -15.53,
-    -14.42,
-    -14.17
+    -21.9,
+    -16.97,
+    -16.71,
+    -15.6,
+    -15.25
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -945,31 +945,31 @@
     "sign_impact_max_turbo"
    ],
    "effective_dBFS": [
-    -18.5,
-    -18.98,
+    -22.0,
+    -21.22,
     -17.41,
     -15.9,
     -14.48
    ],
    "effective_mono_dBFS": [
-    -18.5,
-    -19.51,
+    -22.0,
+    -21.75,
     -17.67,
     -15.9,
     -14.49
    ],
    "effective_phone_dBFS": [
-    -18.98,
-    -19.9,
+    -22.48,
+    -22.14,
     -21.89,
     -21.64,
     -18.49
    ],
-   "strictlyRising": false,
+   "strictlyRising": true,
    "risingBy": {
-    "st": false,
-    "mono": false,
-    "phone": false
+    "st": true,
+    "mono": true,
+    "phone": true
    }
   },
   "bursts_turbo": {
@@ -981,25 +981,25 @@
     "burst_gold_turbo"
    ],
    "effective_dBFS": [
-    -19.02,
-    -16.52,
-    -16.27,
-    -16.02,
-    -15.52
+    -20.75,
+    -18.25,
+    -18.0,
+    -17.5,
+    -17.0
    ],
    "effective_mono_dBFS": [
-    -19.03,
-    -18.47,
-    -16.28,
-    -16.03,
-    -15.6
+    -20.76,
+    -20.2,
+    -18.01,
+    -17.51,
+    -17.08
    ],
    "effective_phone_dBFS": [
-    -19.03,
-    -18.48,
-    -16.28,
-    -16.03,
-    -15.78
+    -20.76,
+    -20.21,
+    -18.01,
+    -17.51,
+    -17.26
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -1022,8 +1022,8 @@
    "effective_dBFS": [
     -19.0,
     -18.5,
-    -18.0,
-    -17.45,
+    -18.02,
+    -17.47,
     -17.0,
     -16.5,
     -16.0,
@@ -1032,8 +1032,8 @@
    "effective_mono_dBFS": [
     -19.0,
     -18.55,
-    -18.08,
-    -17.45,
+    -18.1,
+    -17.47,
     -17.11,
     -16.53,
     -16.06,
@@ -1042,8 +1042,8 @@
    "effective_phone_dBFS": [
     -19.54,
     -19.18,
-    -18.81,
-    -18.56,
+    -18.83,
+    -18.58,
     -17.84,
     -16.67,
     -16.11,
@@ -1063,19 +1063,19 @@
     "rescue_total_big_turbo"
    ],
    "effective_dBFS": [
-    -18.0,
-    -14.89,
-    -13.15
+    -19.61,
+    -16.5,
+    -14.46
    ],
    "effective_mono_dBFS": [
-    -19.13,
-    -14.93,
-    -14.68
+    -20.74,
+    -16.54,
+    -15.99
    ],
    "effective_phone_dBFS": [
-    -19.78,
-    -19.53,
-    -15.56
+    -21.39,
+    -21.14,
+    -16.87
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -1200,18 +1200,18 @@
    ],
    "effective_dBFS": [
     -15.0,
-    -10.74,
-    -10.43
+    -11.82,
+    -11.57
    ],
    "effective_mono_dBFS": [
     -15.63,
-    -11.57,
-    -10.98
+    -12.65,
+    -12.12
    ],
    "effective_phone_dBFS": [
     -16.26,
-    -14.17,
-    -11.12
+    -15.25,
+    -12.26
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -1231,7 +1231,7 @@
    "I_LUFS": [
     -15.2,
     -15.0,
-    -14.9,
+    -14.8,
     -14.6,
     -14.4
    ],

@@ -22,7 +22,9 @@ def sounds(c):
         pn = (c.get('build') or {}).get('source', src or '').rsplit('__', 1)[0]; pl = PL.get(pn, {})
         return short(f"{(c.get('build') or {}).get('bars') or c.get('bars')}-bar loop @ {c.get('tempoBpm')} BPM: " + (pl.get('positive') or [''])[0])
     if src in P: return short(P[src]['prompt'])
-    op = d.get('op'); frm = d.get('from')
+    op = d.get('op'); frm = d.get('from'); B = c.get('build') or {}
+    kn = (B.get('tonal') or {}).get('knock') if isinstance(B.get('tonal'), dict) else None
+    if kn and op == 'ladder': return f"drawn thunk of {frm} pitched +{d.get('semis')} st (low body) + synthesised tuned wood knock {kn} (phone band)"
     if op == 'turbo': return f"{frm} time-scaled x{d.get('timeScale')} (turbo, pitch kept)"
     if op == 'ladder': return f"{frm} pitched +{d.get('semis')} st (tonic ladder C D E G A)"
     if op == 'ladder-resample': return f"{frm} resampled +{d.get('semis')} st (count-up ladder)"

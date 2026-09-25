@@ -1,1 +1,1 @@
-{"measuredHz": 522.0, "prominence": 125.4, "op": "pitch-snapped", "semis": 0.04, "postHz": 522.0, "midi": 72.0, "postErrCents": -4.0, "targetNote": "C5"}
+{"method": "subharmonic summation (kit.shs_f0)", "measuredF0Hz": 261.3, "measuredNote": "C4", "op": "pitch-snapped (fundamental)", "semis": 0.02, "postF0Hz": 261.3, "midi": 60.0, "postErrCents": -2.0, "targetNote": "C4", "shift": "rubberband, formants preserved", "harmonicOnly": {"f0Hz": 261.63, "floor_dB": -18.0, "energyKept_dB": -0.43, "cpentShare": 0.953}}

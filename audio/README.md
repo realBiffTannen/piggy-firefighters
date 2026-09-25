@@ -1,8 +1,11 @@
 # PIGGY FIREFIGHTERS — audio lane
 
-Owner: AUDIO lane (Claude). Status 2026-09-25: **BUILT.** 107 draws (11 music, 96 SFX, 0 failures; account 194,478 ->
-185,542 characters) -> 232 ids x 2 codecs shipped, manifest regenerated, measured. `measure.py` PASS **false** on one named
-draw defect (`base_loop_a` chug 4.14); every other gate passes. Redraws requested below (§Redraws); **human listening NOT RUN**.
+Owner: AUDIO lane (Claude). Status 2026-09-25: **BUILT, r2 build fixes applied (offline, no paid call).** 107 draws (11 music,
+96 SFX, 0 failures; account 194,478 -> 185,542 characters) -> 232 ids x 2 codecs shipped, manifest regenerated, measured.
+`measure.py` PASS **false** on one named draw defect (`base_loop_a` chug 3.77); every other gate passes, including the r2
+gates (ta-da fundamentals rising, mono sum, 400 Hz phone proxy, tails, turbo <= 700 ms, 8x true peak, alarm top voice, sliding
+self-similarity, bed tail dip, reward chains on stereo + mono + phone). Redraws requested below (§Redraws); **human listening
+NOT RUN**.
 Direction and measured tables: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO_MAP.md` (generated). Design rules:
 `docs/AUDIO_DESIGN_NOTES.md`, theme §6, `docs/GAME_CONTRACT.md`.
 
@@ -27,13 +30,13 @@ Direction and measured tables: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO
 | `roster.py` | **The single editable source**: every SFX draw (prompt, palette, duration, influence), every music composition plan, every cue id (moment, bus, priority / maxInstances / cooldown, seam, the donor id it replaces, duck, gate, derivation). Writes `prompts.json`, `jobs.json`, `plans.json` and merges `audio/cues.json`. Validates: prompt + palette <= 450 chars, banned theme words (no siren / police / construction / hard hat / lantern / dragon / wolf / pig / fire-engine nouns in any prompt or plan), sections >= loop + 1 bar, "full ensemble from beat one", turnaround, coverage of every contract/theme moment. `--check` validates only. |
 | `gen_audio.mjs` | ElevenLabs caller (family `gen_lucky.mjs`, relative ROOT). SFX `POST /v1/sound-generation?output_format=pcm_44100` `{text, duration_seconds, model_id: eleven_text_to_sound_v2, prompt_influence, loop}`; music `POST /v1/music?output_format=pcm_44100` `{composition_plan, model_id: music_v1, respect_sections_durations: true}`. Key from `ELEVENLABS_API_KEY` only (never printed / written). 450-char guard, **no redraw without `--force --reason "<measured defect>"`**, CONC <= 2, ledger + jsonl for every call incl. failures, true-channel WAV headers, `--dry-run`, **quota guard** (below). |
 | `build_audio.py` | `music | sfx | derived | shots | turbo | all [--only a,b] [--purge-donor]`: beds (tempo-fit, whole-bar sample-exact cut, periodic section ride, synthesised hook, LUFS landing +-0.1 LU, cyclic-context limiter, codec-guard padding), SFX mastering (trim, key-fit, tonic snap, hybrid tuned layers), derived ladders, fanfare pickups (idempotent), turbo variants. Writes masters, runtime, static, cues.json. Refuses to write static while the donor's untracked `static/assets/audio/lucky/` exists (`--purge-donor` deletes only untracked donor folders). |
-| `mix.py` | Family gain ladder (loudest-400 ms RMS of the shipped .ogg -> per-cue `gain`, clamp [0.12, 2.0], re-master > +6 dB), strictly-rising reward chains (alarm ladder, ta-da ladder, multipliers, totals, rung hits / signs / bursts, entries, Alarm Call outcomes, reward -> MAX, rung-bed LUFS). |
+| `mix.py` | Family gain ladder (loudest-400 ms RMS of the shipped .ogg -> per-cue `gain`, clamp [0.12, 2.0], re-master > +6 dB). r2: every cue is measured on stereo power, the (L+R)/2 mono sum and a 400 Hz high-pass phone proxy (`kit.levels`), and ONE gain per cue is solved (linear programme, minimise 10 x max + sum of deviations from the family target) so every reward chain (alarm ladder, ta-da ladder, multipliers, totals, rung hits / signs / bursts, entries, Alarm Call outcomes, reward -> MAX; + their `_turbo` chains) rises by >= 0.25 dB on all three; rung-bed LUFS rising. |
 | `gen_manifest.mjs` | `audio/cues.json` -> `cueManifest.ts`. Default lists only cues whose ogg AND m4a exist (the runtime never fetches a 404); `--all` lists every roster id; `--out` writes elsewhere. |
-| `measure.py` | Acceptance on the shipped files, both codecs: TP <= -1 dBTP, LUFS, loop seams on the decoded files, whole-bar grid exactness, codec-guard pads cyclic, bed chug ratio, 8-bar section self-similarity (the "one 8-bar loop dressed as 32 bars" tag), bed tail dip, rung-bed LUFS rising. `measure.py draws` grades raw music draws (short / quiet intro / dropout / chug / out of key / tempo / near-copy) before a source is chosen. |
+| `measure.py` | Acceptance on the shipped files, both codecs: TP <= -1 dBTP (8x oversampled, `kit.true_peak`), LUFS, loop seams on the decoded files, whole-bar grid exactness, codec-guard pads cyclic, bed chug ratio, 8-bar self-similarity on the grid AND sliding (half-beat hop, cyclic, band spectrogram + beat chroma: the "one 8-bar loop dressed as 32 bars" tag at any lag), bed tail dip (gate), rung-bed LUFS rising; r2 gates: mono sum (corr >= 0, loss <= 3 dB), one-shot tails, turbo <= 700 ms, ta-da SHS rising, reel stops on the phone proxy, reward chains on st / mono / phone, alarm top voice (`summary.gates`, `summary.failingGates`). `measure.py draws` grades raw music draws (short / quiet intro / dropout / chug / out of key / tempo / near-copy) before a source is chosen. |
 | `audio_map.py` | Generates `docs/AUDIO_MAP.md` (works before and after the build). |
 | `montage.py` | 75 s review montage at registered gains (a listening aid for the human pass). |
-| `kit.py`, `loopkit.py`, `beat_tools.py`, `keyfit.py`, `hook_layer.py`, `limit_loop.py` | DSP / codec kit (family code; `kit.py` adds the RIFF-chunk loader, the static-folder guard, the cyclic limiter and the codec guard), loop DSP, onset envelope, 10-cent key-fit, the Firefighters hook + timbres, cyclic ffmpeg limiter. |
-| `bed_overrides.json` | Which draw ships per bed and how it is cut (measured decisions only, each with its `why`): 5 beds (base A / Rescue start bar, Inferno -3 st, anticipation entry + tempo, Backdraft entry + 12 bars). |
+| `kit.py`, `loopkit.py`, `beat_tools.py`, `keyfit.py`, `hook_layer.py`, `limit_loop.py` | DSP / codec kit (family code; `kit.py` adds the RIFF-chunk loader, the static-folder guard, the cyclic limiter and the codec guard; r2: `true_peak` (8x), `levels` (st / mono / phone), `narrow` (M/S), `release`, `ring_out`, `tail_metrics`, `shs_f0` (subharmonic summation), `harmonic_only`), loop DSP, onset envelope, 10-cent key-fit, the Firefighters hook + timbres, cyclic ffmpeg limiter. |
+| `bed_overrides.json` | Which draw ships per bed and how it is cut (measured decisions only, each with its `why`): 7 beds (base A / Rescue start bar, Inferno -3 st, anticipation entry + tempo, Backdraft entry + 12 bars, r2: rung BIG / MEGA `tailFill` from bar 7). |
 
 ## Order of work
 
@@ -115,14 +118,30 @@ different account). The live quota is read by the tool before the first draw; th
 - `hook_layer.py`: `wood` colour. `audio_map.py`: moment -> cue -> file columns + owner rules. `plans.json`: three `_v2`
   redraw plans. `bed_overrides.json`: five measured bed decisions.
 
+## r2 build fixes (2026-09-25; offline, no paid call; details and before/after in `assets/SOUND_BIBLE.md` §13)
+
+- **Ta-da ladder**: sources labelled / snapped by their SHS fundamental (lo C4, mid G4, hi C4; r1 read lo / hi as C5 / C6),
+  cleaned to their own harmonic series (mid is a G7sus4 stab), smallest-upward-shift planner = lo 0/2/4, mid 0/2/5/7/9, rubberband
+  formant-preserving; `hi` retired (`roster.RETIRED_SOURCES`). Shipped SHS C4 D4 E4 G4 A4 C5 D5 E5.
+- **Mono**: `hook_layer.stereo()` is level-only width (the 0.4 ms delay combed every synthesised layer in mono); every draw with
+  corr < 0.2 is M/S-narrowed (side x 0.5), `alarm_outcome_false` (corr -0.74) ships its stronger channel; 20 Hz DC block on
+  every draw.
+- **Chains** rise on stereo, mono and the 400 Hz phone proxy (`mix.py` LP). **Reel stops**: wood knock one octave up (C5-A5),
+  per stop, level solved on the phone proxy (-23.4 dBFS vs the reel loop's -30.0).
+- **Tails**: tuned layers rendered 1.6 s + `kit.ring_out`; `trim()` exponential release for loud tails; whole pickup or none
+  (`spins_added` refused; `rung_hit_huge` / `inferno_total_big` extended); every synthesised note ends in a release.
+- **Turbo** capped at 0.70 s (re-scale >= 0.4, else head 0.58 s + 120 ms release); held risers exempt (`turboCapExempt`).
+- **Alarm** top voice +6 dB; **true peak** 8x in `ship()` (target -1.3, ceiling -1.1); **rung BIG / MEGA** tail fill;
+  **AUDIO_MAP** contract §8 event table with the W vs S tier rule.
+
 ## Redraws (measured defects; NOT drawn — the coordinator issues them)
 
 ```bash
-node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_base92a_v2__1 --force --reason "pf_base92a__1 (base_loop_a): chug 3.99 raw / 4.14 shipped (8th/quarter > 3), C-pent 0.559 (C#/G# smear), near-copy sections 2-3 r 0.906, quiet intro -10.5 dB; measure.py draws 2026-09-25"
+node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_base92a_v2__1 --force --reason "pf_base92a__1 (base_loop_a): chug 3.99 raw / 3.77 shipped (8th/quarter > 3), C-pent 0.559 (C#/G# smear), near-copy sections 2-3 r 0.906, quiet intro -10.5 dB; measure.py draws 2026-09-25"
 node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_inferno100_v2__1 --force --reason "pf_inferno100__1 (inferno_loop): out of key, C minor/dorian (C .24 Bb .17 G .13 Eb .09), C-pent 0.546 < 0.6 instead of A-minor pentatonic; interim ships -3 st rubberband; measure.py draws 2026-09-25"
 node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_backdraft92_v2__1 --force --reason "pf_backdraft92__1 (backdraft_spins_layer): quiet intro -25.4 dB (5.3 s near-silent head) and decay from 44.5 s = 15.0 bars of material for a 16-bar layer; interim ships 12 bars; measure.py draws 2026-09-25"
 cp audio/cues_pcm/rung_hit_big.wav audio/cues_pcm/rung_hit_big__v1.wav   # keep the first draw: an SFX --force overwrites <name>.wav
-node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json rung_hit_big --force --reason "rung_hit_big: prompt asks a C major brass stab; measured C-pent 0.525, top pitch classes A G# A# E G, tonality 0.53 (too noisy to key-fit), fanfare pickup refused, needed a +4.3 dB soft-clip re-master"
+node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json rung_hit_big --force --reason "rung_hit_big: prompt asks a C major brass stab; measured C-pent 0.525, top pitch classes A G# A# E G, tonality 0.53 (too noisy to key-fit), fanfare pickup refused, needed a +4.7 dB soft-clip re-master"
 cp audio/cues_pcm/sym_win_l4.wav audio/cues_pcm/sym_win_l4__v1.wav
 node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json sym_win_l4 --force --reason "sym_win_l4: 99.5% of energy under 200 Hz (200-500 Hz -26 dB, >500 Hz below -39 dB): inaudible on a phone speaker"
 ```

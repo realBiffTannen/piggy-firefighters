@@ -4,69 +4,45 @@
  "derived": {},
  "shots": {},
  "turbo": {
-  "rescue_tada_1_turbo": {
-   "I_LUFS": -16.8,
-   "TP_dBFS": -5.67,
-   "TP_m4a_dBFS": -5.67,
-   "I_m4a_LUFS": -16.8,
+  "alarm_land_1_turbo": {
+   "I_LUFS": -23.0,
+   "TP_dBFS": -4.48,
+   "TP_m4a_dBFS": -3.15,
+   "I_m4a_LUFS": -22.9,
    "tpMethod": "8x oversampled, native codec rate",
-   "samples": 23654
+   "samples": 30869
   },
-  "rescue_tada_2_turbo": {
-   "I_LUFS": -16.4,
-   "TP_dBFS": -4.57,
-   "TP_m4a_dBFS": -4.57,
-   "I_m4a_LUFS": -16.4,
+  "alarm_land_2_turbo": {
+   "I_LUFS": -21.6,
+   "TP_dBFS": -3.28,
+   "TP_m4a_dBFS": -2.16,
+   "I_m4a_LUFS": -21.6,
    "tpMethod": "8x oversampled, native codec rate",
-   "samples": 24653
+   "samples": 30190
   },
-  "rescue_tada_3_turbo": {
-   "I_LUFS": -15.9,
-   "TP_dBFS": -3.92,
-   "TP_m4a_dBFS": -4.01,
-   "I_m4a_LUFS": -15.9,
+  "alarm_land_3_turbo": {
+   "I_LUFS": -24.2,
+   "TP_dBFS": -4.09,
+   "TP_m4a_dBFS": -4.23,
+   "I_m4a_LUFS": -24.3,
    "tpMethod": "8x oversampled, native codec rate",
-   "samples": 24092
+   "samples": 30687
   },
-  "rescue_tada_4_turbo": {
-   "I_LUFS": -15.5,
-   "TP_dBFS": -3.21,
-   "TP_m4a_dBFS": -3.34,
-   "I_m4a_LUFS": -15.5,
+  "alarm_land_4_turbo": {
+   "I_LUFS": -22.6,
+   "TP_dBFS": -3.69,
+   "TP_m4a_dBFS": -3.97,
+   "I_m4a_LUFS": -22.7,
    "tpMethod": "8x oversampled, native codec rate",
-   "samples": 23858
+   "samples": 30576
   },
-  "rescue_tada_5_turbo": {
-   "I_LUFS": -15.2,
-   "TP_dBFS": -3.37,
-   "TP_m4a_dBFS": -3.37,
-   "I_m4a_LUFS": -15.2,
+  "alarm_land_5_turbo": {
+   "I_LUFS": -22.5,
+   "TP_dBFS": -2.71,
+   "TP_m4a_dBFS": -2.86,
+   "I_m4a_LUFS": -22.5,
    "tpMethod": "8x oversampled, native codec rate",
-   "samples": 24708
-  },
-  "rescue_tada_6_turbo": {
-   "I_LUFS": -15.6,
-   "TP_dBFS": -3.92,
-   "TP_m4a_dBFS": -4.08,
-   "I_m4a_LUFS": -15.6,
-   "tpMethod": "8x oversampled, native codec rate",
-   "samples": 24000
-  },
-  "rescue_tada_7_turbo": {
-   "I_LUFS": -14.4,
-   "TP_dBFS": -3.23,
-   "TP_m4a_dBFS": -3.23,
-   "I_m4a_LUFS": -14.4,
-   "tpMethod": "8x oversampled, native codec rate",
-   "samples": 24354
-  },
-  "rescue_tada_8_turbo": {
-   "I_LUFS": -14.6,
-   "TP_dBFS": -3.31,
-   "TP_m4a_dBFS": -3.27,
-   "I_m4a_LUFS": -14.7,
-   "tpMethod": "8x oversampled, native codec rate",
-   "samples": 22814
+   "samples": 30496
   }
  },
  "skipped": [],
