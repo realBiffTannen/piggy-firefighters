@@ -1,0 +1,142 @@
+[
+ {
+  "at": "2026-09-25T08:38:56Z",
+  "kind": "image-to-3d",
+  "name": "coin",
+  "ref": "art-src/meshy/ref/coin.png",
+  "params": {
+   "ai_model": "meshy-5",
+   "should_texture": true,
+   "enable_pbr": false,
+   "should_remesh": true,
+   "topology": "triangle",
+   "target_polycount": 20000,
+   "symmetry_mode": "auto"
+  },
+  "task": "01a0d7b7-b046-7310-a1fc-7b0c083f35de",
+  "status": "created",
+  "balance_before": 11833,
+  "balance_after": 11818,
+  "cost_estimate_credits": 15
+ },
+ {
+  "at": "2026-09-25T08:39:07Z",
+  "kind": "image-to-3d",
+  "name": "silver_coin",
+  "ref": "art-src/meshy/ref/silver_coin.png",
+  "params": {
+   "ai_model": "meshy-5",
+   "should_texture": true,
+   "enable_pbr": false,
+   "should_remesh": true,
+   "topology": "triangle",
+   "target_polycount": 20000,
+   "symmetry_mode": "auto"
+  },
+  "task": "01a0d7b7-dbdf-75ea-b0c7-8059d26d1190",
+  "status": "created",
+  "balance_before": 11818,
+  "balance_after": 11803,
+  "cost_estimate_credits": 15
+ },
+ {
+  "at": "2026-09-25T08:39:09Z",
+  "kind": "image-to-3d",
+  "name": "helmet",
+  "ref": "art-src/meshy/ref/helmet.png",
+  "params": {
+   "ai_model": "meshy-5",
+   "should_texture": true,
+   "enable_pbr": false,
+   "should_remesh": true,
+   "topology": "triangle",
+   "target_polycount": 20000,
+   "symmetry_mode": "auto"
+  },
+  "task": "01a0d7b7-e3df-71be-930c-20e5c011d45f",
+  "status": "created",
+  "balance_before": 11803,
+  "balance_after": 11788,
+  "cost_estimate_credits": 15
+ },
+ {
+  "at": "2026-09-25T08:39:11Z",
+  "kind": "image-to-3d",
+  "name": "nozzle",
+  "ref": "art-src/meshy/ref/nozzle.png",
+  "params": {
+   "ai_model": "meshy-5",
+   "should_texture": true,
+   "enable_pbr": false,
+   "should_remesh": true,
+   "topology": "triangle",
+   "target_polycount": 20000,
+   "symmetry_mode": "auto"
+  },
+  "task": "01a0d7b7-eb6e-778b-96df-fed401873100",
+  "status": "created",
+  "balance_before": 11788,
+  "balance_after": 11773,
+  "cost_estimate_credits": 15
+ },
+ {
+  "at": "2026-09-25T08:39:13Z",
+  "kind": "image-to-3d",
+  "name": "badge",
+  "ref": "art-src/meshy/ref/badge.png",
+  "params": {
+   "ai_model": "meshy-5",
+   "should_texture": true,
+   "enable_pbr": false,
+   "should_remesh": true,
+   "topology": "triangle",
+   "target_polycount": 20000,
+   "symmetry_mode": "auto"
+  },
+  "task": "01a0d7b7-f295-7389-86af-80c58f9165a3",
+  "status": "created",
+  "balance_before": 11773,
+  "balance_after": 11758,
+  "cost_estimate_credits": 15
+ },
+ {
+  "at": "2026-09-25T08:39:15Z",
+  "kind": "image-to-3d",
+  "name": "boot",
+  "ref": "art-src/meshy/ref/boot.png",
+  "params": {
+   "ai_model": "meshy-5",
+   "should_texture": true,
+   "enable_pbr": false,
+   "should_remesh": true,
+   "topology": "triangle",
+   "target_polycount": 20000,
+   "symmetry_mode": "auto"
+  },
+  "task": "01a0d7b7-fa30-76a1-a04b-85fe5bedb404",
+  "status": "created",
+  "balance_before": 11758,
+  "balance_after": 11743,
+  "cost_estimate_credits": 15
+ },
+ {
+  "at": "2026-09-25T08:39:17Z",
+  "kind": "image-to-3d",
+  "name": "hydrant_cap",
+  "ref": "art-src/meshy/ref/hydrant_cap.png",
+  "params": {
+   "ai_model": "meshy-5",
+   "should_texture": true,
+   "enable_pbr": false,
+   "should_remesh": true,
+   "topology": "triangle",
+   "target_polycount": 20000,
+   "symmetry_mode": "auto"
+  },
+  "task": "01a0d7b8-0308-77d1-93ee-ca3c8dbf666a",
+  "status": "created",
+  "balance_before": 11743,
+  "balance_after": 11728,
+  "cost_estimate_credits": 15
+ }
+]
