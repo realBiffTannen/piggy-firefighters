@@ -25,26 +25,26 @@
 
 | Assignment | Codex scope | Current dependency/status |
 | --- | --- | --- |
-| A — Full math model and production | `math/games/piggy_firefighters/**`, production package, math report, fixtures and run tooling | First 10k/mode M1 completed; corrected costs, ante tail and shared conditional bonus law being resolved before replacement run/freeze |
+| A — Full math model and production | `math/games/piggy_firefighters/**`, production package, math report, fixtures and run tooling | Supported-runtime M1 PASS: 64k trials / 118,001 rows, shared full-event bonus law verified; agreed freeze and M3 next |
 | B — Full Spine authoring | Four rigs including five rescued-family skins; cut/paint registered parts, rig, animate, export and check | 4.2 static gate implemented, 19 checks pass; actual exports absent; original masters pending |
-| PF-03 — Rig runtime | `src/game/anim/**`, `src/components/rigs/**`, `src/routes/rigs/**` inside app | Implemented and reviewed; 10 tests and 10-file scoped compile pass; Claude shared integration and real-art motion review pending |
+| PF-03 — Rig runtime | `src/game/anim/**`, `src/components/rigs/**`, `src/routes/rigs/**` inside app | Runtime reviewed: 10 tests, scoped compile and ESLint PASS. Viewer: 3 tests, scoped compile and muted empty-state browser PASS. Claude integration and real-art motion review pending |
 | C — Focused local runtime captures | `qa/codex/**`; every mode, resume/replay, phone/popout, turbo, console | Wait for Claude's BUILD LANDED commit/build hash and real fixtures |
 | D — Submission kit | `docs/submission/**`; actual paths, checksums, reviewer draft and measured checklist | Prepare from actual candidate; no upload |
 | E — Blender sprite renders | `art-src/3d/renders/**`, app `static/assets/3d/**` | Blender executable present; wait for Claude's GLBs and per-asset dimensions |
-| F — Copy audit | `docs/coordination/codex-copy-audit.md` | Wait for actual copy and measured math |
+| F — Copy audit | `docs/coordination/codex-copy-audit.md` | Six findings accepted by Claude; fixes assigned to his Phase B; measured copy awaits M3 |
 
 M1: bounded 10,000-trial development families plus 1,000-trial additional 12/15-spin class banks and scenario fixtures. M2: agree corrections and tag exact model. M3: 350,000 actual simulation trials for EACH of the four bonus modes. Under agreed contract v1.2, publication rows are separate: direct Rescue/Inferno and Backdraft each 350,000; Alarm Call composes 700,001 rows from the two complete common bonus banks and one false-alarm outcome; base/ante add embedded bank rows to their nonbonus outcomes. The suggested 1,000,000 base/ante expansion is not scheduled as part of this intake. Keep the math process tree under 6 GB; serialize math work. Claude keeps ports 3036/3037 and 3003/3004; Codex selects other free localhost ports when needed.
 
 ## Local readiness
 
-- Verified interpreter: `/Users/jbull/code/math-sdk/env/bin/python`, Python 3.14.6.
-- Imports verified: numpy, scipy, zstandard.
+- Current project interpreter: `/Users/jbull/code/piggy-firefighters/math/env/bin/python`, Python 3.12.14, NumPy 2.2.5, SciPy 1.15.3, zstandard 0.23.0. Exact packages: `math/requirements-production.lock`; `pip check` passes.
+- The earlier shared SDK interpreter combined Python 3.14.6 with unsupported NumPy 2.2.5 and exposed a statistics-report reduction defect. It is disallowed for production and was left unchanged. See `docs/math/RUNTIME.md`.
 - Locked frontend dependencies installed with pnpm 10.5.0; no lockfile changes.
-- Initial disk availability: approximately 67 GiB. Recheck before launching generation.
-- Existing SDK detector expects another venv name and reports missing environment; the interpreter above was tested directly. Do not reinstall or alter the shared SDK to resolve that naming mismatch.
+- Latest disk availability check: approximately 58 GiB. Recheck before launching production.
+- A project-local environment now exists at `math/env`; no shared SDK or system Python environment was altered.
 - `/Applications/Spine.app/Contents/MacOS/Spine` and cached 4.2.43 are present; editor launch NOT RUN.
 - `/Applications/Blender.app/Contents/MacOS/Blender` is present; rendering NOT RUN.
-- Production simulations: NOT RUN. First development run: 60k books / 341.375 MiB peak; preliminary, not a freeze candidate. Corrected watchdog: four lifecycle checks PASS.
+- Production simulations: NOT RUN. Final M1: 64k actual trials / 118,001 unique rows; zero duplicates; 68k full-event/common-weight wrapper checks; all 76 input hashes unchanged. Six RTPs approximately 96.699999%; base/ante SD 14.4/9.5; base hit split 38%/16%/22%; ante ETL40b 0.75. Independent scalar verification matches all persisted LUTs. Peak 351.125 MiB, 159.916 seconds, clean process-group exit. Corrected watchdog: four lifecycle checks PASS.
 - Animation preflight tooling: PASS on 19 focused checks, BLOCKED on missing real exports. Actual rig artwork/motion: NOT STARTED. Paid generation stays with Claude.
 
 ## Agreed work needed before production
@@ -57,7 +57,7 @@ M1: bounded 10,000-trial development families plus 1,000-trial additional 12/15-
 
 ## Animation acceptance direction
 
-The owner brief calls for a firefighting game with original assets, line-based base play, a 15,000x maximum, and lower volatility than Piggy Builders 3. The current draft contract needs the latest donor baseline and a legitimate Backdraft maximum; these objections were sent to Claude before implementation of the affected rules.
+The owner brief calls for a firefighting game with original assets, line-based base play, a 15,000x maximum, and lower volatility than Piggy Builders 3. Contract v1.2.2 resolves the baseline, genuine Backdraft cap, shared bonus law, price and win-tier decisions. Original rig exports remain the animation-authoring dependency.
 
 Animation review should inspect normal-speed gameplay: anticipation, primary action, impact, recovery, and readable result. Check distinct bonus entries and outcomes, character/prop articulation, coherent illustrated materials, sound synchronization, mobile legibility, and clean turbo/skip/reduced-motion completion. Static screenshots and valid animation files alone do not establish motion quality.
 

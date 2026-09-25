@@ -1,0 +1,126 @@
+{
+  "id": 21,
+  "payoutMultiplier": 0,
+  "events": [
+    {
+      "index": 0,
+      "type": "reveal",
+      "board": [
+        [
+          {
+            "name": "L1"
+          },
+          {
+            "name": "L2"
+          },
+          {
+            "name": "H4"
+          },
+          {
+            "name": "L2"
+          },
+          {
+            "name": "H4"
+          }
+        ],
+        [
+          {
+            "name": "L1"
+          },
+          {
+            "name": "L4"
+          },
+          {
+            "name": "L3"
+          },
+          {
+            "name": "H1"
+          },
+          {
+            "name": "L4"
+          }
+        ],
+        [
+          {
+            "name": "L1"
+          },
+          {
+            "name": "L1"
+          },
+          {
+            "name": "L4"
+          },
+          {
+            "name": "L1"
+          },
+          {
+            "name": "L2"
+          }
+        ],
+        [
+          {
+            "name": "L2"
+          },
+          {
+            "name": "H3"
+          },
+          {
+            "name": "L2"
+          },
+          {
+            "name": "L4"
+          },
+          {
+            "name": "H4"
+          }
+        ],
+        [
+          {
+            "name": "L4"
+          },
+          {
+            "name": "H4"
+          },
+          {
+            "name": "H4"
+          },
+          {
+            "name": "L2"
+          },
+          {
+            "name": "L4"
+          }
+        ]
+      ],
+      "paddingPositions": [
+        344,
+        239,
+        445,
+        84,
+        318
+      ],
+      "gameType": "basegame",
+      "anticipation": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reelSet": "BR0"
+    },
+    {
+      "index": 1,
+      "type": "setTotalWin",
+      "amount": 0
+    },
+    {
+      "index": 2,
+      "type": "finalWin",
+      "amount": 0
+    }
+  ],
+  "criteria": "plain",
+  "baseGameWins": 0.0,
+  "freeGameWins": 0.0
+}

@@ -1,0 +1,100 @@
+{
+  "fixtures": [
+    {
+      "name": "alarm_call_false",
+      "mode": "alarm_call",
+      "cost": 12.0,
+      "file": "alarm_call_false.json"
+    },
+    {
+      "name": "alarm_call_inferno",
+      "mode": "alarm_call",
+      "cost": 12.0,
+      "file": "alarm_call_inferno.json"
+    },
+    {
+      "name": "alarm_call_rescue",
+      "mode": "alarm_call",
+      "cost": 12.0,
+      "file": "alarm_call_rescue.json"
+    },
+    {
+      "name": "backdraft_max_win",
+      "mode": "backdraft_spins",
+      "cost": 50.0,
+      "file": "backdraft_max_win.json"
+    },
+    {
+      "name": "backdraft_spins",
+      "mode": "backdraft_spins",
+      "cost": 50.0,
+      "file": "backdraft_spins.json"
+    },
+    {
+      "name": "base_anticipation_miss",
+      "mode": "base",
+      "cost": 1.0,
+      "file": "base_anticipation_miss.json"
+    },
+    {
+      "name": "base_backdraft_win",
+      "mode": "base",
+      "cost": 1.0,
+      "file": "base_backdraft_win.json"
+    },
+    {
+      "name": "base_nowin",
+      "mode": "base",
+      "cost": 1.0,
+      "file": "base_nowin.json"
+    },
+    {
+      "name": "base_trigger_inferno",
+      "mode": "base",
+      "cost": 1.0,
+      "file": "base_trigger_inferno.json"
+    },
+    {
+      "name": "base_trigger_rescue",
+      "mode": "base",
+      "cost": 1.0,
+      "file": "base_trigger_rescue.json"
+    },
+    {
+      "name": "base_win",
+      "mode": "base",
+      "cost": 1.0,
+      "file": "base_win.json"
+    },
+    {
+      "name": "inferno_buy",
+      "mode": "inferno",
+      "cost": 90.0,
+      "file": "inferno_buy.json"
+    },
+    {
+      "name": "inferno_prizes",
+      "mode": "inferno",
+      "cost": 90.0,
+      "file": "inferno_prizes.json"
+    },
+    {
+      "name": "max_win",
+      "mode": "rescue",
+      "cost": 18.0,
+      "file": "max_win.json"
+    },
+    {
+      "name": "rescue_building_cleared",
+      "mode": "rescue",
+      "cost": 18.0,
+      "file": "rescue_building_cleared.json"
+    },
+    {
+      "name": "rescue_buy",
+      "mode": "rescue",
+      "cost": 18.0,
+      "file": "rescue_buy.json"
+    }
+  ]
+}
