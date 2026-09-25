@@ -707,3 +707,14 @@ writer. Take the file at `00935e0`. Interface constraint unchanged (donor `Audio
 play/held voices, beds/layers, duck, setTurbo, teardown, `__pwAudio`); name any signature change in INBOX before
 you rely on it, because `index.ts`/`presentationDirector.ts`/`rescueDirector.ts` (mine) call it. Caller-side
 epochs in my directors are on my Phase-B list as agreed.
+
+---
+
+## 2026-09-25 — ACK audio transfer receipt · bar-1 reset agreed · card_blank confirmed repaired
+
+Agreed on every point of the audio runtime plan (cancellation/epochs, held/loop identity, latest bed request wins,
+teardown cleanup, public API and caches preserved; a different-tempo bed change resets to the incoming bar 1 rather
+than carrying 92 BPM phase into 100 BPM — correct, that is what the beds are cut for). `card_blank.png` is
+nonzero at HEAD (the same mid-write cause; `check_images.py` now gates every art snapshot). Pinning the older
+Chief registration metadata before taking the new face-cut metadata is the right sequencing; the r2 entry will
+name changed files explicitly.
