@@ -1,0 +1,4552 @@
+{
+ "errors": [],
+ "reqs": [
+  "/wallet/authenticate",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event",
+  "/bet/event"
+ ],
+ "samples": [
+  {
+   "rescue": false,
+   "spinsLeft": 0,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    }
+   ],
+   "win": "$0.00",
+   "t": 14
+  },
+  {
+   "rescue": false,
+   "spinsLeft": 0,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    }
+   ],
+   "win": "$0.00",
+   "t": 19
+  },
+  {
+   "rescue": false,
+   "spinsLeft": 0,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    }
+   ],
+   "win": "$0.00",
+   "t": 24
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 10,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    }
+   ],
+   "win": "$0.00",
+   "t": 29
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 10,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    },
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    }
+   ],
+   "win": "$0.00",
+   "t": 34
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 10,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    },
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    }
+   ],
+   "win": "$0.00",
+   "t": 39
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 10,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    },
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    }
+   ],
+   "win": "$0.00",
+   "t": 44
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 10,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    },
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    }
+   ],
+   "win": "$0.00",
+   "t": 49
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 10,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    },
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    }
+   ],
+   "win": "$0.00",
+   "t": 54
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 10,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    },
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    }
+   ],
+   "win": "$0.00",
+   "t": 60
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 9,
+   "mult": 1,
+   "total": 0,
+   "finals": [],
+   "log": [
+    {
+     "t": 11466,
+     "type": "shutterClose",
+     "card": "intro"
+    },
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    }
+   ],
+   "win": "$0.00",
+   "t": 65
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 9,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 70
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 9,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 75
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 9,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 80
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 8,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 85
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 8,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 90
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 8,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 95
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 7,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 100
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 7,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 105
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 7,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 110
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 115
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 120
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 125
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 1,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 130
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 135
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 140
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 145
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 150
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 155
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 30430,
+     "type": "shutterOpen"
+    },
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    }
+   ],
+   "win": "$1.00",
+   "t": 160
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 100,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$1.00",
+   "t": 165
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 170
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 175
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 180
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 6,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 185
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 5,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 190
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 5,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 195
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 5,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 200
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 4,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 205
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 4,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 65868,
+     "type": "winUpdate",
+     "amount": 100
+    },
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    }
+   ],
+   "win": "$4.80",
+   "t": 210
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 4,
+   "mult": 2,
+   "total": 480,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$4.80",
+   "t": 215
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 4,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 220
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 4,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 225
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 4,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 230
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 3,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 235
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 3,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 240
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 3,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 245
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 2,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 250
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 2,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 255
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 1,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 260
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 1,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 163811,
+     "type": "winUpdate",
+     "amount": 380
+    },
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$5.20",
+   "t": 265
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 1,
+   "mult": 2,
+   "total": 520,
+   "finals": [],
+   "log": [
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 268269,
+     "type": "winUpdate",
+     "amount": 200
+    }
+   ],
+   "win": "$5.20",
+   "t": 270
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 1,
+   "mult": 2,
+   "total": 720,
+   "finals": [],
+   "log": [
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 268269,
+     "type": "winUpdate",
+     "amount": 200
+    }
+   ],
+   "win": "$7.20",
+   "t": 275
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 1,
+   "mult": 2,
+   "total": 720,
+   "finals": [],
+   "log": [
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 268269,
+     "type": "winUpdate",
+     "amount": 200
+    }
+   ],
+   "win": "$7.20",
+   "t": 280
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 1,
+   "mult": 2,
+   "total": 720,
+   "finals": [],
+   "log": [
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 268269,
+     "type": "winUpdate",
+     "amount": 200
+    }
+   ],
+   "win": "$7.20",
+   "t": 285
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 720,
+   "finals": [],
+   "log": [
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 268269,
+     "type": "winUpdate",
+     "amount": 200
+    }
+   ],
+   "win": "$7.20",
+   "t": 290
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 720,
+   "finals": [],
+   "log": [
+    {
+     "t": 212629,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 268269,
+     "type": "winUpdate",
+     "amount": 200
+    }
+   ],
+   "win": "$7.20",
+   "t": 295
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 268269,
+     "type": "winUpdate",
+     "amount": 200
+    },
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    }
+   ],
+   "win": "$7.60",
+   "t": 300
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 305
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 310
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 315
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 320
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 325
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 330
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 335
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 340
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 345
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 350
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 355
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 360
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 366
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 371
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 376
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 381
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 386
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 391
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 396
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 401
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 406
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 411
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 416
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 421
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 426
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 431
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 436
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 441
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 446
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 451
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 456
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 461
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 466
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 471
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 476
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 481
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 486
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 491
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 496
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 501
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 506
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 511
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 516
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 521
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 526
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 531
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 536
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 541
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 546
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 551
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 556
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 561
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 566
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 571
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 576
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 581
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 586
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 591
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 596
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 601
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 606
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 611
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 616
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 621
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 626
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 631
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 636
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 641
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 646
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 651
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 656
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 661
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 666
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 671
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 676
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 681
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 686
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 691
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 696
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 701
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 706
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 711
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 716
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 721
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 726
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 731
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 736
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 741
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 746
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 751
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 756
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 761
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 766
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 772
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 777
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 782
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 787
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 792
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 797
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 802
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 807
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 812
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 817
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 822
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 827
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 832
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 837
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 842
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 847
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 852
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 857
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 862
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 867
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 872
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 877
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 882
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 887
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 892
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 897
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 902
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 907
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 912
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 917
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 922
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 927
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 932
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 937
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 942
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 947
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 952
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 957
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 962
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 967
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 972
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 977
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 982
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 987
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 992
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 997
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1002
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1007
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1012
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1017
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1022
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1027
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1032
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1037
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1042
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1047
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1052
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1057
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1062
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1067
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1072
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1077
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1082
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1087
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1092
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1097
+  },
+  {
+   "rescue": true,
+   "spinsLeft": 0,
+   "mult": 2,
+   "total": 760,
+   "finals": [],
+   "log": [
+    {
+     "t": 297780,
+     "type": "winUpdate",
+     "amount": 40
+    },
+    {
+     "t": 300396,
+     "type": "shutterClose",
+     "card": "outro"
+    }
+   ],
+   "win": "$7.60",
+   "t": 1103
+  }
+ ],
+ "browser": "141.0.7390.37"
+}

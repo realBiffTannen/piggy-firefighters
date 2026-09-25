@@ -1,0 +1,45 @@
+{
+  "kind": "resume",
+  "args": [
+    "127.0.0.1",
+    "3038"
+  ],
+  "session": "review-resume-1790317665581",
+  "hudBefore": {
+    "balance": "9,940.00",
+    "win": "0.00"
+  },
+  "error": "page.waitForFunction: Timeout 900000ms exceeded.",
+  "log": {
+    "t0": 1790317665580,
+    "console": [],
+    "rgs": [
+      "1.3s /wallet/authenticate {\"sessionID\":\"review-resume-1790317665581\",\"language\":\"en\"}",
+      "36.5s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"2\"}",
+      "57.7s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"8\"}",
+      "93.5s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"14\"}",
+      "112.2s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"18\"}",
+      "153.3s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"24\"}",
+      "173.0s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"30\"}",
+      "190.0s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"34\"}",
+      "214.8s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"40\"}",
+      "241.1s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"46\"}",
+      "279.0s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"52\"}",
+      "323.5s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"58\"}",
+      "350.9s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"64\"}",
+      "389.2s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"70\"}",
+      "408.2s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"76\"}",
+      "429.2s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"81\"}",
+      "482.5s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"87\"}",
+      "504.2s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"91\"}",
+      "521.2s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"95\"}",
+      "537.5s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"99\"}",
+      "634.0s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"105\"}",
+      "651.0s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"109\"}",
+      "851.3s /bet/event {\"sessionID\":\"review-resume-1790317665581\",\"event\":\"115\"}"
+    ],
+    "audio404": 0,
+    "browser": "chromium 141.0.7390.37",
+    "speed": true
+  }
+}

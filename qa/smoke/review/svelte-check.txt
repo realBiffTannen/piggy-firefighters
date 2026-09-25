@@ -1,0 +1,4 @@
+1790311309701 START "/home/user/piggy-firefighters/apps/piggy_firefighters"
+1790311309711 ERROR "node_modules/components-ui-html/node_modules/envs/src/envs.svelte.ts" 1:34 "Cannot find module '$env/static/public' or its corresponding type declarations."
+1790311309713 WARNING "tsconfig.json" 1:1 "Option 'baseUrl' is deprecated and will stop functioning in TypeScript 7.0. Specify compilerOption '\"ignoreDeprecations\": \"6.0\"' to silence this error.\n  Visit https://aka.ms/ts6 for migration information."
+1790311309713 COMPLETED 1263 FILES 1 ERRORS 1 WARNINGS 2 FILES_WITH_PROBLEMS

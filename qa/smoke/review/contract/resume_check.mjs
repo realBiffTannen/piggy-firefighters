@@ -33,7 +33,7 @@ await page.evaluate(async () => {
 });
 await sleep(400);
 await page.mouse.click(720, 450);
-await page.evaluate(() => window.__qaSetSpeedForTest?.('turbo'));
+await page.evaluate((s) => window.__qaSetSpeedForTest?.(s), process.env.SPEED ?? 'super');
 const samples = [];
 while (Date.now() - t0 < WAIT_S * 1000) {
   await sleep(5000);

@@ -1,0 +1,47 @@
+{
+  "kind": "reload",
+  "args": [
+    "base_trigger_rescue",
+    "13"
+  ],
+  "session": "review-reload-1790318642961",
+  "hudBefore": {
+    "balance": "10,000.00",
+    "win": "0.00"
+  },
+  "reloadedAtEvent": 13,
+  "resumeMs": 149132,
+  "finalWin": 370,
+  "hudAfter": {
+    "balance": "10,002.70",
+    "win": "3.70"
+  },
+  "log": {
+    "t0": 1790318642960,
+    "console": [],
+    "rgs": [
+      "1.5s /wallet/authenticate {\"sessionID\":\"review-reload-1790318642961\",\"language\":\"en\"}",
+      "17.6s /wallet/play {\"mode\":\"BASE\",\"currency\":\"USD\",\"sessionID\":\"review-reload-1790318642961\",\"amount\":1000000}",
+      "17.7s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"0\"}",
+      "203.0s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"7\"}",
+      "228.2s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"13\"}",
+      "---- RELOAD ----",
+      "233.6s /wallet/authenticate {\"sessionID\":\"review-reload-1790318642961\",\"language\":\"en\"}",
+      "263.4s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"7\"}",
+      "276.2s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"13\"}",
+      "284.0s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"19\"}",
+      "293.4s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"25\"}",
+      "310.7s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"31\"}",
+      "316.0s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"35\"}",
+      "326.0s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"41\"}",
+      "334.5s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"47\"}",
+      "340.1s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"51\"}",
+      "348.2s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"57\"}",
+      "357.1s /bet/event {\"sessionID\":\"review-reload-1790318642961\",\"event\":\"61\"}",
+      "391.3s /wallet/end-round {\"sessionID\":\"review-reload-1790318642961\"}"
+    ],
+    "audio404": 0,
+    "browser": "chromium 141.0.7390.37",
+    "speed": true
+  }
+}

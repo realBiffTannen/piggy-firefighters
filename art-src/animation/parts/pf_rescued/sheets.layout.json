@@ -1,0 +1,339 @@
+{
+ "rig": "pf_rescued",
+ "version": "r2",
+ "note": "Fixed-grid layout of record for this rig's sheets, read from the sheets BY EYE (Read tool, 2026-09-25) and snapped to the measured empty gutters. The model kept each requested grid but drifted from the nominal lines (e.g. the chief eye row reaches y 289, past the nominal 256; the chief moustache_grin crosses x 768), so every boundary is placed in the middle of the transparent gutter nearest the nominal line. Labels follow the prompt order (source_prompt) row-major. build_parts/cut_sheets.py cuts ONLY these rectangles: a component belongs to the cell holding its centroid, then the cell's rule decides what is kept. No clustering.",
+ "coordinates": "sheet pixels, x right / y down, [start, end)",
+ "rules": {
+  "eyes": "keep BOTH eyes: the two largest components that are not brows; a brow is a solid dark stroke (>= 85 % dark ink, < 2 % white) with another component below it overlapping >= 30 % of the narrower width. Brows are dropped here (brow pieces come only from the brow row).",
+  "brows": "keep the two largest components (the brow pair)",
+  "mouth": "keep the mouth only: the largest component; any other stroke in the cell is dropped and listed under `dropped` in registration.json",
+  "single": "keep the single largest component",
+  "hand": "keep the whole hand: every component in the cell",
+  "plate": "keep the plate: the largest component plus any component inside its box",
+  "whole": "keep every component in the cell",
+  "figure": "keep the largest component whose centroid lies in the cell; the figure may overhang the cell rectangle (the three poses interlock in x), and it is cut by its own component mask so no neighbour pixel is taken"
+ },
+ "speck_px": 64,
+ "sheets": {
+  "face_sheet": {
+   "file": "face_sheet.png",
+   "size": [
+    1536,
+    1024
+   ],
+   "source_prompt": "art-src/generated/prompts/rs_rescued_face_sheet.txt",
+   "nominal_grid": {
+    "cols": [
+     4,
+     4,
+     4,
+     4
+    ],
+    "rows": 4,
+    "cell_px": [
+     384.0,
+     256.0
+    ]
+   },
+   "rows": [
+    {
+     "y": [
+      0,
+      299
+     ],
+     "cells": [
+      {
+       "label": "eyes_open",
+       "x": [
+        0,
+        393
+       ],
+       "rule": "eyes"
+      },
+      {
+       "label": "eyes_closed",
+       "x": [
+        393,
+        775
+       ],
+       "rule": "eyes"
+      },
+      {
+       "label": "eyes_happy",
+       "x": [
+        775,
+        1148
+       ],
+       "rule": "eyes"
+      },
+      {
+       "label": "eyes_scared",
+       "x": [
+        1148,
+        1536
+       ],
+       "rule": "eyes"
+      }
+     ]
+    },
+    {
+     "y": [
+      299,
+      489
+     ],
+     "cells": [
+      {
+       "label": "brows_neutral",
+       "x": [
+        0,
+        400
+       ],
+       "rule": "brows"
+      },
+      {
+       "label": "brows_relieved",
+       "x": [
+        400,
+        780
+       ],
+       "rule": "brows"
+      },
+      {
+       "label": "brows_worried",
+       "x": [
+        780,
+        1144
+       ],
+       "rule": "brows"
+      },
+      {
+       "label": "brows_joyful",
+       "x": [
+        1144,
+        1536
+       ],
+       "rule": "brows"
+      }
+     ]
+    },
+    {
+     "y": [
+      489,
+      726
+     ],
+     "cells": [
+      {
+       "label": "mouth_closed",
+       "x": [
+        0,
+        401
+       ],
+       "rule": "mouth"
+      },
+      {
+       "label": "mouth_call",
+       "x": [
+        401,
+        744
+       ],
+       "rule": "mouth"
+      },
+      {
+       "label": "mouth_cheer",
+       "x": [
+        744,
+        1155
+       ],
+       "rule": "mouth"
+      },
+      {
+       "label": "mouth_worried",
+       "x": [
+        1155,
+        1536
+       ],
+       "rule": "mouth"
+      }
+     ]
+    },
+    {
+     "y": [
+      726,
+      1024
+     ],
+     "cells": [
+      {
+       "label": "ear_left",
+       "x": [
+        0,
+        397
+       ],
+       "rule": "single"
+      },
+      {
+       "label": "ear_right",
+       "x": [
+        397,
+        799
+       ],
+       "rule": "single"
+      },
+      {
+       "label": "mouth_sigh",
+       "x": [
+        799,
+        1177
+       ],
+       "rule": "mouth"
+      },
+      {
+       "label": "mouth_o",
+       "x": [
+        1177,
+        1536
+       ],
+       "rule": "mouth"
+      }
+     ]
+    }
+   ]
+  },
+  "wave_arm": {
+   "file": "wave_arm.png",
+   "size": [
+    1536,
+    1024
+   ],
+   "source_prompt": "art-src/generated/prompts/rs_rescued_wave_arm.txt",
+   "nominal_grid": {
+    "cols": [
+     3,
+     3
+    ],
+    "rows": 2,
+    "cell_px": [
+     512.0,
+     512.0
+    ]
+   },
+   "rows": [
+    {
+     "y": [
+      0,
+      635
+     ],
+     "cells": [
+      {
+       "label": "wave_arm_up",
+       "x": [
+        0,
+        468
+       ],
+       "rule": "whole"
+      },
+      {
+       "label": "wave_arm_left",
+       "x": [
+        468,
+        996
+       ],
+       "rule": "whole"
+      },
+      {
+       "label": "wave_arm_right",
+       "x": [
+        996,
+        1536
+       ],
+       "rule": "whole"
+      }
+     ]
+    },
+    {
+     "y": [
+      635,
+      1024
+     ],
+     "cells": [
+      {
+       "label": "wave_hand_front",
+       "x": [
+        0,
+        531
+       ],
+       "rule": "whole"
+      },
+      {
+       "label": "wave_hand_left",
+       "x": [
+        531,
+        1016
+       ],
+       "rule": "whole"
+      },
+      {
+       "label": "wave_hand_right",
+       "x": [
+        1016,
+        1536
+       ],
+       "rule": "whole"
+      }
+     ]
+    }
+   ]
+  },
+  "slide_poses": {
+   "file": "slide_poses.png",
+   "size": [
+    1536,
+    1024
+   ],
+   "source_prompt": "art-src/generated/prompts/rs_rescued_slide_poses.txt",
+   "nominal_grid": {
+    "cols": [
+     3
+    ],
+    "rows": 1,
+    "cell_px": [
+     512.0,
+     1024.0
+    ]
+   },
+   "rows": [
+    {
+     "y": [
+      0,
+      1024
+     ],
+     "cells": [
+      {
+       "label": "pose_slide",
+       "x": [
+        0,
+        512
+       ],
+       "rule": "figure"
+      },
+      {
+       "label": "pose_land",
+       "x": [
+        512,
+        1024
+       ],
+       "rule": "figure"
+      },
+      {
+       "label": "pose_cheer",
+       "x": [
+        1024,
+        1536
+       ],
+       "rule": "figure"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -55,6 +55,37 @@
   ]
  },
  {
+  "draw": "pf_backdraft92_v2__1",
+  "plan": "pf_backdraft92_v2",
+  "cue": "backdraft_spins_layer",
+  "seconds": 48.02,
+  "planned_s": 48.0,
+  "needed_s": 44.35,
+  "firstOnset_s": 0.89,
+  "introVsBody_dB": -25.2,
+  "dropoutSeconds": [
+   46
+  ],
+  "fineBpm": 91.996,
+  "autoBpm": 91.95,
+  "cpentShare": 0.547,
+  "chug": 4.055,
+  "selfSim": {
+   "sections": 2,
+   "pairs": {
+    "1-2": 0.431
+   },
+   "maxPair": 0.431,
+   "nearCopy": false
+  },
+  "defects": [
+   "quiet intro (-25.2 dB under the body)",
+   "dropout at [46] s",
+   "chug 4.055 (8th/quarter > 3)",
+   "out of key (C-pent share 0.547)"
+  ]
+ },
+ {
   "draw": "pf_base92a__1",
   "plan": "pf_base92a",
   "cue": "base_loop_a",
@@ -89,6 +120,37 @@
    "chug 3.988 (8th/quarter > 3)",
    "out of key (C-pent share 0.559)",
    "near-copy sections (max r 0.906)"
+  ]
+ },
+ {
+  "draw": "pf_base92a_v2__1",
+  "plan": "pf_base92a_v2",
+  "cue": "base_loop_a",
+  "seconds": 91.95,
+  "planned_s": 92.0,
+  "needed_s": 86.09,
+  "firstOnset_s": 0.0,
+  "introVsBody_dB": -13.2,
+  "dropoutSeconds": [],
+  "fineBpm": 92.0,
+  "autoBpm": 91.95,
+  "cpentShare": 0.732,
+  "chug": 1.52,
+  "selfSim": {
+   "sections": 4,
+   "pairs": {
+    "1-2": 0.534,
+    "1-3": 0.366,
+    "1-4": 0.434,
+    "2-3": 0.55,
+    "2-4": 0.756,
+    "3-4": 0.376
+   },
+   "maxPair": 0.756,
+   "nearCopy": false
+  },
+  "defects": [
+   "quiet intro (-13.2 dB under the body)"
   ]
  },
  {
@@ -156,6 +218,43 @@
   "defects": [
    "dropout at [81] s",
    "out of key (C-pent share 0.546)"
+  ]
+ },
+ {
+  "draw": "pf_inferno100_v2__1",
+  "plan": "pf_inferno100_v2",
+  "cue": "inferno_loop",
+  "seconds": 83.96,
+  "planned_s": 84.0,
+  "needed_s": 79.2,
+  "firstOnset_s": 0.0,
+  "introVsBody_dB": -3.0,
+  "dropoutSeconds": [
+   78,
+   79,
+   80,
+   81
+  ],
+  "fineBpm": 100.0,
+  "autoBpm": 100.0,
+  "cpentShare": 0.598,
+  "chug": 0.456,
+  "selfSim": {
+   "sections": 4,
+   "pairs": {
+    "1-2": 0.593,
+    "1-3": 0.585,
+    "1-4": 0.355,
+    "2-3": 0.775,
+    "2-4": 0.481,
+    "3-4": 0.478
+   },
+   "maxPair": 0.775,
+   "nearCopy": false
+  },
+  "defects": [
+   "dropout at [78, 79, 80, 81] s",
+   "out of key (C-pent share 0.598)"
   ]
  },
  {

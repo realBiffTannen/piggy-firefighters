@@ -110,7 +110,7 @@ try {
 		out.hudAfter = await hud(page);
 		await page.screenshot({ path: join(HERE, `runtime_reload_${a1}_after.png`) });
 	} else if (kind === 'resume') {
-		const rgs = a1 ?? '127.0.0.1:3038';
+		const rgs = a1 && a2 ? `${a1}:${a2}` : '127.0.0.1:3038';
 		await page.goto(`${GAME}?sessionID=${session}&rgs_url=${rgs}&device=desktop`, { waitUntil: 'domcontentloaded' });
 		await passSplash(page);
 		out.hudBefore = await hud(page);
