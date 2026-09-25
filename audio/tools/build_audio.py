@@ -20,7 +20,7 @@ adapted for this title. Same kit (kit.py: load / fine_tempo / time_scale / loopk
 usage: python3 audio/tools/build_audio.py music|sfx|derived|shots|turbo|all [--only a,b] [--purge-donor]
    all = music -> sfx -> derived -> shots -> turbo; then mix.py -> gen_manifest.mjs -> measure.py -> audio_map.py -> montage.py
 """
-import json, os, sys, time
+import json, os, shutil, sys, time
 import numpy as np
 from scipy.signal import butter, sosfilt
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -447,15 +447,13 @@ def shots(min_share=0.6, only=None):
         if only and cid not in only: continue
         mp = f'{K.MAST}/{cid}.wav'; pp = f'{PREPICK}/{cid}.wav'
         if not os.path.exists(mp): report['skipped'].append(f'shot {cid}: no master'); continue
-        if not os.path.exists(pp):
-            import shutil; shutil.copy(mp, pp)
+        if not os.path.exists(pp): shutil.copy(mp, pp)
         x = lk.decode(pp); share = M.cpent_share(x)
         s = int(0.02 * SR); h = pick[: max(0, len(x) - s)]
         rec = CUES[cid].setdefault('build', {})
         if len(h) < int(0.6 * SR) or share < min_share:
             out[cid] = {'pickup': False, 'cpentShare': round(share, 3), 'why': 'too short' if len(h) < int(0.6 * SR) else f'C-pentatonic share {share:.2f} < {min_share}'}
-            if os.path.exists(mp) and not np.array_equal(lk.decode(mp).shape, x.shape): pass
-            res = ship(x, cid)  # the pre-pickup master IS the master
+            ship(x, cid)  # no pickup: the pre-pickup master IS the master (undoes a pickup from an earlier run)
             rec['hook'] = out[cid]; TOUCHED.add(cid); print('no pickup', cid, out[cid]); continue
         h = h * 10 ** ((HL.rms_db(x[: len(h)]) - 5.0 - HL.rms_db(h)) / 20)
         y = x.copy(); y[s:s + len(h)] += h
