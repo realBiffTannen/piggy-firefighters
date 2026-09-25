@@ -1,0 +1,17 @@
+{
+  "sheet": "coin_sheet.webp",
+  "w": 1024,
+  "h": 384,
+  "bytes": 128384,
+  "frames": 24,
+  "fps": 24,
+  "cell": 128,
+  "cols": 8,
+  "rows": 3,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "loop": true,
+  "route": "3D turntable: Meshy image-to-3D 01a0d7b7-b046-7310-a1fc-7b0c083f35de + Blender toon"
+}

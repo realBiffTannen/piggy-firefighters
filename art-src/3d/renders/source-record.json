@@ -1,0 +1,240 @@
+{
+  "blender": "5.2.2 LTS",
+  "engine": "BLENDER_EEVEE",
+  "render": {
+    "px": 256,
+    "samples": 32,
+    "camera": "orthographic, sphere = 0.86 of the cell",
+    "shading": {
+      "sun_strength": 3.141592653589793,
+      "light_from": [
+        -0.448,
+        -0.652,
+        0.611
+      ],
+      "ramp": {
+        "shadow_end": 0.36,
+        "high_start": 0.86,
+        "shadow_v": 0.66,
+        "shadow_s": 1.22,
+        "high_v_add": 0.1,
+        "high_s": 0.82
+      },
+      "view_transform": "Standard",
+      "world": "black, no ambient",
+      "shadows": false,
+      "motion_blur": false
+    }
+  },
+  "outline": {
+    "ink": "#3B2313",
+    "outer_px_at_128": 2.0,
+    "inner_px_at_128": 1.4,
+    "interior": "view-depth jump > 0.06 * R between solid neighbours (4-neighbourhood + diagonals)",
+    "method": "screen-space: alpha grey-dilation (outer) + depth-discontinuity lines, colour composited over ink"
+  },
+  "downsample": "2x premultiplied LANCZOS",
+  "webp": "lossy method 6, q90 stepped down to 85/80/75 only when a sheet exceeds 130000 B",
+  "pieces": [
+    {
+      "job": "coin",
+      "piece": "coin",
+      "glb": "art-src/meshy/coin.glb",
+      "glb_sha256": "a3b1a40f48e6176b57be7c33ea443e0a38c7c54acbae75718b63b8dac3e1deff",
+      "meshy_task": "01a0d7b7-b046-7310-a1fc-7b0c083f35de",
+      "triangles": 20632,
+      "frames": 24,
+      "tilt_deg": 20.0,
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 0.95011,
+      "ortho_scale": 2.20956,
+      "sheet": "static/assets/3d/winrungs/pieces/coin_sheet.webp",
+      "sheet_size": [
+        1024,
+        384
+      ],
+      "bytes": 128384,
+      "webp_quality": 90,
+      "within_budget": true
+    },
+    {
+      "job": "silver_coin",
+      "piece": "silver_coin",
+      "glb": "art-src/meshy/silver_coin.glb",
+      "glb_sha256": "3f3fdee5c59fa3e8b64d7916fb5abd9058191bf49e7b3e72e29f2f225872fdf5",
+      "meshy_task": "01a0d7b7-dbdf-75ea-b0c7-8059d26d1190",
+      "triangles": 20252,
+      "frames": 24,
+      "tilt_deg": 20.0,
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 0.95415,
+      "ortho_scale": 2.21896,
+      "sheet": "static/assets/3d/winrungs/pieces/silver_coin_sheet.webp",
+      "sheet_size": [
+        1024,
+        384
+      ],
+      "bytes": 119256,
+      "webp_quality": 90,
+      "within_budget": true
+    },
+    {
+      "job": "helmet",
+      "piece": "helmet",
+      "glb": "art-src/meshy/helmet.glb",
+      "glb_sha256": "ad2371bdaaaa3b15c05826f359be666ccc789c44f153a25cc87c7e1474cfe1fd",
+      "meshy_task": "01a0d7b7-e3df-71be-930c-20e5c011d45f",
+      "triangles": 20255,
+      "frames": 24,
+      "tilt_deg": 20.0,
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 1.19869,
+      "ortho_scale": 2.78765,
+      "sheet": "static/assets/3d/winrungs/pieces/helmet_sheet.webp",
+      "sheet_size": [
+        1024,
+        384
+      ],
+      "bytes": 81374,
+      "webp_quality": 90,
+      "within_budget": true
+    },
+    {
+      "job": "nozzle",
+      "piece": "nozzle",
+      "glb": "art-src/meshy/nozzle.glb",
+      "glb_sha256": "337f809df8036d27fd5986374254bb26095d8953cb36424b3f76c05b4f1563fd",
+      "meshy_task": "01a0d7b7-eb6e-778b-96df-fed401873100",
+      "triangles": 20024,
+      "frames": 24,
+      "tilt_deg": 20.0,
+      "pose": {
+        "yaw": 180,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 1.07569,
+      "ortho_scale": 2.50162,
+      "sheet": "static/assets/3d/winrungs/pieces/nozzle_sheet.webp",
+      "sheet_size": [
+        1024,
+        384
+      ],
+      "bytes": 92608,
+      "webp_quality": 90,
+      "within_budget": true
+    },
+    {
+      "job": "badge",
+      "piece": "badge",
+      "glb": "art-src/meshy/badge.glb",
+      "glb_sha256": "212eec5c12ed17cd84f1bb8244727561a82f32a529b0a780ea0ef9f8cb8fb415",
+      "meshy_task": "01a0d7b7-f295-7389-86af-80c58f9165a3",
+      "triangles": 20218,
+      "frames": 24,
+      "tilt_deg": 20.0,
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 1.02089,
+      "ortho_scale": 2.37415,
+      "sheet": "static/assets/3d/winrungs/pieces/badge_sheet.webp",
+      "sheet_size": [
+        1024,
+        384
+      ],
+      "bytes": 98624,
+      "webp_quality": 90,
+      "within_budget": true
+    },
+    {
+      "job": "boot",
+      "piece": "boot",
+      "glb": "art-src/meshy/boot.glb",
+      "glb_sha256": "818936a74c973cb3b746d037f5466f46426856180605d7573f95a1c1ddd804f7",
+      "meshy_task": "01a0d7b7-fa30-76a1-a04b-85fe5bedb404",
+      "triangles": 20033,
+      "frames": 24,
+      "tilt_deg": 20.0,
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 1.21459,
+      "ortho_scale": 2.82464,
+      "sheet": "static/assets/3d/winrungs/pieces/boot_sheet.webp",
+      "sheet_size": [
+        1024,
+        384
+      ],
+      "bytes": 85576,
+      "webp_quality": 90,
+      "within_budget": true
+    },
+    {
+      "job": "hydrant_cap",
+      "piece": "hydrant_cap",
+      "glb": "art-src/meshy/hydrant_cap.glb",
+      "glb_sha256": "4356d67133ec70017833404d553b982ce33f8b2dea59e056971928e68635f42b",
+      "meshy_task": "01a0d7b8-0308-77d1-93ee-ca3c8dbf666a",
+      "triangles": 20429,
+      "frames": 24,
+      "tilt_deg": 20.0,
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 1.1017,
+      "ortho_scale": 2.56209,
+      "sheet": "static/assets/3d/winrungs/pieces/hydrant_cap_sheet.webp",
+      "sheet_size": [
+        1024,
+        384
+      ],
+      "bytes": 95522,
+      "webp_quality": 90,
+      "within_budget": true
+    },
+    {
+      "job": "coins",
+      "piece": "coin",
+      "glb": "art-src/meshy/coin.glb",
+      "glb_sha256": "a3b1a40f48e6176b57be7c33ea443e0a38c7c54acbae75718b63b8dac3e1deff",
+      "meshy_task": "01a0d7b7-b046-7310-a1fc-7b0c083f35de",
+      "triangles": 20632,
+      "frames": 32,
+      "tilt_deg": 0.0,
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "sphere_radius": 0.95011,
+      "ortho_scale": 2.20956,
+      "sheet": "static/assets/3d/winrungs/coins/coin_sheet.webp",
+      "sheet_size": [
+        1024,
+        512
+      ],
+      "bytes": 116222,
+      "webp_quality": 75,
+      "within_budget": true
+    }
+  ]
+}

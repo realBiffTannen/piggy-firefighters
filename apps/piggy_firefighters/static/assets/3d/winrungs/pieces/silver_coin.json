@@ -1,0 +1,17 @@
+{
+  "sheet": "silver_coin_sheet.webp",
+  "w": 1024,
+  "h": 384,
+  "bytes": 119256,
+  "frames": 24,
+  "fps": 24,
+  "cell": 128,
+  "cols": 8,
+  "rows": 3,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "loop": true,
+  "route": "3D turntable: Meshy image-to-3D 01a0d7b7-dbdf-75ea-b0c7-8059d26d1190 + Blender toon"
+}
