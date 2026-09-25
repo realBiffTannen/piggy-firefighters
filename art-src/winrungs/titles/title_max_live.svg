@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1267" height="300" viewBox="0 0 1267 300">
   <title>MAX WIN - live text (max)</title>
-  <defs><style>@font-face{font-family:"Alfa Slab One";src:url("../../branding/fonts/AlfaSlabOne-Regular.ttf");}.t{font-family:"Alfa Slab One",serif;fill:#F4E9D2;stroke:#2A1A10;stroke-width:14;paint-order:stroke;text-anchor:middle;font-size:200px;}</style></defs>
+  <defs><style>@font-face{font-family:"Alfa Slab One";src:url("../../branding/fonts/AlfaSlabOne-Regular.ttf");}.t{font-family:"Alfa Slab One",serif;fill:#FACE60;stroke:#2A1A10;stroke-width:14;paint-order:stroke;text-anchor:middle;font-size:200px;}</style></defs>
   <text class="t" x="633.5" y="247.2" letter-spacing="4">MAX WIN</text>
 </svg>

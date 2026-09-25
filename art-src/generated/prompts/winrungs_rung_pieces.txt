@@ -1,4 +1,15 @@
-Draw a SHEET of ten small tumbling celebration pieces for a cartoon slot game, arranged in a 5-by-2 grid with WIDE EMPTY transparent gaps between every piece (no piece touches another), on a genuinely transparent background. Style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A, flame orange #FF7A1A only for the ember and spark. Each piece is drawn flat-on, facing the viewer, about the same size, filling its cell. Not glossy, not a 3D render, no gradients, no airbrush glow.
-TOP ROW, left to right: (1) a gold coin seen face-on with an embossed pig-snout emblem (a simple oval snout with two nostrils); (2) a plain silver coin seen face-on with a simple embossed ring; (3) a tiny engine-red firefighter helmet with a brass front shield (no lettering); (4) a clear blue-white water drop; (5) a brass fire-hose nozzle.
-BOTTOM ROW, left to right: (6) a brass firefighter badge with a four-armed cross (no lettering); (7) a single black-and-yellow firefighter boot; (8) a hydrant-yellow fire-hydrant cap; (9) a glowing flame-orange ember; (10) a small hydrant-yellow four-point spark.
-No text, no letters, no numbers, no logos, no emoji, no ground shadow, no background scenery. No hard hats, no construction imagery, no police imagery, no lanterns, no dragons.
+Subject: a sprite sheet of TEN separate small celebration pieces that burst out of a big win in a firefighter-themed cartoon slot game, arranged in a 5-by-2 grid (five items in the top row, five in the bottom row) with WIDE empty transparent gaps (at least 60 pixels) so none touch. Each item is drawn large and bold, filling its grid cell to about 75 percent, flat and facing the viewer, and reads instantly at 48 pixels.
+
+Top row, left to right:
+1. a thick GOLD coin seen face-on (a perfect circle): hydrant-yellow face, brass gold rim with a ring of small beads, and a raised cartoon pig-snout emblem in the middle (a rounded oval snout with two nostrils, no lettering).
+2. a thick SILVER coin seen face-on (a perfect circle): light grey-blue face with smoke blue-grey shadow, a beaded rim and a raised water-drop emblem in the middle (no lettering).
+3. a miniature red fire helmet in three-quarter view, the same design as reference image 1: engine-red shell with a long back brim and a smooth blank brass front shield.
+4. a fat cartoon water drop (teardrop shape, point up) in clear water blue #4FB3E8 with a lighter blue face, one hard darker-blue shadow tone and a white highlight.
+5. a short polished brass fire-hose nozzle with an engine-red grip handle, the same design as reference image 2, lying horizontally.
+
+Bottom row, left to right:
+6. a brass firefighter badge seen face-on: a Maltese-cross shape with gold arms, engine-red enamel inner ring and a smooth blank brass round centre (no lettering, no numbers).
+7. a single black rubber fire boot in side view with a hydrant-yellow reflective band and a hose-cream sole edge, the same design as reference image 3.
+8. a small hydrant-yellow fire hydrant (short and chubby, a domed brass-gold cap on top and two side outlet caps), standing upright.
+9. a glowing ember: a chunky rounded lump of charcoal cracked with bright flame-orange #FF7A1A and hydrant-yellow glowing seams, with a tiny flame tip.
+10. a bright four-pointed star-shaped spark with curved concave sides in hydrant yellow with a cream centre and a flame-orange outer edge.

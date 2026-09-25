@@ -1,0 +1,11 @@
+Subject: a sprite sheet of FOUR separate, completely BLANK sign plaques for the win celebration of a firefighter-themed cartoon slot game, in the style of the fittings on a classic red fire engine. They are stacked in ONE vertical column, each centred horizontally, with wide empty transparent gaps (at least 70 pixels) between them so none touch. Every plaque is seen perfectly straight on, flat, not tilted, not in perspective, and is mirror-symmetric left to right.
+
+Plaque 1 (top): a wide horizontal plaque exactly about 3.1 times wider than it is tall, about 92 percent of the canvas width. A polished BRASS frame (brass gold #E9B23B with one darker brass shadow tone and a small cream highlight) with softly rounded corners and a round brass rivet in each corner, surrounding a large flat recessed inner panel of plain matte dusk navy #1E2A4A. The inner panel takes up about 78 percent of the plaque's width and 62 percent of its height and is completely empty and evenly coloured.
+
+Plaque 2: the same shape and size as plaque 1, but its frame is a polished CHROME rim (light grey-blue #C9D3E0 with a smoke blue-grey #7C8AA0 shadow tone) with chrome rivets, and its large flat inner panel is plain glossy engine-red #D7262B enamel, completely empty and evenly coloured.
+
+Plaque 3: the same shape and size as plaque 1, but its frame is engine-red #D7262B enamel edged on the inside and outside with thin bright chrome keylines, with a small brass bolt in each corner and a short strip of embossed diamond-plate tread texture on the left and right ends of the frame only. Its large flat inner panel is plain matte dusk navy #1E2A4A, completely empty and evenly coloured.
+
+Plaque 4 (bottom): a slimmer horizontal bar about 4.8 times wider than it is tall, about 86 percent of the canvas width, with fully rounded ends: a brass rim around a flat plain dusk navy #1E2A4A centre that is completely empty (a figure will be overlaid on it later by the game).
+
+All four plaques share one outline weight and one shading model. Nothing is written or engraved on any of them: every inner panel stays perfectly empty.

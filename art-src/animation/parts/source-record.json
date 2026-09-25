@@ -1,0 +1,1025 @@
+{
+  "asset_family": "rig parts for the Codex Spine lane (pf_chief, pf_rookie, pf_dog, pf_rescued) + the Chief Hamm master of record",
+  "owner_lane": "Claude ART lane",
+  "date": "2026-09-25",
+  "spec": [
+    "docs/ANIMATION_CONTRACT.md",
+    "art-src/animation/rigs/DIRECTION.md",
+    "docs/codex/INBOX_FOR_CLAUDE.md (For character masters)",
+    "art-src/ART_HERO.md"
+  ],
+  "ledger_of_record": "art-src/generated/source-record.json (one row per HTTP attempt, written by tools/art/gen_art.py); the rows below are a copy filtered to this family",
+  "paid_generation": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "high",
+    "n": 1,
+    "endpoint": "images/edits (every call uses a reference: hero_c.png for the master fix, chief_hamm_master.png for the four rig masters, each rig master for its own parts)",
+    "calls": 47,
+    "ok": 47,
+    "estimated_spend_usd": 14.1,
+    "redraws": [
+      {
+        "asset": "body_no_head_no_legs_r2",
+        "note": "B: redraw of pf_dog body_no_head_no_legs; named defect: torso compressed to a round blob and leg sockets painted as visible ringed pads"
+      }
+    ]
+  },
+  "local_processing": {
+    "scripts": [
+      "art-src/animation/parts/register_parts.py",
+      "art-src/animation/parts/build_parts.py",
+      "art-src/animation/parts/make_anchors.py",
+      "art-src/animation/parts/make_inventory.py"
+    ],
+    "what": "raw outputs are never edited; parts are registered to their rig master (uniform scale + translation fitted on colour-label agreement, feet alignment for costume skins, hem alignment for coat tails), placed on the common 1024x1536 canvas with the soles on y=1440 and the feet centre on x=512, split into components, sheet pieces cut from known grid layouts; helmet_front removes the painted lining where the head sits"
+  },
+  "self_assessment": "agent PASS on registration by overlay review (qa/art/parts/*); this is NOT human sign-off and not rig acceptance",
+  "rows": [
+    {
+      "asset": "chief_hamm_master",
+      "batch": "hero",
+      "status": "OK",
+      "output": "art-src/generated/hero/chief_hamm_master.png",
+      "sha256": "6fde2e1318164c2e7bbae54b97944ea8445dce71dba9bc95f3d5e72da2cac16f",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/hero/hero_c.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/hero_chief_hamm_master.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "A: hero_c must-fix edit (brows, eye whites+catchlights, belt hand grip, pointing hand thumb/margin); same framing",
+      "ts": "2026-09-25T04:33:37",
+      "seconds": 30.5,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "master_pf_rookie",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/master_pf_rookie.png",
+      "sha256": "a1b7f762f9705ce6717c407a11a85785c7cfbb18e03758c485b3ecb5a57921cc",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/hero/chief_hamm_master.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigmaster.txt",
+        "art-src/generated/prompts/rig_master_pf_rookie.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: rig master pf_rookie (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+      "ts": "2026-09-25T04:35:34",
+      "seconds": 28.8,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "master_pf_rescued",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/master_pf_rescued.png",
+      "sha256": "e8a01a61c95caf11f795c92a1014666e5fe2e273b457446b6e42c59bb9219651",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/hero/chief_hamm_master.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigmaster.txt",
+        "art-src/generated/prompts/rig_master_pf_rescued.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: rig master pf_rescued (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+      "ts": "2026-09-25T04:35:34",
+      "seconds": 29.7,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "master_pf_dog",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/master_pf_dog.png",
+      "sha256": "bc561e6fdeff073a23f2c03824031daf8dcc0ac07a6b443cb45feadd953ff03e",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/hero/chief_hamm_master.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigmaster.txt",
+        "art-src/generated/prompts/rig_master_pf_dog.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: rig master pf_dog (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+      "ts": "2026-09-25T04:35:34",
+      "seconds": 30.0,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "master_pf_chief",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/master_pf_chief.png",
+      "sha256": "4be253b298fcf30b4cee14b3e01f4453ff9582ed0d02cd41ea2ffbd9008a14c4",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/hero/chief_hamm_master.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigmaster.txt",
+        "art-src/generated/prompts/rig_master_pf_chief.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: rig master pf_chief (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+      "ts": "2026-09-25T04:35:34",
+      "seconds": 30.9,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "head_no_helmet",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/head_no_helmet.png",
+      "sha256": "3a55256991fb2b3d467df8de798b8a188ad384547d89430e165ac98a36be31f5",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_head_no_helmet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part head_no_helmet (hidden surfaces painted)",
+      "ts": "2026-09-25T04:39:26",
+      "seconds": 25.6,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "arms_down",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/arms_down.png",
+      "sha256": "a26fb372951df898510476465cc5f193ea24ffdd0a670bfb109928fd2dc01f8f",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_arms_down.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part arms_down (hidden surfaces painted)",
+      "ts": "2026-09-25T04:39:26",
+      "seconds": 26.1,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "body_no_head_no_arms",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/body_no_head_no_arms.png",
+      "sha256": "a62882fe58fedf8643c9c0778ed4de1bd2a1e47cac57534bddc56ce6a2baeaa6",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_body_no_head_no_arms.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part body_no_head_no_arms (hidden surfaces painted)",
+      "ts": "2026-09-25T04:39:26",
+      "seconds": 26.9,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "helmet_only",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/helmet_only.png",
+      "sha256": "2d5637f0e2c9f5f9f3090ca1991820a4b8f78b86c0c72cddbbdeda97d98aeee3",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_helmet_only.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part helmet_only (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:21",
+      "seconds": 22.9,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "arms_raised",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/arms_raised.png",
+      "sha256": "62ac4c4e7ea9bf461af5c469def182dbc4ee2dbeee72055765bdde57d1a8718a",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_arms_raised.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part arms_raised (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:21",
+      "seconds": 23.0,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "coat_tails",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/coat_tails.png",
+      "sha256": "746a9748665f0aa72facad05de9f84c7dfdf3092680a2ff4e102711351909a2d",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_coat_tails.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part coat_tails (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:21",
+      "seconds": 24.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "head_blank",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/head_blank.png",
+      "sha256": "f492098ea9ceb40a333f17c071c248a8df08437eb1e655e634f68794d877a735",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_head_blank.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part head_blank (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:21",
+      "seconds": 27.0,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "legs",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/legs.png",
+      "sha256": "873a0294ddaed495aaddeb3d9e9adacf2f9a41b76c118668f7ce95e9b0387f37",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_chief_legs.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief same-framing part legs (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:21",
+      "seconds": 27.6,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "body_no_head_no_arms",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/body_no_head_no_arms.png",
+      "sha256": "5fa92ee680a82c986142fe9012933ed4fcf8660f15e69b747bd3da680f4417c8",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_body_no_head_no_arms.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part body_no_head_no_arms (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:21",
+      "seconds": 29.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "head_blank",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/head_blank.png",
+      "sha256": "8d65364327bbcfa37bc731358eeb557713394eeed19646fa935edb4eb94d3111",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_head_blank.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part head_blank (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:44",
+      "seconds": 25.7,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "helmet_only",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/helmet_only.png",
+      "sha256": "65f78578ae36dd2f23288f59b7412e884c0399bfe265301120e3076cbe5cc00a",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_helmet_only.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part helmet_only (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:45",
+      "seconds": 27.5,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "head_no_helmet",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/head_no_helmet.png",
+      "sha256": "faae5a807554e77c375cf41738b80bfdcff180a7e3eb801b748415d1b18e376c",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_head_no_helmet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part head_no_helmet (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:43",
+      "seconds": 29.9,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "arms_raised",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/arms_raised.png",
+      "sha256": "1e1a0af9c7b8f102cd73569ff0dc0ccdb98407cdee1252e6187c8d5a5989fc38",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_arms_raised.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part arms_raised (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:48",
+      "seconds": 25.5,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "legs",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/legs.png",
+      "sha256": "fe57594798a654ae0fdbe435e7d7eb56f2f5b8b85655243131c528fff71b57f9",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_legs.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part legs (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:50",
+      "seconds": 25.2,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "arms_down",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/arms_down.png",
+      "sha256": "7235bd0fef0d0346774267fee348fa13c48cc9a5e4f61d00dd7059ff2309428a",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_arms_down.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part arms_down (hidden surfaces painted)",
+      "ts": "2026-09-25T04:41:48",
+      "seconds": 28.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "coat_tails",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/coat_tails.png",
+      "sha256": "2ff7d6eb3edc4f20dbb4cca93b154058f7828d982c12da40ff1a300ac3bc00cc",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rookie_coat_tails.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie same-framing part coat_tails (hidden surfaces painted)",
+      "ts": "2026-09-25T04:42:09",
+      "seconds": 24.8,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "hands_sheet",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/hands_sheet.png",
+      "sha256": "c459b5c43536bc60d4b2fd9eacb6efb3fdef36e82005914563ced6486fe2aa2a",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_chief_hands_sheet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief parts sheet hands_sheet",
+      "ts": "2026-09-25T04:42:13",
+      "seconds": 27.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "hands_sheet",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/hands_sheet.png",
+      "sha256": "73e089ab3f150375eb7abfaba1de72bf3461f5e595978f63a5530789fe3ce311",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_rookie_hands_sheet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie parts sheet hands_sheet",
+      "ts": "2026-09-25T04:42:13",
+      "seconds": 27.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "props",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/props.png",
+      "sha256": "1af01e60b68072369c3981f29c3e478b831ea4dce85196102c90c5b3a7df2dd0",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_chief_props.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief parts sheet props",
+      "ts": "2026-09-25T04:42:16",
+      "seconds": 27.1,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "face_sheet",
+      "batch": "rig_pf_chief",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_chief/face_sheet.png",
+      "sha256": "73bce7c58f526773e50dcd45882d96f9f4bd1bb07300fd890f3cf4a11cedf9ae",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_chief/master_pf_chief.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_chief_face_sheet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_chief parts sheet face_sheet",
+      "ts": "2026-09-25T04:42:14",
+      "seconds": 30.7,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "face_sheet",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/face_sheet.png",
+      "sha256": "7b70ab66be1fea57ef649adf66eaacc342e003af9a19cdede980cd4456da68b7",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_rookie_face_sheet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie parts sheet face_sheet",
+      "ts": "2026-09-25T04:42:15",
+      "seconds": 30.1,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "props",
+      "batch": "rig_pf_rookie",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rookie/props.png",
+      "sha256": "8c00111b63e60fdad39fa94443f13a52f6051e8b8d387242dd750a4e3e48fc38",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_rookie_props.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rookie parts sheet props",
+      "ts": "2026-09-25T04:42:34",
+      "seconds": 26.0,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "helmet_only",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/helmet_only.png",
+      "sha256": "c018da05591cf1bb6d0a8e90d8e859ecc3c962de73e199b0ec2b2a15c0ba59ab",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_dog/master_pf_dog.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_dog_helmet_only.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_dog same-framing part helmet_only",
+      "ts": "2026-09-25T04:42:43",
+      "seconds": 22.4,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "head_no_helmet",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/head_no_helmet.png",
+      "sha256": "ae76ca0866acce9577da629cdc65d47af94e0a1807b65f8bb79f019c1640c8ae",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_dog/master_pf_dog.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_dog_head_no_helmet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_dog same-framing part head_no_helmet",
+      "ts": "2026-09-25T04:42:41",
+      "seconds": 25.1,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "legs",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/legs.png",
+      "sha256": "7d61df86a98694fc2ffe5e416f78e5bf088c83ce69e22b33700d31a15e9d4411",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_dog/master_pf_dog.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_dog_legs.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_dog same-framing part legs",
+      "ts": "2026-09-25T04:42:45",
+      "seconds": 26.5,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "body_no_head_no_legs",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/body_no_head_no_legs.png",
+      "sha256": "b82d90548ee19965647fd0ffcaf6e39dca08a33bf5218eb2ea8ed9b5e859b46d",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_dog/master_pf_dog.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_dog_body_no_head_no_legs.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_dog same-framing part body_no_head_no_legs",
+      "ts": "2026-09-25T04:42:40",
+      "seconds": 32.5,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "parts_sheet",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/parts_sheet.png",
+      "sha256": "08b2a74342298bad8aad91a6b425ec6b0aaf9d825006da225750b40501a629f7",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_dog/master_pf_dog.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_dog_parts_sheet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_dog parts sheet parts_sheet",
+      "ts": "2026-09-25T04:42:45",
+      "seconds": 30.1,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "face_sheet",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/face_sheet.png",
+      "sha256": "e0b1907a71734542e5f752016638ebd40670d95a5b1e74fc63fb743d7481c0f3",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_dog/master_pf_dog.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_dog_face_sheet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_dog parts sheet face_sheet",
+      "ts": "2026-09-25T04:43:00",
+      "seconds": 30.5,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "body_no_head_no_arms",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/body_no_head_no_arms.png",
+      "sha256": "0b2cf3683e54cf7848053bb2aaaca2c9438621b994bb638b43b39896aa6bc385",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rescued_body_no_head_no_arms.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template same-framing part body_no_head_no_arms",
+      "ts": "2026-09-25T04:43:06",
+      "seconds": 26.8,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "arms_down",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/arms_down.png",
+      "sha256": "84aa47074621ed49d28073a1590c68fbbca93cdbbdbf843c8e7a63a3b8ae3fff",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rescued_arms_down.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template same-framing part arms_down",
+      "ts": "2026-09-25T04:43:06",
+      "seconds": 27.0,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "legs",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/legs.png",
+      "sha256": "30c1387730881167f2499d1bb0ea728a478f66cc5fa3b773495eff173e49566a",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rescued_legs.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template same-framing part legs",
+      "ts": "2026-09-25T04:43:11",
+      "seconds": 24.2,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "head_blank",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/head_blank.png",
+      "sha256": "242983d969fbfe94b17b3927c06f36eaff53d9af42f696fad4eb7dc2c69e649b",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rescued_head_blank.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template same-framing part head_blank",
+      "ts": "2026-09-25T04:43:13",
+      "seconds": 25.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "head",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/head.png",
+      "sha256": "dc81a719db250c079c7b225672d55a1930dba9897f5c8175e000b07fab7dbefe",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_rescued_head.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template same-framing part head",
+      "ts": "2026-09-25T04:43:15",
+      "seconds": 25.9,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "wave_arm",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/wave_arm.png",
+      "sha256": "3e932a3061ea59a1e1f5b26bb6a6dfe98e26ada4f8ce85048896a2185305d3ca",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_rescued_wave_arm.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template sheet wave_arm",
+      "ts": "2026-09-25T04:43:32",
+      "seconds": 28.6,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "face_sheet",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/face_sheet.png",
+      "sha256": "a31ea5cf3282e7ccd09c7a2137e17b7147b49d2e2eeed13944b767250d83ad13",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_rescued_face_sheet.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template sheet face_sheet",
+      "ts": "2026-09-25T04:43:31",
+      "seconds": 30.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "slide_poses",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/slide_poses.png",
+      "sha256": "eab1847830c6443bcd5b737bfa4b7ace4a16a26f4673e3e28a4c8e0b11b394e4",
+      "size": "1536x1024",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigsheet.txt",
+        "art-src/generated/prompts/rs_rescued_slide_poses.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued template sheet slide_poses",
+      "ts": "2026-09-25T04:43:33",
+      "seconds": 28.6,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "skin_grandma",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/skin_grandma.png",
+      "sha256": "1bfafac733cb55d9c3e932a629115acb3ea1b27073098bc2eefa20f359051e91",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_skin_edit.txt",
+        "art-src/generated/prompts/sk_grandma.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued skin grandma (same-framing costume edit of the template)",
+      "ts": "2026-09-25T04:43:35",
+      "seconds": 31.0,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "skin_twins",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/skin_twins.png",
+      "sha256": "5f66acc0bbe90b1d4b5782045389555e61c871b413ced546f72a3f4bb75fc136",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_skin_edit.txt",
+        "art-src/generated/prompts/sk_twins.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued skin twins (same-framing costume edit of the template)",
+      "ts": "2026-09-25T04:43:38",
+      "seconds": 30.7,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "skin_dad",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/skin_dad.png",
+      "sha256": "62e48a601d35e75d1ac5ea128e68f05e77a06d729b921fef380830ea8243078c",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_skin_edit.txt",
+        "art-src/generated/prompts/sk_dad.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued skin dad (same-framing costume edit of the template)",
+      "ts": "2026-09-25T04:43:42",
+      "seconds": 30.6,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "skin_baby",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/skin_baby.png",
+      "sha256": "81d534e9028b27fa2777e56e3abf9fe735b4ca64c48ee48f4b9ad3a7c91c88c7",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_skin_edit.txt",
+        "art-src/generated/prompts/sk_baby.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued skin baby (same-framing costume edit of the template)",
+      "ts": "2026-09-25T04:44:01",
+      "seconds": 28.4,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "skin_teen",
+      "batch": "rig_pf_rescued",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_rescued/skin_teen.png",
+      "sha256": "2a28493590dd223733393a5e1912d80256d3affdac64f88db9c9d6e57814b5d7",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_rescued/master_pf_rescued.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_skin_edit.txt",
+        "art-src/generated/prompts/sk_teen.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: pf_rescued skin teen (same-framing costume edit of the template)",
+      "ts": "2026-09-25T04:44:01",
+      "seconds": 30.8,
+      "actual_model": "gpt-image-2.5-sunburst"
+    },
+    {
+      "asset": "body_no_head_no_legs_r2",
+      "batch": "rig_pf_dog",
+      "status": "OK",
+      "output": "art-src/generated/rig_pf_dog/body_no_head_no_legs_r2.png",
+      "sha256": "dc8d2028a43bc37eaba2f794a18f5f721e1eb88d56de562bb2f8b3427d27e9dc",
+      "size": "1024x1536",
+      "transparent": true,
+      "reference_paths": [
+        "art-src/generated/rig_pf_dog/master_pf_dog.png"
+      ],
+      "prompt_files": [
+        "art-src/generated/prompts/_style_rigpart_edit.txt",
+        "art-src/generated/prompts/rp_dog_body_no_head_no_legs_r2.txt"
+      ],
+      "cost_estimate_usd": 0.3,
+      "note": "B: redraw of pf_dog body_no_head_no_legs; named defect: torso compressed to a round blob and leg sockets painted as visible ringed pads",
+      "ts": "2026-09-25T05:17:28",
+      "seconds": 23.3,
+      "actual_model": "gpt-image-2.5-sunburst"
+    }
+  ]
+}

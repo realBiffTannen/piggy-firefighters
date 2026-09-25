@@ -1,0 +1,47 @@
+{
+  "rig": "pf_chief",
+  "runtime_height_px": 420,
+  "master_height_px": 1423,
+  "spine_scale": 0.29515,
+  "root_pivot_canvas": [
+    512,
+    1440
+  ],
+  "anchors": {
+    "head_top": {
+      "canvas": [
+        541.5,
+        18
+      ],
+      "spine": [
+        8.7,
+        419.7
+      ],
+      "note": "crown of the helmet; bind to the head bone"
+    },
+    "nozzle_tip": {
+      "piece": "pieces/nozzle.png",
+      "piece_xy": [
+        768,
+        97.5
+      ],
+      "note": "muzzle centre at the right end; the nozzle axis runs along piece x; bind as a child of the nozzle bone, rotated with it"
+    },
+    "grip_r": {
+      "piece": "pieces/hand_r_grip.png",
+      "piece_xy": [
+        178.6,
+        217.4
+      ],
+      "note": "centre of the empty fist tunnel the hose passes through"
+    },
+    "grip_l": {
+      "piece": "pieces/hand_l_grip.png",
+      "piece_xy": [
+        127.8,
+        210.8
+      ],
+      "note": "centre of the empty fist tunnel the hose passes through"
+    }
+  }
+}

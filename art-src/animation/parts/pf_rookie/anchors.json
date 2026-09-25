@@ -1,0 +1,28 @@
+{
+  "rig": "pf_rookie",
+  "runtime_height_px": 380,
+  "master_height_px": 1441,
+  "spine_scale": 0.26371,
+  "root_pivot_canvas": [
+    512,
+    1440
+  ],
+  "anchors": {
+    "sheet_r": {
+      "piece": "pieces/hand_r_catch.png",
+      "piece_xy": [
+        268,
+        236
+      ],
+      "note": "fingertip point farthest from the cuff = where the sheet edge sits"
+    },
+    "sheet_l": {
+      "piece": "pieces/hand_l_catch.png",
+      "piece_xy": [
+        30,
+        255
+      ],
+      "note": "fingertip point farthest from the cuff = where the sheet edge sits"
+    }
+  }
+}

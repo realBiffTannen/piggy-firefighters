@@ -1,0 +1,23 @@
+{
+  "rig": "pf_rescued",
+  "runtime_height_px": 260,
+  "master_height_px": 1313,
+  "spine_scale": 0.19802,
+  "root_pivot_canvas": [
+    512,
+    1440
+  ],
+  "anchors": {
+    "feet": {
+      "canvas": [
+        512,
+        1440
+      ],
+      "spine": [
+        0.0,
+        0.0
+      ],
+      "note": "root pivot = feet centre on the feet line; land event at contact"
+    }
+  }
+}

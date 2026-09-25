@@ -90,12 +90,10 @@
     "coat_tails": {
       "raw": "art-src/generated/rig_pf_chief/coat_tails.png",
       "fit": {
-        "s": 0.3537642309701908,
-        "tx": 300.3084464988724,
-        "ty": 654.4036721477281,
-        "score": 0.4507,
-        "coarse_score": 0.5329,
-        "mode": "colour"
+        "s": 1.0,
+        "tx": 0.0,
+        "ty": 21.0,
+        "mode": "raw scale kept, shifted 21 px so the red hem's lowest row matches the master's (colour/ink fits lock onto the chest bands)"
       },
       "file": "art-src/animation/parts/pf_chief/coat_tails.png"
     },

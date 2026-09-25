@@ -38,18 +38,19 @@ def ink(a):
     return ((a[..., 3] > 128) & (lum < 95)).astype(np.float32)
 
 
-def feet(a):
-    """Bottom alpha row (sole line) and the horizontal centre of the soles (bottom 2 % of the figure)."""
+def feet(a, band=0.02):
+    """Bottom alpha row (sole line) and the horizontal centre of the soles (bottom `band` of the figure; 2 % for
+    the bipeds, 5 % for Ember so all four paws count)."""
     al = a[..., 3] > 128
     ys, xs = np.nonzero(al)
     y1 = ys.max()
-    band = al[max(0, y1 - int(0.02 * (y1 - ys.min()))):y1 + 1]
+    band = al[max(0, y1 - int(band * (y1 - ys.min()))):y1 + 1]
     bx = np.nonzero(band.any(axis=0))[0]
     return int(y1), float((bx.min() + bx.max()) / 2.0)
 
 
-def master_shift(a):
-    y1, cx = feet(a)
+def master_shift(a, band=0.02):
+    y1, cx = feet(a, band)
     return int(round(FEET_X - cx)), int(FEET_Y - y1)
 
 

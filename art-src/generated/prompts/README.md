@@ -8,6 +8,8 @@ preambles plus this file) is also copied into `art-src/generated/source-record.j
 - Shared preambles, prepended with `--preamble`:
   - `_style_sprite.txt`: transparent sprites, reel symbols, props and sheets.
   - `_style_painting.txt`: opaque plates, cards and max-win art.
+  - `_style_sheet.txt`: transparent multi-item sheets (win-rung plaques, tumbling pieces): the sprite grammar
+    without the single-object square composition.
   - `_style_character.txt`: any prompt that draws a pig (combine it with one of the two above).
 - Number the references and say what each one is for. For example, "Image 1 is our studio pig: redraw the SAME pose,
   framing and proportions EXACTLY"; "Image 2 shows the LAYOUT only".

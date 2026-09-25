@@ -79,6 +79,7 @@ SHEETS = {
         "slide_poses": [["pose_slide", "pose_land", "pose_cheer"]],
     },
 }
+IDENTITY = {"coat_tails"}
 # placement priors (vertical centre as a fraction of the master height)
 YRANGE = {"head_no_helmet": (0.0, 0.5), "head_blank": (0.0, 0.5), "head": (0.0, 0.5), "helmet_only": (0.0, 0.4),
           "legs": (0.5, 1.0), "coat_tails": (0.45, 0.85)}
@@ -92,7 +93,7 @@ SHEET_REF = {  # (reference piece, registered counterpart, method[, colour])
                   "face_sheet": ("eyes_open", "head_no_helmet", "colour", "white"),
                   "props": ("@hands_sheet",)},
     "pf_dog": {"parts_sheet": ("head_no_jaw", "head_no_helmet", "width"),
-               "face_sheet": ("mouth_closed", "head_no_helmet", "fitcrop")},
+               "face_sheet": ("eyes_open", "head_no_helmet", "fixed", 0.9)},
     "pf_rescued": {"face_sheet": ("eyes_open", "head", "colour", "white"), "wave_arm": ("wave_arm_up", "arm_right", "area"),
                    "slide_poses": ("pose_cheer", "master", "colour", "cream")},
 }
@@ -118,6 +119,12 @@ def colour_area(a, name):
 # raised arms: placed at the shoulder of the registered down arm, scaled by area
 RAISED = {"pf_chief": "arms_raised", "pf_rookie": "arms_raised"}
 # pieces whose scale is taken from a registration against the master (others use the sheet median)
+
+
+def red_bottom(a):
+    r, g, b = (a[..., i].astype(int) for i in range(3))
+    m = (r > 180) & (g < 80) & (b < 80) & (a[..., 3] > 128)
+    return int(np.nonzero(m.sum(axis=1) > 20)[0].max())
 
 
 def feet_fit(master, part):
@@ -273,7 +280,8 @@ def build(rig):
     out_dir = os.path.join(HERE, rig)
     rec = {"rig": rig, "canvas": list(CANVAS), "feet_y": FEET_Y, "feet_x": FEET_X, "parts": {}, "pieces": {}}
     m_raw = rgba(os.path.join(raw_dir, f"master_{rig}.png"))
-    sx, sy = master_shift(m_raw)
+    band = 0.05 if rig == "pf_dog" else 0.02
+    sx, sy = master_shift(m_raw, band)
     master = place(m_raw, {"s": 1.0, "tx": 0.0, "ty": 0.0}, (sx, sy))
     # exact integer shift (no resampling) for the master
     m = np.zeros_like(m_raw)
@@ -283,7 +291,7 @@ def build(rig):
     master = m
     rec["master"] = {"file": save(master, os.path.join(out_dir, f"master_{rig}.png")), "raw_shift": [sx, sy],
                      "raw": os.path.relpath(os.path.join(raw_dir, f"master_{rig}.png"), REPO)}
-    y1, cx = feet(master)
+    y1, cx = feet(master, band)
     ys, xs = np.nonzero(master[..., 3] > 128)
     rec["master"]["bbox"] = [int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())]
     rec["master"]["height_px"] = int(ys.max() - ys.min() + 1)
@@ -293,6 +301,10 @@ def build(rig):
         p = rgba(os.path.join(raw_dir, f"{rawname}.png"))
         if rawname.startswith("skin_"):
             f = feet_fit(m_raw, p)
+        elif rawname in IDENTITY:
+            dy = red_bottom(m_raw) - red_bottom(p)
+            f = {"s": 1.0, "tx": 0.0, "ty": float(dy), "mode": f"raw scale kept, shifted {dy} px so the red hem's lowest "
+                 "row matches the master's (colour/ink fits lock onto the chest bands)"}
         else:
             f = fit(m_raw, p, yrange=YRANGE.get(rawname), srange=SRANGE.get(rawname, (0.35, 1.6)))
             f["mode"] = "colour"
@@ -388,6 +400,9 @@ def build(rig):
                 w = lambda x: np.ptp(np.nonzero((x[..., 3] > 128).any(axis=0))[0]) + 1
                 med = float(w(tgt) / w(arr))
                 how = f"width of {target} / width of {pnm}"
+            elif method == "fixed":
+                med = float(ref[3])
+                how = f"{ref[3]} matched BY EYE: {pnm} eye width and the nose width against the {target} (the white fur defeats the colour measure)"
             elif tgt is not None and method == "fitcrop":
                 ys, xs = np.nonzero(tgt[..., 3] > 0)
                 crop = tgt[max(0, ys.min() - 20):ys.max() + 20, max(0, xs.min() - 20):xs.max() + 20]

@@ -78,60 +78,50 @@
     "skin_grandma": {
       "raw": "art-src/generated/rig_pf_rescued/skin_grandma.png",
       "fit": {
-        "s": 0.768,
-        "tx": 138.496,
-        "ty": 148.016,
-        "score": 0.9659,
-        "coarse_score": 0.959,
-        "mode": "alpha"
+        "s": 1.0,
+        "tx": 0.0,
+        "ty": 0.0,
+        "mode": "feet (identity: soles within 6 px)"
       },
       "file": "art-src/animation/parts/pf_rescued/skin_grandma.png"
     },
     "skin_twins": {
       "raw": "art-src/generated/rig_pf_rescued/skin_twins.png",
       "fit": {
-        "s": 0.768,
-        "tx": 118.592,
-        "ty": 128.784,
-        "score": 0.9748,
-        "coarse_score": 0.9686,
-        "mode": "alpha"
+        "s": 0.9608108108108108,
+        "tx": 23.750675675675723,
+        "ty": 8.470270270270248,
+        "mode": "feet (scaled to fit, soles aligned)"
       },
       "file": "art-src/animation/parts/pf_rescued/skin_twins.png"
     },
     "skin_dad": {
       "raw": "art-src/generated/rig_pf_rescued/skin_dad.png",
       "fit": {
-        "s": 0.768,
-        "tx": 121.47200000000001,
-        "ty": 104.112,
-        "score": 0.9847,
-        "coarse_score": 0.9835,
-        "mode": "alpha"
+        "s": 1.0,
+        "tx": 0.0,
+        "ty": 0.0,
+        "mode": "feet (identity: soles within 6 px)"
       },
       "file": "art-src/animation/parts/pf_rescued/skin_dad.png"
     },
     "skin_baby": {
       "raw": "art-src/generated/rig_pf_rescued/skin_baby.png",
       "fit": {
-        "s": 0.768,
-        "tx": 133.472,
-        "ty": 84.16,
-        "score": 0.9841,
-        "coarse_score": 0.983,
-        "mode": "alpha"
+        "s": 1.0,
+        "tx": 0.0,
+        "ty": 0.0,
+        "mode": "feet (identity: soles within 6 px)"
       },
       "file": "art-src/animation/parts/pf_rescued/skin_baby.png"
     },
     "skin_teen": {
       "raw": "art-src/generated/rig_pf_rescued/skin_teen.png",
       "fit": {
-        "s": 0.768,
-        "tx": 125.47200000000001,
-        "ty": 112.096,
-        "score": 0.9883,
-        "coarse_score": 0.9874,
-        "mode": "alpha"
+        "s": 1.0,
+        "tx": 0.0,
+        "ty": 0.0,
+        "mode": "feet (identity: soles within 6 px)"
       },
       "file": "art-src/animation/parts/pf_rescued/skin_teen.png"
     }
@@ -444,8 +434,8 @@
     "slide_poses": {
       "sheet": "art-src/animation/parts/pf_rescued/slide_poses.png",
       "raw": "art-src/generated/rig_pf_rescued/slide_poses.png",
-      "sheet_scale_to_canvas": 1.870626145748497,
-      "scale_method": "sqrt(alpha area of master / pose_cheer) (approximate: poses differ)",
+      "sheet_scale_to_canvas": 1.9717474372271822,
+      "scale_method": "sqrt(largest cream region of master / of pose_cheer)",
       "pieces": {
         "pose_cheer": {
           "file": "art-src/animation/parts/pf_rescued/pieces/pose_cheer.png",
@@ -458,7 +448,7 @@
             188
           ],
           "components": 1,
-          "scale_to_canvas": 1.8706
+          "scale_to_canvas": 1.9717
         },
         "pose_slide": {
           "file": "art-src/animation/parts/pf_rescued/pieces/pose_slide.png",
@@ -471,7 +461,7 @@
             301
           ],
           "components": 1,
-          "scale_to_canvas": 1.8706
+          "scale_to_canvas": 1.9717
         },
         "pose_land": {
           "file": "art-src/animation/parts/pf_rescued/pieces/pose_land.png",
@@ -484,7 +474,7 @@
             359
           ],
           "components": 1,
-          "scale_to_canvas": 1.8706
+          "scale_to_canvas": 1.9717
         }
       },
       "missing": []

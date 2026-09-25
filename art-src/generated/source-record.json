@@ -5085,5 +5085,178 @@
       "total_tokens": 4851
     },
     "seconds": 27.4
+  },
+  {
+    "asset": "rung_plaques_a",
+    "batch": "winrungs",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are reel-symbol icons from our 2D cartoon slot game; they define the STYLE and MATERIAL RENDERING ONLY. Do not copy their objects. Draw NEW items in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight per surface; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is clean, hand-inked game art: not glossy, not a 3D render, no gradients, no airbrush glow, no bloom, no bevel-and-emboss filter look, no drop shadows. Genuinely transparent background with no ground shadow, no frame around the sheet and no background scenery. Every item is a separate island of pixels with wide empty transparent gaps around it so no two items touch or overlap. No text, no letters, no numbers, no symbols that look like writing, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nSubject: a sprite sheet of FOUR separate, completely BLANK sign plaques for the win celebration of a firefighter-themed cartoon slot game, in the style of the fittings on a classic red fire engine. They are stacked in ONE vertical column, each centred horizontally, with wide empty transparent gaps (at least 70 pixels) between them so none touch. Every plaque is seen perfectly straight on, flat, not tilted, not in perspective, and is mirror-symmetric left to right.\n\nPlaque 1 (top): a wide horizontal plaque exactly about 3.1 times wider than it is tall, about 92 percent of the canvas width. A polished BRASS frame (brass gold #E9B23B with one darker brass shadow tone and a small cream highlight) with softly rounded corners and a round brass rivet in each corner, surrounding a large flat recessed inner panel of plain matte dusk navy #1E2A4A. The inner panel takes up about 78 percent of the plaque's width and 62 percent of its height and is completely empty and evenly coloured.\n\nPlaque 2: the same shape and size as plaque 1, but its frame is a polished CHROME rim (light grey-blue #C9D3E0 with a smoke blue-grey #7C8AA0 shadow tone) with chrome rivets, and its large flat inner panel is plain glossy engine-red #D7262B enamel, completely empty and evenly coloured.\n\nPlaque 3: the same shape and size as plaque 1, but its frame is engine-red #D7262B enamel edged on the inside and outside with thin bright chrome keylines, with a small brass bolt in each corner and a short strip of embossed diamond-plate tread texture on the left and right ends of the frame only. Its large flat inner panel is plain matte dusk navy #1E2A4A, completely empty and evenly coloured.\n\nPlaque 4 (bottom): a slimmer horizontal bar about 4.8 times wider than it is tall, about 86 percent of the canvas width, with fully rounded ends: a brass rim around a flat plain dusk navy #1E2A4A centre that is completely empty (a figure will be overlaid on it later by the game).\n\nAll four plaques share one outline weight and one shading model. Nothing is written or engraved on any of them: every inner panel stays perfectly empty.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sheet.txt",
+      "art-src/generated/prompts/winrungs_rung_plaques_a.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h2.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF win rungs step 5: plaque sheet A (big brass / huge chrome+red / mega red-chrome boards + plain amount bar), stacked for resolution",
+    "attempt": 1,
+    "ts": "2026-09-25T05:35:44",
+    "status": "OK",
+    "output": "art-src/generated/winrungs/rung_plaques_a.png",
+    "sha256": "c12b361c018171f6ff18ee9bb389eae7ab15864dbce48bd0294b91b7cdd83e53",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2857,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 809
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4229
+    },
+    "seconds": 28.0
+  },
+  {
+    "asset": "rung_pieces",
+    "batch": "winrungs",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are reel-symbol icons from our 2D cartoon slot game; they define the STYLE and MATERIAL RENDERING ONLY. Do not copy their objects. Draw NEW items in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight per surface; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is clean, hand-inked game art: not glossy, not a 3D render, no gradients, no airbrush glow, no bloom, no bevel-and-emboss filter look, no drop shadows. Genuinely transparent background with no ground shadow, no frame around the sheet and no background scenery. Every item is a separate island of pixels with wide empty transparent gaps around it so no two items touch or overlap. No text, no letters, no numbers, no symbols that look like writing, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nSubject: a sprite sheet of TEN separate small celebration pieces that burst out of a big win in a firefighter-themed cartoon slot game, arranged in a 5-by-2 grid (five items in the top row, five in the bottom row) with WIDE empty transparent gaps (at least 60 pixels) so none touch. Each item is drawn large and bold, filling its grid cell to about 75 percent, flat and facing the viewer, and reads instantly at 48 pixels.\n\nTop row, left to right:\n1. a thick GOLD coin seen face-on (a perfect circle): hydrant-yellow face, brass gold rim with a ring of small beads, and a raised cartoon pig-snout emblem in the middle (a rounded oval snout with two nostrils, no lettering).\n2. a thick SILVER coin seen face-on (a perfect circle): light grey-blue face with smoke blue-grey shadow, a beaded rim and a raised water-drop emblem in the middle (no lettering).\n3. a miniature red fire helmet in three-quarter view, the same design as reference image 1: engine-red shell with a long back brim and a smooth blank brass front shield.\n4. a fat cartoon water drop (teardrop shape, point up) in clear water blue #4FB3E8 with a lighter blue face, one hard darker-blue shadow tone and a white highlight.\n5. a short polished brass fire-hose nozzle with an engine-red grip handle, the same design as reference image 2, lying horizontally.\n\nBottom row, left to right:\n6. a brass firefighter badge seen face-on: a Maltese-cross shape with gold arms, engine-red enamel inner ring and a smooth blank brass round centre (no lettering, no numbers).\n7. a single black rubber fire boot in side view with a hydrant-yellow reflective band and a hose-cream sole edge, the same design as reference image 3.\n8. a small hydrant-yellow fire hydrant (short and chubby, a domed brass-gold cap on top and two side outlet caps), standing upright.\n9. a glowing ember: a chunky rounded lump of charcoal cracked with bright flame-orange #FF7A1A and hydrant-yellow glowing seams, with a tiny flame tip.\n10. a bright four-pointed star-shaped spark with curved concave sides in hydrant yellow with a cream centre and a flame-orange outer edge.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sheet.txt",
+      "art-src/generated/prompts/winrungs_rung_pieces.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h2.png",
+      "art-src/generated/symbols/sym_sq_l1.png",
+      "art-src/generated/symbols/sym_sq_l4.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF win rungs step 5: 10 tumbling celebration pieces, 5x2 sheet with wide gaps",
+    "attempt": 1,
+    "ts": "2026-09-25T05:35:44",
+    "status": "OK",
+    "output": "art-src/generated/winrungs/rung_pieces.png",
+    "sha256": "76c8fa071c4bd6cc379b6ac2ad060bf1f8cbcad70131d6b0c847b192d4c5606a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3891,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 819
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5263
+    },
+    "seconds": 34.0
+  },
+  {
+    "asset": "rung_plaques_b",
+    "batch": "winrungs",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are reel-symbol icons from our 2D cartoon slot game; they define the STYLE and MATERIAL RENDERING ONLY. Do not copy their objects. Draw NEW items in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight per surface; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is clean, hand-inked game art: not glossy, not a 3D render, no gradients, no airbrush glow, no bloom, no bevel-and-emboss filter look, no drop shadows. Genuinely transparent background with no ground shadow, no frame around the sheet and no background scenery. Every item is a separate island of pixels with wide empty transparent gaps around it so no two items touch or overlap. No text, no letters, no numbers, no symbols that look like writing, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nSubject: a sprite sheet of THREE separate, completely BLANK ceremonial sign plaques for the biggest win celebrations of a firefighter-themed cartoon slot game, in the style of the gold-leaf fittings on a vintage parade fire engine. They are stacked in ONE vertical column, each centred horizontally, with wide empty transparent gaps (at least 80 pixels) between them so none touch. Every plaque is seen perfectly straight on, flat, not tilted, not in perspective, and is mirror-symmetric left to right.\n\nPlaque 1 (top): a wide horizontal plaque about 3.1 times wider than it is tall, about 90 percent of the canvas width, with a GOLD frame (hydrant yellow #F5D23C faces with brass gold #E9B23B shadow tone) with softly rounded corners and a round gold stud in each corner, surrounding a large flat recessed inner panel of plain glossy deep engine-red #D7262B enamel that takes up about 78 percent of the plaque's width and 62 percent of its height and is completely empty and evenly coloured. Rising from the middle of its top edge is a CREST that joins the frame: a blank smooth brass fire-helmet front shield (a traditional fireman's helmet shield shape, perfectly smooth, no emblem, no marks) with two crossed brass speaking trumpets (old fire-chief bugles) behind it. The crest adds about one third to the plaque's height.\n\nPlaque 2 (middle): the grandest plaque, the same width and body shape as plaque 1, with a heavier GOLD frame inlaid with a thin engine-red enamel band and a row of small round gold studs, surrounding a large flat recessed inner panel of plain matte dusk navy #1E2A4A that is completely empty and evenly coloured. Its CREST, rising from the middle of the top edge and joined to the frame, is a larger blank smooth gold fire-helmet front shield (no emblem, no marks) set on a fan of stylised flame-orange #FF7A1A flame tongues with hydrant-yellow cores, flanked by two crossed ceremonial fire axes with engine-red heads and brass handles, with a small five-pointed gold star on top. This crest adds about 40 percent to the plaque's height.\n\nPlaque 3 (bottom): a slimmer horizontal bar about 4.8 times wider than it is tall, about 84 percent of the canvas width, with fully rounded ends: a polished gold rim with a thin engine-red keyline just inside it, around a flat plain dusk navy #1E2A4A centre that is completely empty (a figure will be overlaid on it later by the game).\n\nAll three plaques share one outline weight and one shading model. Nothing is written or engraved on any of them: every inner panel and both shields stay perfectly empty.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sheet.txt",
+      "art-src/generated/prompts/winrungs_rung_plaques_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h2.png",
+      "art-src/generated/symbols/sym_sq_galarm.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF win rungs step 5: plaque sheet B (epic + max crested gold boards + gold amount bar), stacked for resolution",
+    "attempt": 1,
+    "ts": "2026-09-25T05:35:45",
+    "status": "OK",
+    "output": "art-src/generated/winrungs/rung_plaques_b.png",
+    "sha256": "d98314bea4a76d86ece299838eef6d5cfd4d03d3847de3f88780070cc0f6907c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2945,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 897
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4317
+    },
+    "seconds": 34.2
+  },
+  {
+    "asset": "rung_plaque_max_r2",
+    "batch": "winrungs",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are reel-symbol icons from our 2D cartoon slot game; they define the STYLE and MATERIAL RENDERING ONLY. Do not copy their objects. Draw NEW items in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight per surface; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is clean, hand-inked game art: not glossy, not a 3D render, no gradients, no airbrush glow, no bloom, no bevel-and-emboss filter look, no drop shadows. Genuinely transparent background with no ground shadow, no frame around the sheet and no background scenery. Every item is a separate island of pixels with wide empty transparent gaps around it so no two items touch or overlap. No text, no letters, no numbers, no symbols that look like writing, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 is our accepted sheet of win-celebration plaques. Redraw ONLY its MIDDLE plaque (the grandest one: heavy gold frame with a thin engine-red enamel band and a row of small round gold studs around a flat, empty, matte dusk-navy #1E2A4A inner panel, with a crest of a blank smooth gold fire-helmet front shield on a fan of flame-orange flame tongues, two crossed ceremonial fire axes with engine-red heads and brass handles, and a small five-pointed gold star on top). Keep exactly the same design, colours, outline weight and flat cel shading. Image 2 is a reel symbol that defines the style only.\n\nThe ONE change: the crest must be COMPACT and LOW. The whole crest (star included) rises no more than 45 percent of the plaque body's height above the body's top edge: make the shield smaller and wider, the flames short, the axes crossed behind the shield at a flatter, more horizontal angle so their heads sit beside the shield rather than above it, and the star small and close to the shield top. The crest stays centred and joined to the top edge of the frame.\n\nComposition: the single plaque alone, centred, perfectly straight on, flat, not tilted, not in perspective, mirror-symmetric left to right. The plaque body is about 3.1 times wider than it is tall and spans about 94 percent of the canvas width. Genuinely transparent background, no other plaques, no ground shadow. The inner panel and the shield stay perfectly empty: no text, no letters, no numbers, no emblem, no logos.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sheet.txt",
+      "art-src/generated/prompts/winrungs_rung_plaque_max_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/winrungs/rung_plaques_b.png",
+      "art-src/generated/symbols/sym_sq_galarm.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "redraw of winrungs/rung_plaques_b MAX board, defect: crest adds ~120% of the body height (611 vs ~280 px) instead of the requested ~40%, so on the 1200x728 sign geometry the MAX board would shrink to 71% of the 1139 px title-board width; compact low crest, single plaque at 1536 px wide",
+    "attempt": 1,
+    "ts": "2026-09-25T05:37:43",
+    "status": "OK",
+    "output": "art-src/generated/winrungs/rung_plaque_max_r2.png",
+    "sha256": "754c61c20806bc56841ed1b86177c0b4ab002b74c89f5abcad9cb6069dde15f9",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3211,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 651
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4583
+    },
+    "seconds": 30.0
   }
 ]
