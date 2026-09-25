@@ -32,6 +32,11 @@ export const WIN_CAP_BOOKED = WIN_CAP_X * 100;
 
 /** Booked units of one base bet. */
 export const BASE_BET_BOOKED = 100;
+/** SMALL WINS SHOW NO FIGURE OVER THE REELS (owner, 2026-09-25: "get rid of small win displays"). A win of 20x the base
+ *  bet or less (booked units) gets no line pop and no centred amount: the HUD WIN meter carries it and the line highlight
+ *  shows where it came from. Above 20x the centred count-up with the coin shower runs (inside a feature; in the base game
+ *  anything from 15x is already a win rung). The same 20x line has been the coin/count-up threshold since 2026-09-19. */
+export const SMALL_WIN_MAX_BOOKED = 20 * 100;
 
 /** Tier floors in base-bet units (contract §8): BIG, HUGE, MEGA, EPIC. */
 export const TIER_FLOORS_X = [15, 30, 50, 100] as const;

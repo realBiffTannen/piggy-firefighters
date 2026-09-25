@@ -6,10 +6,13 @@
 		| { type: 'winHide' }
 		| { type: 'winUpdate'; amount: number; winLevelData: WinLevelData };
 
+	import { SMALL_WIN_MAX_BOOKED } from '../game/roundTier';
+
 	/** Book amounts are integers x100 of the base bet. The COIN shower AND the count-up are reserved for
 	 *  wins ABOVE 20x (owner rules, 2026-09-19 and 2026-09-20: "get rid of coin countups on small wins").
-	 *  A win of 20x or less shows its final figure at once. */
-	export const COIN_COUNTUP_MIN_AMOUNT = 20 * 100;
+	 *  Since 2026-09-25 a win of 20x or less is not shown here at all (game/bookEventHandlerMap.ts
+	 *  `showOrdinaryWin` skips this overlay; the HUD WIN meter carries the figure). */
+	export const COIN_COUNTUP_MIN_AMOUNT = SMALL_WIN_MAX_BOOKED;
 </script>
 
 <script lang="ts">

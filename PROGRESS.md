@@ -1,5 +1,11 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **SMALL WINS SHOW NO FIGURE** (owner, screenshot of a "$1.20" line pop): line pops now appear only for a
+  multiplied line (the "×N" tag inside Rescue Spins / Blaze Wilds), and the centred count-up overlay only above 20x
+  (`SMALL_WIN_MAX_BOOKED`, `game/roundTier.ts`); every smaller win is carried by the line highlight and the HUD WIN meter.
+  Files: `game/bookEventHandlerMap.ts` (`showOrdinaryWin`), `components/LinePop.svelte`, `components/Win.svelte`. Lint clean;
+  smoke base_win (500x rung) and base_backdraft_win (2.4x, the small-win path) PASS, 0 console errors. Final tree re-staged:
+  `bundle.CByPO-7d.js`, provenance digest `368350f200cf…`, sumsSha256 `28671dec5353…` (`docs/submission/BUILD_RECORD.md`).
 - 2026-09-25 — **PRE-SUBMISSION GATES + KIT**: remediator `fc2fe02`/`5a0686f` (18 probes on the staged artefact: 1 fix — 330×190
   popout spin-group padding; subpath serving, renderer backend at five DPR cells, a 10-round session with every overlay and
   back-to-back buys, social=true scrape, replay mode, money formatting all PASS with 0 console errors; report
@@ -10,7 +16,7 @@
   STAKE_REVIEW_INTRODUCTION_COMMENT,GENERAL_DISCLAIMER_AUDIT}.md`, tile upload set `thumbnail/submission/` (BG+FG ≤ 3 MB, provider
   logo), `qa/submission/math_package_manifest.json` (EQUAL to MANIFEST). Live Engine guideline pages re-scraped at 11:55 EDT
   (disclaimer template = `rulesContent.ts` byte for byte). **FINAL TREE STAGED** at `dda8b38`: 671 files / 60,512 KiB,
-  `bundle.CQq44m1H.js`, provenance digest `a422782d2344…` PASS, sumsSha256 `d8b37183c0da…`, subpath-serving PASS
+  `bundle.CByPO-7d.js`, provenance digest `368350f200cf…` PASS, sumsSha256 `28671dec5353…`, subpath-serving PASS
   (`docs/submission/BUILD_RECORD.md`). The rsync into `game/dist` was refused to this session by the permission gate
   ("Modify Shared Resources"): the owner runs `./tools/build_dist.sh` once to sync. Open (HUD package, next release): base-mode
   replay label prints `BASE`. Human gates NOT RUN: listening pass, real-phone pass, recorded rig motion review.

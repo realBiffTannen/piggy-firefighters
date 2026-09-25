@@ -15,7 +15,7 @@ import type { Position } from './types';
 import * as rescueDirector from './rescue/rescueDirector';
 import { stateRescue, stateBackdraftSpins } from './rescue/stateRescue.svelte';
 import { rollWinMeterTo, finishWinMeter, winRollMs } from './reels/winMeter';
-import { rungLevelOfTier, type WinTier } from './roundTier';
+import { rungLevelOfTier, SMALL_WIN_MAX_BOOKED, type WinTier } from './roundTier';
 import { roundStakeOf, continuesIntoFeature } from './roundStake';
 import { animBeats } from './fx/animBeats';
 import { stateSpeed } from './stateSpeed.svelte';
@@ -27,8 +27,12 @@ const paceOf = (amount: number) => winLevelMap[amount >= 5000 ? 8 : amount >= 30
 /** The ordinary win presentation: the win figure (components/Win.svelte), plus the tier-sized stinger when `stinger`
  *  is given (tier 0 plays nothing: no celebration at or below the stake). */
 const showOrdinaryWin = async (amount: number, stinger?: WinTier) => {
-	eventEmitter.broadcast({ type: 'winShow' });
 	if (stinger !== undefined) gameSound.win(stinger);
+	// Owner, 2026-09-25: no centred figure for a small win (20x or less) — the HUD WIN meter rolls to the round total
+	// (`setTotalWin` below) and the line highlight shows where it came from. The overlay (count-up + coin shower) is
+	// only for a win above 20x, which in the base game is already a rung: in practice it is the feature's coin moment.
+	if (amount <= SMALL_WIN_MAX_BOOKED) return;
+	eventEmitter.broadcast({ type: 'winShow' });
 	await eventEmitter.broadcastAsync({ type: 'winUpdate', amount, winLevelData: paceOf(amount) });
 	eventEmitter.broadcast({ type: 'winHide' });
 };

@@ -41,6 +41,10 @@
 
 	const pop = (positions: { reel: number; row: number }[], amount: number, multiplier?: number) => {
 		if (!root || !positions.length || amount <= 0) return;
+		// Owner, 2026-09-25: no small-win figures over the reels. A line pops ONLY when it was paid at a multiplier
+		// (Rescue Spins / Blaze Wilds), where the "×N" tag explains the bigger figure; every other line win is carried
+		// by the line highlight and the HUD WIN meter alone.
+		if (!(multiplier && multiplier > 1)) return;
 		// DEV ONLY (stripped from production builds): the QA capture driver waits for a line pop
 		if (import.meta.env.DEV && typeof window !== 'undefined') {
 			const w = window as unknown as { __pffLinePops?: number };
