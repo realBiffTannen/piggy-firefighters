@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **CHIEF PARTS LANDED** `62725b3`: pf_chief registered parts (canvas 1024x1536, feet y1440/x512), 29 cut
+  pieces incl. the locally lettered `shield_13`, registration.json, reassembly QA, alpha clean; shield rule in
+  ART_HERO.md; Codex spray pilot unblocked. Other rigs registering. Audio draws 107/107 done; build/measure running.
 - 2026-09-25 — Port agent returned (build OK, smoke 5/5, 0 console errors); reviewers running. Donor LUCKY art purged
   from static/assets (byte-identical files only, + the donor spine dir); only donor audio remains until the audio
   build purges it. New symbol tiles landing in sprites/.
