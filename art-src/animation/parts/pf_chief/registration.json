@@ -1,0 +1,585 @@
+{
+ "rig": "pf_chief",
+ "canvas": [
+  1024,
+  1536
+ ],
+ "feet_y": 1440,
+ "feet_x": 512,
+ "parts": {
+  "body_no_head_no_arms": {
+   "raw": "art-src/generated/rig_pf_chief/body_no_head_no_arms.png",
+   "fit": {
+    "s": 0.9879740122741352,
+    "tx": 5.419066551652051,
+    "ty": 45.14712274667016,
+    "score": 0.6933,
+    "coarse_score": 0.7495
+   },
+   "file": "art-src/animation/parts/pf_chief/body_no_head_no_arms.png"
+  },
+  "head_no_helmet": {
+   "raw": "art-src/generated/rig_pf_chief/head_no_helmet.png",
+   "fit": {
+    "s": 0.5509028469682216,
+    "tx": 213.49673202887493,
+    "ty": 33.303866194423335,
+    "score": 0.6143,
+    "coarse_score": 0.7125
+   },
+   "file": "art-src/animation/parts/pf_chief/head_no_helmet.png"
+  },
+  "head_blank": {
+   "raw": "art-src/generated/rig_pf_chief/head_blank.png",
+   "fit": {
+    "s": 0.6266306330213978,
+    "tx": 194.55376529478463,
+    "ty": 60.183098451201204,
+    "score": 0.5377,
+    "coarse_score": 0.6427
+   },
+   "file": "art-src/animation/parts/pf_chief/head_blank.png"
+  },
+  "helmet_only": {
+   "raw": "art-src/generated/rig_pf_chief/helmet_only.png",
+   "fit": {
+    "s": 0.9957816971293049,
+    "tx": -0.21961396892140783,
+    "ty": -0.7933031593359416,
+    "score": 0.3366,
+    "coarse_score": 0.3612
+   },
+   "file": "art-src/animation/parts/pf_chief/helmet_only.png"
+  },
+  "arms_down": {
+   "raw": "art-src/generated/rig_pf_chief/arms_down.png",
+   "fit": {
+    "s": 0.9962845591024152,
+    "tx": -0.8402360414038554,
+    "ty": 3.084362343545081,
+    "score": 0.7224,
+    "coarse_score": 0.7752
+   },
+   "file": "art-src/animation/parts/pf_chief/arms_down.png",
+   "split": {
+    "arm_right": "art-src/animation/parts/pf_chief/arm_right.png",
+    "arm_left": "art-src/animation/parts/pf_chief/arm_left.png"
+   }
+  },
+  "legs": {
+   "raw": "art-src/generated/rig_pf_chief/legs.png",
+   "fit": {
+    "s": 0.699071654511147,
+    "tx": 165.50954476768464,
+    "ty": 476.2566015734152,
+    "score": 0.5173,
+    "coarse_score": 0.5889
+   },
+   "file": "art-src/animation/parts/pf_chief/legs.png",
+   "split": {
+    "leg_right": "art-src/animation/parts/pf_chief/leg_right.png",
+    "leg_left": "art-src/animation/parts/pf_chief/leg_left.png"
+   }
+  },
+  "coat_tails": {
+   "raw": "art-src/generated/rig_pf_chief/coat_tails.png",
+   "fit": {
+    "s": 0.3537642309701908,
+    "tx": 300.3084464988724,
+    "ty": 654.4036721477281,
+    "score": 0.4507,
+    "coarse_score": 0.5329
+   },
+   "file": "art-src/animation/parts/pf_chief/coat_tails.png"
+  },
+  "arms_raised": {
+   "raw": "art-src/generated/rig_pf_chief/arms_raised.png",
+   "method": "scale = sqrt(area of the registered down arm / area of the raised arm); the raised arm's shoulder cap (bottom 12 %) is placed on the down arm's shoulder cap (top 12 %)",
+   "split": {
+    "arm_right_raised": {
+     "file": "art-src/animation/parts/pf_chief/arm_right_raised.png",
+     "fit": {
+      "s": 0.9406603441762765,
+      "tx": -25.422849505063994,
+      "ty": -13.643623060276354
+     },
+     "shoulder_pivot": [
+      296.4,
+      566.8
+     ]
+    },
+    "arm_left_raised": {
+     "file": "art-src/animation/parts/pf_chief/arm_left_raised.png",
+     "fit": {
+      "s": 0.9183054757819256,
+      "tx": 92.19715986605263,
+      "ty": -0.4260251273880158
+     },
+     "shoulder_pivot": [
+      716.7,
+      566.5
+     ]
+    }
+   },
+   "file": "art-src/animation/parts/pf_chief/arms_raised.png"
+  }
+ },
+ "pieces": {
+  "hands_sheet": {
+   "sheet": "art-src/animation/parts/pf_chief/hands_sheet.png",
+   "raw": "art-src/generated/rig_pf_chief/hands_sheet.png",
+   "sheet_scale_to_canvas": 0.2303965820143321,
+   "scale_method": "hand_r_open registered to arm_right (score 0.6474)",
+   "pieces": {
+    "hand_r_thumb": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_r_thumb.png",
+     "size": [
+      282,
+      333
+     ],
+     "sheet_origin": [
+      1229,
+      122
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.2304
+    },
+    "hand_r_open": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_r_open.png",
+     "size": [
+      327,
+      348
+     ],
+     "sheet_origin": [
+      42,
+      137
+     ],
+     "components": 1,
+     "fit_to_canvas": {
+      "s": 0.2303965820143321,
+      "tx": 117.07841367194267,
+      "ty": 858.8480170899284,
+      "score": 0.6474,
+      "coarse_score": 0.7253
+     },
+     "scale_to_canvas": 0.2304
+    },
+    "hand_r_grip": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_r_grip.png",
+     "size": [
+      307,
+      325
+     ],
+     "sheet_origin": [
+      424,
+      140
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.2304
+    },
+    "hand_r_point": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_r_point.png",
+     "size": [
+      378,
+      285
+     ],
+     "sheet_origin": [
+      801,
+      170
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.2304
+    },
+    "hand_l_open": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_l_open.png",
+     "size": [
+      317,
+      347
+     ],
+     "sheet_origin": [
+      44,
+      566
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.2304
+    },
+    "hand_l_grip": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_l_grip.png",
+     "size": [
+      304,
+      317
+     ],
+     "sheet_origin": [
+      424,
+      567
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.2304
+    },
+    "hand_l_thumb": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_l_thumb.png",
+     "size": [
+      277,
+      325
+     ],
+     "sheet_origin": [
+      1229,
+      567
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.2304
+    },
+    "hand_l_point": {
+     "file": "art-src/animation/parts/pf_chief/pieces/hand_l_point.png",
+     "size": [
+      384,
+      283
+     ],
+     "sheet_origin": [
+      795,
+      593
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.2304
+    }
+   },
+   "missing": []
+  },
+  "face_sheet": {
+   "sheet": "art-src/animation/parts/pf_chief/face_sheet.png",
+   "raw": "art-src/generated/rig_pf_chief/face_sheet.png",
+   "sheet_scale_to_canvas": 0.158703764696727,
+   "scale_method": "moustache registered to head_no_helmet (score 0.55)",
+   "pieces": {
+    "eyes_wide": {
+     "file": "art-src/animation/parts/pf_chief/pieces/eyes_wide.png",
+     "size": [
+      263,
+      89
+     ],
+     "sheet_origin": [
+      1210,
+      82
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "eyes_open": {
+     "file": "art-src/animation/parts/pf_chief/pieces/eyes_open.png",
+     "size": [
+      285,
+      72
+     ],
+     "sheet_origin": [
+      53,
+      102
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "eyes_closed": {
+     "file": "art-src/animation/parts/pf_chief/pieces/eyes_closed.png",
+     "size": [
+      288,
+      65
+     ],
+     "sheet_origin": [
+      437,
+      110
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "eyes_happy": {
+     "file": "art-src/animation/parts/pf_chief/pieces/eyes_happy.png",
+     "size": [
+      298,
+      73
+     ],
+     "sheet_origin": [
+      821,
+      117
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "brows_determined": {
+     "file": "art-src/animation/parts/pf_chief/pieces/brows_determined.png",
+     "size": [
+      273,
+      145
+     ],
+     "sheet_origin": [
+      1219,
+      148
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "brows_level": {
+     "file": "art-src/animation/parts/pf_chief/pieces/brows_level.png",
+     "size": [
+      300,
+      129
+     ],
+     "sheet_origin": [
+      48,
+      156
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "brows_raised": {
+     "file": "art-src/animation/parts/pf_chief/pieces/brows_raised.png",
+     "size": [
+      316,
+      67
+     ],
+     "sheet_origin": [
+      424,
+      197
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "brows_worried": {
+     "file": "art-src/animation/parts/pf_chief/pieces/brows_worried.png",
+     "size": [
+      306,
+      64
+     ],
+     "sheet_origin": [
+      820,
+      202
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "mouth_open": {
+     "file": "art-src/animation/parts/pf_chief/pieces/mouth_open.png",
+     "size": [
+      305,
+      95
+     ],
+     "sheet_origin": [
+      429,
+      372
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "mouth_smile": {
+     "file": "art-src/animation/parts/pf_chief/pieces/mouth_smile.png",
+     "size": [
+      257,
+      71
+     ],
+     "sheet_origin": [
+      846,
+      396
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "mouth_closed": {
+     "file": "art-src/animation/parts/pf_chief/pieces/mouth_closed.png",
+     "size": [
+      303,
+      52
+     ],
+     "sheet_origin": [
+      46,
+      417
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "mouth_shout": {
+     "file": "art-src/animation/parts/pf_chief/pieces/mouth_shout.png",
+     "size": [
+      283,
+      60
+     ],
+     "sheet_origin": [
+      1214,
+      418
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "ear_right": {
+     "file": "art-src/animation/parts/pf_chief/pieces/ear_right.png",
+     "size": [
+      225,
+      416
+     ],
+     "sheet_origin": [
+      1245,
+      546
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "ear_left": {
+     "file": "art-src/animation/parts/pf_chief/pieces/ear_left.png",
+     "size": [
+      280,
+      394
+     ],
+     "sheet_origin": [
+      840,
+      568
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "moustache_grin": {
+     "file": "art-src/animation/parts/pf_chief/pieces/moustache_grin.png",
+     "size": [
+      338,
+      356
+     ],
+     "sheet_origin": [
+      441,
+      582
+     ],
+     "components": 2,
+     "scale_to_canvas": 0.1587
+    },
+    "moustache": {
+     "file": "art-src/animation/parts/pf_chief/pieces/moustache.png",
+     "size": [
+      305,
+      325
+     ],
+     "sheet_origin": [
+      49,
+      611
+     ],
+     "components": 2,
+     "fit_to_canvas": {
+      "s": 0.158703764696727,
+      "tx": 449.3651849412131,
+      "ty": 399.3651849412131,
+      "score": 0.55,
+      "coarse_score": 0.9277
+     },
+     "scale_to_canvas": 0.1587
+    }
+   },
+   "missing": []
+  },
+  "props": {
+   "sheet": "art-src/animation/parts/pf_chief/props.png",
+   "raw": "art-src/generated/rig_pf_chief/props.png",
+   "sheet_scale_to_canvas": 0.5601959876688996,
+   "scale_method": "shield_plate registered to helmet_only (score 0.7958)",
+   "pieces": {
+    "badge_blank": {
+     "file": "art-src/animation/parts/pf_chief/pieces/badge_blank.png",
+     "size": [
+      510,
+      519
+     ],
+     "sheet_origin": [
+      171,
+      41
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.5602
+    },
+    "shield_plate": {
+     "file": "art-src/animation/parts/pf_chief/pieces/shield_plate.png",
+     "size": [
+      316,
+      364
+     ],
+     "sheet_origin": [
+      960,
+      114
+     ],
+     "components": 1,
+     "fit_to_canvas": {
+      "s": 0.5601959876688996,
+      "tx": 459.7592160493244,
+      "ty": 21.7592160493244,
+      "score": 0.7958,
+      "coarse_score": 0.8897
+     },
+     "scale_to_canvas": 0.5602
+    },
+    "bugle": {
+     "file": "art-src/animation/parts/pf_chief/pieces/bugle.png",
+     "size": [
+      632,
+      341
+     ],
+     "sheet_origin": [
+      869,
+      616
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.5602
+    },
+    "nozzle": {
+     "file": "art-src/animation/parts/pf_chief/pieces/nozzle.png",
+     "size": [
+      774,
+      199
+     ],
+     "sheet_origin": [
+      35,
+      690
+     ],
+     "components": 1,
+     "scale_to_canvas": 0.5602
+    },
+    "shield_13": {
+     "file": "art-src/animation/parts/pf_chief/pieces/shield_13.png",
+     "size": [
+      316,
+      364
+     ],
+     "sheet_origin": [
+      960,
+      114
+     ],
+     "components": 1,
+     "fit_to_canvas": {
+      "s": 0.5601959876688996,
+      "tx": 459.7592160493244,
+      "ty": 21.7592160493244,
+      "score": 0.7958,
+      "coarse_score": 0.8897
+     },
+     "scale_to_canvas": 0.5602,
+     "derived_from": "shield_plate",
+     "lettering": "tools/art/letter_shield.py (Alfa Slab One \"13\", ink #3B2313, brass shadow #B8862B) \u2014 the ONE shield treatment (ART_HERO.md)"
+    }
+   },
+   "missing": []
+  }
+ },
+ "master": {
+  "file": "art-src/animation/parts/pf_chief/master_pf_chief.png",
+  "raw_shift": [
+   0,
+   -31
+  ],
+  "raw": "art-src/generated/rig_pf_chief/master_pf_chief.png",
+  "bbox": [
+   42,
+   18,
+   977,
+   1440
+  ],
+  "height_px": 1423,
+  "feet_measured": [
+   511.5,
+   1440
+  ]
+ },
+ "qa": {
+  "reassembly": "qa/art/parts/pf_chief_reassembly.png"
+ }
+}

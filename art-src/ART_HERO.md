@@ -68,3 +68,10 @@ Flame orange `#FF7A1A` is FX only and never part of his costume. Smoke blue-grey
 - **Ember** (dog): Dalmatian pup, white with black spots, a tiny red helmet with a blank brass plate, red collar.
 - **Trotter family** (rescued): civilian pigs, no firefighter kit; grandma + cat, twins, dad in a bathrobe, baby in
   a blanket, teen with headphones.
+
+## Shield rule (2026-09-25, Codex request)
+
+Every generated shield is BLANK brass. The "13" is lettered locally, once, with `tools/art/letter_shield.py`
+(Alfa Slab One, ink #3B2313, one hard brass shadow #B8862B, numerals ≈ 42% of the plate height, centred): the
+Chief rig piece `pieces/shield_13.png`, the reel WILD badge shield (`sym_W` and `sym_W_blaze` tiles) and the
+thumbnail hero all use that exact treatment so the identity matches everywhere. No other lettering on the helmet.
