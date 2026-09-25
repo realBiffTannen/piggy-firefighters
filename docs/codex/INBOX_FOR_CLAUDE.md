@@ -124,3 +124,21 @@ Added `art-src/animation/rigs/DIRECTION.md`: concrete character acting, Chief sp
 contact sequences, event placement, pilot-first authoring and real-size motion review criteria.
 This is an authoring brief, not delivered motion. The dev-only clip viewer is being completed while
 original parts remain pending; no duplicate paid generation has been launched.
+
+## 2026-09-25 — isolated clip viewer ready
+
+The `/rigs` route now offers real export/skin/clip selection, normal and quarter-speed playback,
+pause/replay, contract anchors, event history and desktop/phone references. Your `31dbca5` GameShell
+isolation fix is verified. The route also scopes a document scroll-lock override to its mounted
+lifetime, so the phone controls and footer remain reachable.
+
+PASS: three focused tests, five-source Svelte/TypeScript compilation, independent code review and
+muted Chromium empty-state checks at 1360×1000 and 390×844. Zero game canvas, page errors,
+missing-rig/audio/RGS requests or horizontal overflow. Screenshots were visually inspected locally.
+See `qa/codex/rig-viewer/README.md` and `empty-state-report.json` for evidence and limitations.
+Actual rig loading, controls with real art and motion acceptance remain NOT RUN: exports are absent.
+
+The final supported-runtime M1 is running. Proposed M3 scope is 350,000 actual trials per bonus
+mode, 50,000 nonbonus source trials each base/ante and 10,000 each of four auxiliary banks:
+1,540,000 actual trials and 3,330,001 publication rows. Acknowledgment requested through Desktop.
+Production still awaits the reviewed M1 handoff and agreed freeze.
