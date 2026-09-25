@@ -12,14 +12,13 @@ import { gameSound } from './audio';
 import { isSuperTurbo } from './stateSpeed.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
-import * as buildDirector from './build/buildDirector';
-import * as expandDirector from './build/expandDirector';
-import { stateBuild } from './build/stateBuild.svelte';
+import * as rescueDirector from './rescue/rescueDirector';
+import { stateRescue, stateBackdraftSpins } from './rescue/stateRescue.svelte';
 import { rollWinMeterTo, finishWinMeter, winRollMs } from './reels/winMeter';
+import { MAX_WIN_LEVEL } from './roundTier';
 
-// Win presentation sound is now the single Web Audio manager (game/audio). Base
-// and Ante wins play a tier-sized stinger; the base bed itself is owned by the
-// presentation director and never swapped here (no donor bgm_main / bgm_freespin).
+// Win presentation sound is the single Web Audio manager (game/audio). Base and Ante wins play a tier-sized
+// stinger; the base bed itself is owned by the presentation director and never swapped here.
 const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) => {
 	if (winLevelData?.alias === 'max') eventEmitter.broadcastAsync({ type: 'uiHide' });
 	gameSound.win(winLevelData);
@@ -37,6 +36,9 @@ const animateSymbols = async ({ positions }: { positions: Position[] }) => {
 	});
 };
 
+/** A feature scene (Rescue / Backdraft Spins) owns the round total meter. */
+const inFeature = () => stateRescue.active || stateBackdraftSpins.active;
+
 export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContext> = {
 	reveal: async (bookEvent: BookEventOfType<'reveal'>, { bookEvents }: BookEventContext) => {
 		const isBonusGame = checkIsMultipleRevealEvents({ bookEvents });
@@ -45,45 +47,49 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			recordBookEvent({ bookEvent });
 		}
 
+		// the reveal names its own game type; spinReels.paddingFor streams that set's strips while the reels travel
 		stateGame.gameType = bookEvent.gameType;
-		// overlay hats from the previous spin's gust / delivery leave with the old board
-		eventEmitter.broadcast({ type: 'featureDropsClear' });
-		// Hard Hat Delivery announces itself as the reels start: this spin WILL trigger (contract §3b)
-		const delivery = bookEvents.find((e) => e.type === 'hatDelivery') as
-			| BookEventOfType<'hatDelivery'>
-			| undefined;
-		if (delivery) {
-			eventEmitter.broadcast({
-				type: 'featureDeliveryCall',
-				golden: delivery.hats.some((hat) => hat.golden),
-			});
-		}
+		// the previous spin's line paths / pops leave with the old board
+		eventEmitter.broadcast({ type: 'paylinesClear' });
 		gameSound.reelsStart(isSuperTurbo());
 		await stateGameDerived.enhancedBoard.spin({ revealEvent: bookEvent });
 		gameSound.reelsStop();
 		stateGame.scatterCounter = 0;
 	},
+	/**
+	 * LINE WINS (contract §3). Each win in book order: its line path lights through the cell centres
+	 * (components/Paylines.svelte, from `config.paylines[lineIndex - 1]`), its amount pops over the line
+	 * (components/LinePop.svelte), its symbols play their win (every one of them completes: the round waits on it),
+	 * then every paying line is shown together once. Speed tiers only shorten; the order never changes.
+	 */
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
 		gameSound.waysWin(bookEvent.totalWin);
 		await sequence(bookEvent.wins, async (win) => {
 			gameSound.symbolWin(win.symbol);
+			eventEmitter.broadcast({ type: 'paylineShow', lineIndex: win.meta.lineIndex, positions: win.positions, symbol: win.symbol });
 			eventEmitter.broadcast({ type: 'symbolWinFx', symbol: win.symbol, positions: win.positions });
-			// each way names its own amount over its own symbols (single-way spins already show the total)
-			if (bookEvent.wins.length > 1) {
-				eventEmitter.broadcast({ type: 'wayWinPop', positions: win.positions, amount: win.win });
-			}
+			eventEmitter.broadcast({
+				type: 'linePop',
+				lineIndex: win.meta.lineIndex,
+				positions: win.positions,
+				amount: win.win,
+				multiplier: win.meta.globalMult > 1 ? win.meta.globalMult : undefined,
+			});
 			await animateSymbols({ positions: win.positions });
+			eventEmitter.broadcast({ type: 'paylineHide', lineIndex: win.meta.lineIndex });
 		});
+		if (bookEvent.wins.length > 1) {
+			// every paying line together, one beat
+			await eventEmitter.broadcastAsync({ type: 'paylinesAll', lines: bookEvent.wins.map((win) => win.meta.lineIndex) });
+		}
 	},
 	setTotalWin: async (bookEvent: BookEventOfType<'setTotalWin'>) => {
-		// The HUD WIN meter ROLLS to the round total instead of snapping (game/reels/winMeter.ts). The HUD
-		// hides its meter while the on-board number owns the win, so this is the moment it comes back:
-		// a short roll (the on-board figure has already done the long count), awaited so the round's
-		// figure is final before the round is. Inside a bonus the build director owns the meter, so the
-		// value is set as before.
-		if (stateGame.gameType !== 'basegame' || stateBuild.active) {
+		// The HUD WIN meter ROLLS to the round total instead of snapping (game/reels/winMeter.ts). Inside a feature the
+		// scene owns the meter (claimWin), so the value is set and the scene's own total follows it.
+		if (stateGame.gameType !== 'basegame' || inFeature()) {
 			finishWinMeter();
 			stateBet.winBookEventAmount = bookEvent.amount;
+			rescueDirector.setFeatureTotal(bookEvent.amount);
 			return;
 		}
 		await rollWinMeterTo(bookEvent.amount, Math.min(winRollMs(bookEvent.amount), 380));
@@ -91,8 +97,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
 
-		// BIG WIN and above climb the win rungs (components/WinRungs.svelte); smaller wins keep the
-		// plain amount / coin count-up overlay.
+		// Inside a feature a CAPPED spin is celebrated once, at the feature end (freeSpinEnd / backdraftSpinsEnd climb to
+		// MAX with the capped round total), never twice.
+		if (inFeature() && bookEvent.winLevel >= MAX_WIN_LEVEL) return;
+
+		// BIG WIN and above climb the win rungs (components/WinRungs.svelte); smaller wins keep the plain amount /
+		// coin count-up overlay.
 		if (bookEvent.winLevel >= 6) {
 			await eventEmitter.broadcastAsync({
 				type: 'winRungs',
@@ -116,94 +126,67 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	finalWin: async (bookEvent: BookEventOfType<'finalWin'>) => {
 		finishWinMeter(); // the round's figure is final by STATE, whatever the clock says
 		gameSound.reelsStop();
-		// a spin that returned nothing and showed no hats still gets a soft settle, not dead air
+		// a spin that returned nothing and showed no alarms still gets a soft settle, not dead air
 		if (!bookEvent.amount && stateGame.gameType === 'basegame' && stateGame.scatterCounter === 0) gameSound.deadSpin();
-	},
-	// ---- Hold & Build / Golden Build (docs/GAME_CONTRACT.md sections 4-5) ----
-	// Handlers stay thin: they route each booked event to the build director,
-	// which owns presentation, generation tokens, skip/turbo/reduced-motion and
-	// the HUD win-ownership seam. B2 owns the Build-or-Bust card; here it routes.
-	buildOrBust: async (bookEvent: BookEventOfType<'buildOrBust'>) => {
-		await buildDirector.buildOrBust(bookEvent);
-	},
-	buildStart: async (bookEvent: BookEventOfType<'buildStart'>) => {
-		// NATURAL TRIGGER ONLY: the hats that just won the feature celebrate as a left-to-right wave (gold ring
-		// + stars on every hat cell, components/BoardFx.svelte) under the fanfare, before the shutter comes down.
-		// Fire-and-forget broadcasts on timers: nothing here is awaited, so it can never hold the round. The
-		// starting houses ARE the hat cells for a natural trigger (contract 4); rows are 0-based here and BoardFx
-		// expects the padded reel row, hence +1. Bought rounds have no reel board showing, so they skip this.
-		// A GOLDEN trigger uses the golden flourish on EVERY cell: `houses` does not say which hat was the golden
-		// one, so singling out a cell would be a guess; the trigger as a whole is what is golden.
-		if (bookEvent.source === 'base') {
-			const golden = bookEvent.bonus === 'goldenBuild';
-			[...bookEvent.houses]
-				.sort((a, b) => a.reel - b.reel || a.row - b.row)
-				.forEach((h, i) => {
-					setTimeout(() => {
-						try {
-							eventEmitter.broadcast({ type: 'symbolWinFx', symbol: golden ? 'GHAT' : 'HAT', positions: [{ reel: h.reel, row: h.row + 1 }] });
-						} catch {
-							/* presentation only */
-						}
-					}, i * 70);
-				});
+		// DEV ONLY (stripped from production builds): the smoke driver (qa/smoke/port/smoke.mjs) waits on this
+		if (import.meta.env.DEV && typeof window !== 'undefined') {
+			const w = window as unknown as { __pffFinalWins?: number[] };
+			(w.__pffFinalWins ??= []).push(bookEvent.amount);
 		}
-		await buildDirector.buildStart(bookEvent);
-	},
-	buildSpin: async (bookEvent: BookEventOfType<'buildSpin'>) => {
-		await buildDirector.buildSpin(bookEvent);
-	},
-	doorReveal: async (bookEvent: BookEventOfType<'doorReveal'>) => {
-		await buildDirector.doorReveal(bookEvent);
-	},
-	grandOpening: async (bookEvent: BookEventOfType<'grandOpening'>) => {
-		await buildDirector.grandOpening(bookEvent);
-	},
-	buildEnd: async (bookEvent: BookEventOfType<'buildEnd'>, { bookEvents }: BookEventContext) => {
-		await buildDirector.buildEnd(bookEvent, bookEvents);
-	},
-	// ---- EXPANDED HOLD & BUILD / GOLDEN EXPANDED (contract 7.2-7.4) ----
-	// doorReveal / streetBonus / grandOpening carry `board` in an expanded round and
-	// are routed per board by the build director itself.
-	expandStart: async (bookEvent: BookEventOfType<'expandStart'>) => {
-		await expandDirector.expandStart(bookEvent);
-	},
-	expandSpin: async (bookEvent: BookEventOfType<'expandSpin'>, { bookEvents }: BookEventContext) => {
-		await expandDirector.expandSpin(bookEvent, bookEvents);
-	},
-	expandEnd: async (bookEvent: BookEventOfType<'expandEnd'>, { bookEvents }: BookEventContext) => {
-		await expandDirector.expandEnd(bookEvent, bookEvents);
 	},
 	wincap: async (_bookEvent: BookEventOfType<'wincap'>) => {
-		buildDirector.wincap();
+		rescueDirector.wincap();
 	},
-	// ---- base / Ante side features (contract §3a, §3b) — components/FeatureDrops.svelte ----
-	gust: async (bookEvent: BookEventOfType<'gust'>) => {
-		await eventEmitter.broadcastAsync({
-			type: 'featureGust',
-			hats: bookEvent.hats,
-			triggers: bookEvent.totalHats >= 6,
-			reelHats: bookEvent.reelHats, // the landing sound of each blown-in hat counts on from here
-		});
+
+	// ---- Backdraft (contract §4): after `reveal`, before `winInfo` --------------------------------------------------
+	backdraft: async (bookEvent: BookEventOfType<'backdraft'>) => {
+		await rescueDirector.backdraft(bookEvent);
 	},
-	hatDelivery: async (bookEvent: BookEventOfType<'hatDelivery'>) => {
-		await eventEmitter.broadcastAsync({ type: 'featureDelivery', hats: bookEvent.hats, reelHats: bookEvent.reelHats });
+
+	// ---- Rescue Spins / Inferno Rescue (contract §5-§6, §8) ----------------------------------------------------------
+	freeSpinTrigger: async (bookEvent: BookEventOfType<'freeSpinTrigger'>) => {
+		await rescueDirector.freeSpinTrigger(bookEvent);
 	},
-	streetBonus: async (bookEvent: BookEventOfType<'streetBonus'>) => {
-		await buildDirector.streetBonus(bookEvent);
+	rescueStart: async (bookEvent: BookEventOfType<'rescueStart'>) => {
+		await rescueDirector.rescueStart(bookEvent);
 	},
+	douse: async (bookEvent: BookEventOfType<'douse'>) => {
+		await rescueDirector.douse(bookEvent);
+	},
+	buildingCleared: async (bookEvent: BookEventOfType<'buildingCleared'>) => {
+		await rescueDirector.buildingCleared(bookEvent);
+	},
+	updateFreeSpin: async (bookEvent: BookEventOfType<'updateFreeSpin'>) => {
+		rescueDirector.updateFreeSpin(bookEvent);
+	},
+	rescueEnd: async (bookEvent: BookEventOfType<'rescueEnd'>) => {
+		await rescueDirector.rescueEnd(bookEvent);
+	},
+	freeSpinEnd: async (bookEvent: BookEventOfType<'freeSpinEnd'>, { bookEvents }: BookEventContext) => {
+		await rescueDirector.freeSpinEnd(bookEvent, bookEvents);
+	},
+
+	// ---- Alarm Call / Backdraft Spins (contract §7) -------------------------------------------------------------------
+	alarmCall: async (bookEvent: BookEventOfType<'alarmCall'>) => {
+		await rescueDirector.alarmCall(bookEvent);
+	},
+	backdraftSpinsStart: async (bookEvent: BookEventOfType<'backdraftSpinsStart'>) => {
+		await rescueDirector.backdraftSpinsStart(bookEvent);
+	},
+	backdraftSpinsEnd: async (bookEvent: BookEventOfType<'backdraftSpinsEnd'>, { bookEvents }: BookEventContext) => {
+		await rescueDirector.backdraftSpinsEnd(bookEvent, bookEvents);
+	},
+
 	// customised
 	createBonusSnapshot: async (bookEvent: BookEventOfType<'createBonusSnapshot'>) => {
 		const { bookEvents } = bookEvent;
 
 		function findLastBookEvent<T>(type: T) {
-			return _.findLast(bookEvents, (bookEvent) => bookEvent.type === type) as
-				| BookEventOfType<T>
-				| undefined;
+			return _.findLast(bookEvents, (bookEvent) => bookEvent.type === type) as BookEventOfType<T> | undefined;
 		}
 
-		// A resume inside a build bonus is rewound to its `buildStart` (game/utils.ts), so the only state
-		// to restore ahead of the remaining events is the running round total.
+		// A resume inside a bonus is rewound to its start event (game/utils.ts), so the only state to restore ahead of
+		// the remaining events is the running round total.
 		const lastSetTotalWinEvent = findLastBookEvent('setTotalWin' as const);
 		if (lastSetTotalWinEvent) playBookEvent(lastSetTotalWinEvent, { bookEvents });
 	},

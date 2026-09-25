@@ -26,13 +26,15 @@
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import Anticipations from './Anticipations.svelte';
-	import FeatureDrops from './FeatureDrops.svelte';
 	import BoardFx from './BoardFx.svelte';
+	import Paylines from './Paylines.svelte';
+	import LinePop from './LinePop.svelte';
+	import BackdraftFx from './BackdraftFx.svelte';
+	import RescueScene from './rescue/RescueScene.svelte';
+	import AlarmCallCard from './AlarmCallCard.svelte';
 	import Win from './Win.svelte';
 	import WinRungs from './WinRungs.svelte';
-	import BuildScene from './build/BuildScene.svelte';
 	import SceneShutter from './scene/SceneShutter.svelte';
-	import BuildOrBust from './build/BuildOrBust.svelte';
 
 	const context = getContext();
 
@@ -106,24 +108,29 @@
 		</MainContainer>
 
 		<MainContainer>
-			<Board />
-			<Anticipations />
-			<BoardFx />
-			<FeatureDrops />
+			<!-- the Rescue block above the reels (rooms, multiplier, total) + Backdraft Spins plate + feature banner -->
+			<RescueScene />
 		</MainContainer>
 
-		<!-- Standing pig mascot removed at the owner's request (2026-09-19); `mascotReact` broadcasts
-		     (game/mascotEvents.ts) have no subscriber. The WILD reel symbol is unaffected. -->
-
-		<BuildScene />
-		<BuildOrBust />
+		<MainContainer>
+			<Board />
+			<Anticipations />
+			<!-- line paths through the cell centres, over the symbols, under the bursts and the pops -->
+			<Paylines />
+			<BoardFx />
+			<BackdraftFx />
+			<LinePop />
+		</MainContainer>
 
 		<Win />
-		<!-- BIG / SUPER / MEGA / EPIC / MAX: the climbing site sign, for base wins and bonus totals alike -->
+		<!-- BIG / HUGE / MEGA / EPIC / MAX: the climbing sign, for base wins and feature totals alike -->
 		<WinRungs />
 
-		<!-- THE scene transition: the site roller shutter. Art-covered from the first
-		     pixel to the last; mode cards ride on it (replaces BuildBonusCard). -->
+		<!-- Alarm Call: the dispatch card (press to continue) -->
+		<AlarmCallCard />
+
+		<!-- THE scene transition: Station 13's bay door. Art-covered from the first pixel to the last; the mode
+		     cards (Rescue / Inferno intro, feature total) ride on it. -->
 		<SceneShutter />
 	{/if}
 </App>

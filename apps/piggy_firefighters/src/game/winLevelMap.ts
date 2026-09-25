@@ -59,7 +59,7 @@ export const winLevelMap = {
 		level: 7,
 		alias: 'superwin',
 		type: 'big',
-		text: 'SUPER WIN',
+		text: 'HUGE WIN',
 		presentDuration: 18 * SECOND,
 		sound: { sfx: undefined, bgm: 'bgm_winlevel_superwin' },
 		animation: { intro: 'super_win_intro', idle: 'super_win_idle', outro: 'super_win_exit' },

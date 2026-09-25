@@ -1,10 +1,10 @@
 <script lang="ts" module>
 	/**
-	 * Imperative handle for the feature-entry VFX rig (`pw_fx_transition`).
+	 * Imperative handle for the feature-entry VFX rig (`fx_transition`).
 	 * Every method is safe to call at any time, on any path, and never throws.
 	 */
 	export type TransitionFxHandle = {
-		/** Work-light rays behind the mode card. Loops until `stop()`. */
+		/** Light rays behind the mode card. Loops until `stop()`. */
 		rays: () => void;
 		/**
 		 * The rays pull in and dim UNDER the sign as the press lands, ending
@@ -30,8 +30,9 @@
 </script>
 
 <script lang="ts">
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 	// EFFECTS ONLY: there is no character in this rig. It is mounted inside a
-	// <SpineProvider key="pw_fx_transition">, so getContextSpine() is the loaded
+	// <SpineProvider key="fx_transition">, so getContextSpine() is the loaded
 	// skeleton. Hardening follows the stuck-bonus post-mortem (Pixi 8 destroy()
 	// nulls a node's transforms; a throw inside a frame or listener callback must
 	// never reach a director's await):
@@ -61,7 +62,7 @@
 	};
 
 	const clip = (name: string) => guard(() => spine.skeleton.data.findAnimation(name), null);
-	// The reveal clip: `blast_effect` is the hand-edited take (pw_fx_transition-edit.spine);
+	// The reveal clip: `blast_effect` is the hand-edited take (the FX project's edited take);
 	// `blast` is the original seed and stays as the fallback for an older export.
 	const BLAST_CLIP = clip('blast_effect') ? 'blast_effect' : 'blast';
 	const blastSeconds = clip(BLAST_CLIP)?.duration ?? 0;

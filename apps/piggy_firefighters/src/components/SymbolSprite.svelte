@@ -23,8 +23,8 @@
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import type { SymbolState } from '../game/types';
-	import { prefersReducedMotion, isTurbo } from '../game/build/buildTiming';
-	import { sceneTex } from '../game/build/sceneTextures.svelte';
+	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
+	import { sceneTex } from '../game/fx/sceneTextures.svelte';
 	import {
 		symbolMotion,
 		idleMotion,
@@ -45,9 +45,9 @@
 		oncomplete?: () => void;
 		/** The reel-symbol state that drives land / win motion. */
 		state?: SymbolState;
-		/** Symbol id (H1…L3/HAT/GHAT/W) — picks the material-specific motion. */
+		/** Symbol id (H1…L4/ALARM/GALARM/W) — picks the material-specific motion. */
 		symbolName?: string;
-		/** Extra emphasis on a HAT landing that helps trigger the feature (6+). */
+		/** Extra emphasis on an ALARM landing that helps trigger the feature (3+). */
 		emphasis?: boolean;
 		/** A row outside the window: it is never seen at rest, so it neither lands nor idles. */
 		quiet?: boolean;
@@ -59,8 +59,8 @@
 	const app = getContextApp();
 
 	const DEG = Math.PI / 180;
-	// Legacy sign crop from the donor's WILD art. Unused while symbolMotion `W` keeps flash = 0: the
-	// current WILD (Master Bao) flashes its banner via BoardFx + symbolMotion WILD_BANNER instead.
+	// Legacy sign crop. Unused while symbolMotion `W` keeps flash = 0: the WILD flashes its badge via
+	// BoardFx + symbolMotion WILD_BANNER instead.
 	const SIGN = { x: 74, y: 245, w: 235, h: 90, art: 384 };
 	const IDLE_FIRST_MS = [700, 4200]; // the board comes alive soon after it settles ...
 	const IDLE_EVERY_MS = [3000, 7000]; // ... then each symbol reacts every 3–7 s
@@ -230,7 +230,7 @@
 			}
 		}
 		if (ring) {
-			// GOLDEN hat landing: a gold shock ring and eight glint rays burst from under the hat
+			// GOLDEN ALARM landing: a gold shock ring and eight glint rays burst from under the hat
 			const live = mode === 'land' && isGolden && p > 0 && p < 1;
 			ring.visible = live;
 			if (live) {
@@ -309,7 +309,7 @@
 		const w = SYMBOL_SIZE * props.symbolInfo.sizeRatios.width;
 		const h = SYMBOL_SIZE * props.symbolInfo.sizeRatios.height;
 		const name = props.symbolName ?? '';
-		// stacked layouts show the 1:1.3 portrait tile where one exists (assets.ts symT_*)
+		// stacked layouts show the 1:1.3 portrait tile where one is registered (none yet: assets.ts)
 		const tallKey = context.stateGameDerived.sceneLayout().stacked ? key.replace(/^sym_/, 'symT_') : '';
 		const rowPitch = pitch;
 		untrack(() => {
@@ -320,7 +320,7 @@
 			// a tall tile keeps its own aspect, never taller than the cell it stands in
 			baseH = tall ? h * Math.min(rowPitch, tall.height / Math.max(1, tall.width)) : h;
 			texB = tall ? undefined : tex(poseBKey(name));
-			isGolden = name === 'GHAT';
+			isGolden = name === 'GALARM';
 			shownPose = 0;
 			sprite.texture = texA ?? PIXI.Texture.EMPTY;
 			fit(sprite, baseW, baseH);
@@ -359,7 +359,7 @@
 				return;
 			}
 			if (state === 'win') ensureWinDressing(name === 'W');
-			if (state === 'land' && name === 'GHAT') ensureRing();
+			if (state === 'land' && name === 'GALARM') ensureRing();
 			const m = symbolMotion(name, state, { emphasis, keyPose: !!texB });
 			toRest();
 			play(state, m, m.durationMs * (isTurbo() ? speedFactor() : 1), complete);

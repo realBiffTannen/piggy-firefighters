@@ -18,11 +18,11 @@ const MICRO = 1_000_000;
 type CurrencyRule = { symbol: string; placement: 'prefix' | 'suffix'; decimals: number };
 
 /**
- * LUCKY's corrections to the HUD's currency table, applied here because the HUD package is a protected donor.
+ * The game's corrections to the HUD's currency table, applied here because the HUD package is a protected donor.
  *
  * ISK: Stake's published RGS currency table renders ISK as "kr10.00" (prefix `kr`, 2 decimals), the same label
  * it gives NOK; re-checked against the live stake-engine.com/docs/rgs page for the r1 jurisdiction sweep
- * (qa/final_lucky/jurisdiction_r1.md, violation 4). The HUD prints "ISK 10.00".
+ * (family jurisdiction review r1, violation 4). The HUD prints "ISK 10.00".
  */
 const CURRENCY_OVERRIDES: Record<string, CurrencyRule> = {
 	ISK: { symbol: 'kr', placement: 'prefix', decimals: 2 },
@@ -61,9 +61,9 @@ export const formatBookAmount = (bookEventAmount: number): string =>
 /** A book amount as a MULTIPLE of the base bet ("42×", "42.50×").
  *
  *  FRAMED CARDS SHOW THE MULTIPLE, NEVER A CURRENCY FIGURE (owner rule). A card is a picture of the
- *  result, and the player's bet is not knowable from it — the max-win card states the 25,000× cap flat for
+ *  result, and the player's bet is not knowable from it — the max-win card states the 15,000× cap flat for
  *  the same reason (components/WinRungs.svelte). Use this for anything drawn inside the signature
- *  dark-brown frame (game/build/signPanel.ts); use `formatBookAmount` for meters, the HUD WIN field
+ *  dark-brown frame (game/fx/signPanel.ts); use `formatBookAmount` for meters, the HUD WIN field
  *  and the rung sign, which are tied to the round the player actually placed. */
 export const formatBookMultiple = (bookEventAmount: number): string => {
 	const m = Math.round(bookEventAmount) / BOOK_AMOUNT_MULTIPLIER;

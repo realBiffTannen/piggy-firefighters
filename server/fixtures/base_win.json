@@ -1,0 +1,191 @@
+{
+ "id": 1,
+ "payoutMultiplier": 100,
+ "events": [
+  {
+   "index": 0,
+   "type": "reveal",
+   "board": [
+    [
+     {
+      "name": "H1"
+     },
+     {
+      "name": "H4"
+     },
+     {
+      "name": "L2"
+     },
+     {
+      "name": "L3"
+     },
+     {
+      "name": "H2"
+     }
+    ],
+    [
+     {
+      "name": "H2"
+     },
+     {
+      "name": "W",
+      "wild": true
+     },
+     {
+      "name": "H2"
+     },
+     {
+      "name": "L4"
+     },
+     {
+      "name": "L2"
+     }
+    ],
+    [
+     {
+      "name": "H3"
+     },
+     {
+      "name": "H4"
+     },
+     {
+      "name": "L4"
+     },
+     {
+      "name": "H4"
+     },
+     {
+      "name": "L1"
+     }
+    ],
+    [
+     {
+      "name": "L1"
+     },
+     {
+      "name": "L4"
+     },
+     {
+      "name": "L4"
+     },
+     {
+      "name": "H4"
+     },
+     {
+      "name": "H4"
+     }
+    ],
+    [
+     {
+      "name": "H1"
+     },
+     {
+      "name": "L1"
+     },
+     {
+      "name": "L2"
+     },
+     {
+      "name": "L4"
+     },
+     {
+      "name": "H3"
+     }
+    ]
+   ],
+   "paddingPositions": [
+    26,
+    52,
+    58,
+    70,
+    58
+   ],
+   "gameType": "basegame",
+   "anticipation": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "index": 1,
+   "type": "winInfo",
+   "totalWin": 100,
+   "wins": [
+    {
+     "symbol": "H4",
+     "kind": 3,
+     "win": 50,
+     "positions": [
+      {
+       "reel": 0,
+       "row": 1
+      },
+      {
+       "reel": 1,
+       "row": 1
+      },
+      {
+       "reel": 2,
+       "row": 1
+      }
+     ],
+     "meta": {
+      "lineIndex": 2,
+      "multiplier": 1,
+      "winWithoutMult": 50,
+      "globalMult": 1,
+      "lineMultiplier": 1
+     }
+    },
+    {
+     "symbol": "H4",
+     "kind": 3,
+     "win": 50,
+     "positions": [
+      {
+       "reel": 0,
+       "row": 1
+      },
+      {
+       "reel": 1,
+       "row": 1
+      },
+      {
+       "reel": 2,
+       "row": 3
+      }
+     ],
+     "meta": {
+      "lineIndex": 18,
+      "multiplier": 1,
+      "winWithoutMult": 50,
+      "globalMult": 1,
+      "lineMultiplier": 1
+     }
+    }
+   ]
+  },
+  {
+   "index": 2,
+   "type": "setWin",
+   "amount": 100,
+   "winLevel": 3
+  },
+  {
+   "index": 3,
+   "type": "setTotalWin",
+   "amount": 100
+  },
+  {
+   "index": 4,
+   "type": "finalWin",
+   "amount": 100
+  }
+ ],
+ "criteria": "basegame",
+ "baseGameWins": 1.0,
+ "freeGameWins": 0.0
+}

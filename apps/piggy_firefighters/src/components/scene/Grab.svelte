@@ -4,6 +4,7 @@
 	// from ONE ticker callback instead of through 60 Hz reactive props.
 	import { getContextParent } from 'pixi-svelte';
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	type Props = { ongrab: (node: any) => void };
 	const { ongrab }: Props = $props();
 	ongrab(getContextParent().parent);

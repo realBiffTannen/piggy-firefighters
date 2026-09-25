@@ -1,30 +1,26 @@
 /**
- * LUCKY splash — the intro-card deck and every string the splash shows.
+ * PIGGY FIREFIGHTERS splash — the intro-card deck and every string the splash shows.
  *
- * THE DECK mirrors `static/assets/splash/manifest.json` (same ids, same art file
- * names, same titleKey / bodyKey, same order). The manifest is the art lane's
- * registry; it is NOT fetched at runtime, because a fetch would put a network
- * round-trip in front of the first card on a cold cache. Add a card in both
- * places.
+ * THE DECK mirrors `static/assets/placeholder/splash/manifest.json` (same ids, same art file names, same titleKey /
+ * bodyKey, same order). The manifest is the art lane's registry; it is NOT fetched at runtime, because a fetch would
+ * put a network round-trip in front of the first card on a cold cache. Add a card in both places.
  *
  * COPY. Player-facing, so it follows the same two rules as game/rulesContent.ts:
- *   - it states real rules (each line below cites the rule it is taken from);
- *   - it carries NO cash vocabulary at all, in either the standard or the social
- *     variant, so one wording serves both. The platform, if ever named, is
- *     "Engine".
- * Figures are written once, in RULES below, and interpolated — the maximum win
- * is read from the game config rather than typed.
+ *   - it states real rules (each figure below cites the contract rule it is taken from);
+ *   - it carries NO cash vocabulary at all, in either the standard or the social variant, so one wording serves
+ *     both. The platform, if ever named, is "Engine".
+ * Figures are written once, in RULES below, from `config` / the contract, and interpolated — never typed twice.
  *
- * I18N. The splash mounts OUTSIDE <LoadI18n> (it has to paint before
- * authentication resolves), so it cannot use the live Lingui instance. Instead
- * it reads the app's own message catalogue directly: when a key below is added
- * to `src/i18n/messagesMap/<lang>.ts` that text wins, with no code change here.
- * Until then the English table below is the fallback for every language.
+ * I18N. The splash mounts OUTSIDE <LoadI18n> (it has to paint before authentication resolves), so it cannot use the
+ * live Lingui instance. Instead it reads the app's own message catalogue directly: when a key below is added to
+ * `src/i18n/messagesMap/<lang>.ts` that text wins, with no code change here. Until then the English table below is
+ * the fallback for every language.
  */
 import { stateUrlDerived } from 'state-shared';
 
 import config from '../../game/config';
-import { FEATURE, GAME_TITLE, MECHANIC, MODE_TITLE, TIER_NAME } from '../../game/names';
+import { FEATURE, GAME_TITLE, MECHANIC, MODE_TITLE, SYMBOL_NAME } from '../../game/names';
+import { CONTRACT } from '../../game/rulesContent';
 import messagesMap from '../../i18n/messagesMap';
 
 export type SplashCard = {
@@ -34,19 +30,15 @@ export type SplashCard = {
 	bodyKey: string;
 };
 
-/** Same ids / files / keys / order as static/assets/splash/manifest.json (ART-B's registry). Ids and file names
- *  are internal and keep their donor spelling; ART-B repaints the files in place. `golden_four` is LUCKY's new
- *  card: ART-B supplies `card_golden_four.webp` and its manifest entry — until the file lands the deck skips it
- *  (it only ever turns to a card whose art arrived) and the request 404s once. */
+/** Same ids / files / keys / order as static/assets/placeholder/splash/manifest.json. The art files are PLACEHOLDERS
+ *  (tools/placeholder/make_placeholders.py) until the art lane repaints them in place (768x768, no text). */
 export const SPLASH_DECK: readonly SplashCard[] = [
-	{ id: 'hold_build', art: 'card_hold_build.webp', titleKey: 'SPLASH_CARD_HOLD_TITLE', bodyKey: 'SPLASH_CARD_HOLD_BODY' },
-	{ id: 'golden_build', art: 'card_golden_build.webp', titleKey: 'SPLASH_CARD_GOLDEN_TITLE', bodyKey: 'SPLASH_CARD_GOLDEN_BODY' },
-	{ id: 'expanded', art: 'card_expanded.webp', titleKey: 'SPLASH_CARD_EXPANDED_TITLE', bodyKey: 'SPLASH_CARD_EXPANDED_BODY' },
-	{ id: 'golden_expanded', art: 'card_golden_expanded.webp', titleKey: 'SPLASH_CARD_GOLDEN_EXPANDED_TITLE', bodyKey: 'SPLASH_CARD_GOLDEN_EXPANDED_BODY' },
-	{ id: 'golden_four', art: 'card_golden_four.webp', titleKey: 'SPLASH_CARD_GOLDEN_FOUR_TITLE', bodyKey: 'SPLASH_CARD_GOLDEN_FOUR_BODY' },
-	{ id: 'huff_puff', art: 'card_huff_puff.webp', titleKey: 'SPLASH_CARD_GUST_TITLE', bodyKey: 'SPLASH_CARD_GUST_BODY' },
-	{ id: 'streets', art: 'card_streets.webp', titleKey: 'SPLASH_CARD_STREETS_TITLE', bodyKey: 'SPLASH_CARD_STREETS_BODY' },
-	{ id: 'max_win', art: 'card_max_win.webp', titleKey: 'SPLASH_CARD_MAX_TITLE', bodyKey: 'SPLASH_CARD_MAX_BODY' },
+	{ id: 'chief', art: 'card_chief.webp', titleKey: 'SPLASH_CARD_CHIEF_TITLE', bodyKey: 'SPLASH_CARD_CHIEF_BODY' },
+	{ id: 'lines', art: 'card_lines.webp', titleKey: 'SPLASH_CARD_LINES_TITLE', bodyKey: 'SPLASH_CARD_LINES_BODY' },
+	{ id: 'backdraft', art: 'card_backdraft.webp', titleKey: 'SPLASH_CARD_BACKDRAFT_TITLE', bodyKey: 'SPLASH_CARD_BACKDRAFT_BODY' },
+	{ id: 'alarm', art: 'card_alarm.webp', titleKey: 'SPLASH_CARD_ALARM_TITLE', bodyKey: 'SPLASH_CARD_ALARM_BODY' },
+	{ id: 'rescue', art: 'card_rescue.webp', titleKey: 'SPLASH_CARD_RESCUE_TITLE', bodyKey: 'SPLASH_CARD_RESCUE_BODY' },
+	{ id: 'maxwin', art: 'card_maxwin.webp', titleKey: 'SPLASH_CARD_MAX_TITLE', bodyKey: 'SPLASH_CARD_MAX_BODY' },
 ];
 
 export const SPLASH_SHUTTER = {
@@ -61,65 +53,58 @@ export const SPLASH_SHUTTER = {
  * chunk directory.
  */
 export const splashAssetUrl = (file: string): string =>
-	typeof document === 'undefined' ? '' : new URL(`./assets/splash/${file}`, document.baseURI).href;
+	typeof document === 'undefined' ? '' : new URL(`./assets/placeholder/splash/${file}`, document.baseURI).href;
 
-/** The rule figures the cards quote — each typed exactly once. */
+/** The rule figures the cards quote — each typed exactly once (contract §3-§6 via rulesContent CONTRACT, config). */
 const RULES = {
-	/** rulesContent.ts `symbols` → RED LANTERN: "6 or more anywhere on one spin". */
-	triggerHats: 6,
-	/** rulesContent.ts `golden`: starting and new buildings are Tier 3 (Courtyard House) or better. */
-	goldenFloorTier: 3,
-	/** rulesContent.ts `golden`: "Some lanterns are GOLDEN: +2 tiers". */
-	goldenHatTiers: 2,
-	/** rulesContent.ts LUCKY STREET: a completed row is worth ×2. */
-	streetMultiplier: 2,
-	/** rulesContent.ts GRAND FESTIVAL: all 15 cells built → ×10. */
-	grandOpeningMultiplier: 10,
-	/** the 5 × 3 board */
-	cells: config.numReels * config.numRows[0],
+	/** contract §3: 20 fixed lines */
+	lines: (config.paylines as number[][]).length,
+	/** contract §4: 3 alarms start Rescue Spins with 10 spins */
+	triggerAlarms: CONTRACT.trigger[0][0],
+	triggerSpins: CONTRACT.trigger[0][1],
+	/** contract §4: 2-5 cells ignite */
+	blazeMin: CONTRACT.backdraftCells[0],
+	blazeMax: CONTRACT.backdraftCells[1],
+	/** contract §5: five rooms, +1 multiplier per rescue */
+	rooms: CONTRACT.rooms,
+	step: CONTRACT.rescueStep,
 	/** rulesContent.ts `limits`: the maximum win, read from the mode table. */
 	maxWin: config.betModes.base.max_win,
 } as const;
 
 const figures: Record<string, string> = {
-	lanterns: String(RULES.triggerHats),
-	tier: String(RULES.goldenFloorTier),
-	plus: String(RULES.goldenHatTiers),
-	street: String(RULES.streetMultiplier),
-	grand: String(RULES.grandOpeningMultiplier),
-	cells: String(RULES.cells),
+	lines: String(RULES.lines),
+	alarms: String(RULES.triggerAlarms),
+	spins: String(RULES.triggerSpins),
+	blazeMin: String(RULES.blazeMin),
+	blazeMax: String(RULES.blazeMax),
+	rooms: String(RULES.rooms),
+	step: String(RULES.step),
 	max: RULES.maxWin.toLocaleString('en-US'),
 };
 
-/** English fallback. `{name}` tokens are filled from `figures`. Feature and mechanic names come from
- *  game/names.ts (theme §5). No price and no buy / bet wording on any card, so every line reads the same in
- *  social mode. */
+/** English fallback. `{name}` tokens are filled from `figures`. Feature and mechanic names come from game/names.ts
+ *  (theme §5). No price and no buy / bet wording on any card, so every line reads the same in social mode. */
 const FALLBACK: Record<string, string> = {
 	SPLASH_ARIA: `${GAME_TITLE} — press anywhere to start`,
 	SPLASH_BUMPER: 'A CRASH GALAXY GAME',
-	SPLASH_LOADING: 'LIGHTING THE LANTERNS…',
+	SPLASH_LOADING: 'SOUNDING THE ALARM…',
 	SPLASH_PRESS: 'PRESS ANYWHERE TO START',
 
-	SPLASH_CARD_HOLD_TITLE: MODE_TITLE.hold_and_build,
-	SPLASH_CARD_HOLD_BODY: '{lanterns}+ red lanterns start the build. Every door holds a prize.',
+	SPLASH_CARD_CHIEF_TITLE: SYMBOL_NAME.W.toUpperCase(),
+	SPLASH_CARD_CHIEF_BODY: 'The chief of Station 13 is WILD: he stands in for every symbol on the line.',
 
-	SPLASH_CARD_GOLDEN_TITLE: MODE_TITLE.golden_build,
-	SPLASH_CARD_GOLDEN_BODY: `A Golden Lantern gilds the whole street: buildings start at Tier {tier} (${TIER_NAME[3]}), golden lanterns add +{plus} tiers.`,
+	SPLASH_CARD_LINES_TITLE: '{lines} LINES',
+	SPLASH_CARD_LINES_BODY: '{lines} fixed lines, left to right. The best win on each line counts.',
 
-	SPLASH_CARD_EXPANDED_TITLE: MODE_TITLE.expanded_hold_and_build,
-	SPLASH_CARD_EXPANDED_BODY: 'The city grows: 2 to 4 districts build at once.',
-	// expanded_golden_build opens TWO Golden districts, guaranteed (Codex: always two full-value boards).
-	SPLASH_CARD_GOLDEN_EXPANDED_TITLE: MODE_TITLE.expanded_golden_build,
-	SPLASH_CARD_GOLDEN_EXPANDED_BODY: `${FEATURE.goldenBuild} in 2 full districts, every time.`,
-	// golden_four opens FOUR Golden districts, guaranteed, every door at half value (docs/GAME_CONTRACT.md §8).
-	SPLASH_CARD_GOLDEN_FOUR_TITLE: MODE_TITLE.golden_four,
-	SPLASH_CARD_GOLDEN_FOUR_BODY: `${FEATURE.goldenBuild} in 4 full districts at once, every door at half value.`,
+	SPLASH_CARD_BACKDRAFT_TITLE: MECHANIC.backdraft.toUpperCase(),
+	SPLASH_CARD_BACKDRAFT_BODY: `A flash of flame can turn {blazeMin} to {blazeMax} cells into ${MECHANIC.blazeWild}s.`,
 
-	SPLASH_CARD_GUST_TITLE: MECHANIC.gust.toUpperCase(),
-	SPLASH_CARD_GUST_BODY: 'The Golden Dragon can breathe extra lanterns onto the reels.',
+	SPLASH_CARD_ALARM_TITLE: SYMBOL_NAME.ALARM.toUpperCase(),
+	SPLASH_CARD_ALARM_BODY: `{alarms} alarms start ${FEATURE.rescue}. A ${SYMBOL_NAME.GALARM} among them starts ${FEATURE.inferno}.`,
 
-	SPLASH_CARD_STREETS_TITLE: `${MECHANIC.street.toUpperCase()} & ${MECHANIC.festival.toUpperCase()}`,
-	SPLASH_CARD_STREETS_BODY: 'Finish a row for ×{street}. Fill all {cells} for ×{grand}.',
+	SPLASH_CARD_RESCUE_TITLE: MODE_TITLE.rescue,
+	SPLASH_CARD_RESCUE_BODY: 'Hose down {rooms} burning rooms: every rescue adds +{step}× to the multiplier and a spin.',
 
 	SPLASH_CARD_MAX_TITLE: 'MAX WIN',
 	SPLASH_CARD_MAX_BODY: 'Win up to {max}× in every mode.',

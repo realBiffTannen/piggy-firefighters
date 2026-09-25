@@ -7,6 +7,9 @@ export type RawSymbol = {
 	multiplier?: number;
 	scatter?: boolean;
 	wild?: boolean;
+	/** CLIENT-ONLY: a W ignited by a Backdraft (contract §4). Never in a book; set by the backdraft presentation so
+	 *  the cell draws the Blaze Wild art. The evaluated board treats it as an ordinary W. */
+	blaze?: boolean;
 };
 export type BetMode = keyof typeof config.betModes;
 export type GameType = keyof typeof config.paddingReels;

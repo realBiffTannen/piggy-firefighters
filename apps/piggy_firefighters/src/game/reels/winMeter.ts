@@ -13,7 +13,7 @@
  */
 import { stateBet } from 'state-shared';
 
-import { prefersReducedMotion } from '../build/buildTiming';
+import { prefersReducedMotion } from '../fx/timing';
 import { speedFactor } from '../stateSpeed.svelte';
 import { boardTicker } from './boardTicker';
 

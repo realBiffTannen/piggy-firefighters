@@ -37,7 +37,7 @@
 	import { getContext } from '../game/context';
 	import { formatBookAmount } from '../game/money';
 	import { isSuperTurbo } from '../game/stateSpeed.svelte';
-	import { prefersReducedMotion } from '../game/build/buildTiming';
+	import { prefersReducedMotion } from '../game/fx/timing';
 	import { boardTicker } from '../game/reels/boardTicker';
 	import { winRollEase } from '../game/reels/winMeter';
 

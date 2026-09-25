@@ -5,13 +5,14 @@ export const SYMBOL_SIZE = 120;
 export const REEL_PADDING = 0.53;
 
 // initial board (padded top and bottom → 5 rows, middle 3 are visible).
-// Contract symbols only (docs/GAME_CONTRACT.md §3): H1-H4, L1-L3, W, HAT.
+// Contract symbols only (docs/GAME_CONTRACT.md §3): H1-H4, L1-L4, W (reels 2-5 in base), ALARM, GALARM. No line wins
+// on the opening board (checked against the 20 lines), no W on reel 1, one alarm showing.
 export const INITIAL_BOARD: RawSymbol[][] = [
-	[{ name: 'H1' }, { name: 'H1' }, { name: 'L3' }, { name: 'L3' }, { name: 'L2' }],
-	[{ name: 'H1' }, { name: 'H1' }, { name: 'L3' }, { name: 'W' }, { name: 'H3' }],
-	[{ name: 'L2' }, { name: 'L2' }, { name: 'L1' }, { name: 'L1' }, { name: 'H2' }],
-	[{ name: 'L3' }, { name: 'H2' }, { name: 'W' }, { name: 'H4' }, { name: 'H4' }],
-	[{ name: 'L3' }, { name: 'H2' }, { name: 'H2' }, { name: 'L2' }, { name: 'L2' }],
+	[{ name: 'L4' }, { name: 'H1' }, { name: 'L3' }, { name: 'L2' }, { name: 'H4' }],
+	[{ name: 'L1' }, { name: 'H2' }, { name: 'L4' }, { name: 'ALARM', scatter: true }, { name: 'H3' }],
+	[{ name: 'H3' }, { name: 'L2' }, { name: 'W', wild: true }, { name: 'L1' }, { name: 'L3' }],
+	[{ name: 'L2' }, { name: 'L3' }, { name: 'H4' }, { name: 'H1' }, { name: 'L4' }],
+	[{ name: 'H4' }, { name: 'L1' }, { name: 'H2' }, { name: 'L3' }, { name: 'H1' }],
 ];
 
 export const BOARD_DIMENSIONS = { x: INITIAL_BOARD.length, y: INITIAL_BOARD[0].length - 2 };
@@ -41,6 +42,10 @@ export const PORTRAIT_MAIN_SIZES = {
 };
 
 export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4'];
+
+/** Alarms needed on the board to start a bonus (contract §4: 3 / 4 / 5 alarms -> 10 / 12 / 15 spins). */
+export const TRIGGER_ALARMS = 3;
+export const SCATTER_SYMBOLS = new Set(['ALARM', 'GALARM']);
 
 export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 
@@ -172,11 +177,11 @@ export const SYMBOL_INFO_MAP = {
 	L1: spriteInfo('L1'),
 	L2: spriteInfo('L2'),
 	L3: spriteInfo('L3'),
+	L4: spriteInfo('L4'),
 	W: spriteInfo('W', 1.0),
-	HAT: spriteInfo('HAT', 1.0),
-	GHAT: spriteInfo('GHAT', 1.0),
+	ALARM: spriteInfo('ALARM', 1.0),
+	GALARM: spriteInfo('GALARM', 1.0),
 } as const;
 
-// The donor SCATTER_LAND_SOUND_MAP (Howler `sfx_scatter_stop_*`) is retired; the
-// hat-land ladder now round-robins the three hat_land_* cues on the ONE audio
-// manager (see src/game/audio gameSound.hatLand).
+/** The Blaze Wild (a W ignited by a Backdraft): same cell and motion as W, its own art (`sym_W_BLAZE`). */
+export const BLAZE_SYMBOL_INFO = spriteInfo('W_BLAZE', 1.0);

@@ -10,24 +10,19 @@
 <script lang="ts">
 	// BOARD FX — the life on top of the reels.
 	//
-	// 1. WIN FX per symbol. A winning symbol does not just wiggle: the gold ingot glints and sheds gold
-	//    flakes, the jade pendant throws jade glints, the red envelope lets red-and-gold slips flutter,
-	//    the firecrackers pop, the paper fan wafts petals, the teapot curls steam and splashes tea, the
-	//    coin string drops loose coins. Each is a small burst of pooled shapes with gravity, drag and spin,
+	// 1. WIN FX per symbol. A winning symbol does not just wiggle: it sheds something of its own (placeholder
+	//    bursts in the theme palette until the VFX lane lands: brass sparks off the truck and helmet, water off the
+	//    nozzle and bucket, embers off the axe). Each is a small burst of pooled shapes with gravity, drag and spin,
 	//    timed to the symbol's own motion (game/symbolMotion.ts).
-	//    THE WILD (Master Bao holding the WILD banner) is a SUBSTITUTE, so a way that pays e.g. H4 names
-	//    H4, not W: the wild's cell used to get the paying symbol's burst (another symbol's chips and
-	//    sparks out of a man holding a banner) and nothing of its own. Now every WILD cell in a paying
-	//    way performs as the wild — see 3.
+	//    THE WILD is a SUBSTITUTE, so a line that pays e.g. H4 names H4, not W: every WILD cell in a paying line
+	//    performs as the wild — see 3. The alarms (ALARM / GALARM) pay nothing; their burst is the trigger
+	//    celebration (rescueDirector.freeSpinTrigger fires it across the alarm cells as a left-to-right wave).
 	// 2. IDLE LIFE. When the reels have been still for a moment a glint travels across one symbol at a
 	//    time (top-left to bottom-right, the game's light), so the board is never a dead picture.
-	// 3. WILD BANNER. While the WILD sprite plays its punch (game/symbolMotion.ts `W`), its banner is
+	// 3. WILD BANNER. While the WILD sprite plays its punch (game/symbolMotion.ts `W`), its WILD badge is
 	//    cropped out of the very texture the reel shows (WILD_BANNER) and laid over it additively: it
 	//    flashes gold on the punch and again on the settle (once in turbo), then a gold glint runs along
-	//    it. The overlay samples the SAME motion on the SAME clock (boardTicker), so it stays glued to
-	//    the art through the punch. Gold ring + star pop from the banner on the burst beat. Reduced
-	//    motion: none of it (the symbol itself only fades). Sprites are built on the first WILD win,
-	//    before its first moving frame, and pooled.
+	//    it. Reduced motion: none of it (the symbol itself only fades).
 	//
 	// Imperative PIXI on the live container, ONE ticker callback, pooled Graphics (<= 90 live).
 	import { onMount } from 'svelte';
@@ -35,10 +30,10 @@
 
 	import Grab from './scene/Grab.svelte';
 	import { getContext } from '../game/context';
-	import { BOARD_SIZES, REEL_PADDING, SYMBOL_SIZE } from '../game/constants';
-	import { sceneTex } from '../game/build/sceneTextures.svelte';
-	import { stateBuild } from '../game/build/stateBuild.svelte';
-	import { prefersReducedMotion, isTurbo } from '../game/build/buildTiming';
+	import { REEL_PADDING, SYMBOL_SIZE } from '../game/constants';
+	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { featureOwnsInput } from '../game/rescue/stateRescue.svelte';
+	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
 	import { speedFactor } from '../game/stateSpeed.svelte';
 	import { boardTicker } from '../game/reels/boardTicker';
 	import {
@@ -93,63 +88,59 @@
 	};
 
 	const BURSTS: Record<string, (x: number, y: number) => void> = {
-		// TRIGGER CELEBRATION (2026-09-19). Hats pay nothing, so they never had a burst and a `symbolWinFx`
-		// for one was a silent no-op: the six hats that had just won the feature sat perfectly still under the
-		// fanfare. bookEventHandlerMap fires these across every hat cell as a left-to-right wave at a natural
-		// trigger. Pooled particles only, nothing allocated while it plays.
-		HAT: (x, y) => {
-			emit('ring', 0xffe27a, x, y, { speed: 0, grav: 0, drag: 0, grow: 2.6, max: 420, vr: 0 });
-			for (let i = 0; i < 8; i += 1) emit('star', i % 2 ? 0xffffff : 0xffd75a, x, y, { angle: (i / 8) * Math.PI * 2, spread: 0.25, speed: 1.35, grav: S * 1.4, drag: 1.5, max: 620 });
-			for (let i = 0; i < 5; i += 1) emit('spark', i % 2 ? 0xffd75a : 0xffffff, x, y + S * 0.18, { angle: -Math.PI / 2, spread: 2.2, speed: 1.5, grav: S * 6, drag: 0.6, max: 560 });
+		// TRIGGER CELEBRATION: the alarms that won the feature ring out (ring + stars + sparks), GALARM in gold.
+		ALARM: (x, y) => {
+			emit('ring', 0xff7a1a, x, y, { speed: 0, grav: 0, drag: 0, grow: 2.6, max: 420, vr: 0 });
+			for (let i = 0; i < 8; i += 1) emit('star', i % 2 ? 0xffffff : 0xf5d23c, x, y, { angle: (i / 8) * Math.PI * 2, spread: 0.25, speed: 1.35, grav: S * 1.4, drag: 1.5, max: 620 });
+			for (let i = 0; i < 5; i += 1) emit('spark', i % 2 ? 0xd7262b : 0xffffff, x, y + S * 0.18, { angle: -Math.PI / 2, spread: 2.2, speed: 1.5, grav: S * 6, drag: 0.6, max: 560 });
 		},
-		GHAT: (x, y) => {
+		GALARM: (x, y) => {
 			emit('ring', 0xfff1c9, x, y, { speed: 0, grav: 0, drag: 0, grow: 3.1, max: 480, vr: 0 });
-			emit('ring', 0x7dff9a, x, y, { speed: 0, grav: 0, drag: 0, grow: 2.2, max: 380, vr: 0 });
+			emit('ring', 0xe9b23b, x, y, { speed: 0, grav: 0, drag: 0, grow: 2.2, max: 380, vr: 0 });
 			for (let i = 0; i < 10; i += 1) emit('star', i % 2 ? 0xffffff : 0xffd75a, x, y, { angle: (i / 10) * Math.PI * 2, spread: 0.2, speed: 1.5, grav: S * 1.2, drag: 1.4, max: 700 });
-			for (let i = 0; i < 6; i += 1) emit('spark', i % 2 ? 0xffd75a : 0xb8ffc8, x, y + S * 0.18, { angle: -Math.PI / 2, spread: 2.4, speed: 1.7, grav: S * 6, drag: 0.6, max: 600 });
+			for (let i = 0; i < 6; i += 1) emit('spark', i % 2 ? 0xffd75a : 0xff7a1a, x, y + S * 0.18, { angle: -Math.PI / 2, spread: 2.4, speed: 1.7, grav: S * 6, drag: 0.6, max: 600 });
 		},
-		// GATE LOOP r1 (seat B): the per-symbol bursts were still the donor's building materials (rock chips,
-		// brick chips, paint drops, sawdust). Each LUCKY symbol now sheds something of its own; the pooled
-		// shapes, counts and timings are unchanged, only colours / shapes / motion per symbol.
-		// H1 Gold Ingot: a gold glint — gold sparks and a few bright gold flakes.
+		// H1 Fire Truck: brass sparks and a red flash ring.
 		H1: (x, y) => {
-			emit('ring', 0xffe27a, x, y, { speed: 0, grav: 0, drag: 0, grow: 1.8, max: 320, vr: 0 });
-			for (let i = 0; i < 6; i += 1) emit('chip', i % 2 ? 0xffd75a : 0xf2b632, x, y + S * 0.1, { angle: -Math.PI / 2, spread: 2.2, speed: 1.0, max: 620 });
-			for (let i = 0; i < 6; i += 1) emit('spark', i % 2 ? 0xffd75a : 0xffffff, x, y + S * 0.05, { angle: -Math.PI / 2, spread: 2.6, speed: 1.4, grav: S * 6, drag: 0.6, max: 420, vr: 0 });
+			emit('ring', 0xd7262b, x, y, { speed: 0, grav: 0, drag: 0, grow: 1.8, max: 320, vr: 0 });
+			for (let i = 0; i < 6; i += 1) emit('chip', i % 2 ? 0xe9b23b : 0xd7262b, x, y + S * 0.1, { angle: -Math.PI / 2, spread: 2.2, speed: 1.0, max: 620 });
+			for (let i = 0; i < 6; i += 1) emit('spark', i % 2 ? 0xf5d23c : 0xffffff, x, y + S * 0.05, { angle: -Math.PI / 2, spread: 2.6, speed: 1.4, grav: S * 6, drag: 0.6, max: 420, vr: 0 });
 		},
-		// H2 Jade Pendant: jade-green and white glints.
+		// H2 Fire Helmet: brass-badge glints.
 		H2: (x, y) => {
-			for (let i = 0; i < 10; i += 1) emit('spark', i % 3 ? 0x5fd49a : 0xffffff, x, y + S * 0.2, { angle: -Math.PI / 2, spread: 2.6, speed: 1.5, grav: S * 6, drag: 0.6, max: 420, vr: 0 });
-			for (let i = 0; i < 4; i += 1) emit('star', i % 2 ? 0xb8ffd8 : 0xffffff, x, y, { angle: (i / 4) * Math.PI * 2, spread: 0.5, speed: 0.9, grav: S * 1.2, drag: 1.6, max: 520 });
+			for (let i = 0; i < 10; i += 1) emit('spark', i % 3 ? 0xe9b23b : 0xffffff, x, y + S * 0.2, { angle: -Math.PI / 2, spread: 2.6, speed: 1.5, grav: S * 6, drag: 0.6, max: 420, vr: 0 });
+			for (let i = 0; i < 4; i += 1) emit('star', i % 2 ? 0xfff1c9 : 0xffffff, x, y, { angle: (i / 4) * Math.PI * 2, spread: 0.5, speed: 0.9, grav: S * 1.2, drag: 1.6, max: 520 });
 		},
-		// H3 Red Envelope: red-and-gold paper slips that flutter up and drift.
+		// H3 Axe & Halligan: embers off the blade.
 		H3: (x, y) => {
-			for (let i = 0; i < 7; i += 1) emit('chip', i % 2 ? 0xd62a2a : 0xffc93c, x + (Math.random() - 0.5) * S * 0.4, y, { angle: -Math.PI / 2, spread: 1.6, speed: 0.8, grav: S * 1.6, drag: 1.4, max: 820 });
+			for (let i = 0; i < 7; i += 1) emit('chip', i % 2 ? 0xff7a1a : 0xf5d23c, x + (Math.random() - 0.5) * S * 0.4, y, { angle: -Math.PI / 2, spread: 1.6, speed: 0.8, grav: S * 1.6, drag: 1.4, max: 820 });
 		},
-		// H4 Firecrackers: the pop — a ring, stars and red sparks.
+		// H4 Extinguisher: a white puff and a ring.
 		H4: (x, y) => {
 			emit('ring', 0xfff1c9, x, y, { speed: 0, grav: 0, drag: 0, grow: 2.2, max: 360, vr: 0 });
-			for (let i = 0; i < 7; i += 1) emit('star', i % 2 ? 0xffffff : 0xffd75a, x, y, { angle: (i / 7) * Math.PI * 2, spread: 0.3, speed: 1.2, grav: S * 1.5, drag: 1.6, max: 520 });
-			for (let i = 0; i < 4; i += 1) emit('spark', 0xff5a3c, x, y, { angle: -Math.PI / 2, spread: 3.0, speed: 1.5, grav: S * 5, drag: 0.6, max: 380, vr: 0 });
+			for (let i = 0; i < 6; i += 1) emit('dust', 0xf4f1ea, x + S * 0.1, y - S * 0.1, { angle: -Math.PI / 4, spread: 1.2, speed: 0.8, grav: -S * 0.3, drag: 2.0, grow: 1.4, max: 700, vr: 0 });
 		},
-		// L1 Paper Fan: a waft of pink and red paper petals.
+		// L1 Brass Nozzle: a water spray.
 		L1: (x, y) => {
-			for (let i = 0; i < 8; i += 1) emit('chip', i % 3 ? 0xff8fb0 : 0xe8384f, x + S * 0.1, y - S * 0.05, { angle: -Math.PI / 2 + 0.3, spread: 2.0, speed: 0.9, grav: S * 1.8, drag: 1.2, max: 760 });
+			for (let i = 0; i < 8; i += 1) emit('drop', i % 3 ? 0x5ab4f0 : 0xffffff, x + S * 0.1, y - S * 0.05, { angle: -Math.PI / 2 + 0.3, spread: 2.0, speed: 1.1, grav: S * 5, drag: 0.8, max: 620 });
 		},
-		// L2 Teapot: a curl of steam and a splash of tea.
+		// L2 Water Bucket: a slosh.
 		L2: (x, y) => {
-			for (let i = 0; i < 4; i += 1) emit('dust', 0xf4f1ea, x + S * 0.08, y - S * 0.2, { angle: -Math.PI / 2, spread: 1.0, speed: 0.4, grav: -S * 0.4, drag: 2.2, grow: 1.5, max: 700, vr: 0 });
-			for (let i = 0; i < 5; i += 1) emit('drop', i % 2 ? 0xc98a2e : 0xe0a850, x, y + S * 0.05, { angle: -Math.PI / 2, spread: 2.2, speed: 1.0, grav: S * 6, drag: 0.5, max: 560, vr: 0 });
+			for (let i = 0; i < 6; i += 1) emit('drop', i % 2 ? 0x3c8fd6 : 0x8ccaf5, x, y - S * 0.1, { angle: -Math.PI / 2, spread: 2.2, speed: 1.0, grav: S * 6, drag: 0.5, max: 560, vr: 0 });
 		},
-		// L3 Coin String: loose gold coins and a glint.
+		// L3 Ladder: brass rung glints.
 		L3: (x, y) => {
-			for (let i = 0; i < 8; i += 1) emit(i % 3 ? 'drop' : 'spark', i % 2 ? 0xffd75a : 0xe0a82e, x, y + S * 0.15, { angle: -Math.PI / 2, spread: 2.6, speed: 0.9, grav: S * 5, max: 600 });
+			for (let i = 0; i < 8; i += 1) emit(i % 3 ? 'drop' : 'spark', i % 2 ? 0xe9b23b : 0xfff1c9, x, y + S * 0.15, { angle: -Math.PI / 2, spread: 2.6, speed: 0.9, grav: S * 5, max: 600 });
 		},
-		// WILD: a gold ring and a gold / white / lantern-red star pop from the banner (the banner flash and
-		// glint themselves are the WILD BANNER overlay below). `y` is the banner's centre (wildBannerOffset).
+		// L4 Fire Boots: a stomp of dust.
+		L4: (x, y) => {
+			for (let i = 0; i < 5; i += 1) emit('dust', 0xc9c2b8, x, y + S * 0.3, { angle: -Math.PI / 2, spread: 2.8, speed: 0.6, grav: S * 0.4, drag: 2.0, grow: 1.2, max: 620, vr: 0 });
+		},
+		// WILD: a gold ring and a gold / white / engine-red star pop from the badge (the flash and glint themselves are the
+		// WILD BANNER overlay below). `y` is the badge's centre (wildBannerOffset).
 		W: (x, y) => {
 			emit('ring', 0xffe27a, x, y, { speed: 0, grav: 0, drag: 0, grow: 2.4, max: 420, vr: 0 });
-			for (let i = 0; i < 8; i += 1) emit('star', [0xffd75a, 0xffffff, 0xff5a3c][i % 3], x, y, { angle: (i / 8) * Math.PI * 2, spread: 0.4, speed: 1.3, grav: S * 2, drag: 1.4, max: 640 });
+			for (let i = 0; i < 8; i += 1) emit('star', [0xffd75a, 0xffffff, 0xd7262b][i % 3], x, y, { angle: (i / 8) * Math.PI * 2, spread: 0.4, speed: 1.3, grav: S * 2, drag: 1.4, max: 640 });
 		},
 	};
 
@@ -161,7 +152,7 @@
 	let nextGlint = 2600;
 
 	const boardIsStill = () =>
-		!stateBuild.active &&
+		!featureOwnsInput() &&
 		context.stateGame.board.every((reel) => reel.reelState.motion === 'stopped' || reel.reelState.motion === undefined) &&
 		context.stateXstateDerived.isIdle();
 
@@ -397,7 +388,7 @@
 	};
 	const wildLog: WildLogEntry[] | undefined = import.meta.env.DEV && typeof window !== 'undefined' ? [] : undefined;
 	const fxLog: { symbol: string; others: number; wilds: number }[] | undefined = wildLog ? [] : undefined;
-	if (wildLog) Object.assign(window, { __pwWildLog: wildLog, __pwFxLog: fxLog });
+	if (wildLog) Object.assign(window, { __pffWildLog: wildLog, __pffFxLog: fxLog });
 
 	context.eventEmitter.subscribeOnMount({
 		symbolWinFx: ({ symbol, positions }) => {

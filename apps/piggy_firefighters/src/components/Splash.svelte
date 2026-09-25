@@ -1,6 +1,6 @@
 <script lang="ts">
 	/**
-	 * LUCKY — the game's own DOM loading splash.
+	 * PIGGY FIREFIGHTERS — the game's own DOM loading splash.
 	 *
 	 * Replaces the upstream web-sdk boot loaders (the two placeholder loader GIFs
 	 * that used to mount in +layout.svelte). It is a DOM overlay ABOVE the Pixi
@@ -8,7 +8,7 @@
 	 * the donor Pixi splash.
 	 *
 	 * What is on it, in draw order:
-	 *   - the ground (LUCKY: lacquer-red night, faint gold lattice, carved gold beams top and bottom);
+	 *   - the ground (dusk navy over engine red, a faint brick course, brass beams top and bottom);
 	 *   - ONE wordmark;
 	 *   - the intro-card deck (splash/SplashDeck.svelte, copy in splash/copy.ts);
 	 *   - a real progress bar driven by the app's OWN asset load
@@ -25,9 +25,9 @@
 	 * (`holdPressGate`, the same one SceneShutter holds) and the shutter swallows
 	 * every pointer and Space/Enter: no press during the transition can spin.
 	 *
-	 * HAND-OFF — "open the site". On the press this:
+	 * HAND-OFF — "open the bay door". On the press this:
 	 *   (1) calls `unlockAudio()` synchronously, inside the user gesture;
-	 *   (2) slams the site's yellow roller shutter down over the splash (the same
+	 *   (2) slams Station 13's red bay door down over the splash (the same
 	 *       art SceneShutter.svelte uses for every scene change in the game);
 	 *   (3) with the shutter SHUT, does the hand-off proper, unchanged and in its
 	 *       original order — `context.stateLayout.showLoadingScreen = false` so
@@ -41,7 +41,7 @@
 	 * `html[data-splash-shutter]` reports drop → closed → lift → done for captures.
 	 * Reduced motion: no shutter — the same hand-off, then a 250 ms cross-fade.
 	 *
-	 * WORDMARK. `static/assets/branding/wordmark.png`; if it ever fails to load,
+	 * WORDMARK. `static/assets/placeholder/branding/wordmark.png` (placeholder); if it ever fails to load,
 	 * `onerror` keeps the CSS text lockup showing and nothing breaks.
 	 *
 	 * A REPLAY SESSION GETS NONE OF THE ABOVE: no ground, no deck, no gate, no
@@ -55,7 +55,7 @@
 
 	import { getContext } from '../game/context';
 	import { unlockAudio as engageAudio, subscribeGameAudio } from '../game/audio';
-	import { audioDirector } from '../game/build/audioDirector';
+	import { audioDirector } from '../game/fx/audioDirector';
 	import SplashDeck from './splash/SplashDeck.svelte';
 	import { SPLASH_SHUTTER, splashAssetUrl, splashText } from './splash/copy';
 	import { isReplayLaunch } from '../game/replayLaunch';
@@ -89,12 +89,12 @@
 
 	// Register the emitter → audio-manager bridge during component init (it uses
 	// subscribeOnMount). Splash lives for the whole session, so this is the one
-	// place the manager hears the HUD's button broadcasts and Build-or-Bust
-	// anticipation/bust without touching any scene component.
+	// place the manager hears the HUD's button broadcasts without touching any
+	// scene component.
 	subscribeGameAudio(context.eventEmitter);
 
 	// `base` keeps it correct under a versioned subpath deploy.
-	const wordmarkSrc = `${base}/assets/branding/wordmark.png`;
+	const wordmarkSrc = `${base}/assets/placeholder/branding/wordmark.png`;
 
 	// Shutter art, resolved against the page (see splash/copy.ts).
 	const slatsUrl = splashAssetUrl(SPLASH_SHUTTER.slatsTile);
@@ -426,12 +426,12 @@
 
 <style>
 	.splash {
-		--pw-blue: #123a5a;
-		--pw-teal: #1f7a7a;
-		--pw-cream: #f6ead2;
-		--pw-brown: #3a2413;
-		--pw-yellow: #f7c948;
-		--pw-orange: #ef7d24;
+		--pw-blue: #1e2a4a;
+		--pw-teal: #7c8aa0;
+		--pw-cream: #f4e9d2;
+		--pw-brown: #3a2213;
+		--pw-yellow: #e9b23b;
+		--pw-orange: #ff7a1a;
 
 		position: fixed;
 		inset: 0;
@@ -443,10 +443,10 @@
 		-webkit-touch-callout: none;
 		touch-action: manipulation;
 		background:
-			/* LUCKY: a lacquer-red festival night with a faint gold lattice (was the donor blueprint grid) */
-			repeating-linear-gradient(45deg, rgba(247, 201, 72, 0.05) 0 1px, transparent 1px 38px),
-			repeating-linear-gradient(-45deg, rgba(247, 201, 72, 0.05) 0 1px, transparent 1px 38px),
-			radial-gradient(120% 90% at 50% 18%, #9c1f1f 0%, #6e1010 46%, #2a0707 100%);
+			/* dusk over Station 13: a faint brick course over a navy-to-engine-red sky */
+			repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0 2px, transparent 2px 34px),
+			repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0 2px, transparent 2px 68px),
+			radial-gradient(120% 90% at 50% 18%, #2c3c66 0%, #1e2a4a 46%, #5a1216 100%);
 		color: var(--pw-cream);
 		font-family: 'Inter', system-ui, sans-serif;
 	}
@@ -489,7 +489,7 @@
 		padding: var(--stripe) var(--side);
 	}
 
-	/* carved gold beam top & bottom (LUCKY; was the donor hazard-stripe band) */
+	/* brass beam top & bottom with a reflective band */
 	.frame::before,
 	.frame::after {
 		content: '';
@@ -498,8 +498,8 @@
 		right: 0;
 		height: var(--stripe);
 		background:
-			repeating-linear-gradient(90deg, transparent 0 26px, rgba(90, 14, 14, 0.55) 26px 30px),
-			linear-gradient(180deg, #ffe08a 0%, var(--pw-yellow) 45%, #b8860b 100%);
+			repeating-linear-gradient(90deg, transparent 0 26px, rgba(140, 20, 26, 0.55) 26px 30px),
+			linear-gradient(180deg, #f5d23c 0%, var(--pw-yellow) 45%, #a87a1c 100%);
 		opacity: 0.95;
 	}
 	.frame::before { top: 0; }
@@ -547,7 +547,7 @@
 		flex-direction: column;
 		align-items: center;
 		line-height: 0.86;
-		font-family: 'LuckySign', 'Inter', system-ui, sans-serif;
+		font-family: 'StationSign', 'Inter', system-ui, sans-serif;
 		font-weight: 900;
 		text-transform: uppercase;
 		text-align: center;
@@ -700,8 +700,8 @@
 		position: relative;
 		flex: 1 1 0;
 		min-height: 0;
-		/* never a void: red lacquer under the slats while they decode (LUCKY shop-front boards, ART-B) */
-		background-color: #8e1b1b;
+		/* never a void: engine red under the slats while they decode */
+		background-color: #b81e24;
 		background-repeat: repeat;
 		background-position: 0 100%;
 		background-size: 100cqw auto;
@@ -734,8 +734,8 @@
 		position: relative;
 		flex: 0 0 auto;
 		height: min(11.23cqw, 9cqh); /* 1024 x 115 art, capped like SceneShutter's */
-		/* carved gold under the art, for the same never-a-void reason (LUCKY; was hazard paint) */
-		background: linear-gradient(180deg, #ffe08a 0%, #f7c948 45%, #b8860b 100%);
+		/* the door's steel bar under the art, for the same never-a-void reason */
+		background: linear-gradient(180deg, #c9d2dc 0%, #7c8aa0 45%, #3c3c44 100%);
 		box-shadow: 0 0.8cqh 1.6cqh rgba(0, 0, 0, 0.45);
 	}
 	.shutter__bar i {

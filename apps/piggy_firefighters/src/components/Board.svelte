@@ -20,18 +20,18 @@
 	import BoardMask from './BoardMask.svelte';
 	import BoardBase from './BoardBase.svelte';
 	import ReelStrips from './reels/ReelStrips.svelte';
-	import { stateBuild } from '../game/build/stateBuild.svelte';
+	import { featureOwnsInput } from '../game/rescue/stateRescue.svelte';
 	import { boardLife } from '../game/reels/boardLife';
 
 	const context = getContext();
 
 	// Idle life (components/SymbolSprite.svelte) runs only while NOTHING is happening: the round machine
-	// is idle, every reel is at rest and no bonus scene is up. Mirrored into a plain flag so the symbols'
+	// is idle, every reel is at rest and no feature scene is up. Mirrored into a plain flag so the symbols'
 	// ticker never touches the reactive graph.
 	$effect(() => {
 		boardLife.idle =
 			show &&
-			!stateBuild.active &&
+			!featureOwnsInput() &&
 			context.stateXstateDerived.isIdle() &&
 			context.stateGame.board.every((reel) => reel.reelState.motion === 'stopped');
 		return () => (boardLife.idle = false);

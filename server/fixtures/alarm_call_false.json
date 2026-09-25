@@ -1,0 +1,24 @@
+{
+ "id": 1,
+ "payoutMultiplier": 0,
+ "events": [
+  {
+   "index": 0,
+   "type": "alarmCall",
+   "outcome": "falseAlarm"
+  },
+  {
+   "index": 1,
+   "type": "setTotalWin",
+   "amount": 0
+  },
+  {
+   "index": 2,
+   "type": "finalWin",
+   "amount": 0
+  }
+ ],
+ "criteria": "falseAlarm",
+ "baseGameWins": 0.0,
+ "freeGameWins": 0.0
+}

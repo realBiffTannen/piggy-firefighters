@@ -12,8 +12,8 @@
 
 	import { END_FEATURE_FLOORS, STANDARD_FLOORS, WIN_CAP_BOOKED } from '../game/roundTier';
 
-	/** Rung floors BIG, SUPER, MEGA, EPIC, MAX in booked units (x100 of the base bet), derived from the ONE client
-	 *  copy of the math's win-level tables (game/roundTier.ts): levels 6-9 from the table, MAX = the 25,000x cap.
+	/** Rung floors BIG, HUGE, MEGA, EPIC, MAX in booked units (x100 of the base bet), derived from the ONE client
+	 *  copy of the math's win-level tables (game/roundTier.ts): levels 6-9 from the table, MAX = the 15,000x cap.
 	 *  The frontend never shows a rung the booked `winLevel` does not reach; these only pace the climb towards it. */
 	const rungFloors = (floors: readonly (readonly [number, number])[]) => [
 		...[6, 7, 8, 9].map((level) => floors.find(([l]) => l === level)![1]),
@@ -26,10 +26,9 @@
 </script>
 
 <script lang="ts">
-	// WIN RUNGS — "climbing the build" (docs/WIN_RUNGS_SPEC.md). BIG -> SUPER -> MEGA -> EPIC -> MAX
-	// follow the game's own material ladder: timber, brick, stone, palace marble, solid gold. The
-	// count runs continuously; each time it crosses a rung the site sign flips over to the next
-	// material inside a horizontal flare, the wash changes colour and a fresh burst of that rung's
+	// WIN RUNGS — the climbing sign. BIG -> HUGE -> MEGA -> EPIC -> MAX (theme §5). The
+	// count runs continuously; each time it crosses a rung the sign flips over to the next
+	// rung's plate inside a horizontal flare, the wash changes colour and a fresh burst of that rung's
 	// pieces tumbles out with gravity. The amount is always the clearest thing on screen. MAX ends on
 	// the max win card. One press skips to the landed total, a second press leaves.
 	//
@@ -43,40 +42,43 @@
 	import { getContext } from '../game/context';
 	import { formatBookAmount } from '../game/money';
 	import { audioManager } from '../game/audio/audioManager';
-	import { sceneTex } from '../game/build/sceneTextures.svelte';
-	import { prefersReducedMotion, isTurbo } from '../game/build/buildTiming';
-	import { ensureSignFont } from '../game/build/signPanel';
+	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
+	import { ensureSignFont } from '../game/fx/signPanel';
 	import { winLevelMap } from '../game/winLevelMap';
 	import config from '../game/config';
-	import { fmtX } from '../game/prizes';
+	import { fmtX } from '../game/format';
+	import { RUNG_SKINS } from '../game/assetsScene';
 
 	const context = getContext();
 	const app = getContextApp();
 
 	type Rung = {
-		key: 'big' | 'super' | 'mega' | 'epic' | 'max';
-		skin: 'timber' | 'brick' | 'stone' | 'palace' | 'gold';
+		key: 'big' | 'huge' | 'mega' | 'epic' | 'max';
+		/** sign art key suffix: `rung_sign_<skin>` (game/assetsScene.ts RUNG_SKINS) */
+		skin: (typeof RUNG_SKINS)[number];
 		wash: number;
 		pieces: string[];
 		burstCue: string;
 	};
 	const RUNGS: Rung[] = [
-		{ key: 'big', skin: 'timber', wash: 0x174f8f, pieces: ['plank', 'nail', 'straw'], burstCue: 'burst_wood' },
-		{ key: 'super', skin: 'brick', wash: 0x1f6b35, pieces: ['brick', 'trowel', 'blueprint_scrap'], burstCue: 'burst_brick' },
-		{ key: 'mega', skin: 'stone', wash: 0x4b2f7d, pieces: ['stone_block', 'silver_coin', 'drill_bit'], burstCue: 'burst_stone' },
-		{ key: 'epic', skin: 'palace', wash: 0x8f1c27, pieces: ['gold_coin', 'hard_hat', 'gem'], burstCue: 'burst_coins' },
-		{ key: 'max', skin: 'gold', wash: 0x171105, pieces: ['gold_coin', 'hard_hat', 'ribbon', 'gem'], burstCue: 'burst_gold' },
+		// PLACEHOLDER skins / pieces (static/assets/placeholder/rungs): the art lane re-skins BIG -> HUGE -> MEGA -> EPIC
+		// -> MAX in firefighting art (theme §5); keys and thresholds stay.
+		{ key: 'big', skin: 'big', wash: 0x1e2a4a, pieces: ['droplet', 'coin'], burstCue: 'burst_water' },
+		{ key: 'huge', skin: 'huge', wash: 0x7c1016, pieces: ['ember', 'coin'], burstCue: 'burst_embers' },
+		{ key: 'mega', skin: 'mega', wash: 0x4b2f7d, pieces: ['ember', 'badge', 'coin'], burstCue: 'burst_badges' },
+		{ key: 'epic', skin: 'epic', wash: 0x8f1c27, pieces: ['coin', 'badge', 'ember'], burstCue: 'burst_coins' },
+		{ key: 'max', skin: 'max', wash: 0x171105, pieces: ['coin', 'badge', 'ember', 'droplet'], burstCue: 'burst_gold' },
 	];
-	// flattened sign texture geometry (static/assets/winrungs/signs/flat_manifest.json)
+	// sign texture geometry (placeholder static/assets/placeholder/rungs/sign_<skin>.webp, 1200x728)
 	const SIGN = { w: 1200, h: 728, boardY: 338, plankY: 634, plankW: 820 };
 	/** the gold bitmap font's ink centre, as a fraction of fontSize below the anchor (see build()) */
 	const GOLD_INK_DY = 0.1;
 	const PIECE_GRID: Record<string, { frames: number; cols: number }> = {
-		plank: { frames: 24, cols: 8 },
-		brick: { frames: 24, cols: 8 },
-		ribbon: { frames: 24, cols: 8 },
-		stone_block: { frames: 24, cols: 8 },
-		straw: { frames: 24, cols: 8 },
+		coin: { frames: 24, cols: 8 },
+		ember: { frames: 24, cols: 8 },
+		droplet: { frames: 24, cols: 8 },
+		badge: { frames: 24, cols: 8 },
 	};
 	const CELL = 128;
 
@@ -176,10 +178,10 @@
 			const card = new PIXI.Sprite(PIXI.Texture.EMPTY);
 			card.anchor.set(0.5);
 			// THE MAX WIN CARD IS A CARD, NOT A PICTURE (owner, 2026-09-20: "a unique presentation card for the max win
-			// hit"). The art was always unique to this moment and title-free by design (assets/maxwin/manifest.json), but
+			// hit"). The art was always unique to this moment and title-free by design, but
 			// the runtime half was never written: it came up as a bare hard-edged rectangle with an empty sky where the
 			// title belongs. `cardBox` carries the art behind rounded corners, a gold frame, the MAX WIN title and the
-			// 25,000x multiple on a plank (never a currency figure: owner ruling, see dressCard). Everything is a child of `cardBox`, so `finish()` destroys it
+			// 15,000x multiple on a plank (never a currency figure: owner ruling, see dressCard). Everything is a child of `cardBox`, so `finish()` destroys it
 			// with the rest of the stage.
 			const cardBox = new PIXI.Container();
 			cardBox.alpha = 0;
@@ -227,7 +229,6 @@
 			const segMs = (reduced ? 500 : 1500) / fast;
 			const dropMs = (reduced ? 0 : 480) / fast;
 			const countMs = segMs * (finalIdx + 1) + 600 / fast;
-			let t = 0;
 			let idx = 0;
 			let phase: 'drop' | 'count' | 'landed' | 'card' | 'out' = 'drop';
 			let phaseT = 0;
@@ -369,10 +370,10 @@
 				cardBox.addChild(frame);
 
 				// The art keeps a clear sky for the words. Landscape: the left half, title stacked over the multiple.
-				// Portrait: the band above the raised hat, title and multiple on two lines.
+				// Portrait: the band above the hero, title and multiple on two lines.
 				const title = winLevelMap[10].text;
 				const face = (size: number, fill: number) => ({
-					fontFamily: 'LuckySign, Inter, sans-serif',
+					fontFamily: 'StationSign, Inter, sans-serif',
 					fontSize: size,
 					fill,
 					align: 'center' as const,
@@ -395,7 +396,7 @@
 				// THE CARD CARRIES THE MULTIPLE, NEVER A CURRENCY FIGURE (owner, 2026-09-20: "the card should only be framed
 				// with the x multiple ... we don't know what the user's bet will be"). The rung sign before it has already
 				// counted up the player's real booked amount; the card is the moment's poster, and the one number that is
-				// true at every stake is the multiple. LUCKY: 25,000x in every mode, read from the mode table (never typed).
+				// true at every stake is the multiple: 15,000x in every mode, read from the mode table (never typed).
 				const multText = fmtX(Number(config.betModes.base.max_win));
 				const plankH = portrait ? band.h * 0.44 : band.h * 0.27;
 				const plankMaxW = band.w * (portrait ? 0.86 : 0.98);
@@ -419,7 +420,6 @@
 			run = {
 				step: (dtRaw) => {
 					const dt = Math.min(50, dtRaw);
-					t += dt;
 					phaseT += dt;
 
 					// wash

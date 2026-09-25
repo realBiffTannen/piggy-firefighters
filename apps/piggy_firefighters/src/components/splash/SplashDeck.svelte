@@ -1,8 +1,8 @@
 <script lang="ts">
 	/**
-	 * LUCKY splash — the intro-card deck.
+	 * PIGGY FIREFIGHTERS splash — the intro-card deck.
 	 *
-	 * One site notice board hangs from two nails on chains; every ~3.5 s it is
+	 * One station notice board hangs from two nails on chains; every ~3.5 s it is
 	 * unhooked and the next one is hung in its place (slide + swing + settle, the
 	 * pivot is the nails — not a fade). Dots, swipe, a tap while loading, and the
 	 * arrow keys all move it. It is DOM and CSS only and owns no loading state:
@@ -47,8 +47,8 @@
 		src: splashAssetUrl(card.art),
 		title: splashText(card.titleKey),
 		body: splashText(card.bodyKey),
-		// every Golden Dragon card wears the gold board (LUCKY adds the two city cards to the donor's pair)
-		gold: ['golden_build', 'golden_expanded', 'golden_four', 'max_win'].includes(card.id),
+		// the Chief and the max-win card wear the gold board
+		gold: ['chief', 'maxwin'].includes(card.id),
 	}));
 
 	let index = $state(0);
@@ -452,7 +452,7 @@
 	}
 	.card__title {
 		margin: 0;
-		font-family: 'LuckySign', 'Inter', system-ui, sans-serif;
+		font-family: 'StationSign', 'Inter', system-ui, sans-serif;
 		font-weight: 400;
 		font-size: clamp(10px, 6.9cqw, 40px);
 		line-height: 1.06;

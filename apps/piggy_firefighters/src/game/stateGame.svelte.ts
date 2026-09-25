@@ -7,61 +7,50 @@ import { createGetWinLevelDataByWinLevelAlias } from 'utils-shared/winLevel';
 import type { GameType, RawSymbol, SymbolState } from './types';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
-import { eventEmitter } from './eventEmitter';
 import { gameSound } from './audio';
-import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMBOL_STATE } from './constants';
-import { createSpinReel, createSpinBoard } from './reels/spinReels.svelte';
+import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMBOL_STATE, TRIGGER_ALARMS } from './constants';
+import { createSpinReel, createSpinBoard, setPaddingSource } from './reels/spinReels.svelte';
+import { stateRescue } from './rescue/stateRescue.svelte';
 import { anticipationCamera } from './reels/anticipationCamera.svelte';
 
 const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
-	// Retired donor Howler cues; every landing now drives the ONE Web Audio
-	// manager (game/audio). The scatter in Piggy Workers is the HARD HAT ('HAT').
-	if (rawSymbol.name === 'HAT') {
-		// count it (drives scatterLandIndex / the trigger) and play the hat-land
-		// ladder with its three alternates (round-robin, presentation RNG).
+	// Every landing drives the ONE Web Audio manager (game/audio). The scatter is the FIRE ALARM; the GOLDEN ALARM is
+	// an alarm in every way (contract §3) and owns a heavier gold landing. Three alarms trigger (contract §4).
+	if (rawSymbol.name === 'ALARM') {
 		stateGame.scatterCounter = stateGame.scatterCounter + 1;
 		gameSound.hatLand(stateGame.scatterCounter);
-		if (stateGame.scatterCounter === 6) gameSound.triggerFanfare();
+		if (stateGame.scatterCounter === TRIGGER_ALARMS) gameSound.triggerFanfare();
 	}
-	// The GOLDEN hard hat is a hat in every way (contract §3) and owns its landing: a heavier gold
-	// impact and a glint, in step with the flip + gold ring the symbol plays (SymbolSprite.svelte).
-	if (rawSymbol.name === 'GHAT') {
+	if (rawSymbol.name === 'GALARM') {
 		stateGame.scatterCounter = stateGame.scatterCounter + 1;
 		gameSound.goldenHatLand();
-		// the rung rides the hat lane, so a golden hat sharing a reel with a plain one still climbs in order
+		// the rung rides the same lane, so a golden alarm sharing a reel with a plain one still climbs in order
 		gameSound.goldenHatRung(stateGame.scatterCounter);
-		if (stateGame.scatterCounter === 6) gameSound.triggerFanfare();
+		if (stateGame.scatterCounter === TRIGGER_ALARMS) gameSound.triggerFanfare();
 	}
-
-	// WILD (Master Bao with the WILD banner): give it a soft land accent.
+	// WILD (Chief Hamm with the WILD badge): a soft land accent.
 	if (rawSymbol.name === 'W') {
 		gameSound.wildLand();
-	}
-
-	// A hard hat landing on the base board makes the mascot glance at the reels.
-	if (rawSymbol.name === 'HAT' || rawSymbol.name === 'GHAT') {
-		eventEmitter.broadcast({ type: 'mascotReact', react: 'hat' });
 	}
 };
 
 // TRUE SPINNING REELS (game/reels/spinReels.svelte.ts): each column is a continuous strip with baked
 // motion blur; the window is never empty. Speed tiers, slam-stop, anticipation and reduced motion all
 // live in the reel model; this file only wires the callbacks and their sounds.
-const CONSTRUCTION_SYMBOLS = new Set(['H1', 'H2', 'H3', 'H4', 'L1', 'L2', 'L3']);
+const PAYING_SYMBOLS = new Set(['H1', 'H2', 'H3', 'H4', 'L1', 'L2', 'L3', 'L4']);
 const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) =>
 	createSpinReel({
 		reelIndex,
 		initialSymbols: INITIAL_BOARD[reelIndex],
 		initialSymbolState: INITIAL_SYMBOL_STATE,
 		onReelStopping: () => {
-			// 5-rung reel-stop ladder: each reel stops on its own rising rung
-			// (reel 0 → reel_stop_1 … reel 4 → reel_stop_5) via the new manager.
+			// 5-rung reel-stop ladder: each reel stops on its own rising rung (reel 0 -> reel_stop_1 ...)
 			gameSound.reelStop(reelIndex);
-			// and the timber clunk when the reel sets construction symbols down (the visible rows;
-			// hats and the WILD announce themselves on their own)
+			// and a land knock when the reel sets paying symbols down (visible rows; alarms and the WILD
+			// announce themselves on their own)
 			const rows = board[reelIndex]?.reelState.symbols ?? [];
 			const shown = rows.slice(1, 1 + BOARD_DIMENSIONS.y).map((s) => s.rawSymbol.name);
-			if (shown.some((n) => CONSTRUCTION_SYMBOLS.has(n))) gameSound.symbolLand(reelIndex);
+			if (shown.some((n) => PAYING_SYMBOLS.has(n))) gameSound.symbolLand(reelIndex);
 		},
 		onSymbolLand,
 	}),
@@ -90,9 +79,12 @@ export const stateGame = $state({
 	scatterCounter: 0,
 });
 
+// the reel strips that stream past follow the reveal's game type and the bonus being played
+setPaddingSource(() => ({ gameType: stateGame.gameType, inferno: stateRescue.active && stateRescue.bonus === 'inferno' }));
+
 // ---- SCENE LAYOUT -----------------------------------------------------------
 // One function places everything that shares the play area: the reels, the
-// timber frame that wraps ONLY the reels, the world gutters left and right of it
+// truck-panel frame that wraps ONLY the reels, the world gutters left and right of it
 // (desktop / landscape) or above and below it (portrait), the mascot's standing
 // spot, and the bonus furniture hung on the frame. All maths is done in SCREEN
 // px and converted to main-design units once, so the HUD (which reads the reel
@@ -101,16 +93,16 @@ export const stateGame = $state({
 // Contract with the HUD's ante chip (`publishAnteChipRoom`): the chip is pinned
 // to the viewport's right edge, lifted `--hud-h + 12px` off the bar, and stands
 // down into the burger menu when its rect (+12 px) intersects the reel rect. The
-// game wants it to stay a CHIP everywhere, and not to sit on the TIMBER either,
+// game wants it to stay a CHIP everywhere, and not to sit on the FRAME either,
 // so the frame is kept clear of it: either the frame ends above the chip
 // (strategy A — portrait and most desktops) or stops short of it sideways
 // (strategy B — short-and-wide viewports, where giving up height would cost
 // more board than giving up width). Whichever yields the larger board wins.
-const FRAME_POST_WIDE = 0.24; // timber post thickness in CELLS, desktop / landscape
-const FRAME_POST_STACKED = 0.17; // thinner timber when the board is full-width
-const FRAME_INNER_MARGIN = 0.04; // cells between the reels and the timber
+const FRAME_POST_WIDE = 0.24; // frame post thickness in CELLS, desktop / landscape
+const FRAME_POST_STACKED = 0.17; // thinner frame when the board is full-width
+const FRAME_INNER_MARGIN = 0.04; // cells between the reels and the frame
 const FRAME_OUT_X = 1.33; // post + corner protrusion, in post units
-const FRAME_OUT_TOP = 1.17; // hazard beam + protrusion, in post units
+const FRAME_OUT_TOP = 1.17; // header beam + protrusion, in post units
 const FRAME_OUT_BOTTOM = 1.2; // lower beam + protrusion, in post units
 const CHIP_CLEAR_H = 66; // fallback: chip 39 px + 12 px lift + 12 px guard + slack
 const CHIP_CLEAR_W = 186; // fallback: chip <= ~162 px wide + 12 px edge + 12 px guard
@@ -169,6 +161,11 @@ export const watchAnteChip = () => {
 	};
 };
 const MASCOT_GUTTER = 0.95; // cells of gutter the mascot needs beside the reels
+// RESCUE SCENE (contract §5): the burning apartment block stands ABOVE the reels, one room per reel column. While the
+// scene is up the layout reserves this band (in cells) above the frame, so the board shrinks a little to make room.
+// The rescue director only raises the scene while the bay-door shutter covers the play area, so the board never
+// visibly jumps. components/rescue/RescueScene.svelte draws into `building`.
+export const BUILDING_BAND_CELLS = 1.45;
 
 export type SceneLayout = ReturnType<typeof sceneLayout>;
 
@@ -187,10 +184,11 @@ const sceneLayout = () => {
 	const m = FRAME_INNER_MARGIN;
 	const r = stacked ? ROW_PITCH_STACKED : 1; // cell height / cell width
 	// OWNER RULING 2026-09-19 (20:35): on a phone / tablet the board has NO vertical borders — the
-	// reels run edge to edge and only the hazard beam above and the lower beam below remain.
+	// reels run edge to edge and only the header beam above and the lower beam below remain.
 	const sideCells = stacked ? 0 : 2 * (m + FRAME_OUT_X * f);
 	const cellsW = BOARD_DIMENSIONS.x + sideCells;
-	const cellsH = BOARD_DIMENSIONS.y * r + 2 * m + (FRAME_OUT_TOP + FRAME_OUT_BOTTOM) * f;
+	const band = stateRescue.active ? BUILDING_BAND_CELLS : 0;
+	const cellsH = BOARD_DIMENSIONS.y * r + 2 * m + (FRAME_OUT_TOP + FRAME_OUT_BOTTOM) * f + band;
 	const top = Math.max(6, ch * 0.02);
 
 	// measured chip room (screen px), else the fallbacks
@@ -229,7 +227,7 @@ const sceneLayout = () => {
 	const reelW = BOARD_DIMENSIONS.x * cell;
 	const reelH = BOARD_DIMENSIONS.y * cell * r;
 	const reelX = (cw - reelW) / 2;
-	const reelY = frameTop + (FRAME_OUT_TOP * f + m) * cell;
+	const reelY = frameTop + (band + FRAME_OUT_TOP * f + m) * cell;
 
 	const toMainX = (sx: number) => main.width / 2 + (sx - cw / 2) / ms;
 	const toMainY = (sy: number) => main.height / 2 + (sy - ch / 2) / ms;
@@ -240,15 +238,20 @@ const sceneLayout = () => {
 		cell, // screen px per reel cell (its WIDTH; a cell is `cell` x `cellH`)
 		cellH: cell * r,
 		rowPitch: r, // cell height / cell width: 1 wide, ROW_PITCH_STACKED stacked
-		sidePosts: !stacked, // stacked layouts draw no vertical timber (edge-to-edge reels)
-		post: f, // timber post thickness in cells
+		sidePosts: !stacked, // stacked layouts draw no vertical frame posts (edge-to-edge reels)
+		post: f, // frame post thickness in cells
 		innerMargin: m,
 		mainScale: ms,
 		canvas: { width: cw, height: ch },
 		hudTop,
 		reel: { x: reelX, y: reelY, width: reelW, height: reelH },
 		frame: { x: (cw - frameW) / 2, y: frameTop, width: frameW, height: frameH },
-		gutter: Math.max(0, (cw - frameW) / 2), // world px left and right of the timber
+		/** the Rescue building band above the frame (screen px); height 0 outside the scene */
+		building: { x: reelX, y: frameTop, width: reelW, height: band * cell },
+		/** board-local units (SYMBOL_SIZE per cell) from the reels' top edge up to the top of the frame */
+		frameTopCells: FRAME_OUT_TOP * f + m,
+		buildingBandCells: band,
+		gutter: Math.max(0, (cw - frameW) / 2), // world px left and right of the frame
 		toMainX,
 		toMainY,
 	};

@@ -3,7 +3,7 @@ import config from 'config-vite';
 
 const viteConfig = config();
 
-// The studio HUD ships as a file: tarball (vendor/crashgalaxy-hud-1.0.3.tgz), so
+// The studio HUD ships as a file: tarball (vendor/crashgalaxy-hud-1.0.3-ppec8b63d9.tgz), so
 // it lands in node_modules and Vite's dep optimizer tries to prebundle it AND
 // crawl its `import 'state-shared'` — but state-shared is a workspace package of
 // Svelte-5 rune modules (`*.svelte.ts`) that esbuild's optimizer cannot parse
@@ -20,6 +20,7 @@ viteConfig.optimizeDeps = {
 // Lilita One was being inlined from its stylesheet) silently falls back to the next family.
 viteConfig.build = {
 	...(viteConfig.build ?? {}),
+	/** @param {string} filePath */
 	assetsInlineLimit: (filePath) => (/\.(ttf|otf|woff2?)$/i.test(filePath) ? false : undefined),
 };
 

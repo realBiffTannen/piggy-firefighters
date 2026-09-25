@@ -21,13 +21,13 @@ export const applySpeedTier = (tier: SpeedTier) => {
 };
 
 // QA ONLY, and never in a player's session (r4 qaseam, ruling "Reading A"): `window.__qaSetSpeedForTest`
-// is installed ONLY when the harness set `globalThis.__LUCKY_QA = true` BEFORE the bundle ran (Playwright
-// `page.addInitScript(() => { globalThis.__LUCKY_QA = true })` ahead of navigation). A page without that
+// is installed ONLY when the harness set `globalThis.__PFF_QA = true` BEFORE the bundle ran (Playwright
+// `page.addInitScript(() => { globalThis.__PFF_QA = true })` ahead of navigation). A page without that
 // flag, production or otherwise, carries no such global.
 //
 // Cross-game cadence gate: tools/sec7walk/probe-super-turbo-cadence.mjs arms a tier through this hook
 // before it measures round-to-round timing. That probe takes only --url / --extra and arms only
-// `if (hookPresent)`, so against lucky it must first gain an init-script option that sets __LUCKY_QA;
+// `if (hookPresent)`, so against this game it must first gain an init-script option that sets __PFF_QA;
 // without the flag it records hookPresent:false and measures the default tier, not Super Turbo.
 //
 // The hook calls only what the HUD's speed button calls (presentation pace, never an outcome), and it
@@ -36,7 +36,7 @@ export const applySpeedTier = (tier: SpeedTier) => {
 // ignored (nothing is written) and logged once per tier. A tier armed BEFORE /wallet/authenticate
 // returned is re-checked when the jurisdiction lands, and collapsed to what it permits.
 export const qaSeamsEnabled = (): boolean =>
-	(globalThis as unknown as { __LUCKY_QA?: unknown }).__LUCKY_QA === true;
+	(globalThis as unknown as { __PFF_QA?: unknown }).__PFF_QA === true;
 
 /** The tier the jurisdiction permits for a request: the HUD's collapse, applied to a QA request. */
 export const permittedSpeedTier = (requested: SpeedTier): SpeedTier => {

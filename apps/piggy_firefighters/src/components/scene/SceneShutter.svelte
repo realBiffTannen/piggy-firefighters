@@ -20,12 +20,11 @@
 </script>
 
 <script lang="ts">
-	// THE ONE SCENE TRANSITION (scene direction, wave 5).
+	// THE ONE SCENE TRANSITION: Station 13's bay door.
 	//
-	// The site's roller shutter (static/assets/splash/shutter_slats_tile.webp +
-	// shutter_bottom_bar.webp — the same shutter the splash opens on) slams down
-	// with a bounce and a kick of dust, the scene swaps BEHIND it, and it rattles
-	// back up in three hauls. No frame of a scene change shows an empty or black
+	// The bay door (placeholder static/assets/placeholder/scene/shutter_slats_tile.webp + shutter_bottom_bar.webp — the
+	// same door the splash opens on) slams down with a bounce and a kick of dust, the scene swaps BEHIND it (Station 13
+	// <-> the burning block), and it rattles back up in three hauls. No frame of a scene change shows an empty or black
 	// play area: the cover is art from the first pixel to the last.
 	//
 	//   - reusable: any director calls shutterClose / shutterOpen (base -> bonus,
@@ -53,13 +52,13 @@
 	import { holdPressGate } from '@crashgalaxy/hud';
 
 	import { getContext } from '../../game/context';
-	import { sceneTex, loadSceneTexMany } from '../../game/build/sceneTextures.svelte';
-	import { stateScene } from '../../game/build/stateScene.svelte';
-	import { stateBuild } from '../../game/build/stateBuild.svelte';
-	import { dismissBuildCard } from '../../game/build/buildDirector';
-	import { audioDirector } from '../../game/build/audioDirector';
-	import { prefersReducedMotion, isTurbo } from '../../game/build/buildTiming';
-	import { drawSignPanel, signTitleStyle, signSubStyle, signHintStyle, signValueStyle, ensureSignFont } from '../../game/build/signPanel';
+	import { sceneTex, loadSceneTexMany } from '../../game/fx/sceneTextures.svelte';
+	import { stateScene } from '../../game/fx/stateScene.svelte';
+	import { stateRescue } from '../../game/rescue/stateRescue.svelte';
+	import { dismissFeatureCard } from '../../game/rescue/rescueDirector';
+	import { audioDirector } from '../../game/fx/audioDirector';
+	import { prefersReducedMotion, isTurbo } from '../../game/fx/timing';
+	import { drawSignPanel, signTitleStyle, signSubStyle, signHintStyle, signValueStyle, ensureSignFont } from '../../game/fx/signPanel';
 	import Grab from './Grab.svelte';
 	import TransitionFx, { type TransitionFxHandle } from './TransitionFx.svelte';
 
@@ -113,7 +112,6 @@
 	let segs: Seg[] = [];
 	let segFrom = 1;
 	let segT = 0;
-	let run = 0;
 	let settle: (() => void) | null = null;
 	let shake = 0;
 	let rattle = 0;
@@ -138,12 +136,11 @@
 	let swingV = 0;
 	const alive = (n: any) => n && !n.destroyed;
 
-	const factor = () => (stateBuild.skip ? 0.3 : isTurbo() ? 0.55 : 1);
+	const factor = () => (stateRescue.skip ? 0.3 : isTurbo() ? 0.55 : 1);
 
 	const begin = (next: Seg[]) =>
 		new Promise<void>((resolve) => {
 			settle?.(); // a superseded run never leaves its caller hanging
-			run += 1;
 			segs = next;
 			segFrom = pos;
 			segT = 0;
@@ -300,7 +297,7 @@
 		mounted = true;
 		ensureSignFont();
 		openGate();
-		await loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', c?.kind === 'intro' ? (c.premium ? 'scene_card_golden' : 'scene_card_hold') : 'scene_shutter_bar']);
+		await loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', c?.kind === 'intro' ? (c.premium ? 'scene_card_inferno' : 'scene_card_rescue') : 'scene_shutter_bar']);
 		if (prefersReducedMotion()) {
 			pos = 0;
 			await begin([{ to: 0, ms: 240, ease: (p) => ((fade = p), p) }]);
@@ -321,7 +318,10 @@
 		if (card?.kind === 'intro' && !prefersReducedMotion()) raysFx?.rays();
 	};
 
-	// ---- feature-entry VFX (pw_fx_transition, effects only) ----------------------------------
+	// ---- feature-entry VFX (optional Spine FX rig `fx_transition`, effects only) ----------------
+	// No Firefighters FX rig is registered yet (game/assets.ts), so `fxLoaded` stays false and every open is the
+	// three-haul lift. The VFX lane registers `fx_transition` (clips card_idle / blast_effect, events impact / white /
+	// clear, docs/ANIMATION_CONTRACT.md) and this code lights up unchanged.
 	// Two instances of the same rig: `raysFx` rides INSIDE the door behind the mode
 	// card; `blastFx` sits in the root, over the door, centred on the play area.
 	// Both are decoration. The door's own timeline (`begin`) stays the single
@@ -333,7 +333,7 @@
 	const fxScale = $derived(Math.max(cw, ch) / 1400);
 	// SpineProvider logs a console error for a key that is not in loadedAssets, so
 	// neither instance is mounted until the rig has really loaded.
-	const fxLoaded = $derived(!!(app.stateApp as any)?.loadedAssets?.pw_fx_transition);
+	const fxLoaded = $derived(!!(app.stateApp as any)?.loadedAssets?.fx_transition);
 
 	const open = async () => {
 		if (!mounted) return;
@@ -409,13 +409,13 @@
 		shutterOpen: () => open(),
 		shutterReset: () => reset(),
 		stopButtonClick: () => {
-			if (cardLive) dismissBuildCard();
+			if (cardLive) dismissFeatureCard();
 		},
 	});
 
 	// DEV ONLY: lets the QA capture driver (qa/tags_0919/features/drive.mjs) see when a card is up.
 	if (typeof window !== 'undefined' && import.meta.env?.DEV) {
-		(window as any).__pwCard = { get live() { return cardLive; }, get kind() { return card?.kind ?? null; }, get premium() { return !!card?.premium; } };
+		(window as any).__pffCard = { get live() { return cardLive; }, get kind() { return card?.kind ?? null; }, get premium() { return !!card?.premium; } };
 	}
 
 	// Pixi rasterises a Text once: a card drawn before the sign font has arrived
@@ -426,11 +426,11 @@
 	onMount(() => {
 		ensureSignFont();
 		try {
-			void (document as any).fonts?.load?.('400 64px LuckySign').then(() => (fontReady = true));
+			void (document as any).fonts?.load?.('400 64px StationSign').then(() => (fontReady = true));
 		} catch {
 			/* no FontFaceSet: the fallback face stands */
 		}
-		void loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', 'scene_card_hold', 'scene_card_golden']);
+		void loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', 'scene_card_rescue', 'scene_card_inferno']);
 		const ticker = app.stateApp.pixiApplication?.ticker;
 		ticker?.add(step);
 		return () => {
@@ -440,7 +440,7 @@
 	});
 
 	// ---- card layout ------------------------------------------------------------------------
-	const cardArt = $derived(card?.kind === 'intro' ? sceneTex(card.premium ? 'scene_card_golden' : 'scene_card_hold') : null);
+	const cardArt = $derived(card?.kind === 'intro' ? sceneTex(card.premium ? 'scene_card_inferno' : 'scene_card_rescue') : null);
 	const lay = $derived.by(() => {
 		const intro = card?.kind === 'intro';
 		const stackedCard = portrait;
@@ -525,8 +525,8 @@
 		<Grab ongrab={grab('root')} />
 		<Container y={-travel}>
 			<Grab ongrab={grab('door')} />
-			<!-- never a void: a painted steel colour sits under the slats while they decode -->
-			<Graphics zIndex={0} draw={(g) => g.rect(-20, -80, cw + 40, landY + 80).fill({ color: 0xe0a400 })} />
+			<!-- never a void: a painted engine-red sits under the slats while they decode -->
+			<Graphics zIndex={0} draw={(g) => g.rect(-20, -80, cw + 40, landY + 80).fill({ color: 0xb81e24 })} />
 			{#if sceneTex('scene_shutter_slats')}
 				{#each tiles as i (i)}
 					{#each portrait ? [0, 1] : [0] as col (col)}
@@ -546,8 +546,7 @@
 			{/if}
 			<!-- work-light rays BEHIND the mode card (over the slats and bar, under the
 			     card). The visible ray disc is ~675 units across. -->
-			<!-- the site goes dark behind an INTRO card so the work-light rays read: yellow
-			     rays on the bare yellow door are invisible. Only with the rig loaded and
+			<!-- the door goes dark behind an INTRO card so the FX rays read. Only with the rig loaded and
 			     motion allowed; otherwise the door keeps its original look. -->
 			{#if fxLoaded && card?.kind === 'intro' && !prefersReducedMotion()}
 				<Graphics zIndex={4} draw={(g) => g.rect(-20, -80, cw + 40, landY + 80).fill({ color: 0x0b1020, alpha: 0.58 })} />
@@ -557,7 +556,7 @@
 				     in portrait: a disc sized to the long side covers the whole door and
 				     paints the dimming back to yellow (seen in both orientations). -->
 				<Container zIndex={5} x={lay.cx} y={lay.cy} scale={(Math.min(lay.W, lay.H) * lay.s * 1.9) / 675}>
-					<SpineProvider key="pw_fx_transition">
+					<SpineProvider key="fx_transition">
 						<TransitionFx onready={(h) => (raysFx = h)} />
 					</SpineProvider>
 				</Container>
@@ -579,7 +578,7 @@
 							}
 						}}
 					/>
-					<Graphics draw={(g) => drawSignPanel(g as any, { w: lay.W * lay.s, h: lay.H * lay.s, s: lay.s, variant: card?.premium ? 'gold' : card?.kind === 'outro' ? 'win' : 'timber' })} />
+					<Graphics draw={(g) => drawSignPanel(g as any, { w: lay.W * lay.s, h: lay.H * lay.s, s: lay.s, variant: card?.premium ? 'gold' : card?.kind === 'outro' ? 'win' : 'station' })} />
 					{#key fontReady}
 					{#if lay.intro}
 						{@const s = lay.s}
@@ -693,7 +692,7 @@
 		     open() plays it. -->
 		{#if fxLoaded}
 			<Container zIndex={9} x={cw / 2} y={landY / 2} scale={fxScale}>
-				<SpineProvider key="pw_fx_transition">
+				<SpineProvider key="fx_transition">
 					<TransitionFx onready={(h) => (blastFx = h)} />
 				</SpineProvider>
 			</Container>
@@ -703,7 +702,7 @@
 	{#if cardLive}
 		<!-- Space + pointer both dismiss; the held press-gate stops either from
 		     reaching the spin path behind the shutter. -->
-		<OnHotkey hotkey="Space" onpress={() => dismissBuildCard()} />
-		<OnPressFullScreen onpress={() => dismissBuildCard()} />
+		<OnHotkey hotkey="Space" onpress={() => dismissFeatureCard()} />
+		<OnPressFullScreen onpress={() => dismissFeatureCard()} />
 	{/if}
 {/if}

@@ -1,23 +1,23 @@
 /**
- * LUCKY — per-symbol reel motion (Gold Ingot, Jade Pendant, Red Envelope, Firecrackers, Paper Fan,
- * Teapot, Coin String, the Master Bao WILD).
+ * PIGGY FIREFIGHTERS — per-symbol reel motion (Fire Truck, Fire Helmet, Axe & Halligan, Extinguisher, Brass
+ * Nozzle, Water Bucket, Ladder, Fire Boots, the Chief Hamm WILD, Fire Alarm, Golden Alarm).
  *
  * Three families, all played by components/SymbolSprite.svelte from the board's ONE ticker:
  *
- *   LAND  (0.26–0.34 s; GHAT 0.62 s)  the symbol's answer to the reel's IMPACT. The reel itself
+ *   LAND  (0.26–0.34 s; GALARM 0.62 s)  the symbol's answer to the reel's IMPACT. The reel itself
  *         carries the drop, the overshoot and the settle spring (game/reels/spinReels.svelte.ts), so a
  *         landing here starts AT REST and is what the object does when the column hits: it squashes
  *         on its base, then the object speaks in its own way — a heavy piece barely gives, a light
  *         one rebounds, a hanging one swings and follows through. (The per-symbol tables below were
- *         authored for the donor's symbol set and keep their donor keys; the motions carry over to
- *         the LUCKY art in the same slots.)
+ *         authored for the donor's symbol set; the motions carry over to the Firefighters art in the
+ *         same slots and are re-tuned by the animation lane.)
  *   WIN   (0.66–1.0 s)  the pay flourish. The four HIGH symbols cut to a second KEY POSE (`pose: 1`,
  *         art `sym_H1_b` ...) THROUGH a squash, so the cut is never seen:
  *             A squashes (anticipation) -> cut at the bottom of the squash -> B springs out with its
  *             own overshoot and is HELD while the material motion plays (the BoardFx burst lands on
  *             this beat, ~200 ms in) -> B squashes -> cut -> A springs back and settles.
  *         If the pose-B art is missing the symbol keeps its single-pose flourish.
- *         The WILD (Master Bao holding the red-and-gold WILD banner) sinks, PUNCHES out and springs
+ *         The WILD (Chief Hamm holding the red WILD badge) sinks, PUNCHES out and springs
  *         back to rest. Its banner performance — two gold flashes of the banner (one in turbo) and a
  *         glint along it — is drawn by components/BoardFx.svelte over the same cell, sampled from
  *         the same transform (`WILD_BANNER`, `wildBannerFlash`, `wildBannerGlint` below): the "I
@@ -123,21 +123,29 @@ const LAND: Record<string, Motion> = {
 		durationMs: 320,
 		sample: (p, o) => {
 			squash(o, hit(p, 0.07));
-			// timber gives one small hop off the line
+			// the ladder gives one small hop off the line
 			const q = clamp01((p - 0.28) / 0.5);
 			o.oy -= 5 * Math.sin(q * Math.PI) * (1 - q);
 		},
 	},
-	HAT: {
+	L4: {
+		durationMs: 300,
+		sample: (p, o) => {
+			// rubber boots: a soft double bounce
+			squash(o, hit(p, 0.1), 0.8);
+			o.oy -= 3 * Math.abs(osc(p, 2)) * decay2(p);
+		},
+	},
+	ALARM: {
 		durationMs: 340,
 		sample: (p, o) => {
 			squash(o, hit(p, 0.12));
 			o.rot = 5 * osc(p, 3) * decay2(p);
 		},
 	},
-	// GOLDEN hard hat: hops, turns once on its vertical axis like a struck coin (sx passes through
+	// GOLDEN ALARM: hops, turns once on its vertical axis like a struck coin (sx passes through
 	// zero), swells and settles. Longer and bigger than any other landing on purpose.
-	GHAT: {
+	GALARM: {
 		durationMs: 620,
 		sample: (p, o) => {
 			const turn = Math.cos(TAU * easeOutCubic(clamp01(p / 0.7)));
@@ -156,9 +164,9 @@ const LAND: Record<string, Motion> = {
 	},
 };
 
-// A hard-hat land that also completes the trigger (6+): a clear, larger pop that reads over the
+// An alarm landing that also completes the trigger (3+): a clear, larger pop that reads over the
 // ordinary landing, meant to sync with the trigger cue.
-const HAT_TRIGGER: Motion = {
+const ALARM_TRIGGER: Motion = {
 	durationMs: 420,
 	sample: (p, o) => {
 		const swell = 0.18 * Math.sin(Math.PI * clamp01(p * 1.1)) * decay(p);
@@ -244,7 +252,7 @@ const WIN_PLAIN: Record<string, Motion> = {
 	L1: {
 		durationMs: 760,
 		sample: (p, o) => {
-			// the tin hops twice and wobbles; each landing gives a little squash
+			// the nozzle hops twice and wobbles; each landing gives a little squash
 			const hop = Math.abs(osc(p, 2)) * decay(p);
 			o.rot = 9 * osc(p, 3) * decay(p);
 			o.oy = -9 * hop;
@@ -254,7 +262,7 @@ const WIN_PLAIN: Record<string, Motion> = {
 	L2: {
 		durationMs: 660,
 		sample: (p, o) => {
-			// small lift, then a hard-stop squash pulse: masonry does not bounce
+			// small lift, then a hard-stop squash pulse: the bucket does not bounce
 			o.oy = -9 * Math.sin(Math.PI * clamp01(p * 1.5));
 			if (p > 0.62 && p < 0.9) squash(o, 0.09 * Math.sin(((p - 0.62) / 0.28) * Math.PI), 0.4);
 		},
@@ -267,7 +275,16 @@ const WIN_PLAIN: Record<string, Motion> = {
 			o.rot = 2.5 * osc(p, 3) * decay2(p);
 		},
 	},
-	HAT: {
+	L4: {
+		durationMs: 680,
+		sample: (p, o) => {
+			// boots stomp twice
+			const stomp = Math.abs(osc(p, 2)) * decay(p);
+			o.oy = -8 * stomp;
+			squash(o, 0.06 * (1 - clamp01(stomp * 4)) * decay(p) * clamp01(p * 6), 0.8);
+		},
+	},
+	ALARM: {
 		durationMs: 680,
 		sample: (p, o) => {
 			const s = Math.sin(Math.PI * p);
@@ -277,7 +294,7 @@ const WIN_PLAIN: Record<string, Motion> = {
 			o.sy = 1 + 0.06 * s;
 		},
 	},
-	// WILD: Master Bao sinks onto his base (anticipation), PUNCHES out of it — a quick swell past full
+	// WILD: Chief Hamm sinks onto his base (anticipation), PUNCHES out of it — a quick swell past full
 	// size, grown from the base so his feet stay planted — then a damped spring settles him back to rest
 	// with a small tilt. `flash` stays 0: the banner flash is drawn over the cell by components/BoardFx
 	// (see WILD_BANNER), so the retired pig-sign crop in SymbolSprite never lights up the wrong region.
@@ -342,8 +359,7 @@ const keyPose =
 	};
 
 const WIN_KEYPOSE: Record<string, Motion> = {
-	// hero pig worker (2026-09-19): pose B is him leaning on the jackhammer — a fast vertical
-	// pump that shakes his whole body, dying away as the tool bites
+	// fire truck: pose B revs — a fast vertical pump that dies away
 	H1: {
 		durationMs: 1000,
 		sample: keyPose((q, o) => {
@@ -353,7 +369,7 @@ const WIN_KEYPOSE: Record<string, Motion> = {
 			o.rot = 2 * Math.sin(TAU * 7 * q + 0.4) * env;
 		}),
 	},
-	// drill: hammering into broken ground — a hard, fast judder that dies away
+	// helmet: a hard, fast judder that dies away
 	H2: {
 		durationMs: 960,
 		sample: keyPose((q, o) => {
@@ -362,7 +378,7 @@ const WIN_KEYPOSE: Record<string, Motion> = {
 			o.ox += 1.6 * Math.sin(TAU * 13 * q) * env;
 		}),
 	},
-	// blueprint: unrolled and gleaming — paper flutter
+	// axe & halligan: a gleaming flutter
 	H3: {
 		durationMs: 1000,
 		sample: keyPose((q, o) => {
@@ -372,7 +388,7 @@ const WIN_KEYPOSE: Record<string, Motion> = {
 			o.oy += -4 * Math.sin(Math.PI * q) * env;
 		}),
 	},
-	// tools: struck together — they ring on their crossing
+	// extinguisher: it rings on its base
 	H4: {
 		durationMs: 960,
 		sample: keyPose((q, o) => {
@@ -430,7 +446,7 @@ const FALLBACK_LAND = LAND.L2;
 const FALLBACK_WIN = WIN_PLAIN.L2;
 
 /**
- * Pick the motion for one symbol + state. `emphasis` upgrades a HAT landing to the trigger pop;
+ * Pick the motion for one symbol + state. `emphasis` upgrades an ALARM landing to the trigger pop;
  * `keyPose` (the pose-B art is loaded) selects the two-pose win for the high symbols.
  */
 export const symbolMotion = (
@@ -439,8 +455,8 @@ export const symbolMotion = (
 	opts: { emphasis?: boolean; keyPose?: boolean } = {},
 ): Motion => {
 	if (state === 'land') {
-		if (symbolName === 'HAT' && opts.emphasis) return HAT_TRIGGER;
-		// the golden hat always plays its own landing (it is already the biggest on the board)
+		if (symbolName === 'ALARM' && opts.emphasis) return ALARM_TRIGGER;
+		// the golden alarm always plays its own landing (it is already the biggest on the board)
 		return LAND[symbolName] ?? FALLBACK_LAND;
 	}
 	if (opts.keyPose && WIN_KEYPOSE[symbolName]) return WIN_KEYPOSE[symbolName];

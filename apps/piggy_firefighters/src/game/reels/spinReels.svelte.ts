@@ -42,7 +42,7 @@ import {
 import { SYMBOL_SIZE } from '../constants';
 import type { RawSymbol, SymbolState } from '../types';
 import { isSuperTurbo } from '../stateSpeed.svelte';
-import { prefersReducedMotion } from '../build/buildTiming';
+import { prefersReducedMotion } from '../fx/timing';
 import { boardTicker } from './boardTicker';
 
 export type ReelMotion = 'spinning' | 'bouncing' | 'stopped';
@@ -63,9 +63,10 @@ const LEGEND: Record<string, RawSymbol['name']> = {
 	a: 'L1',
 	b: 'L2',
 	c: 'L3',
+	d: 'L4',
 	W: 'W',
-	h: 'HAT',
-	g: 'GHAT',
+	s: 'ALARM',
+	g: 'GALARM',
 };
 
 // One shared RawSymbol object per name: padding is decoration, it never needs its own identity.
@@ -74,18 +75,32 @@ const PAD_SYMBOL = Object.fromEntries(Object.values(LEGEND).map((name) => [name,
 	RawSymbol
 >;
 const decode = (strips: readonly string[]): RawSymbol[][] =>
-	strips.map((strip) => Array.from(strip, (ch) => PAD_SYMBOL[LEGEND[ch] ?? 'L3']));
+	strips.map((strip) => Array.from(strip, (ch) => PAD_SYMBOL[LEGEND[ch] ?? 'L4']));
 
 const PADDING = {
 	basegame: decode(config.paddingReels.basegame),
 	antegame: decode(config.paddingReels.antegame),
+	backdraftgame: decode(config.paddingReels.backdraftgame),
+	freegame: decode(config.paddingReels.freegame),
+	infernogame: decode(config.paddingReels.infernogame),
+};
+
+/**
+ * Which strips stream past. The reveal's `gameType` (written into stateGame before the spin) says base vs bonus; the
+ * bonus kind / bet mode then picks the reel set (contract §3: BR0 base, BRA ante, BRB Backdraft Spins, FR0 Rescue
+ * Spins, FRI Inferno Rescue). stateGame imports this module, so the game type arrives through a getter (no cycle).
+ */
+let paddingSource: () => { gameType: string; inferno: boolean } = () => ({ gameType: 'basegame', inferno: false });
+export const setPaddingSource = (source: typeof paddingSource) => {
+	paddingSource = source;
 };
 
 const paddingFor = (reelIndex: number): RawSymbol[] => {
-	// Lucky Ante and Dragon Ante both spin the BRA strips (contract 7.11: super_ante is a spin mode exactly like ante)
 	const mode = String(stateBet.activeBetModeKey ?? '').toLowerCase();
-	const ante = mode === 'ante' || mode === 'super_ante';
-	const set = ante ? PADDING.antegame : PADDING.basegame;
+	const { gameType, inferno } = paddingSource();
+	let set = PADDING.basegame;
+	if (gameType === 'freegame') set = mode === 'backdraft_spins' ? PADDING.backdraftgame : inferno ? PADDING.infernogame : PADDING.freegame;
+	else if (mode === 'ante') set = PADDING.antegame;
 	return set[reelIndex] ?? set[0];
 };
 
@@ -337,7 +352,7 @@ export const createSpinBoard = (board: SpinReel[]) => {
 		for (const s of reel.reelState.symbols) {
 			s.symbolState = 'land';
 			// only what the player can see has landed: the rows above and below the window are not on
-			// the board (contract §3) and must not count as hats or make a sound
+			// the board (contract §3) and must not count as alarms or make a sound
 			if (s.row >= 1 && s.row <= REEL_ROWS - 2) reel.options.onSymbolLand({ rawSymbol: s.rawSymbol });
 		}
 	};

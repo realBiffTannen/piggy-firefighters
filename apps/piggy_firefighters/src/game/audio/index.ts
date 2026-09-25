@@ -14,7 +14,7 @@
  *                       component's init (Splash) so Build-or-Bust + HUD button
  *                       broadcasts reach the manager.
  *
- * `game/build/audioDirector.ts` re-exports the bonus-scene seam from here.
+ * `game/fx/audioDirector.ts` re-exports the bonus-scene seam from here.
  */
 import { audioManager } from './audioManager';
 import { presentationDirector } from './presentationDirector';
@@ -267,7 +267,7 @@ export function subscribeGameAudio(emitter: BridgeEmitter): void {
 	bridged = true;
 	emitter.subscribeOnMount({
 		// Build or Bust — these events reach only this bridge.
-		buildOrBustAnticipate: (e: { outcome: string }) => {
+		buildOrBustAnticipate: (_e: { outcome: string }) => {
 			presentationDirector.anticipationOn();
 			audioManager.playCue('build_or_bust_anticipation');
 		},

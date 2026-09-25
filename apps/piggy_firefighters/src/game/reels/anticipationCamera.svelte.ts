@@ -17,7 +17,7 @@
  * moves the zoom by less than a tenth of a percent invalidates nothing.
  */
 import { boardTicker } from './boardTicker';
-import { prefersReducedMotion } from '../build/buildTiming';
+import { prefersReducedMotion } from '../fx/timing';
 import { isSuperTurbo } from '../stateSpeed.svelte';
 
 /** Peak push. Keep small — see the note about the timber frame above. */

@@ -1,13 +1,13 @@
 <script lang="ts">
-	// REEL ANTICIPATION — "site alarm" (original to Piggy Workers; replaces the donor spine).
+	// REEL ANTICIPATION — "the alarm is ringing" (contract §4: after 2 alarms have landed with reels still
+	// to stop, the remaining reels slow with the tension cue; never on a spin that cannot trigger).
 	//
-	// When a reel is held for a possible 6th hat the whole column is framed in the SAME gold bracket
-	// frame a winning symbol wears (`win_cell_frame`, static/assets/ui_scene/cell_frame_gold.webp,
-	// see components/SymbolSprite.svelte `ensureWinDressing`) — owner ruling 2026-09-20: one border
-	// language for "this matters", instead of the hazard stripes this used to draw. The frame is a
-	// nine-slice so the bolted corners keep the size they have on a single cell while the bars stretch
-	// over three rows. Under it: a warm work-light wash over the symbols and welding sparks rising up
-	// the column. The longer the reel holds, the hotter the frame and the brighter the wash, and the
+	// When a reel is held for a possible 3rd alarm the whole column is framed in the SAME gold frame a
+	// winning symbol wears (`win_cell_frame`, placeholder static/assets/placeholder/fx/cell_frame.webp,
+	// see components/SymbolSprite.svelte `ensureWinDressing`): one border language for "this matters".
+	// The frame is a nine-slice so the corners keep the size they have on a single cell while the bars
+	// stretch over three rows. Under it: a warm alarm-light wash over the symbols and embers rising up
+	// the column (placeholder dressing; the art lane owns the final alarm-light treatment). The longer the reel holds, the hotter the frame and the brighter the wash, and the
 	// board itself pushes in (game/reels/anticipationCamera.svelte.ts). When the reel stops it resolves
 	// honestly: a gold flash if the bonus was actually reached, a quick neutral fade if not — nothing
 	// here ever hints at an outcome the book does not contain.
@@ -21,9 +21,9 @@
 	import { getContext } from '../game/context';
 	import { gameSound } from '../game/audio';
 	import type { Reel } from '../game/stateGame.svelte';
-	import { BOARD_SIZES, REEL_PADDING, SYMBOL_SIZE } from '../game/constants';
-	import { prefersReducedMotion, isTurbo } from '../game/build/buildTiming';
-	import { sceneTex } from '../game/build/sceneTextures.svelte';
+	import { BOARD_SIZES, REEL_PADDING, SYMBOL_SIZE, TRIGGER_ALARMS } from '../game/constants';
+	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
+	import { sceneTex } from '../game/fx/sceneTextures.svelte';
 
 	type Props = {
 		reel: Reel;
@@ -44,22 +44,20 @@
 	const BORDER = SYMBOL_SIZE * 0.075;
 	const RADIUS = SYMBOL_SIZE * 0.1;
 
-	/** cell_frame_gold.webp is 384 square; its bolted corner block is ~100 px of that. */
+	/** cell_frame.webp is 384 square; its corner block is ~100 px of that. */
 	const FRAME_SRC = 384;
 	const FRAME_CORNER = 100;
 
 	let root: PIXI.Container | undefined;
 	let stopped = false;
-	const hatsAtStart = context.stateGame.scatterCounter;
-	/** six hats start the bonus (math: hold_trigger_hats) */
-	const TRIGGER_HATS = 6;
+	const alarmsAtStart = context.stateGame.scatterCounter;
 	// Snapshotted the instant THIS reel stops: the reveal handler zeroes the live counter moments later.
-	let hatsAtStop = hatsAtStart;
+	let alarmsAtStop = alarmsAtStart;
 	let laterReelAlive = false;
 
 	$effect(() => {
 		if (props.reel.reelState.motion === 'stopped' && !stopped) {
-			hatsAtStop = context.stateGame.scatterCounter;
+			alarmsAtStop = context.stateGame.scatterCounter;
 			// is the chance still alive on a later reel? (still moving, or itself held). Also keeps a slam-stop,
 			// where several held reels stop together, from resolving once per reel.
 			laterReelAlive = context.stateGame.board.some(
@@ -85,7 +83,7 @@
 		return PIXI.Texture.from(canvas);
 	};
 
-	// Vertical work-light gradient: hot orange at the foot, gone by the top third.
+	// Vertical alarm-light gradient: hot orange at the foot, gone by the top third.
 	const makeWashTexture = () => {
 		const canvas = document.createElement('canvas');
 		canvas.width = 8;
@@ -121,7 +119,7 @@
 		const reduced = prefersReducedMotion();
 		const sparkTexture = makeSparkTexture();
 
-		// work-light wash over the symbols: a warm light pooled at the foot of the column, fading up
+		// alarm-light wash over the symbols: a warm light pooled at the foot of the column, fading up
 		// (a flat additive fill reads as grey fog on the navy cells)
 		const washTexture = makeWashTexture();
 		const wash = new PIXI.Sprite(washTexture);
@@ -194,7 +192,7 @@
 		};
 
 		root.addChild(glow, wash, frame, sparks, flash);
-		gameSound.anticipationRiser(hatsAtStart);
+		gameSound.anticipationRiser(alarmsAtStart);
 
 		const IN_MS = 240;
 		const OUT_HIT_MS = 420;
@@ -218,15 +216,13 @@
 
 			if (stopped && outAge < 0) {
 				outAge = 0;
-				// HONEST RESOLVE (2026-09-19). `hit` used to mean "this reel landed another hat", so a spin that
-				// ended ONE SHORT of the bonus got the success cue, the bright flash and the long victory fade while
-				// awarding nothing: a loss dressed as a win. The anticipation is FOR the bonus, so:
-				//   hit   = the trigger is reached (six hats);
+				// HONEST RESOLVE. The anticipation is FOR the bonus, so:
+				//   hit   = the trigger is reached (three alarms);
 				//   miss  = this was the last live reel and it was not reached: a short neutral release;
 				//   carry = a later reel is still live: no resolve at all, the chance has not been decided yet.
-				// A hat that lands still gets its own bonk and ladder rung (that is information); what it no longer
-				// gets is a victory sting.
-				hit = hatsAtStop >= TRIGGER_HATS;
+				// An alarm that lands still gets its own ring and ladder rung (that is information); what a miss
+				// never gets is a victory sting.
+				hit = alarmsAtStop >= TRIGGER_ALARMS;
 				if (hit || !laterReelAlive) gameSound.anticipationResolve(hit);
 			}
 

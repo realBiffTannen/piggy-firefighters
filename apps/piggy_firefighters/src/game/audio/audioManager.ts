@@ -21,11 +21,11 @@
  */
 import { base } from '$app/paths';
 
-import { CUES, MIX, type Bus, type CueDef } from './cueManifest';
+import { CUES, MIX, type CueDef } from './cueManifest';
 import type { Sfx } from '@crashgalaxy/hud';
 
 // ---- persistence (master step + mute only; the HUD persists music/sfx) ------
-const GAME_ID = 'lucky';
+const GAME_ID = 'piggy-firefighters';
 const MASTER_KEY = `${GAME_ID}-volume`;
 const MUTED_KEY = `${GAME_ID}-muted`;
 const MASTER_MAX_STEP = 20; // mirrors @crashgalaxy/hud VOLUME_MAX_STEP

@@ -1,97 +1,49 @@
 /**
- * SCENE asset entries (ambient world, roller shutter, mode-card art, 3D hats).
+ * SCENE asset entries (background plates, bay-door shutter, mode-card art, win rungs, FX sprites).
  *
- * Owned by the scene/presentation worker. `game/assets.ts` (other owner) spreads
- * this object into its default export so the normal AssetsLoader preloads every
- * entry behind the splash:
+ * `game/assets.ts` spreads this object into its default export so the AssetsLoader preloads every entry behind the
+ * splash; `game/fx/sceneTextures.svelte.ts` lazily loads any key that is still missing from the same URL.
  *
- *     import sceneAssets from './assetsScene';
- *     export default { ...existing, ...sceneAssets };
- *
- * Until that import lands, `game/build/sceneTextures.svelte.ts` lazily loads any
- * missing key straight from the same URL, so the scene never depends on it.
- *
- * Ambient textures are produced by `tools/art/derive_ambient.py` (823 KB, budget
- * 1.5 MB). Hat sheets are the hat3d pipeline's (static/assets/hat3d/manifest.json).
+ * Every file is a PROCEDURAL PLACEHOLDER (tools/placeholder/make_placeholders.py) under
+ * static/assets/placeholder/. Keys are the contract with the components; the art lane replaces files only.
  */
-// Same served location as game/assets.ts (`../../assets/*` from this module's URL).
-// The base is held in a variable on purpose: Vite rewrites the literal
-// `new URL('<template>', import.meta.url)` form into a build-time glob, which
+// Same served location as game/assets.ts (`../../assets/*` from this module's URL). The base is held in a variable
+// on purpose: Vite rewrites the literal `new URL('<template>', import.meta.url)` form into a build-time glob, which
 // cannot see the static/ tree and yields `undefined`.
 const HERE = import.meta.url;
-const u = (path: string) => new URL('../../assets/' + path, HERE).href;
+const u = (path: string) => new URL('../../assets/placeholder/' + path, HERE).href;
 const sprite = (path: string, preload = true) => ({ type: 'sprite' as const, preload, src: u(path) });
 
-// GATE FIX (crane) 2026-09-23: the ambient tower crane (crane_upper / crane_tower / crane_cable /
-// crane_load) is RETIRED — a lattice crane with a hook read as construction imagery in every frame.
-// Its four keys are no longer registered, so the runtime never requests them (AmbientWorld's crane
-// sprites are gated on the texture and draw nothing); the files ship as blank canvases of the same
-// size (art-src/generated/art_b/gate_fix_crane/retire_crane_parts.py). Do not re-add the keys.
-const AMBIENT_PARTS = [
-	'cloud_1',
-	'cloud_2',
-	'cloud_3',
-	'cloud_4',
-	'cloud_5',
-	// GATE LOOP r1: the donor worker (two poses) and the dump truck were still registered and preloaded
-	// although the owner removed them from the world on 2026-09-19 (AmbientWorld gates their markup on
-	// null placements). Their keys and files are gone; do not re-add them.
-] as const;
+/** Scene moods: base = Station 13 at dusk, rescue = the apartment block at night, inferno = red sky (theme §4). */
+export const SCENE_MOODS = ['base', 'rescue', 'inferno'] as const;
 
-const PLATES = [
-	'plate_base_landscape',
-	'plate_base_portrait',
-	'plate_hold_landscape',
-	'plate_hold_portrait',
-	'plate_golden_landscape',
-	'plate_golden_portrait',
-] as const;
+/** Win-rung signs, one per rung (components/WinRungs.svelte): BIG / HUGE / MEGA / EPIC / MAX (theme §5). */
+export const RUNG_SKINS = ['big', 'huge', 'mega', 'epic', 'max'] as const;
 
-const HAT_CLIPS = ['rest', 'land', 'idle_tilt', 'flip', 'slam'] as const;
-const HAT_SKINS = ['yellow', 'gold'] as const;
-const HAT_FX = ['energy_crack', 'rim_glow', 'glint', 'sunburst', 'gold_sparkles'] as const;
-
-export const RUNG_PIECES = [
-	'plank',
-	'nail',
-	'straw',
-	'brick',
-	'trowel',
-	'blueprint_scrap',
-	'stone_block',
-	'silver_coin',
-	'drill_bit',
-	'gold_coin',
-	'hard_hat',
-	'gem',
-	'ribbon',
-] as const;
+/** Tumbling pieces the rungs shed (8 x 3 sheets of 128 px cells, 24 frames). */
+export const RUNG_PIECES = ['coin', 'ember', 'droplet', 'badge'] as const;
 
 const entries: Record<string, ReturnType<typeof sprite>> = {};
-for (const k of AMBIENT_PARTS) entries[`amb_${k}`] = sprite(`ambient/${k}.webp`);
-for (const k of PLATES) entries[`amb_${k}`] = sprite(`ambient/${k}.webp`);
-// the LOCKED hoarding over an expanded box the book did not unlock (BuildScene lock panels)
-entries.build_lock_panel = sprite('build/locked_panel.webp');
-// the SITE PERMIT counter housing (components/build/CountReel.svelte)
-entries.build_permit_housing = sprite('build/permit_housing.webp');
-entries.scene_shutter_slats = sprite('splash/shutter_slats_tile.webp');
-entries.scene_shutter_bar = sprite('splash/shutter_bottom_bar.webp');
-entries.scene_card_hold = sprite('splash/card_hold_build.webp');
-entries.scene_card_golden = sprite('splash/card_golden_build.webp');
-for (const skin of HAT_SKINS)
-	for (const clip of HAT_CLIPS) entries[`hat3d_${skin}_${clip}`] = sprite(`hat3d/sheets/${skin}_${clip}.webp`);
-// Huff & Puff gust and Hard Hat Delivery (components/FeatureDrops.svelte)
-for (const k of ['wolf_peek', 'wolf_inhale', 'wolf_huff', 'wolf_blow', 'wolf_defeated', 'delivery_crate', 'delivery_crate_open'] as const)
-	entries[`feat_${k}`] = sprite(`features/${k}.webp`);
-// Win rungs (components/WinRungs.svelte): one flattened sign per rung, fx, and the tumbling piece sheets
-for (const k of ['timber', 'brick', 'stone', 'palace', 'gold'] as const) entries[`rung_sign_${k}`] = sprite(`winrungs/signs/${k}.webp`);
-for (const k of ['flare_horizontal', 'ring_shockwave', 'glint_4point'] as const) entries[`rung_fx_${k}`] = sprite(`winrungs/fx/${k}.webp`);
-for (const k of RUNG_PIECES) entries[`rung_piece_${k}`] = sprite(`winrungs/pieces/${k}_sheet.webp`);
-// winning-symbol dressing (components/SymbolSprite.svelte): gold cell frame under the symbol, glint over it
-entries.win_cell_frame = sprite('ui_scene/cell_frame_gold.webp');
-entries.maxwin_card_landscape = sprite('maxwin/max_win_card_16x9.webp');
-entries.maxwin_card_portrait = sprite('maxwin/max_win_card_portrait.webp');
-for (const fx of HAT_FX) entries[`hat3d_fx_${fx}`] = sprite(`hat3d/sheets/fx_${fx}.webp`);
+for (const mood of SCENE_MOODS)
+	for (const orient of ['landscape', 'portrait'] as const) entries[`bg_${mood}_${orient}`] = sprite(`scene/bg_${mood}_${orient}.webp`);
+// the bay door (components/scene/SceneShutter.svelte): 1024x512 tileable slats + 1024x115 bottom bar
+entries.scene_shutter_slats = sprite('scene/shutter_slats_tile.webp');
+entries.scene_shutter_bar = sprite('scene/shutter_bottom_bar.webp');
+// mode-card art riding on the shutter (768x768, no text)
+entries.scene_card_rescue = sprite('scene/card_rescue.webp');
+entries.scene_card_inferno = sprite('scene/card_inferno.webp');
+entries.scene_card_backdraft = sprite('scene/card_backdraft.webp');
+entries.scene_card_alarm = sprite('scene/card_alarm.webp');
+// win rungs: sign per rung (1200x728), fx, piece sheets, max-win card art
+for (const k of RUNG_SKINS) entries[`rung_sign_${k}`] = sprite(`rungs/sign_${k}.webp`);
+entries.rung_fx_flare_horizontal = sprite('fx/flare_horizontal.webp');
+entries.rung_fx_ring_shockwave = sprite('fx/ring_shockwave.webp');
+entries.rung_fx_glint_4point = sprite('fx/glint_4point.webp');
+for (const k of RUNG_PIECES) entries[`rung_piece_${k}`] = sprite(`rungs/piece_${k}_sheet.webp`);
+entries.maxwin_card_landscape = sprite('rungs/maxwin_card_landscape.webp');
+entries.maxwin_card_portrait = sprite('rungs/maxwin_card_portrait.webp');
+// winning-symbol / anticipation dressing: gold nine-slice cell frame (384 src, 100 px corner)
+entries.win_cell_frame = sprite('fx/cell_frame.webp');
 
 export type SceneAssetKey = keyof typeof entries;
 export default entries;

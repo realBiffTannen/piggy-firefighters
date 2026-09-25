@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-25T03:26:35.630Z",
+  "browser": "chromium 141.0.7390.37",
+  "game": "http://127.0.0.1:3003/",
+  "rgs": "127.0.0.1:3036",
+  "results": [
+    {
+      "fixture": "base_win",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 100,
+      "ms": 71010,
+      "errors": []
+    }
+  ]
+}

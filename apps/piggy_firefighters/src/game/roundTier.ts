@@ -4,9 +4,8 @@
  * The celebration floors live HERE and nowhere else in the client. `components/WinRungs.svelte` derives its count-up
  * pacing tables from END_FEATURE_FLOORS / STANDARD_FLOORS (levels 6-9) plus WIN_CAP_BOOKED for the MAX rung, so the
  * on-screen rung label flips at exactly these floors, never passes the level chosen here, and the win sign never
- * shows more than the booked amount (at most the 25,000x cap). (Before r6 WinRungs held its own copy whose MAX entry
- * was 10000000, the donor's 100,000x cap in booked units: on a capped round the sign counted DOWN from ~$100,000 on a
- * $1 bet to $25,000.)
+ * shows more than the booked amount (at most the 15,000x cap). (Before r6 WinRungs held its own copy whose MAX entry
+ * was 10000000, the donor's 100,000x cap in booked units: on a capped round the sign counted DOWN.)
  *
  * OWNER RULING (2026-09-24): the end-of-feature celebration tier may be DERIVED client-side from the booked round
  * total. The math books `buildEnd.winLevel` / `expandEnd.winLevel` from the FEATURE share only; the plate shows
@@ -14,29 +13,28 @@
  * 6208: 48x feature = band 5, 52x round = band 6) celebrated one rung low.
  *
  * SOURCE of the table (read-only, not re-tuned here): `math/src/config/config.py` `Config.get_win_level(amount,
- * "endFeature")`, the table the math uses for buildEnd / expandEnd (`math/games/lucky/game_events.py`
- * build_end_event / expand_end_event; `docs/GAME_CONTRACT.md` "winLevel (endFeature table)"), with
- * `wincap = 25000` (`math/games/lucky/game_config.py`). Level numbers are the keys of `winLevelMap.ts`
- * (6 BIG, 7 SUPER, 8 MEGA, 9 EPIC, 10 MAX).
+ * "endFeature")`, the table the math uses for buildEnd / expandEnd (for this game: `freeSpinEnd.winLevel`; `docs/GAME_CONTRACT.md` "winLevel (endFeature table)"), with
+ * `wincap = 15000` (`math/games/piggy_firefighters/game_config.py`). Level numbers are the keys of `winLevelMap.ts`
+ * (6 BIG, 7 HUGE, 8 MEGA, 9 EPIC, 10 MAX).
  *
  *   level:      1      2      3       4        5        6         7          8           9           10
- *   x bet:   [0,1)  [1,5)  [5,10)  [10,20)  [20,50)  [50,100)  [100,500)  [500,2000)  [2000,25000)  cap
+ *   x bet:   [0,1)  [1,5)  [5,10)  [10,20)  [20,50)  [50,100)  [100,500)  [500,2000)  [2000,15000)  cap
  *
  * The floors below are written in BOOKED units (integer x100 of the base bet), so a booked amount is only ever
  * COMPARED against them: no arithmetic on a booked amount, and amounts are never changed here.
- * MAX (10) is the 25,000x cap ONLY: it is returned only on cap evidence (a `wincap` event / the math's own
+ * MAX (10) is the 15,000x cap ONLY: it is returned only on cap evidence (a `wincap` event / the math's own
  * level 10), never from an amount alone.
  */
 export const MAX_WIN_LEVEL = 10;
 
-/** The max win, x the base bet (`math/games/lucky/game_config.py` wincap). config.ts `betModes[*].max_win` states the
+/** The max win, x the base bet (`math/games/piggy_firefighters/game_config.py` wincap). config.ts `betModes[*].max_win` states the
  *  same number for the RGS/HUD; the two client copies are machine-checked equal (every mode) and equal to the math's
  *  wincap by qa/gate_fixes/capdisplay/check_source.mjs. It is a literal (not imported from config.ts) so node-run
  *  checks can import this module directly. */
-export const WIN_CAP_X = 25000;
-/** The max win in BOOKED units (integer x100 of the base bet): 2,500,000 = 25,000x = $25,000.00 on a $1 bet.
- *  Every DRAWN figure that can pass it is drawn as min(figure, WIN_CAP_BOOKED): the WinRungs sign, the expanded
- *  scene's FEATURE TOTAL / TOTAL meter (BuildScene) and a single board's own TOTAL sign (BuildBoard). Booked
+export const WIN_CAP_X = 15000;
+/** The max win in BOOKED units (integer x100 of the base bet): 1,500,000 = 15,000x = $15,000.00 on a $1 bet.
+ *  Every DRAWN figure that can pass it is drawn as min(figure, WIN_CAP_BOOKED): the WinRungs sign and the Rescue scene's
+ *  meters (components/rescue/RescueScene.svelte). Booked
  *  amounts, the plate and settlement are never changed. */
 export const WIN_CAP_BOOKED = WIN_CAP_X * 100;
 
@@ -54,7 +52,7 @@ export const END_FEATURE_FLOORS: readonly (readonly [number, number])[] = [
 ] as const;
 
 /** Mirrors `Config.get_win_level(amount, "standard")` (the base-game setWin table), levels 1-9, booked units:
- *  x bet [0,0.1) [0.1,1) [1,2) [2,5) [5,15) [15,30) [30,50) [50,100) [100,25000); level 10 = the cap. Only
+ *  x bet [0,0.1) [0.1,1) [1,2) [2,5) [5,15) [15,30) [30,50) [50,100) [100,15000); level 10 = the cap. Only
  *  WinRungs' count-up pacing reads it; the base-game level itself is the math's booked setWin.winLevel. */
 export const STANDARD_FLOORS: readonly (readonly [number, number])[] = [
 	[1, 0],
