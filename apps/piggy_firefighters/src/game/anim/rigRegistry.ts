@@ -5,7 +5,7 @@ import { resolveRigAssetUrl } from './playbackControl';
 
 // Vite's Object.keys(glob) transform emits path metadata ONLY: public assets stay
 // in static/, with no JS imports, embedded JSON, duplicate atlas pages, or 404 probes.
-const files = Object.keys(import.meta.glob('../../../../static/assets/spine/*/*.{json,atlas}'));
+const files = Object.keys(import.meta.glob('../../../static/assets/spine/*/*.{json,atlas}'));
 const here = import.meta.url;
 export const rigSources = Object.fromEntries(Object.keys(RIG_DEFINITIONS).map(name => [name, {
   json: resolveRigAssetUrl('spine/' + name + '/' + name + '.json', here, import.meta.env.DEV),
