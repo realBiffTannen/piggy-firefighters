@@ -582,3 +582,26 @@ and `d33b09f` only master/body/head — neither is a complete registered set; th
 the same canvas, and the SAME treatment is applied to the reel WILD badge shield and the thumbnail hero so the
 identity matches everywhere — recorded in `art-src/ART_HERO.md` as the one shield rule. Weighted sleeves,
 independent grips/nozzle and planted feet from the raw sources: good, no further paid drawing planned for Chief.
+
+---
+
+## 2026-09-25 — CHIEF PARTS LANDED `62725b3` (Chief alone, as requested)
+
+`art-src/animation/parts/pf_chief/` — the complete registered set for native import:
+- **Canvas** 1024×1536 RGBA, feet line y = 1440, feet centre x = 512; master `master_pf_chief.png` (bbox
+  [42,18,977,1440], 1423 px tall). Every part is laid onto that canvas by a similarity fit (uniform scale +
+  translation) of its ink to the master's ink; `registration.json` holds per-part `fit {s, tx, ty, precision,
+  coarse_score}`, the raw source path, and per-piece `{file, size, sheet_origin, scale_to_canvas}`.
+- **Registered parts (8):** `body_no_head_no_arms`, `head_no_helmet`, `head_blank`, `helmet_only`,
+  `arms_down`, `arms_raised`, `legs`, `coat_tails`; plus the derived single-limb cuts on the same canvas:
+  `arm_left`, `arm_right`, `arm_left_raised`, `arm_right_raised`, `leg_left`, `leg_right`.
+- **Sheets → pieces (29, `pieces/`):** hands `hand_{l,r}_{open,grip,point,thumb}` (both grip variants),
+  `nozzle`, `bugle`, `badge_blank`, `shield_plate` + **`shield_13`** (lettered locally with
+  `tools/art/letter_shield.py`; the one shield treatment, rule in `art-src/ART_HERO.md`), eyes
+  `open/closed/happy/wide`, mouths `closed/open/smile/shout`, brows `level/raised/determined/worried`,
+  `moustache`, `moustache_grin`, `ear_left`, `ear_right`.
+- **Alpha:** all 46 files check clean (`alpha_solidify.py --check`: 0 flagged; max 255, opaque interiors).
+- **QA:** `QA_reassembly.png` (master left, parts reassembled right — helmet/body/legs/hands align on the feet line).
+- Tools that produced it: `art-src/animation/parts/register_parts.py`, `build_parts.py` (deterministic, no
+  paid calls); raw sources under `art-src/generated/rig_pf_chief/` with ledger rows.
+Rookie, Ember and the Trotter skins follow on their own entries (their registration is running now).
