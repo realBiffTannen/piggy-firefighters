@@ -1,7 +1,9 @@
 # PIGGY FIREFIGHTERS — audio lane
 
-Owner: AUDIO lane (Claude). Status 2026-09-25: **tooling, roster, prompts and plans ready; no sound drawn yet (0 draws,
-0 characters spent).** Direction: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO_MAP.md` (generated). Design rules:
+Owner: AUDIO lane (Claude). Status 2026-09-25: **BUILT.** 107 draws (11 music, 96 SFX, 0 failures; account 194,478 ->
+185,542 characters) -> 232 ids x 2 codecs shipped, manifest regenerated, measured. `measure.py` PASS **false** on one named
+draw defect (`base_loop_a` chug 4.14); every other gate passes. Redraws requested below (§Redraws); **human listening NOT RUN**.
+Direction and measured tables: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO_MAP.md` (generated). Design rules:
 `docs/AUDIO_DESIGN_NOTES.md`, theme §6, `docs/GAME_CONTRACT.md`.
 
 ## Layout
@@ -9,7 +11,7 @@ Owner: AUDIO lane (Claude). Status 2026-09-25: **tooling, roster, prompts and pl
 | Path | What |
 |---|---|
 | `audio/cues.json` | THE registry (donor schema: `$schema_note`, `grid`, `mix`, `transitions`, `cues[]`). 232 ids: 11 music (beds, layers, rung beds), 127 SFX, 94 `_turbo` variants. Roster fields come from `tools/roster.py`; build fields (`gain`, `measured`, `mix`, `build`, `loopPoints`, built `durationMs`) from the build and mix passes. `status: planned` = roster only. |
-| `audio/source-record.json` | Paid-generation ledger (JSON array). EVERY ElevenLabs call (draw, failure, quota read) appends one row. Empty now: no call has been made. |
+| `audio/source-record.json` | Paid-generation ledger (JSON array). EVERY ElevenLabs call (draw, failure, quota read) appends one row. 117 rows (96 SFX ok, 11 music ok, 10 quota reads). |
 | `audio/PROVENANCE.jsonl` | Same rows, one per line (created by the first call). |
 | `audio/cues_pcm/` | Raw lossless draws (`<name>.wav`, `<plan>__N.wav`), git-ignored. |
 | `audio/masters/` | 24-bit 44.1 kHz stereo masters, one per cue (the rebuild source; committed). `masters/_src/` = ladder sources and pre-pickup copies (never shipped). |
@@ -31,7 +33,7 @@ Owner: AUDIO lane (Claude). Status 2026-09-25: **tooling, roster, prompts and pl
 | `audio_map.py` | Generates `docs/AUDIO_MAP.md` (works before and after the build). |
 | `montage.py` | 75 s review montage at registered gains (a listening aid for the human pass). |
 | `kit.py`, `loopkit.py`, `beat_tools.py`, `keyfit.py`, `hook_layer.py`, `limit_loop.py` | DSP / codec kit (family code; `kit.py` adds the RIFF-chunk loader, the static-folder guard, the cyclic limiter and the codec guard), loop DSP, onset envelope, 10-cent key-fit, the Firefighters hook + timbres, cyclic ffmpeg limiter. |
-| `bed_overrides.json` | Which draw ships per bed when it is not the plan's first draw (measured decisions only). Empty. |
+| `bed_overrides.json` | Which draw ships per bed and how it is cut (measured decisions only, each with its `why`): 5 beds (base A / Rescue start bar, Inferno -3 st, anticipation entry + tempo, Backdraft entry + 12 bars). |
 
 ## Order of work
 
@@ -100,10 +102,40 @@ different account). The live quota is read by the tool before the first draw; th
   music ... --all` used to exit 2 (it passed bare plan names); it now expands to `<plan>__1` and skips `redrawOf` plans.
   Dry runs: `sfx --all` 96 draws ~1,566 characters, `music --all` 11 draws ~7,370 characters.
 
+## Build fixes made in the first real build (2026-09-25)
+
+- `build_audio.py`: `material_end()` (never loop into a draw's closing decay); `onsetAfter` (entry = first sample within
+  12 dB of the draw's peak after a quiet pre-roll); `semis` (whole-mix rubberband transposition for a draw in the wrong
+  centre); `bars` override; `bar_lift()` (a sparse intro bar the 8-bar ride cannot see); a +-2 ms start nudge to the smallest
+  seam step; reel-stop hybrid (thunk + tuned wood knock C4: the drawn thunk was 99-100 % under 200 Hz); snap post-check
+  searches +-1.5 st around the expected partial (it had taken the hi ta-da source's 3rd harmonic, putting rungs a fourth off);
+  a key-fit that makes the body under 2.5 kHz worse is applied split-band (above 2.5 kHz only) instead; atomic registry write.
+- `mix.py`: re-master from the build's master (`masters/_src/_premix` + sha), so re-running never stacks raises; 4x-oversampled
+  tanh soft clip before the limiter for crest > 16 dB (crackle pops); up to 4 passes; atomic write.
+- `hook_layer.py`: `wood` colour. `audio_map.py`: moment -> cue -> file columns + owner rules. `plans.json`: three `_v2`
+  redraw plans. `bed_overrides.json`: five measured bed decisions.
+
+## Redraws (measured defects; NOT drawn — the coordinator issues them)
+
+```bash
+node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_base92a_v2__1 --force --reason "pf_base92a__1 (base_loop_a): chug 3.99 raw / 4.14 shipped (8th/quarter > 3), C-pent 0.559 (C#/G# smear), near-copy sections 2-3 r 0.906, quiet intro -10.5 dB; measure.py draws 2026-09-25"
+node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_inferno100_v2__1 --force --reason "pf_inferno100__1 (inferno_loop): out of key, C minor/dorian (C .24 Bb .17 G .13 Eb .09), C-pent 0.546 < 0.6 instead of A-minor pentatonic; interim ships -3 st rubberband; measure.py draws 2026-09-25"
+node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_backdraft92_v2__1 --force --reason "pf_backdraft92__1 (backdraft_spins_layer): quiet intro -25.4 dB (5.3 s near-silent head) and decay from 44.5 s = 15.0 bars of material for a 16-bar layer; interim ships 12 bars; measure.py draws 2026-09-25"
+cp audio/cues_pcm/rung_hit_big.wav audio/cues_pcm/rung_hit_big__v1.wav   # keep the first draw: an SFX --force overwrites <name>.wav
+node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json rung_hit_big --force --reason "rung_hit_big: prompt asks a C major brass stab; measured C-pent 0.525, top pitch classes A G# A# E G, tonality 0.53 (too noisy to key-fit), fanfare pickup refused, needed a +4.3 dB soft-clip re-master"
+cp audio/cues_pcm/sym_win_l4.wav audio/cues_pcm/sym_win_l4__v1.wav
+node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json sym_win_l4 --force --reason "sym_win_l4: 99.5% of energy under 200 Hz (200-500 Hz -26 dB, >500 Hz below -39 dB): inaudible on a phone speaker"
+```
+~3,100 characters in all (dry-run estimates 1,265 + 1,155 + 660 + 13 + 11). After any redraw: `measure.py draws` (music),
+set `bed_overrides.json` to the v2 draw ONLY if it measures better (drop the interim `start` / `semis` / `onsetAfter` / `bars`
+keys it no longer needs), keep the better SFX take, then the full rebuild order above.
+
 ## Not done / known limits
 
-- No draw, no master, no static file yet; `cueManifest.ts` is still the ported donor manifest (it is regenerated by
-  `gen_manifest.mjs` after the build — generating it now would list 232 missing files).
-- The donor's untracked `apps/piggy_firefighters/static/assets/audio/lucky/` (388 files) is still there; the build deletes
-  it (`--purge-donor`) before its first write.
-- Human listening: NOT RUN (nothing to hear yet). See SOUND_BIBLE §9 for what the first listen must cover.
+- Human listening: NOT RUN (SOUND_BIBLE §9 lists what the first listen must cover).
+- The runtime seam is a frontend task: the ported `audioManager.ts` / `presentationDirector.ts` / `fx/audioDirector.ts` /
+  `audio/index.ts` / `WinRungs.svelte` still ask for donor ids (`base_loop`, `hat_land_*`, `way_win_*`, `ui_click`,
+  `ambient_site_loop`, `reveal_bed`, `*_build_loop`, `tension_hit`, `sym_land_*` ...), which are no longer in the manifest, so
+  those moments are SILENT until each is wired to its new id (`cues.json` `seam` + `replaces`, `docs/AUDIO_MAP.md`). The
+  runtime skips unknown ids without throwing. The director's 66,899 ms base-bed swap constant should come from `CUES[bed]`.
+- `base_loop_a` fails the chug gate until its redraw lands; `inferno_loop` and `backdraft_spins_layer` ship measured interims.

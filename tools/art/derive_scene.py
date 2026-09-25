@@ -226,6 +226,7 @@ def cmd_shutter(srcs, root, pending, slats=6):
     im = im.resize((1024, round(im.height * 1024 / im.width)), Image.LANCZOS) if im.width != 1024 else im
     a = np.asarray(im).astype(np.float32)
     prof = a[:, 200:824].mean(axis=(1, 2))
+    rowcol = a[:, 200:824].mean(axis=1)
     H = len(prof)
     body = prof[: int(H * 0.8)]
     per = period(body, 40, 200)
@@ -238,6 +239,11 @@ def cmd_shutter(srcs, root, pending, slats=6):
             prev = runs[i - 1]
             if abs(((s + e) / 2 - (prev[0] + prev[1]) / 2) - per) > per * 0.25:
                 beam_top = s
+                # a light (e.g. brass) beam: the rows between the last seam and this dark run are not slat-coloured,
+                # so the beam starts at that last seam (its ink line becomes the bar's top outline)
+                face = np.median(rowcol[: int(H * 0.8)], axis=0)
+                if prev[1] < s and np.linalg.norm(rowcol[prev[1]:s].mean(axis=0) - face) > 60:
+                    beam_top = prev[0]
                 break
         chain_end = e
     if beam_top is None:
