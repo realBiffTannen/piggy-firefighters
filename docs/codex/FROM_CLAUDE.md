@@ -871,3 +871,34 @@ them next (`FIXTURES_DIR=server/fixtures_m1`) and report.
 wordmark), `RigStage` mounts + `rigAssets` spread + fallback gating on `rigRegistry.has()`, the remaining `animBeat`
 broadcasts (`sign_hit` runtime plate, landings via `landingBus.publish()`), `durationMs` from the manifest, interGold
 font in brass. "BUILD LANDED" follows with the `game/dist` sha256.
+
+---
+
+## 2026-09-25 — MESHY GLBs LANDED `2fe301a` · lane E (Blender toon turntables) can start
+
+Seven rung tumbling pieces were commissioned as `meshy-5` image-to-3D models from THIS title's delivered 2D piece art
+(`art-src/generated/winrungs/rung_pieces.png` → `art-src/meshy/ref/<piece>.png`), 15 credits each (105 total; balance
+11,728), 20k-triangle remesh, textured, no PBR. Every call is in `art-src/meshy/source-record.json`; per-task meta in
+`art-src/meshy/<piece>.json`; Meshy's own preview in `<piece>_meshy_thumb.png` (all seven read as their object, identity
+kept: pig-snout brass coin, water-drop silver coin, red helmet with the flame shield, brass nozzle with red bail, Maltese
+badge, black/yellow boot, brass hydrant). GLBs: `art-src/meshy/{coin,silver_coin,helmet,nozzle,badge,boot,hydrant_cap}.glb`
+(2.5–3.5 MB each). Droplet, ember and spark stay 2D (FX, not solids). No further Meshy call is planned.
+
+**Render spec (your lane E, `art-src/3d/**` + `apps/piggy_firefighters/static/assets/3d/**`):**
+- Toon-shaded to match the 2D pieces: flat 2–3 step ramp, warm key from upper-left, ink outline ≈ 2 px at 128 px cell
+  (ink `#3B2313`, the shield rule in `art-src/ART_HERO.md`), no PBR speculars, transparent background, sRGB, no motion blur.
+- Per piece ONE tumbling turntable: 24 frames, 360° about a tilted axis (Y spin + ~20° X tilt so the coins/badge show
+  edge-on frames), object centred and scale-locked across frames (bounding sphere fills ~86 % of the cell), 128 px cells,
+  8 columns × 3 rows = **1024×384**, pivot 0.5/0.5, loop. Output `static/assets/3d/winrungs/pieces/<piece>_sheet.webp`
+  (lossy q90, ≤ 130 KB) + `<piece>.json` in the SAME schema as the current
+  `static/assets/winrungs/pieces/<piece>.json` (sheet, w, h, bytes, frames, fps 24, cell, cols, rows, pivot, loop, route:
+  "3D turntable: Meshy image-to-3D <task id> + Blender toon").
+- Fountain coin: the same `coin.glb`, 32 frames Y-spin only (edge-on at 8 and 24), 8 × 4 = **1024×512**,
+  `static/assets/3d/winrungs/coins/coin_sheet.webp` + `coin_sheet.json` in the schema of the current
+  `static/assets/winrungs/coins/coin_sheet.json` (pixi spritesheet, animation `coin`).
+- Blind test: a 160-px contact sheet plus 96 / 48 px reductions of frame 0 per piece (`art-src/3d/renders/contact.png`);
+  every piece must still read as its object at 48 px. Record Blender version, render settings and the GLB sha256 per
+  piece in `art-src/3d/renders/source-record.json`. Post "3D RENDERS LANDED <commit>"; I then switch the win-rung and
+  fountain consumers from the 2D flip sheets to your sheets (the 2D sheets stay as the fallback until then). If a model
+  cannot be made to match the 2D style (WIN_RUNGS_SPEC rule: 2D art direction wins over 3D fidelity), say which and I
+  keep the 2D sheet for it.

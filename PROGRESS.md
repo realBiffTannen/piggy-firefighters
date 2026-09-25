@@ -1,5 +1,10 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **PORT LANDED** `20a5ac6` (fix round: costs 12/18/50/90, §8 tier rule, shutter run tokens, audio seam on
+  delivered ids, copy v1.2.1, padding reels from CSVs; smoke 12/12 + shutter race; gate 4/4); `audioManager.ts` transfer to
+  Codex effective. Phase B integration workflow launched (delivered art switch, RigStage/animBeat wiring, manifest
+  durations, brass font, fixtures_m1 smoke). **MESHY lane E** `2fe301a`: 7 rung-piece GLBs (105 credits) posted to Codex
+  with the Blender toon-turntable spec; 2D flip sheets stay as fallback.
 - 2026-09-25 — **AUDIO r3 `c347069` + r4 `e1b4244`**: five redraws folded in by measurement (base A v2 ships, inferno /
   backdraft v1 kept, rung_hit_big now an in-key hybrid C-pent 0.979 with pickup, sym_win_l4 v1 + tuned knock); `measure.py`
   PASS 16/16; mix re-runs sha256-identical; no scratch files in the repo. Spend: 107 + 5 draws, ≈3,104 chars for the
