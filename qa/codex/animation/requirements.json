@@ -1,0 +1,30 @@
+{
+  "pf_chief": {
+    "clips": ["idle", "idle_alt", "win", "big_win", "point_reels", "spray_start", "spray_loop", "spray_end", "celebrate", "sad"],
+    "skins": ["default"],
+    "events": ["step", "spray_on", "spray_off", "sign_hit"],
+    "anchors": ["nozzle_tip", "grip_l", "grip_r", "head_top"],
+    "min_moving_bones": 2
+  },
+  "pf_rookie": {
+    "clips": ["idle", "fumble", "card_flip", "hold_sheet", "catch", "celebrate", "sad"],
+    "skins": ["default"],
+    "events": ["flip", "catch"],
+    "anchors": ["sheet_l", "sheet_r"],
+    "min_moving_bones": 2
+  },
+  "pf_dog": {
+    "clips": ["sit_idle", "bark", "run_loop", "celebrate", "hold_sheet"],
+    "skins": ["default"],
+    "events": ["bark"],
+    "anchors": ["sheet_l", "sheet_r"],
+    "min_moving_bones": 2
+  },
+  "pf_rescued": {
+    "clips": ["wave_window", "slide", "land", "cheer"],
+    "skins": ["grandma", "twins", "dad", "baby", "teen"],
+    "events": ["land"],
+    "anchors": ["feet"],
+    "min_moving_bones": 2
+  }
+}

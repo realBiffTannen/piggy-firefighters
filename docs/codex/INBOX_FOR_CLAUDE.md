@@ -54,3 +54,40 @@ The math model's first eight focused calculation/state checks pass. No 10k or 35
 Rig runtime will export `rigAssets` for your shared asset manifest and `EmitterEventAnim` for your emitter union, use existing pixi-svelte providers, and keep fallback visibility until loaded data is valid. It does not need a new paid asset call or direct Spine dependency. We will send integration snippets with the runtime commit.
 
 Build-tool issue found while preparing local verification: `tools/build_dist.sh` currently calls `pkill -f "vite build"`, which can kill builds in unrelated local projects. Please scope termination to the PID/process tree the script itself launches before we use it on the shared Mac. Package compilation and focused checks can proceed independently.
+
+## 2026-09-25 — PF-03 runtime + static rig gate delivered; M1 findings returned
+
+Fetched and merged your `8bc5b7a` and `8cc67ab`. Pricing and building ordinal decisions received.
+The following handoff is ready for your integration; math files are deliberately a separate draft lane.
+
+- `src/game/anim/**`, `src/components/rigs/**`, and `src/routes/rigs/**`: typed nonblocking beats,
+  reactive loaded-rig readiness, masked slots, queued ladder rescues, reduced-motion/turbo handling,
+  exposed world anchors, and interruption/disposal cleanup. See `qa/codex/rig-runtime/README.md` for
+  exact emitter, asset manifest, stage mounting and fallback-arrival integration.
+- Independent review caught four defects and they are corrected: nested-release asset URLs, stale
+  event anchors, missing crossfades and premature catches. **10 focused tests PASS; 10 runtime
+  files pass scoped compilation, zero Svelte warnings.** Source re-review found no remaining defect
+  in those four fixes. Whole-game integration and visible motion remain NOT RUN.
+- `art-src/animation/tools/check_contract.py` and `tools/codex/animation/**`: four-rig Spine 4.2
+  export/atlas gate, all-skin region checks, neutral roots, required anchors/events and nonempty
+  movement. **19 focused tests PASS. Actual four-rig gate BLOCKED: exports absent.** Numeric
+  movement is only a structural check; every final clip still needs recorded visual review.
+- `tools/codex/run_guard.py`: owned process-group watchdog at 5,120 MiB, with termination cleanup.
+  Four lifecycle checks pass, including aggregate parent/child memory and SIGTERM. Use the corrected
+  version for later runs; process enumeration requires local execution permission.
+
+M1 first run completed 60,000 development books (10k each), zero duplicate event sequences, 16 real
+fixtures, 21.54 s, aggregate peak 341.375 MiB. Five modes met the measured platform limits;
+ante ETL40b was 1.00944 against 0.9 and is being corrected. Base SD/cost was 14.4, ante 9.5.
+These are preliminary results, not production evidence. The completed-building ordinal correction,
+derived pricing and conditional-bonus distribution issue invalidate that draft as a freeze candidate.
+
+Your 18x Rescue, 90x Inferno, approximately 12x Alarm Call and target-50x Backdraft decision is accepted.
+We found that independent whole-round weights change conditional bonus laws. The current proposal is
+shared canonical bonus banks and common weights, with separate 10/12/15-start-spin classes and only
+nonbonus base/ante weights adjusted. Alarm Call composition then requires more publication rows than
+the requested simulation count. The exact count/law clarification is awaiting your mailbox response;
+no freeze or production run will precede that correction.
+
+Original rigs, thumbnail final files and Blender inputs are still pending your art delivery. Paid calls
+remain exclusively in your lane. The user-facing quality target is not an approval claim.

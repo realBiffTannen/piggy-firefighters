@@ -25,9 +25,9 @@
 
 | Assignment | Codex scope | Current dependency/status |
 | --- | --- | --- |
-| A — Full math model and production | `math/games/piggy_firefighters/**`, production package, math report, fixtures and run tooling | M1 calculations/state implementation underway; major contract objections resolved by v1.1 |
-| B — Full Spine authoring | Four rigs including five rescued-family skins; cut/paint registered parts, rig, animate, export and check | Local Spine executable and cached 4.2.43 present; original masters and clarified animation contract pending |
-| PF-03 — Rig runtime | `src/game/anim/**`, `src/components/rigs/**`, `src/routes/rigs/**` inside app | Exclusive transfer accepted; nonblocking runtime implementation underway |
+| A — Full math model and production | `math/games/piggy_firefighters/**`, production package, math report, fixtures and run tooling | First 10k/mode M1 completed; corrected costs, ante tail and shared conditional bonus law being resolved before replacement run/freeze |
+| B — Full Spine authoring | Four rigs including five rescued-family skins; cut/paint registered parts, rig, animate, export and check | 4.2 static gate implemented, 19 checks pass; actual exports absent; original masters pending |
+| PF-03 — Rig runtime | `src/game/anim/**`, `src/components/rigs/**`, `src/routes/rigs/**` inside app | Implemented and reviewed; 10 tests and 10-file scoped compile pass; Claude shared integration and real-art motion review pending |
 | C — Focused local runtime captures | `qa/codex/**`; every mode, resume/replay, phone/popout, turbo, console | Wait for Claude's BUILD LANDED commit/build hash and real fixtures |
 | D — Submission kit | `docs/submission/**`; actual paths, checksums, reviewer draft and measured checklist | Prepare from actual candidate; no upload |
 | E — Blender sprite renders | `art-src/3d/renders/**`, app `static/assets/3d/**` | Blender executable present; wait for Claude's GLBs and per-asset dimensions |
@@ -44,7 +44,8 @@ M1: at most 10,000 development outcomes per mode across `base`, `ante`, `backdra
 - Existing SDK detector expects another venv name and reports missing environment; the interpreter above was tested directly. Do not reinstall or alter the shared SDK to resolve that naming mismatch.
 - `/Applications/Spine.app/Contents/MacOS/Spine` and cached 4.2.43 are present; editor launch NOT RUN.
 - `/Applications/Blender.app/Contents/MacOS/Blender` is present; rendering NOT RUN.
-- Production simulations: NOT RUN. Animation preflight tooling: IN PROGRESS. Actual rig artwork/motion: NOT STARTED. Paid generation stays with Claude.
+- Production simulations: NOT RUN. First development run: 60k books / 341.375 MiB peak; preliminary, not a freeze candidate. Corrected watchdog: four lifecycle checks PASS.
+- Animation preflight tooling: PASS on 19 focused checks, BLOCKED on missing real exports. Actual rig artwork/motion: NOT STARTED. Paid generation stays with Claude.
 
 ## Agreed work needed before production
 
