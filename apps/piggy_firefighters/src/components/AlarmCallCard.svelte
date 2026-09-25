@@ -11,9 +11,11 @@
 	// INFERNO RESCUE or a FALSE ALARM (a cat in a tree: nothing is awarded). The outcome is the book's `alarmCall.outcome`
 	// and nothing else; the ring is a fixed beat, never a tease of odds.
 	//
-	// PLACEHOLDER CARD: a framed panel with the placeholder dispatch art (scene_card_alarm) and live text. While the
-	// card waits for its press it holds the HUD press gate (so one Space dismisses it and does NOT start a round) and it
-	// continues by itself after `waitMs` so an unattended / autoplay round never hangs.
+	// THE CARD: a framed panel with the art lane's dispatch painting (scene_card_alarm = splash/card_alarm.webp), Sprocket
+	// at the board (rig slot `cardPresenter`, docs/ANIMATION_CONTRACT.md; nothing draws until an export exists) and live
+	// text. While the card waits for its press it holds the HUD press gate (so one Space dismisses it and does NOT start
+	// a round) and it continues by itself after `waitMs` so an unattended / autoplay round never hangs. The rig beat
+	// `alarmCall {outcome}` fires as the card turns to its outcome.
 	import { Container, Graphics, Text, BaseSprite } from 'pixi-svelte';
 	import { OnHotkey } from 'components-shared';
 	import { OnPressFullScreen } from 'components-layout';
@@ -25,6 +27,9 @@
 	import { audioDirector } from '../game/fx/audioDirector';
 	import { MODE_TITLE, MECHANIC } from '../game/names';
 	import { stateAlarmCall } from '../game/rescue/stateRescue.svelte';
+	import { animBeats } from '../game/fx/animBeats';
+	import { stateSpeed } from '../game/stateSpeed.svelte';
+	import RigStage from './rigs/RigStage.svelte';
 
 	const context = getContext();
 	const cs = $derived(context.stateLayoutDerived.canvasSizes());
@@ -64,6 +69,7 @@
 					revealed = true;
 					stateAlarmCall.phase = 'revealed';
 					audioDirector.alarmReveal(o);
+					animBeats.emit({ beat: 'alarmCall', outcome: o });
 					live = true;
 					timer = setTimeout(close, waitMs);
 				}, ring);
@@ -87,6 +93,10 @@
 		return { w, h, x: cs.width / 2, y: cs.height * 0.45 };
 	});
 	const art = $derived(sceneTex('scene_card_alarm'));
+	// Sprocket at the dispatch board: the card's bottom-left corner, in front of the painting
+	const presenter = $derived({ w: card.w * 0.3, h: card.h * 0.42, x: -card.w / 2 + card.w * 0.03, y: card.h / 2 - card.h * 0.42 - card.h * 0.02 });
+	const speedTier = $derived((stateSpeed.tier === 'super' ? 2 : stateSpeed.tier === 'turbo' ? 1 : 0) as 0 | 1 | 2);
+	const portraitCard = $derived(cs.height > cs.width);
 	const INK = 0x3a2213;
 	const style = (size: number, fill: number) => ({
 		fontFamily: 'StationSign, Lilita One, Inter, sans-serif',
@@ -112,6 +122,9 @@
 			{#if art}
 				<BaseSprite texture={art} anchor={0.5} y={-card.h * 0.1} width={card.w * 0.62} height={card.w * 0.62} alpha={revealed ? 0.35 : 1} />
 			{/if}
+			<Container x={presenter.x} y={presenter.y}>
+				<RigStage {...{ slot: 'cardPresenter' as const }} width={presenter.w} height={presenter.h} scale={1} layout={portraitCard ? 'portrait' : 'desktop'} reducedMotion={prefersReducedMotion()} {speedTier} />
+			</Container>
 			<Text anchor={0.5} y={-card.h * 0.42} text={MODE_TITLE.alarm_call} style={style(card.w * 0.075, 0xf4e9d2)} />
 			{#if !revealed}
 				<Text anchor={0.5} y={card.h * 0.3} text="DISPATCH IS RINGING..." style={style(card.w * 0.05, 0xf5d23c)} />

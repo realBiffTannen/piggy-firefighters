@@ -16,13 +16,17 @@
 	import { watchAnteChip } from '../game/stateGame.svelte';
 	import { prefetchGameAudio } from '../game/audio';
 	import { prewarmTextures } from '../game/prewarm';
+	import { startBeatClock } from '../game/fx/beatClock';
 	import { stateApp } from '../game/stateApp';
+	import { stateRescue, stateBackdraftSpins, stateAlarmCall } from '../game/rescue/stateRescue.svelte';
+	import { stateScene } from '../game/fx/stateScene.svelte';
 	import EnableGameActor from './EnableGameActor.svelte';
 	import ResumeBet from './ResumeBet.svelte';
 	import AlertSound from './AlertSound.svelte';
 	import PlayNotice from './notice/PlayNotice.svelte';
 	import UiSound from './UiSound.svelte';
 	import Background from './Background.svelte';
+	import Mascots from './Mascots.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import Anticipations from './Anticipations.svelte';
@@ -49,7 +53,26 @@
 		if (import.meta.env.DEV) {
 			void import('../game/devFixture').then(({ initDevFixture }) => initDevFixture());
 		}
-		return stopChipWatch;
+		// the ambient rig beats (idle every 10 s, reduced-motion changes), docs/ANIMATION_CONTRACT.md
+		const stopBeatClock = startBeatClock();
+		// DEV ONLY (stripped from production builds): the QA capture driver (qa/phaseb/capture.mjs) reads the scene state
+		if (import.meta.env.DEV && typeof window !== 'undefined') {
+			(window as unknown as { __pffScene?: unknown }).__pffScene = {
+				get rescue() { return stateRescue.active; },
+				get rescued() { return stateRescue.rescued; },
+				get sprayed() { return stateRescue.rooms.reduce((n, r) => n + r.sprayed, 0); },
+				get backdraftSpins() { return stateBackdraftSpins.active; },
+				get alarm() { return stateAlarmCall.phase; },
+				get covered() { return stateScene.covered; },
+				get mood() { return stateScene.mood; },
+				get blaze() { return context.stateGame.board.reduce((n, reel) => n + reel.reelState.symbols.filter((s) => s.rawSymbol.blaze).length, 0); },
+				get spinning() { return context.stateGame.board.some((reel) => reel.reelState.motion !== 'stopped'); },
+			};
+		}
+		return () => {
+			stopChipWatch();
+			stopBeatClock();
+		};
 	});
 
 	// AN ACTIVE ROUND'S STAKE CANNOT BE CHANGED UNTIL THAT ROUND HAS PLAYED OUT (approval checklist,
@@ -103,13 +126,11 @@
 	{:else}
 		<ResumeBet />
 
-		<MainContainer>
-			<BoardFrame />
-		</MainContainer>
+		<!-- Chief Hamm and Ember beside the reels (rig slots mascotLeft / mascotRight; nothing draws until a rig lands) -->
+		<Mascots />
 
 		<MainContainer>
-			<!-- the Rescue block above the reels (rooms, multiplier, total) + Backdraft Spins plate + feature banner -->
-			<RescueScene />
+			<BoardFrame />
 		</MainContainer>
 
 		<MainContainer>
@@ -120,6 +141,12 @@
 			<BoardFx />
 			<BackdraftFx />
 			<LinePop />
+		</MainContainer>
+
+		<MainContainer>
+			<!-- the Rescue block above the reels (rooms, ladder, hose, badge, plates) + Backdraft Spins plate + the feature
+			     banner; over the reels so a water jet can cross the board on its way to a window -->
+			<RescueScene />
 		</MainContainer>
 
 		<Win />

@@ -10,7 +10,7 @@ Pipeline (docs/PIGGY_FIREFIGHTERS_THEME.md, art map section 2):
   -> deterministic derive_*.py (this module) -> runtime file in apps/piggy_firefighters/static/assets/<family>/
 
 Rules enforced here:
-  * never write into static/assets/{hud,fonts,audio,spine,placeholder} (guard_out)
+  * never write into static/assets/{hud,fonts,audio,spine} (guard_out)
   * before a derive writes into a runtime family dir, the untracked LUCKY donor copies in it are deleted
     (purge_donor_copies: only files git does not track AND byte-identical to the donor file at the same path)
   * alpha clean-up (the model's alpha tops out at 254 and leaves a faint coloured glow), speck removal, RGB zeroed
@@ -46,7 +46,7 @@ DONOR_STATIC = os.environ.get("PF_DONOR_STATIC", "/home/user/lucky/apps/lucky/st
 # runtime families the art lane writes / families it must never touch
 RUNTIME_FAMILIES = ("sprites", "environment", "ambient", "buycards", "splash", "winrungs", "maxwin", "ui_scene",
                     "branding", "features")
-PROTECTED_FAMILIES = ("hud", "fonts", "audio", "spine", "placeholder")
+PROTECTED_FAMILIES = ("hud", "fonts", "audio", "spine")
 
 # theme bible palette (docs/PIGGY_FIREFIGHTERS_THEME.md section 1); flame orange is for fire / FX only
 PALETTE = {
@@ -125,7 +125,7 @@ def exists_src(name, base=GEN):
 
 
 def guard_out(path):
-    """Refuse any write into the protected runtime families (hud, fonts, audio, spine, placeholder)."""
+    """Refuse any write into the protected runtime families (hud, fonts, audio, spine)."""
     ap = os.path.abspath(path)
     for fam in PROTECTED_FAMILIES:
         root = os.path.join(STATIC, fam)

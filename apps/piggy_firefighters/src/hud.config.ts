@@ -45,25 +45,15 @@ try {
 }
 
 // ---- pay-grid art -----------------------------------------------------------
-// The rules sheet shows the game's OWN symbol tiles (placeholders until the art lane lands:
-// static/assets/placeholder/symbols). The files are served next to index.html, so the URL is resolved at RUNTIME
-// against the page (`new URL('../assets/…', import.meta.url)` is rewritten by Vite to a path that does not exist).
-const SYMBOL_DIR = './assets/placeholder/symbols';
+// The rules sheet shows the game's OWN symbol tiles (the art lane's square sheet, static/assets/sprites/symbolsCartoon,
+// the same files the reels draw). The files are served next to index.html, so the URL is resolved at RUNTIME against
+// the page (`new URL('../assets/…', import.meta.url)` is rewritten by Vite to a path that does not exist).
+const SYMBOL_DIR = './assets/sprites/symbolsCartoon';
 const symbolUrl = (file: string): string =>
 	typeof document === 'undefined' ? `${SYMBOL_DIR}/${file}.webp` : new URL(`${SYMBOL_DIR}/${file}.webp`, document.baseURI).href;
-const SYMBOL_FILE: Record<string, string> = {
-	H1: 'h1',
-	H2: 'h2',
-	H3: 'h3',
-	H4: 'h4',
-	L1: 'l1',
-	L2: 'l2',
-	L3: 'l3',
-	L4: 'l4',
-	W: 'w',
-	ALARM: 'alarm',
-	GALARM: 'galarm',
-};
+const SYMBOL_FILE: Record<string, string> = Object.fromEntries(
+	['H1', 'H2', 'H3', 'H4', 'L1', 'L2', 'L3', 'L4', 'W', 'ALARM', 'GALARM'].map((id) => [id, `sym_${id}`]),
+);
 
 const symbolCss = (symbolId: string, boxPx: number): SymbolCss | null => {
 	const file = SYMBOL_FILE[symbolId];
@@ -146,9 +136,9 @@ export const hudConfig: HudConfig = {
 	// One ante (ALARM BOOST): no tier chooser. The buy plates are painted art, drawn smooth.
 	features: { anteTiers: false, smoothCardArt: true },
 
-	// Feature-card art: one 768x512 webp per mode, no baked text (the HUD draws title, price and rules over it).
-	// PLACEHOLDERS (static/assets/placeholder/buycards) until the art lane delivers; basenames are kebab-case.
-	assets: { buyCardDir: './assets/placeholder/buycards', buyCardExt: 'webp' },
+	// Feature-card art: one 768x512 webp per mode, no baked text (the HUD draws title, price and rules over it), the
+	// art lane's plates under static/assets/buycards (tools/art/derive_cards.py); basenames are kebab-case.
+	assets: { buyCardDir: './assets/buycards', buyCardExt: 'webp' },
 	betModeArt: {
 		ante: 'ante',
 		backdraft_spins: 'backdraft-spins',

@@ -41,8 +41,12 @@ export type AudioDirector = {
 	backdraft: () => void;
 	/** A cell bursts into a Blaze Wild (n = 0-based order). */
 	blazeIgnite: (n: number) => void;
-	/** A W sprays its room: water rush + steam hiss. */
-	douse: () => void;
+	/** The water jet leaves the nozzle (components/rescue/RescueScene.svelte spray FX): the hose opens and runs. */
+	sprayStart: () => void;
+	/** The jet ends: the hose shuts off. */
+	sprayEnd: () => void;
+	/** Steam where a fire goes out or on a rescued room. */
+	steam: () => void;
 	/** A room is rescued: the two-note brass "ta-da", stepping up with the multiplier. */
 	rescue: (multiplier: number) => void;
 	/** Inferno: the rescued pig's instant prize (coin shower). */
@@ -99,10 +103,23 @@ export const audioDirector: AudioDirector = {
 		setTimeout(() => play({ family: 'backdraft3', coalesceMs: 400 }, turbo('backdraft_chord')), 320);
 	},
 	blazeIgnite: (n) => play({ family: 'blaze', coalesceMs: 60 }, n <= 0 ? 'blaze_ignite' : `blaze_ignite_${Math.min(5, n + 1)}`, 'blaze_ignite'),
-	douse: () => {
+	sprayStart: () => {
 		play({ family: 'douse', coalesceMs: 80 }, turbo('hose_start'));
-		setTimeout(() => play({ family: 'steam', coalesceMs: 120 }, turbo('steam')), 220);
+		try {
+			audioManager.startSfxLoop('hose_loop', 120);
+		} catch {
+			/* no audio */
+		}
 	},
+	sprayEnd: () => {
+		try {
+			audioManager.stopSfxLoop('hose_loop', 160);
+		} catch {
+			/* no audio */
+		}
+		play({ family: 'douse_end', coalesceMs: 80 }, turbo('hose_end'));
+	},
+	steam: () => play({ family: 'steam', coalesceMs: 120 }, turbo('steam')),
 	rescue: (multiplier) => play({ family: 'rescue', coalesceMs: 120 }, turbo(`rescue_tada_${Math.min(8, Math.max(1, Math.round(multiplier)))}`)),
 	prize: () => play({ family: 'prize', coalesceMs: 60 }, turbo('prize_coins')),
 	extraSpin: () => play(undefined, turbo('spins_added')),

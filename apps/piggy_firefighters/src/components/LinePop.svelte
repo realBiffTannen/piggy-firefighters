@@ -41,6 +41,11 @@
 
 	const pop = (positions: { reel: number; row: number }[], amount: number, multiplier?: number) => {
 		if (!root || !positions.length || amount <= 0) return;
+		// DEV ONLY (stripped from production builds): the QA capture driver waits for a line pop
+		if (import.meta.env.DEV && typeof window !== 'undefined') {
+			const w = window as unknown as { __pffLinePops?: number };
+			w.__pffLinePops = (w.__pffLinePops ?? 0) + 1;
+		}
 		const byReel = [...positions].sort((a, b) => a.reel - b.reel);
 		const mid = byReel[Math.floor((byReel.length - 1) / 2)];
 		const node = new PIXI.Container();

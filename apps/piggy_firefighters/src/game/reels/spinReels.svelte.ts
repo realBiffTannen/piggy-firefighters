@@ -114,7 +114,8 @@ export type CreateSpinReelOptions = {
 	initialSymbols: RawSymbol[];
 	initialSymbolState: SymbolState;
 	onReelStopping: () => void;
-	onSymbolLand: (args: { rawSymbol: RawSymbol }) => void;
+	/** a visible symbol has landed: `row` is the 0-based BOARD row (contract §8 cell numbering) */
+	onSymbolLand: (args: { rawSymbol: RawSymbol; reelIndex: number; row: number }) => void;
 };
 
 const createReelSymbol = (rawSymbol: RawSymbol, row: number, symbolState: SymbolState) => ({
@@ -353,7 +354,7 @@ export const createSpinBoard = (board: SpinReel[]) => {
 			s.symbolState = 'land';
 			// only what the player can see has landed: the rows above and below the window are not on
 			// the board (contract §3) and must not count as alarms or make a sound
-			if (s.row >= 1 && s.row <= REEL_ROWS - 2) reel.options.onSymbolLand({ rawSymbol: s.rawSymbol });
+			if (s.row >= 1 && s.row <= REEL_ROWS - 2) reel.options.onSymbolLand({ rawSymbol: s.rawSymbol, reelIndex: reel.reelIndex, row: s.row - 1 });
 		}
 	};
 

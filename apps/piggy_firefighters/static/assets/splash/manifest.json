@@ -1,47 +1,47 @@
 {
-  "note": "PIGGY FIREFIGHTERS splash registry (art lane). Mirrors src/components/splash/copy.ts SPLASH_DECK (same ids, files, keys, order); NOT fetched at runtime. Files are served from artDir (splashAssetUrl): PLACEHOLDERS today (tools/placeholder/make_placeholders.py). Art lane: repaint each card in place at 768x768 WEBP with no baked text; shutter tiles 1024x512 (tileable) + 1024x115; splash payload <= 1.2 MB. The other files in this directory are donor leftovers, unreferenced by the app.",
-  "cards": [
-    {
-      "id": "chief",
-      "art": "card_chief.webp",
-      "titleKey": "SPLASH_CARD_CHIEF_TITLE",
-      "bodyKey": "SPLASH_CARD_CHIEF_BODY"
-    },
-    {
-      "id": "lines",
-      "art": "card_lines.webp",
-      "titleKey": "SPLASH_CARD_LINES_TITLE",
-      "bodyKey": "SPLASH_CARD_LINES_BODY"
-    },
-    {
-      "id": "backdraft",
-      "art": "card_backdraft.webp",
-      "titleKey": "SPLASH_CARD_BACKDRAFT_TITLE",
-      "bodyKey": "SPLASH_CARD_BACKDRAFT_BODY"
-    },
-    {
-      "id": "alarm",
-      "art": "card_alarm.webp",
-      "titleKey": "SPLASH_CARD_ALARM_TITLE",
-      "bodyKey": "SPLASH_CARD_ALARM_BODY"
-    },
-    {
-      "id": "rescue",
-      "art": "card_rescue.webp",
-      "titleKey": "SPLASH_CARD_RESCUE_TITLE",
-      "bodyKey": "SPLASH_CARD_RESCUE_BODY"
-    },
-    {
-      "id": "maxwin",
-      "art": "card_maxwin.webp",
-      "titleKey": "SPLASH_CARD_MAX_TITLE",
-      "bodyKey": "SPLASH_CARD_MAX_BODY"
-    }
-  ],
-  "shutter": {
-    "slatsTile": "shutter_slats_tile.webp",
-    "bottomBar": "shutter_bottom_bar.webp",
-    "note": "Station 13 bay door; the same tiles ride on the in-game shutter (placeholder/scene)."
+ "note": "PIGGY FIREFIGHTERS splash registry (art lane). Mirrors src/components/splash/copy.ts SPLASH_DECK (same ids, files, keys, order); NOT fetched at runtime. Files are served from artDir (splashAssetUrl): the art lane's 768x768 WEBP cards with no baked text (tools/art/derive_cards.py splash); shutter tiles 1024x512 (tileable) + 1024x115 ride on the splash hand-off AND the in-game bay door (game/assetsScene.ts scene_shutter_*); splash payload <= 1.2 MB.",
+ "cards": [
+  {
+   "id": "chief",
+   "art": "card_chief.webp",
+   "titleKey": "SPLASH_CARD_CHIEF_TITLE",
+   "bodyKey": "SPLASH_CARD_CHIEF_BODY"
   },
-  "artDir": "assets/placeholder/splash/"
+  {
+   "id": "lines",
+   "art": "card_lines.webp",
+   "titleKey": "SPLASH_CARD_LINES_TITLE",
+   "bodyKey": "SPLASH_CARD_LINES_BODY"
+  },
+  {
+   "id": "backdraft",
+   "art": "card_backdraft.webp",
+   "titleKey": "SPLASH_CARD_BACKDRAFT_TITLE",
+   "bodyKey": "SPLASH_CARD_BACKDRAFT_BODY"
+  },
+  {
+   "id": "alarm",
+   "art": "card_alarm.webp",
+   "titleKey": "SPLASH_CARD_ALARM_TITLE",
+   "bodyKey": "SPLASH_CARD_ALARM_BODY"
+  },
+  {
+   "id": "rescue",
+   "art": "card_rescue.webp",
+   "titleKey": "SPLASH_CARD_RESCUE_TITLE",
+   "bodyKey": "SPLASH_CARD_RESCUE_BODY"
+  },
+  {
+   "id": "maxwin",
+   "art": "card_maxwin.webp",
+   "titleKey": "SPLASH_CARD_MAX_TITLE",
+   "bodyKey": "SPLASH_CARD_MAX_BODY"
+  }
+ ],
+ "shutter": {
+  "slatsTile": "shutter_slats_tile.webp",
+  "bottomBar": "shutter_bottom_bar.webp",
+  "note": "Station 13 bay door; the same tiles ride on the in-game shutter (assetsScene scene_shutter_slats / scene_shutter_bar)."
+ },
+ "artDir": "assets/splash/"
 }

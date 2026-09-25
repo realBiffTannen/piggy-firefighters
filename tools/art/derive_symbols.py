@@ -193,7 +193,7 @@ def main():
         tiles.append((key, tile))
     if "wild_badge" in man:
         man["wild_badge_note"] = ("tile px of the lettered WILD badge; frontend symbolMotion.WILD_BANNER.square must "
-                                  "match sym_W (placeholder rect x 62, y 204, w 262, h 98)")
+                                  "match sym_W (the frontend reads the delivered rect; it is x 120, y 209, w 143, h 129)")
     write_json(man_path, man)
     if tiles and a.contact:
         print("contact ->", rel(contact_sheet(tiles, a.contact)))

@@ -1,7 +1,7 @@
 /**
  * PIGGY FIREFIGHTERS splash — the intro-card deck and every string the splash shows.
  *
- * THE DECK mirrors `static/assets/placeholder/splash/manifest.json` (same ids, same art file names, same titleKey /
+ * THE DECK mirrors `static/assets/splash/manifest.json` (same ids, same art file names, same titleKey /
  * bodyKey, same order). The manifest is the art lane's registry; it is NOT fetched at runtime, because a fetch would
  * put a network round-trip in front of the first card on a cold cache. Add a card in both places.
  *
@@ -30,8 +30,8 @@ export type SplashCard = {
 	bodyKey: string;
 };
 
-/** Same ids / files / keys / order as static/assets/placeholder/splash/manifest.json. The art files are PLACEHOLDERS
- *  (tools/placeholder/make_placeholders.py) until the art lane repaints them in place (768x768, no text). */
+/** Same ids / files / keys / order as static/assets/splash/manifest.json: the art lane's 768x768 paintings (no text;
+ *  tools/art/derive_cards.py splash). */
 export const SPLASH_DECK: readonly SplashCard[] = [
 	{ id: 'chief', art: 'card_chief.webp', titleKey: 'SPLASH_CARD_CHIEF_TITLE', bodyKey: 'SPLASH_CARD_CHIEF_BODY' },
 	{ id: 'lines', art: 'card_lines.webp', titleKey: 'SPLASH_CARD_LINES_TITLE', bodyKey: 'SPLASH_CARD_LINES_BODY' },
@@ -53,7 +53,7 @@ export const SPLASH_SHUTTER = {
  * chunk directory.
  */
 export const splashAssetUrl = (file: string): string =>
-	typeof document === 'undefined' ? '' : new URL(`./assets/placeholder/splash/${file}`, document.baseURI).href;
+	typeof document === 'undefined' ? '' : new URL(`./assets/splash/${file}`, document.baseURI).href;
 
 /** The rule figures the cards quote — each typed exactly once (contract §3-§6 via rulesContent CONTRACT, config). */
 const RULES = {

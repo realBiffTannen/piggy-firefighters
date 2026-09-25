@@ -9,8 +9,9 @@
 	// left to right and, as the front passes each booked cell, that cell bursts into a BLAZE WILD (the reel symbol is
 	// swapped to W drawn on fire: rescueDirector.igniteCell). Embers drift up afterwards.
 	//
-	// PLACEHOLDER VFX: pooled Graphics flames and embers in the theme's flame orange / hydrant yellow. The VFX lane
-	// replaces the pictures; the beat (flash -> sweep -> ignite in reel order -> settle) and the awaited contract stay.
+	// VFX: pooled Graphics flames and embers in the theme's flame orange / hydrant yellow (procedural particles, the
+	// runtime's own FX per docs/ANIMATION_CONTRACT.md). The beat (flash -> sweep -> ignite in reel order -> settle) and
+	// the awaited contract are what the directors rely on.
 	// The book decides which cells ignite; this component only decides WHEN within the sweep. Speed tiers shorten the
 	// sweep; reduced motion ignites every cell at once behind a brief fade; the handler re-applies every ignition after
 	// this resolves, so the evaluated board is always the book's even if the picture was skipped.
@@ -25,6 +26,8 @@
 	import { boardTicker } from '../game/reels/boardTicker';
 	import { igniteCell } from '../game/rescue/rescueDirector';
 	import { audioDirector } from '../game/fx/audioDirector';
+	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { rescueProp } from '../game/artMeta';
 
 	const context = getContext();
 	const S = SYMBOL_SIZE;
@@ -35,15 +38,25 @@
 	const FLAME = [0xff7a1a, 0xf5d23c, 0xff4a1a, 0xffb347];
 
 	// Backdraft Spins: every Blaze Wild carries a multiplier (contract v1.1 §7). Its badge sits on the cell until the
-	// next reveal clears the board (`paylinesClear`). Placeholder picture: a brass disc with the figure.
+	// next reveal clears the board (`paylinesClear`): the art lane's blank brass badge (features/rescue/badge_blank.webp),
+	// lettered here.
 	const badges: PIXI.Container[] = [];
+	const BADGE = rescueProp('badge_blank');
 	const badge = (c: { reel: number; row: number; mult?: number }) => {
 		if (!root || !c.mult) return;
 		const node = new PIXI.Container();
-		const disc = new PIXI.Graphics().circle(0, 0, S * 0.17).fill(0xe9b23b).stroke({ width: 4, color: 0x3a2213 });
+		const art = sceneTex('rescue_badge_blank') as PIXI.Texture | undefined;
+		let disc: PIXI.Container;
+		if (art) {
+			const s = new PIXI.Sprite(art);
+			s.anchor.set(0.5);
+			s.width = S * 0.4;
+			s.height = (S * 0.4 * BADGE.h) / BADGE.w;
+			disc = s;
+		} else disc = new PIXI.Graphics().circle(0, 0, S * 0.17).fill(0xe9b23b).stroke({ width: 4, color: 0x3a2213 });
 		const label = new PIXI.Text({
 			text: `x${c.mult}`,
-			style: { fontFamily: 'StationSign, Lilita One, Inter, sans-serif', fontSize: S * 0.17, fill: 0x3a2213, align: 'center' },
+			style: { fontFamily: 'StationSign, Lilita One, Inter, sans-serif', fontSize: S * 0.15, fill: 0x3b2313, align: 'center' },
 		});
 		label.anchor.set(0.5);
 		node.addChild(disc, label);

@@ -4,7 +4,10 @@
  *
  *   PORT=3036 BOOKS_DIR=none node server/mock-rgs.mjs &
  *   (cd apps/piggy_firefighters && pnpm dev) &          # port 3003
- *   node qa/smoke/port/smoke.mjs [fixture ...]
+ *   node qa/smoke/port/smoke.mjs [fixture ...]           # ALL_FIXTURES=1 for the whole index
+ *   FIXTURES_DIR=server/fixtures_m1 on BOTH the mock and this driver runs the math lane's M1 books instead
+ *   (results_m1.json + screenshots under qa/smoke/port/m1/); expected payouts come from the books, expected rungs from
+ *   the contract §8 rule at each fixture's mode cost.
  *
  * For each fixture: open the game with `&fixture=<name>` (the dev build pins the mock to that book), pass the splash
  * gate, press Space once, wait for the round's `finalWin` (DEV-only hook `window.__pffFinalWins`, pushed by the
@@ -39,10 +42,51 @@ const { chromium } = resolvePlaywright();
 
 const GAME = process.env.GAME_URL ?? 'http://127.0.0.1:3003/';
 const RGS = process.env.RGS_HOST ?? '127.0.0.1:3036';
+// FIXTURES_DIR selects the fixture set the MOCK is serving (default server/fixtures; server/fixtures_m1 = the math
+// lane's real-model books). The index there is the roster, the booked payouts and the mode costs. OUT_DIR keeps the
+// two sets' screenshots and results apart (default: this folder; results_<set>.json for a non-default set).
+const FIXTURES_DIR = process.env.FIXTURES_DIR ?? join(HERE, '..', '..', '..', 'server', 'fixtures');
+const SET_NAME = /fixtures_m1/.test(FIXTURES_DIR) ? 'm1' : 'dev';
+const OUT_DIR = process.env.OUT_DIR ?? (SET_NAME === 'dev' ? HERE : join(HERE, SET_NAME));
+const INDEX = (() => {
+	try {
+		return JSON.parse(readFileSync(join(FIXTURES_DIR, 'index.json'), 'utf8'));
+	} catch {
+		return { fixtures: [], costs: {} };
+	}
+})();
 const FIXTURES = process.argv.slice(2).length
 	? process.argv.slice(2)
-	: ['base_win', 'base_backdraft_win', 'base_trigger_rescue', 'alarm_call_false', 'max_win'];
-const TURBO = new Set(['base_trigger_rescue', 'base_trigger_inferno', 'rescue_buy', 'inferno_buy', 'alarm_call_rescue', 'backdraft_spins', 'max_win']);
+	: process.env.ALL_FIXTURES
+		? INDEX.fixtures.map((f) => f.name)
+		: ['base_win', 'base_backdraft_win', 'base_trigger_rescue', 'alarm_call_false', 'max_win'];
+/** the booked payout of a fixture (x100 of the base bet): the index row, else the book itself (the M1 index has none) */
+const bookedPayout = (name) => {
+	const row = INDEX.fixtures.find((f) => f.name === name);
+	if (row && typeof row.payoutMultiplier === 'number') return row.payoutMultiplier;
+	try {
+		const book = JSON.parse(readFileSync(join(FIXTURES_DIR, row?.file ?? `${name}.json`), 'utf8'));
+		return typeof book.payoutMultiplier === 'number' ? book.payoutMultiplier : null;
+	} catch {
+		return null;
+	}
+};
+const bookHas = (name, type) => {
+	const row = INDEX.fixtures.find((f) => f.name === name);
+	if (row?.events) return row.events.includes(type);
+	try {
+		const book = JSON.parse(readFileSync(join(FIXTURES_DIR, row?.file ?? `${name}.json`), 'utf8'));
+		return (book.events ?? []).some((e) => e.type === type);
+	} catch {
+		return false;
+	}
+};
+const costOf = (name) => {
+	const row = INDEX.fixtures.find((f) => f.name === name);
+	return Number(row?.cost ?? INDEX.costs?.[row?.mode ?? 'base'] ?? 1);
+};
+// a multi-step round (a bonus) runs with the DEV turbo switch so the pass stays short; base rounds play at normal speed
+const TURBO = new Set(FIXTURES.filter((name) => ['freeSpinTrigger', 'rescueStart', 'alarmCall', 'backdraftSpinsStart'].some((t) => bookHas(name, t)) && !(bookHas(name, 'alarmCall') && !bookHas(name, 'rescueStart'))));
 
 const executablePath = () => {
 	const root = process.env.PLAYWRIGHT_BROWSERS_PATH;
@@ -61,22 +105,25 @@ const launch = async () => {
 	}
 };
 
-// the booked payout of each fixture (server/fixtures/index.json): the round must end on exactly this finalWin
-const EXPECTED = (() => {
-	try {
-		const index = JSON.parse(readFileSync(join(HERE, '..', '..', '..', 'server', 'fixtures', 'index.json'), 'utf8'));
-		return Object.fromEntries(index.fixtures.map((f) => [f.name, f.payoutMultiplier]));
-	} catch {
-		return {};
-	}
-})();
+// the booked payout of each fixture: the round must end on exactly this finalWin
+const EXPECTED = Object.fromEntries(INDEX.fixtures.map((f) => [f.name, bookedPayout(f.name)]));
 
-/** Rung levels (6 BIG … 10 MAX) each DEV fixture must climb, once, on its round total (contract §8 v1.2.2, tier 0 when
- *  W <= S; the dev fixtures' payouts at the frozen costs). Fixtures not listed are not checked. */
-const EXPECTED_RUNGS = {
-	base_nowin: [], base_win: [], base_backdraft_win: [], ante_win: [], base_trigger_rescue: [],
-	base_trigger_inferno: [9], rescue_buy: [9], inferno_buy: [], alarm_call_rescue: [6], alarm_call_false: [],
-	backdraft_spins: [9], max_win: [10],
+/** Rung levels (6 BIG … 10 MAX) a fixture must climb, once, on its round total: contract §8 v1.2.2 — tier 0 when
+ *  W <= S (the charged cost of its mode), then the floors in base-bet units 15 / 30 / 50 / 100 x, MAX only on a
+ *  `wincap`. The same rule as apps/piggy_firefighters/src/game/roundTier.ts (node-checked by qa/gate); restated here so
+ *  the driver needs no TypeScript. */
+const expectedRungs = (name) => {
+	const w = bookedPayout(name);
+	if (w === null) return undefined;
+	const s = costOf(name) * 100;
+	if (w <= s) return [];
+	if (bookHas(name, 'wincap')) return [10];
+	const x = w / 100;
+	if (x >= 100) return [9];
+	if (x >= 50) return [8];
+	if (x >= 30) return [7];
+	if (x >= 15) return [6];
+	return [];
 };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -108,18 +155,18 @@ const runOne = async (browser, fixture) => {
 		await sleep(600);
 		// every win-rung climb of the round (contract §8: rungs play ONCE, on the round total, at roundTier)
 		result.rungs = await page.evaluate(() => (window).__pffRungs ?? []);
-		const wantRungs = EXPECTED_RUNGS[fixture];
+		const wantRungs = expectedRungs(fixture);
 		if (wantRungs && JSON.stringify(result.rungs.map((r) => r.level)) !== JSON.stringify(wantRungs))
 			errors.push(`driver: rung levels ${JSON.stringify(result.rungs.map((r) => r.level))} != contract §8 ${JSON.stringify(wantRungs)}`);
 		result.expected = EXPECTED[fixture] ?? null;
 		if (result.expected !== null && result.finalWin !== result.expected) errors.push(`driver: finalWin ${result.finalWin} != booked ${result.expected}`);
 		await sleep(1800); // let the last presentation (outro / shutter lift) settle for the capture
-		await page.screenshot({ path: join(HERE, `${fixture}.png`) });
+		await page.screenshot({ path: join(OUT_DIR, `${fixture}.png`) });
 		result.passed = !errors.some((e) => e.startsWith('driver:'));
 	} catch (error) {
 		errors.push(`driver: ${String(error?.message ?? error).split('\n')[0]}`);
 		try {
-			await page.screenshot({ path: join(HERE, `${fixture}.FAILED.png`) });
+			await page.screenshot({ path: join(OUT_DIR, `${fixture}.FAILED.png`) });
 		} catch {
 			/* no page */
 		}
@@ -131,7 +178,7 @@ const runOne = async (browser, fixture) => {
 	return result;
 };
 
-mkdirSync(HERE, { recursive: true });
+mkdirSync(OUT_DIR, { recursive: true });
 const browser = await launch();
 const version = browser.version();
 // WARM-UP: the dev server compiles and may re-optimize dependencies on the first page load after an edit, which
@@ -156,5 +203,8 @@ for (const fixture of FIXTURES) {
 	for (const e of r.errors) console.log(`   ${e}`);
 }
 await browser.close();
-writeFileSync(join(HERE, 'results.json'), JSON.stringify({ at: new Date().toISOString(), browser: `chromium ${version}`, game: GAME, rgs: RGS, results }, null, 2));
+writeFileSync(
+	join(OUT_DIR, SET_NAME === 'dev' ? 'results.json' : `results_${SET_NAME}.json`),
+	JSON.stringify({ at: new Date().toISOString(), browser: `chromium ${version}`, game: GAME, rgs: RGS, fixturesDir: FIXTURES_DIR, results }, null, 2),
+);
 process.exit(results.every((r) => r.passed) ? 0 : 1);

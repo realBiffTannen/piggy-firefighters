@@ -19,6 +19,7 @@
  */
 import { audioManager } from './audioManager';
 import { presentationDirector } from './presentationDirector';
+import { CUES } from './cueManifest';
 import type { Sfx } from '@crashgalaxy/hud';
 import type { WinTier } from '../roundTier';
 
@@ -141,8 +142,10 @@ export const gameSound = {
 		if (fanfarePlayed) return;
 		fanfarePlayed = true;
 		alarmLane(() => {
-			audioManager.duck({ holdMs: 1400 });
-			audioManager.playCue(turboCue('trigger_fanfare'));
+			// the bed ducks for the fanfare's authored length (cueManifest durationMs, never a typed number)
+			const id = turboCue('trigger_fanfare');
+			audioManager.duck({ holdMs: Math.round((CUES[id]?.durationMs ?? CUES.trigger_fanfare.durationMs) * 0.55) });
+			audioManager.playCue(id);
 		}, 60);
 	},
 	/** Reels are travelling: a soft ratchet loop from spin start to the last stop. Skipped in Super Turbo, where a

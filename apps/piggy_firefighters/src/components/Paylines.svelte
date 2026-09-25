@@ -12,8 +12,9 @@
 	// PAYLINES — the 20 fixed lines of contract §3, drawn in BOARD space.
 	//
 	// A winning line is a glowing path through the CENTRES of its five cells (from `config.paylines[lineIndex - 1]`,
-	// rows 0 = top), with its number on a brass plate at the left end and a brighter node on every cell that is part
-	// of the win. The path draws on left to right (the direction lines pay), holds while its symbols perform, and
+	// rows 0 = top), with its number on the art lane's brass line plate (ui_scene/line_plate.webp, the number lettered
+	// at runtime on its blank cream field, cells.meta.json) at the left end and a brighter node on every cell that is
+	// part of the win. The path draws on left to right (the direction lines pay), holds while its symbols perform, and
 	// fades. `paylinesAll` then shows every paying line together for one beat.
 	//
 	// Speed tiers only shorten (turbo / Super Turbo / autoplay), reduced motion draws the line at once with no travel.
@@ -33,6 +34,8 @@
 	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
 	import { isSuperTurbo } from '../game/stateSpeed.svelte';
 	import { boardTicker } from '../game/reels/boardTicker';
+	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { LINE_PLATE } from '../game/artMeta';
 
 	const context = getContext();
 	const S = SYMBOL_SIZE;
@@ -75,15 +78,28 @@
 		if (!v) {
 			const g = new PIXI.Graphics();
 			const plate = new PIXI.Container();
-			const disc = new PIXI.Graphics().roundRect(-S * 0.17, -S * 0.13, S * 0.34, S * 0.26, S * 0.07).fill(0xe9b23b).stroke({ width: 3, color: INK });
+			// the brass plate: the delivered art, its number centred on the blank cream field (lower part of the plate)
+			const plateW = S * 0.36;
+			const plateH = (plateW * LINE_PLATE.h) / LINE_PLATE.w;
+			const art = sceneTex('line_plate') as PIXI.Texture | undefined;
+			const disc: PIXI.Container = art
+				? new PIXI.Sprite(art)
+				: new PIXI.Graphics().roundRect(-plateW / 2, -plateH / 2, plateW, plateH, S * 0.07).fill(0xe9b23b).stroke({ width: 3, color: INK });
+			if (disc instanceof PIXI.Sprite) {
+				disc.anchor.set(0.5);
+				disc.width = plateW;
+				disc.height = plateH;
+			}
 			const label = new PIXI.Text({
 				text: String(lineIndex),
-				style: { fontFamily: 'Lilita One, Inter, sans-serif', fontSize: S * 0.19, fill: INK, align: 'center' },
+				style: { fontFamily: 'Lilita One, Inter, sans-serif', fontSize: S * 0.16, fill: INK, align: 'center' },
 			});
 			label.anchor.set(0.5);
+			label.position.y = art ? (LINE_PLATE.textY - 0.5) * plateH : 0;
 			plate.addChild(disc, label);
-			const start = pathOf(lineIndex)[0];
-			plate.position.set(start.x - S * 0.05, start.y);
+			// the plate hangs over the first cell's left edge: inside the reels, so a stacked (edge-to-edge) board shows it
+			const start = pathOf(lineIndex)[1];
+			plate.position.set(start.x - S * 0.34, start.y);
 			g.visible = false;
 			plate.visible = false;
 			root.addChild(g, plate);

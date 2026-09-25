@@ -17,6 +17,8 @@ import { stateRescue, stateBackdraftSpins } from './rescue/stateRescue.svelte';
 import { rollWinMeterTo, finishWinMeter, winRollMs } from './reels/winMeter';
 import { rungLevelOfTier, type WinTier } from './roundTier';
 import { roundStakeOf, continuesIntoFeature } from './roundStake';
+import { animBeats } from './fx/animBeats';
+import { stateSpeed } from './stateSpeed.svelte';
 
 /** The Win overlay's pacing only (coin count-up length above 20x): never a celebration tier. The tier is contract §8's
  *  roundTier (game/roundTier.ts); the SDK `winLevel` is never read for presentation. */
@@ -64,6 +66,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateGame.gameType = bookEvent.gameType;
 		// the previous spin's line paths / pops leave with the old board
 		eventEmitter.broadcast({ type: 'paylinesClear' });
+		// rig beat: every spin, base or bonus (docs/ANIMATION_CONTRACT.md spinStart)
+		animBeats.emit({
+			beat: 'spinStart',
+			mode: String(stateBet.activeBetModeKey ?? bookEvent.gameType).toLowerCase(),
+			speedTier: stateSpeed.tier === 'super' ? 2 : stateSpeed.tier === 'turbo' ? 1 : 0,
+		});
 		gameSound.reelsStart(isSuperTurbo());
 		await stateGameDerived.enhancedBoard.spin({ revealEvent: bookEvent });
 		gameSound.reelsStop();
@@ -81,6 +89,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		gameSound.linesWin(bookEvent.totalWin, tier);
 		await sequence(bookEvent.wins, async (win) => {
 			gameSound.symbolWin(win.symbol, tier);
+			animBeats.emit({ beat: 'lineWin', lineIndex: win.meta.lineIndex, amount: win.win / 100, symbol: win.symbol, kind: win.meta.multiplier > 1 ? `x${win.meta.multiplier}` : 'line' });
 			eventEmitter.broadcast({ type: 'paylineShow', lineIndex: win.meta.lineIndex, positions: win.positions, symbol: win.symbol });
 			eventEmitter.broadcast({ type: 'symbolWinFx', symbol: win.symbol, positions: win.positions });
 			eventEmitter.broadcast({
@@ -124,8 +133,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 		const round = roundStakeOf(bookEvents, stateRescue.capped);
 		const level = rungLevelOfTier(round.tier);
-		// the rig beat (docs/ANIMATION_CONTRACT.md animBeat winTier), same 0..6 numbering
-		eventEmitter.broadcast({ type: 'animBeat', beat: 'winTier', tier: round.tier, amount: round.total, x: round.total / 100 });
+		// the rig beat (docs/ANIMATION_CONTRACT.md animBeat winTier), same 0..6 numbering; amounts in bet multiples
+		animBeats.emit({ beat: 'winTier', tier: round.tier, amount: round.total / 100, x: round.total / 100 });
+		if (round.tier >= 6) animBeats.emit({ beat: 'maxWin', amount: round.total / 100 });
 		if (level) {
 			if (round.tier >= 6) void eventEmitter.broadcastAsync({ type: 'uiHide' });
 			await eventEmitter.broadcastAsync({ type: 'winRungs', amount: Math.max(bookEvent.amount, round.total), level, tier: round.tier });

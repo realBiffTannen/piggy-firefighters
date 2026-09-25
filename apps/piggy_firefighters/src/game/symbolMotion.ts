@@ -195,14 +195,16 @@ const wildPunch = (q: number) => {
 };
 
 /**
- * The WILD banner inside each WILD tile, in art px (measured on the shipped webps, 2026-09-23). BoardFx crops
- * this rect out of the SAME texture the reel shows and lays it additively over the banner.
+ * The lettered WILD badge inside each WILD tile, in art px (the art lane's measured rects: `wild_badge.sym_W` in
+ * static/assets/sprites/symbolsCartoon/manifest.json and `symT_W` in symbolsCartoonTall/manifest.json, delivered
+ * 2026-09-25; game/artMeta.ts WILD_BADGE reads the same files). BoardFx crops this rect out of the SAME texture the
+ * reel shows and lays it additively over the badge; SymbolSprite's SIGN rect is the square one.
  *   sym_W   384 x 384  (square cell, wide layouts)
  *   symT_W  384 x 500  (1 : 1.3 portrait cell, stacked phone layout)
  */
 export const WILD_BANNER = {
-	square: { artW: 384, artH: 384, x: 62, y: 204, w: 262, h: 98 },
-	tall: { artW: 384, artH: 500, x: 54, y: 167, w: 276, h: 122 },
+	square: { artW: 384, artH: 384, x: 120, y: 209, w: 143, h: 129 },
+	tall: { artW: 384, artH: 500, x: 123, y: 242, w: 137, h: 142 },
 } as const;
 
 const pulse = (p: number, centre: number, half: number) => {
@@ -463,6 +465,7 @@ export const symbolMotion = (
 	return WIN_PLAIN[symbolName] ?? FALLBACK_WIN;
 };
 
-/** Pose-B asset key for a symbol, if the game ships one (see game/assets.ts). */
-export const poseBKey = (symbolName: string): string | undefined =>
-	WIN_KEYPOSE[symbolName] ? `sym_${symbolName}_b` : undefined;
+/** Pose-B asset key for a symbol whose win cuts to a key pose (see game/assets.ts): `sym_H1_b` … on the square sheet,
+ *  `symT_H1_b` … on the portrait sheet (`tall`). The WILD ships a pose B too but its win is the punch above. */
+export const poseBKey = (symbolName: string, tall = false): string | undefined =>
+	WIN_KEYPOSE[symbolName] ? `${tall ? 'symT' : 'sym'}_${symbolName}_b` : undefined;

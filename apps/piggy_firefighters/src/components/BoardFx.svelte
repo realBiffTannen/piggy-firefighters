@@ -10,9 +10,9 @@
 <script lang="ts">
 	// BOARD FX — the life on top of the reels.
 	//
-	// 1. WIN FX per symbol. A winning symbol does not just wiggle: it sheds something of its own (placeholder
-	//    bursts in the theme palette until the VFX lane lands: brass sparks off the truck and helmet, water off the
-	//    nozzle and bucket, embers off the axe). Each is a small burst of pooled shapes with gravity, drag and spin,
+	// 1. WIN FX per symbol. A winning symbol does not just wiggle: it sheds something of its own (procedural bursts in
+	//    the theme palette — the runtime's own particles per docs/ANIMATION_CONTRACT.md: brass sparks off the truck and
+	//    helmet, water off the nozzle and bucket, embers off the axe). Each is a small burst of pooled shapes with gravity, drag and spin,
 	//    timed to the symbol's own motion (game/symbolMotion.ts).
 	//    THE WILD is a SUBSTITUTE, so a line that pays e.g. H4 names H4, not W: every WILD cell in a paying line
 	//    performs as the wild — see 3. The alarms (ALARM / GALARM) pay nothing; their burst is the trigger

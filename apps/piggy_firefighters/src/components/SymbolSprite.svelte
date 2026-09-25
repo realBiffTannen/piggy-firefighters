@@ -25,6 +25,7 @@
 	import type { SymbolState } from '../game/types';
 	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { cellFrame } from '../game/artMeta';
 	import {
 		symbolMotion,
 		idleMotion,
@@ -32,6 +33,7 @@
 		restTransform,
 		resetTransform,
 		IDLE_KINDS,
+		WILD_BANNER,
 		type Motion,
 	} from '../game/symbolMotion';
 	import { speedFactor } from '../game/stateSpeed.svelte';
@@ -59,9 +61,9 @@
 	const app = getContextApp();
 
 	const DEG = Math.PI / 180;
-	// Legacy sign crop. Unused while symbolMotion `W` keeps flash = 0: the WILD flashes its badge via
-	// BoardFx + symbolMotion WILD_BANNER instead.
-	const SIGN = { x: 74, y: 245, w: 235, h: 90, art: 384 };
+	// The WILD badge crop on the square tile (= symbolMotion WILD_BANNER.square, the art lane's measured rect).
+	// Unused while symbolMotion `W` keeps flash = 0: the WILD flashes its badge via BoardFx + WILD_BANNER instead.
+	const SIGN = { x: WILD_BANNER.square.x, y: WILD_BANNER.square.y, w: WILD_BANNER.square.w, h: WILD_BANNER.square.h, art: WILD_BANNER.square.artW };
 	const IDLE_FIRST_MS = [700, 4200]; // the board comes alive soon after it settles ...
 	const IDLE_EVERY_MS = [3000, 7000]; // ... then each symbol reacts every 3–7 s
 	const IDLE_MIN_GAP_MS = 240; // no two reactions start together
@@ -74,7 +76,9 @@
 	let root: PIXI.Container | undefined;
 	let body: PIXI.Container | undefined;
 	let sprite: PIXI.Sprite | undefined;
-	let frame: PIXI.Sprite | undefined;
+	// the gold win frame is a nine-slice (cells.meta.json corner), so a 1:1.3 stacked cell keeps round bolts
+	let frame: PIXI.NineSliceSprite | undefined;
+	const WIN_FRAME = cellFrame('win');
 	let glint: PIXI.Sprite | undefined;
 	let flash: PIXI.Sprite | undefined;
 	let ring: PIXI.Graphics | undefined;
@@ -135,8 +139,7 @@
 		if (!frame) {
 			const ft = tex('win_cell_frame');
 			if (ft) {
-				frame = new PIXI.Sprite(ft);
-				frame.anchor.set(0.5);
+				frame = new PIXI.NineSliceSprite({ texture: ft, leftWidth: WIN_FRAME.corner, topHeight: WIN_FRAME.corner, rightWidth: WIN_FRAME.corner, bottomHeight: WIN_FRAME.corner });
 				frame.visible = false;
 				root.addChildAt(frame, 0);
 			}
@@ -214,7 +217,12 @@
 				const outP = p < 0.82 ? 0 : (p - 0.82) / 0.18;
 				const pop = 1 + 0.08 * Math.sin(Math.PI * inP);
 				frame.alpha = inP * (1 - outP);
-				fit(frame, SYMBOL_SIZE * 1.02 * pop, SYMBOL_SIZE * 1.02 * pop * pitchNow);
+				// built at texture scale (the corner blocks keep their bolts), scaled to the cell as a unit
+				const k = (SYMBOL_SIZE * 1.02 * pop) / WIN_FRAME.w;
+				frame.width = WIN_FRAME.w;
+				frame.height = (WIN_FRAME.w * pitchNow);
+				frame.scale.set(k);
+				frame.position.set((-WIN_FRAME.w * k) / 2, (-WIN_FRAME.w * pitchNow * k) / 2);
 			}
 		}
 		if (glint) {
@@ -309,7 +317,7 @@
 		const w = SYMBOL_SIZE * props.symbolInfo.sizeRatios.width;
 		const h = SYMBOL_SIZE * props.symbolInfo.sizeRatios.height;
 		const name = props.symbolName ?? '';
-		// stacked layouts show the 1:1.3 portrait tile where one is registered (none yet: assets.ts)
+		// stacked layouts show the 1:1.3 portrait tile (`symT_*`, the art lane's tall sheet; game/assets.ts)
 		const tallKey = context.stateGameDerived.sceneLayout().stacked ? key.replace(/^sym_/, 'symT_') : '';
 		const rowPitch = pitch;
 		untrack(() => {
@@ -319,7 +327,8 @@
 			texA = tall ?? tex(key);
 			// a tall tile keeps its own aspect, never taller than the cell it stands in
 			baseH = tall ? h * Math.min(rowPitch, tall.height / Math.max(1, tall.width)) : h;
-			texB = tall ? undefined : tex(poseBKey(name));
+			// the pose-B key frame from the SAME sheet as pose A (both tiles share one size, so the cut never resizes)
+			texB = tex(poseBKey(name, !!tall));
 			isGolden = name === 'GALARM';
 			shownPose = 0;
 			sprite.texture = texA ?? PIXI.Texture.EMPTY;

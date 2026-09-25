@@ -41,8 +41,9 @@
 	 * `html[data-splash-shutter]` reports drop → closed → lift → done for captures.
 	 * Reduced motion: no shutter — the same hand-off, then a 250 ms cross-fade.
 	 *
-	 * WORDMARK. `static/assets/placeholder/branding/wordmark.png` (placeholder); if it ever fails to load,
-	 * `onerror` keeps the CSS text lockup showing and nothing breaks.
+	 * WORDMARK. `static/assets/branding/wordmark.png` (the art lane's lockup, tools/art/make_wordmark.py); if it ever
+	 * fails to load, `onerror` keeps the CSS text lockup showing and nothing breaks. The bay door's stencil is the
+	 * small variant (`wordmark_small.webp`, 683x327), the same file the in-game shutter stencils.
 	 *
 	 * A REPLAY SESSION GETS NONE OF THE ABOVE: no ground, no deck, no gate, no
 	 * shutter. It hands off by itself as soon as the assets are in. See
@@ -94,7 +95,8 @@
 	subscribeGameAudio(context.eventEmitter);
 
 	// `base` keeps it correct under a versioned subpath deploy.
-	const wordmarkSrc = `${base}/assets/placeholder/branding/wordmark.png`;
+	const wordmarkSrc = `${base}/assets/branding/wordmark.png`;
+	const stencilSrc = `${base}/assets/branding/wordmark_small.webp`;
 
 	// Shutter art, resolved against the page (see splash/copy.ts).
 	const slatsUrl = splashAssetUrl(SPLASH_SHUTTER.slatsTile);
@@ -411,7 +413,7 @@
 	>
 		<div class="shutter__door" onanimationend={onShutterAnimationEnd}>
 			<div class="shutter__slats" style="background-image: url('{slatsUrl}')">
-				<img class="shutter__stencil" src={wordmarkSrc} alt="" draggable="false" />
+				<img class="shutter__stencil" src={stencilSrc} alt="" draggable="false" />
 			</div>
 			<div class="shutter__bar"><i style="background-image: url('{barUrl}')"></i></div>
 		</div>

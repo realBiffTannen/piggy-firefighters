@@ -40,43 +40,64 @@
 	import { winLevelMap } from '../game/winLevelMap';
 	import config from '../game/config';
 	import { fmtX } from '../game/format';
-	import { RUNG_SKINS } from '../game/assetsScene';
+	import { RUNG_SKINS, type RUNG_PIECES } from '../game/assetsScene';
+	import { rungSign, MAXWIN_CARD } from '../game/artMeta';
+	import { animBeats } from '../game/fx/animBeats';
+	import type { WinRungTier } from '../game/anim/rigLogic';
+	import RigStage from './rigs/RigStage.svelte';
 
 	const context = getContext();
 	const app = getContextApp();
 
+	type PieceName = (typeof RUNG_PIECES)[number];
 	type Rung = {
 		key: 'big' | 'huge' | 'mega' | 'epic' | 'max';
 		/** sign art key suffix: `rung_sign_<skin>` (game/assetsScene.ts RUNG_SKINS) */
 		skin: (typeof RUNG_SKINS)[number];
 		wash: number;
-		pieces: string[];
+		pieces: PieceName[];
 		burstCue: string;
 	};
+	// The art lane's signs (winrungs/signs/<skin>.webp, geometry in flat_manifest.json) and tumbling pieces
+	// (winrungs/pieces/<name>_sheet.webp): water for BIG, embers for HUGE, the brass kit from MEGA up, everything at MAX.
+	const PIECES: Record<Rung['key'], PieceName[]> = {
+		big: ['droplet', 'coin', 'droplet'],
+		huge: ['ember', 'spark', 'coin'],
+		mega: ['badge', 'helmet', 'coin', 'ember'],
+		epic: ['coin', 'silver_coin', 'badge', 'nozzle', 'ember'],
+		max: ['coin', 'silver_coin', 'badge', 'helmet', 'hydrant_cap', 'boot', 'ember', 'droplet'],
+	};
 	const RUNGS: Rung[] = [
-		// PLACEHOLDER skins / pieces (static/assets/placeholder/rungs): the art lane re-skins BIG -> HUGE -> MEGA -> EPIC
-		// -> MAX in firefighting art (theme §5); keys and thresholds stay.
-		{ key: 'big', skin: 'big', wash: 0x1e2a4a, pieces: ['droplet', 'coin'], burstCue: 'burst_water' },
-		{ key: 'huge', skin: 'huge', wash: 0x7c1016, pieces: ['ember', 'coin'], burstCue: 'burst_embers' },
-		{ key: 'mega', skin: 'mega', wash: 0x4b2f7d, pieces: ['ember', 'badge', 'coin'], burstCue: 'burst_badges' },
-		{ key: 'epic', skin: 'epic', wash: 0x8f1c27, pieces: ['coin', 'badge', 'ember'], burstCue: 'burst_coins' },
-		{ key: 'max', skin: 'max', wash: 0x171105, pieces: ['coin', 'badge', 'ember', 'droplet'], burstCue: 'burst_gold' },
+		{ key: 'big', skin: 'big', wash: 0x1e2a4a, pieces: PIECES.big, burstCue: 'burst_water' },
+		{ key: 'huge', skin: 'huge', wash: 0x7c1016, pieces: PIECES.huge, burstCue: 'burst_embers' },
+		{ key: 'mega', skin: 'mega', wash: 0x4b2f7d, pieces: PIECES.mega, burstCue: 'burst_badges' },
+		{ key: 'epic', skin: 'epic', wash: 0x8f1c27, pieces: PIECES.epic, burstCue: 'burst_coins' },
+		{ key: 'max', skin: 'max', wash: 0x171105, pieces: PIECES.max, burstCue: 'burst_gold' },
 	];
-	// sign texture geometry (placeholder static/assets/placeholder/rungs/sign_<skin>.webp, 1200x728)
-	const SIGN = { w: 1200, h: 728, boardY: 338, plankY: 634, plankW: 820 };
+	// sign texture geometry (winrungs/signs/flat_manifest.json: every rung shares one plate layout; the sign's pivot is
+	// its title-board centre, the amount sits on the plank)
+	const SIGN_META = rungSign('big');
+	const SIGN = { w: SIGN_META.w, h: SIGN_META.h, boardY: SIGN_META.boardY, plankY: SIGN_META.plankY, plankW: SIGN_META.plankW * 0.9 };
 	/** the gold bitmap font's ink centre, as a fraction of fontSize below the anchor (see build()) */
 	const GOLD_INK_DY = 0.1;
-	const PIECE_GRID: Record<string, { frames: number; cols: number }> = {
-		coin: { frames: 24, cols: 8 },
-		ember: { frames: 24, cols: 8 },
-		droplet: { frames: 24, cols: 8 },
-		badge: { frames: 24, cols: 8 },
-	};
+	/** every piece sheet is 8 x 3 cells of 128 px, 24 frames (winrungs/pieces/<name>.json) */
+	const PIECE_GRID = { frames: 24, cols: 8 };
 	const CELL = 128;
 
 	let root: PIXI.Container | undefined;
 	let active = $state(false);
 	let press: () => void = () => {};
+	// the celebrating chief (rig slot `winPlate`, docs/ANIMATION_CONTRACT.md) stands under the landed sign; the slot is
+	// mounted for the whole session and shows nothing until a rig export exists and a BIG+ climb is up
+	let plateTier = $state<WinRungTier | 0>(0);
+	const plateSlot = $derived.by(() => {
+		const bl = context.stateGameDerived.boardLayout();
+		const main = context.stateLayoutDerived.mainLayout();
+		const portrait = context.stateGameDerived.sceneLayout().stacked;
+		const w = Math.min(bl.width * bl.scale * 0.5, main.width * 0.4);
+		const h = Math.min(w * 1.3, main.height * 0.42);
+		return { x: bl.x - w / 2, y: Math.min(main.height - h, bl.y + bl.height * bl.scale * (portrait ? 0.35 : 0.45)), w, h, scale: portrait ? 0.7 : 1, layout: portrait ? ('portrait' as const) : ('desktop' as const) };
+	});
 
 	const tex = (key: string): PIXI.Texture =>
 		(app.stateApp.loadedAssets?.[key] as PIXI.Texture | undefined) ?? sceneTex(key) ?? PIXI.Texture.EMPTY;
@@ -94,7 +115,7 @@
 		if (hit) return hit;
 		const sheet = tex(`rung_piece_${name}`);
 		if (sheet === PIXI.Texture.EMPTY) return [];
-		const grid = PIECE_GRID[name] ?? { frames: 32, cols: 8 };
+		const grid = PIECE_GRID;
 		const frames: PIXI.Texture[] = [];
 		for (let i = 0; i < grid.frames; i += 1) {
 			frames.push(
@@ -121,10 +142,13 @@
 	type Run = { step: (dt: number) => void };
 	let run: Run | undefined;
 
-	const present = (amount: number, level: number) =>
+	const present = (amount: number, level: number, tier: WinRungTier) =>
 		new Promise<void>((resolve) => {
 			if (!root) return resolve();
 			const stage = root;
+			// rig beat: the win-rung plate is in (docs/ANIMATION_CONTRACT.md bigWinStart, tier 2..6)
+			animBeats.emit({ beat: 'bigWinStart', tier, amount: amount / 100 });
+			plateTier = tier;
 			const reduced = prefersReducedMotion();
 			const fast = isTurbo() ? 2 : 1;
 			const finalIdx = Math.max(0, Math.min(4, level - 6));
@@ -306,6 +330,8 @@
 				stage.removeChildren().forEach((child: PIXI.ContainerChild) => child.destroy({ children: true }));
 				run = undefined;
 				active = false;
+				animBeats.emit({ beat: 'bigWinEnd', tier, amount: amount / 100 });
+				plateTier = 0;
 				resolve();
 			};
 
@@ -361,8 +387,9 @@
 				frame.roundRect(-w / 2 + fw, -h / 2 + fw, w - fw * 2, h - fw * 2, rad * 0.8).stroke({ width: Math.max(1, fw * 0.3), color: 0xfff1c9, alpha: 0.9 });
 				cardBox.addChild(frame);
 
-				// The art keeps a clear sky for the words. Landscape: the left half, title stacked over the multiple.
-				// Portrait: the band above the hero, title and multiple on two lines.
+				// The art keeps a clear sky for the words (maxwin/manifest.json titleSafeArea, fractions of the card).
+				// Landscape: the left third, title stacked over the multiple. Portrait: the band above the hero, title and
+				// multiple on two lines.
 				const title = winLevelMap[10].text;
 				const face = (size: number, fill: number) => ({
 					fontFamily: 'StationSign, Inter, sans-serif',
@@ -373,9 +400,8 @@
 					stroke: { color: 0x2a1405, width: size * 0.17, join: 'round' as const },
 					dropShadow: { color: 0xc77a00, distance: size * 0.07, angle: Math.PI / 2, blur: 0, alpha: 1 },
 				});
-				const band = portrait
-					? { cx: 0, top: -h / 2 + h * 0.035, w: w * 0.88, h: h * 0.2 }
-					: { cx: -w / 2 + w * 0.27, top: -h / 2 + h * 0.2, w: w * 0.44, h: h * 0.6 };
+				const safe = MAXWIN_CARD.titleSafeArea[portrait ? 'portrait' : 'landscape'];
+				const band = { cx: -w / 2 + (safe.x + safe.w / 2) * w, top: -h / 2 + safe.y * h, w: safe.w * w, h: safe.h * h };
 				const lines = portrait ? title : title.replace(' ', '\n');
 				const longest = Math.max(...lines.split('\n').map((l) => l.length));
 				const rows = lines.split('\n').length;
@@ -535,12 +561,14 @@
 		});
 
 	context.eventEmitter.subscribeOnMount({
-		winRungs: async ({ amount, level }) => {
+		winRungs: async ({ amount, level, tier }) => {
 			// DEV ONLY (stripped from production builds): the smoke driver (qa/smoke/port/smoke.mjs) records every climb
 			if (import.meta.env.DEV && typeof window !== 'undefined') ((window as unknown as { __pffRungs?: unknown[] }).__pffRungs ??= []).push({ amount, level });
 			if (!root || run) return;
 			active = true;
-			await present(amount, level);
+			// the rung tier for the rig beats: 2 BIG … 6 MAX (rungLevelOfTier: level = tier + 4)
+			const rungTier = Math.max(2, Math.min(6, tier ?? level - 4)) as WinRungTier;
+			await present(amount, level, rungTier);
 		},
 	});
 
@@ -562,6 +590,10 @@
 	<MainContainer>
 		<Container>
 			<Grab ongrab={(node) => (root = node)} />
+		</Container>
+		<!-- the celebrating chief under the sign (rig slot `winPlate`; nothing draws until a rig export exists) -->
+		<Container x={plateSlot.x} y={plateSlot.y} visible={plateTier >= 2}>
+			<RigStage {...{ slot: 'winPlate' as const }} width={plateSlot.w} height={plateSlot.h} scale={plateSlot.scale} layout={plateSlot.layout} reducedMotion={prefersReducedMotion()} />
 		</Container>
 	</MainContainer>
 </Container>

@@ -22,10 +22,11 @@
 <script lang="ts">
 	// THE ONE SCENE TRANSITION: Station 13's bay door.
 	//
-	// The bay door (placeholder static/assets/placeholder/scene/shutter_slats_tile.webp + shutter_bottom_bar.webp — the
-	// same door the splash opens on) slams down with a bounce and a kick of dust, the scene swaps BEHIND it (Station 13
-	// <-> the burning block), and it rattles back up in three hauls. No frame of a scene change shows an empty or black
-	// play area: the cover is art from the first pixel to the last.
+	// The bay door (the art lane's static/assets/splash/shutter_slats_tile.webp + shutter_bottom_bar.webp — the same door
+	// the splash opens on — with the small wordmark stencilled on it) slams down with a bounce and a kick of dust, the
+	// scene swaps BEHIND it (Station 13 <-> the burning block), and it rattles back up in three hauls. No frame of a scene
+	// change shows an empty or black play area: the cover is art from the first pixel to the last. Sprocket presents the
+	// intro cards (rig slot `cardPresenter`; nothing draws until an export exists).
 	//
 	//   - reusable: any director calls shutterClose / shutterOpen (base -> bonus,
 	//     bonus -> base today; any later mode change uses the same two events)
@@ -62,6 +63,8 @@
 	import { drawSignPanel, signTitleStyle, signSubStyle, signHintStyle, signValueStyle, ensureSignFont } from '../../game/fx/signPanel';
 	import Grab from './Grab.svelte';
 	import TransitionFx, { type TransitionFxHandle } from './TransitionFx.svelte';
+	import RigStage from '../rigs/RigStage.svelte';
+	import { stateSpeed } from '../../game/stateSpeed.svelte';
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const context = getContext();
@@ -463,7 +466,7 @@
 		} catch {
 			/* no FontFaceSet: the fallback face stands */
 		}
-		void loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', 'scene_card_rescue', 'scene_card_inferno']);
+		void loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', 'wordmark_small', 'scene_card_rescue', 'scene_card_inferno']);
 		const ticker = app.stateApp.pixiApplication?.ticker;
 		ticker?.add(step);
 		return () => {
@@ -474,6 +477,15 @@
 
 	// ---- card layout ------------------------------------------------------------------------
 	const cardArt = $derived(card?.kind === 'intro' ? sceneTex(card.premium ? 'scene_card_inferno' : 'scene_card_rescue') : null);
+	/** the painting cover-fits its square frame (the Inferno plate is 3:2, the Rescue card square); the frame masks it */
+	const coverFit = (t: any, box: number) => {
+		const k = Math.max(box / Math.max(1, t?.width ?? box), box / Math.max(1, t?.height ?? box));
+		return { w: (t?.width ?? box) * k, h: (t?.height ?? box) * k };
+	};
+	const speedTier = $derived((stateSpeed.tier === 'super' ? 2 : stateSpeed.tier === 'turbo' ? 1 : 0) as 0 | 1 | 2);
+	// the wordmark stencilled on the door (branding/wordmark_small.webp), dark and faint like the splash's
+	const stencil = $derived(sceneTex('wordmark_small'));
+	const stencilW = $derived(Math.min(cw * 0.56, (landY - barH) * 0.78 * (683 / 327), 760));
 	const lay = $derived.by(() => {
 		const intro = card?.kind === 'intro';
 		const stackedCard = portrait;
@@ -571,6 +583,9 @@
 					{/each}
 				{/each}
 			{/if}
+			{#if stencil}
+				<BaseSprite zIndex={2} texture={stencil} anchor={0.5} x={cw / 2} y={(landY - barH) / 2} width={stencilW} height={(stencilW * 327) / 683} tint={0x000000} alpha={0.17} />
+			{/if}
 			{#if sceneTex('scene_shutter_bar')}
 				<BaseSprite zIndex={3} texture={sceneTex('scene_shutter_bar')} x={0} y={landY - barH} width={cw} height={barH} />
 			{/if}
@@ -621,9 +636,10 @@
 							<!-- the art lives behind its frame: clipped, pushed in slowly, swept by a soft light -->
 							<Container x={ax} y={ay}>
 								<Graphics isMask draw={(g) => g.roundRect(-art / 2, -art / 2, art, art, s * 0.12).fill(0xffffff)} />
+								{@const fitted = coverFit(cardArt, art)}
 								<Container>
 									<Grab ongrab={grab('art')} />
-									<BaseSprite texture={cardArt} anchor={0.5} width={art} height={art} />
+									<BaseSprite texture={cardArt} anchor={0.5} width={fitted.w} height={fitted.h} />
 								</Container>
 								<Container visible={false}>
 									<Grab ongrab={grab('sweep')} />
@@ -637,6 +653,10 @@
 								g.roundRect(ax - art / 2 + s * 0.06, ay - art / 2 + s * 0.06, art - s * 0.12, art - s * 0.12, s * 0.09).stroke({ width: s * 0.03, color: card?.premium ? 0xffd34d : 0xf3d9a4, alpha: 0.9 });
 							}}
 						/>
+						<!-- Sprocket presents the card from the bottom-left corner of the painting's frame -->
+						<Container x={ax - art / 2 - s * 0.35} y={ay + art / 2 - s * 2.2}>
+							<RigStage {...{ slot: 'cardPresenter' as const }} width={s * 1.5} height={s * 2.2} scale={1} layout={lay.stackedCard ? 'portrait' : 'desktop'} reducedMotion={prefersReducedMotion()} {speedTier} />
+						</Container>
 						<!-- readability slate: dark knockout behind the text column so the light fills clear AAA -->
 						<Graphics draw={(g) => drawSlate(g, tx, ty + s * 0.6, s * 5.0, s * 2.76, s)} />
 						{@const tt = fitTitle(card.title, s * 4.8, s * 0.6)}

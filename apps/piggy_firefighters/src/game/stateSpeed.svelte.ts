@@ -9,6 +9,7 @@ import { untrack } from 'svelte';
 import { stateBet, stateConfig } from 'state-shared';
 
 import { audioManager } from './audio/audioManager';
+import { animBeats } from './fx/animBeats';
 
 export type SpeedTier = 'off' | 'turbo' | 'super';
 
@@ -17,7 +18,10 @@ export const stateSpeed = $state({ tier: 'off' as SpeedTier });
 export const applySpeedTier = (tier: SpeedTier) => {
 	stateSpeed.tier = tier;
 	// the audio manager thins decorative accents and callers pick the short *_turbo variants
-	audioManager.setTurbo(tier === 'super' ? 2 : tier === 'turbo' ? 1 : 0);
+	const level = tier === 'super' ? 2 : tier === 'turbo' ? 1 : 0;
+	audioManager.setTurbo(level);
+	// the rigs skip long clips in Super Turbo (docs/ANIMATION_CONTRACT.md speedTier)
+	animBeats.emit({ beat: 'speedTier', tier: level });
 };
 
 // QA ONLY, and never in a player's session (r4 qaseam, ruling "Reading A"): `window.__qaSetSpeedForTest`

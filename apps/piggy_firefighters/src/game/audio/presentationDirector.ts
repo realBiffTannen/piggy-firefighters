@@ -16,7 +16,11 @@
  * and by `gameSound` (anticipation).
  */
 import { audioManager } from './audioManager';
+import { CUES } from './cueManifest';
 import type { BonusKind } from '../typesBookEvent';
+
+/** A cue's authored length from the audio lane's manifest (never a typed number); 0 for an unknown id. */
+const cueMs = (id: string | null | undefined): number => (id && id in CUES ? CUES[id].durationMs : 0);
 
 export type PresentationState = 'base' | 'anticipation' | 'bonusIntro' | 'rescueSpins' | 'infernoRescue' | 'returnToBase';
 
@@ -38,8 +42,8 @@ class PresentationDirector {
 	}
 
 	// The base game has TWO tunes by the same band (base_loop_a / base_loop_b). They alternate: every return from a
-	// feature comes back on the other one, and a long base session swaps after two passes — so ten minutes of base
-	// play is not one loop heard nine times.
+	// feature comes back on the other one, and a long base session swaps after two passes of the CURRENT bed's
+	// authored length (cueManifest durationMs) — so ten minutes of base play is not one loop heard nine times.
 	private baseBeds = ['base_loop_a', 'base_loop_b'];
 	private baseIdx = 0;
 	private baseSince = 0;
@@ -51,7 +55,8 @@ class PresentationDirector {
 		this.baseSince = performance.now();
 		this.baseTimer = setInterval(() => {
 			if (this._state !== 'base' || !this.isBaseBed(audioManager.currentBed)) return;
-			if (performance.now() - this.baseSince < 2 * 66899 - 1500) return;
+			const passMs = cueMs(audioManager.currentBed) || cueMs(this.baseBeds[this.baseIdx]);
+			if (!passMs || performance.now() - this.baseSince < 2 * passMs - 1500) return;
 			this.baseIdx = (this.baseIdx + 1) % this.baseBeds.length;
 			const next = this.baseBeds[this.baseIdx];
 			void audioManager.ensureDecoded([next]).then(() => {
@@ -107,8 +112,8 @@ class PresentationDirector {
 		this.set('bonusIntro');
 		await audioManager.ensureDecoded([bed, ENTRY_FLOURISH[kind]]);
 		audioManager.removeLayer('anticipation_layer');
-		// duck the outgoing base under the flourish (entry cue → duck 3–6 dB)
-		audioManager.duck({ holdMs: 350 });
+		// duck the outgoing base under the flourish (entry cue → duck 3–6 dB) for the flourish's own opening beat
+		audioManager.duck({ holdMs: Math.round(cueMs(ENTRY_FLOURISH[kind]) * 0.15) || 350 });
 		audioManager.playCue(ENTRY_FLOURISH[kind]);
 		// start the bonus bed on the downbeat with a 600 ms equal-power crossfade
 		audioManager.crossfadeToBed(bed, 600);

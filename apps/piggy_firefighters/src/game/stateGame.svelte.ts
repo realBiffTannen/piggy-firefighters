@@ -12,8 +12,10 @@ import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMB
 import { createSpinReel, createSpinBoard, setPaddingSource } from './reels/spinReels.svelte';
 import { stateRescue } from './rescue/stateRescue.svelte';
 import { anticipationCamera } from './reels/anticipationCamera.svelte';
+import { animBeats } from './fx/animBeats';
+import { BOARD_FRAME, RESCUE_ART } from './artMeta';
 
-const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
+const onSymbolLand = ({ rawSymbol, reelIndex, row }: { rawSymbol: RawSymbol; reelIndex: number; row: number }) => {
 	// Every landing drives the ONE Web Audio manager (game/audio). The scatter is the FIRE ALARM; the GOLDEN ALARM is
 	// an alarm in every way (contract §3) and adds its gold glint. Three alarms trigger (contract §4): the trigger
 	// fanfare plays once per round (gameSound.triggerFanfare is idempotent per spin).
@@ -22,6 +24,8 @@ const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 		if (rawSymbol.name === 'GALARM') gameSound.galarmLand(stateGame.scatterCounter);
 		else gameSound.alarmLand(stateGame.scatterCounter);
 		if (stateGame.scatterCounter === TRIGGER_ALARMS) gameSound.triggerFanfare();
+		// rig beat: the chief points at the alarm (docs/ANIMATION_CONTRACT.md alarmLand; rows are 0-based board rows)
+		animBeats.emit({ beat: 'alarmLand', reel: reelIndex, row, count: stateGame.scatterCounter, golden: rawSymbol.name === 'GALARM' });
 	}
 	// WILD (Chief Hamm with the WILD badge): a soft land accent.
 	if (rawSymbol.name === 'W') {
@@ -41,6 +45,8 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) =>
 			// 5-rung reel-stop ladder: each reel stops on its own rising rung (reel 0 -> reel_stop_1 ...); alarms and the
 			// WILD announce themselves on their own (onSymbolLand)
 			gameSound.reelStop(reelIndex);
+			// rig beat: the reel lands (the book's symbols are already in the column, top -> bottom)
+			animBeats.emit({ beat: 'reelStop', reel: reelIndex, symbols: board[reelIndex].reelState.symbols.slice(1, 1 + BOARD_DIMENSIONS.y).map((s) => s.rawSymbol.name) });
 		},
 		onSymbolLand,
 	}),
@@ -88,12 +94,15 @@ setPaddingSource(() => ({ gameType: stateGame.gameType, inferno: stateRescue.act
 // (strategy A — portrait and most desktops) or stops short of it sideways
 // (strategy B — short-and-wide viewports, where giving up height would cost
 // more board than giving up width). Whichever yields the larger board wins.
-const FRAME_POST_WIDE = 0.24; // frame post thickness in CELLS, desktop / landscape
-const FRAME_POST_STACKED = 0.17; // thinner frame when the board is full-width
+// The frame is the art lane's truck panel (ui_scene/board_frame.webp, components/BoardFrame.svelte): its post is the
+// unit, and the header / lower beams are the plate's own proportions (frame.meta.json through game/artMeta.ts), so
+// the band the layout reserves is exactly what is drawn.
+const FRAME_POST_WIDE = 0.5; // frame post thickness in CELLS, desktop / landscape
+const FRAME_POST_STACKED = 0.34; // thinner frame when the board is full-width (only the beams show)
 const FRAME_INNER_MARGIN = 0.04; // cells between the reels and the frame
-const FRAME_OUT_X = 1.33; // post + corner protrusion, in post units
-const FRAME_OUT_TOP = 1.17; // header beam + protrusion, in post units
-const FRAME_OUT_BOTTOM = 1.2; // lower beam + protrusion, in post units
+const FRAME_OUT_X = 1; // the post, in post units (BoardFrame draws the plate's left post at exactly this)
+const FRAME_OUT_TOP = BOARD_FRAME.top / BOARD_FRAME.left; // header beam, in post units (plate proportion)
+const FRAME_OUT_BOTTOM = BOARD_FRAME.bottom / BOARD_FRAME.left; // lower beam, in post units
 const CHIP_CLEAR_H = 66; // fallback: chip 39 px + 12 px lift + 12 px guard + slack
 const CHIP_CLEAR_W = 186; // fallback: chip <= ~162 px wide + 12 px edge + 12 px guard
 const CHIP_GUARD = 12 + 4; // the HUD's own 12 px collision gap, plus slack
@@ -154,8 +163,10 @@ const MASCOT_GUTTER = 0.95; // cells of gutter the mascot needs beside the reels
 // RESCUE SCENE (contract §5): the burning apartment block stands ABOVE the reels, one room per reel column. While the
 // scene is up the layout reserves this band (in cells) above the frame, so the board shrinks a little to make room.
 // The rescue director only raises the scene while the bay-door shutter covers the play area, so the board never
-// visibly jumps. components/rescue/RescueScene.svelte draws into `building`.
-export const BUILDING_BAND_CELLS = 1.45;
+// visibly jumps. components/rescue/RescueScene.svelte draws into `building`: the facade band plus the rooms' smoke
+// that rises above its cornice (rooms.meta.json), at one reel column per room.
+const ROOM_PX_PER_CELL = RESCUE_ART.pitch;
+export const BUILDING_BAND_CELLS = Math.round(((RESCUE_ART.facade.h - RESCUE_ART.rooms[0].box.y) / ROOM_PX_PER_CELL + 0.06) * 100) / 100;
 
 export type SceneLayout = ReturnType<typeof sceneLayout>;
 

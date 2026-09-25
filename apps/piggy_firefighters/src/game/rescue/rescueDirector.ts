@@ -13,8 +13,8 @@
  * holds (turbo, stop/skip), never the order. Every "press to continue" card holds the HUD press gate (SceneShutter /
  * AlarmCallCard) and continues by itself after a bounded wait, so an unattended round can never hang.
  *
- * Presentation is deliberately minimal (placeholder scene): later lanes replace the pictures in components/rescue/*,
- * components/scene/SceneShutter.svelte and components/AlarmCallCard.svelte without touching this flow.
+ * Presentation lives in components/rescue/*, components/scene/SceneShutter.svelte and components/AlarmCallCard.svelte
+ * (the art lane's delivered pictures, the rig slots and beats of docs/ANIMATION_CONTRACT.md); none of it touches this flow.
  */
 import { claimWin, releaseWin, setFeatureSpins } from '@crashgalaxy/hud';
 import { stateBet } from 'state-shared';
@@ -30,6 +30,8 @@ import { MODE_TITLE, MECHANIC, FEATURE } from '../names';
 import { rungLevelOfTier, MAX_WIN_LEVEL, type WinTier } from '../roundTier';
 import { roundStakeOf } from '../roundStake';
 import { gameSound } from '../audio';
+import { animBeats } from '../fx/animBeats';
+import { rescuedSkin } from '../anim/rigLogic';
 import type { BookEvent, BookEventOfType, Cell } from '../typesBookEvent';
 import type { Position } from '../types';
 import type { EmitterEventShutter } from '../../components/scene/SceneShutter.svelte';
@@ -90,9 +92,11 @@ const shutter = async (event: EmitterEventShutter) => {
 	}
 };
 
-/** Stop / skip pressed during a feature: collapse the remaining holds (event order unchanged). */
+/** Stop / skip pressed during a feature: collapse the remaining holds (event order unchanged); rig beats still
+ *  pending from the collapsed holds are dropped (their epoch moves on). */
 export const skipFeature = () => {
 	if (stateRescue.active || stateBackdraftSpins.active) stateRescue.skip = true;
+	animBeats.newEpoch();
 	dismissFeatureCard();
 };
 
@@ -107,11 +111,8 @@ const spinsWord = (n: number) => `${n} ${n === 1 ? 'SPIN' : 'SPINS'}`;
 /** Contract §8: the round's celebration, once, on its total. Emits the rig beat (animBeat winTier, ANIMATION_CONTRACT)
  *  and climbs the win rungs from tier 2 (BIG 15x … MAX = the cap); tier 0 (W <= S) and 1 climb nothing. */
 const celebrateRound = async (tier: WinTier, total: number) => {
-	try {
-		eventEmitter.broadcast({ type: 'animBeat', beat: 'winTier', tier, amount: total, x: total / 100 });
-	} catch {
-		/* presentation only */
-	}
+	animBeats.emit({ beat: 'winTier', tier, amount: total / 100, x: total / 100 });
+	if (tier >= 6) animBeats.emit({ beat: 'maxWin', amount: total / 100 });
 	const level = rungLevelOfTier(tier);
 	if (level) await eventEmitter.broadcastAsync({ type: 'winRungs', amount: total, level, tier });
 };
@@ -145,6 +146,7 @@ export const igniteCell = (cell: Cell) => {
 export const backdraft = async (e: Ev<'backdraft'>) => {
 	stateScene.busy = true;
 	audioDirector.backdraft();
+	animBeats.emit({ beat: 'backdraft', cells: e.cells.map((c) => ({ reel: c.reel, row: c.row })) });
 	try {
 		// the flame sweep + per-cell ignition (components/BackdraftFx.svelte calls igniteCell on each cell's beat)
 		await eventEmitter.broadcastAsync({ type: 'backdraftFx', cells: e.cells });
@@ -212,20 +214,34 @@ export const rescueStart = async (e: Ev<'rescueStart'>) => {
 	setFeatureSpins(e.spins);
 	audioDirector.bonusIntro(e.bonus);
 	eventEmitter.broadcast({ type: 'boardShow' });
+	// the rigs enter the scene with it (the Trotters take their windows under cover)
+	animBeats.emit({ beat: 'rescueEnter', bonus: e.bonus, source: e.source, spins: e.spins, rooms: e.rooms.map((r) => ({ reel: r.reel, fire: r.fire })) });
 	await waitForCard();
 	await shutter({ type: 'shutterOpen' });
 	await beat(300);
 };
 
+/** The rig skin of the Trotter in room `reel` of the CURRENT building (contract: room r of building b shows skin
+ *  [(r + b) mod 5], b 0-based; stateRescue.building is 1-based). */
+const skinOf = (reel: number) => rescuedSkin(reel, Math.max(0, stateRescue.building - 1));
+
 export const douse = async (e: Ev<'douse'>) => {
 	if (!stateRescue.active) return;
 	stateScene.busy = true;
+	const epoch = animBeats.epoch();
+	animBeats.emit({
+		beat: 'douse',
+		sprays: e.sprays.map((s) => ({ reel: s.reel, from: s.from, to: s.to })),
+		rescues: e.rescues.map((r) => ({ reel: r.reel, skin: skinOf(r.reel), ...(r.prize ? { prize: r.prize / 100 } : {}) })),
+		multiplier: e.multiplier,
+		spinsAdded: e.spinsAdded,
+	});
 	for (const spray of e.sprays) {
 		const room = stateRescue.rooms.find((r) => r.reel === spray.reel);
 		if (!room) continue;
 		room.sprayed += 1;
 		room.fire = Math.max(0, spray.to);
-		audioDirector.douse();
+		// the scene draws the jet on this state change and cues hose_start / hose_loop / hose_end / steam with it
 		await beat(260);
 	}
 	for (const rescue of e.rescues) {
@@ -236,6 +252,8 @@ export const douse = async (e: Ev<'douse'>) => {
 			if (rescue.prize) room.prize = rescue.prize;
 		}
 		stateRescue.rescued += 1;
+		// one beat per rescued room, as the room is marked (a skipped round's later rescues are dropped by the epoch)
+		animBeats.emit({ beat: 'rescue', reel: rescue.reel, skin: skinOf(rescue.reel), ...(rescue.prize ? { prize: rescue.prize / 100 } : {}), multiplier: e.multiplier }, epoch);
 		if (rescue.prize) {
 			showBanner(`RESCUED! +${formatBookAmount(rescue.prize)}`);
 			audioDirector.prize();
@@ -262,6 +280,8 @@ export const buildingCleared = async (e: Ev<'buildingCleared'>) => {
 	if (!stateRescue.active) return;
 	showBanner(`${MECHANIC.buildingCleared.toUpperCase()} · +${spinsWord(e.spinsAdded)}`);
 	audioDirector.buildingCleared();
+	// `building` is the 1-based ordinal just cleared: the rigs re-skin for the next one (rigLogic rescuedSkin)
+	animBeats.emit({ beat: 'buildingCleared', building: e.building, spinsAdded: e.spinsAdded });
 	await beat(900);
 	stateRescue.building = e.building + 1;
 	stateRescue.rooms = stateRescue.rooms.map((room) => ({ ...room, fire: room.start, rescued: false, prize: undefined }));
@@ -331,6 +351,8 @@ export const freeSpinEnd = async (_e: Ev<'freeSpinEnd'>, bookEvents: BookEvent[]
 };
 
 const leaveRescue = () => {
+	const stats = endStats ?? { rescued: stateRescue.rescued, buildings: Math.max(0, stateRescue.building - 1), multiplier: stateRescue.multiplier };
+	animBeats.emit({ beat: 'rescueExit', total: stateRescue.total / 100, multiplier: stats.multiplier, rescued: stats.rescued, buildings: stats.buildings });
 	stateRescue.active = false;
 	stateRescue.rooms = [];
 	stateRescue.banner = '';
@@ -367,6 +389,7 @@ export const backdraftSpinsStart = async (e: Ev<'backdraftSpinsStart'>) => {
 	stateRescue.skip = false;
 	claimWin('backdraftSpins');
 	setFeatureSpins(e.spins);
+	stateScene.mood = 'backdraft'; // the bay door blown open (theme §4), cross-faded in place by the background
 	audioDirector.backdraftSpinsStart();
 	showBanner(`${MODE_TITLE.backdraft_spins} · ${spinsWord(e.spins)}`);
 	await beat(700);
@@ -383,6 +406,7 @@ export const backdraftSpinsEnd = async (e: Ev<'backdraftSpinsEnd'>, bookEvents: 
 	stateBackdraftSpins.total = total;
 	await beat(600);
 	stateBackdraftSpins.active = false;
+	stateScene.mood = 'base';
 	stateGame.gameType = 'basegame';
 	releaseWin('backdraftSpins');
 	setFeatureSpins(null);
@@ -402,6 +426,9 @@ export const isCappedLevel = (level: number) => level >= MAX_WIN_LEVEL;
 /** Called at every new round: an interrupted feature never leaves HUD ownership, the spins counter or the scene behind. */
 export const teardownFeature = () => {
 	const wasActive = stateRescue.active || stateBackdraftSpins.active || stateAlarmCall.active;
+	// a new round: rig beats still pending from the previous presentation are dropped
+	animBeats.newEpoch();
+	if (stateRescue.active) animBeats.emit({ beat: 'rescueExit', total: stateRescue.total / 100, multiplier: stateRescue.multiplier, rescued: stateRescue.rescued, buildings: Math.max(0, stateRescue.building - 1) });
 	dismissFeatureCard();
 	cardExpected = false;
 	pendingDismiss = false;

@@ -3,11 +3,12 @@
 	// to stop, the remaining reels slow with the tension cue; never on a spin that cannot trigger).
 	//
 	// When a reel is held for a possible 3rd alarm the whole column is framed in the SAME gold frame a
-	// winning symbol wears (`win_cell_frame`, placeholder static/assets/placeholder/fx/cell_frame.webp,
-	// see components/SymbolSprite.svelte `ensureWinDressing`): one border language for "this matters".
+	// winning symbol wears (`win_cell_frame` = static/assets/ui_scene/cell_frame_win.webp, geometry from
+	// cells.meta.json through game/artMeta.ts; see components/SymbolSprite.svelte `ensureWinDressing`): one border
+	// language for "this matters".
 	// The frame is a nine-slice so the corners keep the size they have on a single cell while the bars
 	// stretch over three rows. Under it: a warm alarm-light wash over the symbols and embers rising up
-	// the column (placeholder dressing; the art lane owns the final alarm-light treatment). The longer the reel holds, the hotter the frame and the brighter the wash, and the
+	// the column (procedural dressing over the delivered frame). The longer the reel holds, the hotter the frame and the brighter the wash, and the
 	// board itself pushes in (game/reels/anticipationCamera.svelte.ts). When the reel stops it resolves
 	// honestly: a gold flash if the bonus was actually reached, a quick neutral fade if not — nothing
 	// here ever hints at an outcome the book does not contain.
@@ -24,6 +25,8 @@
 	import { BOARD_SIZES, REEL_PADDING, SYMBOL_SIZE, TRIGGER_ALARMS } from '../game/constants';
 	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { cellFrame } from '../game/artMeta';
+	import { animBeats } from '../game/fx/animBeats';
 
 	type Props = {
 		reel: Reel;
@@ -44,9 +47,10 @@
 	const BORDER = SYMBOL_SIZE * 0.075;
 	const RADIUS = SYMBOL_SIZE * 0.1;
 
-	/** cell_frame.webp is 384 square; its corner block is ~100 px of that. */
-	const FRAME_SRC = 384;
-	const FRAME_CORNER = 100;
+	/** cell_frame_win.webp: 384 square; the nine-slice corner block holds the bolt (cells.meta.json hole rect). */
+	const WIN_FRAME = cellFrame('win');
+	const FRAME_SRC = WIN_FRAME.w;
+	const FRAME_CORNER = WIN_FRAME.corner;
 
 	let root: PIXI.Container | undefined;
 	let stopped = false;
@@ -193,6 +197,8 @@
 
 		root.addChild(glow, wash, frame, sparks, flash);
 		gameSound.anticipationRiser(alarmsAtStart);
+		animBeats.emit({ beat: 'anticipationStart', reel: props.reel.reelIndex });
+		const beatEpoch = animBeats.epoch();
 
 		const IN_MS = 240;
 		const OUT_HIT_MS = 420;
@@ -224,6 +230,7 @@
 				// never gets is a victory sting.
 				hit = alarmsAtStop >= TRIGGER_ALARMS;
 				if (hit || !laterReelAlive) gameSound.anticipationResolve(hit);
+				animBeats.emit({ beat: 'anticipationEnd', reel: props.reel.reelIndex, hit }, beatEpoch);
 			}
 
 			// tension ramps over the hold. Lengthened with the hold itself (owner, 2026-09-20: slower

@@ -7,7 +7,7 @@ One paid 1536x1024 painting per mode serves BOTH its buy card and its splash car
                                         in a ~271x80 strip (the central ~44 % of the height) -> the focal read
                                         (faces, the alarm bell) must sit in that band; the contact sheet shows it.
   splash/card_<id>.webp       768x768   square crop of the same painting (payload budget <= 1.2 MB for splash/)
-  maxwin/max_win_card_16x9.webp 1600x900 + max_win_card_portrait.webp 900x1400 (frontend placeholder sizes;
+  maxwin/max_win_card_16x9.webp 1600x900 + max_win_card_portrait.webp 900x1400 (the runtime card sizes;
                                         true 16:9) cut from 1536x1024 / 1024x1536 paintings that keep the left 45 %
                                         (landscape) / top third (portrait) calm; maxwin/manifest.json carries the
                                         titleSafeArea and a measured calm ratio ("MAX WIN" + multiple drawn at runtime).
