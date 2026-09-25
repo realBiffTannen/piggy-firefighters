@@ -1,0 +1,84 @@
+{
+  "status": "FULL_RIG_UNREVIEWED",
+  "rig": "pf_dog",
+  "editor": "4.2.43",
+  "registration_sha256": "07b21ef86739ac18e1e2f101370ea425e62f25b12be52ddd329941536e89aa25",
+  "standing_scale": 0.18410041841004185,
+  "master_bbox": [
+    45,
+    246,
+    994,
+    1441
+  ],
+  "source_files": {
+    "body_no_head_no_legs": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/body_no_head_no_legs.png",
+      "sha256": "1fe47d4edc8149159faef05464be8d651790af8d126166083c006c1242bb0d16"
+    },
+    "head_no_helmet": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/head_no_helmet.png",
+      "sha256": "a094871ba3142dea8f676dfe25411b92cf371d73743e4014963e9a51e439c87f"
+    },
+    "helmet_front": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/helmet_front.png",
+      "sha256": "8427927083dcc3c1a80532bc2936d29ce107f72212341e5edeed36da8b87b1d8"
+    },
+    "leg_front_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/leg_front_left.png",
+      "sha256": "3d44a65fae4dd585ed2fa1d359ae1b9e6564334cb874c10dde723fa57aa4a98a"
+    },
+    "leg_front_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/leg_front_right.png",
+      "sha256": "65ba3855b9d0338daffba7ad670336537dc0fda681da987de5196dd8a8ffface"
+    },
+    "leg_hind_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/leg_hind_left.png",
+      "sha256": "cd50dfa0c5e3e084266b551bae81af16bb6181eab1ab4aaeecfed027b77b207d"
+    },
+    "leg_hind_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/leg_hind_right.png",
+      "sha256": "bc5b5c72ded324cb2115fad24111c2a33d265c009587d61fe22b105c5fba72ee"
+    },
+    "master_pf_dog": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/master_pf_dog.png",
+      "sha256": "31765a18e31d38c12e2203ea7add1eac05ad430e81ec28cfcc1c42b28c06526a"
+    },
+    "muzzle_bark": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/pieces/muzzle_bark.png",
+      "sha256": "19b860f7bb367237944d4deb8c95ff4b6991926cee22a6ac72788c86a31d13ee"
+    },
+    "muzzle_closed": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/pieces/muzzle_closed.png",
+      "sha256": "236aec60f1fa599a0e5070ad1b5439987d67ce72b81c5de84676c832639392f8"
+    },
+    "muzzle_pant": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/pieces/muzzle_pant.png",
+      "sha256": "930f717e7138a530ce900aca33336bda6381d47adf2776fb237a296a1b063091"
+    },
+    "muzzle_sad": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_dog/pieces/muzzle_sad.png",
+      "sha256": "fa2782d4162df66d85eb0688f31931a30e77465d198b72071cfdf053c282d044"
+    }
+  },
+  "derivation": "Region attachments of registered layers plus UV polygon sub-meshes; source PNG bytes unchanged",
+  "paid_generation": "none",
+  "motion_review": "NOT RUN",
+  "runtime_export": {
+    "status": "FULL_RIG_UNREVIEWED",
+    "nativeExportSha256": "ca954425e73c0ceb6f493ed1ea46f93e47eee5b6be0ec36136ca908b04a6b88d",
+    "runtime": "spine-core4.2.74",
+    "method": "Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds (regions resolved from the native atlas)",
+    "bounds": {
+      "x": -90.95000617032296,
+      "y": -0.3633966064452352,
+      "width": 181.88999995097723,
+      "height": 220.36769744873018
+    },
+    "change": "Only skeleton x/y/width/height header values; original native export preserved"
+  },
+  "runtime_files": {
+    "pf_dog.json": "c59deb0723863214cc4c456c4c61d46d13062b45b90a4575768bba84f78569a2",
+    "pf_dog.atlas": "99d21ee3a2bdf86e7eb956efe76271ec1948f69178e6e8c2f70ff8b920365109",
+    "pf_dog.png": "0d83deb6d0c8afbc4a6443eec929abe5064c0df20e59d46e0ca80a7c7ab386c7"
+  }
+}

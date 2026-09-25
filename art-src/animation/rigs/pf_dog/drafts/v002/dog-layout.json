@@ -1,0 +1,1331 @@
+{
+ "rig": "pf_dog",
+ "canvas": [
+  1024,
+  1536
+ ],
+ "feet": [
+  512,
+  1440
+ ],
+ "standing_height_px": 220,
+ "registration_sha256": "07b21ef86739ac18e1e2f101370ea425e62f25b12be52ddd329941536e89aa25",
+ "note": "Measured by eye on head_no_helmet / master_pf_dog zooms (2026-09-25); polygons are UV selections of registered originals, never repainted. Near = image-left = Ember's RIGHT side.",
+ "bones": [
+  {
+   "name": "root",
+   "point": [
+    512,
+    1440
+   ]
+  },
+  {
+   "name": "pelvis",
+   "parent": "root",
+   "point": [
+    300,
+    990
+   ]
+  },
+  {
+   "name": "leg_hind_right",
+   "parent": "pelvis",
+   "point": [
+    255,
+    950
+   ]
+  },
+  {
+   "name": "leg_hind_left",
+   "parent": "pelvis",
+   "point": [
+    410,
+    925
+   ]
+  },
+  {
+   "name": "tail",
+   "parent": "pelvis",
+   "point": [
+    245,
+    900
+   ]
+  },
+  {
+   "name": "body",
+   "parent": "pelvis",
+   "point": [
+    300,
+    990
+   ]
+  },
+  {
+   "name": "chest",
+   "parent": "body",
+   "point": [
+    640,
+    980
+   ]
+  },
+  {
+   "name": "leg_front_right",
+   "parent": "chest",
+   "point": [
+    530,
+    955
+   ]
+  },
+  {
+   "name": "leg_front_left",
+   "parent": "chest",
+   "point": [
+    838,
+    1112
+   ]
+  },
+  {
+   "name": "neck",
+   "parent": "chest",
+   "point": [
+    620,
+    870
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "neck",
+   "point": [
+    640,
+    830
+   ]
+  },
+  {
+   "name": "ear_right",
+   "parent": "head",
+   "point": [
+    470,
+    500
+   ]
+  },
+  {
+   "name": "ear_left",
+   "parent": "head",
+   "point": [
+    870,
+    470
+   ]
+  },
+  {
+   "name": "helmet",
+   "parent": "head",
+   "point": [
+    620,
+    450
+   ]
+  },
+  {
+   "name": "brow_right",
+   "parent": "head",
+   "point": [
+    628,
+    537
+   ]
+  },
+  {
+   "name": "brow_left",
+   "parent": "head",
+   "point": [
+    804,
+    504
+   ]
+  },
+  {
+   "name": "eye_right",
+   "parent": "head",
+   "point": [
+    650,
+    664
+   ]
+  },
+  {
+   "name": "eye_left",
+   "parent": "head",
+   "point": [
+    814,
+    628
+   ]
+  },
+  {
+   "name": "muzzle",
+   "parent": "head",
+   "point": [
+    815.9,
+    664.9
+   ]
+  },
+  {
+   "name": "jaw",
+   "parent": "head",
+   "point": [
+    650,
+    790
+   ]
+  },
+  {
+   "name": "sheet_r",
+   "parent": "jaw",
+   "point": [
+    861,
+    751
+   ]
+  },
+  {
+   "name": "sheet_l",
+   "parent": "jaw",
+   "point": [
+    835,
+    775
+   ]
+  }
+ ],
+ "surfaces": [
+  {
+   "kind": "polygon",
+   "name": "tail",
+   "slot": "tail",
+   "image": "master_pf_dog",
+   "bone": "tail",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     20,
+     640
+    ],
+    [
+     60,
+     575
+    ],
+    [
+     150,
+     572
+    ],
+    [
+     200,
+     640
+    ],
+    [
+     225,
+     720
+    ],
+    [
+     245,
+     820
+    ],
+    [
+     268,
+     880
+    ],
+    [
+     292,
+     922
+    ],
+    [
+     232,
+     952
+    ],
+    [
+     170,
+     926
+    ],
+    [
+     100,
+     870
+    ],
+    [
+     40,
+     790
+    ],
+    [
+     18,
+     700
+    ]
+   ]
+  },
+  {
+   "kind": "polygon",
+   "name": "ear_left",
+   "slot": "ear_left",
+   "image": "head_no_helmet",
+   "bone": "ear_left",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     846,
+     445
+    ],
+    [
+     905,
+     445
+    ],
+    [
+     948,
+     540
+    ],
+    [
+     1006,
+     590
+    ],
+    [
+     1006,
+     700
+    ],
+    [
+     1000,
+     762
+    ],
+    [
+     958,
+     814
+    ],
+    [
+     905,
+     804
+    ],
+    [
+     898,
+     778
+    ],
+    [
+     910,
+     764
+    ],
+    [
+     918,
+     744
+    ],
+    [
+     925,
+     722
+    ],
+    [
+     929,
+     703
+    ],
+    [
+     927,
+     684
+    ],
+    [
+     922,
+     662
+    ],
+    [
+     912,
+     644
+    ],
+    [
+     890,
+     634
+    ],
+    [
+     876,
+     618
+    ],
+    [
+     870,
+     598
+    ],
+    [
+     862,
+     545
+    ],
+    [
+     860,
+     470
+    ]
+   ]
+  },
+  {
+   "kind": "region",
+   "name": "leg_hind_left",
+   "slot": "leg_hind_left",
+   "image": "leg_hind_left",
+   "bone": "leg_hind_left",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "scale": 1.0,
+   "origin": [
+    0,
+    0
+   ],
+   "setup": true
+  },
+  {
+   "kind": "region",
+   "name": "leg_front_left",
+   "slot": "leg_front_left",
+   "image": "leg_front_left",
+   "bone": "leg_front_left",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "scale": 1.0,
+   "origin": [
+    0,
+    0
+   ],
+   "setup": true
+  },
+  {
+   "kind": "polygon",
+   "name": "face",
+   "slot": "face",
+   "image": "head_no_helmet",
+   "bone": "head",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     400,
+     356
+    ],
+    [
+     850,
+     356
+    ],
+    [
+     850,
+     440
+    ],
+    [
+     840,
+     470
+    ],
+    [
+     848,
+     520
+    ],
+    [
+     858,
+     556
+    ],
+    [
+     866,
+     580
+    ],
+    [
+     872,
+     600
+    ],
+    [
+     872,
+     618
+    ],
+    [
+     890,
+     634
+    ],
+    [
+     912,
+     645
+    ],
+    [
+     924,
+     662
+    ],
+    [
+     930,
+     684
+    ],
+    [
+     931,
+     703
+    ],
+    [
+     927,
+     722
+    ],
+    [
+     920,
+     742
+    ],
+    [
+     914,
+     760
+    ],
+    [
+     894,
+     780
+    ],
+    [
+     876,
+     800
+    ],
+    [
+     856,
+     826
+    ],
+    [
+     836,
+     850
+    ],
+    [
+     780,
+     858
+    ],
+    [
+     740,
+     880
+    ],
+    [
+     720,
+     935
+    ],
+    [
+     600,
+     935
+    ],
+    [
+     540,
+     905
+    ],
+    [
+     520,
+     850
+    ],
+    [
+     500,
+     806
+    ],
+    [
+     490,
+     784
+    ],
+    [
+     497,
+     762
+    ],
+    [
+     497,
+     730
+    ],
+    [
+     503,
+     710
+    ],
+    [
+     508,
+     690
+    ],
+    [
+     508,
+     650
+    ],
+    [
+     510,
+     600
+    ],
+    [
+     512,
+     560
+    ],
+    [
+     515,
+     488
+    ],
+    [
+     400,
+     488
+    ]
+   ]
+  },
+  {
+   "kind": "polygon",
+   "name": "eye_cover_right",
+   "slot": "eye_cover_right",
+   "image": "head_no_helmet",
+   "bone": "head",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     712.0,
+     611.0
+    ],
+    [
+     709.0,
+     631.4
+    ],
+    [
+     700.2,
+     649.8
+    ],
+    [
+     686.4,
+     664
+    ],
+    [
+     613.6,
+     664
+    ],
+    [
+     599.8,
+     649.8
+    ],
+    [
+     591.0,
+     631.4
+    ],
+    [
+     588.0,
+     611.0
+    ],
+    [
+     591.0,
+     590.6
+    ],
+    [
+     599.8,
+     572.2
+    ],
+    [
+     613.6,
+     557.6
+    ],
+    [
+     630.8,
+     548.2
+    ],
+    [
+     650.0,
+     545.0
+    ],
+    [
+     669.2,
+     548.2
+    ],
+    [
+     686.4,
+     557.6
+    ],
+    [
+     700.2,
+     572.2
+    ],
+    [
+     709.0,
+     590.6
+    ]
+   ],
+   "uv_patch": {
+    "centre": [
+     660,
+     448
+    ],
+    "half": 52
+   }
+  },
+  {
+   "kind": "polygon",
+   "name": "eye_right",
+   "slot": "eye_right",
+   "image": "head_no_helmet",
+   "bone": "eye_right",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     712.0,
+     611.0
+    ],
+    [
+     709.0,
+     631.4
+    ],
+    [
+     700.2,
+     649.8
+    ],
+    [
+     686.4,
+     664
+    ],
+    [
+     613.6,
+     664
+    ],
+    [
+     599.8,
+     649.8
+    ],
+    [
+     591.0,
+     631.4
+    ],
+    [
+     588.0,
+     611.0
+    ],
+    [
+     591.0,
+     590.6
+    ],
+    [
+     599.8,
+     572.2
+    ],
+    [
+     613.6,
+     557.6
+    ],
+    [
+     630.8,
+     548.2
+    ],
+    [
+     650.0,
+     545.0
+    ],
+    [
+     669.2,
+     548.2
+    ],
+    [
+     686.4,
+     557.6
+    ],
+    [
+     700.2,
+     572.2
+    ],
+    [
+     709.0,
+     590.6
+    ]
+   ]
+  },
+  {
+   "kind": "polygon",
+   "name": "eye_cover_left",
+   "slot": "eye_cover_left",
+   "image": "head_no_helmet",
+   "bone": "head",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     864.0,
+     585.0
+    ],
+    [
+     861.6,
+     603.5
+    ],
+    [
+     854.5,
+     620.3
+    ],
+    [
+     843.4,
+     628
+    ],
+    [
+     784.6,
+     628
+    ],
+    [
+     773.5,
+     620.3
+    ],
+    [
+     766.4,
+     603.5
+    ],
+    [
+     764.0,
+     585.0
+    ],
+    [
+     766.4,
+     566.5
+    ],
+    [
+     773.5,
+     549.7
+    ],
+    [
+     784.6,
+     536.5
+    ],
+    [
+     798.5,
+     527.9
+    ],
+    [
+     814.0,
+     525.0
+    ],
+    [
+     829.5,
+     527.9
+    ],
+    [
+     843.4,
+     536.5
+    ],
+    [
+     854.5,
+     549.7
+    ],
+    [
+     861.6,
+     566.5
+    ]
+   ],
+   "uv_patch": {
+    "centre": [
+     660,
+     448
+    ],
+    "half": 52
+   }
+  },
+  {
+   "kind": "polygon",
+   "name": "eye_left",
+   "slot": "eye_left",
+   "image": "head_no_helmet",
+   "bone": "eye_left",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     864.0,
+     585.0
+    ],
+    [
+     861.6,
+     603.5
+    ],
+    [
+     854.5,
+     620.3
+    ],
+    [
+     843.4,
+     628
+    ],
+    [
+     784.6,
+     628
+    ],
+    [
+     773.5,
+     620.3
+    ],
+    [
+     766.4,
+     603.5
+    ],
+    [
+     764.0,
+     585.0
+    ],
+    [
+     766.4,
+     566.5
+    ],
+    [
+     773.5,
+     549.7
+    ],
+    [
+     784.6,
+     536.5
+    ],
+    [
+     798.5,
+     527.9
+    ],
+    [
+     814.0,
+     525.0
+    ],
+    [
+     829.5,
+     527.9
+    ],
+    [
+     843.4,
+     536.5
+    ],
+    [
+     854.5,
+     549.7
+    ],
+    [
+     861.6,
+     566.5
+    ]
+   ]
+  },
+  {
+   "kind": "polygon",
+   "name": "brow_cover_right",
+   "slot": "brow_cover_right",
+   "image": "head_no_helmet",
+   "bone": "head",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     582,
+     552
+    ],
+    [
+     600,
+     530
+    ],
+    [
+     625,
+     512
+    ],
+    [
+     650,
+     506
+    ],
+    [
+     670,
+     512
+    ],
+    [
+     674,
+     526
+    ],
+    [
+     656,
+     539
+    ],
+    [
+     626,
+     549
+    ],
+    [
+     602,
+     566
+    ],
+    [
+     586,
+     567
+    ]
+   ],
+   "uv_patch": {
+    "centre": [
+     660,
+     448
+    ],
+    "half": 52
+   }
+  },
+  {
+   "kind": "polygon",
+   "name": "brow_right",
+   "slot": "brow_right",
+   "image": "head_no_helmet",
+   "bone": "brow_right",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     582,
+     552
+    ],
+    [
+     600,
+     530
+    ],
+    [
+     625,
+     512
+    ],
+    [
+     650,
+     506
+    ],
+    [
+     670,
+     512
+    ],
+    [
+     674,
+     526
+    ],
+    [
+     656,
+     539
+    ],
+    [
+     626,
+     549
+    ],
+    [
+     602,
+     566
+    ],
+    [
+     586,
+     567
+    ]
+   ]
+  },
+  {
+   "kind": "polygon",
+   "name": "brow_cover_left",
+   "slot": "brow_cover_left",
+   "image": "head_no_helmet",
+   "bone": "head",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     772,
+     492
+    ],
+    [
+     790,
+     479
+    ],
+    [
+     812,
+     481
+    ],
+    [
+     827,
+     494
+    ],
+    [
+     836,
+     512
+    ],
+    [
+     831,
+     526
+    ],
+    [
+     815,
+     528
+    ],
+    [
+     795,
+     516
+    ],
+    [
+     774,
+     508
+    ]
+   ],
+   "uv_patch": {
+    "centre": [
+     660,
+     448
+    ],
+    "half": 52
+   }
+  },
+  {
+   "kind": "polygon",
+   "name": "brow_left",
+   "slot": "brow_left",
+   "image": "head_no_helmet",
+   "bone": "brow_left",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     772,
+     492
+    ],
+    [
+     790,
+     479
+    ],
+    [
+     812,
+     481
+    ],
+    [
+     827,
+     494
+    ],
+    [
+     836,
+     512
+    ],
+    [
+     831,
+     526
+    ],
+    [
+     815,
+     528
+    ],
+    [
+     795,
+     516
+    ],
+    [
+     774,
+     508
+    ]
+   ]
+  },
+  {
+   "kind": "region",
+   "name": "muzzle_closed",
+   "slot": "muzzle",
+   "image": "muzzle_closed",
+   "bone": "muzzle",
+   "image_size": [
+    296,
+    157
+   ],
+   "scale": 1.05,
+   "origin": [
+    658.1899999999999,
+    620.485
+   ],
+   "setup": false
+  },
+  {
+   "kind": "region",
+   "name": "muzzle_bark",
+   "slot": "muzzle",
+   "image": "muzzle_bark",
+   "bone": "muzzle",
+   "image_size": [
+    286,
+    239
+   ],
+   "scale": 1.05,
+   "origin": [
+    667.745,
+    622.6899999999999
+   ],
+   "setup": false
+  },
+  {
+   "kind": "region",
+   "name": "muzzle_pant",
+   "slot": "muzzle",
+   "image": "muzzle_pant",
+   "bone": "muzzle",
+   "image_size": [
+    278,
+    227
+   ],
+   "scale": 1.05,
+   "origin": [
+    670.895,
+    623.845
+   ],
+   "setup": false
+  },
+  {
+   "kind": "region",
+   "name": "muzzle_sad",
+   "slot": "muzzle",
+   "image": "muzzle_sad",
+   "bone": "muzzle",
+   "image_size": [
+    222,
+    149
+   ],
+   "scale": 1.05,
+   "origin": [
+    699.56,
+    622.9
+   ],
+   "setup": false
+  },
+  {
+   "kind": "polygon",
+   "name": "ear_right",
+   "slot": "ear_right",
+   "image": "head_no_helmet",
+   "bone": "ear_right",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "points": [
+    [
+     262,
+     610
+    ],
+    [
+     300,
+     540
+    ],
+    [
+     350,
+     505
+    ],
+    [
+     430,
+     488
+    ],
+    [
+     528,
+     488
+    ],
+    [
+     530,
+     600
+    ],
+    [
+     528,
+     690
+    ],
+    [
+     516,
+     722
+    ],
+    [
+     504,
+     744
+    ],
+    [
+     490,
+     762
+    ],
+    [
+     470,
+     780
+    ],
+    [
+     462,
+     810
+    ],
+    [
+     448,
+     840
+    ],
+    [
+     430,
+     858
+    ],
+    [
+     350,
+     866
+    ],
+    [
+     300,
+     830
+    ],
+    [
+     270,
+     760
+    ],
+    [
+     258,
+     690
+    ]
+   ]
+  },
+  {
+   "kind": "region",
+   "name": "helmet",
+   "slot": "helmet",
+   "image": "helmet_front",
+   "bone": "helmet",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "scale": 1.0,
+   "origin": [
+    0,
+    0
+   ],
+   "setup": true
+  },
+  {
+   "kind": "region",
+   "name": "body",
+   "slot": "body",
+   "image": "body_no_head_no_legs",
+   "bone": "body",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "scale": 1.0,
+   "origin": [
+    0,
+    0
+   ],
+   "setup": true
+  },
+  {
+   "kind": "region",
+   "name": "leg_hind_right",
+   "slot": "leg_hind_right",
+   "image": "leg_hind_right",
+   "bone": "leg_hind_right",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "scale": 1.0,
+   "origin": [
+    0,
+    0
+   ],
+   "setup": true
+  },
+  {
+   "kind": "region",
+   "name": "leg_front_right",
+   "slot": "leg_front_right",
+   "image": "leg_front_right",
+   "bone": "leg_front_right",
+   "image_size": [
+    1024,
+    1536
+   ],
+   "scale": 1.0,
+   "origin": [
+    0,
+    0
+   ],
+   "setup": true
+  }
+ ]
+}

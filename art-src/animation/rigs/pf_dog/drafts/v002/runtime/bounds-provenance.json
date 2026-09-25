@@ -1,0 +1,13 @@
+{
+  "status": "FULL_RIG_UNREVIEWED",
+  "nativeExportSha256": "ca954425e73c0ceb6f493ed1ea46f93e47eee5b6be0ec36136ca908b04a6b88d",
+  "runtime": "spine-core4.2.74",
+  "method": "Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds (regions resolved from the native atlas)",
+  "bounds": {
+    "x": -90.95000617032296,
+    "y": -0.3633966064452352,
+    "width": 181.88999995097723,
+    "height": 220.36769744873018
+  },
+  "change": "Only skeleton x/y/width/height header values; original native export preserved"
+}

@@ -1,0 +1,41 @@
+{
+  "url": "http://127.0.0.1:3041/rigs",
+  "browser": "153.0.8010.12",
+  "muted": true,
+  "clips": [
+    "bark",
+    "celebrate",
+    "hold_sheet",
+    "run_loop",
+    "sit_idle"
+  ],
+  "shots": [
+    "01-rest-sit_idle-t0.png",
+    "02-rest-anchors.png",
+    "03-bark-0.3s.png",
+    "04-run_loop-0.12s.png",
+    "05-run_loop-0.37s.png",
+    "06-celebrate-0.7s.png",
+    "07-hold_sheet-0.9s.png",
+    "08-sit_idle-2.38s.png"
+  ],
+  "errors": [],
+  "eventLog": [
+    "017PLAY sit_idle · default · loop",
+    "016PLAY sit_idle · default · loop",
+    "015PLAY hold_sheet · default · loop",
+    "014PLAY hold_sheet · default · loop",
+    "013PLAY celebrate · default · once",
+    "012PLAY celebrate · default · once",
+    "011PLAY run_loop · default · loop",
+    "010PLAY run_loop · default · loop",
+    "009PLAY run_loop · default · loop",
+    "008EVENT bark · bark @ 0.250s",
+    "007PLAY bark · default · once",
+    "006PLAY bark · default · once",
+    "005PLAY sit_idle · default · loop",
+    "004PLAY sit_idle · default · loop",
+    "003LOADED pf_dog · Spine 4.2.43 · bounds 181.88999995097723 × 220.36769744873018"
+  ],
+  "scope": "visual sanity only; not motion acceptance"
+}
