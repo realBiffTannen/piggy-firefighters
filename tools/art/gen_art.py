@@ -46,9 +46,9 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 GEN_DIR = os.path.join(REPO, "art-src", "generated")
 API_BASE = "https://api.openai.com/v1"
 DEFAULT_MODEL = "gpt-image-2.5-sunburst"
-SIZES = ("1024x1024", "1024x1536", "1536x1024")
+SIZES = ("1024x1024", "1024x1536", "1536x1024", "1536x2048", "2048x1152")  # last two: PF-THUMB-01 native-size trial
 # conservative list-price estimate per high-quality output incl. reference-image input tokens (USD)
-COST_EST = {"1024x1024": 0.21, "1024x1536": 0.30, "1536x1024": 0.30}
+COST_EST = {"1024x1024": 0.21, "1024x1536": 0.30, "1536x1024": 0.30, "1536x2048": 0.50, "2048x1152": 0.50}
 ATTEMPTS = 4
 FAIL_FAST = (400, 401, 403)
 NAME_RE = re.compile(r"^[a-z0-9][a-z0-9_\-]{0,80}$")

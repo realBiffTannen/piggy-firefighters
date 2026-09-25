@@ -99,7 +99,7 @@
     },
     "helmet_front": {
       "derived_from": "helmet_only",
-      "method": "navy lining pixels over the registered head (eroded 6 px) made transparent; the ink rim is kept",
+      "method": "inside the registered head (eroded 4 px) a helmet pixel is kept only where the master pixel matches it (RGB distance < 90); the largest component is kept",
       "file": "art-src/animation/parts/pf_chief/helmet_front.png"
     },
     "arms_raised": {
@@ -267,30 +267,30 @@
           "components": 4,
           "scale_to_canvas": 0.5013
         },
-        "eyes_closed": {
-          "file": "art-src/animation/parts/pf_chief/pieces/eyes_closed.png",
-          "size": [
-            496,
-            171
-          ],
-          "sheet_origin": [
-            244,
-            102
-          ],
-          "components": 6,
-          "scale_to_canvas": 0.5013
-        },
         "eyes_open": {
           "file": "art-src/animation/parts/pf_chief/pieces/eyes_open.png",
           "size": [
-            115,
-            173
+            300,
+            183
           ],
           "sheet_origin": [
             48,
-            112
+            102
           ],
-          "components": 2,
+          "components": 4,
+          "scale_to_canvas": 0.5013
+        },
+        "eyes_closed": {
+          "file": "art-src/animation/parts/pf_chief/pieces/eyes_closed.png",
+          "size": [
+            316,
+            154
+          ],
+          "sheet_origin": [
+            424,
+            110
+          ],
+          "components": 4,
           "scale_to_canvas": 0.5013
         },
         "eyes_happy": {

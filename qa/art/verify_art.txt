@@ -1,3 +1,48 @@
+[ok] sprites/symbolsCartoon/sym_ALARM.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_GALARM.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H1.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H1_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H2.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H2_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H3.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H3_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H4.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H4_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L1.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L2.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L3.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L4.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_W.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_W_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_W_blaze.webp 384x384 RGBA
+[ok] sprites/symbolsCartoonTall/symT_ALARM.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_GALARM.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H1.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H1_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H2.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H2_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H3.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H3_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H4.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H4_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L1.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L2.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L3.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L4.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_W.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_W_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_W_blaze.webp 384x500 RGBA
+[ok] sprites/symbolsCartoon/manifest.json: names 17 files; missing []; orphans []
+[ok] sprites/symbolsCartoonTall/manifest.json: names 17 files; missing []; orphans []
+[ok] environment/backdraft_landscape.webp 2039x1000 RGB
+[ok] environment/backdraft_portrait.webp 1242x2208 RGB
+[ok] environment/base_landscape.webp 2039x1000 RGB
+[ok] environment/base_portrait.webp 1242x2208 RGB
+[ok] environment/inferno_landscape.webp 2039x1000 RGB
+[ok] environment/inferno_portrait.webp 1242x2208 RGB
+[ok] environment/rescue_landscape.webp 2039x1000 RGB
+[ok] environment/rescue_portrait.webp 1242x2208 RGB
+[ok] ambient/ payload 0.00 MB (budget 1.5 MB)
 [ok] buycards/alarm-call.webp 768x512 RGB
 [ok] buycards/ante.webp 768x512 RGB
 [ok] buycards/backdraft-spins.webp 768x512 RGB
@@ -13,9 +58,95 @@
 [ok] splash/shutter_slats_tile.webp 1024x512 RGB
 [ok] splash/manifest.json: names 6 files; missing []; orphans []
 [ok] splash/ payload 0.79 MB (budget 1.2 MB)
+[ok] winrungs/coins/coin_sheet.webp 1024x512 RGBA
+[ok] winrungs/fx/dust_puff.webp 256x256 RGBA
+[ok] winrungs/fx/flare_horizontal.webp 1024x128 RGBA
+[ok] winrungs/fx/glint_4point.webp 256x256 RGBA
+[ok] winrungs/fx/light_ray_wedge.webp 256x512 RGBA
+[ok] winrungs/fx/ring_shockwave.webp 512x512 RGBA
+[ok] winrungs/pieces/badge_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/boot_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/coin_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/droplet_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/ember_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/helmet_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/hydrant_cap_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/nozzle_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/silver_coin_sheet.webp 1024x384 RGBA
+[ok] winrungs/pieces/spark_sheet.webp 1024x384 RGBA
+[ok] winrungs/signs/big.webp 1200x728 RGBA
+[ok] winrungs/signs/epic.webp 1200x728 RGBA
+[ok] winrungs/signs/huge.webp 1200x728 RGBA
+[ok] winrungs/signs/max.webp 1200x728 RGBA
+[ok] winrungs/signs/mega.webp 1200x728 RGBA
+[ok] winrungs/signs/flat_manifest.json: names 5 files; missing []; orphans []
+[ok] winrungs/pieces/badge.json: sheet badge_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/boot.json: sheet boot_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/coin.json: sheet coin_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/droplet.json: sheet droplet_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/ember.json: sheet ember_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/helmet.json: sheet helmet_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/hydrant_cap.json: sheet hydrant_cap_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/nozzle.json: sheet nozzle_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/silver_coin.json: sheet silver_coin_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/pieces/spark.json: sheet spark_sheet.webp (1024, 384) vs json (1024, 384)
+[ok] winrungs/coins/coin_sheet.json: sheet coin_sheet.webp (1024, 512) vs json (1024, 512)
 [ok] maxwin/max_win_card_16x9.webp 1600x900 RGB
 [ok] maxwin/max_win_card_portrait.webp 900x1400 RGB
 [ok] maxwin/manifest.json: names 2 files; missing []; orphans []
+[ok] ui_scene/board_frame.webp 1497x946 RGBA
+[ok] ui_scene/cell_backplate.webp 963x645 RGBA
+[ok] ui_scene/cell_frame_locked.webp 384x384 RGBA
+[ok] ui_scene/cell_frame_plain.webp 384x384 RGBA
+[ok] ui_scene/cell_frame_win.webp 384x384 RGBA
+[ok] ui_scene/line_plate.webp 307x291 RGBA
+[ok] ui_scene/frame.meta.json: names 1 files; missing []; orphans []
+[ok] branding/wordmark.png 1366x654 RGBA
+[WARN] branding/wordmark_small.webp: 683x327 RGBA - no expectation rule (new file?)
+[ok] features/rescue/badge_blank.webp 341x335 RGBA
+[ok] features/rescue/block_facade.webp 1298x376 RGB
+[ok] features/rescue/block_facade_inferno.webp 1298x376 RGB
+[ok] features/rescue/hose_nozzle.webp 702x349 RGBA
+[ok] features/rescue/hose_segment.webp 527x162 RGBA
+[ok] features/rescue/jump_sheet.webp 716x389 RGBA
+[ok] features/rescue/ladder_segment.webp 299x530 RGBA
+[ok] features/rescue/ladder_top.webp 357x430 RGBA
+[ok] features/rescue/room_0_inferno_roaring.webp 234x390 RGBA
+[ok] features/rescue/room_0_inferno_safe.webp 234x390 RGBA
+[ok] features/rescue/room_0_inferno_smouldering.webp 234x390 RGBA
+[ok] features/rescue/room_0_roaring.webp 234x390 RGBA
+[ok] features/rescue/room_0_safe.webp 234x390 RGBA
+[ok] features/rescue/room_0_smouldering.webp 234x390 RGBA
+[ok] features/rescue/room_1_inferno_roaring.webp 233x390 RGBA
+[ok] features/rescue/room_1_inferno_safe.webp 233x390 RGBA
+[ok] features/rescue/room_1_inferno_smouldering.webp 233x390 RGBA
+[ok] features/rescue/room_1_roaring.webp 233x390 RGBA
+[ok] features/rescue/room_1_safe.webp 233x390 RGBA
+[ok] features/rescue/room_1_smouldering.webp 233x390 RGBA
+[ok] features/rescue/room_2_inferno_roaring.webp 234x390 RGBA
+[ok] features/rescue/room_2_inferno_safe.webp 234x390 RGBA
+[ok] features/rescue/room_2_inferno_smouldering.webp 234x390 RGBA
+[ok] features/rescue/room_2_roaring.webp 234x390 RGBA
+[ok] features/rescue/room_2_safe.webp 234x390 RGBA
+[ok] features/rescue/room_2_smouldering.webp 234x390 RGBA
+[ok] features/rescue/room_3_inferno_roaring.webp 233x390 RGBA
+[ok] features/rescue/room_3_inferno_safe.webp 233x390 RGBA
+[ok] features/rescue/room_3_inferno_smouldering.webp 233x390 RGBA
+[ok] features/rescue/room_3_roaring.webp 233x390 RGBA
+[ok] features/rescue/room_3_safe.webp 233x390 RGBA
+[ok] features/rescue/room_3_smouldering.webp 233x390 RGBA
+[ok] features/rescue/room_4_inferno_roaring.webp 233x390 RGBA
+[ok] features/rescue/room_4_inferno_safe.webp 233x390 RGBA
+[ok] features/rescue/room_4_inferno_smouldering.webp 233x390 RGBA
+[ok] features/rescue/room_4_roaring.webp 233x390 RGBA
+[ok] features/rescue/room_4_safe.webp 233x390 RGBA
+[ok] features/rescue/room_4_smouldering.webp 233x390 RGBA
+[ok] features/rescue/spins_plate_blank.webp 567x216 RGBA
+[ok] features/rescue/steam_puff.webp 304x318 RGBA
+[ok] features/rescue/water_jet.webp 713x523 RGBA
+[ok] features/rescue/water_splash.webp 518x371 RGBA
+[ok] features/rescue/rooms.meta.json: names 32 files; missing []; orphans []
+[ok] features/rescue/props.meta.json: names 10 files; missing []; orphans []
 
-FAIL 0 · PENDING 0 · WARN 0 · ok 18
+FAIL 0 · PENDING 0 · WARN 1 · ok 148
 (agent checks only - not human sign-off)

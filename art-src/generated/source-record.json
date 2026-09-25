@@ -5258,5 +5258,419 @@
       "total_tokens": 4583
     },
     "seconds": 30.0
+  },
+  {
+    "asset": "t2_l",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T2-L (nozzle ready, landscape canvas): waist-up figure placed in the RIGHT half of the wide canvas, three-quarter view facing the viewer's left, a polished brass hose nozzle held diagonally across the chest in both bare pink hands (the nozzle is smaller than the head, stays below the chin and points toward the left), eyes glancing to the left with a mischievous raised brow; the whole left half of the canvas stays completely empty and transparent; the body cropped cleanly at the bottom edge.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t2_l.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 candidate T2 landscape (Chief Hamm alone, master identity first ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:50:15",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t2_l.png",
+    "sha256": "719de707bb48ec02f1e1f55cfd4886b770070b6574620bf48208552e7f50bf56",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3763,
+      "input_tokens_details": {
+        "image_tokens": 3057,
+        "text_tokens": 706
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5135
+    },
+    "seconds": 25.8
+  },
+  {
+    "asset": "t3_l",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T3-L (reassuring salute, landscape canvas): chest-up figure placed in the RIGHT half of the wide canvas, three-quarter view turned toward the viewer's left, a crisp two-finger salute touching the helmet brim, warm fatherly smile with one eyebrow cocked, eyes looking into the empty left side of the canvas; the whole left half stays completely empty and transparent; the body cropped cleanly at the bottom edge.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t3_l.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 candidate T3 landscape (Chief Hamm alone, master identity first ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:50:16",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t3_l.png",
+    "sha256": "a033be015dd64aa031ef44ff6f29ee4f629eccba0e619444abaeca6353abd148",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3745,
+      "input_tokens_details": {
+        "image_tokens": 3057,
+        "text_tokens": 688
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5117
+    },
+    "seconds": 30.3
+  },
+  {
+    "asset": "t1_p",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T1 (heroic bust): chest-up portrait, three-quarter view turned slightly to the viewer's left, chin up, one bare pink hand raising the helmet brim with a wink-ready grin; the head fills the upper-middle of the frame with a clear empty band above the helmet for a title, the body cropped cleanly at the bottom edge.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t1_p.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 candidate T1 portrait (Chief Hamm alone, master identity first ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:50:15",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t1_p.png",
+    "sha256": "c5105c91dbbc15a7c12c073f85cfe1226ca4f0946bcc29fd12caa846cfd340dd",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3728,
+      "input_tokens_details": {
+        "image_tokens": 3057,
+        "text_tokens": 671
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5100
+    },
+    "seconds": 31.4
+  },
+  {
+    "asset": "t3_p",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T3 (reassuring salute): chest-up, three-quarter view turned toward the viewer's left, a crisp two-finger salute touching the helmet brim, warm fatherly smile with one eyebrow cocked; the head and salute sit in the lower two thirds so the space above stays quiet.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t3_p.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 candidate T3 portrait (Chief Hamm alone, master identity first ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:50:16",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t3_p.png",
+    "sha256": "ba5f32235f9cbb9e5c3ce250487a70905b235067d8936cf9eb43764fef177842",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3717,
+      "input_tokens_details": {
+        "image_tokens": 3057,
+        "text_tokens": 660
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5089
+    },
+    "seconds": 34.2
+  },
+  {
+    "asset": "t1_l",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T1-L (heroic bust, landscape canvas): chest-up portrait placed in the RIGHT half of the wide canvas, three-quarter view turned toward the viewer's left, chin up, one bare pink hand raising the helmet brim with a wink-ready grin, eyes looking into the empty left side of the canvas; the whole left half of the canvas stays completely empty and transparent; helmet and face comfortably inside the top and right edges, the body cropped cleanly at the bottom edge.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t1_l.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 candidate T1 landscape (Chief Hamm alone, master identity first ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:50:15",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t1_l.png",
+    "sha256": "a67b97796251e79f7fda1961a538e7fcd7b5d3928361b1d55b7f8d3b7a722591",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3754,
+      "input_tokens_details": {
+        "image_tokens": 3057,
+        "text_tokens": 697
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5126
+    },
+    "seconds": 35.5
+  },
+  {
+    "asset": "t2_p",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T2 (nozzle ready): waist-up, three-quarter view facing the viewer's left, a polished brass hose nozzle held diagonally across the chest in both bare pink hands (the nozzle is smaller than the head and stays below the chin), eyes glancing to the side with a mischievous raised brow; generous empty space above the helmet and to the left.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t2_p.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 candidate T2 portrait (Chief Hamm alone, master identity first ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:50:15",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t2_p.png",
+    "sha256": "0afb7ceb547adadc9dd29c6426890afdb60ae0722ec91b8582feaa88dcbe6ed9",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3732,
+      "input_tokens_details": {
+        "image_tokens": 3057,
+        "text_tokens": 675
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5104
+    },
+    "seconds": 35.9
+  },
+  {
+    "asset": "t3_l_r2",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "2048x1152",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the accepted landscape tile candidate; Image 2 is the accepted hero identity (Chief Hamm). Redraw Image 1 as the SAME picture: identical character, face, expression, eyes glancing into the empty left side, costume, colours, ink style, flat cel shading with one hard shadow tone, the same placement in the right half of the wide canvas with the whole left half completely empty, on a fully transparent background. Keep the face, eyes, brows, moustache, helmet and blank smooth brass shield plate exactly as in Image 1 (no numbers or letters anywhere).\n\nFix exactly one defect: the salute must match the portrait tile - a crisp TWO-finger salute (index and middle finger together, straight, fingertips touching the helmet brim, the other two fingers curled, a visible thumb), drawn as a defined cartoon hand with ink lines separating the fingers. Everything else stays as it is. Both eyes keep clear white areas and one hard white catch-light each in the same upper-left spot. Keep the helmet and the far helmet brim fully inside the canvas with a transparent margin; the body is cropped cleanly at the bottom edge.\n\nAbsolutely no text, letters, numbers, logos or watermarks. No fire, no smoke, no other people or animals, no floor or shadow. No airbrush gradients, no glow, no 3D render look.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t3_l_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/thumb/t3_l.png",
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.5,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 refinement of t3_l (named defect: one-finger salute mismatches the portrait two-finger salute); native 2048x1152 trial",
+    "attempt": 1,
+    "ts": "2026-09-25T05:52:17",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t3_l_r2.png",
+    "sha256": "55e44d08a439e818cacb6a6e6bfade9d7f53927d648b466ee0e00d2b5f76a4c3",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3375,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 303
+      },
+      "output_tokens": 1413,
+      "output_tokens_details": {
+        "image_tokens": 1413,
+        "text_tokens": 0
+      },
+      "total_tokens": 4788
+    },
+    "seconds": 25.7
+  },
+  {
+    "asset": "t3_p_r2",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x2048",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the accepted tile candidate; Image 2 is the accepted hero identity (Chief Hamm). Redraw Image 1 as the SAME picture: identical character, face, expression, pose, two-finger salute, costume, colours, ink style, flat cel shading with one hard shadow tone, and the same framing, on a fully transparent background. Keep the face, eyes, brows, moustache, helmet and blank smooth brass shield plate exactly as in Image 1 (no numbers or letters anywhere).\n\nFix exactly one defect: his elbow and coat sleeve on the viewer's right are cut off by the right edge of the canvas. Pull that arm slightly in (hand still resting on the hip) so the whole elbow, sleeve and hand sit fully inside the canvas with a clear transparent margin on the right, the left and above the helmet. Keep the salute hand a defined cartoon hand with a thumb and separated fingers drawn with ink lines. Both eyes keep clear white areas and one hard white catch-light each in the same upper-left spot. The coat hem stays the bottom of the figure.\n\nAbsolutely no text, letters, numbers, logos or watermarks. No fire, no smoke, no other people or animals, no floor or shadow. No airbrush gradients, no glow, no 3D render look.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_t3_p_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/thumb/t3_p.png",
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.5,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 refinement of t3_p (named defect: right elbow clipped by canvas edge); native 1536x2048 trial",
+    "attempt": 1,
+    "ts": "2026-09-25T05:52:17",
+    "status": "OK",
+    "output": "art-src/generated/thumb/t3_p_r2.png",
+    "sha256": "c3fe6c35732d229a9c36156b66a70d45ec85b9f5ab782ecde5efeea85134d5f2",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3363,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 291
+      },
+      "output_tokens": 2223,
+      "output_tokens_details": {
+        "image_tokens": 2223,
+        "text_tokens": 0
+      },
+      "total_tokens": 5586
+    },
+    "seconds": 36.9
+  },
+  {
+    "asset": "bg_l",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/generations",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "2048x1152",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "A quiet background plate for a cartoon game tile, wide landscape canvas, with NO characters, NO people, NO animals and NO objects in the foreground. Strictly low-colour: one dominant deep dusk-navy blue (#26365C) plus only two closely related tones of the same blue hue (one a little lighter, one a little darker); no other hues at all, no red, no yellow, no orange, no fire.\n\nSubject: the calm interior of an old firehouse engine bay at dusk, drawn as a few big simple flat shapes: a tall round-topped arched bay door opening placed in the right half of the canvas, its top at about one fifth of the height and its base at the bottom edge, filled with the slightly lighter blue as soft evening light, framed by the dominant blue wall; a few broad vertical door-panel bands and a simple floor line in the darker blue. The left half of the canvas is an almost empty calm field of the dominant blue (space for a title). Cartoon cel style matching a thick-ink cartoon game, but the background uses NO ink outlines: edges are clean flat shape boundaries, gentle and low-contrast so the plate stays quiet behind a bright character. Subtle, restrained depth; soft, understated; nothing busy, no small details, no clutter, no smoke, no particles, no glow, no gradients, no airbrush, no texture noise, no photo realism, no 3D render look. Absolutely no text, letters, numbers, signs, logos or watermarks.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_bg_l.txt"
+    ],
+    "reference_paths": [],
+    "cost_estimate_usd": 0.5,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 low-colour background painting 16:9 (dusk-navy firehouse bay, one hue); native size",
+    "attempt": 1,
+    "ts": "2026-09-25T05:55:20",
+    "status": "OK",
+    "output": "art-src/generated/thumb/bg_l.png",
+    "sha256": "a9c119614ddb07c6810cb582fe1b499e7270926e45f866a2699e4a30cf5edef0",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 318,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 318
+      },
+      "output_tokens": 1413,
+      "output_tokens_details": {
+        "image_tokens": 1413,
+        "text_tokens": 0
+      },
+      "total_tokens": 1731
+    },
+    "seconds": 22.1
+  },
+  {
+    "asset": "bg_p",
+    "batch": "thumb",
+    "lane": "ART",
+    "endpoint": "images/generations",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x2048",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "A quiet background plate for a cartoon game tile, portrait canvas, with NO characters, NO people, NO animals and NO objects in the foreground. Strictly low-colour: one dominant deep dusk-navy blue (#26365C) plus only two closely related tones of the same blue hue (one a little lighter, one a little darker); no other hues at all, no red, no yellow, no orange, no fire.\n\nSubject: the calm interior of an old firehouse engine bay at dusk, drawn as a few big simple flat shapes: a tall round-topped arched bay door opening centred in the lower two thirds of the canvas, filled with the slightly lighter blue as soft evening light, framed by the dominant blue wall; a few broad vertical door-panel bands and a simple floor line in the darker blue. The upper third of the canvas is an almost empty calm field of the dominant blue (space for a title). Cartoon cel style matching a thick-ink cartoon game, but the background uses NO ink outlines: edges are clean flat shape boundaries, gentle and low-contrast so the plate stays quiet behind a bright character. Subtle, restrained depth; soft, understated; nothing busy, no small details, no clutter, no smoke, no particles, no glow, no gradients, no airbrush, no texture noise, no photo realism, no 3D render look. Absolutely no text, letters, numbers, signs, logos or watermarks.",
+    "prompt_files": [
+      "art-src/generated/prompts/thumb_bg_p.txt"
+    ],
+    "reference_paths": [],
+    "cost_estimate_usd": 0.5,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF-THUMB-01 low-colour background painting 3:4 (dusk-navy firehouse bay, one hue); native size",
+    "attempt": 1,
+    "ts": "2026-09-25T05:55:20",
+    "status": "OK",
+    "output": "art-src/generated/thumb/bg_p.png",
+    "sha256": "85a8b936ad3a9c27f5efa93c85e82f691818852164296970b3cd9f2047ddffac",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 301,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 301
+      },
+      "output_tokens": 2223,
+      "output_tokens_details": {
+        "image_tokens": 2223,
+        "text_tokens": 0
+      },
+      "total_tokens": 2524
+    },
+    "seconds": 24.4
   }
 ]

@@ -160,17 +160,32 @@ def shield_layers(l1):
     return out, outer, inner, cross_poly(cx, cy, 0.30 * w)
 
 
+def _stroke_mask(size, pts, half, outside_only=False):
+    """Pixels within `half` px of a polygon's boundary (or inside it plus `half` px when outside_only), from a
+    distance transform: PIL's wide polylines leave hairline notches at dense vertices, this never does."""
+    m = Image.new("L", size, 0)
+    ImageDraw.Draw(m).polygon(pts, fill=255)
+    inside = np.array(m) > 127
+    out_d = ndimage.distance_transform_edt(~inside)
+    if outside_only:
+        return out_d <= half
+    return (out_d <= half) & ~(inside & (ndimage.distance_transform_edt(inside) > half))
+
+
 def draw_shield(img, lay, k):
-    d = ImageDraw.Draw(img)
     layers, outer, inner, cross = shield_layers(lay[0])
     kp = lambda pts: [(x * k, y * k) for x, y in pts]  # noqa: E731
     stroke = lay[0]["stroke"]
-    d.polygon(kp(outer), fill=INK)
-    d.line(kp(outer + outer[:1]), fill=INK, width=int(2 * stroke * k), joint="curve")
+    a = np.array(img)
+    a[_stroke_mask(img.size, kp(outer), stroke * k, outside_only=True)] = INK
+    img.paste(Image.fromarray(a, "RGBA"))
+    d = ImageDraw.Draw(img)
     for pts, col in layers:
         d.polygon(kp(pts), fill=col)
-    d.line(kp(inner + inner[:1]), fill=INK, width=int(7 * k), joint="curve")
-    d.line(kp(cross + cross[:1]), fill=INK, width=int(6 * k), joint="curve")
+    a = np.array(img)
+    a[_stroke_mask(img.size, kp(inner), 3.5 * k)] = INK
+    a[_stroke_mask(img.size, kp(cross), 3 * k)] = INK
+    img.paste(Image.fromarray(a, "RGBA"))
 
 
 def draw_ladder(img, lay, k):

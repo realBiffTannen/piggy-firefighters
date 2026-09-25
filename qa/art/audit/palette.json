@@ -1,0 +1,2216 @@
+{
+ "sprites/symbolsCartoon/sym_ALARM.webp": {
+  "group": "symbols",
+  "ink_median": [
+   38,
+   22,
+   12
+  ],
+  "ink_share": 0.253,
+  "ink_brown": true,
+  "red_median": "#DA1C21",
+  "dE_red": 2.8284271247461903,
+  "yellow_median": "#F5BF2E",
+  "dE_yellow": 11.224526887342517,
+  "dE_gold": 10.17881268148537,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.819
+ },
+ "sprites/symbolsCartoon/sym_GALARM.webp": {
+  "group": "symbols",
+  "ink_median": [
+   35,
+   21,
+   5
+  ],
+  "ink_share": 0.254,
+  "ink_brown": true,
+  "red_median": "#D7262B",
+  "dE_red": 0.0,
+  "yellow_median": "#FCCF15",
+  "dE_yellow": 10.303095991254185,
+  "dE_gold": 21.31556533718923,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.801
+ },
+ "sprites/symbolsCartoon/sym_H1.webp": {
+  "group": "symbols",
+  "ink_median": [
+   33,
+   10,
+   4
+  ],
+  "ink_share": 0.317,
+  "ink_brown": true,
+  "red_median": "#E5171B",
+  "dE_red": 10.41444151550957,
+  "yellow_median": "#FDC52A",
+  "dE_yellow": 10.795163882262544,
+  "dE_gold": 13.872434697789878,
+  "orange_share": 0.0002,
+  "fire_asset": false,
+  "palette_within20": 0.908
+ },
+ "sprites/symbolsCartoon/sym_H1_b.webp": {
+  "group": "symbols",
+  "ink_median": [
+   29,
+   9,
+   4
+  ],
+  "ink_share": 0.371,
+  "ink_brown": true,
+  "red_median": "#DE0A14",
+  "dE_red": 11.187215337383924,
+  "yellow_median": "#FDC823",
+  "dE_yellow": 9.63559417602007,
+  "dE_gold": 16.355950256842494,
+  "orange_share": 0.0002,
+  "fire_asset": false,
+  "palette_within20": 0.894
+ },
+ "sprites/symbolsCartoon/sym_H2.webp": {
+  "group": "symbols",
+  "ink_median": [
+   29,
+   3,
+   0
+  ],
+  "ink_share": 0.25,
+  "ink_brown": true,
+  "red_median": "#D31A1D",
+  "dE_red": 5.46302801795414,
+  "yellow_median": "#FCC92C",
+  "dE_yellow": 7.775640943354395,
+  "dE_gold": 15.18271392074655,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.929
+ },
+ "sprites/symbolsCartoon/sym_H2_b.webp": {
+  "group": "symbols",
+  "ink_median": [
+   25,
+   0,
+   0
+  ],
+  "ink_share": 0.227,
+  "ink_brown": true,
+  "red_median": "#DC1720",
+  "dE_red": 6.719656762439438,
+  "yellow_median": "#FDD335",
+  "dE_yellow": 4.314527554668333,
+  "dE_gold": 18.13725490196078,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.926
+ },
+ "sprites/symbolsCartoon/sym_H3.webp": {
+  "group": "symbols",
+  "ink_median": [
+   30,
+   4,
+   2
+  ],
+  "ink_share": 0.4,
+  "ink_brown": true,
+  "red_median": "#DC1B20",
+  "dE_red": 6.708203932499369,
+  "yellow_median": "#FDBF34",
+  "dE_yellow": 13.615384698928185,
+  "dE_gold": 9.754089038942753,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.966
+ },
+ "sprites/symbolsCartoon/sym_H3_b.webp": {
+  "group": "symbols",
+  "ink_median": [
+   23,
+   1,
+   1
+  ],
+  "ink_share": 0.332,
+  "ink_brown": true,
+  "red_median": "#EA141E",
+  "dE_red": 12.51141731559242,
+  "yellow_median": "#FEC228",
+  "dE_yellow": 11.825496535870153,
+  "dE_gold": 13.578272102130954,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.966
+ },
+ "sprites/symbolsCartoon/sym_H4.webp": {
+  "group": "symbols",
+  "ink_median": [
+   36,
+   4,
+   0
+  ],
+  "ink_share": 0.246,
+  "ink_brown": true,
+  "red_median": "#E41A20",
+  "dE_red": 9.563503128036778,
+  "yellow_median": "#FDD031",
+  "dE_yellow": 5.0,
+  "dE_gold": 17.221536368131986,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.947
+ },
+ "sprites/symbolsCartoon/sym_H4_b.webp": {
+  "group": "symbols",
+  "ink_median": [
+   28,
+   1,
+   0
+  ],
+  "ink_share": 0.207,
+  "ink_brown": true,
+  "red_median": "#EA1821",
+  "dE_red": 11.72755572337671,
+  "yellow_median": "#FED333",
+  "dE_yellow": 4.540390734286236,
+  "dE_gold": 19.312172725478103,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.957
+ },
+ "sprites/symbolsCartoon/sym_L1.webp": {
+  "group": "symbols",
+  "ink_median": [
+   29,
+   4,
+   0
+  ],
+  "ink_share": 0.188,
+  "ink_brown": true,
+  "red_median": "#E22225",
+  "dE_red": 6.151802591513478,
+  "yellow_median": "#FECC38",
+  "dE_yellow": 7.043802099718042,
+  "dE_gold": 13.432531794828165,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.93
+ },
+ "sprites/symbolsCartoon/sym_L2.webp": {
+  "group": "symbols",
+  "ink_median": [
+   28,
+   0,
+   0
+  ],
+  "ink_share": 0.223,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FDD03B",
+  "dE_yellow": 5.0,
+  "dE_gold": 14.78449576004852,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.585
+ },
+ "sprites/symbolsCartoon/sym_L3.webp": {
+  "group": "symbols",
+  "ink_median": [
+   30,
+   6,
+   0
+  ],
+  "ink_share": 0.237,
+  "ink_brown": true,
+  "red_median": "#EB1D21",
+  "dE_red": 11.825496535870153,
+  "yellow_median": "#FDCF32",
+  "dE_yellow": 5.830951894845301,
+  "dE_gold": 16.7803848251133,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.855
+ },
+ "sprites/symbolsCartoon/sym_L4.webp": {
+  "group": "symbols",
+  "ink_median": [
+   28,
+   29,
+   36
+  ],
+  "ink_share": 0.687,
+  "ink_brown": false,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FDD330",
+  "dE_yellow": 5.061140980055022,
+  "dE_gold": 18.813825112897707,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.929
+ },
+ "sprites/symbolsCartoon/sym_W.webp": {
+  "group": "symbols",
+  "ink_median": [
+   35,
+   2,
+   1
+  ],
+  "ink_share": 0.201,
+  "ink_brown": true,
+  "red_median": "#D81215",
+  "dE_red": 8.06225774829855,
+  "yellow_median": "#FDD40E",
+  "dE_yellow": 8.283426103973664,
+  "dE_gold": 22.20270288452963,
+  "orange_share": 0.0008,
+  "fire_asset": false,
+  "palette_within20": 0.697
+ },
+ "sprites/symbolsCartoon/sym_W_b.webp": {
+  "group": "symbols",
+  "ink_median": [
+   31,
+   2,
+   1
+  ],
+  "ink_share": 0.206,
+  "ink_brown": true,
+  "red_median": "#DB0711",
+  "dE_red": 10.198039027185569,
+  "yellow_median": "#FDD410",
+  "dE_yellow": 9.252845401280208,
+  "dE_gold": 22.977380516035772,
+  "orange_share": 0.0008,
+  "fire_asset": false,
+  "palette_within20": 0.679
+ },
+ "sprites/symbolsCartoon/sym_W_blaze.webp": {
+  "group": "symbols",
+  "ink_median": [
+   40,
+   1,
+   1
+  ],
+  "ink_share": 0.203,
+  "ink_brown": true,
+  "red_median": "#DE0F12",
+  "dE_red": 11.428698439454614,
+  "yellow_median": "#FED003",
+  "dE_yellow": 10.44030650891055,
+  "dE_gold": 23.03435075878833,
+  "orange_share": 0.0123,
+  "fire_asset": true,
+  "palette_within20": 0.662
+ },
+ "sprites/symbolsCartoonTall/symT_ALARM.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   39,
+   22,
+   14
+  ],
+  "ink_share": 0.254,
+  "ink_brown": true,
+  "red_median": "#DF1923",
+  "dE_red": 6.415121745142338,
+  "yellow_median": "#F7C22F",
+  "dE_yellow": 9.817265428815082,
+  "dE_gold": 10.960942157480039,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.815
+ },
+ "sprites/symbolsCartoonTall/symT_GALARM.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   38,
+   24,
+   13
+  ],
+  "ink_share": 0.252,
+  "ink_brown": true,
+  "red_median": "#D7262B",
+  "dE_red": 3.0,
+  "yellow_median": "#EFB718",
+  "dE_yellow": 13.728711106674186,
+  "dE_gold": 12.170217206410534,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.808
+ },
+ "sprites/symbolsCartoonTall/symT_H1.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   30,
+   9,
+   3
+  ],
+  "ink_share": 0.35,
+  "ink_brown": true,
+  "red_median": "#F0151C",
+  "dE_red": 14.155518376230797,
+  "yellow_median": "#FECC29",
+  "dE_yellow": 7.253629989184195,
+  "dE_gold": 16.71624689991954,
+  "orange_share": 0.0001,
+  "fire_asset": false,
+  "palette_within20": 0.918
+ },
+ "sprites/symbolsCartoonTall/symT_H1_b.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   30,
+   10,
+   4
+  ],
+  "ink_share": 0.398,
+  "ink_brown": true,
+  "red_median": "#F4131E",
+  "dE_red": 14.971483851633518,
+  "yellow_median": "#FCCD20",
+  "dE_yellow": 8.52145222482602,
+  "dE_gold": 18.31482761095691,
+  "orange_share": 0.0002,
+  "fire_asset": false,
+  "palette_within20": 0.912
+ },
+ "sprites/symbolsCartoonTall/symT_H2.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   28,
+   1,
+   0
+  ],
+  "ink_share": 0.25,
+  "ink_brown": true,
+  "red_median": "#DA1F21",
+  "dE_red": 5.0990195135927845,
+  "yellow_median": "#FDCE32",
+  "dE_yellow": 6.336701587182253,
+  "dE_gold": 15.438695723537757,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.934
+ },
+ "sprites/symbolsCartoonTall/symT_H2_b.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   23,
+   0,
+   0
+  ],
+  "ink_share": 0.222,
+  "ink_brown": true,
+  "red_median": "#CF161E",
+  "dE_red": 4.9533385958266365,
+  "yellow_median": "#FDD633",
+  "dE_yellow": 3.9319959409909453,
+  "dE_gold": 19.09369036929459,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.943
+ },
+ "sprites/symbolsCartoonTall/symT_H3.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   25,
+   1,
+   1
+  ],
+  "ink_share": 0.333,
+  "ink_brown": true,
+  "red_median": "#E31A1E",
+  "dE_red": 9.563503128036778,
+  "yellow_median": "#FEC030",
+  "dE_yellow": 13.57861187676442,
+  "dE_gold": 10.58972393311663,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.968
+ },
+ "sprites/symbolsCartoonTall/symT_H3_b.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   19,
+   1,
+   1
+  ],
+  "ink_share": 0.305,
+  "ink_brown": true,
+  "red_median": "#EF151B",
+  "dE_red": 15.409631644034983,
+  "yellow_median": "#FDC225",
+  "dE_yellow": 12.225250402541631,
+  "dE_gold": 14.303918208818429,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.97
+ },
+ "sprites/symbolsCartoonTall/symT_H4.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   31,
+   2,
+   0
+  ],
+  "ink_share": 0.202,
+  "ink_brown": true,
+  "red_median": "#EC1D24",
+  "dE_red": 11.200747627049022,
+  "yellow_median": "#FED431",
+  "dE_yellow": 5.136543881344993,
+  "dE_gold": 19.029207199555067,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.958
+ },
+ "sprites/symbolsCartoonTall/symT_H4_b.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   24,
+   1,
+   0
+  ],
+  "ink_share": 0.184,
+  "ink_brown": true,
+  "red_median": "#EE1B22",
+  "dE_red": 12.664071245054165,
+  "yellow_median": "#FED536",
+  "dE_yellow": 3.9319959409909453,
+  "dE_gold": 19.09369036929459,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.965
+ },
+ "sprites/symbolsCartoonTall/symT_L1.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   27,
+   1,
+   0
+  ],
+  "ink_share": 0.174,
+  "ink_brown": true,
+  "red_median": "#E81F24",
+  "dE_red": 9.61954069823013,
+  "yellow_median": "#FCD13B",
+  "dE_yellow": 4.141713051986832,
+  "dE_gold": 14.97053366195736,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.95
+ },
+ "sprites/symbolsCartoonTall/symT_L2.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   29,
+   1,
+   0
+  ],
+  "ink_share": 0.206,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FDD241",
+  "dE_yellow": 4.197040388177401,
+  "dE_gold": 15.230233595670828,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.604
+ },
+ "sprites/symbolsCartoonTall/symT_L3.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   36,
+   6,
+   0
+  ],
+  "ink_share": 0.231,
+  "ink_brown": true,
+  "red_median": "#F50F1A",
+  "dE_red": 16.313961159685384,
+  "yellow_median": "#FDD324",
+  "dE_yellow": 7.656053031425024,
+  "dE_gold": 20.999047963626836,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.863
+ },
+ "sprites/symbolsCartoonTall/symT_L4.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   30,
+   31,
+   39
+  ],
+  "ink_share": 0.663,
+  "ink_brown": false,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FCD42D",
+  "dE_yellow": 4.540390734286236,
+  "dE_gold": 19.312172725478103,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.912
+ },
+ "sprites/symbolsCartoonTall/symT_W.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   23,
+   3,
+   2
+  ],
+  "ink_share": 0.233,
+  "ink_brown": true,
+  "red_median": "#E21016",
+  "dE_red": 13.467890816493231,
+  "yellow_median": "#FEDE04",
+  "dE_yellow": 12.862999160570768,
+  "dE_gold": 28.869950613794032,
+  "orange_share": 0.0014,
+  "fire_asset": false,
+  "palette_within20": 0.706
+ },
+ "sprites/symbolsCartoonTall/symT_W_b.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   22,
+   2,
+   2
+  ],
+  "ink_share": 0.217,
+  "ink_brown": true,
+  "red_median": "#EA0C14",
+  "dE_red": 16.295285581416817,
+  "yellow_median": "#FEE604",
+  "dE_yellow": 16.587412485967285,
+  "dE_gold": 33.347690103172425,
+  "orange_share": 0.0015,
+  "fire_asset": false,
+  "palette_within20": 0.701
+ },
+ "sprites/symbolsCartoonTall/symT_W_blaze.webp": {
+  "group": "symbols_tall",
+  "ink_median": [
+   22,
+   3,
+   2
+  ],
+  "ink_share": 0.21,
+  "ink_brown": true,
+  "red_median": "#EA1417",
+  "dE_red": 15.017841497529059,
+  "yellow_median": "#FEDC05",
+  "dE_yellow": 13.521921768738236,
+  "dE_gold": 28.93921030570861,
+  "orange_share": 0.0535,
+  "fire_asset": true,
+  "palette_within20": 0.687
+ },
+ "environment/backdraft_landscape.webp": {
+  "group": "environment",
+  "ink_median": [
+   38,
+   7,
+   2
+  ],
+  "ink_share": 0.153,
+  "ink_brown": true,
+  "red_median": "#CC311F",
+  "dE_red": 7.706106866958353,
+  "yellow_median": "#FED528",
+  "dE_yellow": 6.433046171525795,
+  "dE_gold": 20.907193179468123,
+  "orange_share": 0.1137,
+  "fire_asset": true,
+  "palette_within20": 0.645
+ },
+ "environment/backdraft_portrait.webp": {
+  "group": "environment",
+  "ink_median": [
+   30,
+   38,
+   68
+  ],
+  "ink_share": 0.204,
+  "ink_brown": false,
+  "red_median": "#CA2F22",
+  "dE_red": 7.539540776794827,
+  "yellow_median": "#FED522",
+  "dE_yellow": 7.374556464288729,
+  "dE_gold": 21.63586667188533,
+  "orange_share": 0.1062,
+  "fire_asset": true,
+  "palette_within20": 0.758
+ },
+ "environment/base_landscape.webp": {
+  "group": "environment",
+  "ink_median": [
+   15,
+   4,
+   1
+  ],
+  "ink_share": 0.119,
+  "ink_brown": true,
+  "red_median": "#D41720",
+  "dE_red": 4.883100974273616,
+  "yellow_median": "#FBC332",
+  "dE_yellow": 10.901484684201368,
+  "dE_gold": 8.908954668169986,
+  "orange_share": 0.0034,
+  "fire_asset": false,
+  "palette_within20": 0.761
+ },
+ "environment/base_portrait.webp": {
+  "group": "environment",
+  "ink_median": [
+   32,
+   42,
+   55
+  ],
+  "ink_share": 0.16,
+  "ink_brown": false,
+  "red_median": "#D71523",
+  "dE_red": 3.7926353693682033,
+  "yellow_median": "#FABF30",
+  "dE_yellow": 12.190497430571378,
+  "dE_gold": 7.936624209616774,
+  "orange_share": 0.0019,
+  "fire_asset": false,
+  "palette_within20": 0.795
+ },
+ "environment/inferno_landscape.webp": {
+  "group": "environment",
+  "ink_median": [
+   90,
+   19,
+   18
+  ],
+  "ink_share": 0.462,
+  "ink_brown": true,
+  "red_median": "#A91D15",
+  "dE_red": 15.746746183853364,
+  "yellow_median": "#FBC84A",
+  "dE_yellow": 9.63559417602007,
+  "dE_gold": 9.355057926293458,
+  "orange_share": 0.003,
+  "fire_asset": true,
+  "palette_within20": 0.414
+ },
+ "environment/inferno_portrait.webp": {
+  "group": "environment",
+  "ink_median": [
+   33,
+   18,
+   17
+  ],
+  "ink_share": 0.282,
+  "ink_brown": true,
+  "red_median": "#A51A12",
+  "dE_red": 16.834735058748915,
+  "yellow_median": "#FCCD49",
+  "dE_yellow": 9.252845401280208,
+  "dE_gold": 10.41311242708296,
+  "orange_share": 0.0007,
+  "fire_asset": true,
+  "palette_within20": 0.387
+ },
+ "environment/rescue_landscape.webp": {
+  "group": "environment",
+  "ink_median": [
+   92,
+   25,
+   23
+  ],
+  "ink_share": 0.515,
+  "ink_brown": true,
+  "red_median": "#95241C",
+  "dE_red": 26.428732340353207,
+  "yellow_median": "#FDC126",
+  "dE_yellow": 11.935524596968676,
+  "dE_gold": 13.401569912684387,
+  "orange_share": 0.0001,
+  "fire_asset": false,
+  "palette_within20": 0.38
+ },
+ "environment/rescue_portrait.webp": {
+  "group": "environment",
+  "ink_median": [
+   28,
+   27,
+   44
+  ],
+  "ink_share": 0.388,
+  "ink_brown": false,
+  "red_median": "#942320",
+  "dE_red": 25.274053449689813,
+  "yellow_median": "#FCC31F",
+  "dE_yellow": 10.462157875163436,
+  "dE_gold": 14.58088049894681,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.402
+ },
+ "buycards/alarm-call.webp": {
+  "group": "buycards",
+  "ink_median": [
+   40,
+   31,
+   29
+  ],
+  "ink_share": 0.361,
+  "ink_brown": true,
+  "red_median": "#D21F18",
+  "dE_red": 5.731027405705886,
+  "yellow_median": "#FDCC1F",
+  "dE_yellow": 8.566451018069426,
+  "dE_gold": 18.13339651593579,
+  "orange_share": 0.0004,
+  "fire_asset": false,
+  "palette_within20": 0.599
+ },
+ "buycards/ante.webp": {
+  "group": "buycards",
+  "ink_median": [
+   30,
+   3,
+   0
+  ],
+  "ink_share": 0.164,
+  "ink_brown": true,
+  "red_median": "#CD211D",
+  "dE_red": 5.370723892079348,
+  "yellow_median": "#FDD51F",
+  "dE_yellow": 6.19548892703253,
+  "dE_gold": 21.403521360832155,
+  "orange_share": 0.0058,
+  "fire_asset": false,
+  "palette_within20": 0.728
+ },
+ "buycards/backdraft-spins.webp": {
+  "group": "buycards",
+  "ink_median": [
+   29,
+   26,
+   10
+  ],
+  "ink_share": 0.155,
+  "ink_brown": true,
+  "red_median": "#C1241D",
+  "dE_red": 10.787896018214477,
+  "yellow_median": "#FFCF1E",
+  "dE_yellow": 8.611259315860723,
+  "dE_gold": 19.655872548528162,
+  "orange_share": 0.0879,
+  "fire_asset": true,
+  "palette_within20": 0.674
+ },
+ "buycards/inferno.webp": {
+  "group": "buycards",
+  "ink_median": [
+   57,
+   10,
+   8
+  ],
+  "ink_share": 0.307,
+  "ink_brown": true,
+  "red_median": "#AA1D11",
+  "dE_red": 15.778466825984726,
+  "yellow_median": "#FBC73A",
+  "dE_yellow": 8.691119792345848,
+  "dE_gold": 10.461569884316814,
+  "orange_share": 0.0176,
+  "fire_asset": true,
+  "palette_within20": 0.603
+ },
+ "buycards/rescue.webp": {
+  "group": "buycards",
+  "ink_median": [
+   21,
+   31,
+   55
+  ],
+  "ink_share": 0.432,
+  "ink_brown": false,
+  "red_median": "#A9271E",
+  "dE_red": 20.845018637536185,
+  "yellow_median": "#FDC12A",
+  "dE_yellow": 11.152519917032553,
+  "dE_gold": 13.346994155225481,
+  "orange_share": 0.0117,
+  "fire_asset": true,
+  "palette_within20": 0.687
+ },
+ "splash/card_alarm.webp": {
+  "group": "splash",
+  "ink_median": [
+   37,
+   31,
+   29
+  ],
+  "ink_share": 0.349,
+  "ink_brown": true,
+  "red_median": "#DB1E17",
+  "dE_red": 10.08043392022349,
+  "yellow_median": "#FED314",
+  "dE_yellow": 8.283426103973664,
+  "dE_gold": 22.20270288452963,
+  "orange_share": 0.0004,
+  "fire_asset": false,
+  "palette_within20": 0.642
+ },
+ "splash/card_backdraft.webp": {
+  "group": "splash",
+  "ink_median": [
+   28,
+   22,
+   8
+  ],
+  "ink_share": 0.171,
+  "ink_brown": true,
+  "red_median": "#C6211C",
+  "dE_red": 9.738704653077685,
+  "yellow_median": "#FED11D",
+  "dE_yellow": 8.94427190999916,
+  "dE_gold": 21.013836272296704,
+  "orange_share": 0.0737,
+  "fire_asset": true,
+  "palette_within20": 0.678
+ },
+ "splash/card_chief.webp": {
+  "group": "splash",
+  "ink_median": [
+   35,
+   6,
+   2
+  ],
+  "ink_share": 0.188,
+  "ink_brown": true,
+  "red_median": "#DB1B1A",
+  "dE_red": 8.06225774829855,
+  "yellow_median": "#FED91A",
+  "dE_yellow": 7.452270270188194,
+  "dE_gold": 23.736223467482564,
+  "orange_share": 0.0045,
+  "fire_asset": true,
+  "palette_within20": 0.734
+ },
+ "splash/card_lines.webp": {
+  "group": "splash",
+  "ink_median": [
+   24,
+   8,
+   5
+  ],
+  "ink_share": 0.164,
+  "ink_brown": true,
+  "red_median": "#CC191F",
+  "dE_red": 3.8525794371923006,
+  "yellow_median": "#FDD609",
+  "dE_yellow": 8.147642790708408,
+  "dE_gold": 22.849742375869326,
+  "orange_share": 0.0014,
+  "fire_asset": false,
+  "palette_within20": 0.76
+ },
+ "splash/card_maxwin.webp": {
+  "group": "splash",
+  "ink_median": [
+   35,
+   26,
+   16
+  ],
+  "ink_share": 0.287,
+  "ink_brown": true,
+  "red_median": "#E12017",
+  "dE_red": 11.46228960744679,
+  "yellow_median": "#FBCD32",
+  "dE_yellow": 5.061140980055022,
+  "dE_gold": 14.298003721466488,
+  "orange_share": 0.0006,
+  "fire_asset": true,
+  "palette_within20": 0.78
+ },
+ "splash/card_rescue.webp": {
+  "group": "splash",
+  "ink_median": [
+   30,
+   25,
+   25
+  ],
+  "ink_share": 0.328,
+  "ink_brown": true,
+  "red_median": "#A3281E",
+  "dE_red": 22.662332511877338,
+  "yellow_median": "#FDC728",
+  "dE_yellow": 8.398591083028792,
+  "dE_gold": 15.614960442453167,
+  "orange_share": 0.0187,
+  "fire_asset": true,
+  "palette_within20": 0.599
+ },
+ "splash/shutter_bottom_bar.webp": {
+  "group": "splash",
+  "ink_median": [
+   19,
+   11,
+   10
+  ],
+  "ink_share": 0.164,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#E4AD2D",
+  "dE_yellow": 17.336926253476797,
+  "dE_gold": 3.3853496244803534,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.858
+ },
+ "splash/shutter_slats_tile.webp": {
+  "group": "splash",
+  "ink_median": [
+   44,
+   8,
+   5
+  ],
+  "ink_share": 0.076,
+  "ink_brown": true,
+  "red_median": "#D6292B",
+  "dE_red": 2.0,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.902
+ },
+ "maxwin/max_win_card_16x9.webp": {
+  "group": "maxwin",
+  "ink_median": [
+   18,
+   44,
+   102
+  ],
+  "ink_share": 0.548,
+  "ink_brown": false,
+  "red_median": "#DA1C18",
+  "dE_red": 9.219544457292887,
+  "yellow_median": "#FCCC2E",
+  "dE_yellow": 6.433046171525795,
+  "dE_gold": 14.994001107247932,
+  "orange_share": 0.0005,
+  "fire_asset": true,
+  "palette_within20": 0.85
+ },
+ "maxwin/max_win_card_portrait.webp": {
+  "group": "maxwin",
+  "ink_median": [
+   19,
+   40,
+   89
+  ],
+  "ink_share": 0.442,
+  "ink_brown": false,
+  "red_median": "#E22017",
+  "dE_red": 11.509152535263803,
+  "yellow_median": "#FCCF32",
+  "dE_yellow": 4.141713051986832,
+  "dE_gold": 15.66375834989748,
+  "orange_share": 0.0003,
+  "fire_asset": true,
+  "palette_within20": 0.836
+ },
+ "winrungs/signs/big.webp": {
+  "group": "signs",
+  "ink_median": [
+   27,
+   32,
+   61
+  ],
+  "ink_share": 0.469,
+  "ink_brown": false,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#F8C234",
+  "dE_yellow": 9.868064678537923,
+  "dE_gold": 10.155897448262422,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.911
+ },
+ "winrungs/signs/epic.webp": {
+  "group": "signs",
+  "ink_median": [
+   29,
+   23,
+   6
+  ],
+  "ink_share": 0.347,
+  "ink_brown": true,
+  "red_median": "#D2231F",
+  "dE_red": 5.33484695937655,
+  "yellow_median": "#FACD32",
+  "dE_yellow": 6.373001492232079,
+  "dE_gold": 12.6266745590068,
+  "orange_share": 0.0061,
+  "fire_asset": false,
+  "palette_within20": 0.902
+ },
+ "winrungs/signs/huge.webp": {
+  "group": "signs",
+  "ink_median": [
+   26,
+   20,
+   10
+  ],
+  "ink_share": 0.326,
+  "ink_brown": true,
+  "red_median": "#DB272A",
+  "dE_red": 1.6171419294521794,
+  "yellow_median": "#FACF5F",
+  "dE_yellow": 15.231546211727817,
+  "dE_gold": 12.230344021281358,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.745
+ },
+ "winrungs/signs/max.webp": {
+  "group": "signs",
+  "ink_median": [
+   26,
+   30,
+   60
+  ],
+  "ink_share": 0.511,
+  "ink_brown": false,
+  "red_median": "#CC121C",
+  "dE_red": 5.601669438641285,
+  "yellow_median": "#FACD32",
+  "dE_yellow": 7.253629989184195,
+  "dE_gold": 11.637564625774138,
+  "orange_share": 0.0133,
+  "fire_asset": false,
+  "palette_within20": 0.907
+ },
+ "winrungs/signs/mega.webp": {
+  "group": "signs",
+  "ink_median": [
+   27,
+   33,
+   63
+  ],
+  "ink_share": 0.506,
+  "ink_brown": false,
+  "red_median": "#DA2628",
+  "dE_red": 1.0741447784158717,
+  "yellow_median": "#FACF5E",
+  "dE_yellow": 14.317821063276353,
+  "dE_gold": 11.856699156126576,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.883
+ },
+ "winrungs/pieces/badge_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   45,
+   4,
+   0
+  ],
+  "ink_share": 0.167,
+  "ink_brown": true,
+  "red_median": "#B70D14",
+  "dE_red": 9.839718959612222,
+  "yellow_median": "#DDB629",
+  "dE_yellow": 12.672068295226815,
+  "dE_gold": 6.708203932499369,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.661
+ },
+ "winrungs/pieces/boot_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   30,
+   29,
+   38
+  ],
+  "ink_share": 0.638,
+  "ink_brown": false,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#EFCC32",
+  "dE_yellow": 2.4175762914439565,
+  "dE_gold": 15.508614019450805,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.89
+ },
+ "winrungs/pieces/coin_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   41,
+   10,
+   0
+  ],
+  "ink_share": 0.153,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#DEB02C",
+  "dE_yellow": 14.495196674885044,
+  "dE_gold": 5.512175890243587,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.638
+ },
+ "winrungs/pieces/droplet_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   14,
+   7,
+   15
+  ],
+  "ink_share": 0.118,
+  "ink_brown": false,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.217
+ },
+ "winrungs/pieces/ember_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   48,
+   27,
+   27
+  ],
+  "ink_share": 0.417,
+  "ink_brown": true,
+  "red_median": "#9A210A",
+  "dE_red": 20.92341539527313,
+  "yellow_median": "#FFE249",
+  "dE_yellow": 5.580800007142629,
+  "dE_gold": 22.479055996138015,
+  "orange_share": 0.0826,
+  "fire_asset": true,
+  "palette_within20": 0.713
+ },
+ "winrungs/pieces/helmet_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   64,
+   2,
+   0
+  ],
+  "ink_share": 0.207,
+  "ink_brown": true,
+  "red_median": "#CC2325",
+  "dE_red": 3.540559736101877,
+  "yellow_median": "#F3CD3B",
+  "dE_yellow": 5.136543881344993,
+  "dE_gold": 13.184083934963105,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.641
+ },
+ "winrungs/pieces/hydrant_cap_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   48,
+   14,
+   0
+  ],
+  "ink_share": 0.152,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#EDBE2D",
+  "dE_yellow": 10.70523592101395,
+  "dE_gold": 7.311412134796144,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.701
+ },
+ "winrungs/pieces/nozzle_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   38,
+   3,
+   0
+  ],
+  "ink_share": 0.255,
+  "ink_brown": true,
+  "red_median": "#CD161B",
+  "dE_red": 4.454477334084993,
+  "yellow_median": "#EBBD2F",
+  "dE_yellow": 10.216137884714938,
+  "dE_gold": 7.735784919442692,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.72
+ },
+ "winrungs/pieces/silver_coin_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   23,
+   17,
+   29
+  ],
+  "ink_share": 0.203,
+  "ink_brown": false,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.859
+ },
+ "winrungs/pieces/spark_sheet.webp": {
+  "group": "pieces",
+  "ink_median": [
+   50,
+   0,
+   0
+  ],
+  "ink_share": 0.154,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FFD53D",
+  "dE_yellow": 2.3203626968607063,
+  "dE_gold": 17.120476822904156,
+  "orange_share": 0.195,
+  "fire_asset": true,
+  "palette_within20": 0.775
+ },
+ "winrungs/coins/coin_sheet.webp": {
+  "group": "coins",
+  "ink_median": [
+   40,
+   10,
+   0
+  ],
+  "ink_share": 0.154,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#DEB02C",
+  "dE_yellow": 14.495196674885044,
+  "dE_gold": 5.512175890243587,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.64
+ },
+ "ui_scene/board_frame.webp": {
+  "group": "ui_scene",
+  "ink_median": [
+   16,
+   1,
+   0
+  ],
+  "ink_share": 0.209,
+  "ink_brown": true,
+  "red_median": "#FC171B",
+  "dE_red": 20.20815363360809,
+  "yellow_median": "#FCD70B",
+  "dE_yellow": 8.297269136586566,
+  "dE_gold": 23.223584374583165,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.598
+ },
+ "ui_scene/cell_backplate.webp": {
+  "group": "ui_scene",
+  "ink_median": [
+   30,
+   43,
+   75
+  ],
+  "ink_share": 0.872,
+  "ink_brown": false,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.998
+ },
+ "ui_scene/cell_frame_locked.webp": {
+  "group": "ui_scene",
+  "ink_median": [
+   25,
+   3,
+   0
+  ],
+  "ink_share": 0.329,
+  "ink_brown": true,
+  "red_median": "#F80410",
+  "dE_red": 22.13922601898547,
+  "yellow_median": "#FCC40E",
+  "dE_yellow": 13.184929591009464,
+  "dE_gold": 18.231003079356544,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.703
+ },
+ "ui_scene/cell_frame_plain.webp": {
+  "group": "ui_scene",
+  "ink_median": [
+   25,
+   5,
+   2
+  ],
+  "ink_share": 0.406,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FCC40E",
+  "dE_yellow": 13.184929591009464,
+  "dE_gold": 18.231003079356544,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.916
+ },
+ "ui_scene/cell_frame_win.webp": {
+  "group": "ui_scene",
+  "ink_median": [
+   27,
+   5,
+   0
+  ],
+  "ink_share": 0.283,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FBC40C",
+  "dE_yellow": 13.184929591009464,
+  "dE_gold": 18.231003079356544,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.909
+ },
+ "ui_scene/line_plate.webp": {
+  "group": "ui_scene",
+  "ink_median": [
+   25,
+   5,
+   0
+  ],
+  "ink_share": 0.181,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FCC510",
+  "dE_yellow": 12.35052886498816,
+  "dE_gold": 18.505254509042683,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.963
+ },
+ "features/rescue/badge_blank.webp": {
+  "group": "rescue",
+  "ink_median": [
+   29,
+   2,
+   0
+  ],
+  "ink_share": 0.145,
+  "ink_brown": true,
+  "red_median": "#F3131D",
+  "dE_red": 16.95901611546989,
+  "yellow_median": "#FCBF33",
+  "dE_yellow": 13.733471069062162,
+  "dE_gold": 9.538868058877588,
+  "orange_share": 0.0004,
+  "fire_asset": false,
+  "palette_within20": 0.947
+ },
+ "features/rescue/block_facade.webp": {
+  "group": "rescue",
+  "ink_median": [
+   20,
+   25,
+   24
+  ],
+  "ink_share": 0.285,
+  "ink_brown": false,
+  "red_median": "#92241C",
+  "dE_red": 27.208600818077887,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.459
+ },
+ "features/rescue/block_facade_inferno.webp": {
+  "group": "rescue",
+  "ink_median": [
+   20,
+   22,
+   15
+  ],
+  "ink_share": 0.266,
+  "ink_brown": true,
+  "red_median": "#A61D15",
+  "dE_red": 16.296288286554482,
+  "yellow_median": "#F9C050",
+  "dE_yellow": 17.417769676391057,
+  "dE_gold": 6.256376985094741,
+  "orange_share": 0.002,
+  "fire_asset": true,
+  "palette_within20": 0.611
+ },
+ "features/rescue/hose_nozzle.webp": {
+  "group": "rescue",
+  "ink_median": [
+   30,
+   2,
+   0
+  ],
+  "ink_share": 0.296,
+  "ink_brown": true,
+  "red_median": "#EA1D21",
+  "dE_red": 10.48057099207276,
+  "yellow_median": "#F9CE34",
+  "dE_yellow": 5.061140980055022,
+  "dE_gold": 14.298003721466488,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.943
+ },
+ "features/rescue/hose_segment.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   2,
+   1
+  ],
+  "ink_share": 0.141,
+  "ink_brown": true,
+  "red_median": "#EA2025",
+  "dE_red": 9.738704653077686,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.985
+ },
+ "features/rescue/jump_sheet.webp": {
+  "group": "rescue",
+  "ink_median": [
+   30,
+   0,
+   0
+  ],
+  "ink_share": 0.154,
+  "ink_brown": true,
+  "red_median": "#E0131C",
+  "dE_red": 9.442128309073018,
+  "yellow_median": "#F1C032",
+  "dE_yellow": 10.589869154985966,
+  "dE_gold": 8.194225327614756,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.903
+ },
+ "features/rescue/ladder_segment.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   1,
+   0
+  ],
+  "ink_share": 0.246,
+  "ink_brown": true,
+  "red_median": "#EA111C",
+  "dE_red": 12.51141731559242,
+  "yellow_median": "#F9C840",
+  "dE_yellow": 9.425745335248132,
+  "dE_gold": 9.461348149407993,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.787
+ },
+ "features/rescue/ladder_top.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   1,
+   0
+  ],
+  "ink_share": 0.293,
+  "ink_brown": true,
+  "red_median": "#F4121C",
+  "dE_red": 16.313961159685384,
+  "yellow_median": "#FACA30",
+  "dE_yellow": 7.242968457750539,
+  "dE_gold": 13.657042212691264,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.823
+ },
+ "features/rescue/room_0_inferno_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   38,
+   6,
+   0
+  ],
+  "ink_share": 0.238,
+  "ink_brown": true,
+  "red_median": "#C71F08",
+  "dE_red": 11.333876098001259,
+  "yellow_median": "#FDD52E",
+  "dE_yellow": 4.287666386856921,
+  "dE_gold": 20.052698737167486,
+  "orange_share": 0.087,
+  "fire_asset": true,
+  "palette_within20": 0.759
+ },
+ "features/rescue/room_0_inferno_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   20,
+   21,
+   11
+  ],
+  "ink_share": 0.342,
+  "ink_brown": true,
+  "red_median": "#AD3924",
+  "dE_red": 21.334063208391015,
+  "yellow_median": "#FCD55B",
+  "dE_yellow": 11.46228960744679,
+  "dE_gold": 14.039612766867839,
+  "orange_share": 0.0,
+  "fire_asset": true,
+  "palette_within20": 0.698
+ },
+ "features/rescue/room_0_inferno_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   25,
+   18
+  ],
+  "ink_share": 0.431,
+  "ink_brown": true,
+  "red_median": "#B83220",
+  "dE_red": 14.785405899222631,
+  "yellow_median": "#F9BF40",
+  "dE_yellow": 12.190497430571378,
+  "dE_gold": 6.244197614159492,
+  "orange_share": 0.0088,
+  "fire_asset": true,
+  "palette_within20": 0.666
+ },
+ "features/rescue/room_0_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   37,
+   11,
+   0
+  ],
+  "ink_share": 0.256,
+  "ink_brown": true,
+  "red_median": "#BA2C11",
+  "dE_red": 13.271859439416286,
+  "yellow_median": "#FDDA35",
+  "dE_yellow": 5.525968890604689,
+  "dE_gold": 21.872546822404335,
+  "orange_share": 0.1842,
+  "fire_asset": true,
+  "palette_within20": 0.768
+ },
+ "features/rescue/room_0_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   23,
+   17,
+   11
+  ],
+  "ink_share": 0.364,
+  "ink_brown": true,
+  "red_median": "#A34133",
+  "dE_red": 30.748080337550252,
+  "yellow_median": "#F5C353",
+  "dE_yellow": 16.20051688696519,
+  "dE_gold": 7.720238087298046,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.679
+ },
+ "features/rescue/room_0_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   28,
+   17
+  ],
+  "ink_share": 0.468,
+  "ink_brown": true,
+  "red_median": "#963D30",
+  "dE_red": 33.872604352839225,
+  "yellow_median": "#F9B51D",
+  "dE_yellow": 17.74336466455495,
+  "dE_gold": 12.86609234305159,
+  "orange_share": 0.0157,
+  "fire_asset": true,
+  "palette_within20": 0.771
+ },
+ "features/rescue/room_1_inferno_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   38,
+   5,
+   0
+  ],
+  "ink_share": 0.223,
+  "ink_brown": true,
+  "red_median": "#CC2107",
+  "dE_red": 12.67026295089829,
+  "yellow_median": "#FED72F",
+  "dE_yellow": 3.5839468641362373,
+  "dE_gold": 20.428775567894014,
+  "orange_share": 0.083,
+  "fire_asset": true,
+  "palette_within20": 0.751
+ },
+ "features/rescue/room_1_inferno_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   20,
+   21,
+   14
+  ],
+  "ink_share": 0.348,
+  "ink_brown": true,
+  "red_median": "#AF3721",
+  "dE_red": 18.237381284728556,
+  "yellow_median": "#FCD85E",
+  "dE_yellow": 11.425249764444137,
+  "dE_gold": 15.569467058903138,
+  "orange_share": 0.0,
+  "fire_asset": true,
+  "palette_within20": 0.665
+ },
+ "features/rescue/room_1_inferno_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   29,
+   26,
+   21
+  ],
+  "ink_share": 0.446,
+  "ink_brown": true,
+  "red_median": "#AB2E1F",
+  "dE_red": 18.243356851307606,
+  "yellow_median": "#F9C44D",
+  "dE_yellow": 10.38471801831311,
+  "dE_gold": 8.268583511068131,
+  "orange_share": 0.0041,
+  "fire_asset": true,
+  "palette_within20": 0.659
+ },
+ "features/rescue/room_1_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   36,
+   11,
+   0
+  ],
+  "ink_share": 0.239,
+  "ink_brown": true,
+  "red_median": "#BC2B10",
+  "dE_red": 12.72752936923247,
+  "yellow_median": "#FDD732",
+  "dE_yellow": 5.334846959376555,
+  "dE_gold": 20.91815029868781,
+  "orange_share": 0.1709,
+  "fire_asset": true,
+  "palette_within20": 0.772
+ },
+ "features/rescue/room_1_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   23,
+   17,
+   12
+  ],
+  "ink_share": 0.354,
+  "ink_brown": true,
+  "red_median": "#9B3A2C",
+  "dE_red": 30.436053056268367,
+  "yellow_median": "#F5C456",
+  "dE_yellow": 16.93642135517055,
+  "dE_gold": 8.565598244110436,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.688
+ },
+ "features/rescue/room_1_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   33,
+   29,
+   20
+  ],
+  "ink_share": 0.464,
+  "ink_brown": true,
+  "red_median": "#A24032",
+  "dE_red": 31.222219485798526,
+  "yellow_median": "#F9B622",
+  "dE_yellow": 16.53615567308328,
+  "dE_gold": 11.72755572337671,
+  "orange_share": 0.0055,
+  "fire_asset": true,
+  "palette_within20": 0.752
+ },
+ "features/rescue/room_2_inferno_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   36,
+   5,
+   0
+  ],
+  "ink_share": 0.218,
+  "ink_brown": true,
+  "red_median": "#CC2309",
+  "dE_red": 11.642007222980528,
+  "yellow_median": "#FDD72E",
+  "dE_yellow": 3.529956384995326,
+  "dE_gold": 19.63591128311831,
+  "orange_share": 0.0918,
+  "fire_asset": true,
+  "palette_within20": 0.788
+ },
+ "features/rescue/room_2_inferno_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   20,
+   19,
+   10
+  ],
+  "ink_share": 0.342,
+  "ink_brown": true,
+  "red_median": "#B23924",
+  "dE_red": 19.030116361171395,
+  "yellow_median": "#FCD65B",
+  "dE_yellow": 11.509152535263805,
+  "dE_gold": 14.337678051849712,
+  "orange_share": 0.0,
+  "fire_asset": true,
+  "palette_within20": 0.669
+ },
+ "features/rescue/room_2_inferno_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   26,
+   20
+  ],
+  "ink_share": 0.439,
+  "ink_brown": true,
+  "red_median": "#B52F1E",
+  "dE_red": 14.57290201982803,
+  "yellow_median": "#F8BE47",
+  "dE_yellow": 11.625202308765347,
+  "dE_gold": 6.491943370033596,
+  "orange_share": 0.0053,
+  "fire_asset": true,
+  "palette_within20": 0.687
+ },
+ "features/rescue/room_2_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   36,
+   11,
+   0
+  ],
+  "ink_share": 0.255,
+  "ink_brown": true,
+  "red_median": "#B72A11",
+  "dE_red": 13.438827185605424,
+  "yellow_median": "#FDD332",
+  "dE_yellow": 5.136543881344993,
+  "dE_gold": 19.029207199555067,
+  "orange_share": 0.1779,
+  "fire_asset": true,
+  "palette_within20": 0.777
+ },
+ "features/rescue/room_2_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   24,
+   19,
+   11
+  ],
+  "ink_share": 0.356,
+  "ink_brown": true,
+  "red_median": "#9F3D2E",
+  "dE_red": 30.108384247568498,
+  "yellow_median": "#F5C558",
+  "dE_yellow": 16.93642135517055,
+  "dE_gold": 8.565598244110436,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.702
+ },
+ "features/rescue/room_2_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   32,
+   29,
+   19
+  ],
+  "ink_share": 0.447,
+  "ink_brown": true,
+  "red_median": "#943C2F",
+  "dE_red": 34.43227141620042,
+  "yellow_median": "#F9B621",
+  "dE_yellow": 17.448336437736533,
+  "dE_gold": 12.022294425146384,
+  "orange_share": 0.0151,
+  "fire_asset": true,
+  "palette_within20": 0.746
+ },
+ "features/rescue/room_3_inferno_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   37,
+   5,
+   0
+  ],
+  "ink_share": 0.244,
+  "ink_brown": true,
+  "red_median": "#CF2509",
+  "dE_red": 12.46838369958068,
+  "yellow_median": "#FDD12E",
+  "dE_yellow": 4.242640687119285,
+  "dE_gold": 17.708227321753373,
+  "orange_share": 0.0869,
+  "fire_asset": true,
+  "palette_within20": 0.755
+ },
+ "features/rescue/room_3_inferno_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   20,
+   24,
+   14
+  ],
+  "ink_share": 0.346,
+  "ink_brown": true,
+  "red_median": "#A93722",
+  "dE_red": 21.666666666666664,
+  "yellow_median": "#FCD659",
+  "dE_yellow": 11.509152535263805,
+  "dE_gold": 14.337678051849712,
+  "orange_share": 0.0,
+  "fire_asset": true,
+  "palette_within20": 0.658
+ },
+ "features/rescue/room_3_inferno_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   25,
+   21
+  ],
+  "ink_share": 0.44,
+  "ink_brown": true,
+  "red_median": "#AC2D1F",
+  "dE_red": 18.344402655968548,
+  "yellow_median": "#F9C14E",
+  "dE_yellow": 11.33043249394337,
+  "dE_gold": 7.081119472203754,
+  "orange_share": 0.008,
+  "fire_asset": true,
+  "palette_within20": 0.676
+ },
+ "features/rescue/room_3_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   34,
+   11,
+   0
+  ],
+  "ink_share": 0.235,
+  "ink_brown": true,
+  "red_median": "#B62B11",
+  "dE_red": 13.615045841990685,
+  "yellow_median": "#FDD832",
+  "dE_yellow": 5.525968890604689,
+  "dE_gold": 21.872546822404335,
+  "orange_share": 0.1583,
+  "fire_asset": true,
+  "palette_within20": 0.766
+ },
+ "features/rescue/room_3_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   23,
+   19,
+   14
+  ],
+  "ink_share": 0.358,
+  "ink_brown": true,
+  "red_median": "#953828",
+  "dE_red": 31.370539151305618,
+  "yellow_median": "#F6C556",
+  "dE_yellow": 16.93642135517055,
+  "dE_gold": 8.565598244110436,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.679
+ },
+ "features/rescue/room_3_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   33,
+   29,
+   19
+  ],
+  "ink_share": 0.461,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.006,
+  "fire_asset": true,
+  "palette_within20": 0.757
+ },
+ "features/rescue/room_4_inferno_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   37,
+   5,
+   0
+  ],
+  "ink_share": 0.23,
+  "ink_brown": true,
+  "red_median": "#C72107",
+  "dE_red": 13.243062353542241,
+  "yellow_median": "#FDD62E",
+  "dE_yellow": 3.529956384995326,
+  "dE_gold": 19.63591128311831,
+  "orange_share": 0.0787,
+  "fire_asset": true,
+  "palette_within20": 0.772
+ },
+ "features/rescue/room_4_inferno_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   20,
+   20,
+   13
+  ],
+  "ink_share": 0.343,
+  "ink_brown": true,
+  "red_median": "#B33923",
+  "dE_red": 17.86029125867423,
+  "yellow_median": "#FBD557",
+  "dE_yellow": 10.506382966796075,
+  "dE_gold": 13.932362565035351,
+  "orange_share": 0.0,
+  "fire_asset": true,
+  "palette_within20": 0.695
+ },
+ "features/rescue/room_4_inferno_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   33,
+   27,
+   21
+  ],
+  "ink_share": 0.466,
+  "ink_brown": true,
+  "red_median": "#B02F1F",
+  "dE_red": 16.847165625688408,
+  "yellow_median": "#F9C040",
+  "dE_yellow": 11.472062918445287,
+  "dE_gold": 6.781593016738404,
+  "orange_share": 0.0054,
+  "fire_asset": true,
+  "palette_within20": 0.669
+ },
+ "features/rescue/room_4_roaring.webp": {
+  "group": "rescue",
+  "ink_median": [
+   36,
+   11,
+   0
+  ],
+  "ink_share": 0.257,
+  "ink_brown": true,
+  "red_median": "#BD2D11",
+  "dE_red": 13.496122729129398,
+  "yellow_median": "#FDD332",
+  "dE_yellow": 5.061140980055022,
+  "dE_gold": 18.813825112897707,
+  "orange_share": 0.1672,
+  "fire_asset": true,
+  "palette_within20": 0.781
+ },
+ "features/rescue/room_4_safe.webp": {
+  "group": "rescue",
+  "ink_median": [
+   23,
+   18,
+   14
+  ],
+  "ink_share": 0.365,
+  "ink_brown": true,
+  "red_median": "#983D2C",
+  "dE_red": 30.89260956351831,
+  "yellow_median": "#F5C557",
+  "dE_yellow": 16.93642135517055,
+  "dE_gold": 8.565598244110436,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.688
+ },
+ "features/rescue/room_4_smouldering.webp": {
+  "group": "rescue",
+  "ink_median": [
+   34,
+   29,
+   21
+  ],
+  "ink_share": 0.461,
+  "ink_brown": true,
+  "red_median": "#9D4030",
+  "dE_red": 32.179451654810805,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0066,
+  "fire_asset": true,
+  "palette_within20": 0.763
+ },
+ "features/rescue/spins_plate_blank.webp": {
+  "group": "rescue",
+  "ink_median": [
+   30,
+   3,
+   0
+  ],
+  "ink_share": 0.147,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": "#FCC12E",
+  "dE_yellow": 12.664071245054165,
+  "dE_gold": 11.407990751206944,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.953
+ },
+ "features/rescue/steam_puff.webp": {
+  "group": "rescue",
+  "ink_median": [
+   29,
+   2,
+   2
+  ],
+  "ink_share": 0.185,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.746
+ },
+ "features/rescue/water_jet.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   2,
+   2
+  ],
+  "ink_share": 0.293,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.413
+ },
+ "features/rescue/water_splash.webp": {
+  "group": "rescue",
+  "ink_median": [
+   28,
+   2,
+   2
+  ],
+  "ink_share": 0.309,
+  "ink_brown": true,
+  "red_median": null,
+  "dE_red": null,
+  "yellow_median": null,
+  "dE_yellow": null,
+  "dE_gold": null,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.394
+ },
+ "branding/wordmark.png": {
+  "group": "branding",
+  "ink_median": [
+   42,
+   26,
+   16
+  ],
+  "ink_share": 0.366,
+  "ink_brown": true,
+  "red_median": "#C41E24",
+  "dE_red": 6.491943370033596,
+  "yellow_median": "#F5D23C",
+  "dE_yellow": 0.0,
+  "dE_gold": 17.708227321753373,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.9
+ },
+ "branding/wordmark_small.webp": {
+  "group": "branding",
+  "ink_median": [
+   42,
+   26,
+   16
+  ],
+  "ink_share": 0.35,
+  "ink_brown": true,
+  "red_median": "#C11E24",
+  "dE_red": 7.745321416485896,
+  "yellow_median": "#F5D23C",
+  "dE_yellow": 0.0,
+  "dE_gold": 17.708227321753373,
+  "orange_share": 0.0,
+  "fire_asset": false,
+  "palette_within20": 0.892
+ }
+}

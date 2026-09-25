@@ -37,6 +37,9 @@ DESC = {
     "skin_dad": "skin: dad in a bathrobe (registered full-figure costume edit)",
     "skin_baby": "skin: mum with the baby in a front sling (registered full-figure costume edit)",
     "skin_teen": "skin: teen with headphones (registered full-figure costume edit)",
+    "helmet_front": "layer-ready helmet: lining and far brim arc removed where the head shows (derived from helmet_only)",
+    "anchors.json": "measured anchor guidance (contract bones) + spine scale",
+    "QA_reassembly": "NOT part of this delivery: written by another process during this run; left untouched",
     "registration.json": "fit per part (scale, translation, score), sheet scales, piece origins",
 }
 

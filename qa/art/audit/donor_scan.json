@@ -1,0 +1,146 @@
+{
+ "sha_matches": [],
+ "near": [
+  [
+   "apps/piggy_firefighters/static/assets/winrungs/fx/dust_puff.webp",
+   "/home/user/lucky/art-src/winrungs/fx/dust_puff.png",
+   7,
+   [
+    256,
+    256
+   ],
+   [
+    256,
+    256
+   ]
+  ],
+  [
+   "apps/piggy_firefighters/static/assets/winrungs/fx/flare_horizontal.webp",
+   "/home/user/lucky/art-src/winrungs/fx/flare_horizontal.png",
+   10,
+   [
+    1024,
+    128
+   ],
+   [
+    1024,
+    256
+   ]
+  ],
+  [
+   "apps/piggy_firefighters/static/assets/winrungs/fx/glint_4point.webp",
+   "/home/user/lucky/art-src/winrungs/fx/glint_4point.png",
+   8,
+   [
+    256,
+    256
+   ],
+   [
+    256,
+    256
+   ]
+  ],
+  [
+   "apps/piggy_firefighters/static/assets/winrungs/fx/light_ray_wedge.webp",
+   "/home/user/lucky/art-src/winrungs/fx/light_ray_wedge.png",
+   4,
+   [
+    256,
+    512
+   ],
+   [
+    256,
+    512
+   ]
+  ],
+  [
+   "art-src/animation/parts/pf_rookie/arm_right.png",
+   "/home/user/lucky/art-src/winrungs/pieces/nail/master/frame_009.png",
+   9,
+   [
+    1024,
+    1536
+   ],
+   [
+    256,
+    256
+   ]
+  ],
+  [
+   "art-src/animation/parts/pf_rookie/head_blank.png",
+   "/home/user/lucky/art-src/winrungs/signs/layers/brick_accent.png",
+   6,
+   [
+    1024,
+    1536
+   ],
+   [
+    2048,
+    1024
+   ]
+  ],
+  [
+   "thumbnail/source/hero_16_9_t3_l_r2_lettered_shieldmask.png",
+   "/home/user/lucky/art-src/winrungs/signs/layers/brick_accent.png",
+   8,
+   [
+    2048,
+    1152
+   ],
+   [
+    2048,
+    1024
+   ]
+  ]
+ ],
+ "per_family": {
+  "sprites": {
+   "files": 36,
+   "bytes": 3242947
+  },
+  "environment": {
+   "files": 8,
+   "bytes": 1368062
+  },
+  "features": {
+   "files": 44,
+   "bytes": 730018
+  },
+  "ui_scene": {
+   "files": 8,
+   "bytes": 291262
+  },
+  "buycards": {
+   "files": 5,
+   "bytes": 560532
+  },
+  "splash": {
+   "files": 9,
+   "bytes": 825094
+  },
+  "winrungs": {
+   "files": 33,
+   "bytes": 1598666
+  },
+  "maxwin": {
+   "files": 3,
+   "bytes": 476071
+  },
+  "branding": {
+   "files": 2,
+   "bytes": 190383
+  },
+  "ambient": {
+   "files": 0,
+   "bytes": 0
+  },
+  "parts": {
+   "files": 182,
+   "bytes": 29579101
+  },
+  "thumbnail": {
+   "files": 38,
+   "bytes": 29647012
+  }
+ }
+}

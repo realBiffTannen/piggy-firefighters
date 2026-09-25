@@ -102,13 +102,29 @@ def main():
         if rig == "pf_dog":
             head = A(os.path.join(d, "head_no_helmet.png"))
             m = alpha(head)
-            ys = np.nonzero(m.any(axis=1))[0]
-            lower = m.copy()
-            lower[: int(ys.min() + 0.55 * (ys.max() - ys.min()))] = False
-            t = tip(np.dstack([head[..., :3], (lower * 255).astype(np.uint8)]), "right")
+            ys, xs = np.nonzero(m)
+            r, g, b = (head[..., i].astype(int) for i in range(3))
+            blk = ndimage.binary_opening((r < 70) & (g < 70) & (b < 70) & m, iterations=3)
+            lab, n = ndimage.label(blk)
+            best = None
+            for i in range(1, n + 1):
+                cy, cx = np.nonzero(lab == i)
+                area = len(cx)
+                # the nose: a big solid black blob in the right 45 % and the lower 60 % of the head (not the outline)
+                if area > 40000 or area < 3000:
+                    continue
+                if cx.mean() < xs.min() + 0.55 * np.ptp(xs) or cy.mean() < ys.min() + 0.4 * np.ptp(ys):
+                    continue
+                if best is None or area > best[0]:
+                    best = (area, cx, cy)
+            if best:
+                _, cx, cy = best
+                t = [int(cx.max()) - 10, int(cy.max()) - 25]
+            else:
+                t = tip(head, "right")
             out["anchors"]["sheet_r"] = {"canvas": t, "spine": spine(t, s),
-                                         "note": "front of the muzzle / mouth: Ember holds the near sheet corner in "
-                                                 "his mouth; bind to the jaw bone"}
+                                         "note": "front of the mouth just under the nose: Ember holds the near sheet "
+                                                 "corner in his mouth; bind to the jaw bone"}
             out["anchors"]["sheet_l"] = {"canvas": t, "spine": spine(t, s),
                                          "note": "Ember holds ONE corner; if the rig needs both, put sheet_l on the "
                                                  "same jaw bone offset along the sheet edge"}

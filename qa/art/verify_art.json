@@ -1,12 +1,199 @@
 {
  "root": "apps/piggy_firefighters/static/assets",
  "families": [
+  "sprites",
+  "environment",
+  "ambient",
   "buycards",
   "splash",
-  "maxwin"
+  "winrungs",
+  "maxwin",
+  "ui_scene",
+  "branding",
+  "features"
  ],
- "summary": "FAIL 0 \u00b7 PENDING 0 \u00b7 WARN 0 \u00b7 ok 18",
+ "summary": "FAIL 0 \u00b7 PENDING 0 \u00b7 WARN 1 \u00b7 ok 148",
  "results": [
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_ALARM.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_GALARM.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H1.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H1_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H2.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H2_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H3.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H3_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H4.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H4_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L1.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L2.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L3.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L4.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_W.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_W_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_W_blaze.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_ALARM.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_GALARM.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H1.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H1_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H2.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H2_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H3.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H3_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H4.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H4_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L1.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L2.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L3.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L4.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_W.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_W_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_W_blaze.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/manifest.json: names 17 files; missing []; orphans []"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/manifest.json: names 17 files; missing []; orphans []"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/backdraft_landscape.webp 2039x1000 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/backdraft_portrait.webp 1242x2208 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/base_landscape.webp 2039x1000 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/base_portrait.webp 1242x2208 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/inferno_landscape.webp 2039x1000 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/inferno_portrait.webp 1242x2208 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/rescue_landscape.webp 2039x1000 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "environment/rescue_portrait.webp 1242x2208 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "ambient/ payload 0.00 MB (budget 1.5 MB)"
+  },
   {
    "status": "ok",
    "msg": "buycards/alarm-call.webp 768x512 RGB"
@@ -69,6 +256,138 @@
   },
   {
    "status": "ok",
+   "msg": "winrungs/coins/coin_sheet.webp 1024x512 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/fx/dust_puff.webp 256x256 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/fx/flare_horizontal.webp 1024x128 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/fx/glint_4point.webp 256x256 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/fx/light_ray_wedge.webp 256x512 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/fx/ring_shockwave.webp 512x512 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/badge_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/boot_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/coin_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/droplet_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/ember_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/helmet_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/hydrant_cap_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/nozzle_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/silver_coin_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/spark_sheet.webp 1024x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/signs/big.webp 1200x728 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/signs/epic.webp 1200x728 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/signs/huge.webp 1200x728 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/signs/max.webp 1200x728 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/signs/mega.webp 1200x728 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/signs/flat_manifest.json: names 5 files; missing []; orphans []"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/badge.json: sheet badge_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/boot.json: sheet boot_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/coin.json: sheet coin_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/droplet.json: sheet droplet_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/ember.json: sheet ember_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/helmet.json: sheet helmet_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/hydrant_cap.json: sheet hydrant_cap_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/nozzle.json: sheet nozzle_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/silver_coin.json: sheet silver_coin_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/pieces/spark.json: sheet spark_sheet.webp (1024, 384) vs json (1024, 384)"
+  },
+  {
+   "status": "ok",
+   "msg": "winrungs/coins/coin_sheet.json: sheet coin_sheet.webp (1024, 512) vs json (1024, 512)"
+  },
+  {
+   "status": "ok",
    "msg": "maxwin/max_win_card_16x9.webp 1600x900 RGB"
   },
   {
@@ -78,6 +397,218 @@
   {
    "status": "ok",
    "msg": "maxwin/manifest.json: names 2 files; missing []; orphans []"
+  },
+  {
+   "status": "ok",
+   "msg": "ui_scene/board_frame.webp 1497x946 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "ui_scene/cell_backplate.webp 963x645 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "ui_scene/cell_frame_locked.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "ui_scene/cell_frame_plain.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "ui_scene/cell_frame_win.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "ui_scene/line_plate.webp 307x291 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "ui_scene/frame.meta.json: names 1 files; missing []; orphans []"
+  },
+  {
+   "status": "ok",
+   "msg": "branding/wordmark.png 1366x654 RGBA"
+  },
+  {
+   "status": "WARN",
+   "msg": "branding/wordmark_small.webp: 683x327 RGBA - no expectation rule (new file?)"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/badge_blank.webp 341x335 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/block_facade.webp 1298x376 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/block_facade_inferno.webp 1298x376 RGB"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/hose_nozzle.webp 702x349 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/hose_segment.webp 527x162 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/jump_sheet.webp 716x389 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/ladder_segment.webp 299x530 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/ladder_top.webp 357x430 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_0_inferno_roaring.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_0_inferno_safe.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_0_inferno_smouldering.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_0_roaring.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_0_safe.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_0_smouldering.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_1_inferno_roaring.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_1_inferno_safe.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_1_inferno_smouldering.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_1_roaring.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_1_safe.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_1_smouldering.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_2_inferno_roaring.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_2_inferno_safe.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_2_inferno_smouldering.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_2_roaring.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_2_safe.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_2_smouldering.webp 234x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_3_inferno_roaring.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_3_inferno_safe.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_3_inferno_smouldering.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_3_roaring.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_3_safe.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_3_smouldering.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_4_inferno_roaring.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_4_inferno_safe.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_4_inferno_smouldering.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_4_roaring.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_4_safe.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/room_4_smouldering.webp 233x390 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/spins_plate_blank.webp 567x216 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/steam_puff.webp 304x318 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/water_jet.webp 713x523 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/water_splash.webp 518x371 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/rooms.meta.json: names 32 files; missing []; orphans []"
+  },
+  {
+   "status": "ok",
+   "msg": "features/rescue/props.meta.json: names 10 files; missing []; orphans []"
   }
  ]
 }

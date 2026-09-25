@@ -1,0 +1,24 @@
+{
+ "matches": [],
+ "counts": {
+  "sprites": 36,
+  "environment": 8,
+  "features": 44,
+  "ui_scene": 8,
+  "buycards": 5,
+  "splash": 9,
+  "winrungs": 33,
+  "maxwin": 3,
+  "branding": 2,
+  "ambient": 0,
+  "art-src/animation/parts": 182,
+  "thumbnail": 38,
+  "art-src/generated": 297
+ },
+ "donor_counts": {
+  "/home/user/lucky": 5354,
+  "/home/user/piggy-builders-3": 4713,
+  "/home/user/piggy-police": 3108
+ },
+ "donor_unique": 8323
+}

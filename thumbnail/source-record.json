@@ -1,0 +1,924 @@
+{
+  "spec": "PF-THUMB-01",
+  "tool": "tools/art/make_thumbnails.py",
+  "generated": "2026-09-25T06:02:15",
+  "note": "Agent checks only; NOT human sign-off and NOT platform approval. thumbnail/instructions.md is Codex's brief and is not edited by this tool.",
+  "hero": {
+    "3_4": {
+      "source": "thumbnail/source/hero_3_4_t3_p_r2_lettered.png",
+      "sha256": "ba117eb9a1dc2ff95b4745eac0c59f688502e58a9fd3958bb86dbcf0ad7fd117",
+      "placed_box": [
+        123,
+        410,
+        1413,
+        2048
+      ],
+      "provenance": [
+        {
+          "output": "art-src/generated/thumb/t3_p.png",
+          "status": "OK",
+          "actual_model": "gpt-image-2.5-sunburst",
+          "size": "1024x1536",
+          "refs": null,
+          "prompt_files": [
+            "art-src/generated/prompts/thumb_t3_p.txt"
+          ],
+          "sha256": "ba5f32235f9cbb9e5c3ce250487a70905b235067d8936cf9eb43764fef177842",
+          "cost_estimate_usd": 0.3,
+          "note": "PF-THUMB-01 candidate T3 portrait (Chief Hamm alone, master identity first ref)"
+        },
+        {
+          "output": "art-src/generated/thumb/t3_p_r2.png",
+          "status": "OK",
+          "actual_model": "gpt-image-2.5-sunburst",
+          "size": "1536x2048",
+          "refs": null,
+          "prompt_files": [
+            "art-src/generated/prompts/thumb_t3_p_r2.txt"
+          ],
+          "sha256": "c3fe6c35732d229a9c36156b66a70d45ec85b9f5ab782ecde5efeea85134d5f2",
+          "cost_estimate_usd": 0.5,
+          "note": "PF-THUMB-01 refinement of t3_p (named defect: right elbow clipped by canvas edge); native 1536x2048 trial"
+        }
+      ],
+      "derived_from": "art-src/generated/thumb/t3_p_r2.png via thumbnail/source/prep_hero.py"
+    },
+    "16_9": {
+      "source": "thumbnail/source/hero_16_9_t3_l_r2_lettered.png",
+      "sha256": "e7f0240249e45a2eeb58902388c3e33bed0591f4867523b5a70c12a071fe502c",
+      "placed_box": [
+        896,
+        150,
+        1931,
+        1152
+      ],
+      "provenance": [
+        {
+          "output": "art-src/generated/thumb/t3_l.png",
+          "status": "OK",
+          "actual_model": "gpt-image-2.5-sunburst",
+          "size": "1536x1024",
+          "refs": null,
+          "prompt_files": [
+            "art-src/generated/prompts/thumb_t3_l.txt"
+          ],
+          "sha256": "a033be015dd64aa031ef44ff6f29ee4f629eccba0e619444abaeca6353abd148",
+          "cost_estimate_usd": 0.3,
+          "note": "PF-THUMB-01 candidate T3 landscape (Chief Hamm alone, master identity first ref)"
+        },
+        {
+          "output": "art-src/generated/thumb/t3_l_r2.png",
+          "status": "OK",
+          "actual_model": "gpt-image-2.5-sunburst",
+          "size": "2048x1152",
+          "refs": null,
+          "prompt_files": [
+            "art-src/generated/prompts/thumb_t3_l_r2.txt"
+          ],
+          "sha256": "55e44d08a439e818cacb6a6e6bfade9d7f53927d648b466ee0e00d2b5f76a4c3",
+          "cost_estimate_usd": 0.5,
+          "note": "PF-THUMB-01 refinement of t3_l (named defect: one-finger salute mismatches the portrait two-finger salute); native 2048x1152 trial"
+        }
+      ],
+      "derived_from": "art-src/generated/thumb/t3_l_r2.png via thumbnail/source/prep_hero.py"
+    },
+    "bg_provenance": [
+      {
+        "output": "art-src/generated/thumb/bg_p.png",
+        "status": "OK",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1536x2048",
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_bg_p.txt"
+        ],
+        "sha256": "85a8b936ad3a9c27f5efa93c85e82f691818852164296970b3cd9f2047ddffac",
+        "cost_estimate_usd": 0.5,
+        "note": "PF-THUMB-01 low-colour background painting 3:4 (dusk-navy firehouse bay, one hue); native size"
+      },
+      {
+        "output": "art-src/generated/thumb/bg_l.png",
+        "status": "OK",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "2048x1152",
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_bg_l.txt"
+        ],
+        "sha256": "a9c119614ddb07c6810cb582fe1b499e7270926e45f866a2699e4a30cf5edef0",
+        "cost_estimate_usd": 0.5,
+        "note": "PF-THUMB-01 low-colour background painting 16:9 (dusk-navy firehouse bay, one hue); native size"
+      }
+    ]
+  },
+  "background": {
+    "3_4": {
+      "route": "painting",
+      "source": "thumbnail/source/bg_3_4_toned.png",
+      "hex": "#26365C",
+      "rgb": [
+        38,
+        54,
+        92
+      ],
+      "snapped_share": 0.6253,
+      "palette": {
+        "top_colours": [
+          {
+            "hex": "#26365C",
+            "share": 0.6254
+          },
+          {
+            "hex": "#42578A",
+            "share": 0.2614
+          },
+          {
+            "hex": "#1E2C4F",
+            "share": 0.0994
+          },
+          {
+            "hex": "#425789",
+            "share": 0.0054
+          }
+        ],
+        "top3_share": 0.9862,
+        "dominant_hue_deg": 225.0,
+        "related_hue_share": 1.0
+      }
+    },
+    "16_9": {
+      "route": "painting",
+      "source": "thumbnail/source/bg_16_9_toned.png",
+      "hex": "#26365C",
+      "rgb": [
+        38,
+        54,
+        92
+      ],
+      "snapped_share": 0.7006,
+      "palette": {
+        "top_colours": [
+          {
+            "hex": "#26365C",
+            "share": 0.7007
+          },
+          {
+            "hex": "#42578A",
+            "share": 0.1605
+          },
+          {
+            "hex": "#1E2C4F",
+            "share": 0.1311
+          },
+          {
+            "hex": "#42588C",
+            "share": 0.0035
+          }
+        ],
+        "top3_share": 0.9923,
+        "dominant_hue_deg": 225.0,
+        "related_hue_share": 1.0
+      }
+    }
+  },
+  "layout": {
+    "3_4": {
+      "size": [
+        1536,
+        2048
+      ],
+      "hero_h": 0.8,
+      "max_w": 0.9,
+      "center_x": 0.5,
+      "bottom": 1.0,
+      "bleed_bottom": true,
+      "title_zone": [
+        0.07,
+        0.035,
+        0.93,
+        0.2
+      ],
+      "review": [
+        [
+          120,
+          160
+        ],
+        [
+          240,
+          320
+        ]
+      ]
+    },
+    "16_9": {
+      "size": [
+        2048,
+        1152
+      ],
+      "hero_h": 0.87,
+      "max_w": 0.56,
+      "center_x": 0.69,
+      "bottom": 1.0,
+      "bleed_bottom": true,
+      "title_zone": [
+        0.045,
+        0.14,
+        0.43,
+        0.86
+      ],
+      "review": [
+        [
+          320,
+          180
+        ],
+        [
+          640,
+          360
+        ]
+      ]
+    }
+  },
+  "files": [
+    {
+      "file": "foreground_3_4.png",
+      "size": [
+        1536,
+        2048
+      ],
+      "mode": "RGBA",
+      "bytes": 1564182,
+      "sha256": "fd121af9646949d73eff2480d3a5a56e2c6c8226abf45c13a6ddba057539b92e",
+      "alpha": {
+        "mode": "RGBA",
+        "size": [
+          1536,
+          2048
+        ],
+        "has_alpha": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent": 0.5449,
+        "soft_edge": 0.0055,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corners_clear": true,
+        "painted_checker": false,
+        "genuine": true
+      }
+    },
+    {
+      "file": "background_3_4.png",
+      "size": [
+        1536,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 44281,
+      "sha256": "6ba9bcc2c9081e6a9b3a4958ca611ac050373dc70b598a294687b45400eda429",
+      "alpha": {
+        "mode": "RGB",
+        "size": [
+          1536,
+          2048
+        ],
+        "has_alpha": false
+      }
+    },
+    {
+      "file": "preview_3_4.png",
+      "size": [
+        1536,
+        2048
+      ],
+      "mode": "RGB",
+      "bytes": 1395510,
+      "sha256": "dfaa89660b69a37fdd5a97aef661f36b5e239f449050bd4c55516b4abc2032f4",
+      "alpha": {
+        "mode": "RGB",
+        "size": [
+          1536,
+          2048
+        ],
+        "has_alpha": false
+      }
+    },
+    {
+      "file": "foreground_16_9.png",
+      "size": [
+        2048,
+        1152
+      ],
+      "mode": "RGBA",
+      "bytes": 955823,
+      "sha256": "abbd05d756a90fde72a8cde5dde09a457f1aa9a225f65bdfcf56233f305720a2",
+      "alpha": {
+        "mode": "RGBA",
+        "size": [
+          2048,
+          1152
+        ],
+        "has_alpha": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "transparent": 0.7013,
+        "soft_edge": 0.0046,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corners_clear": true,
+        "painted_checker": false,
+        "genuine": true
+      }
+    },
+    {
+      "file": "background_16_9.png",
+      "size": [
+        2048,
+        1152
+      ],
+      "mode": "RGB",
+      "bytes": 30376,
+      "sha256": "d8045f25fcf3d79992c501d866825bd60fd44b21a92f3bc67ab51d23b5632755",
+      "alpha": {
+        "mode": "RGB",
+        "size": [
+          2048,
+          1152
+        ],
+        "has_alpha": false
+      }
+    },
+    {
+      "file": "preview_16_9.png",
+      "size": [
+        2048,
+        1152
+      ],
+      "mode": "RGB",
+      "bytes": 860403,
+      "sha256": "b88a039a12ee87f71bce607cde3db8b83ce78a694987a7f66493b40c29a41cb4",
+      "alpha": {
+        "mode": "RGB",
+        "size": [
+          2048,
+          1152
+        ],
+        "has_alpha": false
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "3_4 sizes/modes",
+      "pass": true,
+      "detail": "fg (1536, 2048) RGBA, bg (1536, 2048) RGB"
+    },
+    {
+      "name": "3_4 genuine alpha",
+      "pass": true,
+      "detail": "alpha [0,255] transparent 0.5449 soft 0.0055"
+    },
+    {
+      "name": "3_4 figure inside 5 % inset",
+      "pass": true,
+      "detail": "ink box x 0.080-0.920 y 0.200-1.000 (bottom bleed allowed)"
+    },
+    {
+      "name": "3_4 title zone clear",
+      "pass": true,
+      "detail": "figure covers 0.00 % of the title zone [0.07, 0.035, 0.93, 0.2]"
+    },
+    {
+      "name": "3_4 one figure",
+      "pass": true,
+      "detail": "1 major alpha component(s)"
+    },
+    {
+      "name": "3_4 low-colour background",
+      "pass": true,
+      "detail": "top-3 colours 0.9862, related-hue share 1.0, dominant hue 225.0"
+    },
+    {
+      "name": "3_4 face readable at 120x160",
+      "pass": true,
+      "detail": "pig-skin blob 42.7 px tall"
+    },
+    {
+      "name": "16_9 sizes/modes",
+      "pass": true,
+      "detail": "fg (2048, 1152) RGBA, bg (2048, 1152) RGB"
+    },
+    {
+      "name": "16_9 genuine alpha",
+      "pass": true,
+      "detail": "alpha [0,255] transparent 0.7013 soft 0.0046"
+    },
+    {
+      "name": "16_9 figure inside 5 % inset",
+      "pass": true,
+      "detail": "ink box x 0.438-0.943 y 0.130-1.000 (bottom bleed allowed)"
+    },
+    {
+      "name": "16_9 title zone clear",
+      "pass": true,
+      "detail": "figure covers 0.00 % of the title zone [0.045, 0.14, 0.43, 0.86]"
+    },
+    {
+      "name": "16_9 one figure",
+      "pass": true,
+      "detail": "1 major alpha component(s)"
+    },
+    {
+      "name": "16_9 low-colour background",
+      "pass": true,
+      "detail": "top-3 colours 0.9923, related-hue share 1.0, dominant hue 225.0"
+    },
+    {
+      "name": "16_9 face readable at 320x180",
+      "pass": true,
+      "detail": "pig-skin blob 63.9 px tall"
+    }
+  ],
+  "reviews": [
+    {
+      "file": "thumbnail/review/review_3_4_120x160.png",
+      "size": [
+        120,
+        160
+      ],
+      "with_title_mock": true
+    },
+    {
+      "file": "thumbnail/review/review_3_4_240x320.png",
+      "size": [
+        240,
+        320
+      ],
+      "with_title_mock": true
+    },
+    {
+      "file": "thumbnail/review/review_3_4_grey.png",
+      "size": [
+        240,
+        320
+      ],
+      "grey_value_check": true
+    },
+    {
+      "file": "thumbnail/review/review_16_9_320x180.png",
+      "size": [
+        320,
+        180
+      ],
+      "with_title_mock": true
+    },
+    {
+      "file": "thumbnail/review/review_16_9_640x360.png",
+      "size": [
+        640,
+        360
+      ],
+      "with_title_mock": true
+    },
+    {
+      "file": "thumbnail/review/review_16_9_grey.png",
+      "size": [
+        640,
+        360
+      ],
+      "grey_value_check": true
+    }
+  ],
+  "generation": {
+    "commission": "PF-THUMB-01 (thumbnail/instructions.md; owner authorised the expense)",
+    "tool": "tools/art/gen_art.py (OpenAI images; key from OPENAI_API_KEY env only, never stored)",
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "high",
+    "n": 1,
+    "calls": 10,
+    "cost_estimate_usd": 3.8,
+    "all_calls_status": [
+      "OK"
+    ],
+    "references": {
+      "primary_identity": "art-src/generated/hero/chief_hamm_master.png (hero of record; must-fix edit of hero_c)",
+      "primary_identity_sha256": "6fde2e1318164c2e7bbae54b97944ea8445dce71dba9bc95f3d5e72da2cac16f",
+      "style_only": "art-src/reference/cartoon/pig.png (never shipped)",
+      "style_sha256": "1df46f07604dc02ffcbd658d9fac908dd48ef610cb57195e79ac4d7f1393dc5d",
+      "refinement_edits": "each refinement used its own candidate as Image 1 and the hero master as Image 2"
+    },
+    "native_size_trial": {
+      "requested": [
+        "1536x2048",
+        "2048x1152"
+      ],
+      "result": "ACCEPTED by the API: t3_p_r2 returned 1536x2048 and t3_l_r2 returned 2048x1152 (HTTP 200, first attempt; output image tokens 2223 / 1413), and bg_p / bg_l likewise at 1536x2048 / 2048x1152. No Lanczos upscale was needed; the finals are native resolution (portrait hero scaled 0.87x, landscape hero 0.91x by the layout)."
+    },
+    "rows": [
+      {
+        "output": "art-src/generated/thumb/t2_l.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1536x1024",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t2_l.txt"
+        ],
+        "cost_estimate_usd": 0.3,
+        "usage": {
+          "input_tokens": 3763,
+          "input_tokens_details": {
+            "image_tokens": 3057,
+            "text_tokens": 706
+          },
+          "output_tokens": 1372,
+          "output_tokens_details": {
+            "image_tokens": 1372,
+            "text_tokens": 0
+          },
+          "total_tokens": 5135
+        },
+        "seconds": 25.8,
+        "sha256": "719de707bb48ec02f1e1f55cfd4886b770070b6574620bf48208552e7f50bf56",
+        "note": "PF-THUMB-01 candidate T2 landscape (Chief Hamm alone, master identity first ref)",
+        "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T2-L (nozzle ready, landscape canvas): waist-up figure placed in the RIGHT half of the wide canvas, three-quarter view facing the viewer's left, a polished brass hose nozzle held diagonally across the chest in both bare pink hands (the nozzle is smaller than the head, stays below the chin and points toward the left), eyes glancing to the left with a mischievous raised brow; the whole left half of the canvas stays completely empty and transparent; the body cropped cleanly at the bottom edge."
+      },
+      {
+        "output": "art-src/generated/thumb/t3_l.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1536x1024",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t3_l.txt"
+        ],
+        "cost_estimate_usd": 0.3,
+        "usage": {
+          "input_tokens": 3745,
+          "input_tokens_details": {
+            "image_tokens": 3057,
+            "text_tokens": 688
+          },
+          "output_tokens": 1372,
+          "output_tokens_details": {
+            "image_tokens": 1372,
+            "text_tokens": 0
+          },
+          "total_tokens": 5117
+        },
+        "seconds": 30.3,
+        "sha256": "a033be015dd64aa031ef44ff6f29ee4f629eccba0e619444abaeca6353abd148",
+        "note": "PF-THUMB-01 candidate T3 landscape (Chief Hamm alone, master identity first ref)",
+        "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T3-L (reassuring salute, landscape canvas): chest-up figure placed in the RIGHT half of the wide canvas, three-quarter view turned toward the viewer's left, a crisp two-finger salute touching the helmet brim, warm fatherly smile with one eyebrow cocked, eyes looking into the empty left side of the canvas; the whole left half stays completely empty and transparent; the body cropped cleanly at the bottom edge."
+      },
+      {
+        "output": "art-src/generated/thumb/t1_p.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1024x1536",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t1_p.txt"
+        ],
+        "cost_estimate_usd": 0.3,
+        "usage": {
+          "input_tokens": 3728,
+          "input_tokens_details": {
+            "image_tokens": 3057,
+            "text_tokens": 671
+          },
+          "output_tokens": 1372,
+          "output_tokens_details": {
+            "image_tokens": 1372,
+            "text_tokens": 0
+          },
+          "total_tokens": 5100
+        },
+        "seconds": 31.4,
+        "sha256": "c5105c91dbbc15a7c12c073f85cfe1226ca4f0946bcc29fd12caa846cfd340dd",
+        "note": "PF-THUMB-01 candidate T1 portrait (Chief Hamm alone, master identity first ref)",
+        "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T1 (heroic bust): chest-up portrait, three-quarter view turned slightly to the viewer's left, chin up, one bare pink hand raising the helmet brim with a wink-ready grin; the head fills the upper-middle of the frame with a clear empty band above the helmet for a title, the body cropped cleanly at the bottom edge."
+      },
+      {
+        "output": "art-src/generated/thumb/t3_p.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1024x1536",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t3_p.txt"
+        ],
+        "cost_estimate_usd": 0.3,
+        "usage": {
+          "input_tokens": 3717,
+          "input_tokens_details": {
+            "image_tokens": 3057,
+            "text_tokens": 660
+          },
+          "output_tokens": 1372,
+          "output_tokens_details": {
+            "image_tokens": 1372,
+            "text_tokens": 0
+          },
+          "total_tokens": 5089
+        },
+        "seconds": 34.2,
+        "sha256": "ba5f32235f9cbb9e5c3ce250487a70905b235067d8936cf9eb43764fef177842",
+        "note": "PF-THUMB-01 candidate T3 portrait (Chief Hamm alone, master identity first ref)",
+        "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T3 (reassuring salute): chest-up, three-quarter view turned toward the viewer's left, a crisp two-finger salute touching the helmet brim, warm fatherly smile with one eyebrow cocked; the head and salute sit in the lower two thirds so the space above stays quiet."
+      },
+      {
+        "output": "art-src/generated/thumb/t1_l.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1536x1024",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t1_l.txt"
+        ],
+        "cost_estimate_usd": 0.3,
+        "usage": {
+          "input_tokens": 3754,
+          "input_tokens_details": {
+            "image_tokens": 3057,
+            "text_tokens": 697
+          },
+          "output_tokens": 1372,
+          "output_tokens_details": {
+            "image_tokens": 1372,
+            "text_tokens": 0
+          },
+          "total_tokens": 5126
+        },
+        "seconds": 35.5,
+        "sha256": "a67b97796251e79f7fda1961a538e7fcd7b5d3928361b1d55b7f8d3b7a722591",
+        "note": "PF-THUMB-01 candidate T1 landscape (Chief Hamm alone, master identity first ref)",
+        "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T1-L (heroic bust, landscape canvas): chest-up portrait placed in the RIGHT half of the wide canvas, three-quarter view turned toward the viewer's left, chin up, one bare pink hand raising the helmet brim with a wink-ready grin, eyes looking into the empty left side of the canvas; the whole left half of the canvas stays completely empty and transparent; helmet and face comfortably inside the top and right edges, the body cropped cleanly at the bottom edge."
+      },
+      {
+        "output": "art-src/generated/thumb/t2_p.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1024x1536",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t2_p.txt"
+        ],
+        "cost_estimate_usd": 0.3,
+        "usage": {
+          "input_tokens": 3732,
+          "input_tokens_details": {
+            "image_tokens": 3057,
+            "text_tokens": 675
+          },
+          "output_tokens": 1372,
+          "output_tokens_details": {
+            "image_tokens": 1372,
+            "text_tokens": 0
+          },
+          "total_tokens": 5104
+        },
+        "seconds": 35.9,
+        "sha256": "0afb7ceb547adadc9dd29c6426890afdb60ae0722ec91b8582feaa88dcbe6ed9",
+        "note": "PF-THUMB-01 candidate T2 portrait (Chief Hamm alone, master identity first ref)",
+        "prompt": "Image 1 is the ACCEPTED hero identity, Chief Hamm, and the PRIMARY reference: keep the SAME face, flat wide snout, white eyes with round black pupils and one hard white catch-light, level confident brows, thick dark-brown chevron handlebar moustache, open warm smile, pink triangular ears outside the brim, stout hydrant build, bare pink four-fingered hands, white helmet worn low with a BLANK smooth brass shield plate, red turnout coat, brass toggle clasps and dusk-navy collar lining exactly as drawn - Image 1 overrides any wording below that differs from it. Image 2 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills; do NOT copy its outfit (no hard hat, no hi-vis vest, no rolled plan, no work boots).\n\nOne single cartoon pig fire chief, alone, on a fully transparent background (no floor, no scenery, no shadow puddle, no other people or animals). Costume: white fire helmet with a BLANK smooth brass shield plate on the front (no numbers or letters), red turnout coat (#D7262B) with bright yellow reflective bands (#F5D23C) on the sleeves and hem, bare pink pig hands with no gloves, pink pig skin, a bold dark-brown handlebar moustache with curled tips (matching Image 1 exactly). Personality: brave, capable, warm and slightly mischievous. The face and eyes are the focal point: white eyes, round black pupils with one white catch-light each, expressive brows, a confident half-smile with a spark of mischief. Bold simple outer silhouette that reads instantly at 120 pixels tall; no thin fussy details. Palette limited to engine red, brass gold #E9B23B, hydrant yellow, hose cream #F4E9D2, pig pink, dark-brown ink, dusk navy #1E2A4A accents. No fire, no smoke, no sparks. Absolutely no text, letters, numbers, logos or watermarks. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism. Anatomy polish (tile quality): every visible hand is a clearly defined cartoon hand with a thumb and separated fingers drawn with ink lines, never a mitten; both eyes show clear white areas with the catch-light in the same upper-left spot; the brows stay near-level and warm (one may lift slightly for mischief), never a V-shaped scowl. Premium, polished game-tile illustration quality: crisp confident ink, clean shapes, strong silhouette, no stray marks.\n\nCOMPOSITION T2 (nozzle ready): waist-up, three-quarter view facing the viewer's left, a polished brass hose nozzle held diagonally across the chest in both bare pink hands (the nozzle is smaller than the head and stays below the chin), eyes glancing to the side with a mischievous raised brow; generous empty space above the helmet and to the left."
+      },
+      {
+        "output": "art-src/generated/thumb/t3_l_r2.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "2048x1152",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t3_l_r2.txt"
+        ],
+        "cost_estimate_usd": 0.5,
+        "usage": {
+          "input_tokens": 3375,
+          "input_tokens_details": {
+            "image_tokens": 3072,
+            "text_tokens": 303
+          },
+          "output_tokens": 1413,
+          "output_tokens_details": {
+            "image_tokens": 1413,
+            "text_tokens": 0
+          },
+          "total_tokens": 4788
+        },
+        "seconds": 25.7,
+        "sha256": "55e44d08a439e818cacb6a6e6bfade9d7f53927d648b466ee0e00d2b5f76a4c3",
+        "note": "PF-THUMB-01 refinement of t3_l (named defect: one-finger salute mismatches the portrait two-finger salute); native 2048x1152 trial",
+        "prompt": "Image 1 is the accepted landscape tile candidate; Image 2 is the accepted hero identity (Chief Hamm). Redraw Image 1 as the SAME picture: identical character, face, expression, eyes glancing into the empty left side, costume, colours, ink style, flat cel shading with one hard shadow tone, the same placement in the right half of the wide canvas with the whole left half completely empty, on a fully transparent background. Keep the face, eyes, brows, moustache, helmet and blank smooth brass shield plate exactly as in Image 1 (no numbers or letters anywhere).\n\nFix exactly one defect: the salute must match the portrait tile - a crisp TWO-finger salute (index and middle finger together, straight, fingertips touching the helmet brim, the other two fingers curled, a visible thumb), drawn as a defined cartoon hand with ink lines separating the fingers. Everything else stays as it is. Both eyes keep clear white areas and one hard white catch-light each in the same upper-left spot. Keep the helmet and the far helmet brim fully inside the canvas with a transparent margin; the body is cropped cleanly at the bottom edge.\n\nAbsolutely no text, letters, numbers, logos or watermarks. No fire, no smoke, no other people or animals, no floor or shadow. No airbrush gradients, no glow, no 3D render look."
+      },
+      {
+        "output": "art-src/generated/thumb/t3_p_r2.png",
+        "status": "OK",
+        "endpoint": "images/edits",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1536x2048",
+        "quality": "high",
+        "n": 1,
+        "transparent": true,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_t3_p_r2.txt"
+        ],
+        "cost_estimate_usd": 0.5,
+        "usage": {
+          "input_tokens": 3363,
+          "input_tokens_details": {
+            "image_tokens": 3072,
+            "text_tokens": 291
+          },
+          "output_tokens": 2223,
+          "output_tokens_details": {
+            "image_tokens": 2223,
+            "text_tokens": 0
+          },
+          "total_tokens": 5586
+        },
+        "seconds": 36.9,
+        "sha256": "c3fe6c35732d229a9c36156b66a70d45ec85b9f5ab782ecde5efeea85134d5f2",
+        "note": "PF-THUMB-01 refinement of t3_p (named defect: right elbow clipped by canvas edge); native 1536x2048 trial",
+        "prompt": "Image 1 is the accepted tile candidate; Image 2 is the accepted hero identity (Chief Hamm). Redraw Image 1 as the SAME picture: identical character, face, expression, pose, two-finger salute, costume, colours, ink style, flat cel shading with one hard shadow tone, and the same framing, on a fully transparent background. Keep the face, eyes, brows, moustache, helmet and blank smooth brass shield plate exactly as in Image 1 (no numbers or letters anywhere).\n\nFix exactly one defect: his elbow and coat sleeve on the viewer's right are cut off by the right edge of the canvas. Pull that arm slightly in (hand still resting on the hip) so the whole elbow, sleeve and hand sit fully inside the canvas with a clear transparent margin on the right, the left and above the helmet. Keep the salute hand a defined cartoon hand with a thumb and separated fingers drawn with ink lines. Both eyes keep clear white areas and one hard white catch-light each in the same upper-left spot. The coat hem stays the bottom of the figure.\n\nAbsolutely no text, letters, numbers, logos or watermarks. No fire, no smoke, no other people or animals, no floor or shadow. No airbrush gradients, no glow, no 3D render look."
+      },
+      {
+        "output": "art-src/generated/thumb/bg_l.png",
+        "status": "OK",
+        "endpoint": "images/generations",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "2048x1152",
+        "quality": "high",
+        "n": 1,
+        "transparent": false,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_bg_l.txt"
+        ],
+        "cost_estimate_usd": 0.5,
+        "usage": {
+          "input_tokens": 318,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 318
+          },
+          "output_tokens": 1413,
+          "output_tokens_details": {
+            "image_tokens": 1413,
+            "text_tokens": 0
+          },
+          "total_tokens": 1731
+        },
+        "seconds": 22.1,
+        "sha256": "a9c119614ddb07c6810cb582fe1b499e7270926e45f866a2699e4a30cf5edef0",
+        "note": "PF-THUMB-01 low-colour background painting 16:9 (dusk-navy firehouse bay, one hue); native size",
+        "prompt": "A quiet background plate for a cartoon game tile, wide landscape canvas, with NO characters, NO people, NO animals and NO objects in the foreground. Strictly low-colour: one dominant deep dusk-navy blue (#26365C) plus only two closely related tones of the same blue hue (one a little lighter, one a little darker); no other hues at all, no red, no yellow, no orange, no fire.\n\nSubject: the calm interior of an old firehouse engine bay at dusk, drawn as a few big simple flat shapes: a tall round-topped arched bay door opening placed in the right half of the canvas, its top at about one fifth of the height and its base at the bottom edge, filled with the slightly lighter blue as soft evening light, framed by the dominant blue wall; a few broad vertical door-panel bands and a simple floor line in the darker blue. The left half of the canvas is an almost empty calm field of the dominant blue (space for a title). Cartoon cel style matching a thick-ink cartoon game, but the background uses NO ink outlines: edges are clean flat shape boundaries, gentle and low-contrast so the plate stays quiet behind a bright character. Subtle, restrained depth; soft, understated; nothing busy, no small details, no clutter, no smoke, no particles, no glow, no gradients, no airbrush, no texture noise, no photo realism, no 3D render look. Absolutely no text, letters, numbers, signs, logos or watermarks."
+      },
+      {
+        "output": "art-src/generated/thumb/bg_p.png",
+        "status": "OK",
+        "endpoint": "images/generations",
+        "requested_model": "gpt-image-2.5-sunburst",
+        "actual_model": "gpt-image-2.5-sunburst",
+        "size": "1536x2048",
+        "quality": "high",
+        "n": 1,
+        "transparent": false,
+        "prompt_files": [
+          "art-src/generated/prompts/thumb_bg_p.txt"
+        ],
+        "cost_estimate_usd": 0.5,
+        "usage": {
+          "input_tokens": 301,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 301
+          },
+          "output_tokens": 2223,
+          "output_tokens_details": {
+            "image_tokens": 2223,
+            "text_tokens": 0
+          },
+          "total_tokens": 2524
+        },
+        "seconds": 24.4,
+        "sha256": "85a8b936ad3a9c27f5efa93c85e82f691818852164296970b3cd9f2047ddffac",
+        "note": "PF-THUMB-01 low-colour background painting 3:4 (dusk-navy firehouse bay, one hue); native size",
+        "prompt": "A quiet background plate for a cartoon game tile, portrait canvas, with NO characters, NO people, NO animals and NO objects in the foreground. Strictly low-colour: one dominant deep dusk-navy blue (#26365C) plus only two closely related tones of the same blue hue (one a little lighter, one a little darker); no other hues at all, no red, no yellow, no orange, no fire.\n\nSubject: the calm interior of an old firehouse engine bay at dusk, drawn as a few big simple flat shapes: a tall round-topped arched bay door opening centred in the lower two thirds of the canvas, filled with the slightly lighter blue as soft evening light, framed by the dominant blue wall; a few broad vertical door-panel bands and a simple floor line in the darker blue. The upper third of the canvas is an almost empty calm field of the dominant blue (space for a title). Cartoon cel style matching a thick-ink cartoon game, but the background uses NO ink outlines: edges are clean flat shape boundaries, gentle and low-contrast so the plate stays quiet behind a bright character. Subtle, restrained depth; soft, understated; nothing busy, no small details, no clutter, no smoke, no particles, no glow, no gradients, no airbrush, no texture noise, no photo realism, no 3D render look. Absolutely no text, letters, numbers, signs, logos or watermarks."
+      }
+    ]
+  },
+  "candidates": {
+    "dir": "thumbnail/source/candidates/ (byte copies of the raw paid outputs in art-src/generated/thumb/, never edited)",
+    "files": {
+      "bg_l.png": "a9c119614ddb07c6810cb582fe1b499e7270926e45f866a2699e4a30cf5edef0",
+      "bg_p.png": "85a8b936ad3a9c27f5efa93c85e82f691818852164296970b3cd9f2047ddffac",
+      "t1_l.png": "a67b97796251e79f7fda1961a538e7fcd7b5d3928361b1d55b7f8d3b7a722591",
+      "t1_p.png": "c5105c91dbbc15a7c12c073f85cfe1226ca4f0946bcc29fd12caa846cfd340dd",
+      "t2_l.png": "719de707bb48ec02f1e1f55cfd4886b770070b6574620bf48208552e7f50bf56",
+      "t2_p.png": "0afb7ceb547adadc9dd29c6426890afdb60ae0722ec91b8582feaa88dcbe6ed9",
+      "t3_l.png": "a033be015dd64aa031ef44ff6f29ee4f629eccba0e619444abaeca6353abd148",
+      "t3_l_r2.png": "55e44d08a439e818cacb6a6e6bfade9d7f53927d648b466ee0e00d2b5f76a4c3",
+      "t3_p.png": "ba5f32235f9cbb9e5c3ce250487a70905b235067d8936cf9eb43764fef177842",
+      "t3_p_r2.png": "c3fe6c35732d229a9c36156b66a70d45ec85b9f5ab782ecde5efeea85134d5f2"
+    },
+    "review_sheets": [
+      "thumbnail/review/candidates_3_4_contact.png (each candidate large + 120x160 + 2x nearest)",
+      "thumbnail/review/candidates_16_9_contact.png",
+      "thumbnail/review/candidates_faces_closeup.png",
+      "thumbnail/review/background_paintings_raw.png"
+    ]
+  },
+  "selection_review": {
+    "portrait_pick": "T3 salute (t3_p), refined once -> t3_p_r2",
+    "landscape_pick": "T3 salute (t3_l), refined once -> t3_l_r2",
+    "written_review": [
+      "Viewed all six candidates on a dusk-navy ground at full size and at 120x160 (portrait) / 320x180 (landscape).",
+      "T1 (brim tip): charming wink-ready grin, but in the landscape the pupils look to the viewer's RIGHT, away from the title space; the portrait crops the raised elbow at the right canvas edge. Rejected.",
+      "T2 (nozzle): the hose runs off the left canvas edge in the portrait (breaks the 5 % inset, competes with the face) and the nozzle adds a second focal object at 120x160. Rejected.",
+      "T3 (salute): the largest, clearest face of the set; level warm brows with one cocked for mischief, both eyes with white area and one hard upper-left catch-light, open smile, hand drawn with a thumb and separated fingers; the salute frames the face instead of competing with it. In the landscape the eyes glance into the empty left. Chosen for BOTH aspects so the identity, pose and expression match.",
+      "Refinement t3_p_r2 (one edit, named defect): the right elbow was cut by the canvas edge; now the whole figure sits inside with margin (bbox 20..1500 x 101..1981 of 1536x2048).",
+      "Refinement t3_l_r2 (one edit, named defect): the landscape salute used one finger while the portrait used two; now a crisp two-finger salute matching the portrait.",
+      "Shield: generated BLANK brass; the \"13\" was lettered locally with tools/art/letter_shield.py (Alfa Slab One, ink #3B2313, brass shadow #B8862B) via thumbnail/source/prep_hero.py, the one treatment used on the rig shield and WILD badge (ART_HERO.md shield rule). It is part of the helmet emblem, not a title.",
+      "Final tiles at 120x160 / 320x180 with the title mock: the face (pig-skin blob 43 px / 64 px tall at the review sizes) and the 13 shield read immediately; the title sits in the quiet dusk-navy field above (3:4) / to the left (16:9) with no overlap; the lighter bay-door shapes backlight the helmet and add depth without competing. Grey-value check: the figure separates from the background at every edge.",
+      "Edges: foreground inspected on white and black (thumbnail/review/foreground_3_4_edges_white_black.png): clean dark-brown ink edge, no matte spill or glow halo, interior fully opaque (alpha >= 250 solidified to 255).",
+      "Residual notes: the 3:4 background keeps two soft dark shrub-like blobs at the far right edge beside the right pillar (low contrast, dominant vs dark tone); the 16:9 background has a darker pillar and floor line crossing the title area at low contrast. Neither is visible as a distraction at tile size. Agent review only, NOT human sign-off or platform approval."
+    ]
+  },
+  "background_source": {
+    "route": "generated painting (thumb/bg_p, thumb/bg_l; images/generations, no refs) -> thumbnail/source/tone_bg.py strict 3-tone pass -> make_thumbnails --bg-34/--bg-169 snap",
+    "dominant_hex": "#26365C",
+    "dominant_rgb": [
+      38,
+      54,
+      92
+    ],
+    "tones": {
+      "light": "#42578A",
+      "dark": "#1E2C4F"
+    },
+    "hue": "all three tones share the dominant hue exactly (dusk-navy family of theme #1E2A4A)",
+    "toned_files": {
+      "bg_3_4_toned.png": "43d33e6319fe266c9cb02e509e9ba16f28e2b95815ba9c80076045e53b0f7077",
+      "bg_16_9_toned.png": "15541c62d8480ad5199d2beb11599d89c332706b9b4429cdd5413a4e75006229"
+    }
+  },
+  "hero_prep": {
+    "script": "thumbnail/source/prep_hero.py <raw> <seed_x> <seed_y> <out> (alpha clean via art_common.load_clean, shield flood-fill mask, letter_shield.py \"13\", alpha >=250 -> 255)",
+    "3_4": {
+      "raw": "art-src/generated/thumb/t3_p_r2.png",
+      "seed": [
+        907,
+        278
+      ],
+      "out": "thumbnail/source/hero_3_4_t3_p_r2_lettered.png"
+    },
+    "16_9": {
+      "raw": "art-src/generated/thumb/t3_l_r2.png",
+      "seed": [
+        1424,
+        165
+      ],
+      "out": "thumbnail/source/hero_16_9_t3_l_r2_lettered.png"
+    },
+    "layout_override": "thumbnail/source/layout.json (16_9 hero_h 0.87, center_x 0.69 so the figure keeps the 5 % right inset and clears the title zone)",
+    "rebuild": "python3 tools/art/make_thumbnails.py --hero thumbnail/source/hero_3_4_t3_p_r2_lettered.png --hero-34 thumbnail/source/hero_3_4_t3_p_r2_lettered.png --hero-169 thumbnail/source/hero_16_9_t3_l_r2_lettered.png --bg '#26365C' --tones '#42578A,#1E2C4F' --bg-34 thumbnail/source/bg_3_4_toned.png --bg-169 thumbnail/source/bg_16_9_toned.png --layout thumbnail/source/layout.json (note: a rerun rewrites this record; the generation/candidates/selection_review/background_source/hero_prep/validator keys were added after the run)"
+  },
+  "codex_validator": {
+    "command": "python3 tools/codex/thumbnail/validate_thumbnail.py --json",
+    "status": "PASS (8/8 files; structure + provenance presence only, not visual acceptance)"
+  }
+}

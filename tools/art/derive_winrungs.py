@@ -2,11 +2,12 @@
 """Derive the PIGGY FIREFIGHTERS win-celebration textures. Subcommands (default: all, in this order):
 
   titles  art-src/winrungs/titles/title_<rung>.png (+ _outlined.svg, _live.svg): BIG WIN / HUGE WIN / MEGA WIN /
-          EPIC WIN / MAX WIN lettered LOCALLY in Alfa Slab One (never generated): cream face, stepped brass side
+          EPIC WIN / MAX WIN lettered LOCALLY in Alfa Slab One (never generated): gold face, stepped brass side
           extrusion, dark-brown ink outline, one per-rung accent keyline (theme palette; flame orange = win FX).
   signs   winrungs/signs/<rung>.webp 1200x728 on the family's flat_manifest geometry (title board centre (600,338.3)
           size 1139.4x364.3, amount plank centre (600,634.2) size 901.7x187.2) + signs/flat_manifest.json. Boards and
-          amount bars come from ONE generated transparent sheet (default winrungs/rung_plaques: five blank boards on
+          amount bars come from ONE transparent sheet (default: the local composite written by compose_plaques.py from
+          the paid sheets winrungs/rung_plaques_a + _b + rung_plaque_max_r2: five blank boards on
           the top row in rung order big, huge, mega, epic, max; two blank amount bars below: plain, gold). A board
           taller than the board rect (a crest) is width-fitted and bottom-aligned. Hung on procedural brass chains.
           The amount is runtime text; the title is the baked local lettering from `titles`.
@@ -42,7 +43,7 @@ CREAM, GOLD_FACE = P["hose_cream"], (250, 206, 96, 255)
 BRASS, BRASS_D, BRASS_DEEP = P["brass_gold"], (190, 136, 34, 255), (150, 100, 20, 255)
 ACCENT = {"big": P["hydrant_yellow"], "huge": P["engine_red"], "mega": P["dusk_navy"],
           "epic": P["flame_orange"], "max": P["flame_orange"]}
-FACE_FOR = {"big": CREAM, "huge": CREAM, "mega": CREAM, "epic": GOLD_FACE, "max": CREAM}
+FACE_FOR = {r: GOLD_FACE for r in ["big", "huge", "mega", "epic", "max"]}  # gold face, dark ink outline (boards carry dark panels)
 EXTR_FOR = {"big": 18, "huge": 18, "mega": 18, "epic": 26, "max": 26}
 TITLES_DIR = os.path.join(REPO, "art-src", "winrungs", "titles")
 SIGN_W, SIGN_H = 1200, 728
@@ -52,7 +53,8 @@ ITEMS = ["coin", "silver_coin", "helmet", "droplet", "nozzle", "badge", "boot", 
 FLIP = {"coin", "silver_coin", "badge"}
 CREST = ("epic", "max")  # boards whose painting carries a crest above the plaque (width-fit, bottom-aligned)
 CELL, COLS, FRAMES, FPS = 128, 8, 24, 24
-DEFAULT_MAP = {"rung_plaques": "winrungs/rung_plaques", "rung_pieces": "winrungs/rung_pieces"}
+DEFAULT_MAP = {"rung_plaques": "art-src/winrungs/plaques/rung_plaques_composite.png",  # tools/art/compose_plaques.py
+               "rung_pieces": "winrungs/rung_pieces"}
 
 
 # ------------------------------------------------------------------------------------------------ titles
@@ -119,7 +121,7 @@ def title_svgs(rung, text, accent, face, extr, px=200, track=4):
 
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
          f"  <title>{text} - Piggy Firefighters win rung title ({rung})</title>",
-         "  <desc>Outlined Alfa Slab One (SIL OFL 1.1): cream face, brass side, dark-brown ink, accent keyline.</desc>",
+         "  <desc>Outlined Alfa Slab One (SIL OFL 1.1): gold face, brass side, dark-brown ink, accent keyline.</desc>",
          '  <g id="accent-keyline">', group(hexc(accent), f'stroke="{hexc(accent)}" stroke-width="34" stroke-linejoin="round"'),
          "  </g>", '  <g id="outline-extrusion">']
     for off in range(extr, 0, -2):
@@ -149,12 +151,12 @@ def cmd_titles(titles_dir, **_):
 
 
 # ------------------------------------------------------------------------------------------------- signs
-def chains(can, xs, y1):
-    """Brass chain links from the top edge down to the board's shoulders (ink outline, one hard highlight)."""
+def chains(can, xs, y1, y0=None):
+    """Brass chain links from the top edge (or y0) down to y1 (ink outline, one hard highlight)."""
     d = ImageDraw.Draw(can)
     lw, lh = 30, 46
     for x in xs:
-        y, k = -lh // 2, 0
+        y, k = (-lh // 2 if y0 is None else y0), 0
         while y < y1:
             if k % 2 == 0:  # face-on oval link
                 d.ellipse([x - lw // 2, y, x + lw // 2, y + lh], outline=INK, width=13)
@@ -165,6 +167,13 @@ def chains(can, xs, y1):
                 d.rounded_rectangle([x - 3, y + 4, x + 3, y + lh - 4], radius=3, fill=BRASS_D)
             y += lh - 14
             k += 1
+
+
+def body_rows(im, frac=0.85):
+    """First and last row (exclusive) whose opaque span covers >= frac of the image width: the plaque body."""
+    a = np.array(im.getchannel("A")) > 128
+    full = np.nonzero(a.sum(1) >= frac * im.width)[0]
+    return (int(full[0]), int(full[-1]) + 1) if len(full) else (0, im.height)
 
 
 def cmd_signs(srcs, root, titles_dir, plank_w, crest_set, pending, **_):
@@ -184,8 +193,6 @@ def cmd_signs(srcs, root, titles_dir, plank_w, crest_set, pending, **_):
     for i, rung in enumerate(RUNGS):
         board, bar = boards[i], bars[0 if i < 3 else 1]
         can = Image.new("RGBA", (SIGN_W, SIGN_H), (0, 0, 0, 0))
-        chains(can, [round(bcx - bw * 0.36), round(bcx + bw * 0.36)], round(bcy - bh / 2 + 30))
-        can.alpha_composite(bar.resize((round(pw), round(ph)), Image.LANCZOS), (round(pcx - pw / 2), round(pcy - ph / 2)))
         crest = rung in crest_set
         aspect = board.height / board.width
         if not crest and abs(aspect / (bh / bw) - 1) > 0.25:
@@ -198,18 +205,23 @@ def cmd_signs(srcs, root, titles_dir, plank_w, crest_set, pending, **_):
         else:
             bb = board.resize((round(bw), round(bh)), Image.LANCZOS)
             y = round(bcy - bh / 2)
+        b0, b1 = body_rows(bb)  # the plaque body (full-width rows), below any crest
+        chains(can, [round(bcx - bw * 0.36), round(bcx + bw * 0.36)], y + b0 + 30)
+        chains(can, [round(pcx - pw * 0.33), round(pcx + pw * 0.33)], round(pcy), y0=y + b1 - 40)  # board -> plank
+        can.alpha_composite(bar.resize((round(pw), round(ph)), Image.LANCZOS), (round(pcx - pw / 2), round(pcy - ph / 2)))
         can.alpha_composite(bb, (round(bcx - bb.width / 2), y))
         tp = os.path.join(titles_dir, f"title_{rung}.png")
         if not os.path.exists(tp):
             raise SystemExit(f"missing {rel(tp)}: run `derive_winrungs.py titles` first")
         t = Image.open(tp).convert("RGBA")
-        cy = bcy + (bh * 0.10 if crest else 0)
-        s = min(bw * 0.80 / t.width, bh * 0.60 / t.height)
+        cy = y + (b0 + b1) / 2  # centred on the plaque body's inner panel, not on the crest
+        s = min(bw * 0.68 / t.width, (b1 - b0) * 0.50 / t.height)  # inside the inner panel with a margin
         t = t.resize((round(t.width * s), round(t.height * s)), Image.LANCZOS)
         can.alpha_composite(t, (round(bcx - t.width / 2), round(cy - t.height / 2)))
         n = save_webp(can, os.path.join(out, f"{rung}.webp"), quality=92)
         man[rung] = {"file": f"signs/{rung}.webp", "w": SIGN_W, "h": SIGN_H, "plank": [pcx, pcy, round(pw, 1), ph],
-                     "board": BOARD, "crest": bool(crest)}
+                     "board": BOARD, "crest": bool(crest), "title_centre": [bcx, round(cy, 1)],
+                     "board_body_y": [y + b0, y + b1]}
         print(f"winrungs/signs/{rung}.webp {can.size} {n} B crest={crest}")
     write_json(os.path.join(out, "flat_manifest.json"), man)
 

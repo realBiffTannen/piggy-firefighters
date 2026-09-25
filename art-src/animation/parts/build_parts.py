@@ -127,6 +127,20 @@ def red_bottom(a):
     return int(np.nonzero(m.sum(axis=1) > 20)[0].max())
 
 
+def helmet_front(helmet, head, master):
+    h = helmet.copy()
+    inner = ndimage.binary_erosion(head[..., 3] > 128, iterations=4)
+    diff = np.abs(h[..., :3].astype(int) - master[..., :3].astype(int)).sum(-1)
+    drop = inner & (h[..., 3] > 0) & ((diff > 90) | (master[..., 3] < 128))
+    drop = ndimage.binary_opening(drop, iterations=1) | (drop & ndimage.binary_dilation(drop, iterations=2))
+    h[drop] = 0
+    lab, n = ndimage.label(h[..., 3] > 0)
+    if n > 1:
+        sizes = np.bincount(lab.ravel())[1:]
+        h[(lab > 0) & (lab != int(np.argmax(sizes)) + 1)] = 0
+    return h
+
+
 def feet_fit(master, part):
     """Full-figure costume edits keep the template framing (measured: same sole line and width), so they are placed
     by their feet: identity when the soles already sit within 6 px of the master's; otherwise scaled down to fit the
@@ -223,38 +237,28 @@ def _bands(profile, n, min_gap=6):
 
 
 def split_grid(a, rows, min_area=400):
-    """Group the sheet's components into the named grid cells: rows = horizontal bands of the alpha projection,
-    columns = bands of each row's own projection (fallback: 1-D k-means on component centres)."""
+    """Group the sheet's components into the named grid cells. The sheets were requested as regular grids and the
+    model keeps that layout, so the content box is divided into equal rows, and each row's own content span into
+    equal columns; a component belongs to the cell holding its centre. (Gap-based banding merged the eye row into
+    the brow row on two sheets; this uniform split was checked by eye on all eleven sheets.)"""
     lab, cs = comps(a, min_area)
     big = max(c["area"] for c in cs)
     keep = [c for c in cs if c["area"] >= max(min_area, big * 0.004)]
     m = np.isin(lab, [c["i"] for c in keep])
-    rb = _bands(m.any(axis=1).astype(int), len(rows))
-    if rb is None:
-        r = kmeans1d([c["cy"] for c in keep], len(rows))
-        rb_of = {c["i"]: rr for c, rr in zip(keep, r)}
-    else:
-        rb_of = {}
-        for c in keep:
-            for ri, (y0, y1) in enumerate(rb):
-                if y0 <= c["cy"] < y1:
-                    rb_of[c["i"]] = ri
+    ys = np.nonzero(m.any(axis=1))[0]
+    y0, y1 = ys.min(), ys.max() + 1
+    for c in keep:
+        c["ri"] = min(len(rows) - 1, int((c["cy"] - y0) / ((y1 - y0) / len(rows))))
     cells = {}
     for ri, names in enumerate(rows):
-        rc = [c for c in keep if rb_of.get(c["i"]) == ri]
+        rc = [c for c in keep if c["ri"] == ri]
         if not rc:
             continue
-        rowmask = np.isin(lab, [c["i"] for c in rc])
-        cb = _bands(rowmask.any(axis=0).astype(int), len(names), min_gap=4)
-        if cb is not None:
-            for c in rc:
-                for ci, (x0, x1) in enumerate(cb):
-                    if x0 <= c["cx"] < x1:
-                        cells.setdefault(names[ci], []).append(c["i"])
-        else:
-            col = kmeans1d([c["cx"] for c in rc], len(names)) if len(rc) >= len(names) else list(range(len(rc)))
-            for c, ci in zip(rc, col):
-                cells.setdefault(names[ci], []).append(c["i"])
+        rx = np.nonzero(np.isin(lab, [c["i"] for c in rc]).any(axis=0))[0]
+        x0, x1 = rx.min(), rx.max() + 1
+        for c in rc:
+            ci = min(len(names) - 1, int((c["cx"] - x0) / ((x1 - x0) / len(names))))
+            cells.setdefault(names[ci], []).append(c["i"])
     return lab, cells
 
 
@@ -275,7 +279,7 @@ def shoulder_cap(piece, top=True):
     return float(xs[sel].mean()), float(ys[sel].mean())
 
 
-def build(rig):
+def build(rig, pieces_only=False):
     raw_dir = os.path.join(GEN, f"rig_{rig}")
     out_dir = os.path.join(HERE, rig)
     rec = {"rig": rig, "canvas": list(CANVAS), "feet_y": FEET_Y, "feet_x": FEET_X, "parts": {}, "pieces": {}}
@@ -297,7 +301,14 @@ def build(rig):
     rec["master"]["height_px"] = int(ys.max() - ys.min() + 1)
     rec["master"]["feet_measured"] = [round(cx, 1), y1]
     registered = {}
-    for rawname, (outname, split) in SAME.get(rig, {}).items():
+    if pieces_only:  # reuse the registered parts on disk; redo only the sheets
+        old = json.load(open(os.path.join(out_dir, "registration.json")))
+        rec["parts"] = old["parts"]
+        for nm in list(old["parts"]) + ["arm_right", "arm_left", "leg_right", "leg_left"]:
+            fp = os.path.join(out_dir, f"{nm}.png")
+            if os.path.exists(fp):
+                registered[nm] = np.array(Image.open(fp).convert("RGBA"))
+    for rawname, (outname, split) in ({} if pieces_only else SAME.get(rig, {})).items():
         p = rgba(os.path.join(raw_dir, f"{rawname}.png"))
         if rawname.startswith("skin_"):
             f = feet_fit(m_raw, p)
@@ -326,22 +337,18 @@ def build(rig):
             else:
                 entry["split_error"] = f"expected {len(split)} components, found {len(cs)}"
         rec["parts"][outname] = entry
-    # helmet_front: the painted navy lining is kept only where it does not cover the head (layer-ready helmet)
-    if "helmet_only" in registered:
-        head = registered.get("head_no_helmet")
-        h = registered["helmet_only"].copy()
-        if head is not None:
-            r, g, bl = (h[..., i].astype(int) for i in range(3))
-            navy = (bl > r + 15) & (r < 90) & (g < 90) & (h[..., 3] > 0)
-            inner = ndimage.binary_erosion(head[..., 3] > 128, iterations=6)
-            cut = navy & inner
-            cut = ndimage.binary_dilation(cut, iterations=2) & (h[..., 3] > 0) & ~((r + g + bl) < 150) | cut
-            h[cut] = 0
-            registered["helmet_front"] = h
-            rec["parts"]["helmet_front"] = {"derived_from": "helmet_only", "method": "navy lining pixels over the "
-                                            "registered head (eroded 6 px) made transparent; the ink rim is kept",
-                                            "file": save(h, os.path.join(out_dir, "helmet_front.png"))}
-    if rig in RAISED:
+    if pieces_only:
+        pass
+    # helmet_front: over the head, keep a helmet pixel only where the MASTER shows the same colour there (the master
+    # is the truth of what sits in front of the face); the painted lining and the far brim arc drop out
+    if not pieces_only and "helmet_only" in registered and registered.get("head_no_helmet") is not None:
+        h = helmet_front(registered["helmet_only"], registered["head_no_helmet"], master)
+        registered["helmet_front"] = h
+        rec["parts"]["helmet_front"] = {"derived_from": "helmet_only", "method": "inside the registered head "
+                                        "(eroded 4 px) a helmet pixel is kept only where the master pixel matches it "
+                                        "(RGB distance < 90); the largest component is kept",
+                                        "file": save(h, os.path.join(out_dir, "helmet_front.png"))}
+    if rig in RAISED and not pieces_only:
         p = rgba(os.path.join(raw_dir, f"{RAISED[rig]}.png"))
         lab, cs = comps(p, 800)
         cs = sorted(sorted(cs, key=lambda c: -c["area"])[:2], key=lambda c: c["cx"])
@@ -445,9 +452,10 @@ def build(rig):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--rig", nargs="*", default=["pf_chief", "pf_rookie", "pf_dog", "pf_rescued"])
+    ap.add_argument("--pieces-only", action="store_true", help="re-cut the sheets only; keep the registered parts")
     a = ap.parse_args()
     for r in a.rig:
-        rec = build(r)
+        rec = build(r, a.pieces_only)
         print(r, "master h", rec["master"]["height_px"], {k: (round(v["fit"]["score"], 2) if "score" in v["fit"] else v["fit"]["mode"]) for k, v in rec["parts"].items() if "fit" in v})
         for sh, v in rec["pieces"].items():
             print("  ", sh, "pieces", len(v["pieces"]), "missing", v["missing"], "sheet scale", v["sheet_scale_to_canvas"])
