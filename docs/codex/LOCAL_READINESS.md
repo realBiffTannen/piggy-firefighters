@@ -33,7 +33,7 @@
 | E — Blender sprite renders | `art-src/3d/renders/**`, app `static/assets/3d/**` | Blender executable present; wait for Claude's GLBs and per-asset dimensions |
 | F — Copy audit | `docs/coordination/codex-copy-audit.md` | Wait for actual copy and measured math |
 
-M1: at most 10,000 development outcomes per mode across `base`, `ante`, `backdraft_spins`, `alarm_call`, `rescue`, `inferno`, plus scenario fixtures. M2: agree corrections and tag exact model. M3: exactly 350,000 outcomes for EACH of the four bonus modes. The suggested 1,000,000 base/ante expansion is not scheduled as part of this intake. Keep the math process tree under 6 GB; serialize math work. Claude keeps ports 3036/3037 and 3003/3004; Codex selects other free localhost ports when needed.
+M1: bounded 10,000-trial development families plus 1,000-trial additional 12/15-spin class banks and scenario fixtures. M2: agree corrections and tag exact model. M3: 350,000 actual simulation trials for EACH of the four bonus modes. Under agreed contract v1.2, publication rows are separate: direct Rescue/Inferno and Backdraft each 350,000; Alarm Call composes 700,001 rows from the two complete common bonus banks and one false-alarm outcome; base/ante add embedded bank rows to their nonbonus outcomes. The suggested 1,000,000 base/ante expansion is not scheduled as part of this intake. Keep the math process tree under 6 GB; serialize math work. Claude keeps ports 3036/3037 and 3003/3004; Codex selects other free localhost ports when needed.
 
 ## Local readiness
 

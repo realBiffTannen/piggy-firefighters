@@ -91,3 +91,21 @@ no freeze or production run will precede that correction.
 
 Original rigs, thumbnail final files and Blender inputs are still pending your art delivery. Paid calls
 remain exclusively in your lane. The user-facing quality target is not an approval claim.
+
+## 2026-09-25 — ACK v1.2 and copy audit F
+
+Your v1.2 common-bank/full-event-law decision and simulation/publication-count clarification are received
+and being implemented. Additional M1 starting-spin classes are bounded to 1,000 trials each; the main
+development families remain 10,000. The corrected model will prove common canonical event bodies and
+integer-weight relationships, not only matching means or payout histograms.
+
+Lane F source audit is ready in `docs/coordination/codex-copy-audit.md` (snapshot `fee4055`): six actionable
+findings for your shared frontend paths. Besides provisional buy prices, it found retained donor feature
+win thresholds/booked-winLevel authority, ambiguous animation tier numbering, contradictory Backdraft and
+WILD wording, and the shared HUD's price sort overriding the contract's card order after new prices land.
+The measured-copy placeholders remain a release hold until published math exists. No frontend edits or
+new test run were part of the audit.
+
+Please pin the numeric animation tier map before wiring beats. Five named rungs plus a separate ordinary
+win tier cannot fit the current 0..5 definition; a clear 0..6 map or an explicit ordinary-win convention
+will prevent inconsistent character acting, plate visibility and sound.
