@@ -2,7 +2,7 @@
 """PIGGY FIREFIGHTERS — hand-authored DEV fixture books for the mock RGS (server/fixtures/).
 
 These are NOT math books. They are small, deterministic, HONEST books written by the frontend lane so every
-presentation path can be exercised before the math lane publishes (docs/GAME_CONTRACT.md §8 shapes):
+presentation path can be exercised before the math lane publishes (docs/GAME_CONTRACT.md v1.1 §8 shapes):
 
   * every line win is EVALUATED from the board with the contract's rules (§3: 20 lines, left to right, W substitutes
     and pays as H1 on its own, highest win per line) — never typed;
@@ -65,8 +65,11 @@ def end_level(x):
     return 10
 
 
-def evaluate(board, mult=1):
-    """SDK lines algorithm (math/src/calculations/lines.py) on a visible board[reel][row]. Returns (total_x, wins)."""
+def evaluate(board, mult=1, blaze=None):
+    """SDK lines algorithm (math/src/calculations/lines.py) on a visible board[reel][row]. Returns (total_x, wins).
+    `blaze` maps (reel, row) -> Blaze Wild multiplier (contract v1.1 §7, Backdraft Spins only): a line's win is
+    multiplied by the SUM of the multipliers of the Blaze Wilds it uses (x1 when it uses none)."""
+    blaze = blaze or {}
     wins = []
     total = 0.0
     for li, line in enumerate(PAYLINES, start=1):
@@ -96,12 +99,13 @@ def evaluate(board, mult=1):
             kind, symbol, base = wild_matches, 'W', wild_win
         else:
             kind, symbol, base = wild_matches + matches, first_non_wild, base_win
-        win = base * mult
+        line_mult = sum(blaze.get((r, line[r]), 0) for r in range(kind)) or 1
+        win = base * mult * line_mult
         total += win
         wins.append({
             'symbol': symbol, 'kind': kind, 'win': win,
             'positions': [{'reel': r, 'row': line[r]} for r in range(kind)],
-            'meta': {'lineIndex': li, 'multiplier': mult, 'winWithoutMult': base, 'globalMult': mult, 'lineMultiplier': 1},
+            'meta': {'lineIndex': li, 'multiplier': mult * line_mult, 'winWithoutMult': base, 'globalMult': mult, 'lineMultiplier': line_mult},
         })
     return total, wins
 
@@ -123,19 +127,32 @@ class Book:
         self.add('reveal', board=padded, paddingPositions=[random.randint(0, 80) for _ in range(5)], gameType=game_type,
                  anticipation=anticipation or [0, 0, 0, 0, 0])
 
-    def line_wins(self, board, mult=1, extra=0.0, free=False):
-        """winInfo (+ wincap) + setWin for one spin's line wins; `extra` = instant prizes of this spin (x bet)."""
-        total, wins = evaluate(board, mult)
+    def headroom(self):
+        return max(0.0, CAP - self.total)
+
+    def line_wins(self, board, mult=1, extra=0.0, free=False, blaze=None):
+        """winInfo (+ wincap) + setWin for one spin's line wins; `extra` = instant prizes of this spin (x bet), already
+        clipped by the caller. CAP CLIPPING (contract v1.1 §6): every amount written is clipped to the remaining headroom
+        under 15,000x, in book order, so the client only ever adds what the book says."""
+        total, wins = evaluate(board, mult, blaze)
+        raw = total + extra
+        room = self.headroom() - extra
+        clipped = []
+        for w in wins:
+            amount = min(w['win'], max(0.0, room))
+            room -= amount
+            clipped.append((w, amount))
+        total = sum(a for _, a in clipped)
         spin = total + extra
         if wins:
-            self.add('winInfo', totalWin=min(x100(total), CAP * 100), wins=[
-                {**w, 'win': min(x100(w['win']), CAP * 100), 'positions': [{'reel': p['reel'], 'row': p['row'] + 1} for p in w['positions']],
-                 'meta': {**w['meta'], 'winWithoutMult': x100(w['meta']['winWithoutMult'])}} for w in wins])
-        if self.total + spin >= CAP and not self.capped:
+            self.add('winInfo', totalWin=x100(total), wins=[
+                {**w, 'win': x100(a), 'positions': [{'reel': p['reel'], 'row': p['row'] + 1} for p in w['positions']],
+                 'meta': {**w['meta'], 'winWithoutMult': x100(w['meta']['winWithoutMult'])}} for w, a in clipped])
+        if self.total + raw >= CAP and not self.capped:
             self.capped = True
             self.add('wincap', amount=CAP * 100)
         if spin > 0:
-            self.add('setWin', amount=min(x100(spin), CAP * 100), winLevel=std_level(spin))
+            self.add('setWin', amount=x100(spin), winLevel=std_level(raw))
         self.total += spin
         if free:
             self.free_wins += spin
@@ -234,7 +251,8 @@ def play_bonus(book, bonus, spins, boards):
                 entry = {'reel': r}
                 if bonus == 'inferno':
                     p = prng.choices(prizes, [50, 30, 14, 5, 1])[0]
-                    entry['prize'] = p * 100
+                    p = min(p, max(0.0, book.headroom() - prize_x))  # contract v1.1 §6 cap clipping
+                    entry['prize'] = x100(p)
                     prize_x += p
                 rescues.append(entry)
         mult += step * len(rescues)
@@ -363,19 +381,20 @@ def alarm_call_false():
 
 
 def backdraft_spins():
-    b = Book('backdraft_spins', 'freegame', 'Backdraft Spins: 5 spins, a Backdraft of 3-5 Blaze Wilds on every spin')
+    b = Book('backdraft_spins', 'freegame', 'Backdraft Spins: 5 spins, a Backdraft of 3-5 multiplier Blaze Wilds (x2-x10, summed along a line) on every spin')
     b.add('backdraftSpinsStart', spins=5)
     rng = random.Random(77)
     for spin in range(1, 6):
         bd = base_board(rng, 0.03)
         free = [(r, row) for r in range(5) for row in range(3) if bd[r][row] != 'W']
         cells = sorted(rng.sample(free, rng.choices([3, 4, 5], [50, 35, 15])[0]))
+        mults = {c: rng.choices([2, 3, 5, 10], [60, 30, 8, 2])[0] for c in cells}
         post = [list(c) for c in bd]
         for r, row in cells:
             post[r][row] = 'W'
         b.reveal(bd, pads_for(rng), game_type='freegame')
-        b.add('backdraft', cells=[{'reel': r, 'row': row} for r, row in cells], count=len(cells))
-        b.line_wins(post, free=True)
+        b.add('backdraft', cells=[{'reel': r, 'row': row, 'mult': mults[(r, row)]} for r, row in cells], count=len(cells))
+        b.line_wins(post, free=True, blaze=mults)
         b.add('updateFreeSpin', amount=spin, total=5)
         b.set_total()
     b.add('backdraftSpinsEnd', amount=x100(min(b.total, CAP)))
@@ -460,7 +479,7 @@ DESCRIPTIONS = [
     ('inferno_buy', 'Bought Inferno Rescue: one spray per room, +2x and a prize per rescue'),
     ('alarm_call_rescue', 'Alarm Call awarding Rescue Spins (10 spins, played as bought)'),
     ('alarm_call_false', 'Alarm Call that turns out a False Alarm: nothing is awarded'),
-    ('backdraft_spins', 'Backdraft Spins: 5 spins, a Backdraft of 3-5 Blaze Wilds on every spin'),
+    ('backdraft_spins', 'Backdraft Spins: 5 spins, a Backdraft of 3-5 multiplier Blaze Wilds (x2-x10, summed along a line) on every spin'),
     ('max_win', 'Natural Inferno Rescue that reaches the 15,000x cap (wincap, capped meters, MAX WIN)'),
 ]
 

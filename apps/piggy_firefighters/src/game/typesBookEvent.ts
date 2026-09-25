@@ -99,13 +99,16 @@ type BookEventCreateBonusSnapshot = {
 export type BonusKind = 'rescue' | 'inferno';
 export type BonusSource = 'natural' | 'buy' | 'alarmCall';
 export type AlarmCallOutcome = 'rescue' | 'inferno' | 'falseAlarm';
-export type Cell = { reel: number; row: number };
+/** A visible cell. `mult` (contract v1.1 §7-§8): the Blaze Wild multiplier, present only in Backdraft Spins. */
+export type Cell = { reel: number; row: number; mult?: number };
 export type Room = { reel: number; fire: number };
 export type Spray = { reel: number; from: number; to: number };
 export type RoomRescue = { reel: number; prize?: number };
 
 /** base / ante / Backdraft Spins: 2-5 (3-5 in Backdraft Spins) cells ignite into Blaze Wilds. After `reveal`, before
- *  `winInfo`; `winInfo` then describes the board AFTER the Backdraft. */
+ *  `winInfo`; `winInfo` then describes the board AFTER the Backdraft. In Backdraft Spins every cell carries `mult`
+ *  (x2/x3/x5/x10) and a line's win is multiplied by the SUM of the mults of the Blaze Wilds it uses
+ *  (`winInfo.meta.lineMultiplier`); base / ante Backdrafts are plain (contract v1.1 §7). */
 type BookEventBackdraft = {
 	index: number;
 	type: 'backdraft';

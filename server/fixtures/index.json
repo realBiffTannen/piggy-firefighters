@@ -593,7 +593,7 @@
    "source_mode": "backdraft_spins",
    "cost": 25.0,
    "criteria": "freegame",
-   "payoutMultiplier": 4270,
+   "payoutMultiplier": 5100,
    "events": [
     "backdraftSpinsStart",
     "reveal",
@@ -610,8 +610,6 @@
     "setTotalWin",
     "reveal",
     "backdraft",
-    "winInfo",
-    "setWin",
     "updateFreeSpin",
     "setTotalWin",
     "reveal",
@@ -630,7 +628,7 @@
     "finalWin"
    ],
    "forced": false,
-   "description": "Backdraft Spins: 5 spins, a Backdraft of 3-5 Blaze Wilds on every spin"
+   "description": "Backdraft Spins: 5 spins, a Backdraft of 3-5 multiplier Blaze Wilds (x2-x10, summed along a line) on every spin"
   },
   {
    "name": "max_win",

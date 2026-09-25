@@ -52,9 +52,11 @@ export const CONTRACT = {
 	buildingSpins: 5, // §5: +5 spins per building cleared
 	infernoPrizeValues: [5, 10, 20, 50, 100] as const, // §6: every obtainable instant prize, x the base amount
 	infernoPrizes: '5×, 10×, 20×, 50× or 100×',
+	backdraftSpinsMultText: '×2 to ×10',
 	backdraftCells: [2, 5] as const, // §4: 2-5 cells ignite
 	backdraftSpins: 5, // §7
 	backdraftSpinsBlaze: [3, 5] as const, // §7: 3-5 Blaze Wilds on every Backdraft Spins spin
+	backdraftSpinsMults: [2, 3, 5, 10] as const, // v1.1 §7: every Backdraft Spins Blaze Wild carries one of these
 	alarmCallInferno: '3%', // §2/§7: fixed share, not solved
 	anteChance: 2, // §2: exactly 2x the chance of each bonus
 } as const;
@@ -113,7 +115,8 @@ export const rulesSections = (): RulesSection[] => {
 	const social = isSocial();
 	const t = (e: Entry) => (social ? e.social : e.std);
 	const lines = (config.paylines as number[][]).length;
-	const triggers = CONTRACT.trigger.map(([alarms, spins]) => `${alarms} alarms: ${spins} spins`).join(' · ');
+	// contract v1.1 §4: 3 / 4 / 5 OR MORE alarms -> 10 / 12 / 15 spins
+	const triggers = CONTRACT.trigger.map(([alarms, spins], i, all) => `${alarms}${i === all.length - 1 ? ' or more' : ''} alarms: ${spins} spins`).join(' · ');
 
 	const howTo: RulesSection = {
 		id: 'how_to_play',
@@ -261,6 +264,11 @@ export const rulesSections = (): RulesSection[] => {
 			{
 				kind: 'para',
 				text: `${CONTRACT.backdraftSpins} spins, and every spin gets a ${MECHANIC.backdraft} of ${CONTRACT.backdraftSpinsBlaze[0]} to ${CONTRACT.backdraftSpinsBlaze[1]} ${MECHANIC.blazeWild}s. No alarms appear, so ${FEATURE.rescue} cannot start. Line wins only.`,
+			},
+			{
+				kind: 'award',
+				label: 'MULTIPLIERS',
+				text: `Every ${MECHANIC.blazeWild} here carries a multiplier of ${CONTRACT.backdraftSpinsMults.map((m) => `×${m}`).join(', ')}. A line that uses ${MECHANIC.blazeWild}s is multiplied by the SUM of their multipliers; a line that uses none counts ×1. WILDs from the reels carry no multiplier.`,
 			},
 		] as RulesBlock[],
 	};

@@ -68,6 +68,10 @@ export const CHARACTER = {
 	family: 'the Trotter family',
 } as const;
 
+/** The rescued (theme §2): five skins of one rig; room r of building b shows skin [(r + b) mod 5] (b 0-based). */
+export const TROTTER_SKINS = ['grandma', 'twins', 'dad', 'baby', 'teen'] as const;
+export const trotterSkin = (reel: number, building: number) => TROTTER_SKINS[(reel + Math.max(0, building - 1)) % TROTTER_SKINS.length];
+
 /** Rescue scene words (theme §4). */
 export const ROOMS = 5;
 export const BUILDING = 'BUILDING';

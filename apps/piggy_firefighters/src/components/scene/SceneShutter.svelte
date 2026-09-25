@@ -495,7 +495,6 @@
 	const valueFix = (u: number) => ({ fill: TXT_CREAM, stroke: { color: TXT_INK, width: u * 0.1 } });
 	// ---- living-card shapes (drawn once per card; stepCard only moves them) -----------------
 	/** A soft diagonal band of light: stacked translucent parallelograms, additive. */
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const drawSweep = (g: any, w: number, h: number) => {
 		const lean = h * 0.28;
 		for (let k = 0; k < 6; k += 1) {
@@ -504,7 +503,6 @@
 		}
 	};
 	/** A drifting glint (4-point) or a dust mote (soft disc), in units of the card scale. */
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const drawMote = (g: any, glint: boolean) => {
 		if (glint) {
 			g.poly([0, -0.11, 0.018, -0.018, 0.11, 0, 0.018, 0.018, 0, 0.11, -0.018, 0.018, -0.11, 0, -0.018, -0.018]).fill({ color: 0xfff1c0, alpha: 0.95 });
@@ -513,7 +511,6 @@
 			for (let k = 0; k < 4; k += 1) g.circle(0, 0, 0.05 * (1 - k / 5)).fill({ color: 0xffe9b0, alpha: 0.3 });
 		}
 	};
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const drawSlate = (g: any, x: number, y: number, w: number, h: number, u: number) => {
 		g.roundRect(x - w / 2, y - h / 2, w, h, u * 0.14).fill({ color: TXT_INK, alpha: SLATE_ALPHA });
 		g.roundRect(x - w / 2, y - h / 2, w, h, u * 0.14).stroke({ width: u * 0.012, color: SLATE_HAIR, alpha: 0.22 });

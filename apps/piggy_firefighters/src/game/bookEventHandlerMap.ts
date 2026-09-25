@@ -73,7 +73,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				lineIndex: win.meta.lineIndex,
 				positions: win.positions,
 				amount: win.win,
-				multiplier: win.meta.globalMult > 1 ? win.meta.globalMult : undefined,
+				// the whole multiplier this line was paid at: Rescue global x Blaze Wild sum (contract v1.1 §7)
+				multiplier: win.meta.multiplier > 1 ? win.meta.multiplier : undefined,
 			});
 			await animateSymbols({ positions: win.positions });
 			eventEmitter.broadcast({ type: 'paylineHide', lineIndex: win.meta.lineIndex });

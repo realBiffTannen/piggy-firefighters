@@ -19,7 +19,7 @@
 	import { getContext } from '../../game/context';
 	import { SYMBOL_SIZE, REEL_PADDING, BOARD_SIZES } from '../../game/constants';
 	import { formatBookAmount } from '../../game/money';
-	import { MODE_TITLE, BUILDING } from '../../game/names';
+	import { MODE_TITLE, BUILDING, trotterSkin } from '../../game/names';
 	import { prefersReducedMotion } from '../../game/fx/timing';
 	import { boardTicker } from '../../game/reels/boardTicker';
 	import { stateRescue, stateBackdraftSpins } from '../../game/rescue/stateRescue.svelte';
@@ -112,8 +112,9 @@
 				for (let y = bandTop + roofH + S * 0.12; y < bandTop + bandH - 4; y += S * 0.14) g.rect(-S * 0.04, y, W + S * 0.08, 2).fill({ color: 0x000000, alpha: 0.18 });
 			}}
 		/>
-		<Text anchor={{ x: 0, y: 0.5 }} x={S * 0.05} y={bandTop + roofH / 2} text={`${BUILDING} ${stateRescue.building}`} style={titleStyle(roofH * 0.62)} />
-		<Text anchor={0.5} x={W / 2} y={bandTop + roofH / 2} text={`TOTAL ${formatBookAmount(stateRescue.total)}`} style={titleStyle(roofH * 0.62, 0xf5d23c)} />
+		<!-- building number at the left, the running TOTAL right-aligned before the multiplier badge (never overlapping) -->
+		<Text anchor={{ x: 0, y: 0.5 }} x={S * 0.05} y={bandTop + roofH / 2} text={`${BUILDING} ${stateRescue.building}`} style={titleStyle(roofH * 0.5)} />
+		<Text anchor={{ x: 1, y: 0.5 }} x={W - S * 0.72} y={bandTop + roofH / 2} text={`TOTAL ${formatBookAmount(stateRescue.total)}`} style={titleStyle(roofH * 0.5, 0xf5d23c)} />
 		<Container x={W - S * 0.32} y={bandTop + roofH / 2}>
 			<Graphics draw={(g) => g.circle(0, 0, roofH * 0.62).fill(inferno ? 0xe9b23b : 0xd7262b).stroke({ width: 4, color: INK })} />
 			<Text anchor={0.5} text={`x${stateRescue.multiplier}`} style={titleStyle(roofH * 0.55)} />
@@ -136,6 +137,10 @@
 					}}
 				/>
 				<Text anchor={0.5} y={winH * 0.22} text={fireLabel(room.fire, room.rescued)} style={titleStyle(S * 0.17)} />
+				{#if room.rescued}
+					<!-- the rescued Trotter (placeholder label for the rig skin: theme §2 rotation) -->
+					<Text anchor={0.5} y={-winH * 0.36} text={trotterSkin(room.reel, stateRescue.building).toUpperCase()} style={titleStyle(S * 0.11, 0xf4e9d2)} />
+				{/if}
 				{#if room.rescued && room.prize}
 					<Text anchor={0.5} y={-winH * 0.18} text={`+${formatBookAmount(room.prize)}`} style={titleStyle(S * 0.15, 0xf5d23c)} />
 				{/if}
