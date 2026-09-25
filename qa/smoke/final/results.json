@@ -1,0 +1,59 @@
+{
+  "at": "2026-09-25T17:40:17.815Z",
+  "browser": "chromium 153.0.8010.12",
+  "game": "http://127.0.0.1:3003/",
+  "rgs": "127.0.0.1:3036",
+  "fixturesDir": "/Users/jbull/code/piggy-firefighters/server/fixtures",
+  "results": [
+    {
+      "fixture": "backdraft_spins",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 5580,
+      "ms": 103676,
+      "errors": [],
+      "rungs": [
+        {
+          "amount": 5580,
+          "level": 8
+        }
+      ],
+      "expected": 5580
+    },
+    {
+      "fixture": "inferno_buy",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 4600,
+      "ms": 59998,
+      "errors": [],
+      "rungs": [],
+      "expected": 4600
+    },
+    {
+      "fixture": "max_win",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 1500000,
+      "ms": 219991,
+      "errors": [],
+      "rungs": [
+        {
+          "amount": 1500000,
+          "level": 10
+        }
+      ],
+      "expected": 1500000
+    },
+    {
+      "fixture": "alarm_call_false",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 0,
+      "ms": 15641,
+      "errors": [],
+      "rungs": [],
+      "expected": 0
+    }
+  ]
+}
