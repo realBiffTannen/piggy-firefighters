@@ -38,8 +38,7 @@ Owner: AUDIO lane (Claude). Status 2026-09-25: **tooling, roster, prompts and pl
 ```bash
 python3 audio/tools/roster.py                                   # roster -> prompts/jobs/plans/cues.json (validated)
 node audio/tools/gen_audio.mjs quota                             # read the character quota (ledgered)
-node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_base92a__1 pf_base92b__1 pf_rescue100__1 pf_inferno100__1 \
-     pf_antic92__1 pf_backdraft92__1 pf_rung100_big__1 pf_rung100_huge__1 pf_rung100_mega__1 pf_rung100_epic__1 pf_rung100_max__1
+node audio/tools/gen_audio.mjs music audio/tools/plans.json --all  # = <plan>__1 of the 11 plans (redraw plans are named explicitly)
 python3 audio/tools/measure.py draws                             # named defects -> at most ONE redraw each (a <plan>_v2 plan), bed_overrides.json
 node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json --all   # 96 SFX draws
 python3 audio/tools/build_audio.py all --purge-donor             # music -> sfx -> derived -> shots -> turbo
@@ -88,6 +87,18 @@ different account). The live quota is read by the tool before the first draw; th
 - `gen_audio.mjs` against a loopback mock with a fake key: ledger rows for ok / 422 failure / quota reads; skip of existing
   draws; `--force` refused without `--reason`; refusal when remaining - batch < 25,000; a mid-batch stop after the 20-draw
   re-read; a non-loopback API override refused; no key text in any file.
+
+- **Draw-ready check (2026-09-25, no calls)**: `roster.py --check` clean and the committed `prompts.json` / `jobs.json` /
+  `plans.json` / `cues.json` byte-for-byte what `roster.py` regenerates (notes aside). Independent cross-check of the
+  JSON: 232 cues = 90 drawn SFX cues (87 as drawn, 3 draw + tuned layer: `reel_stop_1`, `blaze_ignite`, `blaze_mult_10`)
+  + 11 music beds (`source: <plan>__1`, loop length / BPM / bars match the plan) + 131 derived cues (`derive.from`, no
+  `source`, no job; 94 `_turbo`, the reel-stop / blaze / ticker / ta-da ladders, the alarm chords, `antic_riser_2`,
+  `reel_stop_turbo`), every derivation chain ending on a job. 96 jobs (90 cue draws + 6 ladder sources `*_src*`), each
+  with duration 0.5-15 s, prompt + palette <= 450 chars (max 395), influence 0.6 / 0.72 / 0.75, loop flag true on
+  exactly the three loop cues. 11 plans: sections 16-24 s, totals 16-92 s, inside the envelope of the donor's 61
+  successful composition-plan draws (styles <= 17 / 38, style text <= 191 chars, sections <= 6 x 24 s). `gen_audio.mjs
+  music ... --all` used to exit 2 (it passed bare plan names); it now expands to `<plan>__1` and skips `redrawOf` plans.
+  Dry runs: `sfx --all` 96 draws ~1,566 characters, `music --all` 11 draws ~7,370 characters.
 
 ## Not done / known limits
 

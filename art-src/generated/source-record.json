@@ -287,5 +287,1104 @@
       "total_tokens": 3800
     },
     "seconds": 36.6
+  },
+  {
+    "asset": "master_pf_rookie",
+    "batch": "rig_pf_rookie",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "This drawing is a RIG MASTER for 2D skeletal cut-out animation in our cartoon slot game. Style (must match Image 1 exactly): bold thick dark-brown ink outline around every shape, chunky rounded slightly exaggerated forms, flat cel shading with ONE hard-edged shadow tone and one small cream highlight, light from the top left, clean saturated flat fills, no gradients, no airbrush glow, no texture, no 3D render look. Palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A, pig pink, dark-brown ink.\nRig pose rules: one full-body character, three-quarter view facing slightly to the viewer's right, a calm NEUTRAL standing pose, weight even, both feet flat on the same ground line and fully visible, feet about hip width apart. Both arms hang relaxed and slightly AWAY from the body so there is a clear gap of empty space between each arm and the torso, hands open and relaxed with a visible thumb and separated fingers. Legs do not overlap each other. Head upright, facing three-quarter, eyes open looking forward, a calm friendly closed-mouth smile. The whole figure is centred horizontally; the top of the head or helmet sits at about 7 percent of the canvas height and the soles of the feet sit at about 93 percent of the canvas height, with clear empty margin on both sides.\nGenuinely transparent background: no floor, no ground shadow, no frame, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no hi-vis vest, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our hero Chief Hamm: use it for the STYLE and for the fire-crew costume scheme only. Draw a DIFFERENT character in the neutral rig pose described above: Sprocket, the rookie firefighter, a lanky young pig (late teens), noticeably taller and thinner than the chief, long thin arms and legs, a slightly long neck, a narrow face with a small round snout with a few freckles, big eager round eyes with round black pupils and a white catch-light, no moustache, a hopeful slightly nervous smile. Costume: a white fire helmet that is clearly TOO BIG for him, the brim sitting low over his brows and wobbling, with a BLANK smooth brass shield plate on the front; an engine-red turnout coat slightly too long in the sleeves with hydrant-yellow reflective bands on sleeves, chest and hem, brass clasps, black belt, dusk-navy trousers with a yellow band, black fire boots a size too big, curly tail. Nothing in his hands (the hose is drawn separately).",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigmaster.txt",
+      "art-src/generated/prompts/rig_master_pf_rookie.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: rig master pf_rookie (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:34",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rookie/master_pf_rookie.png",
+    "sha256": "a1b7f762f9705ce6717c407a11a85785c7cfbb18e03758c485b3ecb5a57921cc",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2141,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 605
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3513
+    },
+    "seconds": 28.8
+  },
+  {
+    "asset": "master_pf_rescued",
+    "batch": "rig_pf_rescued",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "This drawing is a RIG MASTER for 2D skeletal cut-out animation in our cartoon slot game. Style (must match Image 1 exactly): bold thick dark-brown ink outline around every shape, chunky rounded slightly exaggerated forms, flat cel shading with ONE hard-edged shadow tone and one small cream highlight, light from the top left, clean saturated flat fills, no gradients, no airbrush glow, no texture, no 3D render look. Palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A, pig pink, dark-brown ink.\nRig pose rules: one full-body character, three-quarter view facing slightly to the viewer's right, a calm NEUTRAL standing pose, weight even, both feet flat on the same ground line and fully visible, feet about hip width apart. Both arms hang relaxed and slightly AWAY from the body so there is a clear gap of empty space between each arm and the torso, hands open and relaxed with a visible thumb and separated fingers. Legs do not overlap each other. Head upright, facing three-quarter, eyes open looking forward, a calm friendly closed-mouth smile. The whole figure is centred horizontally; the top of the head or helmet sits at about 7 percent of the canvas height and the soles of the feet sit at about 93 percent of the canvas height, with clear empty margin on both sides.\nGenuinely transparent background: no floor, no ground shadow, no frame, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no hi-vis vest, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our hero Chief Hamm: use it for the STYLE only. Draw a DIFFERENT character in the neutral rig pose described above: a plain civilian pig TEMPLATE for a family of rescued residents, an adult pig of average build, a little shorter and rounder than a firefighter, friendly round face, round snout, round white eyes with black pupils and a white catch-light, a calm relieved smile, pink skin, curly tail. Simple indoor clothes with no fire gear at all: a plain hose-cream short-sleeved shirt with a round collar, dusk-navy trousers, simple brown slippers. No helmet, no hat, no accessories, nothing in the hands. Clean simple shapes so the same body can later be re-dressed as several family members.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigmaster.txt",
+      "art-src/generated/prompts/rig_master_pf_rescued.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: rig master pf_rescued (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:34",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_rescued/master_pf_rescued.png",
+    "sha256": "e8a01a61c95caf11f795c92a1014666e5fe2e273b457446b6e42c59bb9219651",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2086,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 550
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3458
+    },
+    "seconds": 29.7
+  },
+  {
+    "asset": "master_pf_dog",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "This drawing is a RIG MASTER for 2D skeletal cut-out animation in our cartoon slot game. Style (must match Image 1 exactly): bold thick dark-brown ink outline around every shape, chunky rounded slightly exaggerated forms, flat cel shading with ONE hard-edged shadow tone and one small cream highlight, light from the top left, clean saturated flat fills, no gradients, no airbrush glow, no texture, no 3D render look. Palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A, pig pink, dark-brown ink.\nRig pose rules: one full-body character, three-quarter view facing slightly to the viewer's right, a calm NEUTRAL standing pose, weight even, both feet flat on the same ground line and fully visible, feet about hip width apart. Both arms hang relaxed and slightly AWAY from the body so there is a clear gap of empty space between each arm and the torso, hands open and relaxed with a visible thumb and separated fingers. Legs do not overlap each other. Head upright, facing three-quarter, eyes open looking forward, a calm friendly closed-mouth smile. The whole figure is centred horizontally; the top of the head or helmet sits at about 7 percent of the canvas height and the soles of the feet sit at about 93 percent of the canvas height, with clear empty margin on both sides.\nGenuinely transparent background: no floor, no ground shadow, no frame, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no hi-vis vest, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our hero Chief Hamm: use it for the STYLE only. Draw a DIFFERENT character in the same ink and cel style: Ember, the station's Dalmatian puppy (the only non-pig in the cast), a small chunky cartoon puppy standing on all four legs in three-quarter view facing slightly to the viewer's right, head up and alert, calm friendly closed-mouth expression, big round eyes with round black pupils and a white catch-light, a black round nose, floppy ears hanging down clearly separate from the head outline, white coat with a few bold round black spots (not too many), a tail raised in a gentle curve and clearly separate from the body, a red collar, and a TINY red fire helmet perched on top of the head with a BLANK smooth brass shield plate. All four paws flat on the same ground line, legs slightly apart so none overlap. Ignore the pig-specific pose rules about arms and hands; the rest of the rig rules apply (centred, feet on the ground line near the bottom, margins, transparent background). The puppy fills the width more than the height: its body spans about 70 percent of the canvas width, centred.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigmaster.txt",
+      "art-src/generated/prompts/rig_master_pf_dog.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: rig master pf_dog (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:34",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/master_pf_dog.png",
+    "sha256": "bc561e6fdeff073a23f2c03824031daf8dcc0ac07a6b443cb45feadd953ff03e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2172,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 636
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3544
+    },
+    "seconds": 30.0
+  },
+  {
+    "asset": "master_pf_chief",
+    "batch": "rig_pf_chief",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "This drawing is a RIG MASTER for 2D skeletal cut-out animation in our cartoon slot game. Style (must match Image 1 exactly): bold thick dark-brown ink outline around every shape, chunky rounded slightly exaggerated forms, flat cel shading with ONE hard-edged shadow tone and one small cream highlight, light from the top left, clean saturated flat fills, no gradients, no airbrush glow, no texture, no 3D render look. Palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A, pig pink, dark-brown ink.\nRig pose rules: one full-body character, three-quarter view facing slightly to the viewer's right, a calm NEUTRAL standing pose, weight even, both feet flat on the same ground line and fully visible, feet about hip width apart. Both arms hang relaxed and slightly AWAY from the body so there is a clear gap of empty space between each arm and the torso, hands open and relaxed with a visible thumb and separated fingers. Legs do not overlap each other. Head upright, facing three-quarter, eyes open looking forward, a calm friendly closed-mouth smile. The whole figure is centred horizontally; the top of the head or helmet sits at about 7 percent of the canvas height and the soles of the feet sit at about 93 percent of the canvas height, with clear empty margin on both sides.\nGenuinely transparent background: no floor, no ground shadow, no frame, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no hi-vis vest, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is our hero Chief Hamm (identity of record). Draw the SAME character with the SAME face, head shape, moustache, eyes, proportions, costume, colours and ink style, but in the neutral rig pose described above. Costume: white fire helmet with a BLANK smooth brass shield plate on the front, deep engine-red hip-length turnout coat with hydrant-yellow reflective bands on both sleeves, across the chest and at the hem, brass toggle clasps, dusk-navy collar lining, black belt with a square brass buckle, the polished brass bugle hanging from a brass ring on the belt at his hip, dusk-navy trousers with a yellow band above black rounded fire boots, pink skin, curly tail showing behind the coat hem, proud dark-brown chevron moustache, level confident brows. Nothing in his hands.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigmaster.txt",
+      "art-src/generated/prompts/rig_master_pf_chief.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: rig master pf_chief (neutral pose, limbs separated, feet flat) for the Codex Spine lane",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:34",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_chief/master_pf_chief.png",
+    "sha256": "4be253b298fcf30b4cee14b3e01f4453ff9582ed0d02cd41ea2ffbd9008a14c4",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2100,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 564
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3472
+    },
+    "seconds": 30.9
+  },
+  {
+    "asset": "sym_sq_h2",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 and Image 2 are two finished symbols from THIS reel set (a fire truck and an alarm bell). Match their exact drawing style: the same ink line weight, the same chunky rounded proportions, the same flat cel shading with one hard shadow tone and one small cream highlight, the same saturated palette and the same finished level of detail. Do NOT copy the truck or the bell; draw a NEW object.\n\nSubject: a reel-symbol icon of a FIRE HELMET. A traditional firefighter's leather helmet in glossy engine red, seen in a three-quarter front view slightly from above: a rounded ribbed dome with a raised comb ridge running front to back, and the long, sweeping brim that flares out wide and dips down at the back. On the front, standing up proud of the dome, a large polished brass-gold shield plate; embossed in the middle of the plate a simple raised crest shaped like a cartoon pig snout (a rounded oval with two nostrils) inside a small flame shape, drawn in brass tones only, with NO letters and NO numbers anywhere. A thin hose-cream trim line on the brim edge. Bold, simple, heroic silhouette that reads instantly at 40 pixels. No head, no person, no pig character, no fire, no smoke.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol H2 Fire Helmet square source (style refs: accepted H1 + ALARM)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:32",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h2.png",
+    "sha256": "356964fa3082a8eb8b87ad7191b2831bacffe4e17a94a945866958424bf7de60",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2624,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 576
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4380
+    },
+    "seconds": 33.2
+  },
+  {
+    "asset": "sym_sq_l3",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 and Image 2 are two finished symbols from THIS reel set (a fire truck and an alarm bell). Match their exact drawing style: the same ink line weight, the same chunky rounded proportions, the same flat cel shading with one hard shadow tone and one small cream highlight, the same saturated palette and the same finished level of detail. Do NOT copy the truck or the bell; draw a NEW object.\nImage 3 shows our WOOD style only (the grain lines and warm wood colours); do not copy the planks.\n\nSubject: a reel-symbol icon of a firefighter's ROOF LADDER. A short, sturdy section of a fire-brigade ladder with four thick rungs, leaning diagonally from bottom left to top right so it fills a square: two chunky rails painted engine red with warm honey-wood rungs, polished brass-gold end caps and brass fittings where each rung meets the rails, and a pair of big curved brass roof hooks at the top end. Clean and simple; a low-value symbol, so fewer small details than a high symbol. No scaffold, no building, no wall, no people, no fire, no smoke.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l3.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_alarm.png",
+      "art-src/reference/cartoon/woods.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol L3 Ladder square source (style refs: accepted H1 + ALARM)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:32",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l3.png",
+    "sha256": "4027cb3ba77d84c7a07c2aeb8ff59b6110ffa8c740f7cdf3465e82b06f939dbf",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 4131,
+      "input_tokens_details": {
+        "image_tokens": 3569,
+        "text_tokens": 562
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 5887
+    },
+    "seconds": 34.4
+  },
+  {
+    "asset": "sym_sq_h3",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 and Image 2 are two finished symbols from THIS reel set (a fire truck and an alarm bell). Match their exact drawing style: the same ink line weight, the same chunky rounded proportions, the same flat cel shading with one hard shadow tone and one small cream highlight, the same saturated palette and the same finished level of detail. Do NOT copy the truck or the bell; draw a NEW object.\n\nSubject: a reel-symbol icon of a crossed AXE AND HALLIGAN, the firefighter's forcible-entry tools, crossed in a big X. One is a fire axe: a thick engine-red wooden handle with a hose-cream grip wrap and a big chunky steel-grey axe head with a flat pick on the back, the blade edge a bright cream highlight. The other is a halligan bar: a thick matte dusk-navy-black steel bar with a two-pronged claw fork at one end and a pointed pick and flat adze at the other end, with a few chunky brass rivets and a brass collar. The two heads sit at the top left and top right, the handles cross in the middle, and the two tools together form a bold, balanced X that fills a square. No shovel, no hammer, no construction tools, no people, no fire, no smoke.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h3.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol H3 Axe & Halligan square source (style refs: accepted H1 + ALARM)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:32",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h3.png",
+    "sha256": "565de2bb697728c45269a88dc5720a1b60bd8bac83ef9c06e4b7447922a938b6",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2627,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 579
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4383
+    },
+    "seconds": 34.5
+  },
+  {
+    "asset": "sym_sq_l1",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 and Image 2 are two finished symbols from THIS reel set (a fire truck and an alarm bell). Match their exact drawing style: the same ink line weight, the same chunky rounded proportions, the same flat cel shading with one hard shadow tone and one small cream highlight, the same saturated palette and the same finished level of detail. Do NOT copy the truck or the bell; draw a NEW object.\n\nSubject: a reel-symbol icon of a BRASS NOZZLE on a coiled hose. A thick hose-cream canvas fire hose rolled into a flat round coil (about three chunky loops, seen in a three-quarter view from slightly above), with the hose end rising out of the coil and ending in a big polished brass-gold fire nozzle: a tapered brass barrel with a chunky ribbed coupling ring and a red bail handle, the nozzle pointing up and to the right. Simple and bold; a low-value symbol, so fewer small details than a high symbol. No water spray, no people, no fire, no smoke.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l1.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol L1 Brass Nozzle square source (style refs: accepted H1 + ALARM)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:32",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l1.png",
+    "sha256": "46e053b9f492075391fa71dd393d313fb8c594c53501a04f67198b9ef165c99c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2574,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 526
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4330
+    },
+    "seconds": 35.4
+  },
+  {
+    "asset": "sym_sq_l2",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 and Image 2 are two finished symbols from THIS reel set (a fire truck and an alarm bell). Match their exact drawing style: the same ink line weight, the same chunky rounded proportions, the same flat cel shading with one hard shadow tone and one small cream highlight, the same saturated palette and the same finished level of detail. Do NOT copy the truck or the bell; draw a NEW object.\nImage 3 shows our WOOD style only (the grain lines and warm wood colours); do not copy the planks.\n\nSubject: a reel-symbol icon of a WATER BUCKET. A classic old fire-brigade bucket: a stout, slightly tapered wooden bucket made of warm honey-coloured staves with two thick polished brass-gold hoops and a curved brass handle arched over the top, seen in a three-quarter view slightly from above. It is filled to the brim with water drawn as flat light water-blue cel shapes with cream highlights, the water sloshing up over one side in a chunky wave, and ONE round water drop flying mid-air beside the rim. Simple and bold; a low-value symbol, so fewer small details than a high symbol. No people, no fire, no smoke.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_alarm.png",
+      "art-src/reference/cartoon/woods.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol L2 Water Bucket square source (style refs: accepted H1 + ALARM)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:32",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l2.png",
+    "sha256": "af9bbdca70471c22fd4b0d5732fe2f7b86cf3d82d201018d895de1b53fd737a0",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 4141,
+      "input_tokens_details": {
+        "image_tokens": 3569,
+        "text_tokens": 572
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 5897
+    },
+    "seconds": 35.8
+  },
+  {
+    "asset": "sym_sq_h4",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 and Image 2 are two finished symbols from THIS reel set (a fire truck and an alarm bell). Match their exact drawing style: the same ink line weight, the same chunky rounded proportions, the same flat cel shading with one hard shadow tone and one small cream highlight, the same saturated palette and the same finished level of detail. Do NOT copy the truck or the bell; draw a NEW object.\n\nSubject: a reel-symbol icon of a FIRE EXTINGUISHER. A chunky, stout, rounded fire extinguisher cylinder in engine red with a wide polished brass-gold top valve and a squeeze handle, a small round pressure gauge on the valve with a cream face and its needle pointing into a green zone (the gauge has no numbers or marks other than a green arc), one hydrant-yellow band around the body, and a thick black rubber hose with a brass nozzle tip curling out from the valve and around to the side so the whole object is as wide as it is tall. The extinguisher leans very slightly for energy. Bold, simple, heroic silhouette that reads instantly at 40 pixels. No label text, no letters, no people, no foam spray, no fire, no smoke.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h4.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol H4 Extinguisher square source (style refs: accepted H1 + ALARM)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:33",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h4.png",
+    "sha256": "7302cea5a3caf16d2c372ea171cddc252980f1227c8306e6652604eec7643e19",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2611,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 563
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4367
+    },
+    "seconds": 36.0
+  },
+  {
+    "asset": "sym_sq_l4",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 and Image 2 are two finished symbols from THIS reel set (a fire truck and an alarm bell). Match their exact drawing style: the same ink line weight, the same chunky rounded proportions, the same flat cel shading with one hard shadow tone and one small cream highlight, the same saturated palette and the same finished level of detail. Do NOT copy the truck or the bell; draw a NEW object.\n\nSubject: a reel-symbol icon of a pair of FIRE BOOTS. Two tall, chunky black rubber firefighter boots standing side by side, the front boot slightly overlapping the back one and turned in a three-quarter view, each with a thick hydrant-yellow reflective band around the upper shaft, a hose-cream band near the sole, chunky rounded toe caps, thick dark soles, and a polished brass pull loop at the top of each shaft. The pair together is about as wide as it is tall. Simple and bold; a low-value symbol, so fewer small details than a high symbol. No legs, no people, no puddle, no fire, no smoke.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l4.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol L4 Fire Boots square source (style refs: accepted H1 + ALARM)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:35:32",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l4.png",
+    "sha256": "e322db928abebc9ae6aa02b8fecdc3f7fbda5251955034462ed9a178681714ca",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2581,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 533
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4337
+    },
+    "seconds": 36.7
+  },
+  {
+    "asset": "sym_tall_alarm",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same polished brass alarm bell with its striker and ringing strokes sitting on top of the same red wall box with its round cream button, the red box drawn a little taller below the bell so the whole stack is tall.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_alarm.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for ALARM: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_alarm.png",
+    "sha256": "b6c6b971e1b9614b65837ce03e80c0531d6eed53e2e6a70bb625edbcb75aca41",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1308,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 284
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2680
+    },
+    "seconds": 26.3
+  },
+  {
+    "asset": "sym_tall_h4",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same red-and-brass fire extinguisher standing upright and tall, the black hose curling down close along its side and the brass nozzle tip near the base; brass top valve, green-zone gauge and yellow band unchanged.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h4.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h4.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for H4: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h4.png",
+    "sha256": "2552cfcfb3fa7c5a2d9631feafa707f99d40f50b6d213d0e1c7b4ed6dd40025a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1309,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 285
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2681
+    },
+    "seconds": 26.6
+  },
+  {
+    "asset": "sym_tall_h3",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same fire axe and halligan bar crossed in a steep, narrow X (the handles closer to vertical), the axe head at the upper left and the halligan claw at the upper right, the whole pair tall and narrow.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h3.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h3.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for H3: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h3.png",
+    "sha256": "5bc912957f80824f7c2638397ce66eb76888719c6830fa0b78632abb1ef5cdce",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1310,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 286
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2682
+    },
+    "seconds": 26.6
+  },
+  {
+    "asset": "sym_tall_l1",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same coiled cream fire hose, now a slightly taller, narrower coil, with the hose end rising straight up out of the coil and the big brass nozzle pointing upward, so the shape is tall.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l1.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for L1: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l1.png",
+    "sha256": "3e8c459719cb0b05b90a3be4a0ce7d422e8eb6ea15beb495b8fab405b8751d47",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1305,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 281
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2677
+    },
+    "seconds": 27.0
+  },
+  {
+    "asset": "sym_tall_h1",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same red ladder fire engine seen more from the front in a steeper three-quarter view, with its cream-and-brass ladder raised up high and angled upward above the cab so the whole shape is tall; the brass bell on the roof, round headlights, chrome grille and chunky black tyres with brass hubcaps unchanged.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h1.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for H1: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h1.png",
+    "sha256": "c019f2514f1fa5f3a12d8cb25abf76b90b43e6550707aded10dc505d627ece59",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1328,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 304
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2700
+    },
+    "seconds": 27.8
+  },
+  {
+    "asset": "sym_tall_l4",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same pair of black fire boots with yellow bands and brass pull loops, seen more from the front with the tall shafts standing straight up, the front boot slightly overlapping the back one, so the pair is tall.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l4.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l4.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for L4: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l4.png",
+    "sha256": "2448abdf87fbcc9152d5782c310efcc9d175dc436fba2fa72cda532f82801ce5",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1307,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 283
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2679
+    },
+    "seconds": 27.9
+  },
+  {
+    "asset": "sym_tall_l3",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same red-railed ladder section with honey-wood rungs and brass roof hooks, standing nearly upright (tilted only slightly), with five rungs, so the shape is tall and narrow.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l3.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l3.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for L3: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l3.png",
+    "sha256": "fde122ed654d32328a0d5c7bf40416132fe1c00c2eee94f4fcafc5385a5a3d8d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1304,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 280
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2676
+    },
+    "seconds": 28.2
+  },
+  {
+    "asset": "sym_tall_l2",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same wooden water bucket with brass hoops and handle, with the water splashing up high above the rim in a tall chunky splash and the single round water drop flying above it, so the shape is tall.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l2.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for L2: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l2.png",
+    "sha256": "e8c28454099a01df13adcf8ece65326f85cb8bef2bd52c40b98af0e02ca9dd5e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1306,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 282
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2678
+    },
+    "seconds": 29.9
+  },
+  {
+    "asset": "sym_tall_h2",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game. Redraw THIS SAME object as the same design, in exactly the same style: the same bold thick dark-brown ink outline, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, the same colours and the same finished level of detail. Only the composition changes: compose it for a TALL portrait 2:3 canvas so the object is about 1.4 times taller than it is wide, centred, filling the canvas from top to bottom (about 92 percent of the height) with a small even margin. It must stay recognisably the SAME object and read clearly at 40 pixels. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nTall composition: the same red fire helmet turned more toward the viewer and seen from slightly below, so the big brass front shield plate with the pig-snout-in-a-flame crest stands up tall above the dome and the long back brim sweeps down; the shape is tall rather than wide.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_tall.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h2.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall (384x500 portrait) source for H2: 1024x1536 edit of accepted square source",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h2.png",
+    "sha256": "fcdf2647aaf22eb6526d525e6c80ae693dd702657a98d7e2d1d23918d9030425",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1320,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 296
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2692
+    },
+    "seconds": 29.8
+  },
+  {
+    "asset": "sym_sq_h3_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same axe and halligan swung into a tighter, more dramatic X as if just clashed together, heads flaring out, a bright cream highlight glint along the axe blade and one small flat four-point cream sparkle where the handles cross.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h3_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h3.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win cut) for H3: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h3_b.png",
+    "sha256": "22eef4af2db00ebdb96e7bd20b7f24cc5a4cfaa0529fdbcade105f77a19c8f85",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1250,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 226
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3006
+    },
+    "seconds": 32.8
+  },
+  {
+    "asset": "sym_sq_galarm",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the finished ALARM reel symbol from our 2D cartoon slot game. Redraw it as the rare GOLDEN ALARM: the SAME silhouette, the SAME design, pose, size, position and framing EXACTLY (do not move, zoom or recentre it), the same thick dark-brown ink and flat cel shading, but the whole thing is now precious gold: the bell a rich bright gold with warm cream-yellow highlights, the box beneath it gold too (a deeper brass-gold with a hard darker gold shadow tone) instead of red, the round button cream, and the curved ringing strokes bright hydrant yellow. One or two small flat four-point cream sparkles with an ink outline on the bell. It must still read as the same bell at 40 pixels but clearly more valuable than the red one. Genuinely transparent background, no glow haze, no gradients, no text, no letters, no numbers, no logos.",
+    "prompt_files": [
+      "art-src/generated/prompts/symbols_sym_sq_galarm.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol GALARM Golden Alarm = same-framing gold edit of accepted ALARM",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_galarm.png",
+    "sha256": "62279b5315e55fe0ddb3a427cb340b7e07f7940c74361d059bc519553258069b",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1234,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 210
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2990
+    },
+    "seconds": 33.7
+  },
+  {
+    "asset": "sym_sq_h4_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same extinguisher tilted with energy, its black hose whipping up in an S-curve and the brass nozzle firing one chunky puff of cream-white foam drawn as flat rounded cel blobs with an ink outline, the brass valve gleaming.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h4_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h4.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win cut) for H4: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h4_b.png",
+    "sha256": "e0bd4c4748bdfa2d4f762561f2178ef71794cff00ad85245368d4743dd633a01",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1249,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 225
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3005
+    },
+    "seconds": 34.1
+  },
+  {
+    "asset": "sym_sq_h1_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same fire engine bouncing up on its front wheels with joyful energy, tilted a little back, the brass roof bell swung to one side mid-ring with two short curved ringing strokes, the headlights blazing bright cream, the ladder raised a little higher.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h1_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win cut) for H1: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h1_b.png",
+    "sha256": "3a35b57e4dc82c354f173b39264b0daeff45634435808055e2e252d11ed8c98c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1250,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 226
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3006
+    },
+    "seconds": 37.0
+  },
+  {
+    "asset": "sym_sq_w",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is OUR HERO, Chief Hamm, the pig fire chief. Keep HIS identity exactly: his head shape, short flat wide pink snout, pink pointed ears, thick dark-brown chevron moustache, pink skin, the white fire helmet with a brass shield plate on its front (the plate is plain, smooth and blank), the red turnout coat with hydrant-yellow reflective bands and brass clasps, the same thick dark-brown ink outline, chunky rounded shapes and flat cel shading with one hard shadow tone. The reference has a few faults that must be CORRECTED here: his brows must be confident and nearly level (not a V-shaped angry scowl); both eyes are big, clear white ovals with round black pupils, each pupil with one clear hard white catch-light in the same spot, the far eye kept fully open and clear of the snout and ear; every hand is a proper cartoon pig hand with a visible thumb and separated fingers drawn with ink lines (never a mitten).\n\nSubject: the WILD reel symbol. A chest-up BUST of Chief Hamm, facing the viewer in a slight three-quarter turn, head big and dominant in the upper half, a warm, proud, open-mouthed confident smile, eyes bright and friendly. With BOTH hands he holds up in front of his chest a large rounded shield-shaped badge: a thick engine-red shield rim with a polished brass-gold outer edge, and in its centre a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, taking up most of the badge. The white panel is completely empty: no marks, no letters, no emblem, no shading pattern on it. His fingers wrap the badge's red rim at the sides only and never cover the white panel. The badge covers his lower chest and is about as wide as his shoulders. Composition: helmet top to badge bottom exactly as TALL as the figure is WIDE, filling about 90 percent of the square, centred, cropped just below the badge. The silhouette must read instantly at 40 pixels: big head, big badge, bold simple outer shape.\n\nStyle: bold thick dark-brown ink outline on every shape, chunky rounded forms, flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, palette engine red, brass gold, hydrant yellow, hose cream, pig pink, dusk navy accents; a clean hand-inked game icon, not glossy, not a 3D render, no gradients, no airbrush glow. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, no letters, no numbers, no logos, no emoji anywhere, and nothing written on the badge. No hard hat, no construction, no police, no lantern, no dragon imagery. The comedy and warmth come from his expression, never from body or ethnic caricature.",
+    "prompt_files": [
+      "art-src/generated/prompts/symbols_sym_sq_w.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/hero_c.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol W Chief Hamm WILD bust, blank white badge for local lettering (hero_c primary ref; judges' must-fix notes applied in words)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_w.png",
+    "sha256": "1925643c59bed8198fa9121114dfd7c27eb1c188165a498b0f60039ac2219741",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2147,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 611
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3903
+    },
+    "seconds": 37.3
+  },
+  {
+    "asset": "sym_sq_h2_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same fire helmet tipped at a jaunty tilt as if just tossed up in celebration, the brass shield plate gleaming with a bright cream highlight band and one small flat four-point cream sparkle at its corner.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h2_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h2.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win cut) for H2: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-25T04:37:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h2_b.png",
+    "sha256": "bddf58a559a26366a66703441a698f488878c1cae80c3f11861d987cb6d5201d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1243,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 219
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2999
+    },
+    "seconds": 37.5
   }
 ]

@@ -1,52 +1,24 @@
 {
-  "at": "2026-09-25T04:08:35.620Z",
+  "at": "2026-09-25T04:36:51.252Z",
   "browser": "chromium 141.0.7390.37",
   "game": "http://127.0.0.1:3003/",
   "rgs": "127.0.0.1:3036",
   "results": [
     {
       "fixture": "base_win",
-      "passed": false,
-      "console_errors": 0,
-      "finalWin": null,
-      "ms": 430571,
-      "errors": [
-        "driver: page.waitForFunction: Timeout 420000ms exceeded."
-      ]
-    },
-    {
-      "fixture": "base_backdraft_win",
       "passed": true,
       "console_errors": 0,
-      "finalWin": 280,
-      "ms": 93202,
-      "errors": []
-    },
-    {
-      "fixture": "base_trigger_rescue",
-      "passed": true,
-      "console_errors": 0,
-      "finalWin": 370,
-      "ms": 231286,
-      "errors": []
-    },
-    {
-      "fixture": "alarm_call_false",
-      "passed": true,
-      "console_errors": 0,
-      "finalWin": 0,
-      "ms": 19213,
+      "finalWin": 1500000,
+      "ms": 735998,
       "errors": []
     },
     {
       "fixture": "max_win",
-      "passed": false,
+      "passed": true,
       "console_errors": 0,
-      "finalWin": null,
-      "ms": 431142,
-      "errors": [
-        "driver: page.waitForFunction: Timeout 420000ms exceeded."
-      ]
+      "finalWin": 1500000,
+      "ms": 387340,
+      "errors": []
     }
   ]
 }
