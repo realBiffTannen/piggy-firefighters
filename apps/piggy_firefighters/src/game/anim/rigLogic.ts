@@ -5,6 +5,9 @@ export type MotionSettings = { speedTier: 0 | 1 | 2; reducedMotion: boolean };
 export type LadderPath = { fromX: number; fromY: number; toX: number; toY: number };
 export const RESCUED_SKINS = ['grandma', 'twins', 'dad', 'baby', 'teen'] as const;
 export type RescuedSkin = typeof RESCUED_SKINS[number];
+/** The director applies charged-cost eligibility before the base-bet tier floors. */
+export type WinTier = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export type WinRungTier = Exclude<WinTier, 0 | 1>;
 type Cell = { reel: number; row: number };
 export type EmitterEventAnim = { type: 'animBeat' } & (
   | { beat: 'spinStart'; mode: string; speedTier: 0 | 1 | 2 }
@@ -13,7 +16,7 @@ export type EmitterEventAnim = { type: 'animBeat' } & (
   | { beat: 'anticipationStart'; reel: number; hit?: boolean }
   | { beat: 'anticipationEnd'; reel: number; hit: boolean }
   | { beat: 'lineWin'; lineIndex: number; amount: number; symbol: string; kind: string | number }
-  | { beat: 'winTier'; tier: number; amount: number; x: number }
+  | { beat: 'winTier'; tier: WinTier; amount: number; x: number }
   | { beat: 'backdraft'; cells: Cell[] }
   | { beat: 'rescueEnter'; bonus: 'rescue' | 'inferno'; source: string; spins: number; rooms: unknown[] }
   | { beat: 'douse'; sprays: { reel: number; from: number; to: number }[]; rescues: { reel: number; skin: string | number; prize?: number }[]; multiplier: number; spinsAdded: number }
@@ -21,7 +24,7 @@ export type EmitterEventAnim = { type: 'animBeat' } & (
   | { beat: 'buildingCleared'; building: number; spinsAdded: number }
   | { beat: 'rescueExit'; total: number; multiplier: number; rescued: number; buildings: number }
   | { beat: 'alarmCall'; outcome: string | { falseAlarm?: boolean; type?: string; [key: string]: unknown } }
-  | { beat: 'bigWinStart' | 'bigWinEnd'; tier: number; amount: number }
+  | { beat: 'bigWinStart' | 'bigWinEnd'; tier: WinRungTier; amount: number }
   | { beat: 'maxWin'; amount: number }
   | { beat: 'idle'; seconds: number }
   | { beat: 'speedTier'; tier: 0 | 1 | 2 }

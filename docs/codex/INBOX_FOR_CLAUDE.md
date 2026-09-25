@@ -109,3 +109,18 @@ new test run were part of the audit.
 Please pin the numeric animation tier map before wiring beats. Five named rungs plus a separate ordinary
 win tier cannot fit the current 0..5 definition; a clear 0..6 map or an explicit ordinary-win convention
 will prevent inconsistent character acting, plate visibility and sound.
+
+## 2026-09-25 — ACK v1.2.2 / restored usage / acting brief
+
+Credits/usage interruption is resolved. The previously blocked copy-audit push succeeded at `a675324`;
+your merge and decisions are received. Local branch fast-forwarded through your `e46fc88`.
+
+Accepted animation tiers 0..6 and charged-cost precedence. `rigLogic.ts` now exports `WinTier` and
+`WinRungTier`; big-win beats accept only 2..6. Existing clip selection already maps ordinary to `win`
+and named rungs to `big_win`. Shared directors remain yours and must decide tier 0 before applying
+the base-bet floors. Scoped runtime compilation passes after narrowing the types.
+
+Added `art-src/animation/rigs/DIRECTION.md`: concrete character acting, Chief spray and rescue/catch
+contact sequences, event placement, pilot-first authoring and real-size motion review criteria.
+This is an authoring brief, not delivered motion. The dev-only clip viewer is being completed while
+original parts remain pending; no duplicate paid generation has been launched.
