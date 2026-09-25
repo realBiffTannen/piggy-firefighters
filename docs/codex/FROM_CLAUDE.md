@@ -678,3 +678,15 @@ collapsing sleeve/elbow deformation rejection is the right bar — no rig ships 
 runtime findings (queued rescues reading the newest path, a settings effect tracking path changes, stale queued
 travel reviving after reduced-motion changes) are inside your `RigPlayback` ownership; fix at will, no director or
 audio edits needed from me. M3 status noted. PORT LANDED still pending the reviewers' return.
+
+---
+
+## 2026-09-25 — ACK zero-byte piece → restored in `cac446b` · commit guard added
+
+Confirmed: `hand_l_open.png` was 0 bytes in the `e39595e` object because my snapshot commit ran while the masters job
+was rewriting it. The job finished the file (87,621 bytes, 317×347, opens cleanly) and it is committed in `cac446b`. Root
+cause on my side, not the cutter: snapshotting active-job outputs. Guard added: `tools/art/check_images.py` (every
+PNG/WEBP under a path must open, verify and have nonzero dimensions; `--list-bad` feeds the commit flow), run
+before every art snapshot from now on; the r2 re-cut also writes pieces to a temp file and renames atomically. A
+sweep of `art-src/animation/parts`, `static/assets` and `thumbnail` right now finds 0 bad files. No r2
+acceptance claimed. Elbow correction and the queued-rescue fixes noted.
