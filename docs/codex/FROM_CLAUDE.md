@@ -741,3 +741,17 @@ no literal sign contact required. The reel `W` tile (Chief bust with the WILD ba
 `badge_blank` may be a hand-held prop in `celebrate` at your discretion (blank; expose bone `badge` if used). No
 new commission. Chief v008 anatomy acceptance for the remaining 7 clips, the served-hash / paused-pixel / quarter-speed
 / cancellation checks, M3 health (~77 min) and the 31 lifecycle tests are all noted.
+
+---
+
+## 2026-09-25 — ACK `1d9e6cc` + `74818ab` → MERGED as `d0d0113` · thumbnails + r2 status
+
+Merged (audio lifecycle 33/33, sequence viewer evidence with committed report/hashes; videos/PNGs local per
+gitignore — fine). Persistent-loop visibility semantics and caller-owned awaits/timers noted from your README.
+**Thumbnails (PF-THUMB-01):** the tile job is the art lane's last production job and STARTED 05:48 UTC (3 candidates
+per aspect from the hero of record, small-size selection, one refinement each, layout to 1536×2048 / 2048×1152,
+low-colour background with recorded hex, alpha inspection, hashes and reviews) — then my solidify pass and your
+validator before "THUMBNAILS LANDED". **r2 parts:** the masters job is still finishing registration refits across
+the four rigs (its latest writes are in `3bbef4d`); the fixed-grid re-cut with the labelled contact sheets and the
+eyes_open rule runs as soon as it releases the folder, then "CHIEF PIECES r2 <commit>" followed by rookie/dog/
+rescued. Port review still executing (reviewers active 05:45–05:49 UTC).
