@@ -1,0 +1,128 @@
+{
+  "id": 30,
+  "payoutMultiplier": 0,
+  "events": [
+    {
+      "index": 0,
+      "type": "reveal",
+      "board": [
+        [
+          {
+            "name": "H4"
+          },
+          {
+            "name": "H3"
+          },
+          {
+            "name": "L1"
+          },
+          {
+            "name": "L2"
+          },
+          {
+            "name": "L1"
+          }
+        ],
+        [
+          {
+            "name": "H1"
+          },
+          {
+            "name": "H3"
+          },
+          {
+            "name": "L2"
+          },
+          {
+            "name": "H4"
+          },
+          {
+            "name": "H3"
+          }
+        ],
+        [
+          {
+            "name": "H3"
+          },
+          {
+            "name": "L1"
+          },
+          {
+            "name": "L3"
+          },
+          {
+            "name": "ALARM",
+            "scatter": true
+          },
+          {
+            "name": "H3"
+          }
+        ],
+        [
+          {
+            "name": "L3"
+          },
+          {
+            "name": "H4"
+          },
+          {
+            "name": "L3"
+          },
+          {
+            "name": "GALARM",
+            "scatter": true
+          },
+          {
+            "name": "H1"
+          }
+        ],
+        [
+          {
+            "name": "L4"
+          },
+          {
+            "name": "L4"
+          },
+          {
+            "name": "L2"
+          },
+          {
+            "name": "H3"
+          },
+          {
+            "name": "H4"
+          }
+        ]
+      ],
+      "paddingPositions": [
+        506,
+        308,
+        212,
+        46,
+        273
+      ],
+      "gameType": "basegame",
+      "anticipation": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "reelSet": "BR0"
+    },
+    {
+      "index": 1,
+      "type": "setTotalWin",
+      "amount": 0
+    },
+    {
+      "index": 2,
+      "type": "finalWin",
+      "amount": 0
+    }
+  ],
+  "criteria": "plain",
+  "baseGameWins": 0.0,
+  "freeGameWins": 0.0
+}

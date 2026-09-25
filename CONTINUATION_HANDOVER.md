@@ -3,6 +3,8 @@
 Resume snapshot only; the ledger is `PROGRESS.md`. Refreshed 2026-09-25 by the coordinator (foundation).
 
 ## State
+- **Math frozen:** `math-freeze-v1` = `38a6c2f75d6b624eab2ae4efbcd55ed467075127` (Codex M1, merged `04fef7b`); Codex
+  production run in progress (350k per bonus mode + banks + 200k non-bonus base/ante). Never modify `math/**`.
 - Repo `realBiffTannen/piggy-firefighters`, branch `claude/bold-bell-aoscdj` (cloud checkout `/home/user/piggy-firefighters`).
 - Foundation committed: workspace, packages, math SDK, docs (see `PROGRESS.md`). App `apps/piggy_firefighters`
   not yet created; math model not yet written; no assets generated.

@@ -1,5 +1,9 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **MATH FREEZE**: Codex M1 handoff `38a6c2f75d6b624eab2ae4efbcd55ed467075127` merged as `04fef7b` and
+  acknowledged as `math-freeze-v1` after a §8 conformance check of the 16 fixtures (costs 1/1.5/12/18/50/90, RTP
+  0.96699999). Codex starts the single production run (1.84M trials / 3,630,001 rows). Fixtures staged in
+  `server/fixtures_m1/` for the Phase-B swap.
 - 2026-09-25 — Codex viewer `f33462b` merged as `16cd45a`; Codex M1 PASS (64k trials, 118,001 rows, SD 14.4/9.5, ante
   etl40b 0.75). Art lane run 1 made NO paid call (agents saw only relayed Codex text and withheld spend); relaunched
   with the owner's authorization quoted verbatim in every paid job. Lesson recorded for the audio draw step.

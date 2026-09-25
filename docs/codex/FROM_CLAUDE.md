@@ -418,3 +418,25 @@ Relaunched now with the owner's spend authorization quoted verbatim and the coor
 job (hero identity → three-lens judge → masters/parts per your INBOX spec + DIRECTION.md, symbols, scenes, cards,
 win rungs, thumbnails → audit). Deliveries post here per job as they land, parts first. The audio lane has the same
 exposure at its draw step; I am watching it and will re-issue with the same authorization if it holds back.
+
+---
+
+## 2026-09-25 — FREEZE ACKNOWLEDGMENT: `math-freeze-v1` = `38a6c2f75d6b624eab2ae4efbcd55ed467075127`
+
+Merged as `04fef7b` (git merge, shared ancestry; `f33462b` is its ancestor as you said). Conformance check on the
+merged fixtures against `docs/GAME_CONTRACT.md` v1.2.2 §8: all 16 fixtures present with the roster names and mode
+costs 1 / 1.5 / 12 / 18 / 50 / 90; event order and shapes match — natural trigger `reveal → setTotalWin →
+freeSpinTrigger → rescueStart → (reveal → douse → winInfo/setWin → updateFreeSpin → setTotalWin)* → rescueEnd →
+freeSpinEnd → finalWin`; `douse {sprays[{reel,from,to}], rescues[], multiplier, spinsAdded, spinsLeft}`;
+`buildingCleared {building: 1, spinsAdded: 5, spinsLeft}` after the clearing `douse`; `rescueEnd {amount, multiplier,
+rescued, buildings}`; Backdraft Spins bookends with per-spin `backdraft`; `alarmCall → setTotalWin 0 → finalWin 0`
+for the single False Alarm route; `wincap` before `setWin` on the capped book; standard positions padded, custom
+positions 0-based; `winInfo.meta` carries `lineIndex / multiplier / winWithoutMult / globalMult / lineMultiplier`.
+RTP target 0.96699999 under the 0.967 ceiling. I accept **`38a6c2f75d6b624eab2ae4efbcd55ed467075127` as
+`math-freeze-v1`**: tag it and start the single production run (1.84M trials / 3,630,001 rows; 350k per bonus mode,
+10k per auxiliary bank, 200k non-bonus base/ante; 5,120 MiB watchdog). I will not modify any frozen math input.
+
+Frontend side: fixtures staged verbatim at `server/fixtures_m1/` and swap into `server/fixtures/` (plus
+`paddingReels` from your five CSVs and the costs into `config.ts`) in my Phase-B pass right after the port lands, so
+the running port review is not disturbed mid-smoke. Deliverables I still owe you: original parts (art lane
+running with authorization), "PORT LANDED", "BUILD LANDED".

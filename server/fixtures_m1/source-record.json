@@ -1,0 +1,281 @@
+{
+  "kind": "actual_model_simulations_and_canonical_bank_compositions",
+  "source_sha256": {
+    "games/piggy_firefighters/__init__.py": "d21b8e84f71d4adb0b435f65201231b3f5f6a557d57351f22fe7ea68712b96fc",
+    "games/piggy_firefighters/game_banks.py": "45f185b63e302e27af3a5cba16ffd991cf1a2a22552b63cff856ace62a583aaa",
+    "games/piggy_firefighters/game_calculations.py": "5d2e6e750d780ccd02b699cc6ffe121ba0ff678c22b9ff97482172a90541aebe",
+    "games/piggy_firefighters/game_config.py": "ba3f745ec1fc3cc611a53726a9ec6c65bd792ee42a7b938ec409e2e3ffc62ecc",
+    "games/piggy_firefighters/game_events.py": "56d8e2338281195326d9ce4f95f6b2048ae7e9938e6751d181ec26c0c17e750c",
+    "games/piggy_firefighters/game_executables.py": "2ab387dc05019f29d389e545f5182575815016a6838ee62b801956af402d3ef2",
+    "games/piggy_firefighters/game_override.py": "f05ad91fd2701763c7e291b3ec5a53eba0428772affe3628227d6309dda622bb",
+    "games/piggy_firefighters/game_paytable.py": "4bb856f47d31eedbd6b95dfb61c84feb6a3bb9d6cbc552990058530925cc70b7",
+    "games/piggy_firefighters/game_weights.py": "10d96b35f80a8e768fb31ef8b958b554326a807a0e19d4be632674cdf256190c",
+    "games/piggy_firefighters/gamestate.py": "b4fd66bd1e5b198c4ad8c4176c110d47c546d4ef2fe60a16e0a10748495882ec",
+    "games/piggy_firefighters/run.py": "e58746fad3a6a3d15aac268b5c84824ae3876a6f25b80e1b00779d4af80e6e54",
+    "games/piggy_firefighters/reels/BR0.csv": "8fadacab99f3a01696b5d292c54a3299b2b5ae6e4c69174150580d395069f5ed",
+    "games/piggy_firefighters/reels/BRA.csv": "c38951682e9e39907aa98ec584c9cb65847bbf58be5be5566a9acf6e09344e7e",
+    "games/piggy_firefighters/reels/BRB.csv": "8396f996a5fe321fecd58511d2a10668693cb69bc53dd1b68b9de55990a4acb2",
+    "games/piggy_firefighters/reels/FR0.csv": "ede46f2e9ab61a5061b51b6893f2a00e1504dda77cf73a7f54b08e6edd1dd9e4",
+    "games/piggy_firefighters/reels/FRI.csv": "f1407725a36cf817f5991c18727f87bbd5fff77f614f4faceb3dc10736d3c03b",
+    "games/piggy_firefighters/tools/make_reels.py": "db4dbc48276468a069aef7a76782be4520c99b8f6862ee0391bd0bd30d045e95",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/calculations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/calculations/board.py": "4a32f7b911cc2c4152dcebc9460868b678e1c098483b71536ec74b09ce8245ee",
+    "src/calculations/cluster.py": "c109bb2b3e4320cf3bec5cb8526ab4e9608c6f0a4a45d0a7482be0de6f8e2408",
+    "src/calculations/lines.py": "f338b481ef93e47f7ceaf5be8282319f431fff1201b05041f55ff2562486a206",
+    "src/calculations/scatter.py": "38115f63818c15d694dd24df3f5f6465f1e5800c0c000f78461ac46147127308",
+    "src/calculations/statistics.py": "4be7a25c5a9ce10b96e8a74474411415eb680e5623f553e38d189d8978befbf7",
+    "src/calculations/symbol.py": "5a16f92bf7ee6e6bcfdc6baa9e1ccc7c386f1f7dd4d8e55a2fd87cefce92873d",
+    "src/calculations/tumble.py": "be71605b8cca578ca434f6158132bd9e061719e8fb8a97f7f415291bcd6ecf67",
+    "src/calculations/ways.py": "12df8b1dd328a49fd92ffedb5f9254fa76f12e7100012d5d8c07aabd48861f76",
+    "src/config/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/config/betmode.py": "d611dd1646ba2d55d5cfcdd43380e069e54e2a24cc836e6aaf5590e4c28a3a15",
+    "src/config/config.py": "bf4ccb19622813bee35d0cfc6eb1c01644175908ecb5affa9faaf9386a577ec0",
+    "src/config/constants.py": "6f9705440284abcc046b63142dbcdb30b7002822aeb838863cd63e5bf9e63ee0",
+    "src/config/distributions.py": "2fdaa747dc4e92a6c05426d61d4bfc67bb40b87565d2748ba7972a06cb59329c",
+    "src/config/optimization_paramaters.py": "354b23867de8208317cd9171c52603e221eb6b5cc354271e0c8e68ea04b33e71",
+    "src/config/output_filenames.py": "2a97ff033fe4c9a50e96e82adb4d525fcfdee5d7d938a6a9168b573e1b0f5fdd",
+    "src/config/paths.py": "8eaebaa9afe7003f4aa2f4e4778bad5709a457922a15a03a8083d2795126a41e",
+    "src/events/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/events/event_constants.py": "bd97184ccef6f5f52854e704471b7bd402be7d5d98a3a90565e5cc8cb97edc3c",
+    "src/events/events.py": "943adc2246bdc545c696c0648f0c905a5b6df0a711137dbae6902b87106c3ea8",
+    "src/executables/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/executables/executables.py": "1221b87c8609de2f2d7337667ed197b6e7a7bda8c90da7dccdd66ae214727433",
+    "src/state/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/state/books.py": "b334265b7f9643dbc905875995a3750947d8c2644f209983c5485d7303c2cc21",
+    "src/state/run_sims.py": "2943d048e8869978a1ed26eace4b76101092a89464da0bb3abbed3bc1b025332",
+    "src/state/state.py": "8bdd6f37690a6b5f22ea2d030c353b7ff8fa554f9ed21209c9fa897a0231097d",
+    "src/state/state_conditions.py": "1c5b1ce1909bfe84027c5f3e99fd31ab4febf4e49128e6da6a1eb88aec9d13ba",
+    "src/wins/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/wins/multiplier_strategy.py": "ed50f4b9621ba8c025f803f34cf60ade972808dc1917c310361b47c3c11750bc",
+    "src/wins/win_manager.py": "ff73edad4a41b021497047ab365632ab1ab1cd51b2ccb97fe62eaf49ffe8accb",
+    "src/write_data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/write_data/force.py": "974dacfa5c5f18c376c64cb9e6fc691b6447fcf8a5de063830f6efc2a6739711",
+    "src/write_data/write_configs.py": "4604e5d8e707e709a7c4816f00f20479721219cff3df9eca319cbb4912402fa2",
+    "src/write_data/write_data.py": "61fc9b5a4193d2d3732fb5fc3561bb27ff8866a7bc5ef322c889b8f2d2044d9c",
+    "utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utils/analysis/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utils/analysis/challenge_sheets.py": "e79a72ddc8b189bac4c502e1f6d926609ec757fb3c72435d04ddb9c4aa1d639c",
+    "utils/analysis/distribution_functions.py": "7f9aee4989d35c0e687b4c42f9d1a226300cbcda20560e93be61f7c7b49ff0db",
+    "utils/analysis/plot_distribution.py": "d59cb966c3fe7d1e40c4126de14941ae47c90d58610d601bc7fcfdb1db5920ad",
+    "utils/decompress_zstd.py": "703d1ab3d18ed2f20b5adca7d8f08a53d596ac22df8051e377b45fc5a529111f",
+    "utils/format_books_json.py": "5a68b475c57809eda69929dbfc065e67690ab5b0d4df2736f2ed586783faafd5",
+    "utils/game_analytics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utils/game_analytics/get_pay_splits.py": "29f90ea246da1cc7dee5996fb77f95253d8d20800304f75549ef4820c5cf12d8",
+    "utils/game_analytics/get_symbol_hits.py": "131e048a982f71f5a3204b71501a00ddbd9f2b1a69feebbc14438ac730f8027f",
+    "utils/game_analytics/print_all_results.py": "d7f1225350cf3324afd0dc3294d0aaa6afefd1719ce81df355c16b2693477c05",
+    "utils/game_analytics/retrieve_game_information.py": "a2ca158734590705ce62dbdffe4c6d47dac646c5894394498ce8a89145d06e00",
+    "utils/game_analytics/run_analysis.py": "bdf7eb0a8fab587726d52227b0545ca9dafbf4bf45f94b7588cafc1b229b5165",
+    "utils/get_file_hash.py": "1fcc8e4dabbfbc21b18f2646c04d7795190a4c9134cba7424bb04ad56d5fcf23",
+    "utils/merge_luts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utils/merge_luts/helper_funcs.py": "67bc98cdd6ec42404d3458a912c463ac8b030aafc9e1f56b0ca43d3e3debb46b",
+    "utils/merge_luts/lookup_properties.py": "794ffa08afe43d173ae8654b309eb0282d4ba65728047e22c836da0b49205a8c",
+    "utils/merge_luts/merge_lookups.py": "a0da028195523cfa1a1fb5471e46692421ba4affe752e16f3c27469a3b1fed4d",
+    "utils/rgs_verification.py": "bc2ce5fdda73f07f53d298322b0e9f97a67425d6ad30c96a6ee24403dd2406ba",
+    "utils/search_tool/forcetool_example.py": "541c27f69f50d4de5cddd202053d0157c3094b6e97052cadf9db3a763179fd49",
+    "utils/search_tool/forcetool_ids.py": "36b822218e82237dbdd4b53a531e0f46367939475c805a850a446e540e66ebcb",
+    "utils/swap_lookups.py": "1e607bcab8a155b562a006e33e2f6d93e78400ba519704fb58d2f99ab762efcc",
+    "requirements.txt": "a48b1faa445e3726a48badf704909ba0d0e788193aa7f5ee2217a21e3d578782",
+    "requirements-production.lock": "f7740a2fa8da757a6813943ea8050355ed9e1eaa97c14f23f528af2bf849c1ee"
+  },
+  "fixtures": {
+    "alarm_call_false": {
+      "mode": "alarm_call",
+      "publication_row_id": 0,
+      "criterion": "falseAlarm",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "sha256": "1fcbe6f42bbc79c64a1b72b9fad1c3dccaad20f15b5c1878c4de3f29b3ab60c3"
+    },
+    "alarm_call_inferno": {
+      "mode": "alarm_call",
+      "publication_row_id": 10002,
+      "criterion": "bank_alarmCall_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "inferno_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab"
+      },
+      "sha256": "9d35a8dc20b6c54c8fda6529edddeb488d9035320da68c39572ebc4ec235a77b"
+    },
+    "alarm_call_rescue": {
+      "mode": "alarm_call",
+      "publication_row_id": 2,
+      "criterion": "bank_alarmCall_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "rescue_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "c0e914da83478bab57db1d2fbe7e32ddfac60958b568e47a14dbefb81c5339b8"
+      },
+      "sha256": "4cf5c92571247bb5663e40b8ee3963c750565752537c1ff45e7049afdb987e3e"
+    },
+    "backdraft_max_win": {
+      "mode": "backdraft_spins",
+      "publication_row_id": 0,
+      "criterion": "cap",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "sha256": "932a4aa1ac227caafbdde73d13bb9a4070599052150fcd3eb29f6c3285d5b68a"
+    },
+    "backdraft_spins": {
+      "mode": "backdraft_spins",
+      "publication_row_id": 1,
+      "criterion": "ordinary",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "sha256": "d7d706ee8df1074e1e4d13a9139d856b5d83ec2f84d022965ed59f848d901711"
+    },
+    "base_anticipation_miss": {
+      "mode": "base",
+      "publication_row_id": 30,
+      "criterion": "plain",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 30
+      },
+      "sha256": "d7e114ec51e136f3ec70e9082fa173aca9bbc7cfe69725942ceab8644f78d979"
+    },
+    "base_backdraft_win": {
+      "mode": "base",
+      "publication_row_id": 22,
+      "criterion": "backdraft",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 22
+      },
+      "sha256": "88f28932467938cd57d8c01bf3e8d03b92e50c47fcf032f8017fb1e12c59293e"
+    },
+    "base_nowin": {
+      "mode": "base",
+      "publication_row_id": 21,
+      "criterion": "plain",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 21
+      },
+      "sha256": "e757fa4af4d671598328e42c0938ac14c1f00977c388cb2ae437b84c574b9326"
+    },
+    "base_trigger_inferno": {
+      "mode": "base",
+      "publication_row_id": 22001,
+      "criterion": "bank_natural_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "inferno_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "base",
+          "reel_set": "BR0",
+          "actual_stops": [
+            321,
+            361,
+            193,
+            177,
+            262
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "sha256": "bc7829e346a4ea827d3f689421e32bb5780e40c3141bc69daa17dde0e3b7dfe8"
+    },
+    "base_trigger_rescue": {
+      "mode": "base",
+      "publication_row_id": 10001,
+      "criterion": "bank_natural_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "rescue_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "c0e914da83478bab57db1d2fbe7e32ddfac60958b568e47a14dbefb81c5339b8",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "base",
+          "reel_set": "BR0",
+          "actual_stops": [
+            330,
+            85,
+            438,
+            158,
+            403
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "sha256": "169a859b769497f41d22252907b51b74a04e710d386deb6926a083ed15104116"
+    },
+    "base_win": {
+      "mode": "base",
+      "publication_row_id": 0,
+      "criterion": "tail_max",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "sha256": "a5ad71a6dc4245fbbfe1e083c7d6b5092fe5fbc37c036fa17fbd25a28f524672"
+    },
+    "inferno_buy": {
+      "mode": "inferno",
+      "publication_row_id": 1,
+      "criterion": "ordinary",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "sha256": "e71dff226a88c1227cac4b95bba605432fe5c76a5d62856c60b725cc4cd0e018"
+    },
+    "inferno_prizes": {
+      "mode": "inferno",
+      "publication_row_id": 1,
+      "criterion": "ordinary",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "sha256": "e71dff226a88c1227cac4b95bba605432fe5c76a5d62856c60b725cc4cd0e018"
+    },
+    "max_win": {
+      "mode": "rescue",
+      "publication_row_id": 0,
+      "criterion": "cap",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "sha256": "a3e127119fedc191e36b10c7d194fada20dcd834e877d8cc6b2b900ba6a97f5f"
+    },
+    "rescue_building_cleared": {
+      "mode": "rescue",
+      "publication_row_id": 25,
+      "criterion": "ordinary",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 25
+      },
+      "sha256": "5109c053d3c8a3e3b90417782e2464c6e0f511e58a1fb4fa48805275aa11687c"
+    },
+    "rescue_buy": {
+      "mode": "rescue",
+      "publication_row_id": 1,
+      "criterion": "ordinary",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "sha256": "68f89d63a59f0a00882fd470b848ce3608d6e01c2af188e9131c11bb0e9c519c"
+    }
+  }
+}
