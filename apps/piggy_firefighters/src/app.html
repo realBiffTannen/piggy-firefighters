@@ -159,7 +159,10 @@
 						gap: 2px;
 					}
 					html body .hud-spin-group {
-						padding-right: 1px;
+						/* 12px, not 1px: the speed button's 44px box (its -12px margins tuck it under the ring) ran 11px past
+						   the right edge of a 330px popout (measured 297-341 in 330). This moves the whole spin group 11px
+						   left; the info panel gives the room and nothing truncates (qa/precheck/probe-session.mjs, leg c). */
+						padding-right: 12px;
 					}
 					html body .hud-spin-actions {
 						padding-right: 0;
