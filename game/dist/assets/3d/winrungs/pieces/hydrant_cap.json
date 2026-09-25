@@ -1,0 +1,17 @@
+{
+  "sheet": "hydrant_cap_sheet.webp",
+  "w": 1024,
+  "h": 384,
+  "bytes": 95522,
+  "frames": 24,
+  "fps": 24,
+  "cell": 128,
+  "cols": 8,
+  "rows": 3,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "loop": true,
+  "route": "3D turntable: Meshy image-to-3D 01a0d7b8-0308-77d1-93ee-ca3c8dbf666a + Blender toon"
+}

@@ -1,0 +1,17 @@
+{
+  "sheet": "nozzle_sheet.webp",
+  "w": 1024,
+  "h": 384,
+  "bytes": 95774,
+  "frames": 24,
+  "fps": 24,
+  "cell": 128,
+  "cols": 8,
+  "rows": 3,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "loop": true,
+  "route": "2D spin (tumble) of art-src/generated/winrungs/rung_pieces.png"
+}

@@ -1,0 +1,56 @@
+{
+  "generated_by": "tools/art/derive_rescue.py cells",
+  "source": "art-src/generated/scene/ui_frames.png",
+  "frames": {
+    "plain": {
+      "file": "cell_frame_plain.webp",
+      "size": [
+        384,
+        384
+      ],
+      "hole": [
+        0.1589,
+        0.1693,
+        0.8411,
+        0.8385
+      ],
+      "source_aspect": 1.043
+    },
+    "win": {
+      "file": "cell_frame_win.webp",
+      "size": [
+        384,
+        384
+      ],
+      "hole": [
+        0.1562,
+        0.1693,
+        0.8411,
+        0.8385
+      ],
+      "source_aspect": 1.043
+    },
+    "locked": {
+      "file": "cell_frame_locked.webp",
+      "size": [
+        384,
+        384
+      ],
+      "hole": [
+        0.1693,
+        0.1745,
+        0.8307,
+        0.8229
+      ],
+      "source_aspect": 1.0352
+    }
+  },
+  "line_plate": {
+    "file": "line_plate.webp",
+    "size": [
+      307,
+      291
+    ],
+    "label": "runtime line number centred on the blank cream field (lower 60 % of the plate)"
+  }
+}

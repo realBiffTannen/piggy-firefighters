@@ -1,0 +1,17 @@
+{
+  "sheet": "boot_sheet.webp",
+  "w": 1024,
+  "h": 384,
+  "bytes": 85576,
+  "frames": 24,
+  "fps": 24,
+  "cell": 128,
+  "cols": 8,
+  "rows": 3,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "loop": true,
+  "route": "3D turntable: Meshy image-to-3D 01a0d7b7-fa30-76a1-a04b-85fe5bedb404 + Blender toon"
+}

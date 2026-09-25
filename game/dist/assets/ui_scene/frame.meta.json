@@ -1,0 +1,39 @@
+{
+  "x0": 0.1416,
+  "x1": 0.8544,
+  "y0": 0.1882,
+  "y1": 0.8044,
+  "w": 1497,
+  "h": 946,
+  "open_px": {
+    "x0": 212,
+    "x1": 1279,
+    "y0": 178,
+    "y1": 761
+  },
+  "top_tile": [
+    340,
+    36,
+    487,
+    154
+  ],
+  "source": "art-src/generated/scene/board_frame_r2.png",
+  "source_edges": {
+    "x": [
+      25,
+      233,
+      1304,
+      1512
+    ],
+    "y": [
+      42,
+      219,
+      804,
+      982
+    ]
+  },
+  "rail_period_px": 241,
+  "periods_per_tile": 2,
+  "stretch": 1.0104,
+  "generated_by": "tools/art/derive_scene.py frame"
+}

@@ -1,0 +1,161 @@
+{
+  "tile": [
+    384,
+    500
+  ],
+  "fill": 0.92,
+  "fill_w": 0.86,
+  "generated_by": "tools/art/derive_symbols_tall.py",
+  "rule": "ink (alpha>24) touches fill_w of the width or fill of the height, whichever limits first",
+  "files": {
+    "symT_H1": "symT_H1.webp",
+    "symT_H2": "symT_H2.webp",
+    "symT_H3": "symT_H3.webp",
+    "symT_H4": "symT_H4.webp",
+    "symT_L1": "symT_L1.webp",
+    "symT_L2": "symT_L2.webp",
+    "symT_L3": "symT_L3.webp",
+    "symT_L4": "symT_L4.webp",
+    "symT_W": "symT_W.webp",
+    "symT_W_BLAZE": "symT_W_blaze.webp",
+    "symT_ALARM": "symT_ALARM.webp",
+    "symT_GALARM": "symT_GALARM.webp",
+    "symT_H1_b": "symT_H1_b.webp",
+    "symT_H2_b": "symT_H2_b.webp",
+    "symT_H3_b": "symT_H3_b.webp",
+    "symT_H4_b": "symT_H4_b.webp",
+    "symT_W_b": "symT_W_b.webp"
+  },
+  "sources": {
+    "symT_H1": "art-src/generated/symbols/sym_tall_h1.png",
+    "symT_H2": "art-src/generated/symbols/sym_tall_h2.png",
+    "symT_H3": "art-src/generated/symbols/sym_tall_h3.png",
+    "symT_H4": "art-src/generated/symbols/sym_tall_h4.png",
+    "symT_L1": "art-src/generated/symbols/sym_tall_l1_r2.png",
+    "symT_L2": "art-src/generated/symbols/sym_tall_l2.png",
+    "symT_L3": "art-src/generated/symbols/sym_tall_l3.png",
+    "symT_L4": "art-src/generated/symbols/sym_tall_l4.png",
+    "symT_W": "art-src/generated/symbols/sym_tall_w.png",
+    "symT_W_BLAZE": "art-src/generated/symbols/sym_tall_w_blaze.png",
+    "symT_ALARM": "art-src/generated/symbols/sym_tall_alarm.png",
+    "symT_GALARM": "art-src/generated/symbols/sym_tall_galarm.png",
+    "symT_H1_b": "art-src/generated/symbols/sym_tall_h1_b.png",
+    "symT_H2_b": "art-src/generated/symbols/sym_tall_h2_b.png",
+    "symT_H3_b": "art-src/generated/symbols/sym_tall_h3_b.png",
+    "symT_H4_b": "art-src/generated/symbols/sym_tall_h4_b.png",
+    "symT_W_b": "art-src/generated/symbols/sym_tall_w_b.png"
+  },
+  "route": {
+    "symT_H1": "tall",
+    "symT_H2": "tall",
+    "symT_H3": "tall",
+    "symT_H4": "tall",
+    "symT_L1": "tall",
+    "symT_L2": "tall",
+    "symT_L3": "tall",
+    "symT_L4": "tall",
+    "symT_W": "tall",
+    "symT_W_BLAZE": "tall",
+    "symT_ALARM": "tall",
+    "symT_GALARM": "tall",
+    "symT_H1_b": "tall",
+    "symT_H2_b": "tall",
+    "symT_H3_b": "tall",
+    "symT_H4_b": "tall",
+    "symT_W_b": "tall"
+  },
+  "ink": {
+    "symT_H1": [
+      0.784,
+      0.92
+    ],
+    "symT_H2": [
+      0.849,
+      0.92
+    ],
+    "symT_H3": [
+      0.75,
+      0.92
+    ],
+    "symT_H4": [
+      0.667,
+      0.92
+    ],
+    "symT_L1": [
+      0.859,
+      0.908
+    ],
+    "symT_L2": [
+      0.745,
+      0.92
+    ],
+    "symT_L3": [
+      0.568,
+      0.92
+    ],
+    "symT_L4": [
+      0.779,
+      0.92
+    ],
+    "symT_W": [
+      0.779,
+      0.92
+    ],
+    "symT_W_BLAZE": [
+      0.818,
+      0.936
+    ],
+    "symT_ALARM": [
+      0.815,
+      0.92
+    ],
+    "symT_GALARM": [
+      0.815,
+      0.92
+    ],
+    "symT_H1_b": [
+      0.805,
+      0.888
+    ],
+    "symT_H2_b": [
+      0.859,
+      0.902
+    ],
+    "symT_H3_b": [
+      0.768,
+      0.906
+    ],
+    "symT_H4_b": [
+      0.797,
+      0.908
+    ],
+    "symT_W_b": [
+      0.776,
+      0.904
+    ]
+  },
+  "labels": {
+    "symT_ALARM": "bonus_tag",
+    "symT_GALARM": "bonus_tag"
+  },
+  "wild_badge": {
+    "symT_W": {
+      "x": 123,
+      "y": 242,
+      "w": 137,
+      "h": 142
+    },
+    "symT_W_BLAZE": {
+      "x": 125,
+      "y": 245,
+      "w": 137,
+      "h": 142
+    },
+    "symT_W_b": {
+      "x": 126,
+      "y": 234,
+      "w": 132,
+      "h": 139
+    }
+  }
+}

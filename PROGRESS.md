@@ -1,5 +1,11 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **OWNER FIXES + game/dist SYNCED** `ecec27c`: Backdraft Spins plate now has its own reserved band above the frame
+  (`BACKDRAFT_BAND_CELLS`; it was cut off at the top on desktop and rode the frame on phones); outro card title sized to its
+  slate ("INFERNO RESCUE COMPLETE" overflowed on a phone); ALARM BOOST chip hidden while a bonus plays unless ON
+  (`html[data-pff-feature]` from Game.svelte + app.html rule). Captures inspected: phone + desktop Backdraft, phone Inferno
+  outro; 0 console errors. `./tools/build_dist.sh` synced `game/dist` (671 files, 60,512 KiB, `bundle.CCvmXjNR.js`, provenance PASS,
+  sumsSha256 `c1aed81b27cd…`, `game/BUILD_INFO.md`).
 - 2026-09-25 — **SMALL WINS SHOW NO FIGURE** (owner, screenshot of a "$1.20" line pop): line pops now appear only for a
   multiplied line (the "×N" tag inside Rescue Spins / Blaze Wilds), and the centred count-up overlay only above 20x
   (`SMALL_WIN_MAX_BOOKED`, `game/roundTier.ts`); every smaller win is carried by the line highlight and the HUD WIN meter.

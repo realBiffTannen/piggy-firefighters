@@ -1,0 +1,140 @@
+{
+  "tile": 384,
+  "pad": 0.068,
+  "box": 0.8803,
+  "generated_by": "tools/art/derive_symbols.py",
+  "rule": "ink (alpha>24) larger side = tile/(1+2*pad), centred; pose B / Blaze at pose A's scale",
+  "files": {
+    "sym_H1": "sym_H1.webp",
+    "sym_H2": "sym_H2.webp",
+    "sym_H3": "sym_H3.webp",
+    "sym_H4": "sym_H4.webp",
+    "sym_L1": "sym_L1.webp",
+    "sym_L2": "sym_L2.webp",
+    "sym_L3": "sym_L3.webp",
+    "sym_L4": "sym_L4.webp",
+    "sym_W": "sym_W.webp",
+    "sym_W_BLAZE": "sym_W_blaze.webp",
+    "sym_ALARM": "sym_ALARM.webp",
+    "sym_GALARM": "sym_GALARM.webp",
+    "sym_H1_b": "sym_H1_b.webp",
+    "sym_H2_b": "sym_H2_b.webp",
+    "sym_H3_b": "sym_H3_b.webp",
+    "sym_H4_b": "sym_H4_b.webp",
+    "sym_W_b": "sym_W_b.webp"
+  },
+  "sources": {
+    "sym_H1": "art-src/generated/symbols/sym_sq_h1.png",
+    "sym_H2": "art-src/generated/symbols/sym_sq_h2.png",
+    "sym_H3": "art-src/generated/symbols/sym_sq_h3.png",
+    "sym_H4": "art-src/generated/symbols/sym_sq_h4.png",
+    "sym_L1": "art-src/generated/symbols/sym_sq_l1.png",
+    "sym_L2": "art-src/generated/symbols/sym_sq_l2.png",
+    "sym_L3": "art-src/generated/symbols/sym_sq_l3.png",
+    "sym_L4": "art-src/generated/symbols/sym_sq_l4.png",
+    "sym_W": "art-src/generated/symbols/sym_sq_w.png",
+    "sym_W_BLAZE": "art-src/generated/symbols/sym_sq_w_blaze.png",
+    "sym_ALARM": "art-src/generated/symbols/sym_sq_alarm.png",
+    "sym_GALARM": "art-src/generated/symbols/sym_sq_galarm.png",
+    "sym_H1_b": "art-src/generated/symbols/sym_sq_h1_b.png",
+    "sym_H2_b": "art-src/generated/symbols/sym_sq_h2_b.png",
+    "sym_H3_b": "art-src/generated/symbols/sym_sq_h3_b.png",
+    "sym_H4_b": "art-src/generated/symbols/sym_sq_h4_b.png",
+    "sym_W_b": "art-src/generated/symbols/sym_sq_w_b.png"
+  },
+  "fill": {
+    "sym_H1": [
+      0.88,
+      0.849
+    ],
+    "sym_H2": [
+      0.88,
+      0.734
+    ],
+    "sym_H3": [
+      0.88,
+      0.878
+    ],
+    "sym_H4": [
+      0.779,
+      0.88
+    ],
+    "sym_L1": [
+      0.88,
+      0.872
+    ],
+    "sym_L2": [
+      0.815,
+      0.88
+    ],
+    "sym_L3": [
+      0.841,
+      0.88
+    ],
+    "sym_L4": [
+      0.865,
+      0.88
+    ],
+    "sym_W": [
+      0.805,
+      0.88
+    ],
+    "sym_W_BLAZE": [
+      0.818,
+      0.875
+    ],
+    "sym_ALARM": [
+      0.833,
+      0.88
+    ],
+    "sym_GALARM": [
+      0.833,
+      0.88
+    ],
+    "sym_H1_b": [
+      0.875,
+      0.867
+    ],
+    "sym_H2_b": [
+      0.867,
+      0.802
+    ],
+    "sym_H3_b": [
+      0.839,
+      0.857
+    ],
+    "sym_H4_b": [
+      0.88,
+      0.857
+    ],
+    "sym_W_b": [
+      0.797,
+      0.862
+    ]
+  },
+  "labels": {
+    "sym_ALARM": "bonus_tag",
+    "sym_GALARM": "bonus_tag"
+  },
+  "wild_badge": {
+    "sym_W": {
+      "x": 120,
+      "y": 209,
+      "w": 143,
+      "h": 129
+    },
+    "sym_W_BLAZE": {
+      "x": 122,
+      "y": 211,
+      "w": 140,
+      "h": 127
+    },
+    "sym_W_b": {
+      "x": 124,
+      "y": 200,
+      "w": 135,
+      "h": 133
+    }
+  },
+  "wild_badge_note": "tile px of the lettered WILD badge; frontend symbolMotion.WILD_BANNER.square must match sym_W (placeholder rect x 62, y 204, w 262, h 98)"
+}
