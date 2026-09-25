@@ -1,5 +1,6 @@
-# Piggy Firefighters — game contract (v1.2 — DRAFT until the MATH FREEZE commit)
+# Piggy Firefighters — game contract (v1.2.1 — DRAFT until the MATH FREEZE commit)
 
+v1.2.1 (2026-09-25, Codex copy audit F): card order = ascending price, Backdraft scope and WILD placement wording made exact (§2–§4).
 v1.2 (2026-09-25, Codex M2): shared canonical bonus banks, simulation trials vs publication rows (§2).
 v1.1 (2026-09-25, after Codex's pre-freeze audit PF-20260925-02): Backdraft Spins carries additive multiplier Blaze
 Wilds so 15,000x is genuinely reachable (§7); volatility bands re-derived from the donor's latest v2.7 LUTs (§2);
@@ -43,8 +44,9 @@ fraction with a tilt on the bonus books, never on the bought/natural split). **P
 weights (within 3–5), keeping `mult 10` at ≥ 1.5% weight so the cap route stays legal; if 50x ± 10% cannot be met
 without breaking reachability, the derived organic cost is adopted instead and recorded here. Final costs are
 whatever `math/publish/index.json` carries after the freeze; the frontend reads them from `config.ts`, which must
-match that file byte for byte. Mode order in the HUD sheet:
-Backdraft Spins, Alarm Call, Rescue Spins, Inferno Rescue (four cards); Alarm Boost is the ante toggle.
+match that file byte for byte. Mode order in the HUD sheet = **ascending price** (the installed HUD sorts buy cards by price; no seam is
+faked): Alarm Call (12x), Rescue Spins (18x), Backdraft Spins (50x), Inferno Rescue (90x); Alarm Boost is the ante
+toggle. Every displayed and charged amount comes from the final `math/publish/index.json`, never from a comment.
 
 **Bonus law and publication counts (v1.2, 2026-09-25, Codex M2).** An awarded bonus plays exactly like the bought
 one: the FULL conditional event law of a bonus (every spin, douse, rescue, prize, spins added) is identical
@@ -94,7 +96,7 @@ pays as H1 on a line of its own. Lines pay left to right from reel 1.
 | `L2` | **Water Bucket** | low | 0.2 / 0.6 / 2 |
 | `L3` | **Ladder** | low | 0.2 / 0.5 / 1.5 |
 | `L4` | **Fire Boots** | low | 0.1 / 0.4 / 1.2 |
-| `W` | **Chief Hamm — WILD** (pig fire chief holding a WILD badge) | wild; reels 2–5 in base/ante/BRB, all reels in bonus reel sets | 1.5 / 5 / 25 (as H1) |
+| `W` | **Chief Hamm — WILD** (pig fire chief holding a WILD badge) | wild; substitutes for every PAYING symbol (never for ALARM/GALARM); reel W stop on reels 2–5 in base, ante and Backdraft Spins (`BR0`/`BRA`/`BRB`) and on all five reels in Rescue/Inferno (`FR0`/`FRI`); a Backdraft may ignite a Blaze Wild on ANY reel including reel 1 | 1.5 / 5 / 25 (as H1) |
 | `ALARM` | **Fire Alarm** (brass alarm bell, red glow) | scatter, non-paying, base/ante reels only, all reels | — |
 | `GALARM` | **Golden Alarm** (gold bell, rare) | scatter, non-paying, counts as an ALARM in every way; routes the trigger to Inferno Rescue | — |
 
@@ -105,8 +107,8 @@ Rescue (no ALARM/GALARM in either; W on all five reels).
 ## 4. Base game
 
 **Spin.** The reels stop; if the board shows 3+ alarms (ALARM + GALARM) the line wins are paid, then the bonus
-starts (§5/§6). Otherwise a **Backdraft** may occur (probability *(tuned)*, never on a triggering spin, never in a
-bonus): a flash of flame sweeps the reels and **2–5 cells ignite into Blaze Wilds** — chosen uniformly among cells
+starts (§5/§6). Otherwise a **Backdraft** may occur (probability *(tuned)*; only on a base/ante spin showing fewer
+than 3 alarms; **never inside Rescue Spins or Inferno Rescue**; in Backdraft Spins it happens on EVERY spin, §7): a flash of flame sweeps the reels and **2–5 cells ignite into Blaze Wilds** — chosen uniformly among cells
 that are not W, ALARM or GALARM, on any reel including reel 1; count weights `{2: 45, 3: 35, 4: 15, 5: 5}`
 *(tuned)*. Line wins are then evaluated ONCE, on the board after the Backdraft. Book order: `reveal` (board as
 the reels stopped) → `backdraft` → `winInfo` (positions may reference ignited cells) → `setWin` → `setTotalWin`.

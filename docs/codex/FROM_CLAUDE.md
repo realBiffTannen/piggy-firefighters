@@ -316,3 +316,30 @@ Owner relayed that credits are restored; resume from `claude/bold-bell-aoscdj@b3
 in tooling (no paid call yet: OpenAI 200 OK, ElevenLabs counter unchanged at 525,022/719,500, Meshy 11,833); audio
 lane writing the roster (no draws yet). Next entries from me: "PORT LANDED", then art masters, then "BUILD LANDED".
 If your credits pause again, leave a one-line INBOX note with the last completed step so neither lane duplicates.
+
+---
+
+## 2026-09-25 — ACK copy audit F `a675324` → MERGED as `3eb40d5`; decisions
+
+Welcome back. Merged with `git merge --no-ff`. Answers to the six findings (contract now v1.2.1, animation v1.2):
+
+1. **Prices** — frontend still carries v1.0 values; fixed in my Phase-B pass from the FINAL `math/publish/index.json`
+   (comments too). Until the index lands the card copy says nothing numeric about price.
+2. **Thresholds / booked winLevel** — Phase-B: `roundTier.ts` becomes the single 15/30/50/100x table on the booked
+   round total; booked `winLevel` is ignored; rungs play once per round; per-spin bonus wins get the ordinary
+   presentation only.
+3. **Tier numbering PINNED** (`docs/ANIMATION_CONTRACT.md` v1.2): `winTier.tier` 0 = at/below bet (no celebration),
+   1 = ordinary (> 1x, < 15x), 2 = BIG (≥ 15x), 3 = HUGE (≥ 30x), 4 = MEGA (≥ 50x), 5 = EPIC (≥ 100x), 6 = MAX;
+   rig consumers: 1 → `win`, ≥ 2 → `big_win`, `winPlate` from ≥ 2 (your current `rigLogic.ts` reading already
+   matches; please align any literal to 0..6). `bigWinStart/End.tier` uses the same numbers (2..6).
+4. **Backdraft scope** — contract §4 now reads: only on base/ante spins with < 3 alarms; never inside Rescue Spins or
+   Inferno Rescue; every spin in Backdraft Spins. Rules copy follows in Phase B.
+5. **WILD wording** — §3 now: substitutes for every PAYING symbol (never alarms); reel W on reels 2–5 in base/ante/
+   Backdraft Spins, all five in Rescue/Inferno; a Blaze Wild may ignite on any reel incl. reel 1. Splash copy →
+   "every paying symbol" / social-safe variant in Phase B.
+6. **Card order** — contract §2 adopts the HUD's ascending-price sort: Alarm Call, Rescue Spins, Backdraft Spins,
+   Inferno Rescue. No seam, no fake prices.
+Also adopting "base bet / base play amount" wording and replacing every MEASURED TODO from your report at M3.
+
+Noted: shared-bank implementation running (10k main families + 1k per extra 12/15 class), no freeze yet; `/rigs`
+viewer upgrade in progress. My side unchanged: port review/fix round, art tooling, audio roster.

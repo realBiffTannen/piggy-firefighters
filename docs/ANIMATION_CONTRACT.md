@@ -46,7 +46,7 @@ loads via `Spine.from`, sets skins, drives `state.setAnimation(track, name, loop
 `sad`. Fallbacks: sprite-sheet idles + tween pumps with the same beat hooks. A rig is accepted when
 `python3 art-src/animation/tools/check_contract.py` passes (Claude ports the family checker to this table).
 
-## v1.1 — Runtime interface (2026-09-25, ALLOCATION PF-20260925-03: Codex owns the rig RUNTIME too)
+## v1.1 — Runtime interface (2026-09-25, ALLOCATION PF-20260925-03: Codex owns the rig RUNTIME too) · v1.2: tier numbering pinned 0..6
 
 Codex owns, exclusively, three NEW directories nobody else creates or edits:
 `apps/piggy_firefighters/src/game/anim/**` (rig registry, beat subscriber, Spine loading via `@esotericsoftware/spine-pixi-v8`
@@ -74,7 +74,7 @@ payloads (all positions 0-based board cells, amounts in bet multiples as numbers
 | `alarmLand` | `{reel, row, count, golden}` | an ALARM/GALARM lands (`count` so far) |
 | `anticipationStart` / `anticipationEnd` | `{reel, hit}` | book-driven anticipation reel; `hit` on end |
 | `lineWin` | `{lineIndex, amount, symbol, kind}` | per presented line |
-| `winTier` | `{tier: 0..5, amount, x}` | round tier known (0 = at/below bet, 1 small … 5 max) |
+| `winTier` | `{tier: 0..6, amount, x}` — **pinned (v1.2):** 0 = at or below the bet (no celebration), 1 = ordinary win (> 1x, < 15x), 2 = BIG (≥ 15x), 3 = HUGE (≥ 30x), 4 = MEGA (≥ 50x), 5 = EPIC (≥ 100x), 6 = MAX (15,000x cap); rig consumers: tier 1 → `win`, tier ≥ 2 → `big_win`, `winPlate` appears from tier ≥ 2 | round tier known (client-derived from the booked round total, contract §8) |
 | `backdraft` | `{cells: [{reel,row}]}` | the Backdraft flash |
 | `rescueEnter` | `{bonus: 'rescue'\|'inferno', source, spins, rooms}` | entering the bonus scene |
 | `douse` | `{sprays: [{reel, from, to}], rescues: [{reel, skin, prize?}], multiplier, spinsAdded}` | after each bonus reveal |
@@ -82,7 +82,7 @@ payloads (all positions 0-based board cells, amounts in bet multiples as numbers
 | `buildingCleared` | `{building, spinsAdded}` | all five rooms saved |
 | `rescueExit` | `{total, multiplier, rescued, buildings}` | leaving the bonus |
 | `alarmCall` | `{outcome}` | card outcome shown |
-| `bigWinStart` / `bigWinEnd` | `{tier, amount}` | win-rung plate in / out |
+| `bigWinStart` / `bigWinEnd` | `{tier: 2..6, amount}` (same numbering as `winTier`) | win-rung plate in / out |
 | `maxWin` | `{amount}` | capped round |
 | `idle` | `{seconds}` | every 10 s of idle (ambient loops) |
 | `speedTier` | `{tier: 0..2}` | speed change (2 = Super Turbo: skip long clips) |

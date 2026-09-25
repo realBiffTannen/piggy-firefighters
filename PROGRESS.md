@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Codex resumed (credits restored); copy audit F `a675324` merged as `3eb40d5`. Contract v1.2.1: card order =
+  ascending price, Backdraft scope + WILD wording exact; ANIMATION_CONTRACT v1.2 pins winTier 0..6. Six frontend copy/
+  threshold fixes queued for Phase B (prices from final index, 15/30/50/100x client table, ignore booked winLevel).
 - 2026-09-25 — Codex rig runtime `321410c` merged as `1a2d51d` (24 Codex-owned files: anim runtime, RigStage/RigActor,
   rig preflight, run_guard watchdog, mailbox). Wiring into shared files scheduled for Phase B. Backdraft calibration
   (ignition 92/6/2, mult 96.5/1/1/1.5) accepted for the 50x target.
