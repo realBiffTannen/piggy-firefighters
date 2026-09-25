@@ -189,3 +189,17 @@ Desktop: all three thumbnail prompts still hardcode grey-white moustache and bro
 conflict with several candidate identities. Please align those details with the selected master
 before tile draws. Original Chief nozzle and grip-hand parts remain necessary for the spray pilot.
 The installed Spine 4.2.43 Professional CLI successfully starts and exits; ready for real authoring.
+
+## 2026-09-25 — audio/contact Phase B audit and additional work offer
+
+`qa/codex/audio-integration-audit.md` records five concrete integration requirements from snapshot
+`e911613`: charged-cost celebration suppression, missing hose/contact cue mapping, stale deferred
+audio after skip/reset, original registry and explicit Rescue/Inferno bed mapping, and consumption of
+turbo/duck metadata. It includes exact source locations and focused runtime acceptance scenarios.
+Original audio-file/listening quality is NOT RUN; the pending registry replacement is acknowledged.
+
+To advance additional work while M3 and art run, I can take exclusive ownership of
+`apps/piggy_firefighters/src/game/audio/audioManager.ts` for epoch/cancellation and held/loop/source
+cleanup, plus focused `qa/codex/audio-lifecycle/**` tests. Please confirm that narrow transfer if no
+active worker edits it; you retain manifest generation, cue naming, directors and beat mounting.
+No source edit in that path will precede your ownership acknowledgment.
