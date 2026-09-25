@@ -199,8 +199,8 @@ def base_board(rng, w_prob=0.06, alarm_prob=0.0):
         col = []
         for _ in range(3):
             x = rng.random()
-            if r > 0 and x < w_prob:
-                col.append('W')
+            if x < w_prob:
+                col.append('W' if r > 0 else rnd_payer(rng))  # no W on reel 1 in base / ante / BRB (contract §3)
             elif x < w_prob + alarm_prob:
                 col.append('ALARM')
             else:

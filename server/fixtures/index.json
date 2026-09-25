@@ -42,7 +42,7 @@
    "source_mode": "base",
    "cost": 1.0,
    "criteria": "basegame",
-   "payoutMultiplier": 100,
+   "payoutMultiplier": 120,
    "events": [
     "reveal",
     "winInfo",
@@ -60,7 +60,7 @@
    "source_mode": "base",
    "cost": 1.0,
    "criteria": "basegame",
-   "payoutMultiplier": 380,
+   "payoutMultiplier": 280,
    "events": [
     "reveal",
     "backdraft",
@@ -593,7 +593,7 @@
    "source_mode": "backdraft_spins",
    "cost": 25.0,
    "criteria": "freegame",
-   "payoutMultiplier": 5100,
+   "payoutMultiplier": 12570,
    "events": [
     "backdraftSpinsStart",
     "reveal",
@@ -610,6 +610,8 @@
     "setTotalWin",
     "reveal",
     "backdraft",
+    "winInfo",
+    "setWin",
     "updateFreeSpin",
     "setTotalWin",
     "reveal",

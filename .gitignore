@@ -100,3 +100,6 @@ math/games/*/library/
 *.egg-info/
 math/env/
 __pycache__/
+# transient build log/pid written by tools/build_dist.sh
+qa/build/build.log
+qa/build/build.pid
