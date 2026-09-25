@@ -1,28 +1,20 @@
 <script lang="ts" module>
-	export type WinRungScale = 'standard' | 'endFeature';
 	export type EmitterEventWinRungs = {
 		type: 'winRungs';
-		/** booked amount, integer x100 of the base bet */
+		/** booked round total, integer x100 of the base bet */
 		amount: number;
-		/** booked winLevel, 6 (big) … 10 (max) */
+		/** the rung the climb lands on: 6 BIG … 10 MAX (game/roundTier.ts rungLevelOfTier) */
 		level: number;
-		/** which math threshold table produced `level` (math/src/config/config.py get_win_level) */
-		scale: WinRungScale;
+		/** contract §8 round tier (2..6), the `animBeat winTier` numbering */
+		tier?: number;
 	};
 
-	import { END_FEATURE_FLOORS, STANDARD_FLOORS, WIN_CAP_BOOKED } from '../game/roundTier';
+	import { RUNG_FLOORS_BOOKED } from '../game/roundTier';
 
-	/** Rung floors BIG, HUGE, MEGA, EPIC, MAX in booked units (x100 of the base bet), derived from the ONE client
-	 *  copy of the math's win-level tables (game/roundTier.ts): levels 6-9 from the table, MAX = the 15,000x cap.
-	 *  The frontend never shows a rung the booked `winLevel` does not reach; these only pace the climb towards it. */
-	const rungFloors = (floors: readonly (readonly [number, number])[]) => [
-		...[6, 7, 8, 9].map((level) => floors.find(([l]) => l === level)![1]),
-		WIN_CAP_BOOKED,
-	];
-	const THRESHOLDS: Record<WinRungScale, number[]> = {
-		standard: rungFloors(STANDARD_FLOORS),
-		endFeature: rungFloors(END_FEATURE_FLOORS),
-	};
+	/** Rung floors BIG, HUGE, MEGA, EPIC, MAX in booked units: 15 / 30 / 50 / 100 x the base bet and the 15,000x cap
+	 *  (contract §8, game/roundTier.ts — the ONE table for every round). The climb never passes the landed level or
+	 *  the booked amount; these only pace it. */
+	const THRESHOLDS: readonly number[] = RUNG_FLOORS_BOOKED;
 </script>
 
 <script lang="ts">
@@ -129,14 +121,14 @@
 	type Run = { step: (dt: number) => void };
 	let run: Run | undefined;
 
-	const present = (amount: number, level: number, scale: WinRungScale) =>
+	const present = (amount: number, level: number) =>
 		new Promise<void>((resolve) => {
 			if (!root) return resolve();
 			const stage = root;
 			const reduced = prefersReducedMotion();
 			const fast = isTurbo() ? 2 : 1;
 			const finalIdx = Math.max(0, Math.min(4, level - 6));
-			const thresholds = THRESHOLDS[scale];
+			const thresholds = THRESHOLDS;
 
 			const main = context.stateLayoutDerived.mainLayout();
 			const bl = context.stateGameDerived.boardLayout();
@@ -247,7 +239,7 @@
 			const setBed = (next: string | undefined) => {
 				if (bed === next) return;
 				try {
-					const to = next ?? sceneBed ?? 'base_loop';
+					const to = next ?? sceneBed ?? 'base_loop_a';
 					audioManager.crossfadeToBed(to, next ? 260 : 700);
 				} catch {
 					/* ignore */
@@ -543,10 +535,12 @@
 		});
 
 	context.eventEmitter.subscribeOnMount({
-		winRungs: async ({ amount, level, scale }) => {
+		winRungs: async ({ amount, level }) => {
+			// DEV ONLY (stripped from production builds): the smoke driver (qa/smoke/port/smoke.mjs) records every climb
+			if (import.meta.env.DEV && typeof window !== 'undefined') ((window as unknown as { __pffRungs?: unknown[] }).__pffRungs ??= []).push({ amount, level });
 			if (!root || run) return;
 			active = true;
-			await present(amount, level, scale);
+			await present(amount, level);
 		},
 	});
 

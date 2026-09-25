@@ -1,5 +1,6 @@
 {
   "rig": "pf_rescued",
+  "version": "r2",
   "canvas": [
     1024,
     1536
@@ -17,7 +18,24 @@
         "coarse_score": 0.8898,
         "mode": "colour"
       },
-      "file": "art-src/animation/parts/pf_rescued/body_no_head_no_arms.png"
+      "file": "art-src/animation/parts/pf_rescued/body_no_head_no_arms.png",
+      "r2": "legs (and for the coat wearers the coat below the belt) removed: the legs are their own layers now, so nothing repeats",
+      "split_meta": {
+        "legs_components": 1,
+        "legs_split": "joined at the crotch: separate regions below the crotch apex, a vertical cut through the apex above it",
+        "legs_shift_y": 1,
+        "leg_right_extended_px": 36400,
+        "leg_left_extended_px": 33740
+      },
+      "params": {
+        "lower_from": 850,
+        "upper_max_y": 1000,
+        "coat": false,
+        "hem_ink_px": 12,
+        "tail_ink_px": 20,
+        "leg_extend_px": 140,
+        "why": "the shirt hem ends at y ~940; shirt/tail colours below y 1000 are slipper highlights; the trousers meet at the crotch, so the legs are split by the crotch apex"
+      }
     },
     "head": {
       "raw": "art-src/generated/rig_pf_rescued/head.png",
@@ -59,22 +77,6 @@
         "arm_left": "art-src/animation/parts/pf_rescued/arm_left.png"
       }
     },
-    "legs": {
-      "raw": "art-src/generated/rig_pf_rescued/legs.png",
-      "fit": {
-        "s": 0.8767974055747243,
-        "tx": 70.12516062511332,
-        "ty": 288.1555406301062,
-        "score": 0.6876,
-        "coarse_score": 0.7647,
-        "mode": "colour"
-      },
-      "file": "art-src/animation/parts/pf_rescued/legs.png",
-      "split": {
-        "leg_right": "art-src/animation/parts/pf_rescued/leg_right.png",
-        "leg_left": "art-src/animation/parts/pf_rescued/leg_left.png"
-      }
-    },
     "skin_grandma": {
       "raw": "art-src/generated/rig_pf_rescued/skin_grandma.png",
       "fit": {
@@ -83,7 +85,181 @@
         "ty": 0.0,
         "mode": "feet (identity: soles within 6 px)"
       },
-      "file": "art-src/animation/parts/pf_rescued/skin_grandma.png"
+      "file": "art-src/animation/parts/pf_rescued/skin_grandma.png",
+      "slots": {
+        "arm_right": "art-src/animation/parts/pf_rescued/skins/grandma/arm_right.png",
+        "head": "art-src/animation/parts/pf_rescued/skins/grandma/head.png",
+        "arm_left": "art-src/animation/parts/pf_rescued/skins/grandma/arm_left.png",
+        "body_no_head_no_arms": "art-src/animation/parts/pf_rescued/skins/grandma/body_no_head_no_arms.png",
+        "leg_right": "art-src/animation/parts/pf_rescued/skins/grandma/leg_right.png",
+        "leg_left": "art-src/animation/parts/pf_rescued/skins/grandma/leg_left.png"
+      },
+      "slot_overrides": [
+        {
+          "slot": "body",
+          "why": "the cat on her shoulder stays on the body",
+          "polygon": [
+            [
+              15,
+              800
+            ],
+            [
+              10,
+              700
+            ],
+            [
+              40,
+              640
+            ],
+            [
+              95,
+              600
+            ],
+            [
+              95,
+              520
+            ],
+            [
+              120,
+              460
+            ],
+            [
+              150,
+              420
+            ],
+            [
+              140,
+              350
+            ],
+            [
+              150,
+              290
+            ],
+            [
+              200,
+              300
+            ],
+            [
+              300,
+              230
+            ],
+            [
+              340,
+              215
+            ],
+            [
+              365,
+              260
+            ],
+            [
+              395,
+              300
+            ],
+            [
+              400,
+              380
+            ],
+            [
+              390,
+              450
+            ],
+            [
+              420,
+              470
+            ],
+            [
+              450,
+              480
+            ],
+            [
+              455,
+              535
+            ],
+            [
+              400,
+              545
+            ],
+            [
+              330,
+              540
+            ],
+            [
+              250,
+              545
+            ],
+            [
+              200,
+              570
+            ],
+            [
+              150,
+              610
+            ],
+            [
+              130,
+              660
+            ],
+            [
+              125,
+              720
+            ],
+            [
+              100,
+              790
+            ],
+            [
+              50,
+              810
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "the cat's second paw at her collar",
+          "polygon": [
+            [
+              595,
+              505
+            ],
+            [
+              665,
+              505
+            ],
+            [
+              665,
+              565
+            ],
+            [
+              595,
+              565
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "the dress skirt and the cardigan's ribbed hem hang from the body over the legs (pixel override: the hem is one cell with the cardigan front)",
+          "polygon": [
+            [
+              215,
+              880
+            ],
+            [
+              815,
+              880
+            ],
+            [
+              850,
+              1250
+            ],
+            [
+              180,
+              1250
+            ]
+          ],
+          "mode": "pixels",
+          "not_skin": true
+        }
+      ]
     },
     "skin_twins": {
       "raw": "art-src/generated/rig_pf_rescued/skin_twins.png",
@@ -93,7 +269,393 @@
         "ty": 8.470270270270248,
         "mode": "feet (scaled to fit, soles aligned)"
       },
-      "file": "art-src/animation/parts/pf_rescued/skin_twins.png"
+      "file": "art-src/animation/parts/pf_rescued/skin_twins.png",
+      "slots": {
+        "arm_right": "art-src/animation/parts/pf_rescued/skins/twins/arm_right.png",
+        "head": "art-src/animation/parts/pf_rescued/skins/twins/head.png",
+        "arm_left": "art-src/animation/parts/pf_rescued/skins/twins/arm_left.png",
+        "body_no_head_no_arms": "art-src/animation/parts/pf_rescued/skins/twins/body_no_head_no_arms.png",
+        "leg_right": "art-src/animation/parts/pf_rescued/skins/twins/leg_right.png",
+        "leg_left": "art-src/animation/parts/pf_rescued/skins/twins/leg_left.png"
+      },
+      "slot_overrides": [
+        {
+          "slot": "body",
+          "why": "the piggyback twin (head and ears) rides on the body",
+          "polygon": [
+            [
+              245,
+              40
+            ],
+            [
+              330,
+              20
+            ],
+            [
+              600,
+              15
+            ],
+            [
+              745,
+              40
+            ],
+            [
+              745,
+              130
+            ],
+            [
+              700,
+              250
+            ],
+            [
+              640,
+              315
+            ],
+            [
+              560,
+              322
+            ],
+            [
+              470,
+              325
+            ],
+            [
+              390,
+              322
+            ],
+            [
+              330,
+              300
+            ],
+            [
+              290,
+              240
+            ],
+            [
+              250,
+              150
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's left sleeve above the lower twin's ear",
+          "polygon": [
+            [
+              255,
+              285
+            ],
+            [
+              395,
+              285
+            ],
+            [
+              395,
+              370
+            ],
+            [
+              300,
+              380
+            ],
+            [
+              255,
+              370
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's left sleeve below the ear",
+          "polygon": [
+            [
+              250,
+              450
+            ],
+            [
+              310,
+              450
+            ],
+            [
+              310,
+              545
+            ],
+            [
+              250,
+              545
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's right sleeve",
+          "polygon": [
+            [
+              700,
+              295
+            ],
+            [
+              775,
+              295
+            ],
+            [
+              775,
+              360
+            ],
+            [
+              700,
+              360
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's right sleeve below the ear",
+          "polygon": [
+            [
+              720,
+              450
+            ],
+            [
+              790,
+              450
+            ],
+            [
+              790,
+              535
+            ],
+            [
+              720,
+              535
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's hands under the lower twin's chin",
+          "polygon": [
+            [
+              420,
+              612
+            ],
+            [
+              515,
+              612
+            ],
+            [
+              515,
+              690
+            ],
+            [
+              420,
+              690
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's right hand",
+          "polygon": [
+            [
+              505,
+              630
+            ],
+            [
+              615,
+              630
+            ],
+            [
+              615,
+              725
+            ],
+            [
+              505,
+              725
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's legs behind the shoulders",
+          "polygon": [
+            [
+              250,
+              610
+            ],
+            [
+              315,
+              610
+            ],
+            [
+              315,
+              700
+            ],
+            [
+              250,
+              700
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "rider's legs behind the shoulders",
+          "polygon": [
+            [
+              735,
+              625
+            ],
+            [
+              790,
+              625
+            ],
+            [
+              790,
+              700
+            ],
+            [
+              735,
+              700
+            ]
+          ]
+        },
+        {
+          "slot": "head",
+          "why": "the lower twin's head and ears (the skin is scaled 0.961, so the template head sits high)",
+          "polygon": [
+            [
+              260,
+              330
+            ],
+            [
+              790,
+              320
+            ],
+            [
+              790,
+              520
+            ],
+            [
+              760,
+              600
+            ],
+            [
+              700,
+              640
+            ],
+            [
+              560,
+              650
+            ],
+            [
+              420,
+              640
+            ],
+            [
+              300,
+              620
+            ],
+            [
+              265,
+              520
+            ]
+          ]
+        },
+        {
+          "slot": "arm_right",
+          "why": "the skin is scaled 0.961, so its near arm (sleeve to fingertips) sits off the template arm",
+          "polygon": [
+            [
+              150,
+              780
+            ],
+            [
+              230,
+              740
+            ],
+            [
+              340,
+              785
+            ],
+            [
+              340,
+              860
+            ],
+            [
+              285,
+              930
+            ],
+            [
+              270,
+              1000
+            ],
+            [
+              255,
+              1095
+            ],
+            [
+              95,
+              1095
+            ],
+            [
+              105,
+              960
+            ],
+            [
+              140,
+              870
+            ]
+          ]
+        },
+        {
+          "slot": "arm_left",
+          "why": "the far arm (sleeve to fingertips), same reason",
+          "polygon": [
+            [
+              688,
+              690
+            ],
+            [
+              760,
+              698
+            ],
+            [
+              805,
+              760
+            ],
+            [
+              835,
+              860
+            ],
+            [
+              885,
+              940
+            ],
+            [
+              910,
+              1000
+            ],
+            [
+              905,
+              1095
+            ],
+            [
+              765,
+              1095
+            ],
+            [
+              738,
+              960
+            ],
+            [
+              700,
+              860
+            ],
+            [
+              678,
+              760
+            ]
+          ]
+        }
+      ]
     },
     "skin_dad": {
       "raw": "art-src/generated/rig_pf_rescued/skin_dad.png",
@@ -103,7 +665,85 @@
         "ty": 0.0,
         "mode": "feet (identity: soles within 6 px)"
       },
-      "file": "art-src/animation/parts/pf_rescued/skin_dad.png"
+      "file": "art-src/animation/parts/pf_rescued/skin_dad.png",
+      "slots": {
+        "arm_right": "art-src/animation/parts/pf_rescued/skins/dad/arm_right.png",
+        "head": "art-src/animation/parts/pf_rescued/skins/dad/head.png",
+        "arm_left": "art-src/animation/parts/pf_rescued/skins/dad/arm_left.png",
+        "body_no_head_no_arms": "art-src/animation/parts/pf_rescued/skins/dad/body_no_head_no_arms.png",
+        "leg_right": "art-src/animation/parts/pf_rescued/skins/dad/leg_right.png",
+        "leg_left": "art-src/animation/parts/pf_rescued/skins/dad/leg_left.png"
+      },
+      "slot_overrides": [
+        {
+          "slot": "body",
+          "why": "the bathrobe skirt hangs from the body over the pyjama legs",
+          "polygon": [
+            [
+              215,
+              930
+            ],
+            [
+              880,
+              930
+            ],
+            [
+              880,
+              1195
+            ],
+            [
+              215,
+              1195
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "the robe's shawl collar belongs to the body, not the shoulder caps",
+          "polygon": [
+            [
+              300,
+              470
+            ],
+            [
+              410,
+              470
+            ],
+            [
+              520,
+              560
+            ],
+            [
+              620,
+              480
+            ],
+            [
+              710,
+              470
+            ],
+            [
+              710,
+              640
+            ],
+            [
+              640,
+              700
+            ],
+            [
+              520,
+              840
+            ],
+            [
+              400,
+              700
+            ],
+            [
+              300,
+              620
+            ]
+          ]
+        }
+      ]
     },
     "skin_baby": {
       "raw": "art-src/generated/rig_pf_rescued/skin_baby.png",
@@ -113,7 +753,63 @@
         "ty": 0.0,
         "mode": "feet (identity: soles within 6 px)"
       },
-      "file": "art-src/animation/parts/pf_rescued/skin_baby.png"
+      "file": "art-src/animation/parts/pf_rescued/skin_baby.png",
+      "slots": {
+        "arm_right": "art-src/animation/parts/pf_rescued/skins/baby/arm_right.png",
+        "head": "art-src/animation/parts/pf_rescued/skins/baby/head.png",
+        "arm_left": "art-src/animation/parts/pf_rescued/skins/baby/arm_left.png",
+        "body_no_head_no_arms": "art-src/animation/parts/pf_rescued/skins/baby/body_no_head_no_arms.png",
+        "leg_right": "art-src/animation/parts/pf_rescued/skins/baby/leg_right.png",
+        "leg_left": "art-src/animation/parts/pf_rescued/skins/baby/leg_left.png"
+      },
+      "slot_overrides": [
+        {
+          "slot": "body",
+          "why": "the baby in the chest sling (and the sling) stays on the body",
+          "polygon": [
+            [
+              425,
+              520
+            ],
+            [
+              560,
+              505
+            ],
+            [
+              665,
+              515
+            ],
+            [
+              708,
+              545
+            ],
+            [
+              718,
+              600
+            ],
+            [
+              705,
+              660
+            ],
+            [
+              690,
+              730
+            ],
+            [
+              600,
+              745
+            ],
+            [
+              450,
+              735
+            ],
+            [
+              425,
+              650
+            ]
+          ]
+        }
+      ]
     },
     "skin_teen": {
       "raw": "art-src/generated/rig_pf_rescued/skin_teen.png",
@@ -123,41 +819,210 @@
         "ty": 0.0,
         "mode": "feet (identity: soles within 6 px)"
       },
-      "file": "art-src/animation/parts/pf_rescued/skin_teen.png"
+      "file": "art-src/animation/parts/pf_rescued/skin_teen.png",
+      "slots": {
+        "arm_right": "art-src/animation/parts/pf_rescued/skins/teen/arm_right.png",
+        "head": "art-src/animation/parts/pf_rescued/skins/teen/head.png",
+        "arm_left": "art-src/animation/parts/pf_rescued/skins/teen/arm_left.png",
+        "body_no_head_no_arms": "art-src/animation/parts/pf_rescued/skins/teen/body_no_head_no_arms.png",
+        "leg_right": "art-src/animation/parts/pf_rescued/skins/teen/leg_right.png",
+        "leg_left": "art-src/animation/parts/pf_rescued/skins/teen/leg_left.png"
+      },
+      "slot_overrides": [
+        {
+          "slot": "body",
+          "mode": "pixels",
+          "not_skin": true,
+          "why": "the hood rolled behind the neck belongs to the body (pixel override: the hood lining joins the torso cell)",
+          "polygon": [
+            [
+              250,
+              440
+            ],
+            [
+              420,
+              455
+            ],
+            [
+              520,
+              520
+            ],
+            [
+              620,
+              520
+            ],
+            [
+              770,
+              450
+            ],
+            [
+              800,
+              470
+            ],
+            [
+              790,
+              540
+            ],
+            [
+              700,
+              575
+            ],
+            [
+              640,
+              595
+            ],
+            [
+              520,
+              600
+            ],
+            [
+              430,
+              595
+            ],
+            [
+              380,
+              565
+            ],
+            [
+              290,
+              545
+            ],
+            [
+              250,
+              530
+            ]
+          ]
+        }
+      ]
+    },
+    "legs": {
+      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "file": "art-src/animation/parts/pf_rescued/legs.png",
+      "bbox": [
+        120,
+        774,
+        906,
+        1440
+      ],
+      "size": [
+        787,
+        667
+      ],
+      "method": "leg_right + leg_left on one layer"
+    },
+    "leg_right": {
+      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "file": "art-src/animation/parts/pf_rescued/leg_right.png",
+      "bbox": [
+        120,
+        774,
+        523,
+        1440
+      ],
+      "size": [
+        404,
+        667
+      ],
+      "method": "the registered body's own leg pixels (navy/boot regions below the shirt hem), moved 1 px so the soles sit on y 1440; the top is extended up to 140 px under the hem (hidden overlap for rotation)",
+      "soles_y": 1440
+    },
+    "leg_left": {
+      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "file": "art-src/animation/parts/pf_rescued/leg_left.png",
+      "bbox": [
+        524,
+        783,
+        906,
+        1439
+      ],
+      "size": [
+        383,
+        657
+      ],
+      "method": "the registered body's own leg pixels (navy/boot regions below the shirt hem), moved 1 px so the soles sit on y 1440; the top is extended up to 140 px under the hem (hidden overlap for rotation)",
+      "soles_y": 1439
     }
   },
   "pieces": {
     "face_sheet": {
       "sheet": "art-src/animation/parts/pf_rescued/face_sheet.png",
       "raw": "art-src/generated/rig_pf_rescued/face_sheet.png",
-      "sheet_scale_to_canvas": 0.6786419419724229,
-      "scale_method": "sqrt(largest white region of head / of eyes_open)",
-      "pieces": {
-        "eyes_scared": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_scared.png",
-          "size": [
-            290,
-            146
-          ],
-          "sheet_origin": [
-            1189,
-            102
-          ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
+      "layout": "art-src/animation/parts/pf_rescued/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "eyes": {
+          "scale_to_canvas": 0.7,
+          "how": "fit of eyes_open's near eye on the master (overlay reviewed)"
         },
+        "brows": {
+          "scale_to_canvas": 0.66,
+          "how": "width of the master's near brow vs brows_neutral's near brow (overlay reviewed)"
+        },
+        "mouth": {
+          "scale_to_canvas": 0.52,
+          "how": "BY EYE: mouth_closed over the master smile at 0.45/0.52/0.60"
+        },
+        "ears": {
+          "scale_to_canvas": 0.66,
+          "how": "BY EYE: ear_left over the master ear at 0.55/0.66"
+        }
+      },
+      "components": 26,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
+      "pieces": {
         "eyes_open": {
           "file": "art-src/animation/parts/pf_rescued/pieces/eyes_open.png",
           "size": [
             291,
-            136
+            137
           ],
           "sheet_origin": [
             59,
-            112
+            111
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            0,
+            0,
+            393,
+            299
+          ],
+          "grid": [
+            0,
+            0
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.7
+        },
+        "eyes_closed": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_closed.png",
+          "size": [
+            301,
+            60
+          ],
+          "sheet_origin": [
+            437,
+            169
+          ],
+          "cell": [
+            393,
+            0,
+            775,
+            299
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.7
         },
         "eyes_happy": {
           "file": "art-src/animation/parts/pf_rescued/pieces/eyes_happy.png",
@@ -169,21 +1034,73 @@
             813,
             142
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            775,
+            0,
+            1148,
+            299
+          ],
+          "grid": [
+            0,
+            2
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.7
         },
-        "eyes_closed": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_closed.png",
+        "eyes_scared": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_scared.png",
           "size": [
-            300,
-            60
+            290,
+            146
           ],
           "sheet_origin": [
-            437,
-            169
+            1189,
+            102
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            1148,
+            0,
+            1536,
+            299
+          ],
+          "grid": [
+            0,
+            3
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.7
+        },
+        "brows_neutral": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/brows_neutral.png",
+          "size": [
+            299,
+            71
+          ],
+          "sheet_origin": [
+            54,
+            378
+          ],
+          "cell": [
+            0,
+            299,
+            400,
+            489
+          ],
+          "grid": [
+            1,
+            0
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.66
         },
         "brows_relieved": {
           "file": "art-src/animation/parts/pf_rescued/pieces/brows_relieved.png",
@@ -195,21 +1112,47 @@
             448,
             350
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            400,
+            299,
+            780,
+            489
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.66
         },
         "brows_worried": {
           "file": "art-src/animation/parts/pf_rescued/pieces/brows_worried.png",
           "size": [
             259,
-            70
+            71
           ],
           "sheet_origin": [
             832,
             370
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            780,
+            299,
+            1144,
+            489
+          ],
+          "grid": [
+            1,
+            2
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.66
         },
         "brows_joyful": {
           "file": "art-src/animation/parts/pf_rescued/pieces/brows_joyful.png",
@@ -221,47 +1164,21 @@
             1197,
             370
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
-        },
-        "brows_neutral": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/brows_neutral.png",
-          "size": [
+          "cell": [
+            1144,
             299,
-            70
+            1536,
+            489
           ],
-          "sheet_origin": [
-            54,
-            378
+          "grid": [
+            1,
+            3
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
-        },
-        "mouth_call": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_call.png",
-          "size": [
-            167,
-            158
-          ],
-          "sheet_origin": [
-            493,
-            530
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6786
-        },
-        "mouth_cheer": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_cheer.png",
-          "size": [
-            273,
-            168
-          ],
-          "sheet_origin": [
-            828,
-            541
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6786
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.66
         },
         "mouth_closed": {
           "file": "art-src/animation/parts/pf_rescued/pieces/mouth_closed.png",
@@ -273,8 +1190,84 @@
             69,
             587
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            0,
+            489,
+            401,
+            726
+          ],
+          "grid": [
+            2,
+            0
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.52
+        },
+        "mouth_call": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_call.png",
+          "size": [
+            167,
+            158
+          ],
+          "sheet_origin": [
+            493,
+            530
+          ],
+          "cell": [
+            401,
+            489,
+            744,
+            726
+          ],
+          "grid": [
+            2,
+            1
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [
+            {
+              "box": [
+                476,
+                603,
+                489,
+                643
+              ],
+              "area": 327,
+              "why": "rule mouth"
+            }
+          ],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.52
+        },
+        "mouth_cheer": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_cheer.png",
+          "size": [
+            273,
+            168
+          ],
+          "sheet_origin": [
+            828,
+            541
+          ],
+          "cell": [
+            744,
+            489,
+            1155,
+            726
+          ],
+          "grid": [
+            2,
+            2
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.52
         },
         "mouth_worried": {
           "file": "art-src/animation/parts/pf_rescued/pieces/mouth_worried.png",
@@ -286,47 +1279,73 @@
             1210,
             596
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            1155,
+            489,
+            1536,
+            726
+          ],
+          "grid": [
+            2,
+            3
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.52
+        },
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/ear_left.png",
+          "size": [
+            266,
+            208
+          ],
+          "sheet_origin": [
+            62,
+            744
+          ],
+          "cell": [
+            0,
+            726,
+            397,
+            1024
+          ],
+          "grid": [
+            3,
+            0
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "ears",
+          "scale_to_canvas": 0.66
         },
         "ear_right": {
           "file": "art-src/animation/parts/pf_rescued/pieces/ear_right.png",
           "size": [
-            262,
+            263,
             207
           ],
           "sheet_origin": [
             466,
             744
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6786
-        },
-        "ear_left": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/ear_left.png",
-          "size": [
-            265,
-            207
+          "cell": [
+            397,
+            726,
+            799,
+            1024
           ],
-          "sheet_origin": [
-            63,
-            745
+          "grid": [
+            3,
+            1
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6786
-        },
-        "mouth_o": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_o.png",
-          "size": [
-            82,
-            138
-          ],
-          "sheet_origin": [
-            1310,
-            786
-          ],
-          "components": 2,
-          "scale_to_canvas": 0.6786
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "ears",
+          "scale_to_canvas": 0.66
         },
         "mouth_sigh": {
           "file": "art-src/animation/parts/pf_rescued/pieces/mouth_sigh.png",
@@ -338,8 +1357,58 @@
             869,
             823
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6786
+          "cell": [
+            799,
+            726,
+            1177,
+            1024
+          ],
+          "grid": [
+            3,
+            2
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.52
+        },
+        "mouth_o": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_o.png",
+          "size": [
+            82,
+            117
+          ],
+          "sheet_origin": [
+            1310,
+            807
+          ],
+          "cell": [
+            1177,
+            726,
+            1536,
+            1024
+          ],
+          "grid": [
+            3,
+            3
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [
+            {
+              "box": [
+                1318,
+                789,
+                1383,
+                817
+              ],
+              "area": 683,
+              "why": "rule mouth"
+            }
+          ],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.52
         }
       },
       "missing": []
@@ -347,34 +1416,48 @@
     "wave_arm": {
       "sheet": "art-src/animation/parts/pf_rescued/wave_arm.png",
       "raw": "art-src/generated/rig_pf_rescued/wave_arm.png",
-      "sheet_scale_to_canvas": 0.8963770066379371,
-      "scale_method": "sqrt(alpha area of arm_right / wave_arm_up) (approximate: poses differ)",
+      "layout": "art-src/animation/parts/pf_rescued/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "arms": {
+          "scale_to_canvas": 0.896,
+          "how": "arm length (shoulder cap to fingertips) and area of arm_right vs wave_arm_up (approximate: poses differ)"
+        },
+        "hands": {
+          "scale_to_canvas": 0.62,
+          "how": "BY EYE: wave_hand_front over arm_right's hand at 0.55/0.62/0.70"
+        }
+      },
+      "components": 6,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
       "pieces": {
         "wave_arm_up": {
           "file": "art-src/animation/parts/pf_rescued/pieces/wave_arm_up.png",
           "size": [
             353,
-            560
+            561
           ],
           "sheet_origin": [
             95,
-            52
+            51
           ],
-          "components": 1,
-          "scale_to_canvas": 0.8964
-        },
-        "wave_arm_right": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/wave_arm_right.png",
-          "size": [
-            407,
-            545
+          "cell": [
+            0,
+            0,
+            468,
+            635
           ],
-          "sheet_origin": [
-            1044,
-            67
+          "grid": [
+            0,
+            0
           ],
-          "components": 1,
-          "scale_to_canvas": 0.8964
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "arms",
+          "scale_to_canvas": 0.896
         },
         "wave_arm_left": {
           "file": "art-src/animation/parts/pf_rescued/pieces/wave_arm_left.png",
@@ -386,21 +1469,73 @@
             488,
             75
           ],
-          "components": 1,
-          "scale_to_canvas": 0.8964
+          "cell": [
+            468,
+            0,
+            996,
+            635
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "arms",
+          "scale_to_canvas": 0.896
+        },
+        "wave_arm_right": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/wave_arm_right.png",
+          "size": [
+            408,
+            545
+          ],
+          "sheet_origin": [
+            1044,
+            67
+          ],
+          "cell": [
+            996,
+            0,
+            1536,
+            635
+          ],
+          "grid": [
+            0,
+            2
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "arms",
+          "scale_to_canvas": 0.896
         },
         "wave_hand_front": {
           "file": "art-src/animation/parts/pf_rescued/pieces/wave_hand_front.png",
           "size": [
-            317,
-            320
+            318,
+            321
           ],
           "sheet_origin": [
-            129,
+            128,
             658
           ],
-          "components": 1,
-          "scale_to_canvas": 0.8964
+          "cell": [
+            0,
+            635,
+            531,
+            1024
+          ],
+          "grid": [
+            1,
+            0
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.62
         },
         "wave_hand_left": {
           "file": "art-src/animation/parts/pf_rescued/pieces/wave_hand_left.png",
@@ -412,21 +1547,47 @@
             617,
             661
           ],
-          "components": 1,
-          "scale_to_canvas": 0.8964
+          "cell": [
+            531,
+            635,
+            1016,
+            1024
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.62
         },
         "wave_hand_right": {
           "file": "art-src/animation/parts/pf_rescued/pieces/wave_hand_right.png",
           "size": [
             299,
-            311
+            312
           ],
           "sheet_origin": [
             1117,
             662
           ],
-          "components": 1,
-          "scale_to_canvas": 0.8964
+          "cell": [
+            1016,
+            635,
+            1536,
+            1024
+          ],
+          "grid": [
+            1,
+            2
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.62
         }
       },
       "missing": []
@@ -434,22 +1595,19 @@
     "slide_poses": {
       "sheet": "art-src/animation/parts/pf_rescued/slide_poses.png",
       "raw": "art-src/generated/rig_pf_rescued/slide_poses.png",
-      "sheet_scale_to_canvas": 1.9717474372271822,
-      "scale_method": "sqrt(largest cream region of master / of pose_cheer)",
+      "layout": "art-src/animation/parts/pf_rescued/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "poses": {
+          "scale_to_canvas": 1.972,
+          "how": "largest shirt-cream region of the master vs pose_cheer (approximate; reference poses)"
+        }
+      },
+      "components": 3,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
       "pieces": {
-        "pose_cheer": {
-          "file": "art-src/animation/parts/pf_rescued/pieces/pose_cheer.png",
-          "size": [
-            504,
-            697
-          ],
-          "sheet_origin": [
-            1016,
-            188
-          ],
-          "components": 1,
-          "scale_to_canvas": 1.9717
-        },
         "pose_slide": {
           "file": "art-src/animation/parts/pf_rescued/pieces/pose_slide.png",
           "size": [
@@ -460,24 +1618,90 @@
             39,
             301
           ],
-          "components": 1,
-          "scale_to_canvas": 1.9717
+          "cell": [
+            0,
+            0,
+            512,
+            1024
+          ],
+          "grid": [
+            0,
+            0
+          ],
+          "rule": "figure",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "poses",
+          "scale_to_canvas": 1.972
         },
         "pose_land": {
           "file": "art-src/animation/parts/pf_rescued/pieces/pose_land.png",
           "size": [
             565,
-            522
+            523
           ],
           "sheet_origin": [
             513,
             359
           ],
-          "components": 1,
-          "scale_to_canvas": 1.9717
+          "cell": [
+            512,
+            0,
+            1024,
+            1024
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "rule": "figure",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "poses",
+          "scale_to_canvas": 1.972
+        },
+        "pose_cheer": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/pose_cheer.png",
+          "size": [
+            504,
+            698
+          ],
+          "sheet_origin": [
+            1016,
+            187
+          ],
+          "cell": [
+            1024,
+            0,
+            1536,
+            1024
+          ],
+          "grid": [
+            0,
+            2
+          ],
+          "rule": "figure",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "poses",
+          "scale_to_canvas": 1.972
         }
       },
       "missing": []
+    }
+  },
+  "superseded": {
+    "legs": {
+      "raw": "art-src/generated/rig_pf_rescued/legs.png",
+      "fit": {
+        "s": 0.8767974055747243,
+        "tx": 70.12516062511332,
+        "ty": 288.1555406301062,
+        "score": 0.6876,
+        "coarse_score": 0.7647,
+        "mode": "colour"
+      },
+      "why": "r1 registered the separate legs edit undersized (soles on y 1395) and body_no_head_no_arms repeated the legs; r2 cuts the legs from the registered body"
     }
   },
   "master": {
@@ -497,9 +1721,32 @@
     "feet_measured": [
       512.5,
       1440
-    ]
+    ],
+    "note": "immutable input: verified identical to the integer shift of the raw master, not rewritten"
+  },
+  "skin_slots": {
+    "method": "Cut one full-figure skin into the template's slots on the same canvas.\n\n    The drawing is split into CELLS (flat-colour regions bounded by ink). A cell goes whole to one slot when\n    >= `cell_major` of it lies in that template slot (the template label map: front-most template mask, else the\n    nearest); a cell straddling two slots is split pixel-wise on the template boundary. An override polygon\n    (derive.layout.json) claims every cell whose majority lies inside it: this keeps each skin's extras on the right\n    slot (grandma's cat and dress, dad's robe skirt and the piggyback twin stay on the body; the lower twin's head\n    is the head). Ink goes to the front-most slot among the cells within `ink_px` (the front part owns a shared\n    outline), else the nearest. Legs get the same hidden top extension as the template legs.",
+    "params": {
+      "ink_lum": 75,
+      "cell_major": 0.8,
+      "ink_px": 14,
+      "leg_extend_px": 140,
+      "why": "cells (flat colour regions between ink lines) follow the template slot that holds >= 80 % of them; straddling cells split on the template boundary; overrides keep each skin's extras on the right slot (reviewed on qa/art/parts/pf_rescued_skin_slots_r2.png)"
+    },
+    "slot_names": [
+      "head",
+      "body_no_head_no_arms",
+      "arm_right",
+      "arm_left",
+      "leg_right",
+      "leg_left"
+    ],
+    "qa": "qa/art/parts/pf_rescued_skin_slots_r2.png"
   },
   "qa": {
-    "reassembly": "qa/art/parts/pf_rescued_reassembly.png"
+    "reassembly": "qa/art/parts/pf_rescued_reassembly.png",
+    "reassembly_iou": 0.9844,
+    "pieces_contact": "qa/art/parts/pf_rescued_pieces_r2.png",
+    "layers_contact": "qa/art/parts/pf_rescued_layers_r2.png"
   }
 }

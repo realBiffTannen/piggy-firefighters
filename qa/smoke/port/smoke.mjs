@@ -71,6 +71,14 @@ const EXPECTED = (() => {
 	}
 })();
 
+/** Rung levels (6 BIG … 10 MAX) each DEV fixture must climb, once, on its round total (contract §8 v1.2.2, tier 0 when
+ *  W <= S; the dev fixtures' payouts at the frozen costs). Fixtures not listed are not checked. */
+const EXPECTED_RUNGS = {
+	base_nowin: [], base_win: [], base_backdraft_win: [], ante_win: [], base_trigger_rescue: [],
+	base_trigger_inferno: [9], rescue_buy: [9], inferno_buy: [], alarm_call_rescue: [6], alarm_call_false: [],
+	backdraft_spins: [9], max_win: [10],
+};
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const runOne = async (browser, fixture) => {
@@ -97,6 +105,12 @@ const runOne = async (browser, fixture) => {
 		await page.keyboard.press('Space');
 		await page.waitForFunction(() => ((window).__pffFinalWins ?? []).length > 0, null, { timeout: 900000, polling: 250 });
 		result.finalWin = await page.evaluate(() => (window).__pffFinalWins?.[0] ?? null);
+		await sleep(600);
+		// every win-rung climb of the round (contract §8: rungs play ONCE, on the round total, at roundTier)
+		result.rungs = await page.evaluate(() => (window).__pffRungs ?? []);
+		const wantRungs = EXPECTED_RUNGS[fixture];
+		if (wantRungs && JSON.stringify(result.rungs.map((r) => r.level)) !== JSON.stringify(wantRungs))
+			errors.push(`driver: rung levels ${JSON.stringify(result.rungs.map((r) => r.level))} != contract §8 ${JSON.stringify(wantRungs)}`);
 		result.expected = EXPECTED[fixture] ?? null;
 		if (result.expected !== null && result.finalWin !== result.expected) errors.push(`driver: finalWin ${result.finalWin} != booked ${result.expected}`);
 		await sleep(1800); // let the last presentation (outro / shutter lift) settle for the capture

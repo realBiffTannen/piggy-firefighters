@@ -1,5 +1,6 @@
 {
   "rig": "pf_dog",
+  "version": "r2",
   "canvas": [
     1024,
     1536
@@ -53,7 +54,78 @@
         "coarse_score": 0.2927,
         "mode": "colour"
       },
-      "file": "art-src/animation/parts/pf_dog/legs.png"
+      "file": "art-src/animation/parts/pf_dog/legs.png",
+      "split": {
+        "leg_hind_right": "art-src/animation/parts/pf_dog/leg_hind_right.png",
+        "leg_hind_left": "art-src/animation/parts/pf_dog/leg_hind_left.png",
+        "leg_front_right": "art-src/animation/parts/pf_dog/leg_front_right.png",
+        "leg_front_left": "art-src/animation/parts/pf_dog/leg_front_left.png"
+      },
+      "split_method": "Cut Ember's four-leg layer into one layer per leg. Separate legs are separate components; where one leg\n    overlaps another (the near front leg in front of the far hind leg) a marker watershed on the ink ridge splits\n    them from one seed per leg (derive.layout.json), then the FRONT leg takes back the outline it shares with the\n    leg behind it (ink within `outline_px` of its own fur). The hidden part of a rear leg is not painted.",
+      "split_meta": {
+        "leg_hind_right": {
+          "bbox": [
+            43,
+            870,
+            345,
+            1410
+          ],
+          "px": 97273
+        },
+        "leg_hind_left": {
+          "bbox": [
+            326,
+            863,
+            492,
+            1384
+          ],
+          "px": 48737
+        },
+        "leg_front_right": {
+          "bbox": [
+            412,
+            933,
+            648,
+            1442
+          ],
+          "px": 90825
+        },
+        "leg_front_left": {
+          "bbox": [
+            662,
+            881,
+            971,
+            1423
+          ],
+          "px": 94109
+        }
+      },
+      "split_params": {
+        "seeds": {
+          "leg_hind_right": [
+            110,
+            1230
+          ],
+          "leg_hind_left": [
+            380,
+            920
+          ],
+          "leg_front_right": [
+            540,
+            1200
+          ],
+          "leg_front_left": [
+            800,
+            1250
+          ]
+        },
+        "front_of": {
+          "leg_front_right": "leg_hind_left"
+        },
+        "outline_px": 14,
+        "outline_max_green": 14,
+        "why": "Ember faces screen-right: image-left legs are his RIGHT (near) side. Image order: near hind (x 43-345), far hind (326-557, partly behind the near front leg), near front (412-648, lowest sole), far front (662-971). The near front leg overlaps the far hind leg, so the watershed runs on the dark-red outline only (the black spots count as fur) and the near front leg keeps the shared outline."
+      }
     },
     "helmet_front": {
       "derived_from": "helmet_only",
@@ -62,98 +134,29 @@
     }
   },
   "pieces": {
-    "parts_sheet": {
-      "sheet": "art-src/animation/parts/pf_dog/parts_sheet.png",
-      "raw": "art-src/generated/rig_pf_dog/parts_sheet.png",
-      "sheet_scale_to_canvas": 1.1748366013071896,
-      "scale_method": "width of head_no_helmet / width of head_no_jaw",
-      "pieces": {
-        "tail": {
-          "file": "art-src/animation/parts/pf_dog/pieces/tail.png",
-          "size": [
-            311,
-            425
-          ],
-          "sheet_origin": [
-            1144,
-            43
-          ],
-          "components": 1,
-          "scale_to_canvas": 1.1748
-        },
-        "ear_right": {
-          "file": "art-src/animation/parts/pf_dog/pieces/ear_right.png",
-          "size": [
-            352,
-            375
-          ],
-          "sheet_origin": [
-            627,
-            78
-          ],
-          "components": 1,
-          "scale_to_canvas": 1.1748
-        },
-        "ear_left": {
-          "file": "art-src/animation/parts/pf_dog/pieces/ear_left.png",
-          "size": [
-            367,
-            399
-          ],
-          "sheet_origin": [
-            78,
-            90
-          ],
-          "components": 1,
-          "scale_to_canvas": 1.1748
-        },
-        "head_no_jaw": {
-          "file": "art-src/animation/parts/pf_dog/pieces/head_no_jaw.png",
-          "size": [
-            620,
-            413
-          ],
-          "sheet_origin": [
-            512,
-            521
-          ],
-          "components": 1,
-          "scale_to_canvas": 1.1748
-        },
-        "jaw": {
-          "file": "art-src/animation/parts/pf_dog/pieces/jaw.png",
-          "size": [
-            376,
-            236
-          ],
-          "sheet_origin": [
-            68,
-            699
-          ],
-          "components": 1,
-          "scale_to_canvas": 1.1748
-        },
-        "tongue": {
-          "file": "art-src/animation/parts/pf_dog/pieces/tongue.png",
-          "size": [
-            216,
-            211
-          ],
-          "sheet_origin": [
-            1226,
-            706
-          ],
-          "components": 1,
-          "scale_to_canvas": 1.1748
-        }
-      },
-      "missing": []
-    },
     "face_sheet": {
       "sheet": "art-src/animation/parts/pf_dog/face_sheet.png",
       "raw": "art-src/generated/rig_pf_dog/face_sheet.png",
-      "sheet_scale_to_canvas": 0.9,
-      "scale_method": "0.9 matched BY EYE: eyes_open eye width and the nose width against the head_no_helmet (the white fur defeats the colour measure)",
+      "layout": "art-src/animation/parts/pf_dog/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "eyes": {
+          "scale_to_canvas": 0.9,
+          "how": "fit of eyes_open's near eye on the master (overlay reviewed)"
+        },
+        "brows": {
+          "scale_to_canvas": 0.87,
+          "how": "width of the master's near brow vs brows_neutral's near brow"
+        },
+        "mouth": {
+          "scale_to_canvas": 0.85,
+          "how": "BY EYE: mouth_closed over the master muzzle at 0.78/0.85/0.92"
+        }
+      },
+      "components": 20,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
       "pieces": {
         "eyes_open": {
           "file": "art-src/animation/parts/pf_dog/pieces/eyes_open.png",
@@ -165,33 +168,20 @@
             61,
             219
           ],
-          "components": 2,
-          "scale_to_canvas": 0.9
-        },
-        "eyes_sad": {
-          "file": "art-src/animation/parts/pf_dog/pieces/eyes_sad.png",
-          "size": [
-            299,
-            146
+          "cell": [
+            0,
+            0,
+            398,
+            415
           ],
-          "sheet_origin": [
-            1177,
-            224
+          "grid": [
+            0,
+            0
           ],
-          "components": 2,
-          "scale_to_canvas": 0.9
-        },
-        "eyes_happy": {
-          "file": "art-src/animation/parts/pf_dog/pieces/eyes_happy.png",
-          "size": [
-            271,
-            65
-          ],
-          "sheet_origin": [
-            810,
-            257
-          ],
-          "components": 2,
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
           "scale_to_canvas": 0.9
         },
         "eyes_closed": {
@@ -204,21 +194,99 @@
             437,
             265
           ],
-          "components": 2,
+          "cell": [
+            398,
+            0,
+            765,
+            415
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
           "scale_to_canvas": 0.9
         },
-        "brows_excited": {
-          "file": "art-src/animation/parts/pf_dog/pieces/brows_excited.png",
+        "eyes_happy": {
+          "file": "art-src/animation/parts/pf_dog/pieces/eyes_happy.png",
           "size": [
-            281,
-            73
+            272,
+            65
           ],
           "sheet_origin": [
-            1188,
-            460
+            810,
+            257
           ],
-          "components": 2,
+          "cell": [
+            765,
+            0,
+            1129,
+            415
+          ],
+          "grid": [
+            0,
+            2
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
           "scale_to_canvas": 0.9
+        },
+        "eyes_sad": {
+          "file": "art-src/animation/parts/pf_dog/pieces/eyes_sad.png",
+          "size": [
+            300,
+            146
+          ],
+          "sheet_origin": [
+            1177,
+            224
+          ],
+          "cell": [
+            1129,
+            0,
+            1536,
+            415
+          ],
+          "grid": [
+            0,
+            3
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.9
+        },
+        "brows_neutral": {
+          "file": "art-src/animation/parts/pf_dog/pieces/brows_neutral.png",
+          "size": [
+            282,
+            52
+          ],
+          "sheet_origin": [
+            63,
+            487
+          ],
+          "cell": [
+            0,
+            415,
+            391,
+            589
+          ],
+          "grid": [
+            1,
+            0
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.87
         },
         "brows_alert": {
           "file": "art-src/animation/parts/pf_dog/pieces/brows_alert.png",
@@ -230,8 +298,21 @@
             437,
             463
           ],
-          "components": 2,
-          "scale_to_canvas": 0.9
+          "cell": [
+            391,
+            415,
+            775,
+            589
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.87
         },
         "brows_sad": {
           "file": "art-src/animation/parts/pf_dog/pieces/brows_sad.png",
@@ -243,60 +324,125 @@
             832,
             480
           ],
-          "components": 2,
-          "scale_to_canvas": 0.9
+          "cell": [
+            775,
+            415,
+            1131,
+            589
+          ],
+          "grid": [
+            1,
+            2
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.87
         },
-        "brows_neutral": {
-          "file": "art-src/animation/parts/pf_dog/pieces/brows_neutral.png",
+        "brows_excited": {
+          "file": "art-src/animation/parts/pf_dog/pieces/brows_excited.png",
           "size": [
-            281,
-            52
+            282,
+            73
           ],
           "sheet_origin": [
-            63,
-            487
+            1188,
+            460
           ],
-          "components": 2,
-          "scale_to_canvas": 0.9
+          "cell": [
+            1131,
+            415,
+            1536,
+            589
+          ],
+          "grid": [
+            1,
+            3
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.87
+        },
+        "mouth_closed": {
+          "file": "art-src/animation/parts/pf_dog/pieces/mouth_closed.png",
+          "size": [
+            296,
+            157
+          ],
+          "sheet_origin": [
+            58,
+            661
+          ],
+          "cell": [
+            0,
+            589,
+            395,
+            1024
+          ],
+          "grid": [
+            2,
+            0
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.85
         },
         "mouth_bark": {
           "file": "art-src/animation/parts/pf_dog/pieces/mouth_bark.png",
           "size": [
             286,
-            237
+            239
           ],
           "sheet_origin": [
             436,
-            639
+            638
           ],
-          "components": 1,
-          "scale_to_canvas": 0.9
+          "cell": [
+            395,
+            589,
+            770,
+            1024
+          ],
+          "grid": [
+            2,
+            1
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.85
         },
         "mouth_pant": {
           "file": "art-src/animation/parts/pf_dog/pieces/mouth_pant.png",
           "size": [
             278,
-            226
+            227
           ],
           "sheet_origin": [
             819,
-            658
+            657
           ],
-          "components": 1,
-          "scale_to_canvas": 0.9
-        },
-        "mouth_closed": {
-          "file": "art-src/animation/parts/pf_dog/pieces/mouth_closed.png",
-          "size": [
-            295,
-            157
+          "cell": [
+            770,
+            589,
+            1160,
+            1024
           ],
-          "sheet_origin": [
-            59,
-            661
+          "grid": [
+            2,
+            2
           ],
-          "components": 1,
-          "scale_to_canvas": 0.9
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.85
         },
         "mouth_sad": {
           "file": "art-src/animation/parts/pf_dog/pieces/mouth_sad.png",
@@ -308,13 +454,202 @@
             1223,
             661
           ],
-          "components": 1,
-          "scale_to_canvas": 0.9
+          "cell": [
+            1160,
+            589,
+            1536,
+            1024
+          ],
+          "grid": [
+            2,
+            3
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.85
+        }
+      },
+      "missing": []
+    },
+    "parts_sheet": {
+      "sheet": "art-src/animation/parts/pf_dog/parts_sheet.png",
+      "raw": "art-src/generated/rig_pf_dog/parts_sheet.png",
+      "layout": "art-src/animation/parts/pf_dog/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "parts": {
+          "scale_to_canvas": 1.19,
+          "how": "fit of head_no_jaw over the master head (1.187, overlay reviewed: ears, eyes and nose coincide)"
+        }
+      },
+      "components": 6,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
+      "pieces": {
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_dog/pieces/ear_left.png",
+          "size": [
+            368,
+            399
+          ],
+          "sheet_origin": [
+            78,
+            90
+          ],
+          "cell": [
+            0,
+            0,
+            536,
+            504
+          ],
+          "grid": [
+            0,
+            0
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "parts",
+          "scale_to_canvas": 1.19
+        },
+        "ear_right": {
+          "file": "art-src/animation/parts/pf_dog/pieces/ear_right.png",
+          "size": [
+            352,
+            375
+          ],
+          "sheet_origin": [
+            627,
+            78
+          ],
+          "cell": [
+            536,
+            0,
+            1061,
+            504
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "parts",
+          "scale_to_canvas": 1.19
+        },
+        "tail": {
+          "file": "art-src/animation/parts/pf_dog/pieces/tail.png",
+          "size": [
+            311,
+            426
+          ],
+          "sheet_origin": [
+            1144,
+            42
+          ],
+          "cell": [
+            1061,
+            0,
+            1536,
+            504
+          ],
+          "grid": [
+            0,
+            2
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "parts",
+          "scale_to_canvas": 1.19
+        },
+        "jaw": {
+          "file": "art-src/animation/parts/pf_dog/pieces/jaw.png",
+          "size": [
+            376,
+            236
+          ],
+          "sheet_origin": [
+            68,
+            699
+          ],
+          "cell": [
+            0,
+            504,
+            478,
+            1024
+          ],
+          "grid": [
+            1,
+            0
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "parts",
+          "scale_to_canvas": 1.19
+        },
+        "head_no_jaw": {
+          "file": "art-src/animation/parts/pf_dog/pieces/head_no_jaw.png",
+          "size": [
+            620,
+            415
+          ],
+          "sheet_origin": [
+            512,
+            520
+          ],
+          "cell": [
+            478,
+            504,
+            1178,
+            1024
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "parts",
+          "scale_to_canvas": 1.19
+        },
+        "tongue": {
+          "file": "art-src/animation/parts/pf_dog/pieces/tongue.png",
+          "size": [
+            217,
+            211
+          ],
+          "sheet_origin": [
+            1225,
+            706
+          ],
+          "cell": [
+            1178,
+            504,
+            1536,
+            1024
+          ],
+          "grid": [
+            1,
+            2
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "parts",
+          "scale_to_canvas": 1.19
         }
       },
       "missing": []
     }
   },
+  "superseded": {},
   "master": {
     "file": "art-src/animation/parts/pf_dog/master_pf_dog.png",
     "raw_shift": [
@@ -332,9 +667,13 @@
     "feet_measured": [
       512.0,
       1440
-    ]
+    ],
+    "note": "immutable input: verified identical to the integer shift of the raw master, not rewritten"
   },
   "qa": {
-    "reassembly": "qa/art/parts/pf_dog_reassembly.png"
+    "reassembly": "qa/art/parts/pf_dog_reassembly.png",
+    "reassembly_iou": 0.9352,
+    "pieces_contact": "qa/art/parts/pf_dog_pieces_r2.png",
+    "layers_contact": "qa/art/parts/pf_dog_layers_r2.png"
   }
 }

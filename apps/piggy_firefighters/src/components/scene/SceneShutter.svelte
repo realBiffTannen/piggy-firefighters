@@ -31,7 +31,8 @@
 	//     bonus -> base today; any later mode change uses the same two events)
 	//   - mode cards RIDE on the shutter (they are children of the door)
 	//   - bounded: every animation is a fixed timeline; a closed shutter that is
-	//     never told to open lifts by itself after FAILSAFE_MS
+	//     never told to open lifts by itself after FAILSAFE_MS of the door's own
+	//     frame clock, and only while it is idle shut (never mid-run)
 	//   - skippable: stop / skip collapses the timeline (x0.3), turbo shortens it
 	//   - token-guarded: a newer close/open supersedes an older one, whose promise
 	//     resolves at once (a caller can never hang on a stale run)
@@ -55,7 +56,7 @@
 	import { sceneTex, loadSceneTexMany } from '../../game/fx/sceneTextures.svelte';
 	import { stateScene } from '../../game/fx/stateScene.svelte';
 	import { stateRescue } from '../../game/rescue/stateRescue.svelte';
-	import { dismissFeatureCard } from '../../game/rescue/rescueDirector';
+	import { dismissFeatureCard, skipFeature } from '../../game/rescue/rescueDirector';
 	import { audioDirector } from '../../game/fx/audioDirector';
 	import { prefersReducedMotion, isTurbo } from '../../game/fx/timing';
 	import { drawSignPanel, signTitleStyle, signSubStyle, signHintStyle, signValueStyle, ensureSignFont } from '../../game/fx/signPanel';
@@ -115,6 +116,14 @@
 	let settle: (() => void) | null = null;
 	let shake = 0;
 	let rattle = 0;
+	// RUN TOKENS. Every close / open / reset takes a new token; a run whose token is no longer current (it was
+	// superseded) never writes card / mounted / covered / the gate after its await — its caller simply resolves.
+	let runSeq = 0;
+	/** the open() in flight: open() is idempotent, a second call returns the same run */
+	let opening: Promise<void> | null = null;
+	// FRAME clock: the door's timeline advances on clamped frame time (dt <= 50 ms), so the failsafe is measured on
+	// the same clock. `closedAt` is the frame time the door FINISHED closing.
+	let frameNow = 0;
 	let closedAt = 0;
 	const puffs = PUFFS.map(() => ({ life: 1, x: 0, vx: 0, vy: 0, s: 1 }));
 
@@ -169,6 +178,7 @@
 		if (!mounted) return;
 		const dtMs = Math.min(50, tk?.deltaMS ?? 16.7);
 		const dt = dtMs / 1000;
+		frameNow += dtMs;
 
 		if (segs.length) {
 			const s = segs[0];
@@ -191,8 +201,9 @@
 			}
 		}
 
-		// failsafe: a closed shutter nobody opens lifts by itself
-		if (stateScene.covered && !segs.length && performance.now() - closedAt > FAILSAFE_MS) void open();
+		// failsafe: a closed shutter nobody opens lifts by itself — only while the door is IDLE shut (no timeline
+		// running, no caller waiting on one, no open in flight), measured on the door's own frame clock
+		if (stateScene.covered && !segs.length && !settle && !opening && frameNow - closedAt > FAILSAFE_MS) void open();
 
 		shake *= Math.pow(0.002, dt);
 		rattle *= Math.pow(0.004, dt);
@@ -289,6 +300,7 @@
 
 	// ---- the two moves ----------------------------------------------------------------------
 	const close = async (c: ShutterCard | null | undefined) => {
+		const my = ++runSeq;
 		card = c ?? null;
 		cardLive = false;
 		cardT = 0;
@@ -298,9 +310,11 @@
 		ensureSignFont();
 		openGate();
 		await loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', c?.kind === 'intro' ? (c.premium ? 'scene_card_inferno' : 'scene_card_rescue') : 'scene_shutter_bar']);
+		if (my !== runSeq) return;
 		if (prefersReducedMotion()) {
 			pos = 0;
 			await begin([{ to: 0, ms: 240, ease: (p) => ((fade = p), p) }]);
+			if (my !== runSeq) return;
 			fade = 1;
 		} else {
 			await begin([
@@ -310,9 +324,10 @@
 				{ to: 0.013, ms: 60, ease: easeOut },
 				{ to: 0, ms: 75, ease: easeIn },
 			]);
+			if (my !== runSeq) return;
 		}
 		stateScene.covered = true;
-		closedAt = performance.now();
+		closedAt = frameNow;
 		cardLive = !!card;
 		// work-light rays behind an INTRO card only (never under reduced motion)
 		if (card?.kind === 'intro' && !prefersReducedMotion()) raysFx?.rays();
@@ -335,11 +350,21 @@
 	// neither instance is mounted until the rig has really loaded.
 	const fxLoaded = $derived(!!(app.stateApp as any)?.loadedAssets?.fx_transition);
 
-	const open = async () => {
-		if (!mounted) return;
+	/** Lift the door. Idempotent: while an open is in flight every further call returns that same run. */
+	const open = (): Promise<void> => {
+		if (!mounted) return Promise.resolve();
+		if (opening) return opening;
+		const run: Promise<void> = runOpen().finally(() => {
+			if (opening === run) opening = null;
+		});
+		opening = run;
+		return run;
+	};
+
+	const runOpen = async () => {
+		const my = ++runSeq;
 		const wasIntro = card?.kind === 'intro';
 		cardLive = false;
-		closedAt = performance.now();
 		const haul = (n: number) => () => {
 			rattle = 5;
 			audioDirector.shutterHaul?.(n);
@@ -369,6 +394,7 @@
 		} else if (prefersReducedMotion()) {
 			raysFx?.stop();
 			await begin([{ to: 0, ms: 260, ease: (p) => ((fade = 1 - p), p) }]);
+			if (my !== runSeq) return;
 			fade = 0;
 		} else {
 			raysFx?.stop();
@@ -382,6 +408,8 @@
 				{ to: 1, ms: 330, ease: easeOut3, start: haul(3) },
 			]);
 		}
+		// superseded (a newer close / reset took over while this lift ran): leave everything to the newer run
+		if (my !== runSeq) return;
 		pos = 1;
 		stateScene.covered = false;
 		card = null;
@@ -390,6 +418,8 @@
 	};
 
 	const reset = () => {
+		runSeq += 1;
+		opening = null;
 		raysFx?.stop();
 		blastFx?.stop();
 		settle?.();
@@ -409,7 +439,10 @@
 		shutterOpen: () => open(),
 		shutterReset: () => reset(),
 		stopButtonClick: () => {
+			// a live card: the press dismisses it; otherwise, during a feature, stop / skip collapses the remaining
+			// holds (rescueDirector.skipFeature: never the event order)
 			if (cardLive) dismissFeatureCard();
+			else skipFeature();
 		},
 	});
 

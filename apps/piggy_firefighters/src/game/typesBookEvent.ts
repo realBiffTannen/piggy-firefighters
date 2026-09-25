@@ -11,6 +11,8 @@ type BookEventReveal = {
 	paddingPositions: number[];
 	anticipation: number[];
 	gameType: GameType;
+	/** the math's reel set id (contract §3: BR0 / BRA / BRB / FR0 / FRI); optional in hand-made books */
+	reelSet?: string;
 };
 
 type BookEventSetTotalWin = {
@@ -81,7 +83,7 @@ type BookEventFreeSpinEnd = {
 	index: number;
 	type: 'freeSpinEnd';
 	amount: number;
-	/** endFeature table (game/roundTier.ts) */
+	/** the SDK endFeature level: INFORMATIONAL only, never read for presentation (contract §8; game/roundTier.ts) */
 	winLevel: number;
 };
 

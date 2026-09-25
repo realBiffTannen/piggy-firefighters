@@ -402,6 +402,29 @@ def make_backgrounds():
             save(img.convert('RGB'), f'scene/bg_{mood}_{orient}.webp', quality=80)
 
 
+def make_shutter_bar():
+    """Bay-door bottom rail, 1024 x 115: a fire-station door sill — red enamel rail, chrome cap, a brass kick plate
+    with rivets and a band of red / white reflective tape (never yellow-black hazard chevrons: no construction
+    signage, CLAUDE.md)."""
+    img = Image.new('RGB', (1024, 115), (150, 22, 30))
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, 1024, 16), fill=(206, 212, 222))   # chrome cap
+    d.rectangle((0, 16, 1024, 20), fill=(120, 126, 138))
+    d.rectangle((0, 20, 1024, 44), fill=(176, 28, 36))    # red enamel rail
+    d.rectangle((0, 22, 1024, 27), fill=(222, 84, 84))
+    d.rectangle((0, 44, 1024, 70), fill=(196, 150, 70))   # brass kick plate
+    d.rectangle((0, 46, 1024, 50), fill=(236, 200, 120))
+    for x in range(24, 1024, 96):
+        d.ellipse((x - 4, 53, x + 4, 61), fill=(140, 100, 40))
+        d.ellipse((x - 2, 55, x + 1, 58), fill=(250, 226, 160))
+    for i, x in enumerate(range(0, 1024, 48)):                # reflective tape, straight blocks
+        d.rectangle((x, 72, x + 48, 96), fill=(236, 236, 240) if i % 2 else (206, 30, 38))
+    d.rectangle((0, 96, 1024, 101), fill=(110, 16, 22))
+    d.rectangle((0, 101, 1024, 115), fill=(42, 20, 22))    # rubber seal
+    save(img, 'scene/shutter_bottom_bar.webp')
+    save(img, 'splash/shutter_bottom_bar.webp')
+
+
 def make_scene():
     # bay-door shutter: 1024 x 512 tileable slats + 1024 x 115 bottom bar (SceneShutter TILE / BAR)
     img = Image.new('RGB', (1024, 512), (180, 30, 36))
@@ -412,14 +435,7 @@ def make_scene():
         d.rectangle((0, y + 58, 1024, y + 63), fill=(100, 14, 20))
     save(img, 'scene/shutter_slats_tile.webp')
     save(img, 'splash/shutter_slats_tile.webp')
-    img = Image.new('RGB', (1024, 115), (60, 60, 66))
-    d = ImageDraw.Draw(img)
-    d.rectangle((0, 0, 1024, 20), fill=(150, 156, 170))
-    for x in range(0, 1024, 64):
-        d.polygon([(x, 40), (x + 32, 40), (x + 64, 100), (x + 32, 100)], fill=YELLOW)
-    d.rectangle((0, 100, 1024, 115), fill=(30, 30, 34))
-    save(img, 'scene/shutter_bottom_bar.webp')
-    save(img, 'splash/shutter_bottom_bar.webp')
+    make_shutter_bar()
     # mode-card art (768 x 768, no text)
     for key, top, bottom in (('rescue', (20, 26, 60), (120, 50, 90)), ('inferno', (60, 6, 10), (240, 90, 20)), ('backdraft', (40, 20, 20), (255, 122, 26)), ('alarm', (30, 42, 74), (215, 38, 43))):
         img = gradient(768, 768, top, bottom)

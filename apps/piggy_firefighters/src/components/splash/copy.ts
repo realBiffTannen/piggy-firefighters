@@ -92,7 +92,7 @@ const FALLBACK: Record<string, string> = {
 	SPLASH_PRESS: 'PRESS ANYWHERE TO START',
 
 	SPLASH_CARD_CHIEF_TITLE: SYMBOL_NAME.W.toUpperCase(),
-	SPLASH_CARD_CHIEF_BODY: 'The chief of Station 13 is WILD: he stands in for every symbol on the line.',
+	SPLASH_CARD_CHIEF_BODY: 'The chief of Station 13 is WILD: he stands in for every paying symbol on the line.',
 
 	SPLASH_CARD_LINES_TITLE: '{lines} LINES',
 	SPLASH_CARD_LINES_BODY: '{lines} fixed lines, left to right. The best win on each line counts.',

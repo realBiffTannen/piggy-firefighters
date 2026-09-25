@@ -48,7 +48,8 @@
         0,
         386
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_closed",
@@ -56,7 +57,8 @@
         386,
         780
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_happy",
@@ -64,7 +66,8 @@
         780,
         1168
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_wide",
@@ -72,7 +75,8 @@
         1168,
         1536
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       }
      ]
     },
@@ -88,7 +92,8 @@
         0,
         388
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_raised",
@@ -96,7 +101,8 @@
         388,
         790
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_worried",
@@ -104,7 +110,8 @@
         790,
         1158
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_determined",
@@ -112,7 +119,8 @@
         1158,
         1536
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       }
      ]
     },
@@ -128,7 +136,8 @@
         0,
         385
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_open",
@@ -136,7 +145,8 @@
         385,
         774
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_smile",
@@ -144,7 +154,8 @@
         774,
         1193
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_shout",
@@ -152,7 +163,8 @@
         1193,
         1536
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       }
      ]
     },
@@ -168,7 +180,8 @@
         0,
         402
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "moustache"
       },
       {
        "label": "moustache_grin",
@@ -176,7 +189,8 @@
         402,
         822
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "moustache"
       },
       {
        "label": "ear_left",
@@ -184,7 +198,8 @@
         822,
         1166
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "ears"
       },
       {
        "label": "ear_right",
@@ -192,11 +207,34 @@
         1166,
         1536
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "ears"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "eyes": {
+     "scale_to_canvas": 0.65,
+     "how": "fit of eyes_open's near eye on the master (overlay reviewed); the far eye sits ~20 % wider apart on the master than on the sheet"
+    },
+    "brows": {
+     "scale_to_canvas": 0.53,
+     "how": "width of the master's near brow vs brows_level's near brow (overlay reviewed)"
+    },
+    "mouth": {
+     "scale_to_canvas": 0.7,
+     "how": "BY EYE: mouth_open under the master's moustache at 0.6/0.7/0.8 (the master mouth is mostly hidden)"
+    },
+    "moustache": {
+     "scale_to_canvas": 0.93,
+     "how": "BY EYE: tip-to-tip width of the master moustache (fits 0.84 and 0.96 bracket it)"
+    },
+    "ears": {
+     "scale_to_canvas": 0.4,
+     "how": "fit of ear_left on the master ear (overlay reviewed; the master ear is foreshortened and tucked under the brim)"
+    }
+   }
   },
   "hands_sheet": {
    "file": "hands_sheet.png",
@@ -229,7 +267,8 @@
         0,
         396
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_r_grip",
@@ -237,7 +276,8 @@
         396,
         766
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_r_point",
@@ -245,7 +285,8 @@
         766,
         1204
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_r_thumb",
@@ -253,7 +294,8 @@
         1204,
         1536
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       }
      ]
     },
@@ -269,7 +311,8 @@
         0,
         392
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_l_grip",
@@ -277,7 +320,8 @@
         392,
         761
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_l_point",
@@ -285,7 +329,8 @@
         761,
         1204
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_l_thumb",
@@ -293,11 +338,18 @@
         1204,
         1536
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "hands": {
+     "scale_to_canvas": 0.47,
+     "how": "BY EYE: hand_r_open over arm_right's hand at 0.45/0.55 (r1 area measure 0.55 read too big)"
+    }
+   }
   },
   "props": {
    "file": "props.png",
@@ -330,7 +382,8 @@
         0,
         821
        ],
-       "rule": "plate"
+       "rule": "plate",
+       "family": "props"
       },
       {
        "label": "shield_plate",
@@ -338,7 +391,8 @@
         821,
         1536
        ],
-       "rule": "plate"
+       "rule": "plate",
+       "family": "props"
       }
      ]
     },
@@ -354,7 +408,8 @@
         0,
         839
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "props"
       },
       {
        "label": "bugle",
@@ -362,11 +417,19 @@
         839,
         1536
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "props"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "props": {
+     "scale_to_canvas": 0.574,
+     "how": "fit of shield_plate on the helmet's brass plate (overlay reviewed). The nozzle's hose is then 80 px thick on the canvas while the grip hole is 32 px: resize the nozzle by eye if it must pass through the fist"
+    }
+   }
   }
- }
+ },
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
 }

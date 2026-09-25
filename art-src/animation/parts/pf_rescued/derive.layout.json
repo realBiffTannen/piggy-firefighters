@@ -1,0 +1,750 @@
+{
+ "rig": "pf_rescued",
+ "note": "Parameters read BY EYE from the registered body (colour bands per row) on 2026-09-25; derive_r2.py applies them.",
+ "split_body": {
+  "lower_from": 850,
+  "upper_max_y": 1000,
+  "coat": false,
+  "hem_ink_px": 12,
+  "tail_ink_px": 20,
+  "leg_extend_px": 140,
+  "why": "the shirt hem ends at y ~940; shirt/tail colours below y 1000 are slipper highlights; the trousers meet at the crotch, so the legs are split by the crotch apex"
+ },
+ "skin_slots": {
+  "ink_lum": 75,
+  "cell_major": 0.8,
+  "ink_px": 14,
+  "leg_extend_px": 140,
+  "why": "cells (flat colour regions between ink lines) follow the template slot that holds >= 80 % of them; straddling cells split on the template boundary; overrides keep each skin's extras on the right slot (reviewed on qa/art/parts/pf_rescued_skin_slots_r2.png)",
+  "overrides": {
+   "grandma": [
+    {
+     "slot": "body",
+     "why": "the cat on her shoulder stays on the body",
+     "polygon": [
+      [
+       15,
+       800
+      ],
+      [
+       10,
+       700
+      ],
+      [
+       40,
+       640
+      ],
+      [
+       95,
+       600
+      ],
+      [
+       95,
+       520
+      ],
+      [
+       120,
+       460
+      ],
+      [
+       150,
+       420
+      ],
+      [
+       140,
+       350
+      ],
+      [
+       150,
+       290
+      ],
+      [
+       200,
+       300
+      ],
+      [
+       300,
+       230
+      ],
+      [
+       340,
+       215
+      ],
+      [
+       365,
+       260
+      ],
+      [
+       395,
+       300
+      ],
+      [
+       400,
+       380
+      ],
+      [
+       390,
+       450
+      ],
+      [
+       420,
+       470
+      ],
+      [
+       450,
+       480
+      ],
+      [
+       455,
+       535
+      ],
+      [
+       400,
+       545
+      ],
+      [
+       330,
+       540
+      ],
+      [
+       250,
+       545
+      ],
+      [
+       200,
+       570
+      ],
+      [
+       150,
+       610
+      ],
+      [
+       130,
+       660
+      ],
+      [
+       125,
+       720
+      ],
+      [
+       100,
+       790
+      ],
+      [
+       50,
+       810
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "the cat's second paw at her collar",
+     "polygon": [
+      [
+       595,
+       505
+      ],
+      [
+       665,
+       505
+      ],
+      [
+       665,
+       565
+      ],
+      [
+       595,
+       565
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "the dress skirt and the cardigan's ribbed hem hang from the body over the legs (pixel override: the hem is one cell with the cardigan front)",
+     "polygon": [
+      [
+       215,
+       880
+      ],
+      [
+       815,
+       880
+      ],
+      [
+       850,
+       1250
+      ],
+      [
+       180,
+       1250
+      ]
+     ],
+     "mode": "pixels",
+     "not_skin": true
+    }
+   ],
+   "dad": [
+    {
+     "slot": "body",
+     "why": "the bathrobe skirt hangs from the body over the pyjama legs",
+     "polygon": [
+      [
+       215,
+       930
+      ],
+      [
+       880,
+       930
+      ],
+      [
+       880,
+       1195
+      ],
+      [
+       215,
+       1195
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "the robe's shawl collar belongs to the body, not the shoulder caps",
+     "polygon": [
+      [
+       300,
+       470
+      ],
+      [
+       410,
+       470
+      ],
+      [
+       520,
+       560
+      ],
+      [
+       620,
+       480
+      ],
+      [
+       710,
+       470
+      ],
+      [
+       710,
+       640
+      ],
+      [
+       640,
+       700
+      ],
+      [
+       520,
+       840
+      ],
+      [
+       400,
+       700
+      ],
+      [
+       300,
+       620
+      ]
+     ]
+    }
+   ],
+   "twins": [
+    {
+     "slot": "body",
+     "why": "the piggyback twin (head and ears) rides on the body",
+     "polygon": [
+      [
+       245,
+       40
+      ],
+      [
+       330,
+       20
+      ],
+      [
+       600,
+       15
+      ],
+      [
+       745,
+       40
+      ],
+      [
+       745,
+       130
+      ],
+      [
+       700,
+       250
+      ],
+      [
+       640,
+       315
+      ],
+      [
+       560,
+       322
+      ],
+      [
+       470,
+       325
+      ],
+      [
+       390,
+       322
+      ],
+      [
+       330,
+       300
+      ],
+      [
+       290,
+       240
+      ],
+      [
+       250,
+       150
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's left sleeve above the lower twin's ear",
+     "polygon": [
+      [
+       255,
+       285
+      ],
+      [
+       395,
+       285
+      ],
+      [
+       395,
+       370
+      ],
+      [
+       300,
+       380
+      ],
+      [
+       255,
+       370
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's left sleeve below the ear",
+     "polygon": [
+      [
+       250,
+       450
+      ],
+      [
+       310,
+       450
+      ],
+      [
+       310,
+       545
+      ],
+      [
+       250,
+       545
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's right sleeve",
+     "polygon": [
+      [
+       700,
+       295
+      ],
+      [
+       775,
+       295
+      ],
+      [
+       775,
+       360
+      ],
+      [
+       700,
+       360
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's right sleeve below the ear",
+     "polygon": [
+      [
+       720,
+       450
+      ],
+      [
+       790,
+       450
+      ],
+      [
+       790,
+       535
+      ],
+      [
+       720,
+       535
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's hands under the lower twin's chin",
+     "polygon": [
+      [
+       420,
+       612
+      ],
+      [
+       515,
+       612
+      ],
+      [
+       515,
+       690
+      ],
+      [
+       420,
+       690
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's right hand",
+     "polygon": [
+      [
+       505,
+       630
+      ],
+      [
+       615,
+       630
+      ],
+      [
+       615,
+       725
+      ],
+      [
+       505,
+       725
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's legs behind the shoulders",
+     "polygon": [
+      [
+       250,
+       610
+      ],
+      [
+       315,
+       610
+      ],
+      [
+       315,
+       700
+      ],
+      [
+       250,
+       700
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "rider's legs behind the shoulders",
+     "polygon": [
+      [
+       735,
+       625
+      ],
+      [
+       790,
+       625
+      ],
+      [
+       790,
+       700
+      ],
+      [
+       735,
+       700
+      ]
+     ]
+    },
+    {
+     "slot": "head",
+     "why": "the lower twin's head and ears (the skin is scaled 0.961, so the template head sits high)",
+     "polygon": [
+      [
+       260,
+       330
+      ],
+      [
+       790,
+       320
+      ],
+      [
+       790,
+       520
+      ],
+      [
+       760,
+       600
+      ],
+      [
+       700,
+       640
+      ],
+      [
+       560,
+       650
+      ],
+      [
+       420,
+       640
+      ],
+      [
+       300,
+       620
+      ],
+      [
+       265,
+       520
+      ]
+     ]
+    },
+    {
+     "slot": "arm_right",
+     "why": "the skin is scaled 0.961, so its near arm (sleeve to fingertips) sits off the template arm",
+     "polygon": [
+      [
+       150,
+       780
+      ],
+      [
+       230,
+       740
+      ],
+      [
+       340,
+       785
+      ],
+      [
+       340,
+       860
+      ],
+      [
+       285,
+       930
+      ],
+      [
+       270,
+       1000
+      ],
+      [
+       255,
+       1095
+      ],
+      [
+       95,
+       1095
+      ],
+      [
+       105,
+       960
+      ],
+      [
+       140,
+       870
+      ]
+     ]
+    },
+    {
+     "slot": "arm_left",
+     "why": "the far arm (sleeve to fingertips), same reason",
+     "polygon": [
+      [
+       688,
+       690
+      ],
+      [
+       760,
+       698
+      ],
+      [
+       805,
+       760
+      ],
+      [
+       835,
+       860
+      ],
+      [
+       885,
+       940
+      ],
+      [
+       910,
+       1000
+      ],
+      [
+       905,
+       1095
+      ],
+      [
+       765,
+       1095
+      ],
+      [
+       738,
+       960
+      ],
+      [
+       700,
+       860
+      ],
+      [
+       678,
+       760
+      ]
+     ]
+    }
+   ],
+   "baby": [
+    {
+     "slot": "body",
+     "why": "the baby in the chest sling (and the sling) stays on the body",
+     "polygon": [
+      [
+       425,
+       520
+      ],
+      [
+       560,
+       505
+      ],
+      [
+       665,
+       515
+      ],
+      [
+       708,
+       545
+      ],
+      [
+       718,
+       600
+      ],
+      [
+       705,
+       660
+      ],
+      [
+       690,
+       730
+      ],
+      [
+       600,
+       745
+      ],
+      [
+       450,
+       735
+      ],
+      [
+       425,
+       650
+      ]
+     ]
+    }
+   ],
+   "teen": [
+    {
+     "slot": "body",
+     "mode": "pixels",
+     "not_skin": true,
+     "why": "the hood rolled behind the neck belongs to the body (pixel override: the hood lining joins the torso cell)",
+     "polygon": [
+      [
+       250,
+       440
+      ],
+      [
+       420,
+       455
+      ],
+      [
+       520,
+       520
+      ],
+      [
+       620,
+       520
+      ],
+      [
+       770,
+       450
+      ],
+      [
+       800,
+       470
+      ],
+      [
+       790,
+       540
+      ],
+      [
+       700,
+       575
+      ],
+      [
+       640,
+       595
+      ],
+      [
+       520,
+       600
+      ],
+      [
+       430,
+       595
+      ],
+      [
+       380,
+       565
+      ],
+      [
+       290,
+       545
+      ],
+      [
+       250,
+       530
+      ]
+     ]
+    }
+   ]
+  }
+ }
+}

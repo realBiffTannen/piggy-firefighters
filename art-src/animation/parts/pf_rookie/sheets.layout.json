@@ -48,7 +48,8 @@
         0,
         390
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_closed",
@@ -56,7 +57,8 @@
         390,
         769
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_happy",
@@ -64,7 +66,8 @@
         769,
         1162
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_dart",
@@ -72,7 +75,8 @@
         1162,
         1536
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       }
      ]
     },
@@ -88,7 +92,8 @@
         0,
         393
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_raised",
@@ -96,7 +101,8 @@
         393,
         776
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_worried",
@@ -104,7 +110,8 @@
         776,
         1149
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_embarrassed",
@@ -112,7 +119,8 @@
         1149,
         1536
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       }
      ]
     },
@@ -128,7 +136,8 @@
         0,
         389
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_open",
@@ -136,7 +145,8 @@
         389,
         765
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_smile",
@@ -144,7 +154,8 @@
         765,
         1166
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_oops",
@@ -152,7 +163,8 @@
         1166,
         1536
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       }
      ]
     },
@@ -168,7 +180,8 @@
         0,
         395
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_shout",
@@ -176,7 +189,8 @@
         395,
         763
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "ear_left",
@@ -184,7 +198,8 @@
         763,
         1152
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "ears"
       },
       {
        "label": "ear_right",
@@ -192,11 +207,30 @@
         1152,
         1536
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "ears"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "eyes": {
+     "scale_to_canvas": 0.6,
+     "how": "fit of eyes_open's near eye on the master (overlay reviewed)"
+    },
+    "brows": {
+     "scale_to_canvas": 0.5,
+     "how": "width of the master's near brow vs brows_neutral's near brow"
+    },
+    "mouth": {
+     "scale_to_canvas": 0.32,
+     "how": "fit and width of mouth_closed on the master smile (0.30 / 0.34, overlay reviewed)"
+    },
+    "ears": {
+     "scale_to_canvas": 0.45,
+     "how": "fit of ear_left on the master ear (0.47, overlay reviewed; foreshortened)"
+    }
+   }
   },
   "hands_sheet": {
    "file": "hands_sheet.png",
@@ -229,7 +263,8 @@
         0,
         292
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_r_grip",
@@ -237,7 +272,8 @@
         292,
         560
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_r_point",
@@ -245,7 +281,8 @@
         560,
         915
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_r_catch",
@@ -253,7 +290,8 @@
         915,
         1241
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_r_pinch",
@@ -261,7 +299,8 @@
         1241,
         1536
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       }
      ]
     },
@@ -277,7 +316,8 @@
         0,
         294
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_l_grip",
@@ -285,7 +325,8 @@
         294,
         569
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_l_point",
@@ -293,7 +334,8 @@
         569,
         913
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_l_catch",
@@ -301,7 +343,8 @@
         913,
         1235
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       },
       {
        "label": "hand_l_pinch",
@@ -309,11 +352,18 @@
         1235,
         1536
        ],
-       "rule": "hand"
+       "rule": "hand",
+       "family": "hands"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "hands": {
+     "scale_to_canvas": 0.45,
+     "how": "BY EYE: hand_r_open over arm_right's hand at 0.40/0.50/0.63"
+    }
+   }
   },
   "props": {
    "file": "props.png",
@@ -347,7 +397,8 @@
         0,
         1536
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "hose"
       }
      ]
     },
@@ -363,7 +414,8 @@
         0,
         1536
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "hose"
       }
      ]
     },
@@ -379,7 +431,8 @@
         0,
         784
        ],
-       "rule": "plate"
+       "rule": "plate",
+       "family": "cards"
       },
       {
        "label": "card_back",
@@ -387,11 +440,23 @@
         784,
         1536
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "cards"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "cards": {
+     "scale_to_canvas": 0.45,
+     "how": "no counterpart on the master: assumed equal to the hands (the pinch hand holds the card)"
+    },
+    "hose": {
+     "scale_to_canvas": 0.237,
+     "how": "so the hose (91 px thick on the sheet) passes the grip hole (48 px on the hands sheet x 0.45): 0.45 x 48 / 91"
+    }
+   }
   }
- }
+ },
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
 }

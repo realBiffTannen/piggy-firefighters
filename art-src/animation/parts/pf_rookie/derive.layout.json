@@ -1,0 +1,35 @@
+{
+ "rig": "pf_rookie",
+ "note": "Parameters read BY EYE from the registered body (colour bands per row) on 2026-09-25; derive_r2.py applies them.",
+ "split_body": {
+  "lower_from": 730,
+  "belt_band": [
+   720,
+   800
+  ],
+  "coat": true,
+  "hem_ink_px": 12,
+  "tail_ink_px": 20,
+  "leg_extend_px": 140,
+  "why": "the belt's grey rows run y 730-790 (measured grey-row profile)"
+ },
+ "helmet_front": {
+  "zone_px": 40,
+  "palette_margin": 15,
+  "ink_px": 10,
+  "min_island_px": 150,
+  "min_head_area_px": 400,
+  "fill_reach_px": 30,
+  "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole"
+ },
+ "head_blank_refit": {
+  "target": "head_no_helmet",
+  "srange": [
+   0.45,
+   0.9
+  ],
+  "q": 2,
+  "mode": "colour",
+  "why": "r1 registered head_blank at s 0.345 onto the eye (visibly tiny, reviewed); r2 fits it to the registered head_no_helmet instead: s 0.656, overlay reviewed (cranium, snout and neck coincide)"
+ }
+}

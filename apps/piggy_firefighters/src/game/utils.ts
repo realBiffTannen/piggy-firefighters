@@ -33,7 +33,9 @@ export const isFeatureRound = (bookEvents: Pick<BookEvent, 'type' | 'index'>[]) 
 	bookEvents.some((bookEvent) => FEATURE_ENTRY_EVENT_TYPES.has(bookEvent.type));
 
 // resume bet
-const BOOK_EVENT_TYPES_TO_RESERVE_FOR_SNAPSHOT = ['setTotalWin'];
+/** Kept for the snapshot (bookEventHandlerMap createBonusSnapshot): the running total, and the last reveal board (+ its
+ *  Backdraft) so a rewound natural trigger rings its alarms on the book's board, not on the boot board. */
+const BOOK_EVENT_TYPES_TO_RESERVE_FOR_SNAPSHOT = ['setTotalWin', 'reveal', 'backdraft'];
 
 /** Where an active round is resumed from: the `event` cursor `/authenticate` returned, if it is a
  *  usable index into the book, else the first event. The cursor is whatever the RGS stored from

@@ -6,11 +6,12 @@
  * KIND from the math flags. Player titles (theme §5, game/names.ts):
  *   base              1x, not a buy     -> default spin
  *   ante              1.5x, not a buy   -> "activate" toggle — ALARM BOOST
- *   backdraft_spins   25x, isBuyBonus   -> buy card — BACKDRAFT SPINS
- *   alarm_call        40x, isBuyBonus   -> buy card — ALARM CALL
- *   rescue            60x, isBuyBonus   -> buy card — RESCUE SPINS
- *   inferno           300x, isBuyBonus  -> buy card — INFERNO RESCUE
- * Four cards in the sheet, cost-ascending (the contract's HUD order); the ante has its own card too.
+ *   alarm_call        12x, isBuyBonus   -> buy card — ALARM CALL
+ *   rescue            18x, isBuyBonus   -> buy card — RESCUE SPINS
+ *   backdraft_spins   50x, isBuyBonus   -> buy card — BACKDRAFT SPINS
+ *   inferno           90x, isBuyBonus   -> buy card — INFERNO RESCUE
+ * (costs: the frozen math's MODE_COSTS, read from game/config.ts — never from this comment). Four cards in the sheet,
+ * cost-ascending (contract v1.2.1 §2: the installed HUD sorts buy cards by price); the ante has its own card too.
  *
  * Bet-mode copy and the board-fit geometry are wired here; the rules sheet is game/rulesContent.ts (std + social
  * wording, figures from config and, once published, the books).

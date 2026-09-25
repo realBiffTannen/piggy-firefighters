@@ -27,10 +27,12 @@ import { audioDirector } from '../fx/audioDirector';
 import { stateScene, moodForBonus } from '../fx/stateScene.svelte';
 import { formatBookAmount, formatBookMultiple } from '../money';
 import { MODE_TITLE, MECHANIC, FEATURE } from '../names';
-import { roundCelebrationLevel, endFeatureLevelOf, MAX_WIN_LEVEL } from '../roundTier';
+import { rungLevelOfTier, MAX_WIN_LEVEL, type WinTier } from '../roundTier';
+import { roundStakeOf } from '../roundStake';
 import { gameSound } from '../audio';
 import type { BookEvent, BookEventOfType, Cell } from '../typesBookEvent';
 import type { Position } from '../types';
+import type { EmitterEventShutter } from '../../components/scene/SceneShutter.svelte';
 import { stateRescue, stateBackdraftSpins, stateAlarmCall, resetRescueState } from './stateRescue.svelte';
 
 type Ev<T extends BookEvent['type']> = BookEventOfType<T>;
@@ -44,19 +46,49 @@ const cardWaitMs = () => (stateXstateDerived.isAutoBetting() || stateBet.isTurbo
 
 // ---- cards (shown on the shutter, dismissed by a press or by time) ---------------------------------------------------
 let cardResolve: (() => void) | null = null;
+/** A card is on its way (the door is closing with it): a press that arrives before waitForCard() is latched, never lost. */
+let cardExpected = false;
+let pendingDismiss = false;
 /** Press on a live card (SceneShutter / Space). */
 export const dismissFeatureCard = () => {
 	const done = cardResolve;
 	cardResolve = null;
-	done?.();
+	if (!done) {
+		if (cardExpected) pendingDismiss = true;
+		return;
+	}
+	done();
 };
 const waitForCard = () =>
 	new Promise<void>((resolve) => {
-		cardResolve = resolve;
+		const finish = () => {
+			cardExpected = false;
+			pendingDismiss = false;
+			resolve();
+		};
+		if (pendingDismiss) return finish();
+		cardResolve = finish;
 		setTimeout(() => {
-			if (cardResolve === resolve) dismissFeatureCard();
+			if (cardResolve === finish) dismissFeatureCard();
 		}, cardWaitMs());
 	});
+
+// ---- the bay door (bounded) --------------------------------------------------------------------------------------
+/** Longest a director waits on the door. The door runs on clamped frame time, so on a 1-3 fps device a full lift takes
+ *  well over 10 s of wall time; past this bound the round moves on and the door is told to get out of the way. An
+ *  unattended round can never hang on a presentation. */
+const SHUTTER_BOUND_MS = 45000;
+const shutter = async (event: EmitterEventShutter) => {
+	let timer: ReturnType<typeof setTimeout> | undefined;
+	const bounded = new Promise<'timeout'>((resolve) => (timer = setTimeout(() => resolve('timeout'), SHUTTER_BOUND_MS)));
+	const done = eventEmitter.broadcastAsync(event).then(() => 'done' as const);
+	const result = await Promise.race([done, bounded]);
+	clearTimeout(timer);
+	if (result === 'timeout') {
+		console.warn(`rescueDirector: ${event.type} did not settle in ${SHUTTER_BOUND_MS} ms; resetting the door`);
+		eventEmitter.broadcast({ type: 'shutterReset' });
+	}
+};
 
 /** Stop / skip pressed during a feature: collapse the remaining holds (event order unchanged). */
 export const skipFeature = () => {
@@ -72,12 +104,20 @@ const showBanner = (text: string) => {
 
 const spinsWord = (n: number) => `${n} ${n === 1 ? 'SPIN' : 'SPINS'}`;
 
-/** The round total the plate shows: the book's last finalWin, else its last setTotalWin. */
-const roundTotalOf = (bookEvents: readonly BookEvent[]) => {
-	for (let i = bookEvents.length - 1; i >= 0; i -= 1) if (bookEvents[i].type === 'finalWin') return (bookEvents[i] as Ev<'finalWin'>).amount;
-	for (let i = bookEvents.length - 1; i >= 0; i -= 1) if (bookEvents[i].type === 'setTotalWin') return (bookEvents[i] as Ev<'setTotalWin'>).amount;
-	return 0;
+/** Contract §8: the round's celebration, once, on its total. Emits the rig beat (animBeat winTier, ANIMATION_CONTRACT)
+ *  and climbs the win rungs from tier 2 (BIG 15x … MAX = the cap); tier 0 (W <= S) and 1 climb nothing. */
+const celebrateRound = async (tier: WinTier, total: number) => {
+	try {
+		eventEmitter.broadcast({ type: 'animBeat', beat: 'winTier', tier, amount: total, x: total / 100 });
+	} catch {
+		/* presentation only */
+	}
+	const level = rungLevelOfTier(tier);
+	if (level) await eventEmitter.broadcastAsync({ type: 'winRungs', amount: total, level, tier });
 };
+
+/** The book's rescueEnd figures for the outro card (never the client's own counters). */
+let endStats: { rescued: number; buildings: number; multiplier: number } | null = null;
 
 const animateSymbols = async (positions: Position[]) => {
 	eventEmitter.broadcast({ type: 'boardShow' });
@@ -130,6 +170,7 @@ export const freeSpinTrigger = async (e: Ev<'freeSpinTrigger'>) => {
 			}
 		}, i * 90);
 	});
+	// once per round: already played at the landing of the 3rd alarm, unless this is a resumed round replaying its trigger
 	gameSound.triggerFanfare();
 	await animateSymbols(cells);
 	await beat(350);
@@ -148,7 +189,10 @@ export const rescueStart = async (e: Ev<'rescueStart'>) => {
 			: `${spinsWord(e.spins)} · five rooms · every rescue +1x and +1 spin`,
 		hint: 'TAP OR PRESS SPACE',
 	};
-	await eventEmitter.broadcastAsync({ type: 'shutterClose', card: intro });
+	cardExpected = true;
+	pendingDismiss = false;
+	endStats = null;
+	await shutter({ type: 'shutterClose', card: intro });
 	// ---- under cover: the block rolls in -----------------------------------------------------------------------------
 	stateRescue.bonus = e.bonus;
 	stateRescue.source = e.source;
@@ -169,7 +213,7 @@ export const rescueStart = async (e: Ev<'rescueStart'>) => {
 	audioDirector.bonusIntro(e.bonus);
 	eventEmitter.broadcast({ type: 'boardShow' });
 	await waitForCard();
-	await eventEmitter.broadcastAsync({ type: 'shutterOpen' });
+	await shutter({ type: 'shutterOpen' });
 	await beat(300);
 };
 
@@ -249,26 +293,32 @@ export const setFeatureTotal = (amount: number) => {
 export const rescueEnd = async (e: Ev<'rescueEnd'>) => {
 	if (!stateRescue.active) return;
 	stateRescue.multiplier = e.multiplier;
+	endStats = { rescued: e.rescued, buildings: e.buildings, multiplier: e.multiplier };
+	// the bonus is over: no spins are left to show, whatever the counter held (a capped end leaves spins unplayed)
+	stateRescue.spinsLeft = 0;
+	setFeatureSpins(0);
 	showBanner(`${FEATURE[stateRescue.bonus === 'inferno' ? 'inferno' : 'rescue'].toUpperCase()} COMPLETE`);
 	await beat(700);
 };
 
-export const freeSpinEnd = async (e: Ev<'freeSpinEnd'>, bookEvents: BookEvent[]) => {
-	const total = roundTotalOf(bookEvents);
-	const { level } = roundCelebrationLevel(e, bookEvents, total, stateRescue.capped);
+export const freeSpinEnd = async (_e: Ev<'freeSpinEnd'>, bookEvents: BookEvent[]) => {
+	const round = roundStakeOf(bookEvents, stateRescue.capped);
+	const total = round.total;
 	stateRescue.skip = false;
-	if (level >= 6) {
-		await eventEmitter.broadcastAsync({ type: 'winRungs', amount: total, level, scale: 'endFeature' });
-	}
-	audioDirector.total(level);
+	await celebrateRound(round.tier, total);
+	audioDirector.total(round.tier, stateRescue.bonus);
 	const inferno = stateRescue.bonus === 'inferno';
-	await eventEmitter.broadcastAsync({
+	// the book's rescueEnd figures: `buildings` is the number CLEARED (contract §8), never the client's next-building ordinal
+	const stats = endStats ?? { rescued: stateRescue.rescued, buildings: Math.max(0, stateRescue.building - 1), multiplier: stateRescue.multiplier };
+	cardExpected = true;
+	pendingDismiss = false;
+	await shutter({
 		type: 'shutterClose',
 		card: {
 			kind: 'outro',
 			premium: inferno,
 			title: `${MODE_TITLE[inferno ? 'inferno' : 'rescue']} COMPLETE`,
-			subtitle: `${stateRescue.rescued} rescued · ${stateRescue.building} ${stateRescue.building === 1 ? 'building' : 'buildings'} · x${stateRescue.multiplier}`,
+			subtitle: `${stats.rescued} rescued · ${stats.buildings} ${stats.buildings === 1 ? 'building' : 'buildings'} cleared · x${stats.multiplier}`,
 			// framed cards show the MULTIPLE, never a currency figure (money.ts formatBookMultiple)
 			value: formatBookMultiple(total),
 			hint: 'TAP OR PRESS SPACE',
@@ -277,7 +327,7 @@ export const freeSpinEnd = async (e: Ev<'freeSpinEnd'>, bookEvents: BookEvent[])
 	await waitForCard();
 	// ---- under cover: back to Station 13 ----------------------------------------------------------------------------
 	leaveRescue();
-	await eventEmitter.broadcastAsync({ type: 'shutterOpen' });
+	await shutter({ type: 'shutterOpen' });
 };
 
 const leaveRescue = () => {
@@ -317,17 +367,19 @@ export const backdraftSpinsStart = async (e: Ev<'backdraftSpinsStart'>) => {
 	stateRescue.skip = false;
 	claimWin('backdraftSpins');
 	setFeatureSpins(e.spins);
+	audioDirector.backdraftSpinsStart();
 	showBanner(`${MODE_TITLE.backdraft_spins} · ${spinsWord(e.spins)}`);
 	await beat(700);
 };
 
 export const backdraftSpinsEnd = async (e: Ev<'backdraftSpinsEnd'>, bookEvents: BookEvent[]) => {
-	const total = roundTotalOf(bookEvents) || e.amount;
-	const capped = stateRescue.capped || bookEvents.some((event) => event.type === 'wincap');
-	const level = endFeatureLevelOf(total, capped);
+	const round = roundStakeOf(bookEvents, stateRescue.capped);
+	const total = round.total || e.amount;
 	stateRescue.skip = false;
-	if (level >= 6) await eventEmitter.broadcastAsync({ type: 'winRungs', amount: total, level, scale: 'endFeature' });
-	audioDirector.total(level);
+	setFeatureSpins(0);
+	audioDirector.backdraftSpinsEnd();
+	await celebrateRound(round.tier, total);
+	audioDirector.total(round.tier, 'backdraftSpins');
 	stateBackdraftSpins.total = total;
 	await beat(600);
 	stateBackdraftSpins.active = false;
@@ -339,6 +391,10 @@ export const backdraftSpinsEnd = async (e: Ev<'backdraftSpinsEnd'>, bookEvents: 
 // ---- cap / teardown ----------------------------------------------------------------------------------------------------
 export const wincap = () => {
 	stateRescue.capped = true;
+	// a capped round ends here: the spins counter never shows the unplayed leftovers through the end celebration
+	if (stateRescue.active) stateRescue.spinsLeft = 0;
+	if (stateBackdraftSpins.active) stateBackdraftSpins.spinsLeft = 0;
+	if (stateRescue.active || stateBackdraftSpins.active) setFeatureSpins(0);
 };
 
 export const isCappedLevel = (level: number) => level >= MAX_WIN_LEVEL;
@@ -347,6 +403,9 @@ export const isCappedLevel = (level: number) => level >= MAX_WIN_LEVEL;
 export const teardownFeature = () => {
 	const wasActive = stateRescue.active || stateBackdraftSpins.active || stateAlarmCall.active;
 	dismissFeatureCard();
+	cardExpected = false;
+	pendingDismiss = false;
+	endStats = null;
 	if (wasActive) {
 		releaseWin('rescue');
 		releaseWin('backdraftSpins');

@@ -39,12 +39,6 @@
   },
   {
    "index": 2,
-   "type": "updateFreeSpin",
-   "amount": 1,
-   "total": 10
-  },
-  {
-   "index": 3,
    "type": "reveal",
    "board": [
     [
@@ -149,10 +143,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 4,
+   "index": 3,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -161,18 +156,18 @@
    "spinsLeft": 9
   },
   {
+   "index": 4,
+   "type": "updateFreeSpin",
+   "amount": 1,
+   "total": 10
+  },
+  {
    "index": 5,
    "type": "setTotalWin",
    "amount": 0
   },
   {
    "index": 6,
-   "type": "updateFreeSpin",
-   "amount": 2,
-   "total": 10
-  },
-  {
-   "index": 7,
    "type": "reveal",
    "board": [
     [
@@ -277,10 +272,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 8,
+   "index": 7,
    "type": "douse",
    "sprays": [
     {
@@ -295,7 +291,7 @@
    "spinsLeft": 8
   },
   {
-   "index": 9,
+   "index": 8,
    "type": "winInfo",
    "totalWin": 10,
    "wins": [
@@ -328,10 +324,16 @@
    ]
   },
   {
-   "index": 10,
+   "index": 9,
    "type": "setWin",
    "amount": 10,
    "winLevel": 2
+  },
+  {
+   "index": 10,
+   "type": "updateFreeSpin",
+   "amount": 2,
+   "total": 10
   },
   {
    "index": 11,
@@ -340,12 +342,6 @@
   },
   {
    "index": 12,
-   "type": "updateFreeSpin",
-   "amount": 3,
-   "total": 10
-  },
-  {
-   "index": 13,
    "type": "reveal",
    "board": [
     [
@@ -450,10 +446,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 14,
+   "index": 13,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -462,7 +459,7 @@
    "spinsLeft": 7
   },
   {
-   "index": 15,
+   "index": 14,
    "type": "winInfo",
    "totalWin": 160,
    "wins": [
@@ -529,10 +526,16 @@
    ]
   },
   {
-   "index": 16,
+   "index": 15,
    "type": "setWin",
    "amount": 160,
    "winLevel": 3
+  },
+  {
+   "index": 16,
+   "type": "updateFreeSpin",
+   "amount": 3,
+   "total": 10
   },
   {
    "index": 17,
@@ -541,12 +544,6 @@
   },
   {
    "index": 18,
-   "type": "updateFreeSpin",
-   "amount": 4,
-   "total": 10
-  },
-  {
-   "index": 19,
    "type": "reveal",
    "board": [
     [
@@ -654,10 +651,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 20,
+   "index": 19,
    "type": "douse",
    "sprays": [
     {
@@ -691,7 +689,7 @@
    "spinsLeft": 7
   },
   {
-   "index": 21,
+   "index": 20,
    "type": "winInfo",
    "totalWin": 540,
    "wins": [
@@ -832,10 +830,16 @@
    ]
   },
   {
-   "index": 22,
+   "index": 21,
    "type": "setWin",
    "amount": 540,
    "winLevel": 5
+  },
+  {
+   "index": 22,
+   "type": "updateFreeSpin",
+   "amount": 4,
+   "total": 11
   },
   {
    "index": 23,
@@ -844,12 +848,6 @@
   },
   {
    "index": 24,
-   "type": "updateFreeSpin",
-   "amount": 5,
-   "total": 11
-  },
-  {
-   "index": 25,
    "type": "reveal",
    "board": [
     [
@@ -954,10 +952,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 26,
+   "index": 25,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -966,18 +965,18 @@
    "spinsLeft": 6
   },
   {
+   "index": 26,
+   "type": "updateFreeSpin",
+   "amount": 5,
+   "total": 11
+  },
+  {
    "index": 27,
    "type": "setTotalWin",
    "amount": 710
   },
   {
    "index": 28,
-   "type": "updateFreeSpin",
-   "amount": 6,
-   "total": 11
-  },
-  {
-   "index": 29,
    "type": "reveal",
    "board": [
     [
@@ -1082,10 +1081,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 30,
+   "index": 29,
    "type": "douse",
    "sprays": [
     {
@@ -1104,18 +1104,18 @@
    "spinsLeft": 6
   },
   {
+   "index": 30,
+   "type": "updateFreeSpin",
+   "amount": 6,
+   "total": 12
+  },
+  {
    "index": 31,
    "type": "setTotalWin",
    "amount": 710
   },
   {
    "index": 32,
-   "type": "updateFreeSpin",
-   "amount": 7,
-   "total": 12
-  },
-  {
-   "index": 33,
    "type": "reveal",
    "board": [
     [
@@ -1222,10 +1222,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 34,
+   "index": 33,
    "type": "douse",
    "sprays": [
     {
@@ -1244,7 +1245,7 @@
    "spinsLeft": 6
   },
   {
-   "index": 35,
+   "index": 34,
    "type": "winInfo",
    "totalWin": 600,
    "wins": [
@@ -1459,10 +1460,16 @@
    ]
   },
   {
-   "index": 36,
+   "index": 35,
    "type": "setWin",
    "amount": 600,
    "winLevel": 5
+  },
+  {
+   "index": 36,
+   "type": "updateFreeSpin",
+   "amount": 7,
+   "total": 13
   },
   {
    "index": 37,
@@ -1471,12 +1478,6 @@
   },
   {
    "index": 38,
-   "type": "updateFreeSpin",
-   "amount": 8,
-   "total": 13
-  },
-  {
-   "index": 39,
    "type": "reveal",
    "board": [
     [
@@ -1583,10 +1584,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 40,
+   "index": 39,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -1595,18 +1597,18 @@
    "spinsLeft": 5
   },
   {
+   "index": 40,
+   "type": "updateFreeSpin",
+   "amount": 8,
+   "total": 13
+  },
+  {
    "index": 41,
    "type": "setTotalWin",
    "amount": 1310
   },
   {
    "index": 42,
-   "type": "updateFreeSpin",
-   "amount": 9,
-   "total": 13
-  },
-  {
-   "index": 43,
    "type": "reveal",
    "board": [
     [
@@ -1709,10 +1711,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 44,
+   "index": 43,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -1721,18 +1724,18 @@
    "spinsLeft": 4
   },
   {
+   "index": 44,
+   "type": "updateFreeSpin",
+   "amount": 9,
+   "total": 13
+  },
+  {
    "index": 45,
    "type": "setTotalWin",
    "amount": 1310
   },
   {
    "index": 46,
-   "type": "updateFreeSpin",
-   "amount": 10,
-   "total": 13
-  },
-  {
-   "index": 47,
    "type": "reveal",
    "board": [
     [
@@ -1835,10 +1838,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 48,
+   "index": 47,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -1847,18 +1851,18 @@
    "spinsLeft": 3
   },
   {
+   "index": 48,
+   "type": "updateFreeSpin",
+   "amount": 10,
+   "total": 13
+  },
+  {
    "index": 49,
    "type": "setTotalWin",
    "amount": 1310
   },
   {
    "index": 50,
-   "type": "updateFreeSpin",
-   "amount": 11,
-   "total": 13
-  },
-  {
-   "index": 51,
    "type": "reveal",
    "board": [
     [
@@ -1962,10 +1966,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 52,
+   "index": 51,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -1974,18 +1979,18 @@
    "spinsLeft": 2
   },
   {
+   "index": 52,
+   "type": "updateFreeSpin",
+   "amount": 11,
+   "total": 13
+  },
+  {
    "index": 53,
    "type": "setTotalWin",
    "amount": 1310
   },
   {
    "index": 54,
-   "type": "updateFreeSpin",
-   "amount": 12,
-   "total": 13
-  },
-  {
-   "index": 55,
    "type": "reveal",
    "board": [
     [
@@ -2090,10 +2095,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 56,
+   "index": 55,
    "type": "douse",
    "sprays": [],
    "rescues": [],
@@ -2102,18 +2108,18 @@
    "spinsLeft": 1
   },
   {
+   "index": 56,
+   "type": "updateFreeSpin",
+   "amount": 12,
+   "total": 13
+  },
+  {
    "index": 57,
    "type": "setTotalWin",
    "amount": 1310
   },
   {
    "index": 58,
-   "type": "updateFreeSpin",
-   "amount": 13,
-   "total": 13
-  },
-  {
-   "index": 59,
    "type": "reveal",
    "board": [
     [
@@ -2219,10 +2225,11 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 60,
+   "index": 59,
    "type": "douse",
    "sprays": [
     {
@@ -2246,7 +2253,7 @@
    "spinsLeft": 1
   },
   {
-   "index": 61,
+   "index": 60,
    "type": "winInfo",
    "totalWin": 1000,
    "wins": [
@@ -2305,10 +2312,16 @@
    ]
   },
   {
-   "index": 62,
+   "index": 61,
    "type": "setWin",
    "amount": 1000,
    "winLevel": 5
+  },
+  {
+   "index": 62,
+   "type": "updateFreeSpin",
+   "amount": 13,
+   "total": 14
   },
   {
    "index": 63,
@@ -2317,12 +2330,6 @@
   },
   {
    "index": 64,
-   "type": "updateFreeSpin",
-   "amount": 14,
-   "total": 14
-  },
-  {
-   "index": 65,
    "type": "reveal",
    "board": [
     [
@@ -2427,16 +2434,23 @@
     0,
     0,
     0
-   ]
+   ],
+   "reelSet": "FR0"
   },
   {
-   "index": 66,
+   "index": 65,
    "type": "douse",
    "sprays": [],
    "rescues": [],
    "multiplier": 5,
    "spinsAdded": 0,
    "spinsLeft": 0
+  },
+  {
+   "index": 66,
+   "type": "updateFreeSpin",
+   "amount": 14,
+   "total": 14
   },
   {
    "index": 67,

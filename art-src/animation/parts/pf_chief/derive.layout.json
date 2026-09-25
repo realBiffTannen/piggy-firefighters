@@ -1,0 +1,29 @@
+{
+ "rig": "pf_chief",
+ "note": "Parameters read BY EYE from the registered body (colour bands per row) on 2026-09-25; derive_r2.py applies them.",
+ "split_body": {
+  "lower_from": 800,
+  "belt_band": [
+   790,
+   900
+  ],
+  "coat": true,
+  "hem_ink_px": 12,
+  "tail_ink_px": 20,
+  "leg_extend_px": 140,
+  "why": "the belt's grey rows start at y 797-845 and end by 899 (measured grey-row profile); everything above y 800 is torso; the coat hem outline (within 12 px of red) is drawn over the trousers and stays with the coat; legs are the navy/boot regions below"
+ },
+ "helmet_front": {
+  "zone_px": 40,
+  "palette_margin": 15,
+  "ink_px": 10,
+  "min_island_px": 150,
+  "min_head_area_px": 400,
+  "fill_reach_px": 30,
+  "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole"
+ },
+ "raised_arms": {
+  "margin_px": 4,
+  "why": "r1 raised arms touched the canvas edge (86 rows at x 0, 15 at x 1023): each raised arm is rotated about its recorded shoulder pivot by the smallest angle that keeps 4 px of margin"
+ }
+}

@@ -2,7 +2,7 @@
 """PIGGY FIREFIGHTERS — hand-authored DEV fixture books for the mock RGS (server/fixtures/).
 
 These are NOT math books. They are small, deterministic, HONEST books written by the frontend lane so every
-presentation path can be exercised before the math lane publishes (docs/GAME_CONTRACT.md v1.1 §8 shapes):
+presentation path can be exercised before the math lane publishes (docs/GAME_CONTRACT.md v1.2.2 §8 shapes; event order, anticipation and winLevel as the frozen math's game_events.py / game_executables.py):
 
   * every line win is EVALUATED from the board with the contract's rules (§3: 20 lines, left to right, W substitutes
     and pays as H1 on its own, highest win per line) — never typed;
@@ -20,7 +20,8 @@ import random
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 OUT = os.path.join(ROOT, 'server', 'fixtures')
 CAP = 15000
-COSTS = {'base': 1.0, 'ante': 1.5, 'backdraft_spins': 25.0, 'alarm_call': 40.0, 'rescue': 60.0, 'inferno': 300.0}
+# the FROZEN math's mode costs (math-freeze-v1, math/games/piggy_firefighters/game_config.py MODE_COSTS; contract §2)
+COSTS = {'base': 1.0, 'ante': 1.5, 'alarm_call': 12.0, 'rescue': 18.0, 'backdraft_spins': 50.0, 'inferno': 90.0}
 
 PAYLINES = [
     [1, 1, 1, 1, 1], [0, 0, 0, 0, 0], [2, 2, 2, 2, 2], [0, 1, 2, 1, 0], [2, 1, 0, 1, 2],
@@ -122,10 +123,14 @@ class Book:
     def add(self, type_, **payload):
         self.events.append({'index': len(self.events), 'type': type_, **payload})
 
-    def reveal(self, board, pads, game_type='basegame', anticipation=None):
+    def reveal(self, board, pads, game_type='basegame', anticipation=None, reel_set=None):
         padded = [[sym(pads[r][0])] + [sym(s) for s in board[r]] + [sym(pads[r][1])] for r in range(5)]
+        if reel_set is None:
+            reel_set = {'ante': 'BRA', 'backdraft_spins': 'BRB'}.get(self.mode, 'BR0') if game_type == 'basegame' or self.mode == 'backdraft_spins' else 'FR0'
+        # anticipation: the math's binary array (game_events.py reveal) — computed from the board unless given
         self.add('reveal', board=padded, paddingPositions=[random.randint(0, 80) for _ in range(5)], gameType=game_type,
-                 anticipation=anticipation or [0, 0, 0, 0, 0])
+                 anticipation=anticipation if anticipation is not None else (anticipation_for(board) if game_type == 'basegame' else [0] * 5),
+                 reelSet=reel_set)
 
     def headroom(self):
         return max(0.0, CAP - self.total)
@@ -152,7 +157,8 @@ class Book:
             self.capped = True
             self.add('wincap', amount=CAP * 100)
         if spin > 0:
-            self.add('setWin', amount=x100(spin), winLevel=std_level(raw))
+            # like the math (game_events.py): the level of the CREDITED (capped) amount, never of the raw win
+            self.add('setWin', amount=x100(spin), winLevel=std_level(spin))
         self.total += spin
         if free:
             self.free_wins += spin
@@ -180,11 +186,12 @@ def pads_for(rng, wilds=False):
 
 
 def anticipation_for(board):
-    out, count, k = [0] * 5, 0, 0
+    """The math's binary anticipation (math/games/piggy_firefighters/game_events.py reveal): reel r is held when two or
+    more alarms already show on the reels before it."""
+    out, count = [0] * 5, 0
     for r in range(5):
         if count >= 2:
-            k += 1
-            out[r] = k
+            out[r] = 1
         count += sum(1 for s in board[r] if s in SCATTERS)
     return out
 
@@ -236,8 +243,8 @@ def play_bonus(book, bonus, spins, boards):
     while played < total_spins and not book.capped:
         board = next(it)
         played += 1
-        book.add('updateFreeSpin', amount=played, total=total_spins)
-        book.reveal(board, pads_for(random.Random(played * 7), wilds=True), game_type='freegame')
+        book.reveal(board, pads_for(random.Random(played * 7), wilds=True), game_type='freegame',
+                    reel_set='FRI' if bonus == 'inferno' else 'FR0')
         sprays, rescues = [], []
         prize_x = 0.0
         for r in range(5):
@@ -266,6 +273,8 @@ def play_bonus(book, bonus, spins, boards):
             fire = [start] * 5
             book.add('buildingCleared', building=buildings, spinsAdded=5, spinsLeft=total_spins - played)
         book.line_wins(board, mult, extra=prize_x, free=True)
+        # math order (game_executables.py): ... setWin -> updateFreeSpin {amount: played, total: played + left} -> setTotalWin
+        book.add('updateFreeSpin', amount=played, total=total_spins)
         book.set_total()
     book.add('rescueEnd', amount=x100(min(book.free_wins, CAP)), multiplier=mult, rescued=rescued_total, buildings=buildings)
     fs = min(book.free_wins, CAP - min(book.base_wins, CAP))
@@ -373,6 +382,16 @@ def bought_bonus(mode, bonus, source, pred, w_prob, description, seed0=300, alar
     return b.final()
 
 
+def ante_win():
+    b = Book('ante', 'basegame', 'ALARM BOOST spin (reel set BRA): one line win that returns less than the 1.5x stake (tier 0: no celebration)')
+    board = search(lambda bd: len(evaluate(bd)[1]) == 1 and alarm_count(bd) == 1 and 0.5 <= evaluate(bd)[0] <= 1.5,
+                   lambda rng: base_board(rng, 0.06, 0.03), 41)
+    b.reveal(board, pads_for(random.Random(4)))
+    b.line_wins(board)
+    b.set_total()
+    return b.final()
+
+
 def alarm_call_false():
     b = Book('alarm_call', 'falseAlarm', 'Alarm Call that turns out a False Alarm: nothing is awarded')
     b.add('alarmCall', outcome='falseAlarm')
@@ -424,6 +443,7 @@ FIXTURES = [
     ('base_nowin', base_nowin),
     ('base_win', base_win),
     ('base_backdraft_win', base_backdraft_win),
+    ('ante_win', ante_win),
     ('base_trigger_rescue', lambda: natural_bonus('base_trigger_rescue', False,
                                                   lambda s, bk: s['rescued'] == 1 and sum(1 for e in bk.events if e['type'] == 'douse' and e['sprays']) >= 4 and s['spins'] == 11,
                                                   0.07, 'Natural trigger: 3 ALARM -> Rescue Spins, 10 spins, several douses, one rescue (+1x, +1 spin)')),
@@ -456,7 +476,7 @@ def main():
         random.seed(hash(name) & 0)  # paddingPositions: deterministic
         random.seed(sum(map(ord, name)))
         book = fn()
-        mode = book.pop('_mode', None) or next(m for m in COSTS if m == {'base_nowin': 'base', 'base_win': 'base', 'base_backdraft_win': 'base', 'base_trigger_rescue': 'base', 'base_trigger_inferno': 'base', 'max_win': 'base', 'rescue_buy': 'rescue', 'inferno_buy': 'inferno', 'alarm_call_rescue': 'alarm_call', 'alarm_call_false': 'alarm_call', 'backdraft_spins': 'backdraft_spins'}[name])
+        mode = book.pop('_mode', None) or next(m for m in COSTS if m == {'base_nowin': 'base', 'base_win': 'base', 'base_backdraft_win': 'base', 'ante_win': 'ante', 'base_trigger_rescue': 'base', 'base_trigger_inferno': 'base', 'max_win': 'base', 'rescue_buy': 'rescue', 'inferno_buy': 'inferno', 'alarm_call_rescue': 'alarm_call', 'alarm_call_false': 'alarm_call', 'backdraft_spins': 'backdraft_spins'}[name])
         with open(os.path.join(OUT, f'{name}.json'), 'w') as f:
             json.dump(book, f, indent=1)
         desc = next(d for n, d in DESCRIPTIONS if n == name)
@@ -473,6 +493,7 @@ DESCRIPTIONS = [
     ('base_nowin', 'Base spin: no line win, one alarm, no Backdraft'),
     ('base_win', 'Base spin: exactly two line wins (sequential line presentation, then both together)'),
     ('base_backdraft_win', 'Base spin with a Backdraft: cells ignite into Blaze Wilds; the line wins are counted on the post-Backdraft board and use them'),
+    ('ante_win', 'ALARM BOOST spin (reel set BRA): one line win that returns less than the 1.5x stake (tier 0: no celebration)'),
     ('base_trigger_rescue', 'Natural trigger: 3 ALARM -> Rescue Spins, 10 spins, several douses, one rescue (+1x, +1 spin)'),
     ('base_trigger_inferno', 'Natural trigger with a GOLDEN ALARM -> Inferno Rescue: rescues carry instant prizes, +2x each'),
     ('rescue_buy', 'Bought Rescue Spins: rescues, a building cleared (+5 spins), multiplier kept'),

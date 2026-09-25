@@ -24,4 +24,14 @@ viteConfig.build = {
 	assetsInlineLimit: (filePath) => (/\.(ttf|otf|woff2?)$/i.test(filePath) ? false : undefined),
 };
 
+// A production build (tools/build_dist.sh) rewrites build/ and .svelte-kit/generated in this directory; a running
+// dev server must not full-reload mid-round because of it (a smoke run lost its round that way).
+viteConfig.server = {
+	...(viteConfig.server ?? {}),
+	watch: {
+		...(viteConfig.server?.watch ?? {}),
+		ignored: [...[viteConfig.server?.watch?.ignored ?? []].flat(), '**/build/**', '**/.svelte-kit/output/**'],
+	},
+};
+
 export default viteConfig;

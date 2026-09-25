@@ -47,7 +47,8 @@
         0,
         398
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_closed",
@@ -55,7 +56,8 @@
         398,
         765
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_happy",
@@ -63,7 +65,8 @@
         765,
         1129
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_sad",
@@ -71,7 +74,8 @@
         1129,
         1536
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       }
      ]
     },
@@ -87,7 +91,8 @@
         0,
         391
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_alert",
@@ -95,7 +100,8 @@
         391,
         775
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_sad",
@@ -103,7 +109,8 @@
         775,
         1131
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_excited",
@@ -111,7 +118,8 @@
         1131,
         1536
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       }
      ]
     },
@@ -127,7 +135,8 @@
         0,
         395
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_bark",
@@ -135,7 +144,8 @@
         395,
         770
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_pant",
@@ -143,7 +153,8 @@
         770,
         1160
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_sad",
@@ -151,11 +162,26 @@
         1160,
         1536
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "eyes": {
+     "scale_to_canvas": 0.9,
+     "how": "fit of eyes_open's near eye on the master (overlay reviewed)"
+    },
+    "brows": {
+     "scale_to_canvas": 0.87,
+     "how": "width of the master's near brow vs brows_neutral's near brow"
+    },
+    "mouth": {
+     "scale_to_canvas": 0.85,
+     "how": "BY EYE: mouth_closed over the master muzzle at 0.78/0.85/0.92"
+    }
+   }
   },
   "parts_sheet": {
    "file": "parts_sheet.png",
@@ -188,7 +214,8 @@
         0,
         536
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "parts"
       },
       {
        "label": "ear_right",
@@ -196,7 +223,8 @@
         536,
         1061
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "parts"
       },
       {
        "label": "tail",
@@ -204,7 +232,8 @@
         1061,
         1536
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "parts"
       }
      ]
     },
@@ -220,7 +249,8 @@
         0,
         478
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "parts"
       },
       {
        "label": "head_no_jaw",
@@ -228,7 +258,8 @@
         478,
         1178
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "parts"
       },
       {
        "label": "tongue",
@@ -236,11 +267,19 @@
         1178,
         1536
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "parts"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "parts": {
+     "scale_to_canvas": 1.19,
+     "how": "fit of head_no_jaw over the master head (1.187, overlay reviewed: ears, eyes and nose coincide)"
+    }
+   }
   }
- }
+ },
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
 }

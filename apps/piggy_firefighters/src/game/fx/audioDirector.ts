@@ -1,17 +1,24 @@
 /**
  * PIGGY FIREFIGHTERS — feature-scene AUDIO seam.
  *
- * The rescue director, the bay-door shutter and the feature cards call ONLY this object for sound. Every method
- * resolves to the first cue id that exists in the manifest (a dedicated Firefighters cue first, then the closest
- * existing sound), so a seam never throws and never goes silent just because the audio lane has not authored a cue
- * yet. The audio lane owns the cue list (docs/AUDIO_DESIGN_NOTES.md, game/audio/cueManifest.ts); ids that do not
- * exist are safe no-ops. If audio never unlocked, every call is a no-op.
+ * The rescue director, the bay-door shutter and the feature cards call ONLY this object for sound. Every id below is a
+ * delivered cue of the audio lane (docs/AUDIO_MAP.md, game/audio/cueManifest.ts; qa/gate/check_cue_ids.mjs checks
+ * that every literal id exists). `play` still resolves the first id that exists, so a seam never throws. If audio
+ * never unlocked, every call is a no-op. Celebration cues obey the contract §8 tier: `total(0)` plays nothing.
  */
 import { audioManager, presentationDirector } from '../audio';
 import { CUES } from '../audio/cueManifest';
 import type { BonusKind } from '../typesBookEvent';
 
 const firstCue = (...ids: string[]): string | null => ids.find((id) => id in CUES) ?? null;
+/** The `_turbo` variant while a turbo speed is on, when the audio lane shipped one (docs/AUDIO_MAP.md). */
+const turbo = (id: string): string => {
+	try {
+		return audioManager.turboLevel >= 1 && `${id}_turbo` in CUES ? `${id}_turbo` : id;
+	} catch {
+		return id;
+	}
+};
 const play = (opts: { family?: string; coalesceMs?: number } | undefined, ...ids: string[]) => {
 	try {
 		const id = firstCue(...ids);
@@ -50,8 +57,11 @@ export type AudioDirector = {
 	alarmRing: () => void;
 	/** Alarm Call: the card turns to its outcome. */
 	alarmReveal: (outcome: string) => void;
-	/** Final feature total, scaled by winLevel (`win_max` belongs to the cap only). */
-	total: (winLevel: number) => void;
+	/** Final feature total, sized by the round's contract §8 tier (0 = W <= S: NO stinger; `win_max` is the cap's). */
+	total: (tier: number, bonus?: BonusKind | 'backdraftSpins') => void;
+	/** Backdraft Spins bookends (the header plate / the end plate). */
+	backdraftSpinsStart: () => void;
+	backdraftSpinsEnd: () => void;
 	/** Feature-entry blast reveal (only with the optional `fx_transition` rig): vacuum, impact, reveal. */
 	blastStart?: () => void;
 	blastImpact?: () => void;
@@ -65,9 +75,9 @@ export const audioDirector: AudioDirector = {
 		} catch {
 			/* no audio */
 		}
-		play(undefined, 'shutter_slam', 'bay_door_slam');
+		play(undefined, turbo('shutter_slam'));
 	},
-	shutterHaul: (n) => play({ family: 'shutter', coalesceMs: 60 }, `shutter_haul_${n}`),
+	shutterHaul: (n) => play({ family: 'shutter', coalesceMs: 60 }, turbo(`shutter_haul_${Math.min(3, Math.max(1, n))}`)),
 	bonusIntro: (bonus) => {
 		try {
 			void presentationDirector.bonusIntro(bonus);
@@ -76,29 +86,62 @@ export const audioDirector: AudioDirector = {
 		}
 	},
 	bonusOutro: () => {
-		play(undefined, 'bonus_exit');
+		play(undefined, turbo('siren_pass'));
 		try {
 			presentationDirector.returnToBase();
 		} catch {
 			/* no audio */
 		}
 	},
-	backdraft: () => play({ family: 'backdraft', coalesceMs: 400 }, 'backdraft_whoosh', 'blast_impact', 'trigger_fanfare'),
-	blazeIgnite: (n) => play({ family: 'blaze', coalesceMs: 60 }, `blaze_ignite_${Math.min(5, n + 1)}`, 'blaze_ignite', 'wild_land'),
-	douse: () => play({ family: 'douse', coalesceMs: 80 }, 'hose_spray', 'douse'),
-	rescue: (multiplier) => play({ family: 'rescue', coalesceMs: 120 }, `rescue_tada_${Math.min(8, Math.max(1, multiplier))}`, 'rescue_tada', 'extra_spin'),
-	prize: () => play({ family: 'prize', coalesceMs: 60 }, 'rescue_prize', 'prize_small'),
-	extraSpin: () => play(undefined, 'extra_spin'),
-	buildingCleared: () => play(undefined, 'building_cleared', 'siren', 'total_win_mid'),
-	lastSpin: () => play(undefined, 'last_spin'),
-	alarmRing: () => play(undefined, 'alarm_ring', 'antic_riser'),
-	alarmReveal: (outcome) => play(undefined, outcome === 'falseAlarm' ? 'false_alarm' : 'alarm_award', outcome === 'falseAlarm' ? 'tension_miss' : 'trigger_fanfare'),
-	blastStart: () => play({ family: 'blast', coalesceMs: 400 }, 'blast_vacuum'),
-	blastImpact: () => play({ family: 'blast', coalesceMs: 120 }, 'blast_impact', 'shutter_slam'),
-	blastReveal: () => play({ family: 'blastreveal', coalesceMs: 400 }, 'blast_reveal'),
-	total: (winLevel) => {
-		const level = Math.round(winLevel);
-		const stinger = level >= 10 ? 'win_max' : level <= 1 ? 'total_win_small' : level === 2 ? 'total_win_mid' : 'total_win_big';
-		play(undefined, stinger);
+	backdraft: () => {
+		play({ family: 'backdraft', coalesceMs: 400 }, turbo('backdraft_whoosh'));
+		setTimeout(() => play({ family: 'backdraft2', coalesceMs: 400 }, turbo('backdraft_roar')), 120);
+		setTimeout(() => play({ family: 'backdraft3', coalesceMs: 400 }, turbo('backdraft_chord')), 320);
+	},
+	blazeIgnite: (n) => play({ family: 'blaze', coalesceMs: 60 }, n <= 0 ? 'blaze_ignite' : `blaze_ignite_${Math.min(5, n + 1)}`, 'blaze_ignite'),
+	douse: () => {
+		play({ family: 'douse', coalesceMs: 80 }, turbo('hose_start'));
+		setTimeout(() => play({ family: 'steam', coalesceMs: 120 }, turbo('steam')), 220);
+	},
+	rescue: (multiplier) => play({ family: 'rescue', coalesceMs: 120 }, turbo(`rescue_tada_${Math.min(8, Math.max(1, Math.round(multiplier)))}`)),
+	prize: () => play({ family: 'prize', coalesceMs: 60 }, turbo('prize_coins')),
+	extraSpin: () => play(undefined, turbo('spins_added')),
+	buildingCleared: () => {
+		play(undefined, turbo('building_cleared'));
+		setTimeout(() => play(undefined, turbo('siren_pass')), 500);
+	},
+	lastSpin: () => play(undefined, turbo('last_spin')),
+	alarmRing: () => play(undefined, turbo('alarm_call_ring')),
+	alarmReveal: (outcome) => {
+		play(undefined, turbo('alarm_card_flip'));
+		const id = outcome === 'falseAlarm' ? 'alarm_outcome_false' : outcome === 'inferno' ? 'alarm_outcome_inferno' : 'alarm_outcome_rescue';
+		setTimeout(() => play(undefined, turbo(id)), 160);
+	},
+	blastStart: () => play({ family: 'blast', coalesceMs: 400 }, turbo('backdraft_whoosh')),
+	blastImpact: () => play({ family: 'blast', coalesceMs: 120 }, turbo('shutter_slam')),
+	blastReveal: () => undefined,
+	backdraftSpinsStart: () => {
+		play(undefined, turbo('backdraft_spins_start'));
+		try {
+			audioManager.addLayer('backdraft_spins_layer');
+		} catch {
+			/* no audio */
+		}
+	},
+	backdraftSpinsEnd: () => {
+		try {
+			audioManager.removeLayer('backdraft_spins_layer');
+		} catch {
+			/* no audio */
+		}
+		play(undefined, turbo('backdraft_spins_end'));
+	},
+	total: (tier, bonus) => {
+		const t = Math.round(tier);
+		if (t <= 0) return; // contract §8: no celebration at or below the charged cost
+		if (t >= 6) return play(undefined, turbo('win_max'));
+		const size = t >= 4 ? 'big' : t >= 2 ? 'mid' : 'small';
+		if (bonus === 'rescue' || bonus === 'inferno') return play(undefined, turbo(`${bonus}_total_${size}`), turbo(`total_win_${size}`));
+		play(undefined, turbo(`total_win_${size}`));
 	},
 };

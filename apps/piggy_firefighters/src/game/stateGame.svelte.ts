@@ -15,17 +15,12 @@ import { anticipationCamera } from './reels/anticipationCamera.svelte';
 
 const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 	// Every landing drives the ONE Web Audio manager (game/audio). The scatter is the FIRE ALARM; the GOLDEN ALARM is
-	// an alarm in every way (contract §3) and owns a heavier gold landing. Three alarms trigger (contract §4).
-	if (rawSymbol.name === 'ALARM') {
+	// an alarm in every way (contract §3) and adds its gold glint. Three alarms trigger (contract §4): the trigger
+	// fanfare plays once per round (gameSound.triggerFanfare is idempotent per spin).
+	if (rawSymbol.name === 'ALARM' || rawSymbol.name === 'GALARM') {
 		stateGame.scatterCounter = stateGame.scatterCounter + 1;
-		gameSound.hatLand(stateGame.scatterCounter);
-		if (stateGame.scatterCounter === TRIGGER_ALARMS) gameSound.triggerFanfare();
-	}
-	if (rawSymbol.name === 'GALARM') {
-		stateGame.scatterCounter = stateGame.scatterCounter + 1;
-		gameSound.goldenHatLand();
-		// the rung rides the same lane, so a golden alarm sharing a reel with a plain one still climbs in order
-		gameSound.goldenHatRung(stateGame.scatterCounter);
+		if (rawSymbol.name === 'GALARM') gameSound.galarmLand(stateGame.scatterCounter);
+		else gameSound.alarmLand(stateGame.scatterCounter);
 		if (stateGame.scatterCounter === TRIGGER_ALARMS) gameSound.triggerFanfare();
 	}
 	// WILD (Chief Hamm with the WILD badge): a soft land accent.
@@ -37,20 +32,15 @@ const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 // TRUE SPINNING REELS (game/reels/spinReels.svelte.ts): each column is a continuous strip with baked
 // motion blur; the window is never empty. Speed tiers, slam-stop, anticipation and reduced motion all
 // live in the reel model; this file only wires the callbacks and their sounds.
-const PAYING_SYMBOLS = new Set(['H1', 'H2', 'H3', 'H4', 'L1', 'L2', 'L3', 'L4']);
 const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) =>
 	createSpinReel({
 		reelIndex,
 		initialSymbols: INITIAL_BOARD[reelIndex],
 		initialSymbolState: INITIAL_SYMBOL_STATE,
 		onReelStopping: () => {
-			// 5-rung reel-stop ladder: each reel stops on its own rising rung (reel 0 -> reel_stop_1 ...)
+			// 5-rung reel-stop ladder: each reel stops on its own rising rung (reel 0 -> reel_stop_1 ...); alarms and the
+			// WILD announce themselves on their own (onSymbolLand)
 			gameSound.reelStop(reelIndex);
-			// and a land knock when the reel sets paying symbols down (visible rows; alarms and the WILD
-			// announce themselves on their own)
-			const rows = board[reelIndex]?.reelState.symbols ?? [];
-			const shown = rows.slice(1, 1 + BOARD_DIMENSIONS.y).map((s) => s.rawSymbol.name);
-			if (shown.some((n) => PAYING_SYMBOLS.has(n))) gameSound.symbolLand(reelIndex);
 		},
 		onSymbolLand,
 	}),

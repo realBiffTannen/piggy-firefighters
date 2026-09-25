@@ -1,59 +1,58 @@
 {
-  "at": "2026-09-25T04:39:44.012Z",
+  "at": "2026-09-25T07:14:34.368Z",
   "browser": "chromium 141.0.7390.37",
   "game": "http://127.0.0.1:3003/",
   "rgs": "127.0.0.1:3036",
-  "note": "Merged from three passes on 2026-09-25 (full Chromium, SwiftShader GL, muted). run2 = all five fixtures (base_win lost its Space press to a first-load Vite reload; max_win beat the 420 s wait); run3 = max_win with a 900 s wait; run4 = base_win on its own session. Every kept result ended on its fixture's booked payout with 0 console errors. The smoke script now warms the dev server up first and uses one session per fixture.",
   "results": [
+    {
+      "fixture": "base_nowin",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 0,
+      "ms": 32931,
+      "errors": [],
+      "rungs": [],
+      "expected": 0
+    },
     {
       "fixture": "base_win",
       "passed": true,
       "console_errors": 0,
       "finalWin": 120,
-      "ms": 65164,
+      "ms": 69388,
       "errors": [],
-      "expected": 120,
-      "run": "run4"
+      "rungs": [],
+      "expected": 120
     },
     {
       "fixture": "base_backdraft_win",
       "passed": true,
       "console_errors": 0,
       "finalWin": 280,
-      "ms": 93202,
+      "ms": 128481,
       "errors": [],
-      "run": "run2",
+      "rungs": [],
       "expected": 280
     },
     {
-      "fixture": "base_trigger_rescue",
+      "fixture": "ante_win",
       "passed": true,
       "console_errors": 0,
-      "finalWin": 370,
-      "ms": 231286,
+      "finalWin": 60,
+      "ms": 64678,
       "errors": [],
-      "run": "run2",
-      "expected": 370
+      "rungs": [],
+      "expected": 60
     },
     {
       "fixture": "alarm_call_false",
       "passed": true,
       "console_errors": 0,
       "finalWin": 0,
-      "ms": 19213,
+      "ms": 23780,
       "errors": [],
-      "run": "run2",
+      "rungs": [],
       "expected": 0
-    },
-    {
-      "fixture": "max_win",
-      "passed": true,
-      "console_errors": 0,
-      "finalWin": 1500000,
-      "ms": 387340,
-      "errors": [],
-      "run": "run3",
-      "expected": 1500000
     }
   ]
 }

@@ -9,7 +9,7 @@
  *
  * BOOKS. `BOOKS_DIR` (env) points at a publish tree. Default: Codex's published
  * `math/publish` once it holds an `index.json` — every mode it lists is served,
- * so `golden_four` appears the moment Codex publishes it, with no edit here.
+ * so a newly published mode appears with no edit here.
  * The in-progress `math/games/piggy_firefighters/library/publish_files` is NEVER a default:
  * the repo rule is that nobody reads it while a generation runs (CLAUDE.md);
  * pass it explicitly as BOOKS_DIR when Codex says it is stable.
@@ -21,10 +21,11 @@
  * that mode). Outcomes are then fixture books, NOT weighted draws — say so in
  * any capture. `BOOKS_DIR=none` forces this mode.
  *
- * FIXTURES. `FIXTURES_DIR` (env) wins; default `server/fixtures` — the COPY/FE
- * lane's copy of Codex's 39 PRODUCTION fixtures (25,000x cap, nine modes incl.
- * golden_four; source math/games/piggy_firefighters/fixtures, 2026-09-23, names unchanged).
- * Falls back to math/games/piggy_firefighters/fixtures.
+ * FIXTURES. `FIXTURES_DIR` (env) wins; default `server/fixtures` — the frontend
+ * lane's DEV fixtures (tools/fixtures/make_fixtures.py; 15,000x cap, the six modes
+ * of docs/GAME_CONTRACT.md §2 at the frozen math's costs). `FIXTURES_DIR=server/fixtures_m1`
+ * serves the math lane's M1 books (real model simulations). Falls back to
+ * math/games/piggy_firefighters/fixtures.
  *
  * Wire facts that are easy to get wrong (kept faithful to the SDK schema):
  *   1. Amounts are MICRO-UNITS: 1_000_000 == 1.00 (constants-shared/bet.ts).
@@ -489,7 +490,8 @@ export async function startServer(port = Number(process.env.PORT || 3036)) {
 				const book = fx.book;
 				const payoutMultiplier = book.payoutMultiplier / 100;
 				const payout = Math.round(amount * payoutMultiplier);
-				const hasBonus = book.events.some((e) => ['buildStart', 'expandStart', 'buildOrBust'].includes(e.type)) ||
+				// mirrors apps/piggy_firefighters/src/game/utils.ts isFeatureRound (feature entry events OR multi-reveal)
+				const hasBonus = book.events.some((e) => ['freeSpinTrigger', 'rescueStart', 'alarmCall', 'backdraftSpinsStart'].includes(e.type)) ||
 					book.events.filter((e) => e.type === 'reveal').length > 1;
 				s.balance -= wager;
 				s.round = {

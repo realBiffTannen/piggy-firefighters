@@ -48,7 +48,8 @@
         0,
         393
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_closed",
@@ -56,7 +57,8 @@
         393,
         775
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_happy",
@@ -64,7 +66,8 @@
         775,
         1148
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       },
       {
        "label": "eyes_scared",
@@ -72,7 +75,8 @@
         1148,
         1536
        ],
-       "rule": "eyes"
+       "rule": "eyes",
+       "family": "eyes"
       }
      ]
     },
@@ -88,7 +92,8 @@
         0,
         400
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_relieved",
@@ -96,7 +101,8 @@
         400,
         780
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_worried",
@@ -104,7 +110,8 @@
         780,
         1144
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       },
       {
        "label": "brows_joyful",
@@ -112,7 +119,8 @@
         1144,
         1536
        ],
-       "rule": "brows"
+       "rule": "brows",
+       "family": "brows"
       }
      ]
     },
@@ -128,7 +136,8 @@
         0,
         401
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_call",
@@ -136,7 +145,8 @@
         401,
         744
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_cheer",
@@ -144,7 +154,8 @@
         744,
         1155
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_worried",
@@ -152,7 +163,8 @@
         1155,
         1536
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       }
      ]
     },
@@ -168,7 +180,8 @@
         0,
         397
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "ears"
       },
       {
        "label": "ear_right",
@@ -176,7 +189,8 @@
         397,
         799
        ],
-       "rule": "single"
+       "rule": "single",
+       "family": "ears"
       },
       {
        "label": "mouth_sigh",
@@ -184,7 +198,8 @@
         799,
         1177
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       },
       {
        "label": "mouth_o",
@@ -192,11 +207,30 @@
         1177,
         1536
        ],
-       "rule": "mouth"
+       "rule": "mouth",
+       "family": "mouth"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "eyes": {
+     "scale_to_canvas": 0.7,
+     "how": "fit of eyes_open's near eye on the master (overlay reviewed)"
+    },
+    "brows": {
+     "scale_to_canvas": 0.66,
+     "how": "width of the master's near brow vs brows_neutral's near brow (overlay reviewed)"
+    },
+    "mouth": {
+     "scale_to_canvas": 0.52,
+     "how": "BY EYE: mouth_closed over the master smile at 0.45/0.52/0.60"
+    },
+    "ears": {
+     "scale_to_canvas": 0.66,
+     "how": "BY EYE: ear_left over the master ear at 0.55/0.66"
+    }
+   }
   },
   "wave_arm": {
    "file": "wave_arm.png",
@@ -229,7 +263,8 @@
         0,
         468
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "arms"
       },
       {
        "label": "wave_arm_left",
@@ -237,7 +272,8 @@
         468,
         996
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "arms"
       },
       {
        "label": "wave_arm_right",
@@ -245,7 +281,8 @@
         996,
         1536
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "arms"
       }
      ]
     },
@@ -261,7 +298,8 @@
         0,
         531
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "hands"
       },
       {
        "label": "wave_hand_left",
@@ -269,7 +307,8 @@
         531,
         1016
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "hands"
       },
       {
        "label": "wave_hand_right",
@@ -277,11 +316,22 @@
         1016,
         1536
        ],
-       "rule": "whole"
+       "rule": "whole",
+       "family": "hands"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "arms": {
+     "scale_to_canvas": 0.896,
+     "how": "arm length (shoulder cap to fingertips) and area of arm_right vs wave_arm_up (approximate: poses differ)"
+    },
+    "hands": {
+     "scale_to_canvas": 0.62,
+     "how": "BY EYE: wave_hand_front over arm_right's hand at 0.55/0.62/0.70"
+    }
+   }
   },
   "slide_poses": {
    "file": "slide_poses.png",
@@ -313,7 +363,8 @@
         0,
         512
        ],
-       "rule": "figure"
+       "rule": "figure",
+       "family": "poses"
       },
       {
        "label": "pose_land",
@@ -321,7 +372,8 @@
         512,
         1024
        ],
-       "rule": "figure"
+       "rule": "figure",
+       "family": "poses"
       },
       {
        "label": "pose_cheer",
@@ -329,11 +381,19 @@
         1024,
         1536
        ],
-       "rule": "figure"
+       "rule": "figure",
+       "family": "poses"
       }
      ]
     }
-   ]
+   ],
+   "scales": {
+    "poses": {
+     "scale_to_canvas": 1.972,
+     "how": "largest shirt-cream region of the master vs pose_cheer (approximate; reference poses)"
+    }
+   }
   }
- }
+ },
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
 }

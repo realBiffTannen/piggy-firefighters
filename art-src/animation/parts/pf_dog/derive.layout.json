@@ -1,0 +1,30 @@
+{
+ "rig": "pf_dog",
+ "note": "Seeds placed BY EYE inside each leg's fur on the registered legs layer (2026-09-25).",
+ "dog_legs": {
+  "seeds": {
+   "leg_hind_right": [
+    110,
+    1230
+   ],
+   "leg_hind_left": [
+    380,
+    920
+   ],
+   "leg_front_right": [
+    540,
+    1200
+   ],
+   "leg_front_left": [
+    800,
+    1250
+   ]
+  },
+  "front_of": {
+   "leg_front_right": "leg_hind_left"
+  },
+  "outline_px": 14,
+  "outline_max_green": 14,
+  "why": "Ember faces screen-right: image-left legs are his RIGHT (near) side. Image order: near hind (x 43-345), far hind (326-557, partly behind the near front leg), near front (412-648, lowest sole), far front (662-971). The near front leg overlaps the far hind leg, so the watershed runs on the dark-red outline only (the black spots count as fur) and the near front leg keeps the shared outline."
+ }
+}

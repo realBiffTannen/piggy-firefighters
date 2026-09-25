@@ -3,6 +3,12 @@
 # route tree for the build so none of its code reaches the shipped bundle, then restored.
 set -u
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# One build at a time: the log, pid, staging dir and the held /rigs route are fixed paths, so a second concurrent
+# build (another lane, a reviewer) would overwrite them. Wait up to 15 minutes for the lock.
+mkdir -p "$REPO/qa/build"
+if command -v flock >/dev/null 2>&1 && [ -z "${PFF_BUILD_LOCKED:-}" ]; then
+  exec env PFF_BUILD_LOCKED=1 flock -w 900 "$REPO/qa/build/.lock" "$0" "$@"
+fi
 APP=$REPO/apps/piggy_firefighters
 LOG=$REPO/qa/build/build.log
 HOLD=$REPO/.rigs_route_hold

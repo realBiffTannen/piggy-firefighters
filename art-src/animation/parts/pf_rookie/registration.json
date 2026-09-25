@@ -1,5 +1,6 @@
 {
   "rig": "pf_rookie",
+  "version": "r2",
   "canvas": [
     1024,
     1536
@@ -17,7 +18,36 @@
         "coarse_score": 0.7736,
         "mode": "colour"
       },
-      "file": "art-src/animation/parts/pf_rookie/body_no_head_no_arms.png"
+      "file": "art-src/animation/parts/pf_rookie/body_no_head_no_arms.png",
+      "r2": "legs (and for the coat wearers the coat below the belt) removed: the legs are their own layers now, so nothing repeats",
+      "split_meta": {
+        "legs_components": 2,
+        "legs_split": "separate components",
+        "belt_top_y": [
+          730,
+          760
+        ],
+        "belt_bottom_y": [
+          783,
+          813
+        ],
+        "tail_px": 3684,
+        "legs_shift_y": 4,
+        "leg_right_extended_px": 16100,
+        "leg_left_extended_px": 15680
+      },
+      "params": {
+        "lower_from": 730,
+        "belt_band": [
+          720,
+          800
+        ],
+        "coat": true,
+        "hem_ink_px": 12,
+        "tail_ink_px": 20,
+        "leg_extend_px": 140,
+        "why": "the belt's grey rows run y 730-790 (measured grey-row profile)"
+      }
     },
     "head_no_helmet": {
       "raw": "art-src/generated/rig_pf_rookie/head_no_helmet.png",
@@ -34,13 +64,23 @@
     "head_blank": {
       "raw": "art-src/generated/rig_pf_rookie/head_blank.png",
       "fit": {
-        "s": 0.34476772123559374,
-        "tx": 366.4324709744948,
-        "ty": 259.3877513057813,
-        "score": 0.608,
-        "coarse_score": 0.6752,
-        "mode": "colour"
+        "s": 0.6564783647357312,
+        "tx": 197.17875020245188,
+        "ty": 15.436550572261908,
+        "score": 0.4994,
+        "coarse_score": 0.4974,
+        "mode": "colour fit against the registered head_no_helmet (r2 refit)",
+        "frame": "canvas",
+        "r1_fit": {
+          "s": 0.34476772123559374,
+          "tx": 366.4324709744948,
+          "ty": 259.3877513057813,
+          "score": 0.608,
+          "coarse_score": 0.6752,
+          "mode": "colour"
+        }
       },
+      "why": "r1 registered head_blank at s 0.345 onto the eye (visibly tiny, reviewed); r2 fits it to the registered head_no_helmet instead: s 0.656, overlay reviewed (cranium, snout and neck coincide)",
       "file": "art-src/animation/parts/pf_rookie/head_blank.png"
     },
     "helmet_only": {
@@ -71,35 +111,96 @@
         "arm_left": "art-src/animation/parts/pf_rookie/arm_left.png"
       }
     },
-    "legs": {
-      "raw": "art-src/generated/rig_pf_rookie/legs.png",
-      "fit": {
-        "s": 0.8679408661244746,
-        "tx": 65.62033787644907,
-        "ty": 270.93053836003844,
-        "score": 0.8011,
-        "coarse_score": 0.8711,
-        "mode": "colour"
-      },
-      "file": "art-src/animation/parts/pf_rookie/legs.png",
-      "split": {
-        "leg_right": "art-src/animation/parts/pf_rookie/leg_right.png",
-        "leg_left": "art-src/animation/parts/pf_rookie/leg_left.png"
+    "coat_tails": {
+      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "file": "art-src/animation/parts/pf_rookie/coat_tails.png",
+      "bbox": [
+        373,
+        759,
+        702,
+        954
+      ],
+      "size": [
+        330,
+        196
+      ],
+      "method": "the registered body's pixels from the belt's middle line down to the hem (the cut edge hides under the belt); the tail stays on the body",
+      "params": {
+        "lower_from": 730,
+        "belt_band": [
+          720,
+          800
+        ],
+        "coat": true,
+        "hem_ink_px": 12,
+        "tail_ink_px": 20,
+        "leg_extend_px": 140,
+        "why": "the belt's grey rows run y 730-790 (measured grey-row profile)"
       }
     },
-    "coat_tails": {
-      "raw": "art-src/generated/rig_pf_rookie/coat_tails.png",
-      "fit": {
-        "s": 1.0,
-        "tx": 0.0,
-        "ty": 14.0,
-        "mode": "raw scale kept, shifted 14 px so the red hem's lowest row matches the master's (colour/ink fits lock onto the chest bands)"
-      },
-      "file": "art-src/animation/parts/pf_rookie/coat_tails.png"
+    "legs": {
+      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "file": "art-src/animation/parts/pf_rookie/legs.png",
+      "bbox": [
+        185,
+        771,
+        842,
+        1440
+      ],
+      "size": [
+        658,
+        670
+      ],
+      "method": "leg_right + leg_left on one layer"
+    },
+    "leg_right": {
+      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "file": "art-src/animation/parts/pf_rookie/leg_right.png",
+      "bbox": [
+        185,
+        802,
+        530,
+        1440
+      ],
+      "size": [
+        346,
+        639
+      ],
+      "method": "the registered body's own leg pixels (navy/boot regions below the coat hem), moved 4 px so the soles sit on y 1440; the top is extended up to 140 px under the hem (hidden overlap for rotation)",
+      "soles_y": 1440
+    },
+    "leg_left": {
+      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "file": "art-src/animation/parts/pf_rookie/leg_left.png",
+      "bbox": [
+        530,
+        771,
+        842,
+        1439
+      ],
+      "size": [
+        313,
+        669
+      ],
+      "method": "the registered body's own leg pixels (navy/boot regions below the coat hem), moved 4 px so the soles sit on y 1440; the top is extended up to 140 px under the hem (hidden overlap for rotation)",
+      "soles_y": 1439
     },
     "helmet_front": {
-      "derived_from": "helmet_only",
-      "method": "inside the registered head (eroded 4 px) a helmet pixel is kept only where the master pixel matches it (RGB distance < 90); the largest component is kept",
+      "derived_from": "master_pf_rookie inside the registered helmet_only",
+      "method": "Layer-ready helmet taken from the MASTER's own pixels, so at rest it is the master and no seam can appear.",
+      "params": {
+        "zone_px": 40,
+        "palette_margin": 15,
+        "ink_px": 10,
+        "min_island_px": 150,
+        "min_head_area_px": 400,
+        "fill_reach_px": 30,
+        "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole"
+      },
+      "meta": {
+        "helmet_px": 73515,
+        "gap_fill_px": 1163
+      },
       "file": "art-src/animation/parts/pf_rookie/helmet_front.png"
     },
     "arms_raised": {
@@ -135,189 +236,127 @@
     }
   },
   "pieces": {
-    "hands_sheet": {
-      "sheet": "art-src/animation/parts/pf_rookie/hands_sheet.png",
-      "raw": "art-src/generated/rig_pf_rookie/hands_sheet.png",
-      "sheet_scale_to_canvas": 0.6346548918997281,
-      "scale_method": "sqrt(largest skin region of arm_right / of hand_r_open)",
-      "pieces": {
-        "hand_r_open": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_open.png",
-          "size": [
-            241,
-            323
-          ],
-          "sheet_origin": [
-            31,
-            150
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_r_grip": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_grip.png",
-          "size": [
-            236,
-            286
-          ],
-          "sheet_origin": [
-            312,
-            150
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_r_catch": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_catch.png",
-          "size": [
-            294,
-            273
-          ],
-          "sheet_origin": [
-            929,
-            168
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_r_pinch": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_pinch.png",
-          "size": [
-            259,
-            219
-          ],
-          "sheet_origin": [
-            1260,
-            178
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_r_point": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_point.png",
-          "size": [
-            327,
-            228
-          ],
-          "sheet_origin": [
-            573,
-            191
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_l_open": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_open.png",
-          "size": [
-            241,
-            317
-          ],
-          "sheet_origin": [
-            26,
-            567
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_l_grip": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_grip.png",
-          "size": [
-            237,
-            276
-          ],
-          "sheet_origin": [
-            321,
-            567
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_l_catch": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_catch.png",
-          "size": [
-            286,
-            290
-          ],
-          "sheet_origin": [
-            928,
-            571
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_l_pinch": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_pinch.png",
-          "size": [
-            260,
-            225
-          ],
-          "sheet_origin": [
-            1256,
-            585
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "hand_l_point": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_point.png",
-          "size": [
-            318,
-            222
-          ],
-          "sheet_origin": [
-            580,
-            608
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        }
-      },
-      "missing": []
-    },
     "face_sheet": {
       "sheet": "art-src/animation/parts/pf_rookie/face_sheet.png",
       "raw": "art-src/generated/rig_pf_rookie/face_sheet.png",
-      "sheet_scale_to_canvas": 0.6225401367695543,
-      "scale_method": "sqrt(largest white region of head_no_helmet / of eyes_open)",
+      "layout": "art-src/animation/parts/pf_rookie/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "eyes": {
+          "scale_to_canvas": 0.6,
+          "how": "fit of eyes_open's near eye on the master (overlay reviewed)"
+        },
+        "brows": {
+          "scale_to_canvas": 0.5,
+          "how": "width of the master's near brow vs brows_neutral's near brow"
+        },
+        "mouth": {
+          "scale_to_canvas": 0.32,
+          "how": "fit and width of mouth_closed on the master smile (0.30 / 0.34, overlay reviewed)"
+        },
+        "ears": {
+          "scale_to_canvas": 0.45,
+          "how": "fit of ear_left on the master ear (0.47, overlay reviewed; foreshortened)"
+        }
+      },
+      "components": 32,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
       "pieces": {
         "eyes_open": {
           "file": "art-src/animation/parts/pf_rookie/pieces/eyes_open.png",
           "size": [
-            282,
-            195
+            280,
+            153
           ],
           "sheet_origin": [
-            67,
-            57
+            69,
+            99
           ],
-          "components": 4,
-          "scale_to_canvas": 0.6225
-        },
-        "eyes_dart": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/eyes_dart.png",
-          "size": [
-            269,
-            182
+          "cell": [
+            0,
+            0,
+            390,
+            296
           ],
-          "sheet_origin": [
-            1209,
-            72
+          "grid": [
+            0,
+            0
           ],
-          "components": 4,
-          "scale_to_canvas": 0.6225
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [
+            {
+              "box": [
+                71,
+                72,
+                161,
+                135
+              ],
+              "area": 2042,
+              "why": "brow"
+            },
+            {
+              "box": [
+                260,
+                61,
+                328,
+                100
+              ],
+              "area": 1351,
+              "why": "brow"
+            }
+          ],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.6
         },
         "eyes_closed": {
           "file": "art-src/animation/parts/pf_rookie/pieces/eyes_closed.png",
           "size": [
-            294,
-            112
+            291,
+            46
           ],
           "sheet_origin": [
-            432,
-            101
+            433,
+            167
           ],
-          "components": 4,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            390,
+            0,
+            769,
+            296
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [
+            {
+              "box": [
+                436,
+                113,
+                535,
+                165
+              ],
+              "area": 2014,
+              "why": "brow"
+            },
+            {
+              "box": [
+                627,
+                104,
+                723,
+                157
+              ],
+              "area": 1917,
+              "why": "brow"
+            }
+          ],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.6
         },
         "eyes_happy": {
           "file": "art-src/animation/parts/pf_rookie/pieces/eyes_happy.png",
@@ -329,8 +368,146 @@
             811,
             145
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            769,
+            0,
+            1162,
+            296
+          ],
+          "grid": [
+            0,
+            2
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.6
+        },
+        "eyes_dart": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/eyes_dart.png",
+          "size": [
+            262,
+            136
+          ],
+          "sheet_origin": [
+            1216,
+            118
+          ],
+          "cell": [
+            1162,
+            0,
+            1536,
+            296
+          ],
+          "grid": [
+            0,
+            3
+          ],
+          "rule": "eyes",
+          "components_kept": 2,
+          "dropped": [
+            {
+              "box": [
+                1213,
+                88,
+                1301,
+                145
+              ],
+              "area": 1852,
+              "why": "brow"
+            },
+            {
+              "box": [
+                1395,
+                76,
+                1462,
+                116
+              ],
+              "area": 1273,
+              "why": "brow"
+            }
+          ],
+          "scale_family": "eyes",
+          "scale_to_canvas": 0.6
+        },
+        "brows_neutral": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/brows_neutral.png",
+          "size": [
+            303,
+            61
+          ],
+          "sheet_origin": [
+            51,
+            379
+          ],
+          "cell": [
+            0,
+            296,
+            393,
+            486
+          ],
+          "grid": [
+            1,
+            0
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.5
+        },
+        "brows_raised": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/brows_raised.png",
+          "size": [
+            296,
+            82
+          ],
+          "sheet_origin": [
+            433,
+            343
+          ],
+          "cell": [
+            393,
+            296,
+            776,
+            486
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.5
+        },
+        "brows_worried": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/brows_worried.png",
+          "size": [
+            273,
+            77
+          ],
+          "sheet_origin": [
+            823,
+            348
+          ],
+          "cell": [
+            776,
+            296,
+            1149,
+            486
+          ],
+          "grid": [
+            1,
+            2
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.5
         },
         "brows_embarrassed": {
           "file": "art-src/animation/parts/pf_rookie/pieces/brows_embarrassed.png",
@@ -342,151 +519,529 @@
             1203,
             338
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            1149,
+            296,
+            1536,
+            486
+          ],
+          "grid": [
+            1,
+            3
+          ],
+          "rule": "brows",
+          "components_kept": 2,
+          "dropped": [],
+          "scale_family": "brows",
+          "scale_to_canvas": 0.5
         },
-        "brows_raised": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/brows_raised.png",
+        "mouth_closed": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_closed.png",
           "size": [
-            295,
-            82
+            248,
+            72
           ],
           "sheet_origin": [
-            434,
-            343
+            85,
+            589
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6225
-        },
-        "brows_worried": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/brows_worried.png",
-          "size": [
-            272,
-            77
+          "cell": [
+            0,
+            486,
+            389,
+            718
           ],
-          "sheet_origin": [
-            824,
-            348
+          "grid": [
+            2,
+            0
           ],
-          "components": 2,
-          "scale_to_canvas": 0.6225
-        },
-        "brows_neutral": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/brows_neutral.png",
-          "size": [
-            302,
-            60
-          ],
-          "sheet_origin": [
-            51,
-            379
-          ],
-          "components": 2,
-          "scale_to_canvas": 0.6225
-        },
-        "mouth_smile": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_smile.png",
-          "size": [
-            277,
-            161
-          ],
-          "sheet_origin": [
-            822,
-            532
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.6225
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.32
         },
         "mouth_open": {
           "file": "art-src/animation/parts/pf_rookie/pieces/mouth_open.png",
           "size": [
-            264,
+            265,
             141
           ],
           "sheet_origin": [
-            446,
+            445,
             543
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            389,
+            486,
+            765,
+            718
+          ],
+          "grid": [
+            2,
+            1
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.32
+        },
+        "mouth_smile": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_smile.png",
+          "size": [
+            278,
+            162
+          ],
+          "sheet_origin": [
+            821,
+            532
+          ],
+          "cell": [
+            765,
+            486,
+            1166,
+            718
+          ],
+          "grid": [
+            2,
+            2
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.32
         },
         "mouth_oops": {
           "file": "art-src/animation/parts/pf_rookie/pieces/mouth_oops.png",
           "size": [
             222,
-            91
+            92
           ],
           "sheet_origin": [
             1233,
             575
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            1166,
+            486,
+            1536,
+            718
+          ],
+          "grid": [
+            2,
+            3
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.32
         },
-        "mouth_closed": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_closed.png",
+        "mouth_sad": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_sad.png",
           "size": [
-            247,
-            70
+            244,
+            76
           ],
           "sheet_origin": [
-            85,
-            590
+            88,
+            833
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            0,
+            718,
+            395,
+            1024
+          ],
+          "grid": [
+            3,
+            0
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.32
+        },
+        "mouth_shout": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_shout.png",
+          "size": [
+            198,
+            167
+          ],
+          "sheet_origin": [
+            477,
+            753
+          ],
+          "cell": [
+            395,
+            718,
+            763,
+            1024
+          ],
+          "grid": [
+            3,
+            1
+          ],
+          "rule": "mouth",
+          "components_kept": 1,
+          "dropped": [
+            {
+              "box": [
+                462,
+                887,
+                504,
+                928
+              ],
+              "area": 674,
+              "why": "rule mouth"
+            },
+            {
+              "box": [
+                650,
+                891,
+                690,
+                931
+              ],
+              "area": 628,
+              "why": "rule mouth"
+            }
+          ],
+          "scale_family": "mouth",
+          "scale_to_canvas": 0.32
         },
         "ear_left": {
           "file": "art-src/animation/parts/pf_rookie/pieces/ear_left.png",
           "size": [
-            234,
+            236,
             235
           ],
           "sheet_origin": [
-            833,
+            832,
             742
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            763,
+            718,
+            1152,
+            1024
+          ],
+          "grid": [
+            3,
+            2
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "ears",
+          "scale_to_canvas": 0.45
         },
         "ear_right": {
           "file": "art-src/animation/parts/pf_rookie/pieces/ear_right.png",
           "size": [
             230,
-            233
+            234
           ],
           "sheet_origin": [
             1237,
             742
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6225
-        },
-        "mouth_shout": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_shout.png",
+          "cell": [
+            1152,
+            718,
+            1536,
+            1024
+          ],
+          "grid": [
+            3,
+            3
+          ],
+          "rule": "single",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "ears",
+          "scale_to_canvas": 0.45
+        }
+      },
+      "missing": []
+    },
+    "hands_sheet": {
+      "sheet": "art-src/animation/parts/pf_rookie/hands_sheet.png",
+      "raw": "art-src/generated/rig_pf_rookie/hands_sheet.png",
+      "layout": "art-src/animation/parts/pf_rookie/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "hands": {
+          "scale_to_canvas": 0.45,
+          "how": "BY EYE: hand_r_open over arm_right's hand at 0.40/0.50/0.63"
+        }
+      },
+      "components": 10,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
+      "pieces": {
+        "hand_r_open": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_open.png",
           "size": [
-            236,
-            181
+            241,
+            324
           ],
           "sheet_origin": [
-            458,
-            754
+            31,
+            149
           ],
-          "components": 3,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            0,
+            0,
+            292,
+            519
+          ],
+          "grid": [
+            0,
+            0
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
         },
-        "mouth_sad": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_sad.png",
+        "hand_r_grip": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_grip.png",
           "size": [
-            243,
-            75
+            237,
+            287
           ],
           "sheet_origin": [
-            89,
-            833
+            312,
+            149
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6225
+          "cell": [
+            292,
+            0,
+            560,
+            519
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_r_point": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_point.png",
+          "size": [
+            329,
+            229
+          ],
+          "sheet_origin": [
+            572,
+            191
+          ],
+          "cell": [
+            560,
+            0,
+            915,
+            519
+          ],
+          "grid": [
+            0,
+            2
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_r_catch": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_catch.png",
+          "size": [
+            294,
+            274
+          ],
+          "sheet_origin": [
+            929,
+            168
+          ],
+          "cell": [
+            915,
+            0,
+            1241,
+            519
+          ],
+          "grid": [
+            0,
+            3
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_r_pinch": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_pinch.png",
+          "size": [
+            260,
+            219
+          ],
+          "sheet_origin": [
+            1259,
+            178
+          ],
+          "cell": [
+            1241,
+            0,
+            1536,
+            519
+          ],
+          "grid": [
+            0,
+            4
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_l_open": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_open.png",
+          "size": [
+            242,
+            318
+          ],
+          "sheet_origin": [
+            25,
+            566
+          ],
+          "cell": [
+            0,
+            519,
+            294,
+            1024
+          ],
+          "grid": [
+            1,
+            0
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_l_grip": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_grip.png",
+          "size": [
+            237,
+            276
+          ],
+          "sheet_origin": [
+            321,
+            567
+          ],
+          "cell": [
+            294,
+            519,
+            569,
+            1024
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_l_point": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_point.png",
+          "size": [
+            318,
+            222
+          ],
+          "sheet_origin": [
+            580,
+            608
+          ],
+          "cell": [
+            569,
+            519,
+            913,
+            1024
+          ],
+          "grid": [
+            1,
+            2
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_l_catch": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_catch.png",
+          "size": [
+            286,
+            290
+          ],
+          "sheet_origin": [
+            928,
+            571
+          ],
+          "cell": [
+            913,
+            519,
+            1235,
+            1024
+          ],
+          "grid": [
+            1,
+            3
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
+        },
+        "hand_l_pinch": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_pinch.png",
+          "size": [
+            260,
+            226
+          ],
+          "sheet_origin": [
+            1256,
+            584
+          ],
+          "cell": [
+            1235,
+            519,
+            1536,
+            1024
+          ],
+          "grid": [
+            1,
+            4
+          ],
+          "rule": "hand",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hands",
+          "scale_to_canvas": 0.45
         }
       },
       "missing": []
@@ -494,8 +1049,22 @@
     "props": {
       "sheet": "art-src/animation/parts/pf_rookie/props.png",
       "raw": "art-src/generated/rig_pf_rookie/props.png",
-      "sheet_scale_to_canvas": 0.6346548918997281,
-      "scale_method": "assumed equal to the hands_sheet scale (no counterpart on the master; hose ~ grip hole)",
+      "layout": "art-src/animation/parts/pf_rookie/sheets.layout.json",
+      "cutter": "fixed grid (cut_sheets.py): component centroid -> cell, then the cell's rule",
+      "sheet_scale_to_canvas": null,
+      "scales": {
+        "cards": {
+          "scale_to_canvas": 0.45,
+          "how": "no counterpart on the master: assumed equal to the hands (the pinch hand holds the card)"
+        },
+        "hose": {
+          "scale_to_canvas": 0.237,
+          "how": "so the hose (91 px thick on the sheet) passes the grip hole (48 px on the hands sheet x 0.45): 0.45 x 48 / 91"
+        }
+      },
+      "components": 4,
+      "specks_ignored": 0,
+      "outside_every_cell": [],
       "pieces": {
         "hose_flexible": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hose_flexible.png",
@@ -507,8 +1076,21 @@
             21,
             90
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
+          "cell": [
+            0,
+            0,
+            1536,
+            277
+          ],
+          "grid": [
+            0,
+            0
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hose",
+          "scale_to_canvas": 0.237
         },
         "hose_coil": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hose_coil.png",
@@ -520,37 +1102,100 @@
             234,
             303
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
-        },
-        "card_back": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/card_back.png",
-          "size": [
-            380,
-            259
+          "cell": [
+            0,
+            277,
+            1536,
+            647
           ],
-          "sheet_origin": [
-            883,
-            669
+          "grid": [
+            1,
+            0
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "hose",
+          "scale_to_canvas": 0.237
         },
         "card_blank": {
           "file": "art-src/animation/parts/pf_rookie/pieces/card_blank.png",
           "size": [
             381,
-            257
+            259
           ],
           "sheet_origin": [
             305,
-            670
+            669
           ],
-          "components": 1,
-          "scale_to_canvas": 0.6347
+          "cell": [
+            0,
+            647,
+            784,
+            1024
+          ],
+          "grid": [
+            2,
+            0
+          ],
+          "rule": "plate",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "cards",
+          "scale_to_canvas": 0.45
+        },
+        "card_back": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/card_back.png",
+          "size": [
+            381,
+            261
+          ],
+          "sheet_origin": [
+            883,
+            668
+          ],
+          "cell": [
+            784,
+            647,
+            1536,
+            1024
+          ],
+          "grid": [
+            2,
+            1
+          ],
+          "rule": "whole",
+          "components_kept": 1,
+          "dropped": [],
+          "scale_family": "cards",
+          "scale_to_canvas": 0.45
         }
       },
       "missing": []
+    }
+  },
+  "superseded": {
+    "legs": {
+      "raw": "art-src/generated/rig_pf_rookie/legs.png",
+      "fit": {
+        "s": 0.8679408661244746,
+        "tx": 65.62033787644907,
+        "ty": 270.93053836003844,
+        "score": 0.8011,
+        "coarse_score": 0.8711,
+        "mode": "colour"
+      },
+      "why": "r1 registered the separate legs edit undersized (soles on y 1395) and body_no_head_no_arms repeated the legs; r2 cuts the legs from the registered body"
+    },
+    "coat_tails": {
+      "raw": "art-src/generated/rig_pf_rookie/coat_tails.png",
+      "fit": {
+        "s": 1.0,
+        "tx": 0.0,
+        "ty": 14.0,
+        "mode": "raw scale kept, shifted 14 px so the red hem's lowest row matches the master's (colour/ink fits lock onto the chest bands)"
+      },
+      "why": "r1 kept the coat edit's raw scale (hem-aligned only), far narrower than the body's hem; r2 cuts the coat tails from the registered body"
     }
   },
   "master": {
@@ -570,9 +1215,14 @@
     "feet_measured": [
       512.0,
       1440
-    ]
+    ],
+    "note": "immutable input: verified identical to the integer shift of the raw master, not rewritten",
+    "crown_note": "the helmet crown sits on y 0: the raw master's top rows are y 40-42 with alpha <= 44/255 (faint antialias), so one faint row is lost; the sole line must stay on y 1440, so the master is not moved (moving it 12 px down would put the soles on y 1452); helmet_only keeps its crown from y 1"
   },
   "qa": {
-    "reassembly": "qa/art/parts/pf_rookie_reassembly.png"
+    "reassembly": "qa/art/parts/pf_rookie_reassembly.png",
+    "reassembly_iou": 0.9497,
+    "pieces_contact": "qa/art/parts/pf_rookie_pieces_r2.png",
+    "layers_contact": "qa/art/parts/pf_rookie_layers_r2.png"
   }
 }

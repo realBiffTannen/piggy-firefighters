@@ -1,15 +1,15 @@
 /**
  * PIGGY FIREFIGHTERS rules sheet content for the studio HUD.
  *
- * Mechanics: docs/GAME_CONTRACT.md §1-§8 (v1.0). Names: docs/PIGGY_FIREFIGHTERS_THEME.md §3-§5, through game/names.ts.
+ * Mechanics: docs/GAME_CONTRACT.md §1-§8 (v1.2.2, incl. Codex copy audit F wording). Names: docs/PIGGY_FIREFIGHTERS_THEME.md §3-§5, through game/names.ts.
  * Every figure is read from `config` (paytable, 20 lines, mode costs, max win), from CONTRACT below (rules the
  * contract fixes: spin counts, multiplier steps, prize values, the 3% Inferno share of Alarm Call), or is a frequency
  * in MEASURED below.
  *
- * MEASURED TODO (frontend port, 2026-09-25): no production books exist yet (math lane, contract §9 is empty), so every
- * MEASURED entry is a placeholder string that says so. When Codex publishes, replace each value with the published
- * figure and a `// measured:` provenance comment naming the report JSON field and its raw value (the LUCKY pattern),
- * and re-measure whenever the books are regenerated. The rules sheet must never print a guessed frequency.
+ * MEASURED (frontend port, 2026-09-25): no production books exist yet (math lane, contract §9 is empty), so every
+ * MEASURED frequency is `null` and the rules sheet OMITS the sentence or parenthesis that would print it. When Codex
+ * publishes, set each value to the published figure with a `// measured:` provenance comment naming the report JSON
+ * field and its raw value, and re-measure whenever the books are regenerated. Never print a guessed frequency.
  *
  * Wording comes in two variants. Social casinos may not show cash vocabulary, so each sentence is written once as
  * `std` and once as `social`; the social text never says bet, pay(s), payline, paytable, buy, purchase, cost, wager,
@@ -33,7 +33,7 @@ export const generalDisclaimer = {
 } as const;
 
 /**
- * RULES THE CONTRACT FIXES (docs/GAME_CONTRACT.md v1.0) — not frequencies, so not measured. Values marked *(tuned)*
+ * RULES THE CONTRACT FIXES (docs/GAME_CONTRACT.md v1.2.2) — not frequencies, so not measured. Values marked *(tuned)*
  * in the contract (Backdraft count weights, prize weights) only change their WEIGHTS, never these lists. If the
  * contract version changes, re-read §4-§7 and update here (one place; hud.config.ts copySubs reads it too).
  */
@@ -62,26 +62,32 @@ export const CONTRACT = {
 } as const;
 
 /**
- * FREQUENCIES — MEASURED TODO. Placeholder strings until the math lane publishes production books (contract §9);
- * each line names the figure it must become and where it will be measured. Do not ship these placeholders.
+ * FREQUENCIES — MEASURED from the published books (contract §9). `null` until the math lane publishes: a null figure
+ * is never printed (its sentence / parenthesis is left out of the sheet).
  */
-export const MEASURED = {
-	// TODO(measured): base Rescue Spins trigger, "1 in N" (contract target 1 in 150-180) — report field rescue_1_in
-	rescueBase: 'MEASURED TODO',
-	// TODO(measured): ante Rescue Spins trigger (exactly 2x base) — report field rescue_1_in (ante)
-	rescueAnte: 'MEASURED TODO',
-	// TODO(measured): base Inferno Rescue trigger (target 1 in 1,800-2,500) — report field inferno_1_in
-	infernoBase: 'MEASURED TODO',
-	// TODO(measured): ante Inferno Rescue trigger (exactly 2x base) — report field inferno_1_in (ante)
-	infernoAnte: 'MEASURED TODO',
-	// TODO(measured): Backdraft rate in base / ante (target 1 in 35-50) — report field backdraft_1_in
-	backdraftBase: 'MEASURED TODO',
-	// TODO(measured): Alarm Call Rescue Spins share (solved, ~50%) and False Alarm share — report outcome_share
-	alarmCallRescue: 'MEASURED TODO',
-	alarmCallFalse: 'MEASURED TODO',
+export const MEASURED: Record<string, string | null> = {
+	// base Rescue Spins trigger, "1 in N" (contract target 1 in 150-180) — report field rescue_1_in
+	rescueBase: null,
+	// ante Rescue Spins trigger (exactly 2x base) — report field rescue_1_in (ante)
+	rescueAnte: null,
+	// base Inferno Rescue trigger (target 1 in 1,800-2,500) — report field inferno_1_in
+	infernoBase: null,
+	// ante Inferno Rescue trigger (exactly 2x base) — report field inferno_1_in (ante)
+	infernoAnte: null,
+	// Backdraft rate in base / ante (target 1 in 35-50) — report field backdraft_1_in
+	backdraftBase: null,
+	// Alarm Call Rescue Spins share (solved, ~50%) and False Alarm share — report outcome_share
+	alarmCallRescue: null,
+	alarmCallFalse: null,
 	// contract §2: 96.7% in every mode; print the LUT-exact figure to 2 dp once measured (target band 0.9665-0.9670)
 	rtp: '96.70%',
-} as const;
+};
+
+/** `(figure)` when measured, else nothing. */
+const paren = (figure: string | null) => (figure ? ` (${figure})` : '');
+/** A note block only when every figure it prints is measured. */
+const measuredNote = (figures: (string | null)[], text: () => string): RulesBlock[] =>
+	figures.every(Boolean) ? [{ kind: 'note', text: text() }] : [];
 
 /** Launch flag, the jurisdiction answer, or a sweeps wallet — any one turns social wording on. The same floor raises
  *  the HUD's own strings (game/socialFloor.ts), so the two never disagree. */
@@ -165,8 +171,8 @@ export const rulesSections = (): RulesSection[] => {
 					{
 						symbol: 'W',
 						label: t({
-							std: `WILD — ${SYMBOL_NAME.W}. Substitutes for every paying symbol and pays as the ${SYMBOL_NAME.H1} on a line of its own. Reels 2 to 5 in the base game; all five reels in the features.`,
-							social: `WILD — ${SYMBOL_NAME.W}. Substitutes for every symbol that wins and is worth the same as the ${SYMBOL_NAME.H1} on a line of its own. Reels 2 to 5 in the base game; all five reels in the features.`,
+							std: `WILD — ${SYMBOL_NAME.W}. Substitutes for every paying symbol (never for an alarm) and pays as the ${SYMBOL_NAME.H1} on a line of its own. On reels 2 to 5 in the base game, ${FEATURE.ante} and ${FEATURE.backdraftSpins}; on all five reels in ${FEATURE.rescue} and ${FEATURE.inferno}. A ${MECHANIC.backdraft} can make a ${MECHANIC.blazeWild} on any reel, reel 1 included.`,
+							social: `WILD — ${SYMBOL_NAME.W}. Substitutes for every symbol that wins (never for an alarm) and is worth the same as the ${SYMBOL_NAME.H1} on a line of its own. On reels 2 to 5 in the base game, ${FEATURE.ante} and ${FEATURE.backdraftSpins}; on all five reels in ${FEATURE.rescue} and ${FEATURE.inferno}. A ${MECHANIC.backdraft} can make a ${MECHANIC.blazeWild} on any reel, reel 1 included.`,
 						}),
 					},
 					{
@@ -203,9 +209,12 @@ export const rulesSections = (): RulesSection[] => {
 		blocks: [
 			{
 				kind: 'para',
-				text: `On a base game spin that does not start a feature, a ${MECHANIC.backdraft} can sweep the reels: ${CONTRACT.backdraftCells[0]} to ${CONTRACT.backdraftCells[1]} cells that do not already show a WILD or an alarm burst into ${MECHANIC.blazeWild}s, on any reel including reel 1. ${MECHANIC.blazeWild}s are WILDs in every way. Line wins are then counted once, on the board after the ${MECHANIC.backdraft}.`,
+				text: `On a base game spin (${FEATURE.ante} included) that does not start a feature, a ${MECHANIC.backdraft} can sweep the reels: ${CONTRACT.backdraftCells[0]} to ${CONTRACT.backdraftCells[1]} cells that do not already show a WILD or an alarm burst into ${MECHANIC.blazeWild}s, on any reel including reel 1. ${MECHANIC.blazeWild}s are WILDs in every way. Line wins are then counted once, on the board after the ${MECHANIC.backdraft}.`,
 			},
-			{ kind: 'note', text: `A ${MECHANIC.backdraft} happens on about ${MEASURED.backdraftBase} base game spins. It never happens on a spin that starts a feature, and never inside a feature.` },
+			{
+				kind: 'note',
+				text: `${MEASURED.backdraftBase ? `A ${MECHANIC.backdraft} happens on about ${MEASURED.backdraftBase} base game spins. ` : ''}It never happens on a spin that starts a feature, and never inside ${FEATURE.rescue} or ${FEATURE.inferno}. In ${FEATURE.backdraftSpins} every spin has one.`,
+			},
 		] as RulesBlock[],
 	};
 
@@ -224,7 +233,7 @@ export const rulesSections = (): RulesSection[] => {
 					social: "Each spin's line wins are multiplied by the multiplier after that spin's rescues. The feature ends when the spins run out or the maximum win is reached. The multiplier has no ceiling.",
 				}),
 			},
-			{ kind: 'note', text: `${FEATURE.rescue} starts on about ${MEASURED.rescueBase} base game spins (${MEASURED.rescueAnte} with ${FEATURE.ante}).` },
+			...measuredNote([MEASURED.rescueBase, MEASURED.rescueAnte], () => `${FEATURE.rescue} starts on about ${MEASURED.rescueBase} base game spins (${MEASURED.rescueAnte} with ${FEATURE.ante}).`),
 		] as RulesBlock[],
 	};
 
@@ -242,7 +251,7 @@ export const rulesSections = (): RulesSection[] => {
 				}),
 			},
 			{ kind: 'para', text: `Clearing all ${CONTRACT.rooms} rooms brings the next building and +${CONTRACT.buildingSpins} spins, as in ${FEATURE.rescue}.` },
-			{ kind: 'note', text: `${FEATURE.inferno} starts on about ${MEASURED.infernoBase} base game spins (${MEASURED.infernoAnte} with ${FEATURE.ante}).` },
+			...measuredNote([MEASURED.infernoBase, MEASURED.infernoAnte], () => `${FEATURE.inferno} starts on about ${MEASURED.infernoBase} base game spins (${MEASURED.infernoAnte} with ${FEATURE.ante}).`),
 		] as RulesBlock[],
 	};
 
@@ -252,7 +261,7 @@ export const rulesSections = (): RulesSection[] => {
 		blocks: [
 			{
 				kind: 'para',
-				text: `${CHARACTER.rookie} answers one call. It turns into ${FEATURE.rescue} (${MEASURED.alarmCallRescue}), ${FEATURE.inferno} (${CONTRACT.alarmCallInferno}) or a ${MECHANIC.falseAlarm} (${MEASURED.alarmCallFalse}). A ${MECHANIC.falseAlarm} wins nothing. An awarded feature starts with ${CONTRACT.boughtSpins} spins and plays exactly like its own card.`,
+				text: `${CHARACTER.rookie} answers one call. It turns into ${FEATURE.rescue}${paren(MEASURED.alarmCallRescue)}, ${FEATURE.inferno} (${CONTRACT.alarmCallInferno}) or a ${MECHANIC.falseAlarm}${paren(MEASURED.alarmCallFalse)}. A ${MECHANIC.falseAlarm} wins nothing. An awarded feature starts with ${CONTRACT.boughtSpins} spins and plays exactly like its own card.`,
 			},
 		] as RulesBlock[],
 	};
@@ -278,23 +287,25 @@ export const rulesSections = (): RulesSection[] => {
 		{ kind: 'para', text: t({ std: `${modeCost(key)}× the bet. ${std}`, social: `${modeCost(key)}× the play amount. ${soc}` }) },
 	];
 
+	// BET MODES in ascending price (contract v1.2.1 §2: the same order as the HUD's buy cards), ALARM BOOST first
+	const MODE_TEXT: Record<'ante' | 'backdraft_spins' | 'alarm_call' | 'rescue' | 'inferno', [string, string]> = {
+		ante: [
+			`A toggle: every spin costs ${modeCost('ante')}× the base bet and has ${CONTRACT.anteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.anteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged.`,
+			`A toggle: every spin is played at ${modeCost('ante')}× the base play amount and has ${CONTRACT.anteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.anteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged.`,
+		],
+		backdraft_spins: [`Buys ${FEATURE.backdraftSpins} directly.`, `Enters ${FEATURE.backdraftSpins} directly.`],
+		alarm_call: [`Buys one ${FEATURE.alarmCall}.`, `Enters one ${FEATURE.alarmCall}.`],
+		rescue: [`Buys ${FEATURE.rescue} directly, with ${CONTRACT.boughtSpins} spins.`, `Enters ${FEATURE.rescue} directly, with ${CONTRACT.boughtSpins} spins.`],
+		inferno: [`Buys ${FEATURE.inferno} directly, with ${CONTRACT.boughtSpins} spins.`, `Enters ${FEATURE.inferno} directly, with ${CONTRACT.boughtSpins} spins.`],
+	};
+	const modeOrder = (Object.keys(MODE_TEXT) as (keyof typeof MODE_TEXT)[]).sort((a, b) => modeCost(a) - modeCost(b));
 	const modes: RulesSection = {
 		id: 'modes',
 		title: t({ std: 'BET MODES', social: 'PLAY MODES' }),
-		blocks: [
-			...modeLine(
-				'ante',
-				`A toggle: every spin costs ${modeCost('ante')}× the base bet and has ${CONTRACT.anteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.anteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged.`,
-				`A toggle: every spin is played at ${modeCost('ante')}× the base play amount and has ${CONTRACT.anteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.anteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged.`,
-			),
-			...modeLine('backdraft_spins', `Buys ${FEATURE.backdraftSpins} directly.`, `Enters ${FEATURE.backdraftSpins} directly.`),
-			...modeLine('alarm_call', `Buys one ${FEATURE.alarmCall}.`, `Enters one ${FEATURE.alarmCall}.`),
-			...modeLine('rescue', `Buys ${FEATURE.rescue} directly, with ${CONTRACT.boughtSpins} spins.`, `Enters ${FEATURE.rescue} directly, with ${CONTRACT.boughtSpins} spins.`),
-			...modeLine('inferno', `Buys ${FEATURE.inferno} directly, with ${CONTRACT.boughtSpins} spins.`, `Enters ${FEATURE.inferno} directly, with ${CONTRACT.boughtSpins} spins.`),
-		] as RulesBlock[],
+		blocks: modeOrder.flatMap((key) => modeLine(key, MODE_TEXT[key][0], MODE_TEXT[key][1])) as RulesBlock[],
 	};
 
-	const allModes = ['base game', MODE_TITLE.ante, MODE_TITLE.backdraft_spins, MODE_TITLE.alarm_call, MODE_TITLE.rescue, MODE_TITLE.inferno].join(', ');
+	const allModes = ['base game', ...modeOrder.map((key) => MODE_TITLE[key])].join(', ');
 	const limits: RulesSection = {
 		id: 'limits',
 		title: 'RETURN & MAXIMUM WIN',

@@ -1,107 +1,69 @@
 /**
- * ROUND-TOTAL CELEBRATION TIER — the one place the client maps a booked round total to a rung LEVEL.
+ * ROUND CELEBRATION TIER — docs/GAME_CONTRACT.md §8 "Win-tier rule" (v1.2.2, one table for every round).
  *
- * The celebration floors live HERE and nowhere else in the client. `components/WinRungs.svelte` derives its count-up
- * pacing tables from END_FEATURE_FLOORS / STANDARD_FLOORS (levels 6-9) plus WIN_CAP_BOOKED for the MAX rung, so the
- * on-screen rung label flips at exactly these floors, never passes the level chosen here, and the win sign never
- * shows more than the booked amount (at most the 15,000x cap). (Before r6 WinRungs held its own copy whose MAX entry
- * was 10000000, the donor's 100,000x cap in booked units: on a capped round the sign counted DOWN.)
+ * The client derives the celebration tier of a round from its booked round total `W`, the charged cost `S` of the
+ * selected mode and the base bet `B`. It NEVER reads the SDK `winLevel` fields of `setWin` / `freeSpinEnd` (they are
+ * informational only):
  *
- * OWNER RULING (2026-09-24): the end-of-feature celebration tier may be DERIVED client-side from the booked round
- * total. The math books `buildEnd.winLevel` / `expandEnd.winLevel` from the FEATURE share only; the plate shows
- * the ROUND total (finalWin / setTotalWin, which also carries any entry win), so ~0.1% of base books (e.g. book
- * 6208: 48x feature = band 5, 52x round = band 6) celebrated one rung low.
+ *   1. precedence — the stake check first: W <= S  ->  tier 0 (neutral: meter, line highlights and balance stay, but
+ *      no rung, no celebration stinger, no plate). A 1.2x return on a 1.5x ante spin, or 50x on a 90x Inferno buy,
+ *      is tier 0.
+ *   2. then the floors, in BASE-BET units (W/B), never in cost units:
+ *        tier 1 ordinary win   S < W < 15B
+ *        tier 2 BIG WIN        >= 15B
+ *        tier 3 HUGE WIN       >= 30B
+ *        tier 4 MEGA WIN       >= 50B
+ *        tier 5 EPIC WIN       >= 100B
+ *        tier 6 MAX WIN        the 15,000x cap (only on cap evidence: a `wincap` event)
  *
- * SOURCE of the table (read-only, not re-tuned here): `math/src/config/config.py` `Config.get_win_level(amount,
- * "endFeature")`, the table the math uses for buildEnd / expandEnd (for this game: `freeSpinEnd.winLevel`; `docs/GAME_CONTRACT.md` "winLevel (endFeature table)"), with
- * `wincap = 15000` (`math/games/piggy_firefighters/game_config.py`). Level numbers are the keys of `winLevelMap.ts`
- * (6 BIG, 7 HUGE, 8 MEGA, 9 EPIC, 10 MAX).
+ * The numbering 0..6 is the `animBeat winTier` numbering (docs/ANIMATION_CONTRACT.md). Rungs play ONCE per round, on
+ * the round total (base finalWin total, freeSpinEnd, backdraftSpinsEnd); per-spin wins inside a bonus get the ordinary
+ * win presentation.
  *
- *   level:      1      2      3       4        5        6         7          8           9           10
- *   x bet:   [0,1)  [1,5)  [5,10)  [10,20)  [20,50)  [50,100)  [100,500)  [500,2000)  [2000,15000)  cap
- *
- * The floors below are written in BOOKED units (integer x100 of the base bet), so a booked amount is only ever
- * COMPARED against them: no arithmetic on a booked amount, and amounts are never changed here.
- * MAX (10) is the 15,000x cap ONLY: it is returned only on cap evidence (a `wincap` event / the math's own
- * level 10), never from an amount alone.
+ * Amounts here are BOOKED units (integer x100 of the base bet), so B = 100 and a booked amount is only ever COMPARED.
+ * This module has no imports so node-run checks (qa/gate/*) can load it directly.
  */
-export const MAX_WIN_LEVEL = 10;
 
-/** The max win, x the base bet (`math/games/piggy_firefighters/game_config.py` wincap). config.ts `betModes[*].max_win` states the
- *  same number for the RGS/HUD; the two client copies are machine-checked equal (every mode) and equal to the math's
- *  wincap by qa/gate_fixes/capdisplay/check_source.mjs. It is a literal (not imported from config.ts) so node-run
- *  checks can import this module directly. */
+/** The max win, x the base bet (`math/games/piggy_firefighters/game_config.py` wincap; config.ts `max_win`). */
 export const WIN_CAP_X = 15000;
-/** The max win in BOOKED units (integer x100 of the base bet): 1,500,000 = 15,000x = $15,000.00 on a $1 bet.
- *  Every DRAWN figure that can pass it is drawn as min(figure, WIN_CAP_BOOKED): the WinRungs sign and the Rescue scene's
- *  meters (components/rescue/RescueScene.svelte). Booked
- *  amounts, the plate and settlement are never changed. */
+/** The max win in BOOKED units (x100 of the base bet): 1,500,000 = 15,000x. Every drawn figure that could pass it
+ *  (the WinRungs sign) is drawn as min(figure, WIN_CAP_BOOKED); booked amounts and settlement are never changed. */
 export const WIN_CAP_BOOKED = WIN_CAP_X * 100;
 
-/** [winLevel, inclusive floor in booked units (x100 of the base bet)] for levels 1-9, ascending. */
-export const END_FEATURE_FLOORS: readonly (readonly [number, number])[] = [
-	[1, 0],
-	[2, 100],
-	[3, 500],
-	[4, 1000],
-	[5, 2000],
-	[6, 5000],
-	[7, 10000],
-	[8, 50000],
-	[9, 200000],
-] as const;
+/** Booked units of one base bet. */
+export const BASE_BET_BOOKED = 100;
 
-/** Mirrors `Config.get_win_level(amount, "standard")` (the base-game setWin table), levels 1-9, booked units:
- *  x bet [0,0.1) [0.1,1) [1,2) [2,5) [5,15) [15,30) [30,50) [50,100) [100,15000); level 10 = the cap. Only
- *  WinRungs' count-up pacing reads it; the base-game level itself is the math's booked setWin.winLevel. */
-export const STANDARD_FLOORS: readonly (readonly [number, number])[] = [
-	[1, 0],
-	[2, 10],
-	[3, 100],
-	[4, 200],
-	[5, 500],
-	[6, 1500],
-	[7, 3000],
-	[8, 5000],
-	[9, 10000],
-] as const;
+/** Tier floors in base-bet units (contract §8): BIG, HUGE, MEGA, EPIC. */
+export const TIER_FLOORS_X = [15, 30, 50, 100] as const;
 
-/** The endFeature level of a booked round total (x100 of the base bet). `capped` is the ONLY way to MAX. */
-export const endFeatureLevelOf = (bookedAmount: number, capped: boolean): number => {
-	if (capped) return MAX_WIN_LEVEL;
-	let level = END_FEATURE_FLOORS[0][0];
-	for (const [lvl, floor] of END_FEATURE_FLOORS) if (bookedAmount >= floor) level = lvl;
-	return level;
-};
-
-type TierEvent = { index: number; type: string; amount?: number; winLevel?: unknown };
+export type WinTier = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export const TIER_MAX: WinTier = 6;
 
 /**
- * The celebration rung for a feature end, in priority order:
- *  1. a `winLevel` the book puts on its round-total event (last finalWin / setTotalWin after the feature end) —
- *     the math's own round level, when a book ever carries one (0cd027c reader, forward-compatible);
- *  2. otherwise the rung DERIVED from the booked round total with the endFeature table above, applied only
- *     when it differs from the feature-share level (so every book whose feature and round share a band keeps
- *     exactly the math's booked level);
- *  3. with no round-total event in view (an isolated presentation call), the feature-share level unchanged.
- * `roundTotal` is the amount the plate shows (finalRoundAmount); `cappedHint` is the director's wincap state.
+ * The celebration tier of a round.
+ * @param wBooked  booked round total W (x100 of the base bet)
+ * @param costX    the charged cost S of the selected mode, x the base bet (config.betModes[mode].cost)
+ * @param capped   the round hit the 15,000x cap (a `wincap` event) — the ONLY way to tier 6
  */
-export const roundCelebrationLevel = (
-	featureEnd: { index: number; winLevel: number },
-	bookEvents: readonly TierEvent[],
-	roundTotal: number,
-	cappedHint = false,
-): { level: number; source: 'bookedRound' | 'derived' | 'featureEnd' } => {
-	let roundEvent: TierEvent | undefined;
-	for (let i = bookEvents.length - 1; i >= 0; i -= 1) {
-		const event = bookEvents[i];
-		if (event.index <= featureEnd.index || (event.type !== 'finalWin' && event.type !== 'setTotalWin')) continue;
-		const level = event.winLevel;
-		if (typeof level === 'number' && Number.isFinite(level)) return { level, source: 'bookedRound' };
-		roundEvent ??= event;
-	}
-	if (!roundEvent) return { level: featureEnd.winLevel, source: 'featureEnd' };
-	const capped = cappedHint || featureEnd.winLevel === MAX_WIN_LEVEL || bookEvents.some((event) => event.type === 'wincap');
-	const derived = endFeatureLevelOf(roundTotal, capped);
-	return derived !== featureEnd.winLevel ? { level: derived, source: 'derived' } : { level: featureEnd.winLevel, source: 'featureEnd' };
+export const roundTier = (wBooked: number, costX: number, capped: boolean): WinTier => {
+	const w = Number(wBooked) || 0;
+	const s = Math.max(0, Number(costX) || 0) * BASE_BET_BOOKED;
+	if (w <= s) return 0;
+	if (capped) return 6;
+	const x = w / BASE_BET_BOOKED;
+	if (x >= TIER_FLOORS_X[3]) return 5;
+	if (x >= TIER_FLOORS_X[2]) return 4;
+	if (x >= TIER_FLOORS_X[1]) return 3;
+	if (x >= TIER_FLOORS_X[0]) return 2;
+	return 1;
 };
+
+/** WinRungs sign level for a tier: 6 BIG, 7 HUGE, 8 MEGA, 9 EPIC, 10 MAX (winLevelMap keys); 0 = no rungs. */
+export const rungLevelOfTier = (tier: WinTier): number => (tier >= 2 ? tier + 4 : 0);
+
+/** WinRungs climb floors BIG, HUGE, MEGA, EPIC, MAX in booked units: 15 / 30 / 50 / 100 x B, then the cap. The sign
+ *  flips at exactly these floors and never passes the landed tier or the booked amount. */
+export const RUNG_FLOORS_BOOKED: readonly number[] = [...TIER_FLOORS_X.map((x) => x * BASE_BET_BOOKED), WIN_CAP_BOOKED];
+
+/** WinRungs level 10 = MAX WIN. */
+export const MAX_WIN_LEVEL = 10;
