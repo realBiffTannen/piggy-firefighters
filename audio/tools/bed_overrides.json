@@ -15,11 +15,11 @@
  "backdraft_spins_layer": {
   "onsetAfter": 4.5,
   "bars": 12,
-  "why": "measure.py draws 2026-09-25: pf_backdraft92__1 is near-silent (-40 dB) for its first 5.25 s (2 bars) and decays from 44.5 s, so it holds 15.0 bars of material, not the 16 planned; the layer ships as 12 whole bars (three 4-bar phrases, even, so the two-bar brass stabs stay on the base bed's grid; the runtime phase-aligns layers modulo their own loop). Redraw requested (pf_backdraft92_v2) for the planned 16."
+  "why": "measure.py draws 2026-09-25: pf_backdraft92__1 is near-silent (-40 dB) for its first 5.25 s (2 bars) and decays from 44.5 s, the entry (first sample within 12 dB of the draw's peak after 4.5 s) is at 5.275 s; it holds 15.0 bars of material, not the 16 planned; the layer ships as 12 whole bars (three 4-bar phrases, even, so the two-bar brass stabs stay on the base bed's grid; the runtime phase-aligns layers modulo their own loop). Redraw requested (pf_backdraft92_v2) for the planned 16."
  },
  "anticipation_layer": {
   "onsetAfter": 0.65,
-  "why": "measure.py draws 2026-09-25: pf_antic92__1 opens with 0.6 s of a -35..-44 dB pre-roll before the roll enters at ~0.7 s (-17 dB); the 4-bar layer starts at that entry so the loop head is not a dip (it ends at 11.1 s, before the draw's closing decay at ~12.8 s). Tempo: the layer is a continuous roll + tremolo, so the onset comb has no beat to lock to (fine_tempo 93.75 from only the 8/16-beat lags of a 16 s draw, autocorr 81.1, envelope comb 89-90): no reliable measurement, so bpmOverride 92 = the plan's tempo, no stretch (a 1.9% stretch toward a spurious 93.75 would only add WSOLA smear).",
+  "why": "measure.py draws 2026-09-25: pf_antic92__1 opens with 0.6 s of a -35..-44 dB pre-roll before the roll enters at ~0.7 s (-17 dB); the 4-bar layer starts at that entry (measured 0.775 s: the first sample within 12 dB of the draw's peak) so the loop head is not a dip (it ends at 11.1 s, before the draw's closing decay at ~12.8 s). Tempo: the layer is a continuous roll + tremolo, so the onset comb has no beat to lock to (fine_tempo 93.75 from only the 8/16-beat lags of a 16 s draw, autocorr 81.1, envelope comb 89-90): no reliable measurement, so bpmOverride 92 = the plan's tempo, no stretch (a 1.9% stretch toward a spurious 93.75 would only add WSOLA smear).",
   "bpmOverride": 92.0
  }
 }

@@ -208,8 +208,11 @@ def bed(cid, cfg):
         x = pitch_bed(x, semis)
     end = material_end(x); x = x[:end]  # never loop into the draw's closing decay
     meas = cfg.get('bpmOverride') or K.fine_tempo(x, bpm - 4.0, bpm + 4.0); factor = meas / bpm
-    oa = cfg.get('onsetAfter', 0.0)  # a draw that opens with near-silence: the first onset AFTER it is the downbeat
-    t0 = oa + K.first_onset(x[int(oa * SR):]) + cfg.get('start', 0) * 4 * 60.0 / meas
+    oa = cfg.get('onsetAfter')  # a draw that opens with a quiet pre-roll: the entry is the first sample within 12 dB of the draw's
+    if oa is not None:          # peak AFTER `onsetAfter` s (the fixed 0.02 threshold fires on the pre-roll itself)
+        seg = x[int(oa * SR):]; t0 = oa + K.first_onset(seg, thr=max(0.02, 10 ** (-12 / 20) * float(np.abs(x).max())))
+    else: t0 = K.first_onset(x)
+    t0 += cfg.get('start', 0) * 4 * 60.0 / meas
     y = K.time_scale(x, factor)
     STAGE = K.stage_for(bpm); BAR = STAGE // 8
     s = int(round(t0 * factor * SR)); L = int(round(bars / 8 * STAGE)); X = int(0.06 * SR)
@@ -223,6 +226,13 @@ def bed(cid, cfg):
         loop = lk.cut(y, s, L, X, 'tail') if s - X >= 0 else y[s:s + L].copy()
         if abs(deficit) > 0.25 * BAR: report['warnings'].append(f'{cid}: draw short by {deficit / BAR * 100:.0f}% of a bar (final bar stretched)')
     else:
+        # the head blend makes the seam the raw's own adjacent-sample step y[s+L-1] -> y[s+L]; on a loud, noisy downbeat (the
+        # Backdraft layer's shaker + tom) that single step can exceed the body's p99.9 although it is continuous audio. Nudge the
+        # start by at most +-2 ms (a 16th note at 92 BPM is 163 ms: the grid is untouched) to the smallest step.
+        sh = int(0.002 * SR); cands = [d for d in range(-sh, sh + 1) if 0 <= s + d and s + d + L + X <= len(y)]
+        step = lambda d: float(np.abs(y[s + d + L] - y[s + d + L - 1]).max()) + 1e-4 * abs(d) / sh
+        ds = min(cands, key=step); s += ds
+        if ds: how = f'head; start nudged {ds / SR * 1000:+.2f} ms to the smallest seam step'
         loop = lk.cut(y, s, L, X, 'head')
     assert len(loop) == L, (len(loop), L)
     loop, ride_g, lv = section_ride(loop, bpm, bars)
