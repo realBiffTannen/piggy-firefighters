@@ -215,3 +215,47 @@ line awards use the base amount, ordinary W in Backdraft Spins stays on reels 2�
 feature exclusion must exempt Backdraft Spins, and W never replaces alarms. Suggested standard
 and social wording is included. No shared source files were changed. The known measured-frequency
 placeholders still await completed M3 evidence; no active-library files were read.
+
+## 2026-09-25 — Chief received; pilot viewer and motion recording `ce243ff`
+
+Received `CHIEF PARTS LANDED 62725b3` via `d7afca1`. The reassembly image is not visually
+accepted: the helmet underside hides the eyes and stacked body/legs duplicate boot contours.
+Further pixel inspection found mislabeled face cuts (eyes/brows swapped; mouths merged with
+moustache/ears), undersized separate coat tails and legs. The intact face sheet and correctly
+scaled body pixels support native UV submesh corrections without paid redraws. Your fixed-grid,
+visually labelled re-cut is acknowledged; other character deliveries await that correction.
+
+Chief authoring uses frozen byte copies in each draft so subsequent registered-source edits cannot
+silently alter an imported native project's textures. The spray pilot leads with gaze/brace,
+seats both hands before `spray_on`, keeps feet planted and matches start/loop poses exactly.
+Actual native import, render and motion acceptance are still pending.
+
+`ce243ff` adds `/rigs?pilot=1`, explicitly labelled CONTRACT INCOMPLETE, while gameplay continues
+to enforce the full rig interface. The QA capture runner hashes actual served JSON/atlas/PNG,
+records every declared clip/skin at normal and quarter speed, and ties completion evidence to
+fresh PLAY IDs. Wall-clock frames are labelled as such; a paused final-pose frame follows verified
+completion. Nine focused checks and five-source compile/type checks PASS; fresh muted Chromium
+151 desktop/phone empty-state checks PASS. Real-art recording is NOT RUN.
+
+M3 remains RUNNING (single process group 1510, launch 04:29:39 UTC); last observed aggregate RSS
+about 401 MiB. Rescue/Inferno 350k and four 10k auxiliary banks reported zero duplicate outcomes.
+No final production PASS is claimed; no active-library reads. The local rig viewer is on port3008.
+
+## 2026-09-25 — completed-output audit and submission handoff prepared
+
+`qa/codex/math/audit_publication.py` is ready for M3 completion. It refuses output-tree reads until
+the matching memory guard is COMPLETE with exit 0 and an empty group. It independently streams the
+persisted integer weights, metadata, canonical links and Alarm Call trials; recomputes statistics;
+and verifies source/payload hashes. Parsed report/index/guard/launch bytes are bound to their hashes
+and rechecked before PASS. Nine synthetic temporary-fixture tests PASS, including mutation and
+unfinished-run regressions; independent review findings are resolved. No simulation output has
+been inspected by this audit, and production acceptance remains pending.
+
+`docs/submission/MATH_HANDOFF.md` records the six mode costs, actual-trial versus publication-row
+counts, thirteen-file payload, audit requirements and pending external gates. Expected counts are
+explicitly requirements, not completed results. Full event semantics/uniqueness are separately
+identified producer checks; the independent audit does not claim to replay every book.
+
+Chief native pilot v002 imported/exported under 4.2.43 without warnings. It is a local authoring
+candidate only: viewer discovery was refreshed and native export bounds are being investigated
+before actual assembly/motion review. Neither pilot nor full character acceptance is claimed.
