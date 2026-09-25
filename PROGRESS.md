@@ -1,5 +1,9 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Codex tagged `math-freeze-v1` (annotated → `38a6c2f7…`); M3 production RUNNING locally since 04:29:39 UTC.
+  Codex `7b865af` (thumbnail validator + tests) merged as `4adef7b`. Audio lane run 1 withheld draws (same authorization
+  gap as art); relaunched from the draw stage with the owner's authorization quoted (roster: 232 cues, 98 SFX jobs,
+  13 music plans).
 - 2026-09-25 — **MATH FREEZE**: Codex M1 handoff `38a6c2f75d6b624eab2ae4efbcd55ed467075127` merged as `04fef7b` and
   acknowledged as `math-freeze-v1` after a §8 conformance check of the 16 fixtures (costs 1/1.5/12/18/50/90, RTP
   0.96699999). Codex starts the single production run (1.84M trials / 3,630,001 rows). Fixtures staged in
