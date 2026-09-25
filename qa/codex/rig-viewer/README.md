@@ -136,3 +136,12 @@ Prepared-runner verification: **PASS**, 9 focused checks (4 capture helper +
 `capture-preflight/report.json` returned **BLOCKED**, exit 2, all four exports
 missing, zero cases and no browser launch. This verifies refusal to accept an
 empty viewer; the loaded-art recording path remains **NOT RUN**.
+
+First real-export discovery check (2026-09-25): **PASS** after correcting the
+registry glob to resolve the application's `static/assets/spine` directory.
+The earlier four-parent path resolved outside the application and could not
+discover newly delivered rigs. Muted Chromium loaded the original Chief pilot
+as Spine 4.2.43, displayed its three real spray clips and events, and retained
+the visible CONTRACT INCOMPLETE warning. This is a loading check, not motion
+acceptance: the first rendered pose exposed sleeve deformation requiring
+correction before the full recording/review pass.
