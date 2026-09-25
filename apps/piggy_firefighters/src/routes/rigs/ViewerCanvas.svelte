@@ -4,8 +4,8 @@
   // Reuse the workspace's Spine 4.2 parser without adding a second runtime dependency.
   import { getProcessed } from '../../../../../packages/pixi-svelte/src/lib/assetLoad';
   import { rigAssets, rigSources } from '../../game/anim/rigRegistry';
-  import { isUsableRigData, type RigName } from '../../game/anim/rigLogic';
-  import { previewFrame, type PreviewMode, type RigInfo } from './viewerLogic';
+  import { isUsableRigData, RIG_DEFINITIONS, RESCUED_SKINS, type RigName } from '../../game/anim/rigLogic';
+  import { isUsablePilotRigData, previewFrame, type PreviewMode, type RigInfo } from './viewerLogic';
   import ViewerScene from './ViewerScene.svelte';
 
   const props: {
@@ -52,10 +52,17 @@
         const rawAsset = await PIXI.Assets.load<RawSpine[string]>([src.skeleton, src.atlas]);
         if (disposed) return;
         const parsed = getProcessed({ key: props.rig, type: 'spine', src, rawAsset })?.[props.rig];
-        if (!isUsableRigData(props.rig, parsed)) throw new Error('FAIL: exported rig does not satisfy the runtime clip, skin, event, anchor, size or Spine 4.2 interface. Run check_contract.py for details.');
+        const complete = isUsableRigData(props.rig, parsed);
+        const pilot = import.meta.env.DEV && new URLSearchParams(window.location.search).get('pilot') === '1';
+        const definition = RIG_DEFINITIONS[props.rig];
+        if (!complete && !(pilot && isUsablePilotRigData(parsed, { ...definition,
+          skins: props.rig === 'pf_rescued' ? RESCUED_SKINS : ['default'] }))) {
+          throw new Error('FAIL: exported rig does not satisfy the runtime clip, skin, event, anchor, size or Spine 4.2 interface. Run check_contract.py for details.');
+        }
         data = parsed as LoadedSpine;
         props.onready({ clips: data.animations.map(clip => ({ name: clip.name, duration: clip.duration })),
-          skins: data.skins.map(skin => skin.name), version: data.version ?? 'unknown', width: data.width, height: data.height });
+          skins: data.skins.map(skin => skin.name), version: data.version ?? 'unknown', width: data.width, height: data.height,
+          pilotOnly: !complete, missingClips: definition.animations.filter(name => !data?.findAnimation(name)) });
         ready = true;
       } catch (cause) {
         if (disposed) return;
