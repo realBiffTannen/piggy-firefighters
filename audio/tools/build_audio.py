@@ -94,7 +94,7 @@ def save():
     disk = json.load(open(CUES_PATH)); by = {c['id']: i for i, c in enumerate(disk['cues'])}
     for cid in TOUCHED:
         if cid in by: disk['cues'][by[cid]] = CUES[cid]
-    json.dump(disk, open(CUES_PATH, 'w'), indent=1)
+    tmp = CUES_PATH + '.tmp'; json.dump(disk, open(tmp, 'w'), indent=1); os.replace(tmp, CUES_PATH)  # atomic: a failed dump never truncates the registry
 
 
 def ship(y, cid, **kw):

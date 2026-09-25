@@ -1,0 +1,873 @@
+{
+  "generated_by": "tools/art/derive_rescue.py rooms",
+  "states": {
+    "roaring": 2,
+    "smouldering": 1,
+    "safe": 0
+  },
+  "note": "Room r sits over reel column r. Draw room_<r>_<state>.webp (or room_<r>_inferno_<state>.webp) with its top-left at box[0..1] in plate px over the plate (or over the facade at facade_box); every state of a room shares the same box. Fire level 2 = roaring, 1 = smouldering, 0 = safe (lit window). Alpha outside the changed area is 0, so the plate shows through. Portrait plates: place the same sprites centred on portrait.window_centre, scaled by portrait.scale.",
+  "rooms": [
+    {
+      "reel": 0,
+      "box": [
+        182,
+        84,
+        416,
+        474
+      ],
+      "size": [
+        234,
+        390
+      ],
+      "window": [
+        211,
+        231,
+        387,
+        404
+      ],
+      "window_interior": [
+        259,
+        264,
+        339,
+        374
+      ],
+      "box_in_facade": [
+        63,
+        -24,
+        297,
+        366
+      ],
+      "window_in_facade": [
+        92,
+        123,
+        268,
+        296
+      ],
+      "box_in_env_landscape": [
+        241.6,
+        -68.2,
+        552.2,
+        449.6
+      ],
+      "window_in_env_landscape": [
+        280.1,
+        127.0,
+        513.7,
+        356.6
+      ],
+      "files": {
+        "roaring": "room_0_roaring.webp",
+        "smouldering": "room_0_smouldering.webp",
+        "safe": "room_0_safe.webp",
+        "inferno_roaring": "room_0_inferno_roaring.webp",
+        "inferno_smouldering": "room_0_inferno_smouldering.webp",
+        "inferno_safe": "room_0_inferno_safe.webp"
+      }
+    },
+    {
+      "reel": 1,
+      "box": [
+        420,
+        84,
+        653,
+        474
+      ],
+      "size": [
+        233,
+        390
+      ],
+      "window": [
+        448,
+        232,
+        625,
+        404
+      ],
+      "window_interior": [
+        496,
+        264,
+        576,
+        374
+      ],
+      "box_in_facade": [
+        301,
+        -24,
+        534,
+        366
+      ],
+      "window_in_facade": [
+        329,
+        124,
+        506,
+        296
+      ],
+      "box_in_env_landscape": [
+        557.5,
+        -68.2,
+        866.8,
+        449.6
+      ],
+      "window_in_env_landscape": [
+        594.7,
+        128.3,
+        829.7,
+        356.6
+      ],
+      "files": {
+        "roaring": "room_1_roaring.webp",
+        "smouldering": "room_1_smouldering.webp",
+        "safe": "room_1_safe.webp",
+        "inferno_roaring": "room_1_inferno_roaring.webp",
+        "inferno_smouldering": "room_1_inferno_smouldering.webp",
+        "inferno_safe": "room_1_inferno_safe.webp"
+      }
+    },
+    {
+      "reel": 2,
+      "box": [
+        651,
+        84,
+        885,
+        474
+      ],
+      "size": [
+        234,
+        390
+      ],
+      "window": [
+        680,
+        232,
+        856,
+        404
+      ],
+      "window_interior": [
+        728,
+        265,
+        808,
+        374
+      ],
+      "box_in_facade": [
+        532,
+        -24,
+        766,
+        366
+      ],
+      "window_in_facade": [
+        561,
+        124,
+        737,
+        296
+      ],
+      "box_in_env_landscape": [
+        864.2,
+        -68.2,
+        1174.8,
+        449.6
+      ],
+      "window_in_env_landscape": [
+        902.7,
+        128.3,
+        1136.3,
+        356.6
+      ],
+      "files": {
+        "roaring": "room_2_roaring.webp",
+        "smouldering": "room_2_smouldering.webp",
+        "safe": "room_2_safe.webp",
+        "inferno_roaring": "room_2_inferno_roaring.webp",
+        "inferno_smouldering": "room_2_inferno_smouldering.webp",
+        "inferno_safe": "room_2_inferno_safe.webp"
+      }
+    },
+    {
+      "reel": 3,
+      "box": [
+        884,
+        84,
+        1117,
+        474
+      ],
+      "size": [
+        233,
+        390
+      ],
+      "window": [
+        912,
+        232,
+        1089,
+        404
+      ],
+      "window_interior": [
+        960,
+        264,
+        1041,
+        374
+      ],
+      "box_in_facade": [
+        765,
+        -24,
+        998,
+        366
+      ],
+      "window_in_facade": [
+        793,
+        124,
+        970,
+        296
+      ],
+      "box_in_env_landscape": [
+        1173.5,
+        -68.2,
+        1482.8,
+        449.6
+      ],
+      "window_in_env_landscape": [
+        1210.7,
+        128.3,
+        1445.6,
+        356.6
+      ],
+      "files": {
+        "roaring": "room_3_roaring.webp",
+        "smouldering": "room_3_smouldering.webp",
+        "safe": "room_3_safe.webp",
+        "inferno_roaring": "room_3_inferno_roaring.webp",
+        "inferno_smouldering": "room_3_inferno_smouldering.webp",
+        "inferno_safe": "room_3_inferno_safe.webp"
+      }
+    },
+    {
+      "reel": 4,
+      "box": [
+        1118,
+        84,
+        1351,
+        474
+      ],
+      "size": [
+        233,
+        390
+      ],
+      "window": [
+        1146,
+        232,
+        1323,
+        404
+      ],
+      "window_interior": [
+        1194,
+        264,
+        1274,
+        374
+      ],
+      "box_in_facade": [
+        999,
+        -24,
+        1232,
+        366
+      ],
+      "window_in_facade": [
+        1027,
+        124,
+        1204,
+        296
+      ],
+      "box_in_env_landscape": [
+        1484.1,
+        -68.2,
+        1793.4,
+        449.6
+      ],
+      "window_in_env_landscape": [
+        1521.3,
+        128.3,
+        1756.2,
+        356.6
+      ],
+      "files": {
+        "roaring": "room_4_roaring.webp",
+        "smouldering": "room_4_smouldering.webp",
+        "safe": "room_4_safe.webp",
+        "inferno_roaring": "room_4_inferno_roaring.webp",
+        "inferno_smouldering": "room_4_inferno_smouldering.webp",
+        "inferno_safe": "room_4_inferno_safe.webp"
+      }
+    }
+  ],
+  "facade": {
+    "files": {
+      "rescue": "block_facade.webp",
+      "inferno": "block_facade_inferno.webp"
+    },
+    "box": [
+      119,
+      108,
+      1417,
+      484
+    ]
+  },
+  "sets": {
+    "rescue": {
+      "plate": "art-src/generated/scene/plate_rescue_16_9.png",
+      "window_interiors": [
+        [
+          259,
+          264,
+          339,
+          374
+        ],
+        [
+          496,
+          264,
+          576,
+          374
+        ],
+        [
+          728,
+          265,
+          808,
+          374
+        ],
+        [
+          960,
+          264,
+          1041,
+          374
+        ],
+        [
+          1194,
+          264,
+          1274,
+          374
+        ]
+      ],
+      "window_frames": [
+        [
+          211,
+          231,
+          387,
+          404
+        ],
+        [
+          448,
+          232,
+          625,
+          404
+        ],
+        [
+          680,
+          232,
+          856,
+          404
+        ],
+        [
+          912,
+          232,
+          1089,
+          404
+        ],
+        [
+          1146,
+          232,
+          1323,
+          404
+        ]
+      ],
+      "states": {
+        "roaring": {
+          "source": "art-src/generated/scene/rooms_fire2.png",
+          "ecc_affine": [
+            [
+              1.0000699758529663,
+              -7.000000186963007e-05,
+              0.1173200011253357
+            ],
+            [
+              2.9999999242136255e-05,
+              0.9997900128364563,
+              -0.10813000053167343
+            ]
+          ],
+          "ecc_cc": 0.9988,
+          "colour_fit": [
+            [
+              1.0001,
+              -0.34
+            ],
+            [
+              1.0157,
+              -3.17
+            ],
+            [
+              0.9943,
+              -2.59
+            ]
+          ],
+          "static_mean_abs_diff": 1.88
+        },
+        "smouldering": {
+          "source": "art-src/generated/scene/rooms_fire1.png",
+          "ecc_affine": [
+            [
+              1.0000900030136108,
+              -0.00011000000085914508,
+              -0.029729999601840973
+            ],
+            [
+              0.0,
+              0.9996899962425232,
+              -0.04027999937534332
+            ]
+          ],
+          "ecc_cc": 0.9986,
+          "colour_fit": [
+            [
+              0.9874,
+              -0.31
+            ],
+            [
+              1.0213,
+              -2.17
+            ],
+            [
+              1.0063,
+              -1.48
+            ]
+          ],
+          "static_mean_abs_diff": 2.2
+        },
+        "safe": {
+          "source": "art-src/generated/scene/rooms_safe.png",
+          "ecc_affine": [
+            [
+              0.9999799728393555,
+              -0.00013000000035390258,
+              0.11567000299692154
+            ],
+            [
+              1.9999999494757503e-05,
+              0.9997199773788452,
+              -0.14271999895572662
+            ]
+          ],
+          "ecc_cc": 0.9986,
+          "colour_fit": [
+            [
+              0.9865,
+              0.76
+            ],
+            [
+              1.0188,
+              -1.84
+            ],
+            [
+              1.0048,
+              -1.62
+            ]
+          ],
+          "static_mean_abs_diff": 2.14
+        }
+      }
+    },
+    "inferno": {
+      "plate": "art-src/generated/scene/plate_inferno_16_9.png",
+      "window_interiors": [
+        [
+          260,
+          264,
+          338,
+          373
+        ],
+        [
+          497,
+          264,
+          576,
+          373
+        ],
+        [
+          728,
+          264,
+          808,
+          373
+        ],
+        [
+          961,
+          264,
+          1040,
+          373
+        ],
+        [
+          1195,
+          264,
+          1273,
+          373
+        ]
+      ],
+      "window_frames": [
+        [
+          211,
+          231,
+          387,
+          404
+        ],
+        [
+          448,
+          231,
+          624,
+          404
+        ],
+        [
+          680,
+          231,
+          856,
+          404
+        ],
+        [
+          913,
+          232,
+          1089,
+          404
+        ],
+        [
+          1147,
+          231,
+          1322,
+          404
+        ]
+      ],
+      "states": {
+        "roaring": {
+          "source": "art-src/generated/scene/inferno_rooms_fire2.png",
+          "ecc_affine": [
+            [
+              1.0000499486923218,
+              -3.9999998989515007e-05,
+              -0.06543000042438507
+            ],
+            [
+              4.999999873689376e-05,
+              0.9999099969863892,
+              -0.21473999321460724
+            ]
+          ],
+          "ecc_cc": 0.9989,
+          "colour_fit": [
+            [
+              1.0138,
+              -3.38
+            ],
+            [
+              1.0359,
+              -2.39
+            ],
+            [
+              1.0336,
+              -2.05
+            ]
+          ],
+          "static_mean_abs_diff": 1.92
+        },
+        "smouldering": {
+          "source": "art-src/generated/scene/inferno_rooms_fire1.png",
+          "ecc_affine": [
+            [
+              1.0000200271606445,
+              -4.999999873689376e-05,
+              -0.02800000086426735
+            ],
+            [
+              2.9999999242136255e-05,
+              0.9998000264167786,
+              -0.17238999903202057
+            ]
+          ],
+          "ecc_cc": 0.9988,
+          "colour_fit": [
+            [
+              1.0124,
+              -2.25
+            ],
+            [
+              1.0352,
+              -1.73
+            ],
+            [
+              1.0343,
+              -1.6
+            ]
+          ],
+          "static_mean_abs_diff": 1.98
+        },
+        "safe": {
+          "source": "art-src/generated/scene/inferno_rooms_safe.png",
+          "ecc_affine": [
+            [
+              1.000059962272644,
+              -5.999999848427251e-05,
+              -0.062210001051425934
+            ],
+            [
+              2.9999999242136255e-05,
+              0.9999200105667114,
+              -0.2575399875640869
+            ]
+          ],
+          "ecc_cc": 0.9987,
+          "colour_fit": [
+            [
+              1.0047,
+              -0.8
+            ],
+            [
+              1.0325,
+              -1.79
+            ],
+            [
+              1.0367,
+              -1.59
+            ]
+          ],
+          "static_mean_abs_diff": 1.95
+        }
+      }
+    }
+  },
+  "plate_size": [
+    1536,
+    1024
+  ],
+  "pitch_px": 233.9,
+  "portrait": {
+    "rescue": {
+      "plate": "art-src/generated/scene/plate_rescue_portrait.png",
+      "plate_size": [
+        1024,
+        1536
+      ],
+      "scale": 0.8052,
+      "windows": [
+        [
+          91,
+          328,
+          234,
+          486
+        ],
+        [
+          270,
+          328,
+          411,
+          486
+        ],
+        [
+          442,
+          328,
+          582,
+          486
+        ],
+        [
+          609,
+          328,
+          752,
+          486
+        ],
+        [
+          787,
+          328,
+          931,
+          486
+        ]
+      ],
+      "window_centre": [
+        [
+          162.5,
+          407.0
+        ],
+        [
+          340.5,
+          407.0
+        ],
+        [
+          512.0,
+          407.0
+        ],
+        [
+          680.5,
+          407.0
+        ],
+        [
+          859.0,
+          407.0
+        ]
+      ],
+      "windows_in_env_portrait": [
+        [
+          15.8,
+          471.5,
+          221.4,
+          698.6
+        ],
+        [
+          273.1,
+          471.5,
+          475.8,
+          698.6
+        ],
+        [
+          520.4,
+          471.5,
+          721.6,
+          698.6
+        ],
+        [
+          760.4,
+          471.5,
+          966.0,
+          698.6
+        ],
+        [
+          1016.3,
+          471.5,
+          1223.3,
+          698.6
+        ]
+      ],
+      "landscape_window_centre": [
+        [
+          299.0,
+          317.5
+        ],
+        [
+          536.5,
+          318.0
+        ],
+        [
+          768.0,
+          318.0
+        ],
+        [
+          1000.5,
+          318.0
+        ],
+        [
+          1234.5,
+          318.0
+        ]
+      ]
+    },
+    "inferno": {
+      "plate": "art-src/generated/scene/plate_inferno_portrait.png",
+      "plate_size": [
+        1024,
+        1536
+      ],
+      "scale": 0.8007,
+      "windows": [
+        [
+          91,
+          329,
+          234,
+          487
+        ],
+        [
+          270,
+          328,
+          411,
+          487
+        ],
+        [
+          442,
+          329,
+          581,
+          487
+        ],
+        [
+          610,
+          329,
+          751,
+          487
+        ],
+        [
+          787,
+          329,
+          930,
+          487
+        ]
+      ],
+      "window_centre": [
+        [
+          162.5,
+          408.0
+        ],
+        [
+          340.5,
+          407.5
+        ],
+        [
+          511.5,
+          408.0
+        ],
+        [
+          680.5,
+          408.0
+        ],
+        [
+          858.5,
+          408.0
+        ]
+      ],
+      "windows_in_env_portrait": [
+        [
+          15.8,
+          472.9,
+          221.4,
+          700.1
+        ],
+        [
+          273.1,
+          471.5,
+          475.8,
+          700.1
+        ],
+        [
+          520.4,
+          472.9,
+          720.2,
+          700.1
+        ],
+        [
+          761.9,
+          472.9,
+          964.6,
+          700.1
+        ],
+        [
+          1016.3,
+          472.9,
+          1221.9,
+          700.1
+        ]
+      ],
+      "landscape_window_centre": [
+        [
+          299.0,
+          317.5
+        ],
+        [
+          536.5,
+          318.0
+        ],
+        [
+          768.0,
+          318.0
+        ],
+        [
+          1000.5,
+          318.0
+        ],
+        [
+          1234.5,
+          318.0
+        ]
+      ]
+    }
+  }
+}

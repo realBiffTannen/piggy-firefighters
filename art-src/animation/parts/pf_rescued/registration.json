@@ -1,0 +1,501 @@
+{
+  "rig": "pf_rescued",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "feet_y": 1440,
+  "feet_x": 512,
+  "parts": {
+    "body_no_head_no_arms": {
+      "raw": "art-src/generated/rig_pf_rescued/body_no_head_no_arms.png",
+      "fit": {
+        "s": 0.9944902385485291,
+        "tx": 1.7658568417544416,
+        "ty": 6.35817790122951,
+        "score": 0.8642,
+        "coarse_score": 0.8898
+      },
+      "file": "art-src/animation/parts/pf_rescued/body_no_head_no_arms.png"
+    },
+    "head": {
+      "raw": "art-src/generated/rig_pf_rescued/head.png",
+      "fit": {
+        "s": 0.6071879706091892,
+        "tx": 179.17717291111512,
+        "ty": -83.12297768382541,
+        "score": 0.9007,
+        "coarse_score": 0.9306
+      },
+      "file": "art-src/animation/parts/pf_rescued/head.png"
+    },
+    "head_blank": {
+      "raw": "art-src/generated/rig_pf_rescued/head_blank.png",
+      "fit": {
+        "s": 0.8403050198349957,
+        "tx": 89.2013048825711,
+        "ty": 24.794552044585643,
+        "score": 0.7333,
+        "coarse_score": 0.8209
+      },
+      "file": "art-src/animation/parts/pf_rescued/head_blank.png"
+    },
+    "arms_down": {
+      "raw": "art-src/generated/rig_pf_rescued/arms_down.png",
+      "fit": {
+        "s": 0.990563355118919,
+        "tx": 4.603945272389183,
+        "ty": 9.746632375183708,
+        "score": 0.7245,
+        "coarse_score": 0.7571
+      },
+      "file": "art-src/animation/parts/pf_rescued/arms_down.png",
+      "split": {
+        "arm_right": "art-src/animation/parts/pf_rescued/arm_right.png",
+        "arm_left": "art-src/animation/parts/pf_rescued/arm_left.png"
+      }
+    },
+    "legs": {
+      "raw": "art-src/generated/rig_pf_rescued/legs.png",
+      "fit": {
+        "s": 0.8767974055747243,
+        "tx": 70.12516062511332,
+        "ty": 288.1555406301062,
+        "score": 0.6876,
+        "coarse_score": 0.7647
+      },
+      "file": "art-src/animation/parts/pf_rescued/legs.png",
+      "split": {
+        "leg_right": "art-src/animation/parts/pf_rescued/leg_right.png",
+        "leg_left": "art-src/animation/parts/pf_rescued/leg_left.png"
+      }
+    },
+    "skin_grandma": {
+      "raw": "art-src/generated/rig_pf_rescued/skin_grandma.png",
+      "fit": {
+        "s": 0.9962845591024152,
+        "tx": 2.1040323451323744,
+        "ty": 3.0483007316686024,
+        "score": 0.2124,
+        "coarse_score": 0.2275
+      },
+      "file": "art-src/animation/parts/pf_rescued/skin_grandma.png"
+    },
+    "skin_twins": {
+      "raw": "art-src/generated/rig_pf_rescued/skin_twins.png",
+      "fit": {
+        "s": 0.8271247392569523,
+        "tx": 92.32477763876305,
+        "ty": 124.07450312891658,
+        "score": 0.1206,
+        "coarse_score": 0.1412
+      },
+      "file": "art-src/animation/parts/pf_rescued/skin_twins.png"
+    },
+    "skin_dad": {
+      "raw": "art-src/generated/rig_pf_rescued/skin_dad.png",
+      "fit": {
+        "s": 0.9962845591024152,
+        "tx": 1.263796303728526,
+        "ty": 3.338105121680215,
+        "score": 0.2789,
+        "coarse_score": 0.2988
+      },
+      "file": "art-src/animation/parts/pf_rescued/skin_dad.png"
+    },
+    "skin_baby": {
+      "raw": "art-src/generated/rig_pf_rescued/skin_baby.png",
+      "fit": {
+        "s": 0.9962845591024152,
+        "tx": 1.263796303728526,
+        "ty": 2.483007316686013,
+        "score": 0.3938,
+        "coarse_score": 0.4115
+      },
+      "file": "art-src/animation/parts/pf_rescued/skin_baby.png"
+    },
+    "skin_teen": {
+      "raw": "art-src/generated/rig_pf_rescued/skin_teen.png",
+      "fit": {
+        "s": 0.9962845591024152,
+        "tx": 1.263796303728526,
+        "ty": 4.289804390011611,
+        "score": 0.2292,
+        "coarse_score": 0.2475
+      },
+      "file": "art-src/animation/parts/pf_rescued/skin_teen.png"
+    }
+  },
+  "pieces": {
+    "face_sheet": {
+      "sheet": "art-src/animation/parts/pf_rescued/face_sheet.png",
+      "raw": "art-src/generated/rig_pf_rescued/face_sheet.png",
+      "sheet_scale_to_canvas": 0.144,
+      "scale_method": "ear_left registered to head (score 0.3059)",
+      "pieces": {
+        "eyes_scared": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_scared.png",
+          "size": [
+            290,
+            146
+          ],
+          "sheet_origin": [
+            1189,
+            102
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "eyes_open": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_open.png",
+          "size": [
+            291,
+            136
+          ],
+          "sheet_origin": [
+            59,
+            112
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "eyes_happy": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_happy.png",
+          "size": [
+            294,
+            75
+          ],
+          "sheet_origin": [
+            813,
+            142
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "eyes_closed": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/eyes_closed.png",
+          "size": [
+            300,
+            60
+          ],
+          "sheet_origin": [
+            437,
+            169
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_relieved": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/brows_relieved.png",
+          "size": [
+            280,
+            73
+          ],
+          "sheet_origin": [
+            448,
+            350
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_worried": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/brows_worried.png",
+          "size": [
+            259,
+            70
+          ],
+          "sheet_origin": [
+            832,
+            370
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_joyful": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/brows_joyful.png",
+          "size": [
+            286,
+            77
+          ],
+          "sheet_origin": [
+            1197,
+            370
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_neutral": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/brows_neutral.png",
+          "size": [
+            299,
+            70
+          ],
+          "sheet_origin": [
+            54,
+            378
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_call": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_call.png",
+          "size": [
+            167,
+            158
+          ],
+          "sheet_origin": [
+            493,
+            530
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_cheer": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_cheer.png",
+          "size": [
+            273,
+            168
+          ],
+          "sheet_origin": [
+            828,
+            541
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_closed": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_closed.png",
+          "size": [
+            262,
+            98
+          ],
+          "sheet_origin": [
+            69,
+            587
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_worried": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_worried.png",
+          "size": [
+            259,
+            76
+          ],
+          "sheet_origin": [
+            1210,
+            596
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        },
+        "ear_right": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/ear_right.png",
+          "size": [
+            579,
+            207
+          ],
+          "sheet_origin": [
+            466,
+            744
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/ear_left.png",
+          "size": [
+            265,
+            207
+          ],
+          "sheet_origin": [
+            63,
+            745
+          ],
+          "components": 1,
+          "fit_to_canvas": {
+            "s": 0.144,
+            "tx": 703.424,
+            "ty": 181.424,
+            "score": 0.3059,
+            "coarse_score": 0.5451
+          },
+          "scale_to_canvas": 0.144
+        },
+        "mouth_o": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/mouth_o.png",
+          "size": [
+            82,
+            138
+          ],
+          "sheet_origin": [
+            1310,
+            786
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        }
+      },
+      "missing": [
+        "mouth_sigh"
+      ]
+    },
+    "wave_arm": {
+      "sheet": "art-src/animation/parts/pf_rescued/wave_arm.png",
+      "raw": "art-src/generated/rig_pf_rescued/wave_arm.png",
+      "sheet_scale_to_canvas": 0.8963770066379371,
+      "scale_method": "sqrt(area of arm_right / area of wave_arm_up)",
+      "pieces": {
+        "wave_arm_up": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/wave_arm_up.png",
+          "size": [
+            353,
+            560
+          ],
+          "sheet_origin": [
+            95,
+            52
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8964
+        },
+        "wave_arm_right": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/wave_arm_right.png",
+          "size": [
+            407,
+            545
+          ],
+          "sheet_origin": [
+            1044,
+            67
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8964
+        },
+        "wave_arm_left": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/wave_arm_left.png",
+          "size": [
+            460,
+            537
+          ],
+          "sheet_origin": [
+            488,
+            75
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8964
+        },
+        "wave_hand_front": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/wave_hand_front.png",
+          "size": [
+            317,
+            320
+          ],
+          "sheet_origin": [
+            129,
+            658
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8964
+        },
+        "wave_hand_left": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/wave_hand_left.png",
+          "size": [
+            298,
+            315
+          ],
+          "sheet_origin": [
+            617,
+            661
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8964
+        },
+        "wave_hand_right": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/wave_hand_right.png",
+          "size": [
+            299,
+            311
+          ],
+          "sheet_origin": [
+            1117,
+            662
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8964
+        }
+      },
+      "missing": []
+    },
+    "slide_poses": {
+      "sheet": "art-src/animation/parts/pf_rescued/slide_poses.png",
+      "raw": "art-src/generated/rig_pf_rescued/slide_poses.png",
+      "sheet_scale_to_canvas": 1.870626145748497,
+      "scale_method": "sqrt(area of master / area of pose_cheer)",
+      "pieces": {
+        "pose_cheer": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/pose_cheer.png",
+          "size": [
+            504,
+            697
+          ],
+          "sheet_origin": [
+            1016,
+            188
+          ],
+          "components": 1,
+          "scale_to_canvas": 1.8706
+        },
+        "pose_slide": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/pose_slide.png",
+          "size": [
+            485,
+            574
+          ],
+          "sheet_origin": [
+            39,
+            301
+          ],
+          "components": 1,
+          "scale_to_canvas": 1.8706
+        },
+        "pose_land": {
+          "file": "art-src/animation/parts/pf_rescued/pieces/pose_land.png",
+          "size": [
+            565,
+            522
+          ],
+          "sheet_origin": [
+            513,
+            359
+          ],
+          "components": 1,
+          "scale_to_canvas": 1.8706
+        }
+      },
+      "missing": []
+    }
+  },
+  "master": {
+    "file": "art-src/animation/parts/pf_rescued/master_pf_rescued.png",
+    "raw_shift": [
+      -20,
+      -2
+    ],
+    "raw": "art-src/generated/rig_pf_rescued/master_pf_rescued.png",
+    "bbox": [
+      51,
+      128,
+      939,
+      1440
+    ],
+    "height_px": 1313,
+    "feet_measured": [
+      512.5,
+      1440
+    ]
+  },
+  "qa": {
+    "reassembly": "qa/art/parts/pf_rescued_reassembly.png"
+  }
+}

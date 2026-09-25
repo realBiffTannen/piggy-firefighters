@@ -43,6 +43,7 @@ RULES = [
     ("ui_scene/cell_backplate.webp", (963, 645), "RGBA", set()),
     ("ui_scene/cell_frame_*.webp", (384, 384), "RGBA", {"corners"}),
     ("features/rescue/room_*.webp", None, "RGBA", set()),
+    ("features/rescue/block_facade*.webp", None, "RGB", set()),
     ("features/rescue/*.webp", None, "RGBA", {"corners"}),
     ("ambient/plate_*_landscape.webp", (1536, 1024), "RGB", set()),
     ("ambient/plate_*_portrait.webp", (1024, 1536), "RGB", set()),

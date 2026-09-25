@@ -141,11 +141,16 @@ const runOne = async (browser, spec) => {
 		if (msg.type() === 'error') errors.push(msg.text().slice(0, 400));
 	});
 	page.on('pageerror', (err) => errors.push(`pageerror: ${String(err?.message ?? err).slice(0, 400)}`));
+	const failed = [];
+	page.on('response', (r) => {
+		if (r.status() >= 400) failed.push(`${r.status()} ${r.url().replace(/^https?:\/\/[^/]+/, '')}`);
+	});
+	page.on('requestfailed', (r) => failed.push(`FAILED ${r.url().replace(/^https?:\/\/[^/]+/, '')} ${r.failure()?.errorText ?? ''}`));
 	const url = RESUME_RUN
 		? `${GAME}?sessionID=resume-${fixture}-${Date.now()}&rgs_url=${RGS}&device=desktop`
 		: `${GAME}?sessionID=rv-${fixture}-${Date.now()}&rgs_url=${RGS}&device=desktop&fixture=${fixture}`;
 	const t0 = Date.now();
-	const result = { name, fixture, speed, resume: RESUME_RUN, passed: false, console_errors: 0, finalWin: null, ms: 0, errors };
+	const result = { name, fixture, speed, resume: RESUME_RUN, passed: false, console_errors: 0, finalWin: null, ms: 0, errors, failed };
 	let capTimer = null;
 	try {
 		await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });

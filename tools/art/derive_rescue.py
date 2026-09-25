@@ -96,22 +96,18 @@ def facade_box(rgb, interiors):
     mid = W // 2
     left = xs[xs < mid].min() if (xs < mid).any() else 0
     right = xs[xs > mid].max() + 1 if (xs > mid).any() else W
-    # cornice top: first row above the windows (walking up) that is sky (dark / navy / crimson, not cream/brick/gold)
+    # cornice top: walking up from the centre window's frame, the first run of sky rows (blue >= red; brick, cream
+    # stone and the cornice are all red-dominant) marks the top of the building
+    frames = window_frames(rgb, interiors)
     cx = (interiors[2][0] + interiors[2][2]) // 2
     col = a[:, cx]
-    y = interiors[2][1]
-    sky_run = 0
+    y, sky_run = frames[2][1] - 1, 0
     while y > 0:
-        px = col[y]
-        lum = px.mean()
-        if lum < 70:
-            sky_run += 1
-            if sky_run > 8:
-                break
-        else:
-            sky_run = 0
+        sky_run = sky_run + 1 if col[y][2] >= col[y][0] else 0
+        if sky_run >= 8:
+            break
         y -= 1
-    top = y + 9 - 4
+    top = y + 8
     bottom = min(H, max(f[3] for f in interiors) + 110)
     return int(left), int(max(0, top)), int(right), int(bottom)
 
@@ -207,7 +203,7 @@ def cmd_rooms(root, pending, contact):
     for f in frames:
         cx = (f[0] + f[2]) / 2
         x0, x1 = int(round(cx - pitch / 2)), int(round(cx + pitch / 2))
-        y0 = max(0, fbox[1] - 60)  # smoke puffs may rise over the cornice
+        y0 = max(0, fbox[1] - 24)  # smoke puffs may rise over the cornice
         y1 = min(H, f[3] + 70)  # drips / soot below the sill
         boxes.append((x0, y0, x1, y1))
     sheet = []
@@ -356,18 +352,25 @@ def ladder_tile(im, n=3):
     y0 = int(round((centres[s - 1] + centres[s]) / 2)) if s >= 1 else int(round(centres[s] - p / 2))
     y1 = int(round(y0 + n * p))
     tile = im.crop((0, y0, im.width, y1))
+    padded = Image.new("RGBA", (tile.width + 4, tile.height), (0, 0, 0, 0))  # clear side columns; repeats vertically
+    padded.alpha_composite(tile, (2, 0))
+    tile = padded
     seam = float(np.abs(np.asarray(tile)[0].astype(int) - np.asarray(tile)[-1].astype(int)).mean())
     rails = np.where(a[y0 + 2, :, 3] > 0)[0]
     return tile, {"rung_period_px": round(p, 1), "rungs_per_tile": n, "seam_mean_abs_diff": round(seam, 2),
-                  "rail_span_px": [int(rails.min()), int(rails.max()) + 1] if len(rails) else None}
+                  "rail_span_px": [int(rails.min()) + 2, int(rails.max()) + 3] if len(rails) else None,
+                  "side_padding_px": 2}
 
 
 def hose_tile(im, cut=0.12):
     """Seamless horizontal hose tile: drop the two cut-end ellipses and keep the straight middle."""
     x0, x1 = int(im.width * cut), int(im.width * (1 - cut))
     t = im.crop((x0, 0, x1, im.height))
+    padded = Image.new("RGBA", (t.width, t.height + 4), (0, 0, 0, 0))  # clear top/bottom rows; repeats horizontally
+    padded.alpha_composite(t, (0, 2))
+    t = padded
     a = np.asarray(t).astype(int)
-    return t, {"seam_mean_abs_diff": round(float(np.abs(a[:, 0] - a[:, -1]).mean()), 2)}
+    return t, {"seam_mean_abs_diff": round(float(np.abs(a[:, 0] - a[:, -1]).mean()), 2), "top_bottom_padding_px": 2}
 
 
 def cmd_props(root, pending):

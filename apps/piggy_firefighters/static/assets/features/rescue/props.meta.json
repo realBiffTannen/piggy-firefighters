@@ -1,0 +1,93 @@
+{
+  "generated_by": "tools/art/derive_rescue.py props",
+  "sources": [
+    "art-src/generated/scene/rescue_props_a.png",
+    "art-src/generated/scene/rescue_props_b.png"
+  ],
+  "props": {
+    "ladder_segment": {
+      "file": "ladder_segment.webp",
+      "size": [
+        299,
+        530
+      ],
+      "rung_period_px": 176.8,
+      "rungs_per_tile": 3,
+      "seam_mean_abs_diff": 2.05,
+      "rail_span_px": [
+        2,
+        297
+      ],
+      "side_padding_px": 2,
+      "repeat": "vertical, unmirrored"
+    },
+    "ladder_top": {
+      "file": "ladder_top.webp",
+      "size": [
+        353,
+        430
+      ]
+    },
+    "jump_sheet": {
+      "file": "jump_sheet.webp",
+      "size": [
+        716,
+        389
+      ]
+    },
+    "badge_blank": {
+      "file": "badge_blank.webp",
+      "size": [
+        341,
+        335
+      ],
+      "label": "runtime text (multiplier / spins) centred on the blank cream field"
+    },
+    "spins_plate_blank": {
+      "file": "spins_plate_blank.webp",
+      "size": [
+        567,
+        216
+      ],
+      "label": "runtime text (multiplier / spins) centred on the blank cream field"
+    },
+    "hose_nozzle": {
+      "file": "hose_nozzle.webp",
+      "size": [
+        702,
+        349
+      ]
+    },
+    "hose_segment": {
+      "file": "hose_segment.webp",
+      "size": [
+        527,
+        162
+      ],
+      "seam_mean_abs_diff": 0.73,
+      "top_bottom_padding_px": 2,
+      "repeat": "horizontal, unmirrored"
+    },
+    "steam_puff": {
+      "file": "steam_puff.webp",
+      "size": [
+        304,
+        318
+      ]
+    },
+    "water_jet": {
+      "file": "water_jet.webp",
+      "size": [
+        713,
+        523
+      ]
+    },
+    "water_splash": {
+      "file": "water_splash.webp",
+      "size": [
+        518,
+        371
+      ]
+    }
+  }
+}

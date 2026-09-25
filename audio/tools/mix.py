@@ -90,11 +90,49 @@ def target_for(c, ids=()):
     return t
 
 
-def remaster(cid, need_db):
-    x = lk.decode(f'{K.MAST}/{cid}.wav'); up = need_db - 4.0  # land ~2 dB inside the clamp
-    y, frac = K.limit(x * 10 ** (up / 20), ceiling_db=-1.5)
-    res = K.ship(y, cid)
-    return {'raised_dB': round(up, 2), 'limitedFraction': round(frac, 4), **res}
+PREMIX = f'{K.SRC_MAST}/_premix'  # the build's master of every cue mix.py re-mastered (so the pass is idempotent)
+
+
+def _sha(p):
+    import hashlib
+    return hashlib.sha256(open(p, 'rb').read()).hexdigest()
+
+
+def restore_pristine(cid):
+    """If the current master is one mix.py wrote (sha recorded), put the build's own master back first, so re-running
+    mix.py never stacks a second raise on the first one. A master the BUILD rewrote since is already pristine."""
+    m, p = f'{K.MAST}/{cid}.wav', f'{PREMIX}/{cid}.wav'
+    if os.path.exists(p + '.json') and os.path.exists(m) and json.load(open(p + '.json')).get('after') == _sha(m):
+        K.ship(lk.decode(p), cid); return True
+    return False
+
+
+def softclip(x, ceil_db=-3.0):
+    """4x-oversampled tanh soft clip: bounds the isolated full-scale pops of a crackle (crest > 16 dB) instantly, where a
+    look-ahead limiter would pump on every pop. Crackle is broadband already, so the added harmonics are not heard as grit."""
+    from scipy.signal import resample_poly
+    c = 10 ** (ceil_db / 20); y = resample_poly(x, 4, 1, axis=0); y = c * np.tanh(y / c)
+    return resample_poly(y, 1, 4, axis=0)[:len(x)]
+
+
+def remaster(cid, target):
+    """Raise a cue that needs > +6 dB of gain: from the BUILD's master (kept in masters/_src/_premix), soft-clip first
+    when the crest factor is high, then limit at -1.5 dBFS and re-ship (both codecs <= -1 dBTP); up to 4 passes."""
+    os.makedirs(PREMIX, exist_ok=True)
+    m, p = f'{K.MAST}/{cid}.wav', f'{PREMIX}/{cid}.wav'
+    import shutil
+    shutil.copy(m, p); x = lk.decode(p)
+    ogg = f'{K.RUN}/{cid}.ogg'; lvl0 = loud400(decode(ogg)); crest = 20 * np.log10(np.abs(x).max() + 1e-12) - lvl0
+    up = 0.0; res = None; frac = 0.0; clip = bool(crest > 16.0)
+    for k in range(4):
+        need = target - (loud400(decode(ogg)) if res else lvl0)
+        if res and need <= 4.0: break
+        up += need - 3.0  # land ~3 dB inside the +6 dB clamp
+        y = x * 10 ** (up / 20)
+        if clip: y = softclip(y)
+        y, frac = K.limit(y, ceiling_db=-1.5); res = K.ship(y, cid)
+    json.dump({'after': _sha(m), 'raised_dB': round(up, 2)}, open(p + '.json', 'w'))
+    return {'raised_dB': round(up, 2), 'crest_dB': round(float(crest), 1), 'softClip': clip, 'limitedFraction': round(frac, 4), 'passes': k + 1, **res}
 
 
 def main():
@@ -108,16 +146,18 @@ def main():
             continue
         ogg = os.path.join(STATIC_BASE, c['files'][0])
         if not os.path.exists(ogg): unbuilt.append(c['id']); continue
+        if restore_pristine(c['id']): c.get('build', {}).pop('remaster', None)
         lvl = loud400(decode(ogg)); need = t - lvl
         if need > 6.02:
-            remastered[c['id']] = remaster(c['id'], need); lvl = loud400(decode(ogg)); need = t - lvl
-            c['measured'] = {'I_LUFS': remastered[c['id']]['I_LUFS'], 'TP_dBFS': remastered[c['id']]['TP_dBFS']}
-            c.setdefault('build', {})['remaster'] = remastered[c['id']]
+            r = remaster(c['id'], t); lvl = loud400(decode(ogg)); need = t - lvl
+            remastered[c['id']] = r
+            c['measured'] = {'I_LUFS': r['I_LUFS'], 'TP_dBFS': r['TP_dBFS'], 'TP_m4a_dBFS': r.get('TP_m4a_dBFS')}
+            c.setdefault('build', {})['remaster'] = r
         g = round(float(min(2.0, max(0.12, 10 ** (need / 20)))), 3); old = c.get('gain', 1.0); c['gain'] = g
         eff = round(lvl + 20 * np.log10(g), 2)
         c['mix'] = {'file_loud400_dBFS': round(lvl, 1), 'target_dBFS': t, 'effective_dBFS': eff, 'pass': 'pf_0925 (mix.py)'}
         rows.append((c['id'], round(lvl, 2), t, old, g, eff))
-    json.dump(doc, open(f'{ROOT}/audio/cues.json', 'w'), indent=1)
+    tmp = f'{ROOT}/audio/cues.json.tmp'; json.dump(doc, open(tmp, 'w'), indent=1, default=float); os.replace(tmp, f'{ROOT}/audio/cues.json')  # atomic
     by = {r[0]: r for r in rows}; cues = {c['id']: c for c in doc['cues']}
     checks = {}
     for name, chain in CHAINS.items():

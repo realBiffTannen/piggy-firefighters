@@ -1,0 +1,345 @@
+{
+  "rig": "pf_dog",
+  "canvas": [
+    1024,
+    1536
+  ],
+  "feet_y": 1440,
+  "feet_x": 512,
+  "parts": {
+    "body_no_head_no_legs": {
+      "raw": "art-src/generated/rig_pf_dog/body_no_head_no_legs.png",
+      "fit": {
+        "s": 0.9879740122741352,
+        "tx": 3.587430379814151,
+        "ty": 18.75676208318282,
+        "score": 0.1587,
+        "coarse_score": 0.1913
+      },
+      "file": "art-src/animation/parts/pf_dog/body_no_head_no_legs.png"
+    },
+    "head_no_helmet": {
+      "raw": "art-src/generated/rig_pf_dog/head_no_helmet.png",
+      "fit": {
+        "s": 0.9962845591024152,
+        "tx": 3.0031690423479063,
+        "ty": 1.9400065470889558,
+        "score": 0.1983,
+        "coarse_score": 0.2414
+      },
+      "file": "art-src/animation/parts/pf_dog/head_no_helmet.png"
+    },
+    "helmet_only": {
+      "raw": "art-src/generated/rig_pf_dog/helmet_only.png",
+      "fit": {
+        "s": 1.007549386290231,
+        "tx": -5.362957908842304,
+        "ty": -1.0116177628909497,
+        "score": 0.437,
+        "coarse_score": 0.4542
+      },
+      "file": "art-src/animation/parts/pf_dog/helmet_only.png"
+    },
+    "legs": {
+      "raw": "art-src/generated/rig_pf_dog/legs.png",
+      "fit": {
+        "s": 0.9968624694899149,
+        "tx": -0.8650861880663356,
+        "ty": 4.353147882563803,
+        "score": 0.2414,
+        "coarse_score": 0.2927
+      },
+      "file": "art-src/animation/parts/pf_dog/legs.png"
+    }
+  },
+  "pieces": {
+    "parts_sheet": {
+      "sheet": "art-src/animation/parts/pf_dog/parts_sheet.png",
+      "raw": "art-src/generated/rig_pf_dog/parts_sheet.png",
+      "sheet_scale_to_canvas": 0.8604482721137159,
+      "scale_method": "ear_left registered to head_no_helmet (score 0.5668)",
+      "pieces": {
+        "tail": {
+          "file": "art-src/animation/parts/pf_dog/pieces/tail.png",
+          "size": [
+            311,
+            425
+          ],
+          "sheet_origin": [
+            1144,
+            43
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8604
+        },
+        "ear_right": {
+          "file": "art-src/animation/parts/pf_dog/pieces/ear_right.png",
+          "size": [
+            352,
+            375
+          ],
+          "sheet_origin": [
+            627,
+            78
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8604
+        },
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_dog/pieces/ear_left.png",
+          "size": [
+            367,
+            399
+          ],
+          "sheet_origin": [
+            78,
+            90
+          ],
+          "components": 1,
+          "fit_to_canvas": {
+            "s": 0.8604482721137159,
+            "tx": 110.55820691154514,
+            "ty": 503.6977586394314,
+            "score": 0.5668,
+            "coarse_score": 0.6489
+          },
+          "scale_to_canvas": 0.8604
+        },
+        "head_no_jaw": {
+          "file": "art-src/animation/parts/pf_dog/pieces/head_no_jaw.png",
+          "size": [
+            620,
+            413
+          ],
+          "sheet_origin": [
+            512,
+            521
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8604
+        },
+        "jaw": {
+          "file": "art-src/animation/parts/pf_dog/pieces/jaw.png",
+          "size": [
+            376,
+            236
+          ],
+          "sheet_origin": [
+            68,
+            699
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8604
+        },
+        "tongue": {
+          "file": "art-src/animation/parts/pf_dog/pieces/tongue.png",
+          "size": [
+            216,
+            211
+          ],
+          "sheet_origin": [
+            1226,
+            706
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.8604
+        }
+      },
+      "missing": []
+    },
+    "face_sheet": {
+      "sheet": "art-src/animation/parts/pf_dog/face_sheet.png",
+      "raw": "art-src/generated/rig_pf_dog/face_sheet.png",
+      "sheet_scale_to_canvas": 0.144,
+      "scale_method": "eyes_open registered to head_no_helmet (score 0.3914)",
+      "pieces": {
+        "eyes_open": {
+          "file": "art-src/animation/parts/pf_dog/pieces/eyes_open.png",
+          "size": [
+            298,
+            144
+          ],
+          "sheet_origin": [
+            61,
+            219
+          ],
+          "components": 2,
+          "fit_to_canvas": {
+            "s": 0.144,
+            "tx": 629.28,
+            "ty": 567.424,
+            "score": 0.3914,
+            "coarse_score": 0.9301
+          },
+          "scale_to_canvas": 0.144
+        },
+        "eyes_sad": {
+          "file": "art-src/animation/parts/pf_dog/pieces/eyes_sad.png",
+          "size": [
+            299,
+            146
+          ],
+          "sheet_origin": [
+            1177,
+            224
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "eyes_happy": {
+          "file": "art-src/animation/parts/pf_dog/pieces/eyes_happy.png",
+          "size": [
+            271,
+            65
+          ],
+          "sheet_origin": [
+            810,
+            257
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "eyes_closed": {
+          "file": "art-src/animation/parts/pf_dog/pieces/eyes_closed.png",
+          "size": [
+            283,
+            59
+          ],
+          "sheet_origin": [
+            437,
+            265
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_excited": {
+          "file": "art-src/animation/parts/pf_dog/pieces/brows_excited.png",
+          "size": [
+            281,
+            73
+          ],
+          "sheet_origin": [
+            1188,
+            460
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_alert": {
+          "file": "art-src/animation/parts/pf_dog/pieces/brows_alert.png",
+          "size": [
+            281,
+            78
+          ],
+          "sheet_origin": [
+            437,
+            463
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_sad": {
+          "file": "art-src/animation/parts/pf_dog/pieces/brows_sad.png",
+          "size": [
+            242,
+            61
+          ],
+          "sheet_origin": [
+            832,
+            480
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "brows_neutral": {
+          "file": "art-src/animation/parts/pf_dog/pieces/brows_neutral.png",
+          "size": [
+            281,
+            52
+          ],
+          "sheet_origin": [
+            63,
+            487
+          ],
+          "components": 2,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_bark": {
+          "file": "art-src/animation/parts/pf_dog/pieces/mouth_bark.png",
+          "size": [
+            286,
+            237
+          ],
+          "sheet_origin": [
+            436,
+            639
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_pant": {
+          "file": "art-src/animation/parts/pf_dog/pieces/mouth_pant.png",
+          "size": [
+            278,
+            226
+          ],
+          "sheet_origin": [
+            819,
+            658
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_closed": {
+          "file": "art-src/animation/parts/pf_dog/pieces/mouth_closed.png",
+          "size": [
+            295,
+            157
+          ],
+          "sheet_origin": [
+            59,
+            661
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        },
+        "mouth_sad": {
+          "file": "art-src/animation/parts/pf_dog/pieces/mouth_sad.png",
+          "size": [
+            222,
+            149
+          ],
+          "sheet_origin": [
+            1223,
+            661
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.144
+        }
+      },
+      "missing": []
+    }
+  },
+  "master": {
+    "file": "art-src/animation/parts/pf_dog/master_pf_dog.png",
+    "raw_shift": [
+      -158,
+      112
+    ],
+    "raw": "art-src/generated/rig_pf_dog/master_pf_dog.png",
+    "bbox": [
+      0,
+      246,
+      833,
+      1440
+    ],
+    "height_px": 1195,
+    "feet_measured": [
+      512.0,
+      1440
+    ]
+  },
+  "qa": {
+    "reassembly": "qa/art/parts/pf_dog_reassembly.png"
+  }
+}
