@@ -43,25 +43,25 @@ title; the three sibling repos are read-only references for look, feel and pipel
 | Lane | Writer | Paths |
 |---|---|---|
 | Coordination, ledgers, contract, theme, specs | **Claude** | `README.md`, `CLAUDE.md`, `AGENTS.md`, `PROGRESS.md`, `CONTINUATION_HANDOVER.md`, `docs/**` except the Codex paths below, `docs/codex/FROM_CLAUDE.md` (append-only) |
-| Math MODEL source (rules → books) | **Claude until `math-freeze-v1`**, then frozen; changes only by a new contract version agreed in the mailbox | `math/games/piggy_firefighters/{game_*.py,gamestate.py,run.py,reels/**}`, `math/src/**`, `math/utils/**`, `math/optimization_program/**` |
-| Math PRODUCTION (350k / bonus mode), run tooling, evidence, publish | **Codex** | `math/games/piggy_firefighters/library/**` (generated), `math/publish/**`, `math/games/piggy_firefighters/tools/**`, `tools/codex/**`, `docs/math/**`, `qa/codex/**`, `docs/codex/INBOX_FOR_CLAUDE.md`, `docs/codex/LOCAL_READINESS.md` |
-| Dev math (10k) + dev fixtures | Claude | `server/fixtures/**`, `qa/dev_math/**` |
+| Math — MODEL + dev + PRODUCTION (350k / bonus mode), publish, evidence (ALLOCATION PF-20260925-02) | **Codex** | `math/**` (the SDK copy under `math/src`, `math/utils`, `math/optimization_program` is shared read-only infrastructure; Codex may patch it and says so), `docs/math/**`, `tools/codex/**`, `qa/codex/**`, `docs/codex/INBOX_FOR_CLAUDE.md`, `docs/codex/LOCAL_READINESS.md`, `docs/submission/**`, `docs/coordination/codex-*.md` |
+| Dev fixtures served by the mock (copied verbatim from Codex's `math/games/piggy_firefighters/fixtures`) | Claude | `server/fixtures/**` |
+| Runtime QA on the Mac (smoke matrix, resume/replay/phone/popout, cadence, copy audit) | **Codex** | `qa/codex/**` (fixes stay with the path owner) |
 | Frontend (engine, scenes, HUD glue, copy, rules) | Claude | `apps/piggy_firefighters/**` except `static/assets/spine/**`, `packages/**`, `server/**`, `game/**`, `tools/**` except `tools/codex/**` |
 | Art (OpenAI, Meshy, derive tools) | Claude | `art-src/**` except `art-src/animation/rigs/**`, `apps/piggy_firefighters/static/assets/**` except `spine/**`, `thumbnail/**` except `thumbnail/instructions.md`, `assets/**` |
 | Audio (ElevenLabs, encode, manifest) | Claude | `audio/**`, `apps/piggy_firefighters/static/assets/audio/**`, `apps/piggy_firefighters/src/game/audio/cueManifest.ts`, `docs/AUDIO_MAP.md` |
-| Spine rigs (authoring + exports) | **Codex** (after mailbox agreement, per `docs/ANIMATION_CONTRACT.md`) | `art-src/animation/rigs/**`, `apps/piggy_firefighters/static/assets/spine/**` |
+| Spine rigs (part cutting from Claude's masters, rigging, export, checker) | **Codex** (per `docs/ANIMATION_CONTRACT.md`) | `art-src/animation/rigs/**`, `art-src/animation/tools/**`, `apps/piggy_firefighters/static/assets/spine/**` |
+| 3D→sprite renders (optional, if Blender is on the Mac) | **Codex** | `art-src/3d/**`, `apps/piggy_firefighters/static/assets/3d/**` (Meshy GLB sources under `art-src/meshy/**` stay Claude's) |
 | Thumbnail brief | **Codex** | `thumbnail/instructions.md` |
 
 Codex delivers on a `codex/*` branch and states the commit in `docs/codex/INBOX_FOR_CLAUDE.md`; Claude merges
 Codex-owned paths into `claude/bold-bell-aoscdj` verbatim. Nobody edits another lane's path; report instead.
 
-## Math plan
+## Math plan (Codex, ALLOCATION PF-20260925-02)
 
-- Claude writes the model (`math/games/piggy_firefighters`), runs `PF_SIMS=10000` per mode, solves weights with
-  the deterministic `game_weights.py` solver (family pattern, no Rust optimizer), packages a dev publish tree,
-  cuts dev fixtures, checks the contract's targets roughly, then commits + tags **`math-freeze-v1`** and posts
-  the commit in `docs/codex/FROM_CLAUDE.md`. Until that tag the model is a DRAFT: Codex builds tooling against it
-  but launches no production run.
+- Codex writes the model (`math/games/piggy_firefighters`) from the contract, runs `PF_SIMS=10000` per mode,
+  solves weights with a deterministic `game_weights.py` solver (family pattern, no Rust optimizer), delivers
+  reel CSVs + dev fixtures (M1), agrees contract amendments in the mailbox (M2) and tags **`math-freeze-v1`**.
+  Claude writes no model code; the contract (rules, ids, event shapes) stays Claude's.
 - Codex runs production from the frozen tag: `base`/`ante` 1,000,000 recommended (unique books, family
   convention), `backdraft_spins`/`alarm_call`/`rescue`/`inferno` **350,000 each**; verifies RTP, SD band, hit
   rates, trigger rates, platform limits, uniqueness; publishes `math/publish/**` + `docs/math/MATH_PF_REPORT.md`
