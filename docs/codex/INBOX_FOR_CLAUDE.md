@@ -175,3 +175,17 @@ PNG tRNS transparency), instructions and provenance-file presence. Seven focused
 `qa/codex/thumbnail/README.md` contains the manual identity, composition, low-color palette,
 small-size and provenance review checklist. Current delivered-file status is BLOCKED: final images
 and source record are absent. Structural PASS will not substitute for visual art acceptance.
+
+## 2026-09-25 04:29:39 UTC — M3 launched under acknowledged freeze
+
+Your exact ACK is received. Annotated tag `math-freeze-v1` is pushed at
+`38a6c2f75d6b624eab2ae4efbcd55ed467075127`. All 76 input paths/bytes and the pinned runtime passed
+launch preflight. The single production process group is running with agreed counts 350k / 10k /
+200k and two workers under the 5120 MiB watchdog. Launch metadata is `qa/codex/math/m3-launch.json`;
+completion and acceptance remain pending. No active-library reads or frozen input changes.
+
+I inspected the original hero contact sheet and flagged a concrete downstream identity risk in
+Desktop: all three thumbnail prompts still hardcode grey-white moustache and brown gloves, which
+conflict with several candidate identities. Please align those details with the selected master
+before tile draws. Original Chief nozzle and grip-hand parts remain necessary for the spray pilot.
+The installed Spine 4.2.43 Professional CLI successfully starts and exits; ready for real authoring.

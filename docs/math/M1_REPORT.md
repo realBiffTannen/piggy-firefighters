@@ -1,6 +1,6 @@
 # Piggy Firefighters M1 — accepted development candidate
 
-**M1 PASS against GAME_CONTRACT v1.2.2. Not frozen or production-generated yet.** The final supported-runtime run completed 64,000 actual simulation trials and produced 118,001 unique publication rows. All six modes pass the configured RTP, tail-risk and contract gates. The common conditional bonus law is preserved through full-event banks and exact integer mixture weights.
+**M1 PASS against GAME_CONTRACT v1.2.2.** The model was subsequently frozen at `math-freeze-v1` (`38a6c2f75d6b624eab2ae4efbcd55ed467075127`); production launched on 2026-09-25 at 04:29:39 UTC and has not yet completed. This report records development evidence only. The final supported-runtime run completed 64,000 actual simulation trials and produced 118,001 unique publication rows. All six modes pass the configured RTP, tail-risk and contract gates. The common conditional bonus law is preserved through full-event banks and exact integer mixture weights.
 
 The authoritative development output is `/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/dev-supported/`. A commit-safe report snapshot is `qa/codex/math/m1-supported-report.json`; logs and memory proof are `m1-supported.log` and `m1-supported-memory.json` in the same QA directory. Earlier `library/dev` and `library/dev-v12` outputs are superseded historical evidence.
 
@@ -75,13 +75,13 @@ An earlier run used unsupported Python3.14.6/NumPy2.2.5. A reproducible34,000-ro
 
 The final candidate was freshly generated and solved in the supported pinned project environment. Reporting now uses integer totals and `math.fsum`; all six final book and LUT hashes also match the previous candidate. The entry point rejects incompatible interpreter/numerical versions before creating output. Production additionally requires the agreed freeze SHA, exact tracked source paths/bytes including vendored `math/src`, `math/utils` and both requirements files, explicit trial counts and a fresh output directory. Untracked/ignored additions, missing files and changed bytes fail the freeze check. Nonfinite statistics, out-of-range probabilities, contract misses, duplicates and source drift fail before installing fixtures or the consumable index; diagnostic reports remain available.
 
-## M3 plan — no production launched
+## M3 launch plan — production evidence pending
 
 Claude/coordinator agreed counts: **350,000 actual trials per bonus mode**, **200,000 nonbonus trials each base/ante**, **10,000 per additional 12/15-spin bank**. Total **1,840,000 actual trials**. Publication rows are Rescue350,000; Inferno350,000; Backdraft350,000; Alarm700,001; base940,000; ante940,000 — **3,630,001 total rows**. Shared auxiliary/source bank files are additional internal artifacts.
 
 The extra nonbonus support improves ordinary-board variety with relatively little cost beside bonus composition. Extrapolating the measured streaming run, allow approximately **75–110 minutes**, **4–6 GiB disk**, and conservatively **under1.5 GiB aggregate working memory**, subject to the enforced5120 MiB process-group guard. These are estimates, not production measurements; keep at least10 GiB free. Run with two workers and do not overlap other math writers.
 
-After the coordinator commits the supported model/runtime, obtains Claude acknowledgment and creates `math-freeze-v1`, the exact command is:
+The coordinator committed the supported model/runtime, obtained Claude's exact acknowledgment, created `math-freeze-v1` and launched this command. Live launch metadata is in `qa/codex/math/m3-launch.json`:
 
 ```sh
 PF_MATH_FREEZE="$(git rev-parse 'math-freeze-v1^{commit}')"
@@ -94,4 +94,4 @@ math/env/bin/python tools/codex/run_guard.py \
   > qa/codex/math/m3-production.log 2>&1
 ```
 
-M1 is sufficient for the freeze decision, not a substitute for the requested 350k runs. M3 must measure and validate its own statistics, support, canonical equality, counts, hashes, memory and timing before publication. No freeze tag, production package or external approval is claimed here.
+M1 is sufficient for the freeze decision, not a substitute for the requested 350k runs. M3 must measure and validate its own statistics, support, canonical equality, counts, hashes, memory and timing before publication. No completed production package or external approval is claimed here.

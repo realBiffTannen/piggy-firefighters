@@ -25,7 +25,7 @@
 
 | Assignment | Codex scope | Current dependency/status |
 | --- | --- | --- |
-| A — Full math model and production | `math/games/piggy_firefighters/**`, production package, math report, fixtures and run tooling | Supported-runtime M1 PASS: 64k trials / 118,001 rows, shared full-event bonus law verified; agreed freeze and M3 next |
+| A — Full math model and production | `math/games/piggy_firefighters/**`, production package, math report, fixtures and run tooling | Supported-runtime M1 PASS; exact freeze acknowledged/tagged; M3 RUNNING since 2026-09-25 04:29:39 UTC |
 | B — Full Spine authoring | Four rigs including five rescued-family skins; cut/paint registered parts, rig, animate, export and check | 4.2 static gate implemented, 19 checks pass; actual exports absent; original masters pending |
 | PF-03 — Rig runtime | `src/game/anim/**`, `src/components/rigs/**`, `src/routes/rigs/**` inside app | Runtime reviewed: 10 tests, scoped compile and ESLint PASS. Viewer: 3 tests, scoped compile and muted empty-state browser PASS. Claude integration and real-art motion review pending |
 | C — Focused local runtime captures | `qa/codex/**`; every mode, resume/replay, phone/popout, turbo, console | Wait for Claude's BUILD LANDED commit/build hash and real fixtures |
@@ -42,9 +42,10 @@ M1: bounded 10,000-trial development families plus 1,000-trial additional 12/15-
 - Locked frontend dependencies installed with pnpm 10.5.0; no lockfile changes.
 - Latest disk availability check: approximately 58 GiB. Recheck before launching production.
 - A project-local environment now exists at `math/env`; no shared SDK or system Python environment was altered.
-- `/Applications/Spine.app/Contents/MacOS/Spine` and cached 4.2.43 are present; editor launch NOT RUN.
+- `/Applications/Spine.app/Contents/MacOS/Spine --update 4.2.43 --disable-audio --version` PASS: Spine 4.2.43 Professional starts and exits successfully outside the sandbox. GUI authoring/export with real parts remains NOT RUN.
 - `/Applications/Blender.app/Contents/MacOS/Blender` is present; rendering NOT RUN.
-- Production simulations: NOT RUN. Final M1: 64k actual trials / 118,001 unique rows; zero duplicates; 68k full-event/common-weight wrapper checks; all 76 input hashes unchanged. Six RTPs approximately 96.699999%; base/ante SD 14.4/9.5; base hit split 38%/16%/22%; ante ETL40b 0.75. Independent scalar verification matches all persisted LUTs. Peak 351.125 MiB, 159.916 seconds, clean process-group exit. Corrected watchdog: four lifecycle checks PASS.
+- Production simulations: **RUNNING** since 2026-09-25 04:29:39 UTC. `math-freeze-v1` = `38a6c2f75d6b624eab2ae4efbcd55ed467075127`, acknowledged by Claude in `FROM_CLAUDE.md` and pushed. Exact launch metadata: `qa/codex/math/m3-launch.json`; exec session 62424, simulator process group 1510. Counts: 350k each bonus, 10k each additional bank, 200k nonbonus each base/ante; expected 1.84M trials and 3,630,001 rows. Two workers, 5120 MiB watchdog; no active-library reads or frozen input edits. Estimated 75–110 minutes; completion and acceptance not yet established.
+- Final M1: 64k actual trials / 118,001 unique rows; zero duplicates; 68k full-event/common-weight wrapper checks; all 76 input hashes unchanged. Six RTPs approximately 96.699999%; base/ante SD 14.4/9.5; base hit split 38%/16%/22%; ante ETL40b 0.75. Independent scalar verification matches all persisted LUTs. Peak 351.125 MiB, 159.916 seconds, clean process-group exit. Corrected watchdog: four lifecycle checks PASS.
 - Animation preflight tooling: PASS on 19 focused checks, BLOCKED on missing real exports. Actual rig artwork/motion: NOT STARTED. Paid generation stays with Claude.
 
 ## Agreed work needed before production
