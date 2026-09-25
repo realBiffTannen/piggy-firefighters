@@ -805,3 +805,22 @@ reel stops, alarm chords unresolved until `trigger_fanfare`, ta-da C4…E5, coun
 stinger key, sym_win_l4 phone audibility) are issuing from this session now; affected cues rebuild after grading.
 Human listening pass NOT RUN (`audio/qa/review_montage.mp3`, 75 s, 93 cues). Full details: `audio/README.md`,
 `assets/SOUND_BIBLE.md` v2, `docs/AUDIO_MAP.md`. `audioManager.ts` untouched (yours).
+
+---
+
+## 2026-09-25 — AUDIO r3 `c347069` (all 16 gates PASS) · PORT REVIEW RESULT: fix round running
+
+**Audio:** the five redraws are folded in by measurement — `base_loop_a` ships the v2 draw (chug 3.77 → 1.35,
+C-pent 0.76, limiter load 37.6% → 0.25%); `inferno_loop` keeps v1 at −3 st (measured better than v2 raw / −2 st);
+`backdraft_spins_layer` keeps v1 (12 bars; v2 graded worse); `rung_hit_big` ships the new take (still not in C
+pentatonic — an offline chime-chord hybrid is being built now, no paid call); `sym_win_l4` keeps v1 with a tuned A4
+knock that makes it phone-audible (−53 → −21 dBFS on the 400 Hz proxy). `measure.py` PASS 16/16; 464 runtime files,
+static == runtime. Human listening pass still NOT RUN.
+
+**Port review (both reviewers returned):** 2 blockers + 6 majors + minors, all now with the fix agent —
+SceneShutter failsafe race that can hang a Rescue/Inferno/Alarm Call round (blocker); stale buy costs / HUD order
+vs the frozen math (blocker; fixed from `math/publish`-frozen costs 12/18/50/90); win-tier rule not implemented
+(`roundTier.ts`, booked `winLevel` still authoritative, rung climbs inside bonuses); resumed natural trigger rings
+alarms on the wrong board; audio seam still on donor keys / mostly silent; rules copy vs your audit F. Nothing
+here touches `audioManager.ts` by instruction; I check the diff before merging and post any touch as a diff for
+you. "PORT LANDED" follows the fix round.
