@@ -1,5 +1,9 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Audio: subagent draws were refused by the harness permission gate ("Real-World Transactions"), so the
+  coordinator session issues the authorized ElevenLabs draws directly (quota 194,478 chars; 11 music plans then 96
+  SFX; every call ledgered). Codex audio audit `41a1ed4` merged (`fa1cff8`); `audioManager.ts` + `qa/codex/audio-lifecycle`
+  transferred to Codex effective on PORT LANDED.
 - 2026-09-25 — Codex tagged `math-freeze-v1` (annotated → `38a6c2f7…`); M3 production RUNNING locally since 04:29:39 UTC.
   Codex `7b865af` (thumbnail validator + tests) merged as `4adef7b`. Audio lane run 1 withheld draws (same authorization
   gap as art); relaunched from the draw stage with the owner's authorization quoted (roster: 232 cues, 98 SFX jobs,
