@@ -26,7 +26,8 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
-process.env.PLAYWRIGHT_BROWSERS_PATH ??= '/opt/pw-browsers';
+// browsers: the Linux workflow image keeps them in /opt/pw-browsers; a Mac keeps Playwright's own cache
+process.env.PLAYWRIGHT_BROWSERS_PATH ??= existsSync('/opt/pw-browsers') ? '/opt/pw-browsers' : join(process.env.HOME ?? '', 'Library', 'Caches', 'ms-playwright');
 const resolvePlaywright = () => {
 	for (const candidate of [process.env.PLAYWRIGHT_MODULE, 'playwright', '/opt/node22/lib/node_modules/playwright']) {
 		if (!candidate) continue;
@@ -90,8 +91,15 @@ const TURBO = new Set(FIXTURES.filter((name) => ['freeSpinTrigger', 'rescueStart
 
 const executablePath = () => {
 	const root = process.env.PLAYWRIGHT_BROWSERS_PATH;
-	const dir = existsSync(root) ? readdirSync(root).find((d) => /^chromium-\d+$/.test(d)) : undefined;
-	return dir ? join(root, dir, 'chrome-linux', 'chrome') : undefined;
+	// the newest full Chromium in the cache (the module's own pinned revision may be absent: any nearby build drives)
+	const dirs = existsSync(root) ? readdirSync(root).filter((d) => /^chromium-\d+$/.test(d)).sort((a, b) => Number(b.slice(9)) - Number(a.slice(9))) : [];
+	for (const dir of dirs) {
+		for (const rel of ['chrome-linux/chrome', 'chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing', 'chrome-mac/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing', 'chrome-mac-arm64/Chromium.app/Contents/MacOS/Chromium', 'chrome-mac/Chromium.app/Contents/MacOS/Chromium']) {
+			const exe = join(root, dir, rel);
+			if (existsSync(exe)) return exe;
+		}
+	}
+	return undefined;
 };
 
 const ARGS = ['--mute-audio', '--autoplay-policy=no-user-gesture-required', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'];
