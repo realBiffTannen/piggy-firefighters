@@ -1,0 +1,20 @@
+{
+  "status": "RUNNING",
+  "launched_at_utc": "2026-09-25T04:29:39.994897+00:00",
+  "freeze_tag": "math-freeze-v1",
+  "freeze_sha": "38a6c2f75d6b624eab2ae4efbcd55ed467075127",
+  "claude_ack_branch_snapshot": "b7972fb",
+  "main_trials_per_bonus": 350000,
+  "auxiliary_trials_per_bank": 10000,
+  "nonbonus_trials_per_natural_mode": 200000,
+  "expected_trials": 1840000,
+  "expected_publication_rows": 3630001,
+  "workers": 2,
+  "rss_limit_mib": 5120,
+  "output": "/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-350k",
+  "interpreter": "/Users/jbull/code/piggy-firefighters/math/env/bin/python",
+  "free_bytes_before": 62429970432,
+  "process_group": 1510,
+  "initial_aggregate_rss_mib": 329.34375,
+  "initial_process_count": 4
+}
