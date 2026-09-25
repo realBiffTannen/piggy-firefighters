@@ -824,5 +824,291 @@
    }
   ],
   "est_chars": 330
+ },
+ "pf_base92a_v2": {
+  "model": "music_v1",
+  "cue": "base_loop_a",
+  "bpm": 92,
+  "bars": 32,
+  "loop_s": 83.4783,
+  "targetLUFS": -15.5,
+  "hook": [
+   "glock",
+   1,
+   [
+    0,
+    16
+   ],
+   -4.0
+  ],
+  "positive": [
+   "cheerful cartoon firehouse brass march for a slot machine, a friendly fire station at dusk",
+   "instrumental",
+   "92 BPM",
+   "4/4 time",
+   "key of C major, strictly diatonic, no chromatic notes",
+   "C major pentatonic melody (C D E G A)",
+   "signature hook: a bright bugle call G C E G answered by a falling A G E C, played by the glockenspiel with a muted trumpet every 8 bars, cheerful and hummable, resolving to C",
+   "march groove: tuba on beats one and three, horns and trombones hold long warm chords in half notes",
+   "light snare on two and four, a short snare roll only at phrase ends",
+   "trumpets, trombones, French horn, tuba, clarinet, glockenspiel, small brass bell accents",
+   "the rhythm section plays ONLY on the quarter-note beats, nothing in between",
+   "warm, pleasant, polished modern slot game production, steady tempo, never harsh",
+   "full ensemble from the very first beat"
+  ],
+  "negative": [
+   "vocals",
+   "singing",
+   "choir",
+   "speech",
+   "shouting",
+   "crowd noise",
+   "chanting",
+   "sad",
+   "scary",
+   "horror",
+   "aggressive",
+   "dubstep",
+   "EDM drop",
+   "trap hi-hats",
+   "heavy rock drums",
+   "electric guitar",
+   "distorted guitar",
+   "long intro",
+   "fade in",
+   "fade out",
+   "tempo change",
+   "key change",
+   "rubato",
+   "free time",
+   "silence",
+   "strummed eighth-note chords",
+   "constant eighth-note chugging",
+   "busy hi-hats",
+   "busy snare rolls",
+   "harsh piercing high notes",
+   "shrill whistles",
+   "out of tune brass",
+   "circus calliope",
+   "kazoo",
+   "dark",
+   "minor key",
+   "offbeat chords",
+   "eighth-note brass stabs",
+   "chromatic passing notes",
+   "solo intro",
+   "sparse intro"
+  ],
+  "sections": [
+   {
+    "name": "A hook statement",
+    "duration_ms": 23000,
+    "positive": [
+     "the full band plays from the very first beat: glockenspiel and muted trumpet play the signature hook G C E G / A G E C twice",
+     "march groove",
+     "starts on beat one, no solo intro"
+    ]
+   },
+   {
+    "name": "B clarinet answer",
+    "duration_ms": 23000,
+    "positive": [
+     "the clarinet takes a new answering melody, trombones and horns comp on two and four",
+     "same groove"
+    ]
+   },
+   {
+    "name": "A hook return",
+    "duration_ms": 23000,
+    "positive": [
+     "NEW texture: trumpets play the hook in harmony with the trombones, the glockenspiel doubles an octave up",
+     "small brass bell accents at phrase ends"
+    ]
+   },
+   {
+    "name": "C lift and turnaround",
+    "duration_ms": 23000,
+    "positive": [
+     "the French horn states the hook softly and the trumpets answer",
+     "a two-bar turnaround that lands back on the hook's first note so the loop closes"
+    ]
+   }
+  ],
+  "est_chars": 1265,
+  "redrawOf": "pf_base92a",
+  "defect": "pf_base92a__1 measure.py draws 2026-09-25: chug 3.99 (shipped cut 5.14, 8th/quarter > 3), C-pent share 0.559 (chromatic C#/G# smear), near-copy sections 2-3 r 0.906, quiet intro -10.5 dB (2 bars at -27 dB)"
+ },
+ "pf_inferno100_v2": {
+  "model": "music_v1",
+  "cue": "inferno_loop",
+  "bpm": 100,
+  "bars": 32,
+  "loop_s": 76.8,
+  "targetLUFS": -15.2,
+  "hook": [
+   "bugle",
+   -1,
+   [
+    0,
+    16
+   ],
+   -3.5
+  ],
+  "positive": [
+   "hot urgent heroic cartoon rescue soundtrack for the top slot bonus, a blazing night rescue under a red sky, exciting but never scary",
+   "instrumental",
+   "100 BPM",
+   "4/4 time",
+   "key of A minor, A minor pentatonic (A C D E G), the same five notes as C major pentatonic; tonic A, never C minor",
+   "centred on A with bright C major lifts at phrase ends",
+   "signature hook: a bright bugle call G C E G answered by a falling A G E C, played by low trombones, then by high trumpets every 8 bars, cheerful and hummable, resolving to C",
+   "big low brass: trombones and tuba; taiko-like toms and timpani on quarter notes; a low string ostinato on quarter notes; tubular bells",
+   "the rhythm section plays ONLY on the quarter-note beats, nothing in between",
+   "heroic urgency, powerful and warm, polished slot bonus production, steady tempo",
+   "full ensemble from the very first beat"
+  ],
+  "negative": [
+   "vocals",
+   "singing",
+   "choir",
+   "speech",
+   "shouting",
+   "crowd noise",
+   "chanting",
+   "sad",
+   "scary",
+   "horror",
+   "aggressive",
+   "dubstep",
+   "EDM drop",
+   "trap hi-hats",
+   "heavy rock drums",
+   "electric guitar",
+   "distorted guitar",
+   "long intro",
+   "fade in",
+   "fade out",
+   "tempo change",
+   "key change",
+   "rubato",
+   "free time",
+   "silence",
+   "strummed eighth-note chords",
+   "constant eighth-note chugging",
+   "busy hi-hats",
+   "busy snare rolls",
+   "harsh piercing high notes",
+   "shrill whistles",
+   "out of tune brass",
+   "circus calliope",
+   "kazoo",
+   "dissonant",
+   "chromatic clusters",
+   "spooky",
+   "menacing",
+   "C minor",
+   "E flat",
+   "B flat",
+   "flat keys"
+  ],
+  "sections": [
+   {
+    "name": "A low brass hook",
+    "duration_ms": 21000,
+    "positive": [
+     "low trombones and tuba play the signature hook over toms and timpani",
+     "starts on beat one"
+    ]
+   },
+   {
+    "name": "B toms and strings drive",
+    "duration_ms": 21000,
+    "positive": [
+     "the low string ostinato and toms drive while horns answer",
+     "energy climbs"
+    ]
+   },
+   {
+    "name": "A trumpets take the hook",
+    "duration_ms": 21000,
+    "positive": [
+     "high trumpets play the hook with tubular bells, a bright C major lift",
+     "same groove"
+    ]
+   },
+   {
+    "name": "C bells and turnaround",
+    "duration_ms": 21000,
+    "positive": [
+     "tubular bells and trombones trade the call",
+     "a two-bar turnaround that lands back on the hook's first note so the loop closes"
+    ]
+   }
+  ],
+  "est_chars": 1155,
+  "redrawOf": "pf_inferno100",
+  "defect": "pf_inferno100__1 measure.py draws 2026-09-25: out of key, came back in C minor/dorian (chroma C .24, Bb .17, G .13, Eb .09; C-pent share 0.546) instead of A-minor pentatonic; shipping interim = rubberband -3 st transposition (share 0.76)"
+ },
+ "pf_backdraft92_v2": {
+  "model": "music_v1",
+  "cue": "backdraft_spins_layer",
+  "bpm": 92,
+  "bars": 16,
+  "loop_s": 41.7391,
+  "targetLUFS": -16.0,
+  "hook": null,
+  "positive": [
+   "hot percussion and brass layer for a slot bonus that plays over another track, cartoon flames and excitement",
+   "instrumental",
+   "92 BPM",
+   "4/4 time",
+   "key of C major",
+   "taiko-like toms and bass drum on quarter notes, a crackling fire-shaker texture, short low brass stabs on beat one every two bars, rising glockenspiel sparkles",
+   "no melody",
+   "steady level",
+   "starts immediately on beat one"
+  ],
+  "negative": [
+   "vocals",
+   "singing",
+   "speech",
+   "fade in",
+   "fade out",
+   "tempo change",
+   "key change",
+   "silence",
+   "strumming",
+   "chugging",
+   "harsh piercing high notes",
+   "shrill whistles",
+   "melody",
+   "crash cymbal",
+   "resolution",
+   "quiet intro",
+   "silent intro",
+   "build-up",
+   "slow start"
+  ],
+  "sections": [
+   {
+    "name": "layer A",
+    "duration_ms": 24000,
+    "positive": [
+     "toms on quarter notes and the fire-shaker texture, low brass stabs every two bars",
+     "toms and fire-shaker play from the very first beat, no silence, no build-up"
+    ]
+   },
+   {
+    "name": "layer B",
+    "duration_ms": 24000,
+    "positive": [
+     "same groove, glockenspiel sparkles rising, the brass stabs answered by horns",
+     "toms and fire-shaker play from the very first beat, no silence, no build-up"
+    ]
+   }
+  ],
+  "est_chars": 660,
+  "redrawOf": "pf_backdraft92",
+  "defect": "pf_backdraft92__1 measure.py draws 2026-09-25: quiet intro -25.4 dB (near-silent for 5.25 s = 2 bars) and dropout from 44.5 s, so only 15.0 bars of material for a 16-bar layer; shipping interim = 12 bars from bar 2"
  }
 }

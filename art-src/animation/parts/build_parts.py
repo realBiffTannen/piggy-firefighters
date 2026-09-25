@@ -35,7 +35,7 @@ SAME = {
                   "head_blank": ("head_blank", None), "helmet_only": ("helmet_only", None),
                   "arms_down": ("arms_down", ["arm_right", "arm_left"]), "legs": ("legs", ["leg_right", "leg_left"]),
                   "coat_tails": ("coat_tails", None)},
-    "pf_dog": {"body_no_head_no_legs": ("body_no_head_no_legs", None), "head_no_helmet": ("head_no_helmet", None),
+    "pf_dog": {"body_no_head_no_legs_r2": ("body_no_head_no_legs", None), "head_no_helmet": ("head_no_helmet", None),
                "helmet_only": ("helmet_only", None), "legs": ("legs", None)},
     "pf_rescued": {"body_no_head_no_arms": ("body_no_head_no_arms", None), "head": ("head", None),
                    "head_blank": ("head_blank", None), "arms_down": ("arms_down", ["arm_right", "arm_left"]),

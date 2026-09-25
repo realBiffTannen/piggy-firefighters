@@ -920,8 +920,8 @@
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -22.0,
-    "TP_dBFS": -2.8,
+    "I_LUFS": -22.1,
+    "TP_dBFS": -3.0,
     "sameAsRuntime": true,
     "samples": 21504,
     "lenDiff": 91
@@ -1051,16 +1051,16 @@
    "masterSamples": 21274,
    "ogg": {
     "present": true,
-    "I_LUFS": -34.9,
-    "TP_dBFS": -10.6,
+    "I_LUFS": -21.8,
+    "TP_dBFS": -3.3,
     "sameAsRuntime": true,
     "samples": 21274,
     "lenDiff": 0
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -35.1,
-    "TP_dBFS": -10.1,
+    "I_LUFS": -21.8,
+    "TP_dBFS": -3.3,
     "sameAsRuntime": true,
     "samples": 21504,
     "lenDiff": 230
@@ -1072,22 +1072,22 @@
    "loop": false,
    "status": "built",
    "master": true,
-   "masterSamples": 21180,
+   "masterSamples": 20572,
    "ogg": {
     "present": true,
-    "I_LUFS": -35.7,
-    "TP_dBFS": -12.9,
+    "I_LUFS": -22.1,
+    "TP_dBFS": -3.1,
     "sameAsRuntime": true,
-    "samples": 21181,
+    "samples": 20573,
     "lenDiff": 1
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -37.4,
-    "TP_dBFS": -12.6,
+    "I_LUFS": -22.1,
+    "TP_dBFS": -3.4,
     "sameAsRuntime": true,
     "samples": 21504,
-    "lenDiff": 324
+    "lenDiff": 932
    }
   },
   {
@@ -1096,22 +1096,22 @@
    "loop": false,
    "status": "built",
    "master": true,
-   "masterSamples": 21081,
+   "masterSamples": 20493,
    "ogg": {
     "present": true,
-    "I_LUFS": -35.7,
-    "TP_dBFS": -13.2,
+    "I_LUFS": -22.0,
+    "TP_dBFS": -3.3,
     "sameAsRuntime": true,
-    "samples": 21082,
+    "samples": 20494,
     "lenDiff": 1
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -37.4,
-    "TP_dBFS": -12.7,
+    "I_LUFS": -21.9,
+    "TP_dBFS": -3.4,
     "sameAsRuntime": true,
-    "samples": 21504,
-    "lenDiff": 423
+    "samples": 20480,
+    "lenDiff": -13
    }
   },
   {
@@ -1120,22 +1120,22 @@
    "loop": false,
    "status": "built",
    "master": true,
-   "masterSamples": 21009,
+   "masterSamples": 21010,
    "ogg": {
     "present": true,
-    "I_LUFS": -35.2,
-    "TP_dBFS": -13.2,
+    "I_LUFS": -21.8,
+    "TP_dBFS": -3.2,
     "sameAsRuntime": true,
-    "samples": 21010,
+    "samples": 21011,
     "lenDiff": 1
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -36.9,
-    "TP_dBFS": -12.8,
+    "I_LUFS": -21.8,
+    "TP_dBFS": -3.4,
     "sameAsRuntime": true,
     "samples": 21504,
-    "lenDiff": 495
+    "lenDiff": 494
    }
   },
   {
@@ -1144,22 +1144,22 @@
    "loop": false,
    "status": "built",
    "master": true,
-   "masterSamples": 20910,
+   "masterSamples": 20147,
    "ogg": {
     "present": true,
-    "I_LUFS": -34.1,
-    "TP_dBFS": -13.1,
+    "I_LUFS": -21.7,
+    "TP_dBFS": -3.3,
     "sameAsRuntime": true,
-    "samples": 20911,
+    "samples": 20148,
     "lenDiff": 1
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -35.9,
-    "TP_dBFS": -12.6,
+    "I_LUFS": -21.7,
+    "TP_dBFS": -3.4,
     "sameAsRuntime": true,
-    "samples": 21504,
-    "lenDiff": 594
+    "samples": 20480,
+    "lenDiff": 333
    }
   },
   {
@@ -1171,16 +1171,16 @@
    "masterSamples": 21803,
    "ogg": {
     "present": true,
-    "I_LUFS": -38.5,
-    "TP_dBFS": -14.8,
+    "I_LUFS": -22.0,
+    "TP_dBFS": -2.8,
     "sameAsRuntime": true,
     "samples": 21804,
     "lenDiff": 1
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -39.5,
-    "TP_dBFS": -14.0,
+    "I_LUFS": -21.9,
+    "TP_dBFS": -3.0,
     "sameAsRuntime": true,
     "samples": 22528,
     "lenDiff": 725
@@ -1819,16 +1819,16 @@
    "masterSamples": 44100,
    "ogg": {
     "present": true,
-    "I_LUFS": -13.5,
-    "TP_dBFS": -2.5,
+    "I_LUFS": -12.9,
+    "TP_dBFS": -3.3,
     "sameAsRuntime": true,
     "samples": 44100,
     "lenDiff": 0
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -13.6,
-    "TP_dBFS": -1.7,
+    "I_LUFS": -13.0,
+    "TP_dBFS": -3.1,
     "sameAsRuntime": true,
     "samples": 45056,
     "lenDiff": 956
@@ -2715,7 +2715,7 @@
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -18.2,
+    "I_LUFS": -18.1,
     "TP_dBFS": -1.4,
     "sameAsRuntime": true,
     "samples": 43008,
@@ -4422,22 +4422,22 @@
    "loop": false,
    "status": "built",
    "master": true,
-   "masterSamples": 23864,
+   "masterSamples": 24219,
    "ogg": {
     "present": true,
-    "I_LUFS": -14.9,
-    "TP_dBFS": -2.9,
+    "I_LUFS": -15.4,
+    "TP_dBFS": -3.6,
     "sameAsRuntime": true,
-    "samples": 23865,
+    "samples": 24220,
     "lenDiff": 1
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -15.0,
-    "TP_dBFS": -2.9,
+    "I_LUFS": -15.4,
+    "TP_dBFS": -3.3,
     "sameAsRuntime": true,
     "samples": 24576,
-    "lenDiff": 712
+    "lenDiff": 357
    }
   },
   {
@@ -4554,7 +4554,7 @@
    "m4a": {
     "present": true,
     "I_LUFS": -19.5,
-    "TP_dBFS": -3.3,
+    "TP_dBFS": -3.2,
     "sameAsRuntime": true,
     "samples": 23552,
     "lenDiff": 372
@@ -4834,7 +4834,7 @@
    "ogg": {
     "present": true,
     "I_LUFS": -21.6,
-    "TP_dBFS": -3.1,
+    "TP_dBFS": -3.0,
     "sameAsRuntime": true,
     "samples": 12637,
     "lenDiff": 1
@@ -5025,16 +5025,16 @@
    "masterSamples": 23516,
    "ogg": {
     "present": true,
-    "I_LUFS": -17.4,
-    "TP_dBFS": -1.8,
+    "I_LUFS": -17.6,
+    "TP_dBFS": -2.3,
     "sameAsRuntime": true,
     "samples": 23517,
     "lenDiff": 1
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -17.6,
-    "TP_dBFS": -1.3,
+    "I_LUFS": -17.8,
+    "TP_dBFS": -1.8,
     "sameAsRuntime": true,
     "samples": 23552,
     "lenDiff": 36

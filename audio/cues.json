@@ -1444,9 +1444,9 @@
    "seam": "AlertSound.svelte",
    "status": "built",
    "measured": {
-    "I_LUFS": -26.7,
-    "TP_dBFS": -3.1,
-    "TP_m4a_dBFS": -2.9
+    "I_LUFS": -22.0,
+    "TP_dBFS": -3.6,
+    "TP_m4a_dBFS": -3.0
    },
    "build": {
     "pass": "pf_0925",
@@ -1459,6 +1459,17 @@
      "cpentShareDrawn": 0.379,
      "decision": "not tonal enough to judge (tonality 0.59 < 0.75)",
      "semis": 0.0
+    },
+    "remaster": {
+     "raised_dB": 6.0,
+     "crest_dB": 22.8,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 3,
+     "I_LUFS": -22.0,
+     "TP_dBFS": -3.6,
+     "TP_m4a_dBFS": -3.0,
+     "samples": 21413
     }
    },
    "mix": {
@@ -1667,7 +1678,7 @@
     "assets/audio/piggy_firefighters/reel_stop_1.ogg",
     "assets/audio/piggy_firefighters/reel_stop_1.m4a"
    ],
-   "gain": 1.264,
+   "gain": 0.72,
    "durationMs": 482.4,
    "priority": 5,
    "maxInstances": 2,
@@ -1708,7 +1719,7 @@
     }
    },
    "mix": {
-    "file_loud400_dBFS": -24.0,
+    "file_loud400_dBFS": -19.1,
     "target_dBFS": -22,
     "effective_dBFS": -22.0,
     "pass": "pf_0925 (mix.py)"
@@ -1722,7 +1733,7 @@
     "assets/audio/piggy_firefighters/reel_stop_2.ogg",
     "assets/audio/piggy_firefighters/reel_stop_2.m4a"
    ],
-   "gain": 1.539,
+   "gain": 0.758,
    "durationMs": 466.5,
    "priority": 5,
    "maxInstances": 2,
@@ -1750,9 +1761,9 @@
     "op": "tonic ladder (C D E G A)"
    },
    "mix": {
-    "file_loud400_dBFS": -25.7,
+    "file_loud400_dBFS": -19.6,
     "target_dBFS": -22,
-    "effective_dBFS": -22.0,
+    "effective_dBFS": -22.01,
     "pass": "pf_0925 (mix.py)"
    }
   },
@@ -1764,7 +1775,7 @@
     "assets/audio/piggy_firefighters/reel_stop_3.ogg",
     "assets/audio/piggy_firefighters/reel_stop_3.m4a"
    ],
-   "gain": 1.604,
+   "gain": 0.777,
    "durationMs": 464.7,
    "priority": 5,
    "maxInstances": 2,
@@ -1792,7 +1803,7 @@
     "op": "tonic ladder (C D E G A)"
    },
    "mix": {
-    "file_loud400_dBFS": -26.1,
+    "file_loud400_dBFS": -19.8,
     "target_dBFS": -22,
     "effective_dBFS": -22.0,
     "pass": "pf_0925 (mix.py)"
@@ -1806,7 +1817,7 @@
     "assets/audio/piggy_firefighters/reel_stop_4.ogg",
     "assets/audio/piggy_firefighters/reel_stop_4.m4a"
    ],
-   "gain": 1.662,
+   "gain": 0.786,
    "durationMs": 476.4,
    "priority": 5,
    "maxInstances": 2,
@@ -1834,9 +1845,9 @@
     "op": "tonic ladder (C D E G A)"
    },
    "mix": {
-    "file_loud400_dBFS": -26.4,
+    "file_loud400_dBFS": -19.9,
     "target_dBFS": -22,
-    "effective_dBFS": -22.0,
+    "effective_dBFS": -21.99,
     "pass": "pf_0925 (mix.py)"
    }
   },
@@ -1848,7 +1859,7 @@
     "assets/audio/piggy_firefighters/reel_stop_5.ogg",
     "assets/audio/piggy_firefighters/reel_stop_5.m4a"
    ],
-   "gain": 1.666,
+   "gain": 0.793,
    "durationMs": 456.8,
    "priority": 5,
    "maxInstances": 2,
@@ -1876,7 +1887,7 @@
     "op": "tonic ladder (C D E G A)"
    },
    "mix": {
-    "file_loud400_dBFS": -26.4,
+    "file_loud400_dBFS": -20.0,
     "target_dBFS": -22,
     "effective_dBFS": -22.0,
     "pass": "pf_0925 (mix.py)"
@@ -1890,7 +1901,7 @@
     "assets/audio/piggy_firefighters/reel_stop_turbo.ogg",
     "assets/audio/piggy_firefighters/reel_stop_turbo.m4a"
    ],
-   "gain": 1.906,
+   "gain": 0.898,
    "durationMs": 494.4,
    "priority": 5,
    "maxInstances": 1,
@@ -1922,7 +1933,7 @@
     "op": "stack C+E+A, 6 ms roll (one merged stop for Turbo)"
    },
    "mix": {
-    "file_loud400_dBFS": -26.6,
+    "file_loud400_dBFS": -20.1,
     "target_dBFS": -21,
     "effective_dBFS": -21.0,
     "pass": "pf_0925 (mix.py)"
@@ -3188,7 +3199,7 @@
     "assets/audio/piggy_firefighters/sym_win_h2.ogg",
     "assets/audio/piggy_firefighters/sym_win_h2.m4a"
    ],
-   "gain": 0.711,
+   "gain": 0.751,
    "durationMs": 1000.0,
    "priority": 6,
    "maxInstances": 2,
@@ -3226,9 +3237,9 @@
     }
    },
    "mix": {
-    "file_loud400_dBFS": -16.0,
+    "file_loud400_dBFS": -16.5,
     "target_dBFS": -19,
-    "effective_dBFS": -19.0,
+    "effective_dBFS": -18.99,
     "pass": "pf_0925 (mix.py)"
    }
   },
@@ -3438,9 +3449,9 @@
    "turboVariant": "sym_win_l3_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -22.8,
-    "TP_dBFS": -3.0,
-    "TP_m4a_dBFS": -3.3
+    "I_LUFS": -19.9,
+    "TP_dBFS": -3.6,
+    "TP_m4a_dBFS": -3.6
    },
    "build": {
     "pass": "pf_0925",
@@ -3453,6 +3464,17 @@
      "cpentShareDrawn": 0.389,
      "decision": "not tonal enough to judge (tonality 0.51 < 0.75)",
      "semis": 0.0
+    },
+    "remaster": {
+     "raised_dB": 3.37,
+     "crest_dB": 22.4,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -19.9,
+     "TP_dBFS": -3.6,
+     "TP_m4a_dBFS": -3.6,
+     "samples": 41604
     }
    },
    "mix": {
@@ -4391,9 +4413,9 @@
    "turboVariant": "rung_hit_big_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -18.5,
-    "TP_dBFS": -2.9,
-    "TP_m4a_dBFS": -2.4
+    "I_LUFS": -15.6,
+    "TP_dBFS": -3.2,
+    "TP_m4a_dBFS": -1.0
    },
    "build": {
     "pass": "pf_0925",
@@ -4411,6 +4433,17 @@
      "pickup": false,
      "cpentShare": 0.525,
      "why": "C-pentatonic share 0.52 < 0.6"
+    },
+    "remaster": {
+     "raised_dB": 4.31,
+     "crest_dB": 19.2,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 3,
+     "I_LUFS": -15.6,
+     "TP_dBFS": -3.2,
+     "TP_m4a_dBFS": -1.0,
+     "samples": 52920
     }
    },
    "mix": {
@@ -4542,9 +4575,9 @@
    "turboVariant": "sign_impact_huge_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -25.8,
-    "TP_dBFS": -2.9,
-    "TP_m4a_dBFS": -2.7
+    "I_LUFS": -20.6,
+    "TP_dBFS": -3.0,
+    "TP_m4a_dBFS": -2.9
    },
    "build": {
     "pass": "pf_0925",
@@ -4557,6 +4590,17 @@
      "cpentShareDrawn": 0.401,
      "decision": "not tonal enough to judge (tonality 0.55 < 0.75)",
      "semis": 0.0
+    },
+    "remaster": {
+     "raised_dB": 6.43,
+     "crest_dB": 23.2,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 3,
+     "I_LUFS": -20.6,
+     "TP_dBFS": -3.0,
+     "TP_m4a_dBFS": -2.9,
+     "samples": 22880
     }
    },
    "mix": {
@@ -4904,7 +4948,7 @@
     "assets/audio/piggy_firefighters/burst_embers.ogg",
     "assets/audio/piggy_firefighters/burst_embers.m4a"
    ],
-   "gain": 1.542,
+   "gain": 1.541,
    "durationMs": 972.3,
    "priority": 7,
    "maxInstances": 2,
@@ -4917,9 +4961,9 @@
    "turboVariant": "burst_embers_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -26.6,
-    "TP_dBFS": -2.7,
-    "TP_m4a_dBFS": -1.9
+    "I_LUFS": -17.9,
+    "TP_dBFS": -3.4,
+    "TP_m4a_dBFS": -1.4
    },
    "build": {
     "pass": "pf_0925",
@@ -4932,6 +4976,17 @@
      "cpentShareDrawn": 0.373,
      "decision": "not tonal enough to judge (tonality 0.52 < 0.75)",
      "semis": 0.0
+    },
+    "remaster": {
+     "raised_dB": 16.2,
+     "crest_dB": 27.8,
+     "softClip": true,
+     "limitedFraction": 0.7711,
+     "passes": 4,
+     "I_LUFS": -17.9,
+     "TP_dBFS": -3.4,
+     "TP_m4a_dBFS": -1.4,
+     "samples": 42878
     }
    },
    "mix": {
@@ -7917,16 +7972,27 @@
    },
    "status": "built",
    "measured": {
-    "I_LUFS": -22.5,
-    "TP_dBFS": -3.6,
-    "TP_m4a_dBFS": -3.8
+    "I_LUFS": -19.2,
+    "TP_dBFS": -3.8,
+    "TP_m4a_dBFS": -2.4
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:05",
     "from": "backdraft_chord",
     "timeScale": 0.5,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 4.23,
+     "crest_dB": 20.7,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -19.2,
+     "TP_dBFS": -3.8,
+     "TP_m4a_dBFS": -2.4,
+     "samples": 35154
+    }
    },
    "mix": {
     "file_loud400_dBFS": -21.0,
@@ -8158,7 +8224,7 @@
     "assets/audio/piggy_firefighters/sym_win_h2_turbo.ogg",
     "assets/audio/piggy_firefighters/sym_win_h2_turbo.m4a"
    ],
-   "gain": 1.0,
+   "gain": 1.044,
    "durationMs": 549.2,
    "priority": 6,
    "maxInstances": 2,
@@ -8187,7 +8253,7 @@
     "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
-    "file_loud400_dBFS": -19.0,
+    "file_loud400_dBFS": -19.4,
     "target_dBFS": -19,
     "effective_dBFS": -19.0,
     "pass": "pf_0925 (mix.py)"
@@ -8347,16 +8413,27 @@
    "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "built",
    "measured": {
-    "I_LUFS": -27.1,
-    "TP_dBFS": -8.7,
-    "TP_m4a_dBFS": -8.9
+    "I_LUFS": -21.0,
+    "TP_dBFS": -4.8,
+    "TP_m4a_dBFS": -5.1
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:07",
     "from": "sym_win_l2",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 6.55,
+     "crest_dB": 19.6,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -21.0,
+     "TP_dBFS": -4.8,
+     "TP_m4a_dBFS": -5.1,
+     "samples": 22225
+    }
    },
    "mix": {
     "file_loud400_dBFS": -22.6,
@@ -8390,16 +8467,27 @@
    "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "built",
    "measured": {
-    "I_LUFS": -24.4,
-    "TP_dBFS": -4.4,
-    "TP_m4a_dBFS": -4.7
+    "I_LUFS": -19.4,
+    "TP_dBFS": -3.8,
+    "TP_m4a_dBFS": -3.2
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:07",
     "from": "sym_win_l3",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 5.68,
+     "crest_dB": 23.2,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -19.4,
+     "TP_dBFS": -3.8,
+     "TP_m4a_dBFS": -3.2,
+     "samples": 23180
+    }
    },
    "mix": {
     "file_loud400_dBFS": -22.6,
@@ -8800,16 +8888,27 @@
    "seam": "WinRungs.svelte when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -21.6,
-    "TP_dBFS": -3.8,
-    "TP_m4a_dBFS": -3.5
+    "I_LUFS": -16.1,
+    "TP_dBFS": -4.1,
+    "TP_m4a_dBFS": -1.4
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:10",
     "from": "rung_hit_big",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 12.68,
+     "crest_dB": 21.3,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 4,
+     "I_LUFS": -16.1,
+     "TP_dBFS": -4.1,
+     "TP_m4a_dBFS": -1.4,
+     "samples": 29231
+    }
    },
    "mix": {
     "file_loud400_dBFS": -19.8,
@@ -8926,16 +9025,27 @@
    "seam": "WinRungs.svelte when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -28.6,
-    "TP_dBFS": -5.1,
-    "TP_m4a_dBFS": -5.7
+    "I_LUFS": -21.6,
+    "TP_dBFS": -3.0,
+    "TP_m4a_dBFS": -2.6
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:11",
     "from": "sign_impact_huge",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 8.48,
+     "crest_dB": 22.9,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 3,
+     "I_LUFS": -21.6,
+     "TP_dBFS": -3.0,
+     "TP_m4a_dBFS": -2.6,
+     "samples": 12636
+    }
    },
    "mix": {
     "file_loud400_dBFS": -21.3,
@@ -9246,7 +9356,7 @@
     "assets/audio/piggy_firefighters/burst_embers_turbo.ogg",
     "assets/audio/piggy_firefighters/burst_embers_turbo.m4a"
    ],
-   "gain": 1.57,
+   "gain": 1.431,
    "durationMs": 533.2,
    "priority": 7,
    "maxInstances": 2,
@@ -9262,19 +9372,30 @@
    "seam": "WinRungs.svelte RUNGS[].burstCue when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -25.8,
-    "TP_dBFS": -3.0,
-    "TP_m4a_dBFS": -1.9
+    "I_LUFS": -17.6,
+    "TP_dBFS": -2.3,
+    "TP_m4a_dBFS": -1.8
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:13",
     "from": "burst_embers",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 15.02,
+     "crest_dB": 27.9,
+     "softClip": true,
+     "limitedFraction": 0.5754,
+     "passes": 4,
+     "I_LUFS": -17.6,
+     "TP_dBFS": -2.3,
+     "TP_m4a_dBFS": -1.8,
+     "samples": 23516
+    }
    },
    "mix": {
-    "file_loud400_dBFS": -22.4,
+    "file_loud400_dBFS": -21.6,
     "target_dBFS": -18.5,
     "effective_dBFS": -18.5,
     "pass": "pf_0925 (mix.py)"
@@ -9388,16 +9509,27 @@
    "seam": "WinRungs.svelte RUNGS[].burstCue when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -19.6,
-    "TP_dBFS": -4.7,
-    "TP_m4a_dBFS": -6.2
+    "I_LUFS": -16.7,
+    "TP_dBFS": -3.5,
+    "TP_m4a_dBFS": -3.7
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:15",
     "from": "burst_gold",
     "timeScale": 0.5,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 3.16,
+     "crest_dB": 18.0,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -16.7,
+     "TP_dBFS": -3.5,
+     "TP_m4a_dBFS": -3.7,
+     "samples": 35643
+    }
    },
    "mix": {
     "file_loud400_dBFS": -20.3,
@@ -9472,16 +9604,27 @@
    "seam": "WinRungs.svelte when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -19.5,
+    "I_LUFS": -16.2,
     "TP_dBFS": -3.6,
-    "TP_m4a_dBFS": -4.0
+    "TP_m4a_dBFS": -1.9
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:15",
     "from": "rung_land",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 4.06,
+     "crest_dB": 18.4,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -16.2,
+     "TP_dBFS": -3.6,
+     "TP_m4a_dBFS": -1.9,
+     "samples": 29566
+    }
    },
    "mix": {
     "file_loud400_dBFS": -18.8,
@@ -10152,16 +10295,27 @@
    "seam": "audioDirector.prize when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -21.7,
-    "TP_dBFS": -3.4,
-    "TP_m4a_dBFS": -3.7
+    "I_LUFS": -18.6,
+    "TP_dBFS": -2.6,
+    "TP_m4a_dBFS": -3.1
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:20",
     "from": "prize_coins",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 3.51,
+     "crest_dB": 20.3,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -18.6,
+     "TP_dBFS": -2.6,
+     "TP_m4a_dBFS": -3.1,
+     "samples": 33418
+    }
    },
    "mix": {
     "file_loud400_dBFS": -21.4,
@@ -10783,16 +10937,27 @@
    "seam": "NEW audioDirector.alarmFlip when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -23.4,
-    "TP_dBFS": -3.0,
-    "TP_m4a_dBFS": -2.7
+    "I_LUFS": -21.2,
+    "TP_dBFS": -4.0,
+    "TP_m4a_dBFS": -3.4
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:24",
     "from": "alarm_card_flip",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 3.12,
+     "crest_dB": 24.1,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -21.2,
+     "TP_dBFS": -4.0,
+     "TP_m4a_dBFS": -3.4,
+     "samples": 16596
+    }
    },
    "mix": {
     "file_loud400_dBFS": -25.0,
@@ -11052,16 +11217,27 @@
    "gate": "plays for every end; use total/rung cues for the amount (no extra celebration at or below the cost)",
    "status": "built",
    "measured": {
-    "I_LUFS": -25.2,
-    "TP_dBFS": -6.1,
-    "TP_m4a_dBFS": -6.8
+    "I_LUFS": -19.4,
+    "TP_dBFS": -3.0,
+    "TP_m4a_dBFS": -2.7
    },
    "build": {
     "pass": "pf_0925",
     "at": "2026-09-25T05:17:25",
     "from": "backdraft_spins_end",
     "timeScale": 0.5,
-    "op": "turbo variant (atempo, pitch kept)"
+    "op": "turbo variant (atempo, pitch kept)",
+    "remaster": {
+     "raised_dB": 6.51,
+     "crest_dB": 18.8,
+     "softClip": true,
+     "limitedFraction": 0.0,
+     "passes": 2,
+     "I_LUFS": -19.4,
+     "TP_dBFS": -3.0,
+     "TP_m4a_dBFS": -2.7,
+     "samples": 44486
+    }
    },
    "mix": {
     "file_loud400_dBFS": -19.6,

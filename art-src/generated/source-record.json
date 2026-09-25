@@ -4414,5 +4414,47 @@
       "total_tokens": 4941
     },
     "seconds": 31.5
+  },
+  {
+    "asset": "body_no_head_no_legs_r2",
+    "batch": "rig_pf_dog",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted RIG MASTER character for 2D cut-out skeletal animation. This is a SAME-FRAMING edit: the output must line up exactly with Image 1 when the two are stacked, so keep the SAME canvas, the SAME scale, the SAME position on the canvas, the SAME pose and the SAME style for everything that is kept. Do not move, resize, recentre, rotate, redraw or restyle any kept part; only remove what is named and paint what was hidden.\nWherever a removed part used to cover something, that hidden surface must now be FULLY PAINTED in the same style as if the removed part had never been there: continuous clean thick dark-brown ink outline, flat fills, one hard shadow tone, one small cream highlight, light from the top left. Every cut end or joint (neck, shoulder, elbow, hip) is closed with a smooth rounded end that has extra painted overlap, so the pieces can rotate over each other without showing a gap; no ragged edges, no stray fragments, no floating specks.\nGenuinely transparent background everywhere else: no floor, no ground shadow, no frame, no scenery, no glow. Absolutely no text, no letters, no numbers, no logos, no watermark. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nRemove completely: the head (the tiny helmet, ears, face, muzzle), all four legs and the tail. Keep ONLY the puppy's spotted torso and the red collar with its brass tag, exactly in place, with the SAME elongated torso shape, length and size as in Image 1 (do not shorten it into a round ball). Where the legs, head and tail were attached, simply continue the torso's own smooth outer outline: the underside of the chest and belly and the rump are painted as one continuous clean white spotted surface with a single outer ink line. Do NOT draw circles, pads, rings or joint discs on the torso; no inner outlines where the legs were. The neck ends as a smooth rounded stub inside the collar.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_rigpart_edit.txt",
+      "art-src/generated/prompts/rp_dog_body_no_head_no_legs_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "B: redraw of pf_dog body_no_head_no_legs; named defect: torso compressed to a round blob and leg sockets painted as visible ringed pads",
+    "attempt": 1,
+    "ts": "2026-09-25T05:17:28",
+    "status": "OK",
+    "output": "art-src/generated/rig_pf_dog/body_no_head_no_legs_r2.png",
+    "sha256": "dc8d2028a43bc37eaba2f794a18f5f721e1eb88d56de562bb2f8b3427d27e9dc",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1979,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 443
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3351
+    },
+    "seconds": 23.3
   }
 ]

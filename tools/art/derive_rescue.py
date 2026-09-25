@@ -412,6 +412,11 @@ def cmd_props(root, pending):
             im, info = ladder_tile(im)
             name = "ladder_segment"
             info["repeat"] = "vertical, unmirrored"
+        elif key == "ladder_top":
+            padded = Image.new("RGBA", (im.width + 4, im.height), (0, 0, 0, 0))  # same 2 px side margin as the segment
+            padded.alpha_composite(im, (2, 0))
+            im = padded
+            info = {"side_padding_px": 2, "joins": "its flat bottom sits on top of ladder_segment"}
         elif key == "hose_segment":
             im, info = hose_tile(im)
             info["repeat"] = "horizontal, unmirrored"

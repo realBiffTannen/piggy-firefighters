@@ -24,9 +24,11 @@
     "ladder_top": {
       "file": "ladder_top.webp",
       "size": [
-        353,
+        357,
         430
-      ]
+      ],
+      "side_padding_px": 2,
+      "joins": "its flat bottom sits on top of ladder_segment"
     },
     "jump_sheet": {
       "file": "jump_sheet.webp",
