@@ -490,8 +490,9 @@
 	{/if}
 
 	{#if stateBackdraftSpins.active}
-		<!-- Backdraft Spins header plate above the frame (theme §4: "the 5-spin counter on a brass plate") -->
-		<Container x={W / 2} y={frameTop - S * 0.62}>
+		<!-- Backdraft Spins header plate, centred in the band the layout reserves above the frame (theme §4: "the 5-spin
+		     counter on a brass plate"; stateGame BACKDRAFT_BAND_CELLS) -->
+		<Container x={W / 2} y={(frameTop + bandTop) / 2}>
 			{#if tex('rescue_spins_plate')}
 				<BaseSprite texture={tex('rescue_spins_plate')} width={S * 3.1} height={plateH(S * 3.1)} anchor={0.5} />
 			{:else}

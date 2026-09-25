@@ -10,7 +10,7 @@ import { winLevelMap } from './winLevelMap';
 import { gameSound } from './audio';
 import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMBOL_STATE, TRIGGER_ALARMS } from './constants';
 import { createSpinReel, createSpinBoard, setPaddingSource } from './reels/spinReels.svelte';
-import { stateRescue } from './rescue/stateRescue.svelte';
+import { stateRescue, stateBackdraftSpins } from './rescue/stateRescue.svelte';
 import { anticipationCamera } from './reels/anticipationCamera.svelte';
 import { animBeats } from './fx/animBeats';
 import { BOARD_FRAME, RESCUE_ART } from './artMeta';
@@ -166,6 +166,8 @@ const MASCOT_GUTTER = 0.95; // cells of gutter the mascot needs beside the reels
 // visibly jumps. components/rescue/RescueScene.svelte draws into `building`: the facade band plus the rooms' smoke
 // that rises above its cornice (rooms.meta.json), at one reel column per room.
 const ROOM_PX_PER_CELL = RESCUE_ART.pitch;
+/** The band (cells) reserved above the frame for the Backdraft Spins plate: the plate is 1.1 cells tall (RescueScene). */
+export const BACKDRAFT_BAND_CELLS = 1.3;
 export const BUILDING_BAND_CELLS = Math.round(((RESCUE_ART.facade.h - RESCUE_ART.rooms[0].box.y) / ROOM_PX_PER_CELL + 0.06) * 100) / 100;
 
 export type SceneLayout = ReturnType<typeof sceneLayout>;
@@ -188,7 +190,9 @@ const sceneLayout = () => {
 	// reels run edge to edge and only the header beam above and the lower beam below remain.
 	const sideCells = stacked ? 0 : 2 * (m + FRAME_OUT_X * f);
 	const cellsW = BOARD_DIMENSIONS.x + sideCells;
-	const band = stateRescue.active ? BUILDING_BAND_CELLS : 0;
+	// Backdraft Spins gets its own, smaller band for the brass spins plate (owner, 2026-09-25: the plate rode above the
+	// frame with no room reserved and was cut off at the top of the screen).
+	const band = stateRescue.active ? BUILDING_BAND_CELLS : stateBackdraftSpins.active ? BACKDRAFT_BAND_CELLS : 0;
 	const cellsH = BOARD_DIMENSIONS.y * r + 2 * m + (FRAME_OUT_TOP + FRAME_OUT_BOTTOM) * f + band;
 	const top = Math.max(6, ch * 0.02);
 

@@ -670,7 +670,9 @@
 						{@const s = lay.s}
 						<!-- readability slate: dark knockout behind the text so the light fills clear AAA -->
 						<Graphics draw={(g) => drawSlate(g, 0, s * 0.11, lay.W * s * 0.9, s * 3.02, s)} />
-						<Text anchor={0.5} y={-s * 0.95} text={card.title} style={{ ...signTitleStyle(s, { gold: true }), ...titleFix(s, true), fontSize: s * 0.5 }} />
+						<!-- one line, sized to the slate (owner, 2026-09-25: "INFERNO RESCUE COMPLETE" ran off both edges on a phone) -->
+						{@const ts = Math.min(s * 0.5, (lay.W * s * 0.84) / (Math.max(1, card.title.length) * TITLE_EM))}
+						<Text anchor={0.5} y={-s * 0.95} text={card.title} style={{ ...signTitleStyle(s, { gold: true }), ...titleFix(s, true), fontSize: ts }} />
 						<!-- a soft light crosses the sign itself (clipped to the slate) -->
 						<Container y={s * 0.11}>
 							<Graphics isMask draw={(g) => g.roundRect((-lay.W * s * 0.9) / 2, (-s * 3.02) / 2, lay.W * s * 0.9, s * 3.02, s * 0.14).fill(0xffffff)} />

@@ -18,6 +18,12 @@
 			canvas {
 				display: block;
 			}
+			/* Owner, 2026-09-25: while a bonus plays (Rescue / Inferno / Backdraft Spins / the Alarm Call card and its
+			   outro card) the ALARM BOOST chip stays out of the picture unless the player has it ON. The game sets
+			   data-pff-feature on <html> (components/Game.svelte); the chip is the HUD's .ante-chip / .ante-chip--on. */
+			html[data-pff-feature='on'] .ante-chip:not(.ante-chip--on) {
+				display: none !important;
+			}
 			.hud-readout__mult-name {
 				display: none;
 			}

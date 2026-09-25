@@ -40,6 +40,14 @@
 	import WinRungs from './WinRungs.svelte';
 	import SceneShutter from './scene/SceneShutter.svelte';
 
+	// Owner, 2026-09-25: the HUD's ALARM BOOST chip hides while a bonus plays unless it is ON (app.html rule keyed on
+	// this attribute: `html[data-pff-feature='on'] .ante-chip:not(.ante-chip--on)`). Rescue / Inferno stay active
+	// through their outro card, so the chip is gone for the whole feature including the summary.
+	$effect(() => {
+		const on = stateRescue.active || stateBackdraftSpins.active || stateAlarmCall.active;
+		if (typeof document !== 'undefined') document.documentElement.dataset.pffFeature = on ? 'on' : 'off';
+	});
+
 	const context = getContext();
 
 	onMount(() => {
