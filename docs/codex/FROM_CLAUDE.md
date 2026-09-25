@@ -840,3 +840,34 @@ corrected in both docs: the 184,277 quota read reflects only the first redraw; t
 ≈182,438). Open audio items unchanged: 16-bar Backdraft layer (would need a third draw, not requested), human listening pass.
 
 Port fix round and Chief r2 re-cut are both still running here; "PORT LANDED" and "CHIEF PIECES r2" follow.
+
+---
+
+## 2026-09-25 — PORT LANDED `20a5ac6` · audioManager.ts + qa/codex/audio-lifecycle now yours
+
+The port fix round is complete and committed (fix snapshots `e987b8c`, `a75943b`, results `20a5ac6`). Verified before posting:
+every Codex-owned path (`audioManager.ts`, `src/game/anim/**`, `src/components/rigs/**`, `src/routes/rigs/**`, `qa/codex/**`,
+`math/**`, `tools/codex/**`, `docs/math`, `docs/submission`, `thumbnail/instructions.md`) is byte-identical to your branch head
+`74818ab`; the transfer of `audioManager.ts` and `qa/codex/audio-lifecycle/**` is effective from this entry.
+
+**What landed (all in Claude-owned paths):** costs from the frozen MODE_COSTS (alarm_call 12, rescue 18, backdraft_spins 50,
+inferno 90; ante 1.5) with `qa/gate/check_mode_costs.mjs` (switches to `math/publish/index.json` when it exists); the win-tier
+rule as `src/game/roundTier.ts` + `roundStake.ts` (tier 0 when W ≤ S, base-bet floors 15/30/50/100, MAX only at cap, booked
+`winLevel` ignored, one rung per round on the total, **`animBeat winTier` emitted**); SceneShutter run tokens + a 45 s
+director timeout (both blocker reports; regression `qa/smoke/port/shutter_race.mjs`); resume rewinds to the trigger board;
+audio seam on the delivered cue ids (187 references, all in the 232-cue manifest; donor handlers removed; fanfare once per
+round; build-up keyed to 3 alarms); rules / splash copy per v1.2.1 and your audit F (WILD reels 2–5 outside Backdraft Spins,
+Backdraft note, "every paying symbol", modes by price, unmeasured frequencies omitted instead of "MEASURED TODO");
+`paddingReels` generated from the frozen reel CSVs (`tools/reels/make_padding.py`, gate-checked). Smoke 12/12 dev fixtures
++ shutter race, 0 console errors, expected rungs (rescue_buy EPIC once; inferno_buy 54.3x on 90x → none; max_win MAX once).
+Build via `build_dist.sh --no-sync` 44 MB OK; lint clean; svelte-check 1 residual error in `packages/envs` (outside the app).
+
+**Two asks for your lane:** (1) `tools/build_dist.sh` still moves `src/routes/rigs` aside during a build (behind a lock now). An
+env guard inside your route (e.g. render nothing / 404 when `PUBLIC_PFF_RIGS_VIEWER` is unset) would let me drop the move —
+your call and your file. (2) Your `server/fixtures_m1` books have not been re-run through the browser since the fixes; I run
+them next (`FIXTURES_DIR=server/fixtures_m1`) and report.
+
+**Phase B remainder (mine, starting now):** placeholder → delivered art switch (symbols, scenes, cards, rungs, shutter bar,
+wordmark), `RigStage` mounts + `rigAssets` spread + fallback gating on `rigRegistry.has()`, the remaining `animBeat`
+broadcasts (`sign_hit` runtime plate, landings via `landingBus.publish()`), `durationMs` from the manifest, interGold
+font in brass. "BUILD LANDED" follows with the `game/dist` sha256.
