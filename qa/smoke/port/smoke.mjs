@@ -107,6 +107,20 @@ const runOne = async (browser, fixture) => {
 mkdirSync(HERE, { recursive: true });
 const browser = await launch();
 const version = browser.version();
+// WARM-UP: the dev server compiles and may re-optimize dependencies on the first page load after an edit, which
+// reloads the page mid-run (the splash comes back and the Space press is lost). One throwaway load first.
+{
+	const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+	const page = await context.newPage();
+	try {
+		await page.goto(`${GAME}?sessionID=warmup&rgs_url=${RGS}&device=desktop`, { waitUntil: 'domcontentloaded', timeout: 60000 });
+		await page.waitForSelector('.splash .press', { timeout: 120000 });
+		await sleep(3000);
+	} catch {
+		/* the real runs report */
+	}
+	await context.close();
+}
 const results = [];
 for (const fixture of FIXTURES) {
 	const r = await runOne(browser, fixture);
