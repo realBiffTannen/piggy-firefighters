@@ -902,3 +902,46 @@ badge, black/yellow boot, brass hydrant). GLBs: `art-src/meshy/{coin,silver_coin
   fountain consumers from the 2D flip sheets to your sheets (the 2D sheets stay as the fallback until then). If a model
   cannot be made to match the 2D style (WIN_RUNGS_SPEC rule: 2D art direction wins over 3D fidelity), say which and I
   keep the 2D sheet for it.
+
+---
+
+## 2026-09-25 — CHIEF PIECES r2 + ROOKIE / DOG / RESCUED r2 `9f20e8a` (formal r2 parts delivery)
+
+All four rigs' registered parts are re-cut. Every changed file is named in `art-src/animation/parts/R2_CHANGES.md` (199 files
+against the r1 baseline `d8ed8f0`: pf_chief 46, pf_rookie 45, pf_dog 33, pf_rescued 67, plus the tools and the two docs);
+`REGISTRATION.md` / `INVENTORY.md` are rewritten for r2; `registration.json` per rig lists every piece with sheet_origin, cell,
+scale and `superseded` entries for the replaced r1 legs / coat edits; `anchors.json` re-measured with per-piece scale.
+Masters, the 11 sheets, the 5 `skin_*.png` and `art-src/generated/rig_pf_*` are byte-identical to `ca0388c`. QA evidence is now
+tracked: `qa/art/parts/<rig>_pieces_r2.png` (every piece at 2x, labelled), `<rig>_layers_r2.png`, `<rig>_reassembly.png`,
+`pf_rescued_skin_slots_r2.png`. Three independent verifiers (labels by eye; layer-stack vs master pixel diff; provenance /
+alpha / islands) filed 25 findings, all fixed; a second full build changes 0 files; every write atomic; `check_images.py` 0 bad.
+
+**What changed vs r1 (read before re-importing):**
+- Cutter uses fixed sheet grids with per-cell rules (`<rig>/sheets.layout.json`): eyes keep both eyes and drop brows; mouths
+  keep their crease strokes; ears / moustaches keep the largest shape; hands whole; plates whole; slide poses by outline.
+- Scale is per family, not per sheet (r1 was off by up to 2x): chief eyes 0.65, brows 0.53, moustache 0.93, **hands 0.58**
+  (was 0.47); rookie hands **0.60**, cards 0.60, hose 0.316; see the REGISTRATION tables.
+- **Ears are now named by the CHARACTER's side** on all four rigs (`ear_right` = image-left), matching every other sided
+  part; pixels unchanged, names swapped.
+- Coat tails and single legs are cut from the registered body's own pixels; `body_no_head_no_arms` no longer contains the
+  legs (the doubling is gone); soles on y 1440 (alpha ≥ 128) with a hidden overlap up to 140 px under the hem.
+- `helmet_front` is cut from the master's pixels (no seam at rest) on chief, rookie and dog (Ember's grown through the ink
+  ring and the brim shadow). Chief raised arms rotated about the shoulder pivot (+4.75° / −1.25°) so fingertips stay 4 px
+  inside the canvas. Chief `arm_left` shoulder cap and rookie body collar / far shoulder trimmed to the master silhouette.
+- **Ember**: legs in four layers (`leg_hind_right/left`, `leg_front_right/left`); `mouth_*` renamed **`muzzle_*`** (opaque
+  muzzles incl. the nose) at scale 1.05, registered nose-on-nose (`anchors.json` `guidance.muzzle_nose`); the sheet cell is
+  `pieces/head_open_smile.png` (a whole-head swap) and `head_no_jaw` is derived from it (jaw polygon, method recorded).
+- **Rescued skins**: all five cut into the template's six slots (`pf_rescued/skins/<skin>/`), polygon overrides in
+  `derive.layout.json` keep the cat, the piggyback twin, the baby sling, the robe skirt / collar, the hood and the cardigan hem
+  on the body; soles snapped to y 1440. **Twins**: the rider stays in the body slot (skins add no slot); the twins' neck is
+  ~75 px and shoulders ~150–160 px lower than the template's, so keep the twins' head / arms near rest or give them
+  skin-specific bones — your call.
+- `shield_13.png` re-lettered from the r2 plate and registered; the rig mounts the blank `shield_plate` (v1.3: no lettering
+  on the rig), `shield_13` is optional (`art-src/ART_HERO.md` wording updated).
+- The Chief bytes you snapshotted from `62725b3` differ in `arm_left`, `arms_down`, `body_no_head_no_arms`, `head_blank`,
+  both ears and `shield_13`: please re-import from `9f20e8a`.
+
+**Open, needing your call:** the rookie master's crown touches y 0 (one faint antialias row cut; `registration.json`
+`master.crown_note`) — moving it 12 px down would put the soles on y 1452, off the feet line; say if you want a scaled
+master or a rig-specific feet line. Ember's `head_open_smile` / `head_no_jaw` and the rookie collar redraw would each need
+one paid same-framing edit to match the master exactly — say if the motion needs it and I issue it.

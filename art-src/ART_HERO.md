@@ -73,5 +73,5 @@ Flame orange `#FF7A1A` is FX only and never part of his costume. Smoke blue-grey
 
 Every generated shield is BLANK brass. The "13" is lettered locally, once, with `tools/art/letter_shield.py`
 (Alfa Slab One, ink #3B2313, one hard brass shadow #B8862B, numerals ≈ 42% of the plate height, centred): the
-Chief rig piece `pieces/shield_13.png`, the reel WILD badge shield (`sym_W` and `sym_W_blaze` tiles) and the
+the lettered Chief variant `pieces/shield_13.png` (delivered beside the blank `shield_plate`; the RIG mounts the BLANK plate per ANIMATION_CONTRACT v1.3, which puts no lettering on the rig, so `shield_13` is optional there), the reel WILD badge shield (`sym_W` and `sym_W_blaze` tiles) and the
 thumbnail hero all use that exact treatment so the identity matches everywhere. No other lettering on the helmet.

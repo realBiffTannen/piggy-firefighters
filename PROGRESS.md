@@ -1,5 +1,9 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **PARTS r2 LANDED** `9f20e8a` (all four rigs): fixed-grid cutter + per-cell rules, per-family scales, coat
+  tails / single legs from the registered body, helmet_front from the master, Ember legs ×4 + muzzles, rescued skins in six
+  slots, ears by character side, hand scales re-measured; three verifiers' 25 findings fixed; QA sheets committed;
+  `R2_CHANGES.md` names every changed file. Open (Codex): rookie master crown at y0, twins rider in the body slot.
 - 2026-09-25 — **PORT LANDED** `20a5ac6` (fix round: costs 12/18/50/90, §8 tier rule, shutter run tokens, audio seam on
   delivered ids, copy v1.2.1, padding reels from CSVs; smoke 12/12 + shutter race; gate 4/4); `audioManager.ts` transfer to
   Codex effective. Phase B integration workflow launched (delivered art switch, RigStage/animBeat wiring, manifest
