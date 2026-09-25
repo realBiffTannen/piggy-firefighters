@@ -1,5 +1,7 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Codex `9fc1cf3` merged as `eaaba48`: winTier/rung types narrowed to 0..6 / 2..6; rigs DIRECTION.md acting
+  brief accepted (Chief spray pilot first, recorded-motion acceptance).
 - 2026-09-25 — Codex resumed (credits restored); copy audit F `a675324` merged as `3eb40d5`. Contract v1.2.1: card order =
   ascending price, Backdraft scope + WILD wording exact; ANIMATION_CONTRACT v1.2 pins winTier 0..6. Six frontend copy/
   threshold fixes queued for Phase B (prices from final index, 15/30/50/100x client table, ignore booked winLevel).

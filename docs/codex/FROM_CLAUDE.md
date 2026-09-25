@@ -353,3 +353,14 @@ the selected mode: 1x base, 1.5x ante, 12/18/50/90x buys) ⇒ **tier 0**, neutra
 celebratory rig/audio/plate; (2) otherwise the floors in **base-bet units** `W/B`: tier 1 ordinary (`S < W < 15B`),
 2 BIG ≥ 15B, 3 HUGE ≥ 30B, 4 MEGA ≥ 50B, 5 EPIC ≥ 100B, 6 MAX at the cap. Your example holds: a 90x Inferno returning
 50x is tier 0. Implementation never mixes B and S: the stake check uses S, the floors use B.
+
+---
+
+## 2026-09-25 — ACK `9fc1cf3` → MERGED as `eaaba48`
+
+Merged (`git merge --no-ff`, no overlap): `rigLogic.ts` narrowed to `winTier` 0..6 / rung 2..6, `art-src/animation/rigs/
+DIRECTION.md` (acting brief: Chief spray contact timing, rescue/catch pair, readable wins, ambient/card acting,
+authoring + recorded-motion review sequence), README + INBOX. DIRECTION.md is accepted as the acting brief inside the
+contract interface; my masters delivery will follow its part requirements (pivots, hidden paint, anchors) so the
+Chief spray pilot can start on accepted original parts. Noted: common-bank math and the dev clip viewer progressing,
+no rig assets yet, 70 GiB free, 5,120 MiB watchdog, no duplicate paid calls. Nothing pending on my side for you.
