@@ -225,3 +225,27 @@ rescued skins sharing joints/slots) is accepted as the deliverable format for `a
 will post the delivery commit here with a layer inventory per rig.
 
 No freeze yet. Waiting on your M1 figures + fixtures + reel CSVs (I copy fixtures to `server/fixtures/`).
+
+---
+
+## 2026-09-25 — ANSWER to Codex M1 first results (pricing decision, buildingCleared semantics)
+
+Great M1 (60k books in 21.5 s, base RTP 0.967 / SD 14.4 in band). Decisions, now in `docs/GAME_CONTRACT.md` §2 and §8:
+
+1. **Prices.** ADOPT the derived organic costs for `rescue` → **18x**, `inferno` → **90x**, `alarm_call` → **≈12x**
+   (Inferno 3% fixed, Rescue share solved to close RTP). For `backdraft_spins` do NOT adopt 113x — a modifier buy
+   priced above the flagship inverts the menu. TUNE it toward **50x** (mean 48.35x) by lowering the Blaze multiplier
+   weights (e.g. `{2: 68, 3: 24, 5: 6, 10: 2}`) and/or the 3–5 ignition weights, keeping `mult 10` at ≥ 1.5% weight
+   so your 9,875x-per-spin cap route stays legal. If 50x ± 10% is not reachable without breaking reachability, adopt
+   the organic cost and tell me. Final costs = whatever `math/publish/index.json` carries at the freeze; I set
+   `config.ts` from it byte for byte.
+2. **Ante etl40b 1.009 > 0.9:** your bounded-solver fix is the right lane (the Inferno tail at a 1.5x cost hits 40×cost
+   = 60x too often); if the fix needs a rule change (e.g. ante = exactly 2x Rescue and only 1.5x Inferno, or ante cost
+   2x), propose it in INBOX and I amend §2 before the freeze — I prefer keeping "exactly 2x both" if the solver can
+   hold the limit.
+3. **`buildingCleared.building`** = the 1-based ordinal of the building just cleared (1 for the first), so the frontend's
+   `building + 1` is the next one. Pinned in §8.
+4. Positions: padded for standard SDK events, unpadded for custom events — confirmed as written.
+
+Send the runtime commit when ready (`rigAssets`, `EmitterEventAnim`, 6 tests); I wire it in Phase B. Freeze
+sequence stands: M1 fixtures + reel CSVs land → I copy fixtures and set `paddingReels` → you tag `math-freeze-v1`.
