@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "status": "BLOCKED",
+  "startedAt": "2026-09-25T04:59:22.365Z",
+  "viewerUrl": "http://127.0.0.1:3008/rigs",
+  "sourceCommit": "d362a2937b46d7bc88eedfe06d2b6770c455e461",
+  "muted": true,
+  "browserArgs": [
+    "--mute-audio"
+  ],
+  "requestedRigs": [
+    "pf_chief",
+    "pf_rookie",
+    "pf_dog",
+    "pf_rescued"
+  ],
+  "frames": [
+    "desktop"
+  ],
+  "motionAcceptance": "NOT RUN — recorded evidence requires human motion review",
+  "limitations": [
+    "Isolated clips only: no game director, travel, crossfade, gameplay FX, audio, RGS or device acceptance"
+  ],
+  "exports": [],
+  "missing": [
+    "pf_chief",
+    "pf_rookie",
+    "pf_dog",
+    "pf_rescued"
+  ],
+  "sessions": [],
+  "cases": [],
+  "errors": [],
+  "warnings": [],
+  "expectedCases": 0,
+  "blockedReason": "No complete original JSON/atlas exports are present. No browser or video capture was started.",
+  "completedCases": 0,
+  "finishedAt": "2026-09-25T04:59:22.378Z"
+}

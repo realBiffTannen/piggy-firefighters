@@ -23,9 +23,11 @@
   function selectRig() { info = null; clip = ''; skin = ''; logs = []; paused = false; }
   function loaded(value: RigInfo) {
     info = value;
-    clip = rig ? RIG_DEFINITIONS[rig].loop : '';
+    const preferred = rig ? RIG_DEFINITIONS[rig].loop : '';
+    clip = value.clips.some(item => item.name === preferred) ? preferred : (value.clips[0]?.name ?? '');
     skin = rig === 'pf_rescued' ? 'grandma' : (value.skins.find(name => name === 'default') ?? value.skins[0] ?? '');
     log(`LOADED ${rig} · Spine ${value.version} · bounds ${value.width} × ${value.height}`);
+    if (value.pilotOnly) log(`PILOT ONLY · missing clips: ${value.missingClips?.join(', ')} · gameplay contract incomplete`);
   }
   onMount(() => {
     document.documentElement.classList.add('pf-rig-viewer');
@@ -40,6 +42,7 @@
     <p>This review tool is available in development only.</p>
   {:else}
     <p class="intro">Inspect original rigs in isolation. Acceptance requires a recorded review of every clip; asset presence and this viewer do not certify motion quality.</p>
+    {#if info?.pilotOnly}<p class="pilot-warning" role="status"><strong>AUTHORING PILOT · CONTRACT INCOMPLETE</strong><br />Missing clips: {info.missingClips?.join(', ')}. This partial performance is for motion development only and is not ready for gameplay.</p>{/if}
     <div class="workspace">
       <aside aria-label="Review controls">
         <div class="field"><label for="rig">Character</label><select id="rig" bind:value={rig} onchange={selectRig} disabled={!available.length}>
@@ -94,6 +97,7 @@
   h1 { font-size: clamp(25px, 4vw, 38px); letter-spacing: -.03em; line-height: 1.1; margin: 0; } h2 { font-size: 18px; line-height: 1.3; }
   .badge { flex-shrink: 0; border: 1px solid #45606a; border-radius: 30px; padding: 7px 12px; font-size: 12px; color: #c4d7d7; }
   .intro { max-width: 880px; color: #a6bbc2; margin: 18px 0 30px; }
+  .pilot-warning { color: #f5d3a0; border: 1px solid #917548; background: #31271c; padding: 14px 18px; border-radius: 10px; }
   .workspace { display: grid; grid-template-columns: 245px minmax(0, 1fr); gap: 24px; align-items: start; }
   aside { background: #18262e; border: 1px solid #2d444e; padding: 20px; border-radius: 14px; }
   .field { margin-bottom: 15px; } label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; color: #c5d6d7; }

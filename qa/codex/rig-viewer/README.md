@@ -66,3 +66,73 @@ node qa/codex/rig-viewer/browser-empty.mjs /absolute/path/to/playwright/index.mj
   motion craft and recorded acceptance: **NOT RUN**, original exports absent.
 
 No artwork was generated or copied, no full build or simulation was run.
+
+## Original-art capture runner
+
+After the original runtime JSON/atlas/PNG exports land, start the development
+viewer and run from the repository root (using the same installed Playwright
+entry module as `browser-empty.mjs`):
+
+```sh
+node qa/codex/rig-viewer/capture-art.mjs /absolute/path/to/playwright/index.mjs \
+  --url http://127.0.0.1:3008/rigs --frames desktop,mobile
+```
+
+`--frames` defaults to `desktop`; `--rig pf_chief` can limit a work-in-progress
+review (repeat the option for more rigs). The report records that requested
+scope explicitly. Outputs default to a new timestamped directory under
+`qa/codex/rig-viewer/captures/`; `--output` may select another NEW directory
+under this QA directory. Existing evidence is never overwritten.
+
+For an incomplete authoring pilot, pass the explicit viewer URL with its query:
+`--url 'http://127.0.0.1:3008/rigs?pilot=1' --rig pf_chief`. The query is
+preserved, and JSON marks `authoringPilot: true` with a work-in-progress
+limitation. Every declared clip/skin is recorded; required but missing contract
+clips, anchors, events and rescued skins are listed for each export. A
+successful pilot recording does **not** establish full-contract readiness.
+Both contract and motion acceptance stay **NOT RUN** in every capture report.
+
+The runner requires real runtime exports, validates that the viewer loaded its
+rig canvas, and compares every loaded clip/skin choice with the hashed JSON.
+It records one muted WebM per rig/frame/speed and every clip × skin at normal
+and quarter speed. Once clips play through; loops play twice. Three PNG frames
+per case sample nominal wall-clock fractions, with actual elapsed times
+recorded; these are not asserted animation phases because the viewer clamps
+ticker deltas on slow renderers. A fourth frame records the paused final pose
+after completion, or the paused pose after two verified loop boundaries (not
+an exact seam frame). Each case pauses before selection/clearing and binds its
+boundary count to a fresh PLAY row id; older events and clip-prefix matches
+cannot satisfy it. A finite completion wait fails if the renderer cannot finish.
+Desktop records 1360 × 1000; phone records 390 × 844. Logical canvas size, rig
+scale, browser version, URLs, exact served JSON/atlas/texture hashes, disk
+hashes before/after, video/frame hashes and browser errors are saved in JSON.
+Video offsets are approximate host timestamps, explicitly labelled; use the
+frame timestamps and on-screen controls/log for precise case identification.
+
+Exit codes: **0 CAPTURED** = requested evidence captured without detected
+errors; **2 BLOCKED** = missing original exports/coverage; **1 FAIL** = invalid
+exports, load/control errors, changed hashes or incomplete captures. With no
+exports the runner writes a BLOCKED report before launching any browser. A
+partial family remains BLOCKED if the requested set includes missing rigs.
+`motionAcceptance` always remains **NOT RUN**: capturing is not artistic
+approval. Human review must assess timing, pose, weight, contacts, silhouettes,
+loop seams and every skin; game integration and synchronized audio need their
+own review. The runner does not generate art or accept substitute animation.
+
+Focused checks (no real-art recording; use Node 24 or another runtime supporting
+the same TypeScript stripping as the existing viewer test command):
+
+```sh
+node --test qa/codex/rig-viewer/capture-plan.test.mjs qa/codex/rig-viewer/viewerLogic.test.mts
+node --check qa/codex/rig-viewer/capture-art.mjs
+```
+
+The helper fixtures are synthetic temporary test data, never shipped artwork
+or motion evidence. Full browser recording is **NOT RUN** until real exports
+are available.
+
+Prepared-runner verification: **PASS**, 9 focused checks (4 capture helper +
+5 viewer logic); runner syntax **PASS**. The no-art preflight at
+`capture-preflight/report.json` returned **BLOCKED**, exit 2, all four exports
+missing, zero cases and no browser launch. This verifies refusal to accept an
+empty viewer; the loaded-art recording path remains **NOT RUN**.
