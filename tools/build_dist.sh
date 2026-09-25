@@ -59,6 +59,11 @@ for c in css:
     if not any(c in t for p,t in texts if not p.endswith(c)):
         os.remove(os.path.join(d,c)); print('unlinked stylesheet dropped:',c)
 PY
+# Provenance stamp (ledger rule "artifact-served-is-not-artifact-tested": a tree without a stamp is FAIL by default).
+# build/provenance.json records HEAD, one digest over every build input (app src minus the held /rigs route, static, the
+# vendored HUD tarball, the app configs, packages/*/src) and the sha of the emitted index.html, after every rewrite above;
+# `node qa/gate/check_provenance.mjs --dir <tree>` recomputes both against a served tree and fails on any mismatch.
+node "$REPO/qa/gate/check_provenance.mjs" --write --dir "$APP/build" || { echo "BUILD FAILED (provenance stamp)"; exit 1; }
 if [ "${1:-}" = "--no-sync" ]; then echo "BUILD OK (staged in apps/piggy_firefighters/build, game/dist untouched)"; du -sh $APP/build; exit 0; fi
 rsync -a --delete $APP/build/ $REPO/game/dist/
 echo "BUILD OK"; du -sh $REPO/game/dist; find $REPO/game/dist -type f | wc -l

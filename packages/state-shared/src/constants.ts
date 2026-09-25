@@ -1,3 +1,9 @@
+// The donor template's sample bet modes (another game's titles, dialog copy, tickers and
+// placeholder banner text, none of it std/social gated) used to live here. This game's modes are published into
+// stateMeta.betModeMeta by the studio HUD at boot, from the math-exported config (the same table the rules sheet and
+// the feature cards read), so this default is only ever read before that effect runs: it keeps a blank BASE so
+// activeBetMode() is never null for the resting key, and carries no other mode and no copy — nothing here may reach
+// the shipped bundle as bytes (sweep 2026-09-25).
 const DEFAULT_BET_MODE_META = {
 	BASE: {
 		mode: 'BASE',
@@ -20,151 +26,6 @@ const DEFAULT_BET_MODE_META = {
 			tickerIdle: '',
 			tickerSpin: '',
 			bannerText: '',
-		},
-		maxWin: 8888,
-	},
-	ANTE: {
-		mode: 'ANTE',
-		costMultiplier: 1.2,
-		type: 'activate',
-		parent: '',
-		children: '',
-		assets: {
-			icon: '',
-			dialogImage:
-				'',
-			dialogVolatility:
-				'',
-			volatility:
-				'',
-			button:
-				'',
-			bannerText: 'example banner text',
-		},
-		text: {
-			title: 'DOUBLE BOOST',
-			dialog:
-				'Double the chance to trigger the FREE SPINS round when activated for 1.2x the player bet amount. DOUBLE BOOST remains active until disabled by the player.',
-			description: 'Greatly increase your chance of landing a bonus symbol each spin.',
-			button: 'ACTIVATE',
-			betAmountLabel: 'DOUBLE BOOST',
-			tickerIdle: 'DOUBLE BOOST IS ACTIVE',
-			tickerSpin: 'GOOD LUCK',
-			bannerText: 'example banner text',
-		},
-	},
-	SUPERANTE: {
-		mode: 'SUPERANTE',
-		costMultiplier: 5,
-		type: 'activate',
-		parent: '',
-		children: '',
-		assets: {
-			icon: '',
-			dialogImage:
-				'',
-			dialogVolatility:
-				'',
-			volatility:
-				'',
-			button:
-				'',
-		},
-		text: {
-			title: 'SUPER BOOST',
-			dialog:
-				'1 in 20 chance to trigger the FREE SPINS round when activated for 5x the player bet amount. Guarantees 1 or more Scatter symbols every spin. SUPER BOOST remains active until disabled by the player.',
-			description: 'Guaranteed to land at least 1+ bonus symbol each spin.',
-			button: 'ACTIVATE',
-			betAmountLabel: 'SUPER BOOST',
-			tickerIdle: 'SUPER BOOST IS ACTIVE',
-			tickerSpin: 'GOOD LUCK',
-			bannerText: 'example banner text',
-		},
-	},
-	SUPERSPIN: {
-		mode: 'SUPERSPIN',
-		costMultiplier: 25,
-		type: 'activate',
-		parent: '',
-		children: '',
-		assets: {
-			icon: '',
-			dialogImage:
-				'',
-			dialogVolatility:
-				'',
-			volatility:
-				'',
-			button:
-				'',
-		},
-		text: {
-			title: 'SAMURAI SPIN',
-			dialog:
-				'All game features are boosted when activated for 25x the player bet amount. SAMURAI SPIN remains active until disabled by the player.',
-			description: 'SAMURAI SPIN is AWESOME! ',
-			button: 'ACTIVATE',
-			betAmountLabel: 'SAMURAI SPIN',
-			tickerIdle: 'SAMURAI SPIN IS ACTIVE',
-			tickerSpin: 'GOOD LUCK',
-			bannerText: 'example banner text',
-		},
-	},
-	BONUS: {
-		mode: 'BONUS',
-		costMultiplier: 100,
-		type: 'buy',
-		parent: '',
-		children: '',
-		assets: {
-			icon: '',
-			dialogImage:
-				'',
-			dialogVolatility:
-				'',
-			volatility:
-				'',
-			button:
-				'',
-		},
-		text: {
-			title: 'BONUS',
-			dialog:
-				'Triggers FREE SPINS feature when activated for 100x the player bet amount. The Global Multiplier can reach up to 64x and remains active for the duration of FREE SPINS.',
-			description: 'Each spin may have a random multiplier applied to winning lines.',
-			button: 'BUY',
-			tickerIdle: 'PLACE YOUR BET',
-			tickerSpin: 'BONUS BUY ACTIVATED',
-			bannerText: 'example banner text',
-		},
-	},
-	SUPER: {
-		mode: 'SUPER',
-		costMultiplier: 200,
-		type: 'buy',
-		parent: '',
-		children: '',
-		assets: {
-			icon: '',
-			dialogImage:
-				'',
-			dialogVolatility:
-				'',
-			volatility:
-				'',
-			button:
-				'',
-		},
-		text: {
-			title: 'SUPER BONUS',
-			dialog:
-				'Triggers FREE SPINS feature when activated for 200x the player bet amount. The Global Multiplier can reach up to 256x and remains active for the duration of FREE SPINS.',
-			description: 'Enter the mothership! Land values and multiply them with action symbols.',
-			button: 'BUY',
-			tickerIdle: 'PLACE YOUR BET',
-			tickerSpin: 'SUPER BONUS BUY ACTIVATED',
-			bannerText: 'example banner text',
 		},
 	},
 };

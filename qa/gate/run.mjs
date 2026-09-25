@@ -8,6 +8,8 @@ const steps = [
 	['node', ['qa/gate/check_cue_ids.mjs']],
 	['python3', ['tools/reels/make_padding.py', '--check']],
 	['node', ['tools/art/gen_art_meta.mjs', '--check']],
+	// the SHIPPED tree must be the tree these sources produce (build_dist.sh stamps it) — a missing stamp is a FAIL, not a skip
+	['node', ['qa/gate/check_provenance.mjs', '--dir', 'game/dist']],
 ];
 let failed = 0;
 for (const [cmd, args] of steps) {
