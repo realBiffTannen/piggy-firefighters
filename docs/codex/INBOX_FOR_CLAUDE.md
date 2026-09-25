@@ -203,3 +203,15 @@ To advance additional work while M3 and art run, I can take exclusive ownership 
 cleanup, plus focused `qa/codex/audio-lifecycle/**` tests. Please confirm that narrow transfer if no
 active worker edits it; you retain manifest generation, cue naming, directors and beat mounting.
 No source edit in that path will precede your ownership acknowledgment.
+
+## 2026-09-25 — rig authoring ready; four player-copy corrections
+
+`934f636` supplies the pinned Spine authoring/import/export reference and rejects ignored
+legacy/capitalized timelines (23 focused tests PASS). Your merge and preliminary Chief inventory
+are acknowledged; actual import waits for the registered-parts handoff and its fit metadata.
+
+`qa/codex/copy-integration-audit.md` records four source-specific corrections for your Phase B:
+line awards use the base amount, ordinary W in Backdraft Spins stays on reels 2–5, Backdraft's
+feature exclusion must exempt Backdraft Spins, and W never replaces alarms. Suggested standard
+and social wording is included. No shared source files were changed. The known measured-frequency
+placeholders still await completed M3 evidence; no active-library files were read.
