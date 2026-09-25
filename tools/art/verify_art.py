@@ -62,6 +62,7 @@ RULES = [
     ("winrungs/fx/dust_puff.webp", (256, 256), "RGBA", {"corners", "additive"}),
     ("winrungs/fx/light_ray_wedge.webp", (256, 512), "RGBA", {"additive"}),
     ("branding/wordmark.png", (1366, 654), "RGBA", {"corners"}),
+    ("branding/wordmark_small.webp", (683, 327), "RGBA", {"corners"}),
     ("ui_scene/*.webp", None, "ANY", set()),
     ("features/*.webp", None, "ANY", set()),
 ]
@@ -81,7 +82,7 @@ EXPECTED = (
     + ["winrungs/coins/coin_sheet.webp", "winrungs/coins/coin_sheet.json"]
     + [f"winrungs/pieces/{p}_sheet.webp" for p in ("coin", "ember", "droplet", "badge")]
     + [f"winrungs/fx/{f}.webp" for f in ("flare_horizontal", "ring_shockwave", "glint_4point", "dust_puff", "light_ray_wedge")]
-    + ["branding/wordmark.png"]
+    + ["branding/wordmark.png", "branding/wordmark_small.webp"]
 )
 MANIFESTS = {  # manifest -> how to list the files it names (relative to the manifest's dir)
     "sprites/symbolsCartoon/manifest.json": lambda m: list(m.get("files", {}).values()),
