@@ -32,7 +32,14 @@ const OUT = `${ROOT}/audio/cues_pcm`;
 const LEDGER = `${ROOT}/audio/source-record.json`;
 const PROV = `${ROOT}/audio/PROVENANCE.jsonl`;
 const KEY = process.env.ELEVENLABS_API_KEY;
-const API = 'https://api.elevenlabs.io';
+// PF_ELEVENLABS_API exists ONLY so the quota guard / ledger can be smoke-tested against a local mock (with a fake key);
+// anything that is not loopback is refused, so the real key can never be sent to another host.
+const API = (() => {
+	const o = process.env.PF_ELEVENLABS_API;
+	if (!o) return 'https://api.elevenlabs.io';
+	if (!/^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(o)) { console.error('PF_ELEVENLABS_API must be a loopback mock (http://127.0.0.1:<port>)'); process.exit(2); }
+	return o;
+})();
 const FMT = 'pcm_44100';
 const CONC = Math.max(1, Math.min(2, +(process.env.CONC || 2)));
 const ROUND = process.env.PF_AUDIO_ROUND || 'pf_0925';
@@ -166,7 +173,6 @@ async function main() {
 		if (kind === 'music' && !/__\d+$/.test(n)) { console.error(`music draw names are <plan>__N, got ${n}`); process.exit(2); }
 		if (kind === 'sfx' && r.prompt.length > 450) { console.error(`${n}: prompt ${r.prompt.length} chars > 450 (API limit); nothing drawn`); process.exit(2); }
 	}
-	mkdirSync(OUT, { recursive: true });
 	const q = names.filter((n) => force || !existsSync(`${OUT}/${n}.wav`));
 	const skipped = names.length - q.length; if (skipped) console.log(`skip ${skipped} already drawn (no redraw without --force --reason)`);
 	const est = (n) => (kind === 'sfx' ? estSfx(lookup(n).s) : estMusic(lookup(n)));
@@ -175,6 +181,7 @@ async function main() {
 	if (dry) { for (const n of q) console.log(`  ${n.padEnd(34)} ~${est(n)}`); return; }
 	if (!q.length) return;
 	if (!KEY) { console.error('NO ELEVENLABS_API_KEY in the environment'); process.exit(2); }
+	mkdirSync(OUT, { recursive: true });
 
 	let reading = await quota(`before ${kind} batch of ${q.length}`);
 	if (!reading) { console.error('QUOTA READ FAILED: no draws (fail closed). See the ledger row.'); process.exit(3); }

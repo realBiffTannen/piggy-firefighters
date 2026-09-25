@@ -51,7 +51,7 @@ if os.path.exists(OVERRIDES_PATH):
     for k, v in json.load(open(OVERRIDES_PATH)).items():
         if not k.startswith('_') and k in BEDS: BEDS[k].update({kk: vv for kk, vv in v.items() if kk != 'why'})
 
-LOOP_CUES = {'reel_spin_loop': (2.4, 80), 'hose_loop': (3.2, 150), 'ambient_station_loop': (13.0, 400)}
+LOOP_CUES = {'reel_spin_loop': (2.4, 80), 'hose_loop': (3.2, 150), 'ambient_station_loop': (14.0, 400)}
 TRANSITION = {'shutter_slam': (0.80, -12.0), 'shutter_haul_1': (0.45, -16.0), 'shutter_haul_2': (0.45, -16.0), 'shutter_haul_3': (0.65, -16.0)}
 SOURCES = {'count_ticker_src', 'alarm_land_src', 'blaze_mult_src', 'rescue_tada_src_lo', 'rescue_tada_src_mid', 'rescue_tada_src_hi'}
 NO_KEYFIT = {'dead_spin_settle', 'dog_bark'}

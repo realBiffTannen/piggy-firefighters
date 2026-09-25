@@ -177,7 +177,7 @@ draw('dog_bark', 0.8, 'dog', 'alarmcall', 'A small friendly cartoon puppy gives 
 draw('backdraft_spins_start', 2.2, 'mus', 'backdraftspins', 'Hot bonus start: a flame roars up as trumpets and trombones stab a bright C major chord with timpani and a cymbal, exciting, about 1.8 seconds, clean tail.')
 draw('backdraft_spins_end', 2.0, 'mus', 'backdraftspins', 'Hot bonus finish: flames settle with a soft crackle as the brass band plays a warm resolving C major chord with a bell, satisfied, about 1.6 seconds, clean tail.')
 # ambience + scene transitions
-draw('ambient_station_loop', 14.0, 'amb', 'ambience', 'Seamless loop of a calm cartoon fire station at dusk heard from inside the truck bay: a soft evening breeze, a gentle distant city hum, a hose reel creaking now and then, a far water drip and faint friendly birds, peaceful, even level. No voices, no music.', influence=0.6, loop=True)
+draw('ambient_station_loop', 15.0, 'amb', 'ambience', 'Seamless loop of a calm cartoon fire station at dusk heard from inside the truck bay: a soft evening breeze, a gentle distant city hum, a hose reel creaking now and then, a far water drip and faint friendly birds, peaceful, even level. No voices, no music.', influence=0.6, loop=True)
 draw('shutter_slam', 1.0, 'mech', 'transition', 'A big steel roll-up garage door slams shut at the floor: a heavy rattling metal crash settling into a solid thud, full-bodied low-mid, moderate undistorted level, about 700 ms, clean tail.')
 draw('shutter_haul_1', 0.8, 'mech', 'transition', 'A steel roll-up garage door is hauled up a short way: a quick rattling clatter of metal slats rolling, about 400 ms, clean tail.')
 draw('shutter_haul_2', 0.8, 'mech', 'transition', 'A steel roll-up garage door lifts another bit: a lighter rattling clatter of metal slats with a chain clink, about 400 ms, clean tail.')
@@ -323,7 +323,8 @@ def cue(cid, event, family, caps, *, bus='sfx', source=None, derive=None, loop=F
     return c
 
 
-NO_CELEBRATION = 'only when the round total is ABOVE the bet (no celebration at or below the bet)'
+NO_CELEBRATION = ('only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, '
+                  'the buy price for a bought feature); at or below it: a neutral cue or nothing')
 # --- beds (music bus)
 for pn, pl in PLANS.items():
     is_layer = pl['cue'] in ('anticipation_layer', 'backdraft_spins_layer')

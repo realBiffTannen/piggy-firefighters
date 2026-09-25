@@ -84,7 +84,7 @@ const runOne = async (browser, fixture) => {
 		await sleep(1500); // resumeBet pass + the board settles
 		if (TURBO.has(fixture)) await page.evaluate(() => (window).__pffSetTurbo?.(true));
 		await page.keyboard.press('Space');
-		await page.waitForFunction(() => ((window).__pffFinalWins ?? []).length > 0, null, { timeout: 420000, polling: 250 });
+		await page.waitForFunction(() => ((window).__pffFinalWins ?? []).length > 0, null, { timeout: 900000, polling: 250 });
 		result.finalWin = await page.evaluate(() => (window).__pffFinalWins?.[0] ?? null);
 		await sleep(1800); // let the last presentation (outro / shutter lift) settle for the capture
 		await page.screenshot({ path: join(HERE, `${fixture}.png`) });

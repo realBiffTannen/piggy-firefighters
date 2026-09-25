@@ -109,13 +109,13 @@
    "tempoBpm": 92,
    "bars": 32,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 83478.3,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "base_loop_b",
@@ -139,13 +139,13 @@
    "tempoBpm": 92,
    "bars": 32,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 83478.3,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "rescue_loop",
@@ -170,13 +170,13 @@
    "tempoBpm": 100,
    "bars": 32,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 76800.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "inferno_loop",
@@ -201,13 +201,13 @@
    "tempoBpm": 100,
    "bars": 32,
    "key": "A minor pentatonic = C major pentatonic notes",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 76800.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "anticipation_layer",
@@ -231,13 +231,13 @@
    "tempoBpm": 92,
    "bars": 4,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 10434.8,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "backdraft_spins_layer",
@@ -261,13 +261,13 @@
    "tempoBpm": 92,
    "bars": 16,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 41739.1,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "rung_bed_big",
@@ -291,13 +291,13 @@
    "tempoBpm": 100,
    "bars": 8,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 19200.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "rung_bed_huge",
@@ -322,13 +322,13 @@
    "tempoBpm": 100,
    "bars": 8,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 19200.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "rung_bed_mega",
@@ -352,13 +352,13 @@
    "tempoBpm": 100,
    "bars": 8,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 19200.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "rung_bed_epic",
@@ -382,13 +382,13 @@
    "tempoBpm": 100,
    "bars": 8,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 19200.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "rung_bed_max",
@@ -412,13 +412,13 @@
    "tempoBpm": 100,
    "bars": 8,
    "key": "C major (pentatonic)",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 19200.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "ui_click_1",
@@ -643,13 +643,13 @@
    "planned_s": 3.0,
    "source": "reel_spin_loop",
    "seam": "gameSound.reelsStart/Stop",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 3000.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "reel_stop_1",
@@ -1457,7 +1457,7 @@
    "planned_s": 1.0,
    "source": "sym_win_h1",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_h1_turbo",
    "status": "planned"
   },
@@ -1479,7 +1479,7 @@
    "planned_s": 1.0,
    "source": "sym_win_h2",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_h2_turbo",
    "status": "planned"
   },
@@ -1501,7 +1501,7 @@
    "planned_s": 1.0,
    "source": "sym_win_h3",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_h3_turbo",
    "status": "planned"
   },
@@ -1523,7 +1523,7 @@
    "planned_s": 1.0,
    "source": "sym_win_h4",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_h4_turbo",
    "status": "planned"
   },
@@ -1545,7 +1545,7 @@
    "planned_s": 1.0,
    "source": "sym_win_l1",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_l1_turbo",
    "status": "planned"
   },
@@ -1567,7 +1567,7 @@
    "planned_s": 1.0,
    "source": "sym_win_l2",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_l2_turbo",
    "status": "planned"
   },
@@ -1589,7 +1589,7 @@
    "planned_s": 1.0,
    "source": "sym_win_l3",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_l3_turbo",
    "status": "planned"
   },
@@ -1611,7 +1611,7 @@
    "planned_s": 1.0,
    "source": "sym_win_l4",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_l4_turbo",
    "status": "planned"
   },
@@ -1633,7 +1633,7 @@
    "planned_s": 1.0,
    "source": "sym_win_w",
    "seam": "gameSound.symbolWin(symbol)",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "sym_win_w_turbo",
    "status": "planned"
   },
@@ -1660,7 +1660,7 @@
     "db": 3,
     "holdMs": 120
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "line_win_small_turbo",
    "status": "planned"
   },
@@ -1687,7 +1687,7 @@
     "db": 3,
     "holdMs": 150
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "line_win_mid_turbo",
    "status": "planned"
   },
@@ -1713,7 +1713,7 @@
     "db": 4,
     "holdMs": 300
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "total_win_small_turbo",
    "status": "planned"
   },
@@ -1739,7 +1739,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "total_win_mid_turbo",
    "status": "planned"
   },
@@ -1765,7 +1765,7 @@
     "db": 5,
     "holdMs": 600
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "total_win_big_turbo",
    "status": "planned"
   },
@@ -2554,13 +2554,13 @@
    "planned_s": 4.0,
    "source": "hose_loop",
    "seam": "NEW startSfxLoop/stopSfxLoop",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
     "endMs": 4000.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "hose_end",
@@ -3011,7 +3011,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "rescue_total_small_turbo",
    "status": "planned"
   },
@@ -3038,7 +3038,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "inferno_total_small_turbo",
    "status": "planned"
   },
@@ -3065,7 +3065,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "rescue_total_mid_turbo",
    "status": "planned"
   },
@@ -3092,7 +3092,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "inferno_total_mid_turbo",
    "status": "planned"
   },
@@ -3119,7 +3119,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "rescue_total_big_turbo",
    "status": "planned"
   },
@@ -3146,7 +3146,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "turboVariant": "inferno_total_big_turbo",
    "status": "planned"
   },
@@ -3348,23 +3348,23 @@
     "assets/audio/piggy_firefighters/ambient_station_loop.m4a"
    ],
    "gain": 1.0,
-   "durationMs": 14000.0,
+   "durationMs": 15000.0,
    "priority": 2,
    "maxInstances": 1,
    "cooldownMs": 0,
    "loop": true,
    "family": "amb",
-   "planned_s": 14.0,
+   "planned_s": 15.0,
    "source": "ambient_station_loop",
    "seam": "audioManager.startSfxLoop after warmAll",
    "replaces": "ambient_site_loop",
-   "status": "planned",
    "loopPoints": {
     "startMs": 0,
-    "endMs": 14000.0,
+    "endMs": 15000.0,
     "sampleAccurate": true,
     "planned": true
-   }
+   },
+   "status": "planned"
   },
   {
    "id": "shutter_slam",
@@ -3996,7 +3996,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4021,7 +4021,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4046,7 +4046,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4071,7 +4071,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4096,7 +4096,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4121,7 +4121,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4146,7 +4146,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4171,7 +4171,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4196,7 +4196,7 @@
     "timeScale": 0.55
    },
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4225,7 +4225,7 @@
     "db": 3,
     "holdMs": 120
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4254,7 +4254,7 @@
     "db": 3,
     "holdMs": 150
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4283,7 +4283,7 @@
     "db": 4,
     "holdMs": 300
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4312,7 +4312,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -4341,7 +4341,7 @@
     "db": 5,
     "holdMs": 600
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -5356,7 +5356,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -5385,7 +5385,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -5414,7 +5414,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -5443,7 +5443,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -5472,7 +5472,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
@@ -5501,7 +5501,7 @@
     "db": 4.5,
     "holdMs": 400
    },
-   "gate": "only when the round total is ABOVE the bet (no celebration at or below the bet)",
+   "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "planned"
   },
   {
