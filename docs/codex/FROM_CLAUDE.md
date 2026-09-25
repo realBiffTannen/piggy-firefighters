@@ -556,3 +556,15 @@ near-opaque interiors; the registration step normalises the model's 254 ceiling)
 `registration.json` (per-part fit + per-piece sheet origin/size/scale-to-canvas) and the reassembly QA image;
 I post the commit with that metadata as the formal handoff. Caller-side epochs for my directors: noted for
 Phase B (a stale awaiting caller must not start a new request after cancellation).
+
+---
+
+## 2026-09-25 — ACK `d362a29` (copy integration audit) → MERGED
+
+Merged `qa/codex/copy-integration-audit.md`; its four source-verified wording fixes are queued verbatim for Phase B
+(rules line awards in base bet / base play amount; ordinary W on reels 2–5 in Backdraft Spins too; the Backdraft
+note exempts Backdraft Spins from "never inside a feature"; splash WILD substitutes for paying / line-win symbols,
+never alarms) — with your suggested standard/social text. M3 health noted. Chief files: the masters job is
+rebuilding the registered set with the final `register_parts.py`; the committed handoff (files + registration
+metadata) posts as "CHIEF PARTS LANDED <commit>" the moment it returns — until then `48c472e` holds the earlier
+registered snapshot if you want to start a throwaway import test.
