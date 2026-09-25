@@ -20,7 +20,7 @@ def sounds(c):
     cid = c['id']; d = c.get('derive') or {}; src = c.get('source')
     if c['bus'] == 'music':
         pn = (c.get('build') or {}).get('source', src or '').rsplit('__', 1)[0]; pl = PL.get(pn, {})
-        return short(f"{c.get('bars')}-bar loop @ {c.get('tempoBpm')} BPM: " + (pl.get('positive') or [''])[0])
+        return short(f"{(c.get('build') or {}).get('bars') or c.get('bars')}-bar loop @ {c.get('tempoBpm')} BPM: " + (pl.get('positive') or [''])[0])
     if src in P: return short(P[src]['prompt'])
     op = d.get('op'); frm = d.get('from')
     if op == 'turbo': return f"{frm} time-scaled x{d.get('timeScale')} (turbo, pitch kept)"
@@ -54,7 +54,11 @@ rows = []
 for c in cues:
     seam = c.get('seam', '') + (f" (replaces `{c['replaces']}`)" if c.get('replaces') else '')
     ms = c.get('durationMs'); ms = f"{ms:g}" + ('' if c.get('status') == 'built' else ' (planned)')
-    rows.append((f"`{c['id']}`", c.get('event', ''), c['bus'], 'loop' if c.get('loop') else '', ms, c.get('gain'), sounds(c), seam, notes(c)))
+    base = os.path.basename(c['files'][0]).rsplit('.', 1)[0]; stat = f"apps/{K.GAME}/static/{os.path.dirname(c['files'][0])}"
+    have = all(os.path.exists(f"{ROOT}/apps/{K.GAME}/static/{f}") for f in c['files'])
+    lp = c.get('loopPoints') or {}
+    loopcol = ('loop' + (f" [{lp['startMs']:g}, {lp['endMs']:g}) ms" if lp.get('padSamples') else '')) if c.get('loop') else ''
+    rows.append((c.get('event', ''), f"`{c['id']}`", f"`{base}.ogg` / `.m4a`" + ('' if have else ' (missing)'), c['bus'], loopcol, ms, c.get('gain'), sounds(c), seam, notes(c)))
 g = doc['grid']
 os.makedirs(f'{ROOT}/docs', exist_ok=True)
 with open(f'{ROOT}/docs/AUDIO_MAP.md', 'w') as f:
@@ -63,13 +67,28 @@ with open(f'{ROOT}/docs/AUDIO_MAP.md', 'w') as f:
             '`apps/piggy_firefighters/src/game/audio/cueManifest.ts`), `audio/tools/prompts.json` and `audio/tools/plans.json`. '
             'Do not hand-edit: change `audio/tools/roster.py`, re-run it, then this. Direction and rules: `assets/SOUND_BIBLE.md`; '
             'pipeline: `audio/README.md`.\n\n'
-            f"**{len(rows)} cue ids; {built} built, {len(rows) - built} planned.** Grid: base {g['tempoBpm']} BPM, bonus/rungs "
+            f"**{len(rows)} cue ids; {built} built, {len(rows) - built} planned.** Files live in `apps/{K.GAME}/static/assets/audio/{K.GAME}/`. Grid: base {g['tempoBpm']} BPM, bonus/rungs "
             f"{sorted(set(v for k, v in g['bonusBpm'].items() if v != g['tempoBpm']))} BPM, key {g['key']}, hook {g['hook']['notes']}. "
             'Gain = pre-duck cue trim from `audio/tools/mix.py` (1.0 until measured). `seam` = where the new id should be played; '
             '`replaces` = the donor id the ported runtime still plays there (the runtime seam is a later frontend task). '
             + ('**Nobody has listened to any of this yet.**' if built else '**Roster only: no sound has been drawn yet.**') + '\n\n')
+    f.write('## Owner rules\n\n'
+            '- **Audio lane** owns every file this map points at: `audio/**` (registry, tools, masters, QA), '
+            f"`apps/{K.GAME}/static/assets/audio/**` (what ships: `<id>.ogg` Opus 160k 48 kHz + `<id>.m4a` AAC-LC 160k 44.1 kHz, "
+            'ogg first), the GENERATED `src/game/audio/cueManifest.ts`, this map and `assets/SOUND_BIBLE.md`. A sound changes only by '
+            're-running the build (`build_audio.py` -> `mix.py` -> `gen_manifest.mjs` -> `measure.py` -> `audio_map.py`), never by hand, '
+            'and never by copying a donor file (the donor LUCKY folder was purged from static; no donor sound ships).\n'
+            '- **Frontend lane** owns WHEN a cue plays: the `seam` column names the call site (`audioManager.ts`, `presentationDirector.ts`, '
+            '`fx/audioDirector.ts`, `audio/index.ts`, `WinRungs.svelte`, the HUD). Where `replaces` names a donor id, the ported runtime '
+            'still asks for that donor id, which is no longer in the manifest (the runtime skips unknown ids silently): wiring the new id '
+            'at its seam is a frontend task.\n'
+            '- **Ids are the contract**: once wired, an id never changes; a better sound ships under the same id.\n'
+            '- **Gains come only from measurement** (`mix.py`: loudest 400 ms of the shipped .ogg vs the family target; reward chains '
+            'strictly rising). Beds keep gain 1.0 and are mastered to their LUFS target.\n'
+            '- **Paid draws** (ElevenLabs) only through `gen_audio.mjs`, ledgered in `audio/source-record.json`; a redraw needs a named, '
+            'measured defect (`--force --reason`); the coordinator issues it.\n\n')
     f.write('## Rules every cue follows\n\n' + '\n'.join(f'- {r}' for r in doc['mix']['rules']) + '\n\n')
     f.write('## Transitions\n\n' + '\n'.join(f'- **{k}**: {v}' for k, v in doc['transitions'].items()) + '\n\n')
-    f.write('## Cues\n\n| id | moment | bus | loop | ms | gain | sounds like | seam | notes |\n|---|---|---|---|---|---|---|---|---|\n')
+    f.write('## Moment -> cue -> file\n\n| moment | cue | file | bus | loop | ms | gain | sounds like | seam (frontend call site) | notes |\n|---|---|---|---|---|---|---|---|---|---|\n')
     for r in rows: f.write('| ' + ' | '.join(str(v) for v in r) + ' |\n')
 print('wrote docs/AUDIO_MAP.md', len(rows), 'rows', f'({built} built)')

@@ -14,6 +14,7 @@
           seamless vertical repeat; hose segment = seamless horizontal repeat; blank plates are lettered at runtime)
   cells   ui_scene/cell_frame_{plain,win,locked}.webp 384x384 + ui_scene/line_plate.webp + ui_scene/cells.meta.json
 
+Sources: SRC below (art-src/generated/scene/*), --map <json> overrides any key.
 --out <assets root> redirects every write (tests / staging); --contact <png> writes a review sheet.
 """
 import argparse
@@ -31,13 +32,21 @@ from art_common import (exists_src, load_rgb, load_rgba, out_root, prepare_out, 
                         write_json)
 
 STATES = (("roaring", 2), ("smouldering", 1), ("safe", 0))
-SETS = {  # plate -> state paintings (same-framing edits of that plate)
-    "rescue": ("scene/plate_rescue_16_9", {"roaring": "scene/rooms_fire2", "smouldering": "scene/rooms_fire1",
-                                           "safe": "scene/rooms_safe"}),
-    "inferno": ("scene/plate_inferno_16_9", {"roaring": "scene/inferno_rooms_fire2",
-                                             "smouldering": "scene/inferno_rooms_fire1", "safe": "scene/inferno_rooms_safe"}),
+# accepted sources (override any key with --map <json>); state paintings are same-framing edits of their plate
+SRC = {
+    "plate_rescue": "scene/plate_rescue_16_9", "plate_inferno": "scene/plate_inferno_16_9",
+    "rescue_roaring": "scene/rooms_fire2", "rescue_smouldering": "scene/rooms_fire1", "rescue_safe": "scene/rooms_safe",
+    "inferno_roaring": "scene/inferno_rooms_fire2", "inferno_smouldering": "scene/inferno_rooms_fire1",
+    "inferno_safe": "scene/inferno_rooms_safe",
+    "portrait_rescue": "scene/plate_rescue_portrait", "portrait_inferno": "scene/plate_inferno_portrait",
+    "props_a": "scene/rescue_props_a", "props_b": "scene/rescue_props_b", "ui_frames": "scene/ui_frames",
 }
-PORTRAIT = {"rescue": "scene/plate_rescue_portrait", "inferno": "scene/plate_inferno_portrait"}
+
+
+def sets():
+    return {m: (SRC[f"plate_{m}"], {st: SRC[f"{m}_{st}"] for st, _ in STATES}) for m in ("rescue", "inferno")}
+
+
 ENV_LAND, ENV_PORT = (2039, 1000), (1242, 2208)
 
 
@@ -192,6 +201,10 @@ def cmd_rooms(root, pending, contact):
                      "outside the changed area is 0, so the plate shows through. Portrait plates: place the same sprites "
                      "centred on portrait.window_centre, scaled by portrait.scale."),
             "rooms": [], "facade": {"files": {}}, "sets": {}}
+    SETS = sets()
+    if not exists_src(SETS["rescue"][0]):
+        pending.append("rooms")
+        return
     base_rescue = np.asarray(load_rgb(SETS["rescue"][0]))
     H, W = base_rescue.shape[:2]
     interiors = window_interiors(base_rescue)
@@ -259,7 +272,7 @@ def cmd_rooms(root, pending, contact):
             "window_in_env_landscape": scale_box(win, (W, H), ENV_LAND),
             "files": files})
     # portrait plates: same sprites, re-centred and scaled onto the portrait windows
-    for set_name, psrc in PORTRAIT.items():
+    for set_name, psrc in (("rescue", SRC["portrait_rescue"]), ("inferno", SRC["portrait_inferno"])):
         if not exists_src(psrc):
             continue
         prgb = np.asarray(load_rgb(psrc))
@@ -374,18 +387,18 @@ def hose_tile(im, cut=0.12):
 
 
 def cmd_props(root, pending):
-    need = ("scene/rescue_props_a", "scene/rescue_props_b")
+    need = (SRC["props_a"], SRC["props_b"])
     if not all(exists_src(s) for s in need):
         pending.append("props")
         return
     out = prepare_out(os.path.join(root, "features", "rescue"))
-    a = grouped("scene/rescue_props_a", [
+    a = grouped(SRC["props_a"], [
         ("ladder_straight", lambda x, y: x < 420),
         ("ladder_top", lambda x, y: x < 800 and y < 540),
         ("jump_sheet", lambda x, y: x >= 800 and y < 560),
         ("badge_blank", lambda x, y: x < 850),
         ("spins_plate_blank", lambda x, y: True)])
-    b = grouped("scene/rescue_props_b", [
+    b = grouped(SRC["props_b"], [
         ("hose_nozzle", lambda x, y: y < 400 and x < 780),
         ("hose_segment", lambda x, y: y < 400),
         ("steam_puff", lambda x, y: x > 1190 and y < 760),
@@ -424,16 +437,16 @@ def inner_hole(im):
 
 
 def cmd_cells(root, pending, tile=384, pad=4):
-    if not exists_src("scene/ui_frames"):
+    if not exists_src(SRC["ui_frames"]):
         pending.append("cells")
         return
     out = prepare_out(os.path.join(root, "ui_scene"))
-    g = grouped("scene/ui_frames", [
+    g = grouped(SRC["ui_frames"], [
         ("line_plate", lambda x, y: y > 600),
         ("plain", lambda x, y: x < 510),
         ("win", lambda x, y: x < 1020),
         ("locked", lambda x, y: True)])
-    meta = {"generated_by": "tools/art/derive_rescue.py cells", "source": rel(src_path("scene/ui_frames")), "frames": {}}
+    meta = {"generated_by": "tools/art/derive_rescue.py cells", "source": rel(src_path(SRC["ui_frames"])), "frames": {}}
     for key in ("plain", "win", "locked"):
         im = g[key]
         inner = tile - 2 * pad
@@ -455,11 +468,18 @@ def cmd_cells(root, pending, tile=384, pad=4):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("cmd", nargs="*", help="all (default) | rooms | props | cells")
+    ap.add_argument("--map", default="", help="json {key: source} overriding SRC (keys: %s)" % ", ".join(SRC))
     ap.add_argument("--out", default="")
     ap.add_argument("--contact", default="")
     ap.add_argument("--strict", action="store_true")
     a = ap.parse_args()
     root = out_root(a.out)
+    if a.map:
+        m = json.load(open(a.map))
+        bad = sorted(set(m) - set(SRC))
+        if bad:
+            ap.error(f"--map: unknown keys {bad}")
+        SRC.update(m)
     every = ["rooms", "props", "cells"]
     cmds = every if (not a.cmd or "all" in a.cmd) else a.cmd
     pending = []
