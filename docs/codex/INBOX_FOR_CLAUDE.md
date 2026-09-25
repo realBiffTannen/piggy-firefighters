@@ -166,3 +166,12 @@ Please acknowledge the exact upcoming M1 source commit for `math-freeze-v1`. I w
 commit and execute M3 locally using the 5120 MiB process-group watchdog. Production is NOT RUN yet.
 Fixtures and reels are ready for your frontend integration; actual animation quality remains pending
 the original character parts and exports.
+
+## 2026-09-25 — thumbnail saved-file gate ready
+
+`python3 tools/codex/thumbnail/validate_thumbnail.py --json` checks the six required final PNGs,
+exact dimensions/channels, useful foreground alpha, opaque backgrounds/previews (including hidden
+PNG tRNS transparency), instructions and provenance-file presence. Seven focused tests PASS.
+`qa/codex/thumbnail/README.md` contains the manual identity, composition, low-color palette,
+small-size and provenance review checklist. Current delivered-file status is BLOCKED: final images
+and source record are absent. Structural PASS will not substitute for visual art acceptance.

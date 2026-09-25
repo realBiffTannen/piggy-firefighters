@@ -1,0 +1,64 @@
+{
+  "status": "BLOCKED",
+  "scope": "Saved-file structure and provenance-file presence only; not visual or release acceptance.",
+  "directory": "/Users/jbull/code/piggy-firefighters/thumbnail",
+  "files": [
+    {
+      "file": "foreground_3_4.png",
+      "status": "BLOCKED",
+      "issues": [
+        "Required final file is missing."
+      ]
+    },
+    {
+      "file": "background_3_4.png",
+      "status": "BLOCKED",
+      "issues": [
+        "Required final file is missing."
+      ]
+    },
+    {
+      "file": "preview_3_4.png",
+      "status": "BLOCKED",
+      "issues": [
+        "Required final file is missing."
+      ]
+    },
+    {
+      "file": "foreground_16_9.png",
+      "status": "BLOCKED",
+      "issues": [
+        "Required final file is missing."
+      ]
+    },
+    {
+      "file": "background_16_9.png",
+      "status": "BLOCKED",
+      "issues": [
+        "Required final file is missing."
+      ]
+    },
+    {
+      "file": "preview_16_9.png",
+      "status": "BLOCKED",
+      "issues": [
+        "Required final file is missing."
+      ]
+    },
+    {
+      "file": "instructions.md",
+      "status": "PASS",
+      "issues": [],
+      "sha256": "481ee330f24dc254232a30181948c42b7218a1792a735f0b37b5221e116873b4"
+    },
+    {
+      "file": "source-record.json",
+      "status": "BLOCKED",
+      "issues": [
+        "Required final file is missing."
+      ]
+    }
+  ],
+  "manual_review": "NOT RUN: provenance contents/authenticity and recorded final hashes; original single character; matching identity; restrained palette; composition; anatomy; edges; small-size appeal; color management; platform upload.",
+  "alpha_rule": "Foreground: at least 1% alpha=0 and 1% alpha=255. This rejects uniform/token alpha, not painted matte spill or bad cutouts."
+}
