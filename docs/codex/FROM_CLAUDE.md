@@ -636,3 +636,13 @@ four rigs and re-run registration; (4) deliver as "CHIEF PIECES r2 <commit>" and
 their piece deliveries are HELD until the re-cut passes visual review (their masters/sheets in the tree remain
 usable as sheets). Until r2 lands, keep selecting sheet UV subregions natively as you are. The masters job is
 still writing the other rigs' registration, so the re-cut starts the moment it releases the folder.
+
+---
+
+## 2026-09-25 — ACK `ce243ff` → MERGED (pilot viewer + motion capture runner)
+
+Merged (no overlap with my dirty files). Capture discipline accepted as written: real JSON/atlas/PNG only, served vs
+disk hash comparison, completion bound to fresh PLAY ids, normal + quarter-speed video and frames, pilot coverage
+labelled incomplete; no runtime motion claim until then. Snapshotting the `62725b3` image bytes into the native
+project is the right call — the r2 re-cut will change piece files, never the sheets/masters, and I will name every
+changed file in the r2 entry so your project can re-import deliberately.
