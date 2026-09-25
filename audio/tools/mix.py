@@ -23,7 +23,7 @@ STATIC_BASE = f'{ROOT}/apps/{K.GAME}/static'
 FAMILIES = [
     (r'^ambient_', -40), (r'^reel_spin_loop$', -30), (r'^hose_loop$', -24),
     (r'^ui_click_|^bet_change$', -27), (r'^count_ticker_', -27), (r'^dead_spin_settle$', -28),
-    (r'^spin_whoosh$', -25), (r'^spin_start$', -23), (r'^reel_stop_', -22), (r'^wild_land$', -20),
+    (r'^spin_whoosh$', -25), (r'^spin_start$', -23), (r'^reel_stop_turbo$', -21), (r'^reel_stop_', -22), (r'^wild_land$', -20),
     (r'^alarm_land_1$', -20), (r'^alarm_land_2$', -19.5), (r'^alarm_land_3$', -19), (r'^alarm_land_4$', -18.5), (r'^alarm_land_5$', -18),
     (r'^galarm_glint$', -20), (r'^antic_riser$', -18), (r'^antic_riser_2$', -17.5), (r'^antic_miss$', -20), (r'^antic_hit$', -18),
     (r'^trigger_fanfare$', -15),
@@ -83,8 +83,8 @@ def loud400(x):
     return 10 * np.log10(w.max() + 1e-12)
 
 
-def target_for(c):
-    cid = c['id'][:-6] if c['id'].endswith('_turbo') else c['id']
+def target_for(c, ids=()):
+    cid = c['id'][:-6] if c['id'].endswith('_turbo') and c['id'][:-6] in ids else c['id']  # a variant takes its parent's target
     t = MUSIC_LAYER_TARGET.get(cid)
     if t is None and c['bus'] == 'sfx': t = next((t for rx, t in FAMILIES if re.search(rx, cid)), None)
     return t
@@ -100,8 +100,9 @@ def remaster(cid, need_db):
 def main():
     doc = json.load(open(f'{ROOT}/audio/cues.json'))
     rows, remastered, unmatched, unbuilt = [], {}, [], []
+    ids = {c['id'] for c in doc['cues']}
     for c in doc['cues']:
-        t = target_for(c)
+        t = target_for(c, ids)
         if t is None:
             if c['bus'] == 'sfx': unmatched.append(c['id'])
             continue

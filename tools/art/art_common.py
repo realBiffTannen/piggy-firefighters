@@ -510,7 +510,7 @@ def alpha_report(im):
     rep.update(has_alpha=True, alpha_min=int(a.min()), alpha_max=int(a.max()),
                transparent=round(float(clear.mean()), 4), soft_edge=round(float(((a > 0) & (a < 255)).mean()), 4),
                corners=corners, corners_clear=max(corners) == 0, painted_checker=checker,
-               genuine=bool(a.min() == 0 and a.max() == 255 and clear.mean() > 0.001 and not checker))
+               genuine=bool(a.min() == 0 and a.max() == 255 and clear.any() and not checker))
     return rep
 
 

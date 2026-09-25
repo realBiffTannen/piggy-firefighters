@@ -14,8 +14,9 @@
           transparent "5-by-2 grid with wide empty gaps" sheet (default winrungs/rung_pieces), split by connected
           components row by row. Flat things (coins, badge) flip about their axis; the rest tumble in-plane with a
           little foreshortening (2D spin, the family's accepted route).
-  coins   winrungs/pieces/coin_sheet.webp 1024x512 (32 frames of 128) + coin_sheet.json (TexturePacker-style Pixi
-          sheet, animation "coin") for the `coins` spriteSheet (WinCoins).
+  coins   winrungs/coins/coin_sheet.webp 1024x512 (32 frames of 128) + coin_sheet.json (TexturePacker-style Pixi
+          sheet, animation "coin") for the `coins` spriteSheet (WinCoins) - its own dir, so it never collides with
+          the 24-frame tumbling piece winrungs/pieces/coin_sheet.webp.
   fx      winrungs/fx/{flare_horizontal 1024x128, ring_shockwave 512, glint_4point 256, dust_puff 256,
           light_ray_wedge 256x512}.webp - procedural warm-white additive textures (tinted per rung at runtime).
 
@@ -285,7 +286,7 @@ def cmd_coins(srcs, root, items, pending, **_):
     coin = load_pieces(srcs, items)[items[0]]
     frames = spin_frames(coin, 32, CELL, True)
     sheet = pack(frames)
-    out = prepare_out(os.path.join(root, "winrungs", "pieces"))
+    out = prepare_out(os.path.join(root, "winrungs", "coins"))
     n = save_webp(sheet, os.path.join(out, "coin_sheet.webp"), quality=90)
     names = [f"pff_coin_{i:02d}.png" for i in range(32)]
     fr = {nm: {"frame": {"x": (i % COLS) * CELL, "y": (i // COLS) * CELL, "w": CELL, "h": CELL}, "rotated": False,
@@ -295,7 +296,7 @@ def cmd_coins(srcs, root, items, pending, **_):
         "frames": fr, "animations": {"coin": names},
         "meta": {"app": "tools/art/derive_winrungs.py coins", "version": "1.0", "image": "coin_sheet.webp",
                  "format": "RGBA8888", "size": {"w": sheet.width, "h": sheet.height}, "scale": "1"}})
-    print(f"winrungs/pieces/coin_sheet.webp {sheet.size} 32 frames {n} B + coin_sheet.json (animation 'coin')")
+    print(f"winrungs/coins/coin_sheet.webp {sheet.size} 32 frames {n} B + coin_sheet.json (animation 'coin')")
 
 
 # ---------------------------------------------------------------------------------------------------- fx
@@ -310,38 +311,50 @@ def _warm(alpha, hot=None):
 
 
 def fx_textures():
+    """Piggy Firefighters' own additive set (warm-white, tinted per rung at runtime): a flare with a thin second
+    streak, a WATER-RIPPLE double ring, an 8-point sparkle, a cool STEAM puff and a searchlight wedge with three
+    inner beams. Parameters differ from the family donor's so no texture can coincide with a donor file."""
     out = {}
     x, y = _grid(1024, 128)
     dx, dy = (x - 512) / 512, (y - 64) / 64
-    a = np.clip(np.exp(-(dy ** 2) / (2 * 0.04 ** 2)) * np.exp(-(dx ** 2) / (2 * 0.55 ** 2))
-                + np.exp(-((dx ** 2) / 0.5 + (dy ** 2) / 0.18)) * 0.35 + np.exp(-((dx ** 2) / 0.02 + (dy ** 2) / 0.5)) * 0.5, 0, 1)
+    a = np.clip(np.exp(-(dy ** 2) / (2 * 0.05 ** 2)) * np.exp(-(dx ** 2) / (2 * 0.5 ** 2))
+                + 0.35 * np.exp(-((dy + 0.22) ** 2) / (2 * 0.015 ** 2)) * np.exp(-(dx ** 2) / (2 * 0.32 ** 2))
+                + np.exp(-((dx ** 2) / 0.45 + (dy ** 2) / 0.2)) * 0.3 + np.exp(-((dx ** 2) / 0.015 + (dy ** 2) / 0.4)) * 0.55, 0, 1)
     a[:, [0, -1]] = 0
     a[[0, -1], :] = 0
     out["flare_horizontal"] = _warm(a, np.clip(a * 1.3, 0, 1))
     x, y = _grid(512, 512)
     r = np.hypot(x - 256, y - 256) / 256
-    a = np.clip(np.exp(-((r - 0.82) ** 2) / (2 * 0.045 ** 2)) + np.exp(-((r - 0.82) ** 2) / (2 * 0.11 ** 2)) * 0.3, 0, 1)
+    a = np.clip(np.exp(-((r - 0.80) ** 2) / (2 * 0.04 ** 2)) + 0.45 * np.exp(-((r - 0.62) ** 2) / (2 * 0.025 ** 2))
+                + 0.25 * np.exp(-((r - 0.78) ** 2) / (2 * 0.12 ** 2)), 0, 1)
     a[r > 0.99] = 0
     out["ring_shockwave"] = _warm(a)
     x, y = _grid(256, 256)
     dx, dy = (x - 128) / 128, (y - 128) / 128
-    a = np.clip(np.exp(-(dy ** 2) / (2 * 0.012 ** 2)) * np.exp(-(dx ** 2) / (2 * 0.5 ** 2))
-                + np.exp(-(dx ** 2) / (2 * 0.012 ** 2)) * np.exp(-(dy ** 2) / (2 * 0.5 ** 2))
-                + np.exp(-(np.hypot(dx, dy) ** 2) / (2 * 0.05 ** 2)), 0, 1)
+    u, v = (dx + dy) / np.sqrt(2), (dx - dy) / np.sqrt(2)
+    main = (np.exp(-(dy ** 2) / (2 * 0.014 ** 2)) * np.exp(-(dx ** 2) / (2 * 0.46 ** 2))
+            + np.exp(-(dx ** 2) / (2 * 0.014 ** 2)) * np.exp(-(dy ** 2) / (2 * 0.46 ** 2)))
+    diag = 0.45 * (np.exp(-(v ** 2) / (2 * 0.01 ** 2)) * np.exp(-(u ** 2) / (2 * 0.22 ** 2))
+                   + np.exp(-(u ** 2) / (2 * 0.01 ** 2)) * np.exp(-(v ** 2) / (2 * 0.22 ** 2)))
+    a = np.clip(main + diag + np.exp(-(np.hypot(dx, dy) ** 2) / (2 * 0.06 ** 2)), 0, 1)
     a[np.hypot(dx, dy) > 0.99] = 0
     out["glint_4point"] = _warm(a, np.clip(a * 1.4, 0, 1))
-    rng = np.random.default_rng(13)
-    r = np.hypot(x - 128, y - 128) / 128
+    rng = np.random.default_rng(1313)
+    r = np.hypot(x - 128, y - 136) / 124
     noise = np.zeros_like(r)
-    for _ in range(6):
-        px, py = rng.uniform(0.25, 0.75, 2) * 256
-        rad = rng.uniform(0.12, 0.28) * 256
+    for _ in range(7):
+        px, py = rng.uniform(0.28, 0.72, 2) * 256
+        rad = rng.uniform(0.10, 0.24) * 256
         noise += np.exp(-(((x - px) ** 2 + (y - py) ** 2) / (2 * rad ** 2)))
-    a = np.clip(np.clip(1 - r, 0, 1) ** 1.6 * (0.5 + 0.5 * noise / noise.max()), 0, 1) * 0.85
-    out["dust_puff"] = np.stack([250 * np.ones_like(a), 244 * np.ones_like(a), 236 * np.ones_like(a), a * 255], -1)
+    a = np.clip(np.clip(1 - r, 0, 1) ** 1.4 * (0.45 + 0.55 * noise / noise.max()), 0, 1) * 0.8
+    a[np.hypot(x - 128, y - 128) > 127] = 0
+    out["dust_puff"] = np.stack([240 * np.ones_like(a), 246 * np.ones_like(a), 250 * np.ones_like(a), a * 255], -1)
     x, y = _grid(256, 512)
     t = y / 512
-    a = np.clip(np.clip(1 - np.abs(x - 128) / ((0.04 + 0.42 * t) * 256), 0, 1) ** 1.4 * (1 - t) ** 0.6, 0, 1) * 0.9
+    half = (0.05 + 0.40 * t) * 256
+    body = np.clip(1 - np.abs(x - 128) / half, 0, 1) ** 1.2
+    beams = 1 + 0.35 * np.cos((x - 128) / half * np.pi * 3) ** 8
+    a = np.clip(body * beams * (1 - t) ** 0.7, 0, 1) * 0.85
     a[:, [0, -1]] = 0
     out["light_ray_wedge"] = _warm(a)
     return out

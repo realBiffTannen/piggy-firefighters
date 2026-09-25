@@ -197,7 +197,10 @@ def main(argv=None):
         ap.error("batch and name must match [a-z0-9][a-z0-9_-]*")
     if not a.model.startswith(("gpt-image", "chatgpt-image")):
         ap.error(f"{a.model} is not an image model")
-    prompt, prompt_files = read_prompt(a)
+    try:
+        prompt, prompt_files = read_prompt(a)
+    except SystemExit as e:
+        ap.error(str(e))
     refs = []
     for r in a.ref:
         rp = os.path.abspath(r if os.path.isabs(r) else os.path.join(REPO, r))

@@ -124,6 +124,16 @@ def draws():
 
 
 # ------------------------------------------------------------------------------------------ shipped files
+def loop_span(c, n):
+    """[start, end) of the looped region in samples: the cue's loopPoints (beds carry a codec-guard pre/post-roll), else all."""
+    lp = c.get('loopPoints') or {}
+    if lp.get('padSamples') is not None and lp.get('loopSamples'):
+        return int(lp['padSamples']), int(lp['padSamples']) + int(lp['loopSamples'])
+    if lp.get('startMs') and not lp.get('planned'):
+        return int(round(lp['startMs'] * SR / 1000)), int(round(lp['endMs'] * SR / 1000))
+    return 0, n
+
+
 def one(c):
     cid = c['id']; out = {'id': cid, 'bus': c['bus'], 'loop': bool(c.get('loop')), 'status': c.get('status')}
     mast = f'{K.MAST}/{cid}.wav'; out['master'] = os.path.exists(mast)
@@ -138,20 +148,24 @@ def one(c):
             x = lk.decode(p); d['samples'] = len(x)
             if m is not None: d['lenDiff'] = len(x) - len(m)
             if out['loop']:
-                y = x[:len(m)] if (m is not None and len(x) >= len(m)) else x
-                w, b = lk.wrap_step(y); d.update(wrap=w, bodyP999=b, seamClean=bool(w <= b))
+                ls, le = loop_span(c, len(m) if m is not None else len(x))
+                y = x[ls:le]
+                w, b = lk.wrap_step(y); d.update(wrap=w, bodyP999=b, seamClean=bool(w <= b), loopSpan=[ls, le])
             if c['bus'] == 'music' and c.get('tempoBpm') and out['loop']:
                 bpm = c['tempoBpm']; d['bpmEst'] = round(float(K.tempo_autocorr(x, bpm - 12, bpm + 12)), 2)
         out[ext] = d
     if out['loop'] and m is not None:
-        out['headTail_dB'] = {w: v[2] for w, v in lk.headtail(m, (50, 250, 1000)).items()}
+        ls, le = loop_span(c, len(m)); lm = m[ls:le]
+        out['headTail_dB'] = {w: v[2] for w, v in lk.headtail(lm, (50, 250, 1000)).items()}
+        if ls or le != len(m):  # the codec-guard pads must be the loop's own tail / head (cyclic), or the guard is wrong
+            out['padCyclic'] = bool(np.allclose(m[:ls], lm[-ls:], atol=2e-4) and np.allclose(m[le:], lm[:len(m) - le], atol=2e-4))
     if c['bus'] == 'music' and c.get('tempoBpm') and out['loop'] and m is not None:
         bpm = c['tempoBpm']; bars = (c.get('build') or {}).get('bars') or c.get('bars')
         if bars:
             want = int(round(bars / 8 * K.stage_for(bpm)))
-            out['grid'] = {'bpm': bpm, 'bars': bars, 'samples': len(m), 'expected': want, 'exact': len(m) == want,
-                           'barSeconds': round(4 * 60 / bpm, 5), 'loopSeconds': round(len(m) / SR, 4)}
-            out['chug'] = chug_ratio(m, bpm); out['selfSim'] = selfsim(m, bpm, bars); out['cpentShare'] = round(cpent_share(m), 3)
+            out['grid'] = {'bpm': bpm, 'bars': bars, 'samples': len(lm), 'expected': want, 'exact': len(lm) == want,
+                           'barSeconds': round(4 * 60 / bpm, 5), 'loopSeconds': round(len(lm) / SR, 4)}
+            out['chug'] = chug_ratio(lm, bpm); out['selfSim'] = selfsim(lm, bpm, bars); out['cpentShare'] = round(cpent_share(lm), 3)
     return out
 
 
@@ -166,6 +180,7 @@ def shipped():
     loops = [r for r in rows if r['loop'] and r.get('ogg', {}).get('present')]
     seam_bad = [(r['id'], e, r[e].get('wrap'), r[e].get('bodyP999')) for r in loops for e in ('ogg', 'm4a') if r[e].get('present') and not r[e].get('seamClean')]
     grid_bad = [r['id'] for r in rows if 'grid' in r and not r['grid']['exact']]
+    pad_bad = [r['id'] for r in rows if r.get('padCyclic') is False]
     chug_bad = [(r['id'], r['chug']) for r in rows if r.get('chug') and r['chug'] > 3.0]
     copy_bad = [(r['id'], r['selfSim']['maxPair']) for r in rows if (r.get('selfSim') or {}).get('nearCopy')]
     tail_dip = [(r['id'], r['headTail_dB'].get(1000)) for r in rows if r.get('headTail_dB') and r['bus'] == 'music' and (r['headTail_dB'].get(1000) or 0) > 6.0]
@@ -177,10 +192,10 @@ def shipped():
     summary = {'cues': len(cues), 'built': len(built), 'planned': len(cues) - len(built), 'filesExpected': 2 * len(cues),
                'filesPresent': 2 * len(cues) - len(missing), 'missing': missing if len(missing) <= 40 else f'{len(missing)} files (see rows)',
                'maxTP_dBFS': max((t[2] for t in tp), default=None), 'overMinus1dBTP': over, 'staticDiffersFromRuntime': notsame,
-               'loops': len(loops), 'seamNotClean': seam_bad, 'gridNotExact': grid_bad, 'chugOver3': chug_bad, 'nearCopySections': copy_bad,
+               'loops': len(loops), 'seamNotClean': seam_bad, 'gridNotExact': grid_bad, 'padNotCyclic': pad_bad, 'chugOver3': chug_bad, 'nearCopySections': copy_bad,
                'bedTailDipOver6dB_1000ms': tail_dip, 'bedLUFSoffTarget': lufs_off,
                'rungBedsLUFS': rung, 'rungBedsStrictlyRising': bool(rung and None not in rung and all(b > a for a, b in zip(rung, rung[1:])))}
-    summary['PASS'] = bool(built) and not (over or notsame or seam_bad or grid_bad or chug_bad or copy_bad) and summary['filesPresent'] == summary['filesExpected']
+    summary['PASS'] = bool(built) and not (over or notsame or seam_bad or grid_bad or pad_bad or chug_bad or copy_bad) and summary['filesPresent'] == summary['filesExpected']
     os.makedirs(QA, exist_ok=True)
     json.dump({'summary': summary, 'rows': rows}, open(f'{QA}/measure_all.json', 'w'), indent=1, default=str)
     with open(f'{QA}/cues_table.csv', 'w', newline='') as f:

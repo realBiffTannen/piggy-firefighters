@@ -82,10 +82,10 @@ def plate(srcs, relights, mood, orient):
     return None
 
 
-def cmd_env(srcs, root, relights, moods, pending):
+def cmd_env(srcs, root, relights, moods, pending, land=LAND, port=PORT):
     out = prepare_out(os.path.join(root, "environment"))
     for mood in moods:
-        for orient, size, name in (("16_9", LAND, "landscape"), ("portrait", PORT, "portrait")):
+        for orient, size, name in (("16_9", land, "landscape"), ("portrait", port, "portrait")):
             got = plate(srcs, relights, mood, orient)
             if not got:
                 pending.append(f"plate_{mood}_{orient}")
@@ -271,6 +271,8 @@ def main():
     ap.add_argument("--moods", default=",".join(MOODS))
     ap.add_argument("--relight", action="append", default=[], help="mood=source_mood:preset (backdraft|night|inferno)")
     ap.add_argument("--no-rail-rebuild", action="store_true")
+    ap.add_argument("--land", default="%dx%d" % LAND, help="environment landscape size (frontend placeholder: 2048x1024)")
+    ap.add_argument("--port", default="%dx%d" % PORT, help="environment portrait size (frontend placeholder: 1080x1920)")
     ap.add_argument("--out", default="")
     ap.add_argument("--strict", action="store_true")
     a = ap.parse_args()
@@ -288,7 +290,8 @@ def main():
     pending = []
     for c in cmds:
         if c == "env":
-            cmd_env(srcs, root, relights, moods, pending)
+            wh = lambda v: tuple(int(n) for n in v.lower().split("x"))  # noqa: E731
+            cmd_env(srcs, root, relights, moods, pending, wh(a.land), wh(a.port))
         elif c == "ambient":
             cmd_ambient(srcs, root, relights, moods, pending)
         elif c == "frame":

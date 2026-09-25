@@ -187,15 +187,22 @@ def bed(cid, cfg):
     if hk: loop = add_hook(loop, bpm, *hk)
     K.enc_wav(loop, f'{K.RUN}/_m.wav'); I, _ = K.measure(f'{K.RUN}/_m.wav'); base = loop * 10 ** ((target_I - I) / 20)
     for ceiling in (-2.0, -3.5, -5.0, -6.5):
-        out, limited = K.limit(base, ceiling_db=ceiling)
-        res = K.ship(out, cid, tp_target=-1.3)
+        out, limited = K.limit_cyclic(base, ceiling_db=ceiling)
+        res = K.ship(K.pad_loop(out), cid, tp_target=-1.3)
         if res['I_LUFS'] is not None and res['I_LUFS'] >= target_I - 1.0: break
+    # land ON the target (+-0.1 LU): the rung beds must rise strictly in 0.2 LU steps, and the limiter eats a variable amount
+    for _ in range(4):
+        if res['I_LUFS'] is None or abs(target_I - res['I_LUFS']) <= 0.1: break
+        base = base * 10 ** ((target_I - res['I_LUFS']) / 20)
+        out, limited = K.limit_cyclic(base, ceiling_db=ceiling)
+        res = K.ship(K.pad_loop(out), cid, tp_target=-1.3)
+    out = lk.decode(f'{K.MAST}/{cid}.wav')[K.PAD:K.PAD + L]  # the loop as shipped (after ship's constant true-peak gain)
     wrap, body = lk.wrap_step(out)
     ht = lk.headtail(out, (50, 250, 1000))
-    shipped = lk.decode(f'{K.RUN}/{cid}.ogg')
+    shipped = lk.decode(f'{K.RUN}/{cid}.ogg')[K.PAD:K.PAD + L]
     shipped_bpm = K.tempo_autocorr(shipped, bpm - 12, bpm + 12)
     meta = dict(source=src, measuredBpm=round(float(meas), 3), bpmOverride=bool(cfg.get('bpmOverride')), gridBpm=bpm, bars=bars,
-                samples=len(out), barSamples=round(len(out) / bars, 2), blend=how, wrap=round(float(wrap), 4), bodyP999=round(float(body), 4),
+                samples=len(out), padSamples=K.PAD, barSamples=round(len(out) / bars, 2), blend=how, wrap=round(float(wrap), 4), bodyP999=round(float(body), 4),
                 headTail_dB={w: v[2] for w, v in ht.items()}, sectionRMS_raw=lv, sectionRide_dB=ride_g, limiterCeiling_dB=ceiling,
                 limitedFraction=round(limited, 4), shippedBpmEst=round(float(shipped_bpm), 2), cpentShare=round(M.cpent_share(out), 3),
                 chug=round(M.chug_ratio(out, bpm), 2), selfSim=M.selfsim(out, bpm, bars),
@@ -211,7 +218,11 @@ def music(only=None):
         if only and cid not in only: continue
         if not os.path.exists(f"{K.PCM}/{cfg['src']}.wav"): report['skipped'].append(f"{cid}: no draw {cfg['src']}"); continue
         x, res, meta = bed(cid, cfg)
-        set_cue(cid, x, meta, tempo=cfg['bpm'], loop=True); measured(cid, res)
+        set_cue(cid, K.pad_loop(x), meta, tempo=cfg['bpm'], loop=True); measured(cid, res)
+        dur = round((len(x) + 2 * K.PAD) / SR * 1000, 1)
+        CUES[cid]['loopPoints'] = {'startMs': K.PAD_MS, 'endMs': round(K.PAD_MS + len(x) / SR * 1000, 4), 'sampleAccurate': True,
+                                   'padSamples': K.PAD, 'loopSamples': len(x), 'note': 'cyclic codec-guard pre/post-roll; loop [startMs, endMs)'}
+        CUES[cid]['durationMs'] = dur
         out[cid] = {**res, **meta}
     return out
 
@@ -415,9 +426,10 @@ def derived(only=None):
             info = json.load(open(p))
             if info.get('midi') is not None: srcs[k] = (y, float(info['midi']))
     if srcs:
-        lowest = min(v[1] for v in srcs.values()); root = 12 * round((lowest - 0) / 12)  # the C nearest the lowest source
-        if root > lowest + 2: root -= 12
         steps = [0, 2, 4, 7, 9, 12, 14, 16]
+        def cost(r):  # the tonic whose 8 rungs need the smallest worst-case shift from the nearest source
+            sh = [min(abs(r + st - v[1]) for v in srcs.values()) for st in steps]; return (max(sh), sum(sh))
+        root = min(range(36, 85, 12), key=cost)
         for i, st in enumerate(steps, 1):
             cid = f'rescue_tada_{i}'
             if not want(cid): continue

@@ -41,6 +41,9 @@ def add(name, t, g=1.0):
 def bedloop(name, t0, t1, g=1.0, fade_in=0.0, fade_out=0.0):
     x = dec(name)
     if x is None: return
+    lp = CUES[name].get('loopPoints') or {}
+    if lp.get('padSamples') is not None and lp.get('loopSamples'):  # beds ship with a codec-guard pre/post-roll: loop the span only
+        x = x[lp['padSamples']:lp['padSamples'] + lp['loopSamples']]
     c = x * CUES[name].get('gain', 1.0) * g; a, b = s(t0), s(t1); seg = np.zeros((b - a, 2)); pos = 0
     while pos < b - a:
         n = min(len(c), b - a - pos); seg[pos:pos + n] += c[:n]; pos += n

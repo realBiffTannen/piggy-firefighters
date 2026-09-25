@@ -178,6 +178,27 @@ def limit(x, ceiling_db=-2.0, look_ms=5.0, release_ms=90.0):
     return x * out[:, None], float((out < 0.999).mean())
 
 
+def limit_cyclic(x, ceiling_db=-2.0, context_s=0.5):
+    """limit() with CYCLIC context (limit_loop.py's idea in numpy): the loop's tail is prepended and its head appended
+    before limiting and the middle is kept, so the gain at the first sample continues the gain at the last one."""
+    c = min(len(x) // 2, int(context_s * SR))
+    y, frac = limit(np.concatenate([x[-c:], x, x[:c]]), ceiling_db=ceiling_db)
+    return y[c:c + len(x)], frac
+
+
+# Codec guard for music loops (found by the 2026-09-25 smoke test): AAC reconstructs the first ~1024 samples of a file badly
+# (the encoder cannot see before the start: max error 0.15-0.28 against a body p99 of 0.006-0.009), so a bed that loops the
+# WHOLE decoded m4a buffer glitches at the seam (Safari plays m4a). Beds therefore ship with a cyclic pre-roll (the loop's own
+# last PAD samples) and post-roll (its first PAD samples); the runtime loops [loopStartMs, loopEndMs] (audioManager.spawnBed
+# honours both), so the codec's edge error is never played and both seam neighbours were encoded with their true context.
+PAD_MS = 60.0
+PAD = int(round(PAD_MS * SR / 1000))  # 2646 samples > one AAC frame (1024) + encoder priming (1024)
+
+
+def pad_loop(x, pre=PAD, post=PAD):
+    return np.concatenate([x[-pre:], x, x[:post]])
+
+
 def first_onset(x, thr=0.02):
     m = np.abs(x).max(axis=1); return max(0.0, float(np.argmax(m > thr)) / SR - 0.003)
 
