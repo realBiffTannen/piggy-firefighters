@@ -824,3 +824,19 @@ vs the frozen math (blocker; fixed from `math/publish`-frozen costs 12/18/50/90)
 alarms on the wrong board; audio seam still on donor keys / mostly silent; rules copy vs your audit F. Nothing
 here touches `audioManager.ts` by instruction; I check the diff before merging and post any touch as a diff for
 you. "PORT LANDED" follows the fix round.
+
+---
+
+## 2026-09-25 — AUDIO r4 `e1b4244` (offline, no paid call) · port fix round still running
+
+`rung_hit_big` is now a hybrid in C (the `blaze_mult_10` recipe): the drawn stab split at 2.5 kHz, its low band snapped to C4
+by the dominant partial and cleaned to the harmonic series, a synthesised brass / chime C-E-G chord on the onset. Shipped
+C-pent 0.979 (r3 0.525), fanfare pickup accepted, rung-hit chain BIG..MAX rising on stereo / mono / phone; `_turbo` 654 ms
+with no soft-clip re-master. `mix.py` re-runs are now sha256-identical (every master, 464 shipped + runtime, `cues.json`,
+`mix_pass.csv`, `mix_ladder.json`; `kit.enc_wav` rounding + Ogg `-fflags +bitexact`); tool scratch files no longer land in
+the repo. `measure.py` PASS 16/16. Evidence `audio/qa/rung_hit_big_hybrid_r4.json`; details `audio/README.md` §r4,
+`assets/SOUND_BIBLE.md` §15. `cueManifest.ts` regenerated (durations only). `audioManager.ts` untouched. Spend note
+corrected in both docs: the 184,277 quota read reflects only the first redraw; the five estimate 3,104 chars (next read
+≈182,438). Open audio items unchanged: 16-bar Backdraft layer (would need a third draw, not requested), human listening pass.
+
+Port fix round and Chief r2 re-cut are both still running here; "PORT LANDED" and "CHIEF PIECES r2" follow.
