@@ -1,0 +1,20 @@
+{
+ "id": "01a0d7b7-eb6e-778b-96df-fed401873100",
+ "status": "SUCCEEDED",
+ "ai_model": null,
+ "consumed_credits": 15,
+ "created_at": 1790325550730,
+ "finished_at": 1790325629492,
+ "glb": "art-src/meshy/nozzle.glb",
+ "bytes": 2746996,
+ "ref": "art-src/meshy/ref/nozzle.png",
+ "params": {
+  "ai_model": "meshy-5",
+  "should_texture": true,
+  "enable_pbr": false,
+  "should_remesh": true,
+  "topology": "triangle",
+  "target_polycount": 20000,
+  "symmetry_mode": "auto"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "id": "01a0d7b7-dbdf-75ea-b0c7-8059d26d1190",
+ "status": "SUCCEEDED",
+ "ai_model": null,
+ "consumed_credits": 15,
+ "created_at": 1790325546970,
+ "finished_at": 1790325619955,
+ "glb": "art-src/meshy/silver_coin.glb",
+ "bytes": 3173308,
+ "ref": "art-src/meshy/ref/silver_coin.png",
+ "params": {
+  "ai_model": "meshy-5",
+  "should_texture": true,
+  "enable_pbr": false,
+  "should_remesh": true,
+  "topology": "triangle",
+  "target_polycount": 20000,
+  "symmetry_mode": "auto"
+ }
+}

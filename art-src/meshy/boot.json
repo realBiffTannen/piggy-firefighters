@@ -1,0 +1,20 @@
+{
+ "id": "01a0d7b7-fa30-76a1-a04b-85fe5bedb404",
+ "status": "SUCCEEDED",
+ "ai_model": null,
+ "consumed_credits": 15,
+ "created_at": 1790325554851,
+ "finished_at": 1790325634246,
+ "glb": "art-src/meshy/boot.glb",
+ "bytes": 2601116,
+ "ref": "art-src/meshy/ref/boot.png",
+ "params": {
+  "ai_model": "meshy-5",
+  "should_texture": true,
+  "enable_pbr": false,
+  "should_remesh": true,
+  "topology": "triangle",
+  "target_polycount": 20000,
+  "symmetry_mode": "auto"
+ }
+}

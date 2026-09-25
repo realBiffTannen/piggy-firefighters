@@ -1,0 +1,20 @@
+{
+ "id": "01a0d7b8-0308-77d1-93ee-ca3c8dbf666a",
+ "status": "SUCCEEDED",
+ "ai_model": null,
+ "consumed_credits": 15,
+ "created_at": 1790325556707,
+ "finished_at": 1790325642418,
+ "glb": "art-src/meshy/hydrant_cap.glb",
+ "bytes": 2491828,
+ "ref": "art-src/meshy/ref/hydrant_cap.png",
+ "params": {
+  "ai_model": "meshy-5",
+  "should_texture": true,
+  "enable_pbr": false,
+  "should_remesh": true,
+  "topology": "triangle",
+  "target_polycount": 20000,
+  "symmetry_mode": "auto"
+ }
+}

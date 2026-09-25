@@ -1,0 +1,20 @@
+{
+ "id": "01a0d7b7-b046-7310-a1fc-7b0c083f35de",
+ "status": "SUCCEEDED",
+ "ai_model": null,
+ "consumed_credits": 15,
+ "created_at": 1790325535814,
+ "finished_at": 1790325592357,
+ "glb": "art-src/meshy/coin.glb",
+ "bytes": 3465220,
+ "ref": "art-src/meshy/ref/coin.png",
+ "params": {
+  "ai_model": "meshy-5",
+  "should_texture": true,
+  "enable_pbr": false,
+  "should_remesh": true,
+  "topology": "triangle",
+  "target_polycount": 20000,
+  "symmetry_mode": "auto"
+ }
+}
