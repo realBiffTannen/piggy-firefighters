@@ -12,7 +12,7 @@
   "branding",
   "features"
  ],
- "summary": "FAIL 0 \u00b7 PENDING 0 \u00b7 WARN 1 \u00b7 ok 148",
+ "summary": "FAIL 0 \u00b7 PENDING 0 \u00b7 WARN 0 \u00b7 ok 148",
  "results": [
   {
    "status": "ok",
@@ -189,10 +189,6 @@
   {
    "status": "ok",
    "msg": "environment/rescue_portrait.webp 1242x2208 RGB"
-  },
-  {
-   "status": "ok",
-   "msg": "ambient/ payload 0.00 MB (budget 1.5 MB)"
   },
   {
    "status": "ok",
@@ -431,8 +427,8 @@
    "msg": "branding/wordmark.png 1366x654 RGBA"
   },
   {
-   "status": "WARN",
-   "msg": "branding/wordmark_small.webp: 683x327 RGBA - no expectation rule (new file?)"
+   "status": "ok",
+   "msg": "branding/wordmark_small.webp 683x327 RGBA"
   },
   {
    "status": "ok",

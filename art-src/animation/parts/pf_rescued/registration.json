@@ -431,23 +431,23 @@
         },
         {
           "slot": "body",
-          "why": "rider's hands under the lower twin's chin",
+          "why": "rider's left hand under the lower twin's chin (both hands stay on the body)",
           "polygon": [
             [
-              420,
-              612
+              330,
+              600
             ],
             [
-              515,
-              612
+              520,
+              600
             ],
             [
-              515,
-              690
+              525,
+              722
             ],
             [
-              420,
-              690
+              330,
+              722
             ]
           ]
         },
@@ -456,20 +456,20 @@
           "why": "rider's right hand",
           "polygon": [
             [
-              505,
-              630
+              500,
+              625
             ],
             [
-              615,
-              630
+              625,
+              625
             ],
             [
-              615,
-              725
+              625,
+              735
             ],
             [
-              505,
-              725
+              500,
+              735
             ]
           ]
         },
@@ -557,6 +557,62 @@
               265,
               520
             ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "the curly tail at the hip stays on the body",
+          "polygon": [
+            [
+              238,
+              902
+            ],
+            [
+              332,
+              902
+            ],
+            [
+              332,
+              1002
+            ],
+            [
+              238,
+              1002
+            ]
+          ]
+        },
+        {
+          "slot": "body",
+          "why": "the rider's right arm wrapping round the lower twin's neck (behind his cheek): pixels the template gave to arm_left go to the body (the pink cell runs on into the far arm)",
+          "polygon": [
+            [
+              655,
+              480
+            ],
+            [
+              748,
+              470
+            ],
+            [
+              765,
+              540
+            ],
+            [
+              745,
+              640
+            ],
+            [
+              705,
+              690
+            ],
+            [
+              655,
+              690
+            ]
+          ],
+          "mode": "pixels",
+          "only_from": [
+            "arm_left"
           ]
         },
         {
@@ -1209,11 +1265,11 @@
         "mouth_call": {
           "file": "art-src/animation/parts/pf_rescued/pieces/mouth_call.png",
           "size": [
-            167,
+            188,
             158
           ],
           "sheet_origin": [
-            493,
+            472,
             530
           ],
           "cell": [
@@ -1227,19 +1283,8 @@
             1
           ],
           "rule": "mouth",
-          "components_kept": 1,
-          "dropped": [
-            {
-              "box": [
-                476,
-                603,
-                489,
-                643
-              ],
-              "area": 327,
-              "why": "rule mouth"
-            }
-          ],
+          "components_kept": 2,
+          "dropped": [],
           "scale_family": "mouth",
           "scale_to_canvas": 0.52
         },
@@ -1377,11 +1422,11 @@
           "file": "art-src/animation/parts/pf_rescued/pieces/mouth_o.png",
           "size": [
             82,
-            117
+            139
           ],
           "sheet_origin": [
             1310,
-            807
+            785
           ],
           "cell": [
             1177,
@@ -1394,19 +1439,8 @@
             3
           ],
           "rule": "mouth",
-          "components_kept": 1,
-          "dropped": [
-            {
-              "box": [
-                1318,
-                789,
-                1383,
-                817
-              ],
-              "area": 683,
-              "why": "rule mouth"
-            }
-          ],
+          "components_kept": 2,
+          "dropped": [],
           "scale_family": "mouth",
           "scale_to_canvas": 0.52
         }
@@ -1725,13 +1759,15 @@
     "note": "immutable input: verified identical to the integer shift of the raw master, not rewritten"
   },
   "skin_slots": {
-    "method": "Cut one full-figure skin into the template's slots on the same canvas.\n\n    The drawing is split into CELLS (flat-colour regions bounded by ink). A cell goes whole to one slot when\n    >= `cell_major` of it lies in that template slot (the template label map: front-most template mask, else the\n    nearest); a cell straddling two slots is split pixel-wise on the template boundary. An override polygon\n    (derive.layout.json) claims every cell whose majority lies inside it: this keeps each skin's extras on the right\n    slot (grandma's cat and dress, dad's robe skirt and the piggyback twin stay on the body; the lower twin's head\n    is the head). Ink goes to the front-most slot among the cells within `ink_px` (the front part owns a shared\n    outline), else the nearest. Legs get the same hidden top extension as the template legs.",
+    "method": "Cut one full-figure skin into the template's slots on the same canvas.\n\n    The drawing is split into CELLS (flat-colour regions bounded by ink). A cell goes whole to one slot when\n    >= `cell_major` of it lies in that template slot (the template label map: front-most template mask, else the\n    nearest), or to its majority slot when it is small (<= `small_cell_px`: a finger, a stripe); a large cell\n    straddling two slots is split pixel-wise on the template boundary. An override polygon\n    (derive.layout.json) claims every cell whose majority lies inside it, and the ink inside it: this keeps each\n    skin's extras on the right slot (grandma's cat and dress, dad's robe skirt and the piggyback twin stay on the body; the lower twin's head\n    is the head). Ink goes to the front-most slot among the cells within `ink_px` (the front part owns a shared\n    outline), else the nearest. Islands under `island_px` join the neighbouring slot they touch most. Legs get the\n    same hidden top extension as the template legs.",
     "params": {
       "ink_lum": 75,
       "cell_major": 0.8,
       "ink_px": 14,
       "leg_extend_px": 140,
-      "why": "cells (flat colour regions between ink lines) follow the template slot that holds >= 80 % of them; straddling cells split on the template boundary; overrides keep each skin's extras on the right slot (reviewed on qa/art/parts/pf_rescued_skin_slots_r2.png)"
+      "why": "cells (flat colour regions between ink lines) follow the template slot that holds >= 80 % of them; straddling cells split on the template boundary; overrides keep each skin's extras on the right slot (reviewed on qa/art/parts/pf_rescued_skin_slots_r2.png)",
+      "small_cell_px": 4000,
+      "island_px": 2500
     },
     "slot_names": [
       "head",

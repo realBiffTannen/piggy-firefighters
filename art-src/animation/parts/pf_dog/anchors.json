@@ -1,5 +1,6 @@
 {
   "rig": "pf_dog",
+  "version": "r2",
   "runtime_height_px": 220,
   "master_height_px": 1195,
   "spine_scale": 0.1841,

@@ -406,23 +406,23 @@
     },
     {
      "slot": "body",
-     "why": "rider's hands under the lower twin's chin",
+     "why": "rider's left hand under the lower twin's chin (both hands stay on the body)",
      "polygon": [
       [
-       420,
-       612
+       330,
+       600
       ],
       [
-       515,
-       612
+       520,
+       600
       ],
       [
-       515,
-       690
+       525,
+       722
       ],
       [
-       420,
-       690
+       330,
+       722
       ]
      ]
     },
@@ -431,20 +431,20 @@
      "why": "rider's right hand",
      "polygon": [
       [
-       505,
-       630
+       500,
+       625
       ],
       [
-       615,
-       630
+       625,
+       625
       ],
       [
-       615,
-       725
+       625,
+       735
       ],
       [
-       505,
-       725
+       500,
+       735
       ]
      ]
     },
@@ -532,6 +532,62 @@
        265,
        520
       ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "the curly tail at the hip stays on the body",
+     "polygon": [
+      [
+       238,
+       902
+      ],
+      [
+       332,
+       902
+      ],
+      [
+       332,
+       1002
+      ],
+      [
+       238,
+       1002
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "why": "the rider's right arm wrapping round the lower twin's neck (behind his cheek): pixels the template gave to arm_left go to the body (the pink cell runs on into the far arm)",
+     "polygon": [
+      [
+       655,
+       480
+      ],
+      [
+       748,
+       470
+      ],
+      [
+       765,
+       540
+      ],
+      [
+       745,
+       640
+      ],
+      [
+       705,
+       690
+      ],
+      [
+       655,
+       690
+      ]
+     ],
+     "mode": "pixels",
+     "only_from": [
+      "arm_left"
      ]
     },
     {
@@ -745,6 +801,8 @@
      ]
     }
    ]
-  }
+  },
+  "small_cell_px": 4000,
+  "island_px": 2500
  }
 }

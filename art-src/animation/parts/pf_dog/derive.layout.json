@@ -26,5 +26,18 @@
   "outline_px": 14,
   "outline_max_green": 14,
   "why": "Ember faces screen-right: image-left legs are his RIGHT (near) side. Image order: near hind (x 43-345), far hind (326-557, partly behind the near front leg), near front (412-648, lowest sole), far front (662-971). The near front leg overlaps the far hind leg, so the watershed runs on the dark-red outline only (the black spots count as fur) and the near front leg keeps the shared outline."
+ },
+ "helmet_front": {
+  "zone_px": 40,
+  "palette_margin": 15,
+  "ink_px": 10,
+  "min_island_px": 150,
+  "min_head_area_px": 400,
+  "fill_reach_px": 8,
+  "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole; Ember: fill_reach_px 8 (at 30 the gap fill picked up strips of the far ear's fur under the brim); white_needs_enclosure: Ember's white fur and the shell's white highlights share one colour, so white is helmet only where the red shell encloses it",
+  "min_island_frac": 0.02,
+  "spur_px": 4,
+  "spur_min_px": 40,
+  "white_needs_enclosure": true
  }
 }

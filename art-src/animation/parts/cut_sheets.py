@@ -8,7 +8,7 @@ belongs to the cell that holds its centroid; the cell's rule then decides which 
   eyes    both eyes = the two largest components that are not brows; a brow is a solid dark stroke with another
           component below it (brows come only from the brow row)
   brows   the two largest components
-  mouth   the mouth only = the largest component
+  mouth   the mouth only = the largest component plus its own creases (small ink strokes within 30 px of it)
   single  the single largest component (ears, moustaches, dog ear/tail/jaw/tongue)
   hand    the whole hand (every component in the cell)
   plate   the plate = the largest component plus anything inside its box (blank badge / card / shield plate)
@@ -27,6 +27,7 @@ from scipy import ndimage
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAD = 4
+CREASE_GAP = 30
 
 
 def load_layout(rig):
@@ -61,6 +62,13 @@ def _hoverlap(a, b):
     return max(0, hi - lo) / float(min(a["box"][2] - a["box"][0], b["box"][2] - b["box"][0]))
 
 
+def _gap(a, b):
+    """Gap between two component boxes in px (0 when they overlap)."""
+    dx = max(0, max(a["box"][0], b["box"][0]) - min(a["box"][2], b["box"][2]))
+    dy = max(0, max(a["box"][1], b["box"][1]) - min(a["box"][3], b["box"][3]))
+    return (dx * dx + dy * dy) ** 0.5
+
+
 def _is_brow(c, others):
     if c["dark"] < 0.85 or c["white"] > 0.02:
         return False
@@ -79,7 +87,14 @@ def apply_rule(rule, comps):
         return rest[:2], brows + rest[2:]
     if rule == "brows":
         return by_area[:2], by_area[2:]
-    if rule in ("mouth", "single", "figure"):
+    if rule == "mouth":
+        # the mouth = the largest component plus its own creases: small solid ink strokes (corner dimples, a lip
+        # arc) within CREASE_GAP px of it; anything else in the cell is dropped
+        m = by_area[0]
+        crease = [c for c in by_area[1:] if c["dark"] >= 0.85 and c["white"] <= 0.02 and c["area"] <= 0.15 * m["area"]
+                  and _gap(c, m) <= CREASE_GAP]
+        return [m] + crease, [c for c in by_area[1:] if c not in crease]
+    if rule in ("single", "figure"):
         return by_area[:1], by_area[1:]
     if rule == "plate":
         p = by_area[0]

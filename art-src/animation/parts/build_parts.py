@@ -69,7 +69,7 @@ ORDER = {"pf_chief": ["leg_right", "leg_left", "coat_tails", "body_no_head_no_ar
                        "helmet_front", "arm_right"],
          "pf_dog": ["leg_hind_left", "leg_front_left", "leg_hind_right", "leg_front_right", "body_no_head_no_legs",
                     "head_no_helmet", "helmet_front"],
-         "pf_rescued": ["body_no_head_no_arms", "leg_right", "leg_left", "arm_left", "head", "arm_right"]}
+         "pf_rescued": ["leg_right", "leg_left", "body_no_head_no_arms", "arm_left", "head", "arm_right"]}
 FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 
 
@@ -370,6 +370,11 @@ def build(rig, refit=False):
         rec["parts"]["legs"]["split_method"] = D.dog_legs.__doc__.strip()
         rec["parts"]["legs"]["split_meta"] = meta
         rec["parts"]["legs"]["split_params"] = dcfg["dog_legs"]
+        for nm in parts:
+            rec["parts"][nm] = {"derived_from": "legs (registered, master scale; one layer per leg)",
+                                "file": rel(os.path.join(out_dir, f"{nm}.png")), "bbox": meta[nm]["bbox"],
+                                "side": ("near (image-left, his RIGHT)" if nm.endswith("_right") else
+                                         "far (image-right, his LEFT)")}
     # 7. rescued skins -> template slots
     if "skin_slots" in dcfg:
         c = dcfg["skin_slots"]

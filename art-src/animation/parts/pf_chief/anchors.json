@@ -1,5 +1,6 @@
 {
   "rig": "pf_chief",
+  "version": "r2",
   "runtime_height_px": 420,
   "master_height_px": 1423,
   "spine_scale": 0.29515,
@@ -25,6 +26,7 @@
         768,
         97.5
       ],
+      "piece_scale_to_canvas": 0.574,
       "note": "muzzle centre at the right end; the nozzle axis runs along piece x; bind as a child of the nozzle bone, rotated with it"
     },
     "grip_r": {
@@ -33,6 +35,7 @@
         178.6,
         217.4
       ],
+      "piece_scale_to_canvas": 0.47,
       "note": "centre of the empty fist tunnel the hose passes through"
     },
     "grip_l": {
@@ -41,6 +44,7 @@
         127.8,
         210.8
       ],
+      "piece_scale_to_canvas": 0.47,
       "note": "centre of the empty fist tunnel the hose passes through"
     }
   }

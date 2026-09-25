@@ -128,9 +128,70 @@
       }
     },
     "helmet_front": {
-      "derived_from": "helmet_only",
-      "method": "inside the registered head (eroded 4 px) a helmet pixel is kept only where the master pixel matches it (RGB distance < 90); the largest component is kept",
+      "derived_from": "master_pf_dog inside the registered helmet_only",
+      "method": "Layer-ready helmet taken from the MASTER's own pixels, so at rest it is the master and no seam can appear.",
+      "params": {
+        "zone_px": 40,
+        "palette_margin": 15,
+        "ink_px": 10,
+        "min_island_px": 150,
+        "min_head_area_px": 400,
+        "fill_reach_px": 8,
+        "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole; Ember: fill_reach_px 8 (at 30 the gap fill picked up strips of the far ear's fur under the brim); white_needs_enclosure: Ember's white fur and the shell's white highlights share one colour, so white is helmet only where the red shell encloses it",
+        "min_island_frac": 0.02,
+        "spur_px": 4,
+        "spur_min_px": 40,
+        "white_needs_enclosure": true
+      },
+      "meta": {
+        "helmet_px": 92736,
+        "gap_fill_px": 299
+      },
       "file": "art-src/animation/parts/pf_dog/helmet_front.png"
+    },
+    "leg_hind_right": {
+      "derived_from": "legs (registered, master scale; one layer per leg)",
+      "file": "art-src/animation/parts/pf_dog/leg_hind_right.png",
+      "bbox": [
+        43,
+        870,
+        345,
+        1410
+      ],
+      "side": "near (image-left, his RIGHT)"
+    },
+    "leg_hind_left": {
+      "derived_from": "legs (registered, master scale; one layer per leg)",
+      "file": "art-src/animation/parts/pf_dog/leg_hind_left.png",
+      "bbox": [
+        326,
+        863,
+        492,
+        1384
+      ],
+      "side": "far (image-right, his LEFT)"
+    },
+    "leg_front_right": {
+      "derived_from": "legs (registered, master scale; one layer per leg)",
+      "file": "art-src/animation/parts/pf_dog/leg_front_right.png",
+      "bbox": [
+        412,
+        933,
+        648,
+        1442
+      ],
+      "side": "near (image-left, his RIGHT)"
+    },
+    "leg_front_left": {
+      "derived_from": "legs (registered, master scale; one layer per leg)",
+      "file": "art-src/animation/parts/pf_dog/leg_front_left.png",
+      "bbox": [
+        662,
+        881,
+        971,
+        1423
+      ],
+      "side": "far (image-right, his LEFT)"
     }
   },
   "pieces": {
@@ -672,7 +733,7 @@
   },
   "qa": {
     "reassembly": "qa/art/parts/pf_dog_reassembly.png",
-    "reassembly_iou": 0.9352,
+    "reassembly_iou": 0.9319,
     "pieces_contact": "qa/art/parts/pf_dog_pieces_r2.png",
     "layers_contact": "qa/art/parts/pf_dog_layers_r2.png"
   }

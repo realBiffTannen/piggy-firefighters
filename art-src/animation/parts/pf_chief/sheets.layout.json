@@ -6,7 +6,7 @@
  "rules": {
   "eyes": "keep BOTH eyes: the two largest components that are not brows; a brow is a solid dark stroke (>= 85 % dark ink, < 2 % white) with another component below it overlapping >= 30 % of the narrower width. Brows are dropped here (brow pieces come only from the brow row).",
   "brows": "keep the two largest components (the brow pair)",
-  "mouth": "keep the mouth only: the largest component; any other stroke in the cell is dropped and listed under `dropped` in registration.json",
+  "mouth": "keep the mouth only: the largest component plus its own creases (solid ink strokes within 30 px of it and under 15 % of its area: corner dimples, a lip arc); anything else in the cell is dropped and listed under `dropped` in registration.json",
   "single": "keep the single largest component",
   "hand": "keep the whole hand: every component in the cell",
   "plate": "keep the plate: the largest component plus any component inside its box",

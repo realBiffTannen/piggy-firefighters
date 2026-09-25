@@ -42,7 +42,6 @@
 [ok] environment/inferno_portrait.webp 1242x2208 RGB
 [ok] environment/rescue_landscape.webp 2039x1000 RGB
 [ok] environment/rescue_portrait.webp 1242x2208 RGB
-[ok] ambient/ payload 0.00 MB (budget 1.5 MB)
 [ok] buycards/alarm-call.webp 768x512 RGB
 [ok] buycards/ante.webp 768x512 RGB
 [ok] buycards/backdraft-spins.webp 768x512 RGB
@@ -102,7 +101,7 @@
 [ok] ui_scene/line_plate.webp 307x291 RGBA
 [ok] ui_scene/frame.meta.json: names 1 files; missing []; orphans []
 [ok] branding/wordmark.png 1366x654 RGBA
-[WARN] branding/wordmark_small.webp: 683x327 RGBA - no expectation rule (new file?)
+[ok] branding/wordmark_small.webp 683x327 RGBA
 [ok] features/rescue/badge_blank.webp 341x335 RGBA
 [ok] features/rescue/block_facade.webp 1298x376 RGB
 [ok] features/rescue/block_facade_inferno.webp 1298x376 RGB
@@ -148,5 +147,5 @@
 [ok] features/rescue/rooms.meta.json: names 32 files; missing []; orphans []
 [ok] features/rescue/props.meta.json: names 10 files; missing []; orphans []
 
-FAIL 0 · PENDING 0 · WARN 1 · ok 148
+FAIL 0 · PENDING 0 · WARN 0 · ok 148
 (agent checks only - not human sign-off)

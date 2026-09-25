@@ -3,10 +3,13 @@
 
 Canvas coordinates are image pixels on the common canvas (x right, y down). Spine coordinates for the rig are
   spine_x = (x - 512) * scale,  spine_y = (1440 - y) * scale,  scale = runtime height / master height_px
-Piece coordinates (pieces/*.png) are pixels inside that trimmed piece at sheet scale.
+Piece coordinates (pieces/*.png) are pixels inside that trimmed piece at SHEET scale; multiply by the piece's
+scale_to_canvas (registration.json, per family since r2) to get canvas pixels. r2: pieces are re-cut on the fixed
+grid, so piece coordinates are re-measured here; the file is written atomically.
 """
 import json
 import os
+import tempfile
 
 import numpy as np
 from PIL import Image
@@ -58,13 +61,30 @@ def spine(pt, s):
     return [round((pt[0] - FEET[0]) * s, 1), round((FEET[1] - pt[1]) * s, 1)]
 
 
+def piece_scale(reg, name):
+    for v in reg.get("pieces", {}).values():
+        if name in v["pieces"]:
+            return v["pieces"][name].get("scale_to_canvas")
+    return None
+
+
+def write_json(obj, path):
+    fd, tmp = tempfile.mkstemp(dir=os.path.dirname(path), prefix=".tmp_", suffix=".json")
+    with os.fdopen(fd, "w") as fh:
+        json.dump(obj, fh, indent=2)
+        fh.write("\n")
+    os.chmod(tmp, 0o644)
+    os.replace(tmp, path)
+
+
 def main():
     for rig, H in RUNTIME_H.items():
         d = os.path.join(HERE, rig)
         reg = json.load(open(os.path.join(d, "registration.json")))
         s = H / reg["master"]["height_px"]
-        out = {"rig": rig, "runtime_height_px": H, "master_height_px": reg["master"]["height_px"],
-               "spine_scale": round(s, 5), "root_pivot_canvas": list(FEET), "anchors": {}}
+        out = {"rig": rig, "version": reg.get("version", "r1"), "runtime_height_px": H,
+               "master_height_px": reg["master"]["height_px"], "spine_scale": round(s, 5),
+               "root_pivot_canvas": list(FEET), "anchors": {}}
         master = A(os.path.join(d, f"master_{rig}.png"))
         if rig in ("pf_chief", "pf_rookie"):
             ht = top_centre(master)
@@ -75,6 +95,7 @@ def main():
                 if os.path.exists(noz):
                     t = tip(A(noz), "right")
                     out["anchors"]["nozzle_tip"] = {"piece": "pieces/nozzle.png", "piece_xy": t,
+                                                    "piece_scale_to_canvas": piece_scale(reg, "nozzle"),
                                                     "note": "muzzle centre at the right end; the nozzle axis runs along"
                                                             " piece x; bind as a child of the nozzle bone, rotated"
                                                             " with it"}
@@ -83,6 +104,7 @@ def main():
                     if os.path.exists(p):
                         c = hole_centroid(A(p))
                         out["anchors"][side] = {"piece": f"pieces/{nm}.png", "piece_xy": c[:2] if c else None,
+                                                "piece_scale_to_canvas": piece_scale(reg, nm),
                                                 "note": "centre of the empty fist tunnel the hose passes through"}
             else:
                 for side, nm in (("sheet_r", "hand_r_catch"), ("sheet_l", "hand_l_catch")):
@@ -97,6 +119,7 @@ def main():
                         dist = (xs - cx) ** 2 + (ys - cy) ** 2
                         k = int(np.argmax(dist))
                         out["anchors"][side] = {"piece": f"pieces/{nm}.png", "piece_xy": [int(xs[k]), int(ys[k])],
+                                                "piece_scale_to_canvas": piece_scale(reg, nm),
                                                 "note": "fingertip point farthest from the cuff = where the sheet "
                                                         "edge sits"}
         if rig == "pf_dog":
@@ -131,9 +154,10 @@ def main():
         if rig == "pf_rescued":
             out["anchors"]["feet"] = {"canvas": list(FEET), "spine": [0.0, 0.0],
                                       "note": "root pivot = feet centre on the feet line; land event at contact"}
-        with open(os.path.join(d, "anchors.json"), "w") as f:
-            json.dump(out, f, indent=2)
-        print(rig, json.dumps(out["anchors"])[:400])
+        path = os.path.join(d, "anchors.json")
+        old = open(path).read() if os.path.exists(path) else None
+        write_json(out, path)
+        print(rig, "changed" if open(path).read() != old else "unchanged", json.dumps(out["anchors"])[:300])
 
 
 if __name__ == "__main__":

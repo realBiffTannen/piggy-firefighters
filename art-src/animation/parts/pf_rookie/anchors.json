@@ -1,5 +1,6 @@
 {
   "rig": "pf_rookie",
+  "version": "r2",
   "runtime_height_px": 380,
   "master_height_px": 1441,
   "spine_scale": 0.26371,
@@ -14,6 +15,7 @@
         268,
         236
       ],
+      "piece_scale_to_canvas": 0.45,
       "note": "fingertip point farthest from the cuff = where the sheet edge sits"
     },
     "sheet_l": {
@@ -22,6 +24,7 @@
         30,
         255
       ],
+      "piece_scale_to_canvas": 0.45,
       "note": "fingertip point farthest from the cuff = where the sheet edge sits"
     }
   }

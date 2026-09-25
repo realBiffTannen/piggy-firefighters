@@ -295,6 +295,7 @@ def helmet_front_v2(rig, cfg, master, reg=None):
     3. the helmet = the helmet-coloured regions of the master that touch the registered helmet's core (the navy
        lining excluded: it sits over the face), plus the ink within `ink_px` of them
     4. no hole at rest: a master pixel next to the helmet that the head layer does not cover is kept too
+    5. clean-up: islands under `min_island_frac` of the helmet and thin spurs (head-outline crumbs) are dropped
     Where the master shows the head, the layer is transparent and head_no_helmet shows through."""
     helm = r1_part(rig, "helmet_only", reg)
     head = r1_part(rig, cfg.get("head_part", "head_no_helmet"), reg)
@@ -303,6 +304,9 @@ def helmet_front_v2(rig, cfg, master, reg=None):
     lining = ndimage.binary_closing(ha & (hb > hr + 25) & (hb > 50), iterations=2)
     core = ndimage.binary_erosion(ha & ~lining, iterations=6)
     zone = ndimage.binary_dilation(ha, iterations=cfg["zone_px"])
+    # under the brim (the painted lining, eroded `lining_margin_px`) the master shows the face: never helmet
+    if cfg.get("lining_margin_px"):
+        zone &= ~ndimage.binary_erosion(lining, iterations=cfg["lining_margin_px"])
     mo = master[..., 3] > 0
     lum = master[..., :3].max(-1)
     ink = mo & (lum < 80)
@@ -323,17 +327,31 @@ def helmet_front_v2(rig, cfg, master, reg=None):
     cl, n = ndimage.label(helm_col, structure=np.ones((3, 3)))
     touch = np.unique(cl[core & (cl > 0)])
     is_helm = np.isin(cl, touch[touch > 0])
+    if cfg.get("white_needs_enclosure"):
+        # white fur and a white shell highlight have the same colour: white counts as helmet only inside the shell
+        mm = master[..., :3].astype(int)
+        white = mo & (mm.min(-1) > 200)
+        is_helm &= ~white | ndimage.binary_fill_holes(is_helm & ~white)
     d_helm = ndimage.distance_transform_edt(~is_helm)
     is_helm |= zone & ink & (d_helm <= cfg["ink_px"])
     fill = zone & mo & ~is_helm & ~ndimage.binary_dilation(head[..., 3] > 128, iterations=1) & \
         (d_helm <= cfg["fill_reach_px"])
     keep = is_helm | fill
     out = np.where(keep[..., None], master, 0).astype(np.uint8)
+    # the helmet is one piece: drop islands (eye catch-lights, ear-edge crumbs) smaller than `min_island_frac` of it
     lab, n = ndimage.label(out[..., 3] > 0, structure=np.ones((3, 3)))
     if n > 1:
         sizes = np.bincount(lab.ravel())
-        small = [i for i in range(1, n + 1) if sizes[i] < cfg["min_island_px"]]
+        small = [i for i in range(1, n + 1) if sizes[i] < max(cfg["min_island_px"], cfg["min_island_frac"] * sizes[1:].max())]
         out[np.isin(lab, small)] = 0
+    # thin spurs hanging off the brim (head outline fragments) are cut by an opening that keeps the brim itself
+    solid = out[..., 3] > 0
+    opened = ndimage.binary_opening(solid, structure=np.ones((3, 3)), iterations=cfg["spur_px"])
+    spur = solid & ~ndimage.binary_dilation(opened, structure=np.ones((3, 3)), iterations=cfg["spur_px"] + 1)
+    sl, ns = ndimage.label(spur, structure=np.ones((3, 3)))
+    if ns:
+        ssz = np.bincount(sl.ravel())
+        out[np.isin(sl, [i for i in range(1, ns + 1) if ssz[i] >= cfg["spur_min_px"]])] = 0
     out[out[..., 3] == 0, :3] = 0
     return out, {"helmet_px": int(is_helm.sum()), "gap_fill_px": int(fill.sum())}
 
@@ -478,11 +496,13 @@ def skin_slots(skin, masks, cfg, overrides=()):
 
     The drawing is split into CELLS (flat-colour regions bounded by ink). A cell goes whole to one slot when
     >= `cell_major` of it lies in that template slot (the template label map: front-most template mask, else the
-    nearest); a cell straddling two slots is split pixel-wise on the template boundary. An override polygon
-    (derive.layout.json) claims every cell whose majority lies inside it: this keeps each skin's extras on the right
-    slot (grandma's cat and dress, dad's robe skirt and the piggyback twin stay on the body; the lower twin's head
+    nearest), or to its majority slot when it is small (<= `small_cell_px`: a finger, a stripe); a large cell
+    straddling two slots is split pixel-wise on the template boundary. An override polygon
+    (derive.layout.json) claims every cell whose majority lies inside it, and the ink inside it: this keeps each
+    skin's extras on the right slot (grandma's cat and dress, dad's robe skirt and the piggyback twin stay on the body; the lower twin's head
     is the head). Ink goes to the front-most slot among the cells within `ink_px` (the front part owns a shared
-    outline), else the nearest. Legs get the same hidden top extension as the template legs."""
+    outline), else the nearest. Islands under `island_px` join the neighbouring slot they touch most. Legs get the
+    same hidden top extension as the template legs."""
     al = skin[..., 3] > 0
     r, g, b = (skin[..., i].astype(int) for i in range(3))
     ink = al & (np.maximum(np.maximum(r, g), b) < cfg["ink_lum"]) & (r >= b)
@@ -504,12 +524,15 @@ def skin_slots(skin, masks, cfg, overrides=()):
             if pc[j] > 0.5 * size[j]:
                 claimed = k
                 break
-        if claimed is None and counts[j].max() >= cfg["cell_major"] * size[j]:
-            claimed = int(np.argmax(counts[j])) + 1
+        if claimed is None and (counts[j].max() >= cfg["cell_major"] * size[j] or size[j] <= cfg["small_cell_px"]):
+            claimed = int(np.argmax(counts[j])) + 1  # a small cell (finger, stripe) is never split
         if claimed is not None:
             lab[cells == m_id] = claimed
     split = (lab == 0) & al & ~ink
     lab[split] = TL[split]
+    # ink inside a cells-mode override polygon belongs to that polygon's slot (first polygon wins, as for cells)
+    for k, pm in reversed(polys):
+        lab[pm & ink] = k
     # pixel overrides: every non-ink pixel inside the polygon (optionally only non-skin colours) joins the slot
     for o in overrides:
         if o.get("mode") != "pixels":
@@ -517,6 +540,10 @@ def skin_slots(skin, masks, cfg, overrides=()):
         pm = _poly_mask(o["polygon"], al.shape) & al & ~ink
         if o.get("not_skin"):
             pm &= ~((r > 190) & (g > 110) & (b > 90) & (r - g >= 45) & (r - g < 110))  # pig pink
+        else:
+            pm |= _poly_mask(o["polygon"], al.shape) & ink
+        if o.get("only_from"):  # re-assign only pixels that the rules gave to these slots
+            pm &= np.isin(lab, [SLOT_FRONT.index(x) + 1 for x in o["only_from"]])
         lab[pm] = SLOT_FRONT.index(o["slot"]) + 1
     # ink: the front-most slot among the cells within ink_px, else the nearest
     todo = ink & (lab == 0)
@@ -527,6 +554,21 @@ def skin_slots(skin, masks, cfg, overrides=()):
         lab[close] = k
         todo &= ~close
     lab[todo] = near[todo]
+    # crumbs: a slot's small islands (outline arcs cut off by a boundary) join the neighbouring slot they touch most
+    for _ in range(2):
+        for k in range(1, len(SLOT_FRONT) + 1):
+            cl, n = ndimage.label(lab == k, structure=np.ones((3, 3)))
+            if n < 2:
+                continue
+            sizes = np.bincount(cl.ravel())
+            main = int(np.argmax(sizes[1:])) + 1
+            for i in range(1, n + 1):
+                if i == main or sizes[i] >= cfg["island_px"]:
+                    continue
+                isl = cl == i
+                ring = ndimage.binary_dilation(isl, iterations=2) & ~isl & (lab > 0) & (lab != k)
+                if ring.any():
+                    lab[isl] = np.bincount(lab[ring]).argmax()
     out = {}
     for k, nm in enumerate(SLOT_FRONT, 1):
         out[nm] = np.where((lab == k)[..., None], skin, 0).astype(np.uint8)

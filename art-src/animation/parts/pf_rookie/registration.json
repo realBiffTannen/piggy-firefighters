@@ -195,7 +195,10 @@
         "min_island_px": 150,
         "min_head_area_px": 400,
         "fill_reach_px": 30,
-        "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole"
+        "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole",
+        "min_island_frac": 0.02,
+        "spur_px": 4,
+        "spur_min_px": 40
       },
       "meta": {
         "helmet_px": 73515,
@@ -668,11 +671,11 @@
         "mouth_shout": {
           "file": "art-src/animation/parts/pf_rookie/pieces/mouth_shout.png",
           "size": [
-            198,
-            167
+            236,
+            182
           ],
           "sheet_origin": [
-            477,
+            458,
             753
           ],
           "cell": [
@@ -686,29 +689,8 @@
             1
           ],
           "rule": "mouth",
-          "components_kept": 1,
-          "dropped": [
-            {
-              "box": [
-                462,
-                887,
-                504,
-                928
-              ],
-              "area": 674,
-              "why": "rule mouth"
-            },
-            {
-              "box": [
-                650,
-                891,
-                690,
-                931
-              ],
-              "area": 628,
-              "why": "rule mouth"
-            }
-          ],
+          "components_kept": 3,
+          "dropped": [],
           "scale_family": "mouth",
           "scale_to_canvas": 0.32
         },
@@ -1221,7 +1203,7 @@
   },
   "qa": {
     "reassembly": "qa/art/parts/pf_rookie_reassembly.png",
-    "reassembly_iou": 0.9497,
+    "reassembly_iou": 0.9496,
     "pieces_contact": "qa/art/parts/pf_rookie_pieces_r2.png",
     "layers_contact": "qa/art/parts/pf_rookie_layers_r2.png"
   }
