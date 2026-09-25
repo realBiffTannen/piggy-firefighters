@@ -1,0 +1,40 @@
+{
+  "files": {
+    "landscape": "max_win_card_16x9.webp",
+    "portrait": "max_win_card_portrait.webp"
+  },
+  "size": {
+    "landscape": [
+      1600,
+      900
+    ],
+    "portrait": [
+      900,
+      1400
+    ]
+  },
+  "titleSafeArea": {
+    "landscape": {
+      "x": 0.04,
+      "y": 0.14,
+      "w": 0.36,
+      "h": 0.72
+    },
+    "portrait": {
+      "x": 0.1,
+      "y": 0.04,
+      "w": 0.8,
+      "h": 0.24
+    }
+  },
+  "calm_ratio": {
+    "landscape": 0.11,
+    "portrait": 0.202
+  },
+  "sources": {
+    "landscape": "art-src/generated/cards/maxwin_16_9_r2.png",
+    "portrait": "art-src/generated/cards/maxwin_portrait_r2.png"
+  },
+  "note": "Title-free max-win art. 'MAX WIN' and the multiple (15,000x) are runtime text inside titleSafeArea (fractions of the card); never a currency figure. Shown only for the real cap.",
+  "generated_by": "tools/art/derive_cards.py maxwin"
+}

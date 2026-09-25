@@ -4868,5 +4868,222 @@
       "total_tokens": 8416
     },
     "seconds": 37.2
+  },
+  {
+    "asset": "maxwin_portrait_r2",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted celebration painting. Repaint it EXACTLY: the same composition, framing, truck, coins, rays, chief, dog, the empty navy sky in the top part and colours, every shape in the same place at the same size, in the same style. Change ONLY ONE thing: the helmet flying off the cheering young pig on the ladder (Sprocket) is WHITE with a plain BLANK brass shield plate, the same white fire helmet as Image 2, not red. Everything else stays identical, and the top 38 percent stays calm, empty navy sky.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_maxwin_portrait_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/maxwin_portrait.png",
+      "art-src/generated/rig_pf_rookie/helmet_only.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "redraw of cards/maxwin_portrait, defect: Sprocket's flying helmet is red (identity: white helmet)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:29:08",
+    "status": "OK",
+    "output": "art-src/generated/cards/maxwin_portrait_r2.png",
+    "sha256": "d7db563353b013dc98f9b79cd2dcf7cf5d6996cfa2e985ab09599ee88ccda149",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3453,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 381
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4825
+    },
+    "seconds": 27.8
+  },
+  {
+    "asset": "card_lines_r2",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted card painting. Repaint it EXACTLY: the same composition, framing, characters, poses, hoses, water jets, building and colours, every shape in the same place at the same size, in the same style. Change ONLY ONE thing: the middle character (the lanky young pig with freckles and no moustache, Sprocket) must wear a WHITE fire helmet, not a red one, and it must be clearly TOO BIG for him: a wide white shell with a plain BLANK brass shield plate on the front, the brim sitting low over his brows and tilted a little to one side, exactly like the white helmet of Image 2. His face, pose and hands stay the same. Do not change the chief, the dog or anything else.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_card_lines_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/card_lines.png",
+      "art-src/generated/rig_pf_rookie/helmet_only.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "redraw of cards/card_lines, defect: Sprocket wears a red, correctly sized helmet (identity: white helmet visibly too big)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:29:07",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_lines_r2.png",
+    "sha256": "66a34c4f11dce0b42639fbaa888b4252769ebf4f506a9bfaeabb33cf7d1b09e1",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3492,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 420
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4864
+    },
+    "seconds": 28.0
+  },
+  {
+    "asset": "maxwin_16_9_r2",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted celebration painting. Repaint it EXACTLY: the same composition, framing, truck, coins, rays, chief, dog, empty navy sky on the left and colours, every shape in the same place at the same size, in the same style. Fix ONLY the young pig cheering on the ladder at the upper right (Sprocket, freckles, no moustache): at the moment he has TWO helmets, one on his head and one flying above him, which is wrong. Remove the helmet from his head completely so his bare pink head, ears and a small tuft of hair show; the ONE helmet flying off above him becomes WHITE with a plain BLANK brass shield plate, the same white fire helmet as Image 2, with a couple of small motion lines. Everything else stays identical, and the left 45 percent stays calm, empty navy sky.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_maxwin_16_9_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/maxwin_16_9.png",
+      "art-src/generated/rig_pf_rookie/helmet_only.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "redraw of cards/maxwin_16_9, defect: Sprocket has two helmets (one worn + one flying), flying helmet red instead of his white one",
+    "attempt": 1,
+    "ts": "2026-09-25T05:29:08",
+    "status": "OK",
+    "output": "art-src/generated/cards/maxwin_16_9_r2.png",
+    "sha256": "f235d099cca7446802c3430465c4c74d583403eb3525140d6e7d91ee9cbd9090",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3510,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 438
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4882
+    },
+    "seconds": 28.6
+  },
+  {
+    "asset": "card_inferno",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is our accepted rescue card painting: repaint the SAME scene with the SAME composition, framing, building, truck, ladder, Chief Hamm, water arc and waving pig in the SAME places at the SAME size, in the same style. Image 2 is our red-sky background (the same block under a red sky); use its colour scheme.\nChange ONLY this: the sky is now a deep flat crimson-red night sky with a big flat hot-orange moon, and flat orange embers drift everywhere; ALL five top-floor windows now roar with bigger flat cartoon flames and their stone frames are brass-gold; the raised ladder is polished BRASS-GOLD instead of red; the building's brick glows with a hard flat orange rim light from the flames. And GOLD COINS RAIN DOWN across the whole middle of the picture: about twenty chunky round gold coins, ink-outlined, flat cel-shaded with one hard shadow tone and a cream glint, each stamped with a simple raised pig-snout emblem (never a number, letter or currency sign), tumbling at different angles, some spilling from the rescued window and bouncing off the truck. Keep Chief Hamm's face, the waving pig and the ladder clearly readable through the coins. Epic, golden, triumphant; nobody is hurt.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_inferno.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/card_rescue.png",
+      "art-src/generated/scene/plate_inferno_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: inferno buy card, same framing as cards/card_rescue",
+    "attempt": 1,
+    "ts": "2026-09-25T05:29:08",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_inferno.png",
+    "sha256": "0d6c3b5c2e31d038eee84422ab121816aae9dc9ebc66b0c3d4298951327c2c70",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3895,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 823
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 5267
+    },
+    "seconds": 34.8
+  },
+  {
+    "asset": "card_inferno_r2",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted card painting. Repaint it EXACTLY: the same composition, framing, red sky, moon, burning windows, brass ladder, truck, water arc, steam, waving pig, embers and every gold coin in the same place at the same size, in the same style. Fix ONLY ONE thing: the chief on the truck platform holding the hose nozzle (Chief Hamm, moustache) has lost his helmet, which is wrong. Put his WHITE fire helmet back on his head, worn low and slightly forward, with a plain BLANK brass shield plate on its front, exactly the helmet of Image 2. His face, moustache, pose and hands stay the same. Everything else stays identical.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_card_inferno_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/card_inferno.png",
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "redraw of cards/card_inferno, defect: Chief Hamm drawn without his white helmet (identity)",
+    "attempt": 1,
+    "ts": "2026-09-25T05:29:55",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_inferno_r2.png",
+    "sha256": "90b15aeba783b52c30bdf6a33b9a400325a217c376d719540cce5f2ec36251e2",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3479,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 407
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4851
+    },
+    "seconds": 27.4
   }
 ]

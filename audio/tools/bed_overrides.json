@@ -13,9 +13,9 @@
   "why": "measure.py draws 2026-09-25: pf_inferno100__1 came back in C minor/dorian (chroma C .24, Bb .17, G .13, Eb .09; C-pent share 0.546) instead of the planned A-minor pentatonic, so E and A of the hook and every C-pentatonic ladder would clash with its Eb/Bb. A rubberband -3 st transposition puts it on A (A dorian: top G E A C B) -> key-fit share 0.47 -> 0.76, C-pent 0.74 (+2 st, D dorian, measured 0.68/0.70 and moves the centre off A). Interim until pf_inferno100_v2 is drawn."
  },
  "backdraft_spins_layer": {
-  "onsetAfter": 4.5,
+  "onsetAfter": 5.2,
   "bars": 12,
-  "why": "measure.py draws 2026-09-25: pf_backdraft92__1 is near-silent (-40 dB) for its first 5.25 s (2 bars) and decays from 44.5 s, the entry (first sample within 12 dB of the draw's peak after 4.5 s) is at 5.275 s; it holds 15.0 bars of material, not the 16 planned; the layer ships as 12 whole bars (three 4-bar phrases, even, so the two-bar brass stabs stay on the base bed's grid; the runtime phase-aligns layers modulo their own loop). Redraw requested (pf_backdraft92_v2) for the planned 16."
+  "why": "measure.py draws 2026-09-25: pf_backdraft92__1 is near-silent (-40 dB) for its first 5.25 s (2 bars) and decays from 44.5 s, the entry is at 5.275 s (first sample within 12 dB of the draw's peak after 5.2 s; a lone crackle pop at 4.64 s must not be taken for it); it holds 15.0 bars of material, not the 16 planned; the layer ships as 12 whole bars (three 4-bar phrases, even, so the two-bar brass stabs stay on the base bed's grid; the runtime phase-aligns layers modulo their own loop). Redraw requested (pf_backdraft92_v2) for the planned 16."
  },
  "anticipation_layer": {
   "onsetAfter": 0.65,

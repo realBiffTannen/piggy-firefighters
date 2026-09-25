@@ -18,7 +18,7 @@ from scipy import ndimage
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from register_parts import CANVAS, FEET_X, FEET_Y, feet, fit, ink, master_shift, place, rgba  # noqa: E402
+from register_parts import CANVAS, FEET_X, FEET_Y, feet, fit, master_shift, place, rgba  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 GEN = os.path.join(REPO, "art-src", "generated")
@@ -81,9 +81,8 @@ SHEETS = {
 }
 # placement priors (vertical centre as a fraction of the master height)
 YRANGE = {"head_no_helmet": (0.0, 0.5), "head_blank": (0.0, 0.5), "head": (0.0, 0.5), "helmet_only": (0.0, 0.4),
-          "legs": (0.5, 1.0), "coat_tails": (0.35, 0.9)}
-SRANGE = {"skin_grandma": (0.8, 1.25), "skin_twins": (0.8, 1.25), "skin_dad": (0.8, 1.25), "skin_baby": (0.8, 1.25),
-          "skin_teen": (0.8, 1.25), "helmet_only": (0.7, 1.4), "body_no_head_no_arms": (0.6, 1.6), "body_no_head_no_legs": (0.6, 1.6),
+          "legs": (0.5, 1.0), "coat_tails": (0.45, 0.85)}
+SRANGE = {"coat_tails": (0.75, 1.35), "helmet_only": (0.7, 1.4), "body_no_head_no_arms": (0.6, 1.6), "body_no_head_no_legs": (0.6, 1.6),
           "legs": (0.5, 1.6)}
 SHEET_REF = {  # (reference piece, registered counterpart, method[, colour])
     "pf_chief": {"hands_sheet": ("hand_r_open", "arm_right", "colour", "skin"),
@@ -95,12 +94,13 @@ SHEET_REF = {  # (reference piece, registered counterpart, method[, colour])
     "pf_dog": {"parts_sheet": ("head_no_jaw", "head_no_helmet", "width"),
                "face_sheet": ("mouth_closed", "head_no_helmet", "fitcrop")},
     "pf_rescued": {"face_sheet": ("eyes_open", "head", "colour", "white"), "wave_arm": ("wave_arm_up", "arm_right", "area"),
-                   "slide_poses": ("pose_cheer", "master", "area")},
+                   "slide_poses": ("pose_cheer", "master", "colour", "cream")},
 }
 COLOURS = {
     "white": lambda r, g, b: (r > 225) & (g > 225) & (b > 225),
     "skin": lambda r, g, b: (r > 215) & (g > 120) & (g < 205) & (b > 90) & (b < 190) & (r - b > 40),
     "brown": lambda r, g, b: (r > 50) & (r < 150) & (g < 75) & (b < 55) & (r > g + 20),
+    "cream": lambda r, g, b: (r > 215) & (g > 200) & (b > 150) & (b < 228) & (r - b > 12),
     "brass": lambda r, g, b: (r > 200) & (g > 150) & (b < 120),
 }
 
@@ -118,6 +118,19 @@ def colour_area(a, name):
 # raised arms: placed at the shoulder of the registered down arm, scaled by area
 RAISED = {"pf_chief": "arms_raised", "pf_rookie": "arms_raised"}
 # pieces whose scale is taken from a registration against the master (others use the sheet median)
+
+
+def feet_fit(master, part):
+    """Full-figure costume edits keep the template framing (measured: same sole line and width), so they are placed
+    by their feet: identity when the soles already sit within 6 px of the master's; otherwise scaled down to fit the
+    canvas (never up) and aligned on the sole line and feet centre."""
+    my1, mcx = feet(master)
+    py1, pcx = feet(part)
+    ys = np.nonzero((part[..., 3] > 128).any(axis=1))[0]
+    if abs(py1 - my1) <= 6:
+        return {"s": 1.0, "tx": 0.0, "ty": 0.0, "mode": "feet (identity: soles within 6 px)"}
+    s = min(1.0, (my1 - 20) / float(py1 - ys.min()))
+    return {"s": s, "tx": float(mcx - s * pcx), "ty": float(my1 - s * py1), "mode": "feet (scaled to fit, soles aligned)"}
 
 
 def save(arr, path):
@@ -278,9 +291,11 @@ def build(rig):
     registered = {}
     for rawname, (outname, split) in SAME.get(rig, {}).items():
         p = rgba(os.path.join(raw_dir, f"{rawname}.png"))
-        f = fit(m_raw, p, yrange=YRANGE.get(rawname), srange=SRANGE.get(rawname, (0.35, 1.6)),
-                mode="alpha" if rawname.startswith("skin_") else "colour")
-        f["mode"] = "alpha" if rawname.startswith("skin_") else "colour"
+        if rawname.startswith("skin_"):
+            f = feet_fit(m_raw, p)
+        else:
+            f = fit(m_raw, p, yrange=YRANGE.get(rawname), srange=SRANGE.get(rawname, (0.35, 1.6)))
+            f["mode"] = "colour"
         placed = place(p, f, (sx, sy))
         registered[outname] = placed
         entry = {"raw": os.path.relpath(os.path.join(raw_dir, f"{rawname}.png"), REPO), "fit": f,
@@ -370,7 +385,7 @@ def build(rig):
                     med = float(np.sqrt(at / ap))
                     how = f"sqrt(largest {ref[3]} region of {target} / of {pnm})"
             elif tgt is not None and method == "width":
-                w = lambda x: np.nonzero((x[..., 3] > 128).any(axis=0))[0].ptp() + 1
+                w = lambda x: np.ptp(np.nonzero((x[..., 3] > 128).any(axis=0))[0]) + 1
                 med = float(w(tgt) / w(arr))
                 how = f"width of {target} / width of {pnm}"
             elif tgt is not None and method == "fitcrop":
@@ -418,6 +433,6 @@ if __name__ == "__main__":
     a = ap.parse_args()
     for r in a.rig:
         rec = build(r)
-        print(r, "master h", rec["master"]["height_px"], {k: round(v["fit"]["score"], 2) for k, v in rec["parts"].items() if "fit" in v})
+        print(r, "master h", rec["master"]["height_px"], {k: (round(v["fit"]["score"], 2) if "score" in v["fit"] else v["fit"]["mode"]) for k, v in rec["parts"].items() if "fit" in v})
         for sh, v in rec["pieces"].items():
             print("  ", sh, "pieces", len(v["pieces"]), "missing", v["missing"], "sheet scale", v["sheet_scale_to_canvas"])

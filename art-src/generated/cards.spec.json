@@ -1,0 +1,102 @@
+{
+  "buycards": {
+    "ante": [
+      "cards/card_ante",
+      1.0,
+      0.5,
+      0.5
+    ],
+    "backdraft-spins": [
+      "cards/card_backdraft",
+      1.0,
+      0.5,
+      0.5
+    ],
+    "alarm-call": [
+      "cards/card_alarm",
+      1.0,
+      0.5,
+      0.5
+    ],
+    "rescue": [
+      "cards/card_rescue",
+      1.0,
+      0.5,
+      0.5
+    ],
+    "inferno": [
+      "cards/card_inferno_r2",
+      1.0,
+      0.5,
+      0.5
+    ]
+  },
+  "splash": {
+    "card_chief": [
+      "cards/card_chief",
+      0.5,
+      0.5
+    ],
+    "card_lines": [
+      "cards/card_lines_r2",
+      0.42,
+      0.5
+    ],
+    "card_backdraft": [
+      "cards/card_backdraft",
+      0.85,
+      0.5
+    ],
+    "card_alarm": [
+      "cards/card_alarm",
+      0.4,
+      0.5
+    ],
+    "card_rescue": [
+      "cards/card_rescue",
+      0.78,
+      0.5
+    ],
+    "card_maxwin": [
+      "cards/maxwin_portrait_r2",
+      0.5,
+      0.58
+    ]
+  },
+  "maxwin": {
+    "landscape": {
+      "src": "cards/maxwin_16_9_r2",
+      "file": "max_win_card_16x9.webp",
+      "size": [
+        1600,
+        900
+      ],
+      "zoom": 1.0,
+      "fx": 0.5,
+      "fy": 0.5,
+      "titleSafeArea": {
+        "x": 0.04,
+        "y": 0.14,
+        "w": 0.36,
+        "h": 0.72
+      }
+    },
+    "portrait": {
+      "src": "cards/maxwin_portrait_r2",
+      "file": "max_win_card_portrait.webp",
+      "size": [
+        900,
+        1400
+      ],
+      "zoom": 1.0,
+      "fx": 0.5,
+      "fy": 0.5,
+      "titleSafeArea": {
+        "x": 0.1,
+        "y": 0.04,
+        "w": 0.8,
+        "h": 0.24
+      }
+    }
+  }
+}
