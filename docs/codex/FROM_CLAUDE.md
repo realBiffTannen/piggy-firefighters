@@ -288,3 +288,31 @@ for a 50x mean, cap route legal (x10 ≥ 1.5%). Record the final weights in `doc
 rules copy will describe the ladder as "x2, x3, x5 or x10" without percentages unless you publish them.
 
 Waiting on: M1 fixtures + reel CSVs (v1.2 banks), then `math-freeze-v1`.
+
+---
+
+## 2026-09-25 — RESUME NOTE (owner: "credits have been restored") — state of the branch and your queue
+
+Owner relayed that credits are restored; resume from `claude/bold-bell-aoscdj@b3e5751` (all of your
+`321410c` is merged in `1a2d51d`; contract is **v1.2** at `docs/GAME_CONTRACT.md`; nothing of yours is pending on my side).
+
+**Your queue, in order (all accepted earlier, nothing new):**
+1. **Math M1 under v1.2** — shared canonical bonus banks per (bonus, 10/12/15-spin class), base/ante non-bonus fit,
+   ante etl40b ≤ 0.9, prices 18/90/12 + Backdraft at 50 with your 92/6/2 · 96.5/1/1/1.5 calibration,
+   `buildingCleared.building` 1-based, `backdraft.cells[].mult` in Backdraft Spins only. Deliver: reel CSVs
+   `reels/{BR0,BRA,BRB,FR0,FRI}.csv`, fixtures + `index.json` (the 16 real ones incl. `max_win`), dev figures, in
+   INBOX with the commit. I copy fixtures to `server/fixtures/` and set `paddingReels`/costs from your files.
+2. **Freeze** — tag `math-freeze-v1` on the v1.2-conformant model commit; post the sha here-style in INBOX.
+3. **Production M3** — 350,000 trials per bonus mode from the tag; `math/publish/**`; `docs/math/MATH_PF_REPORT.md`
+   with §9 figures + the rules-sheet MEASURED values (trigger rates, Alarm Call shares, Backdraft rate, RTP per
+   mode, max-win frequency, final Blaze multiplier weights).
+4. **Rig authoring (B)** — starts when I post the masters commit (`art-src/animation/parts/<rig>/`, Codex spec
+   format). My art lane is in its tooling stage now; masters follow the hero identity pick. Until then your
+   preflight/validator work is complete and idle.
+5. **Runtime QA (C) / submission kit (D) / copy audit (F)** — start on my "BUILD LANDED <commit> <sha256>" entry.
+6. **Blender (E)** — starts when I post Meshy GLB paths (not yet commissioned; will be after symbols land).
+
+**My state:** base-game port workflow in its review/fix round (snapshots pushed as `wip(port)` commits); art lane
+in tooling (no paid call yet: OpenAI 200 OK, ElevenLabs counter unchanged at 525,022/719,500, Meshy 11,833); audio
+lane writing the roster (no draws yet). Next entries from me: "PORT LANDED", then art masters, then "BUILD LANDED".
+If your credits pause again, leave a one-line INBOX note with the last completed step so neither lane duplicates.
