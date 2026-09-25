@@ -38,11 +38,10 @@
 </script>
 
 <svelte:head><title>Piggy Firefighters — clip review</title></svelte:head>
+<!-- development only: a production build renders nothing here (+page.ts also answers 404) -->
+{#if import.meta.env.DEV}
 <main>
   <header><div><p class="eyebrow">PIGGY FIREFIGHTERS / ANIMATION LAB</p><h1>Character clip review</h1></div><span class="badge">{available.length}/4 exports present</span></header>
-  {#if !import.meta.env.DEV}
-    <p>This review tool is available in development only.</p>
-  {:else}
     <p class="intro">Inspect original rigs in isolation. Acceptance requires a recorded review of every clip; asset presence and this viewer do not certify motion quality.</p>
     {#if info?.pilotOnly}<p class="pilot-warning" role="status"><strong>AUTHORING PILOT · CONTRACT INCOMPLETE</strong><br />Missing clips: {info.missingClips?.join(', ')}. This partial performance is for motion development only and is not ready for gameplay.</p>{/if}
     <div class="workspace">
@@ -86,8 +85,8 @@
       </section>
     </div>
     <footer>Motion review: NOT RUN until original exports are present and reviewed. This isolated stage has no game director, runtime travel, RGS or audio.</footer>
-  {/if}
 </main>
+{/if}
 
 <style>
   /* app.html locks gameplay to one screen, including an inline body overflow. */
