@@ -1,0 +1,289 @@
+{
+  "leg": "c",
+  "presets": [
+    {
+      "viewport": "330x190",
+      "surfaces": {
+        "bar": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "menu": {
+          "controls": 8,
+          "viaScroll": 4,
+          "bad": []
+        },
+        "rules": {
+          "controls": 1,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "bet": {
+          "controls": 10,
+          "viaScroll": 1,
+          "bad": []
+        },
+        "autoplay": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "buy": {
+          "controls": 8,
+          "viaScroll": 5,
+          "bad": []
+        },
+        "buyPending": {
+          "controls": 9,
+          "viaScroll": 4,
+          "bad": []
+        }
+      },
+      "rec": {
+        "allCount": 1,
+        "errors": [],
+        "pageErrors": [],
+        "hardWarnings": [],
+        "capNotices": [],
+        "failed": [],
+        "rgsFailed": [],
+        "walletRequests": [
+          "200 /wallet/authenticate"
+        ],
+        "external": [],
+        "plays": [],
+        "endRounds": []
+      }
+    },
+    {
+      "viewport": "400x225",
+      "surfaces": {
+        "bar": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "menu": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "rules": {
+          "controls": 1,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "bet": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "autoplay": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "buy": {
+          "controls": 8,
+          "viaScroll": 4,
+          "bad": []
+        },
+        "buyPending": {
+          "controls": 9,
+          "viaScroll": 4,
+          "bad": []
+        }
+      },
+      "rec": {
+        "allCount": 1,
+        "errors": [],
+        "pageErrors": [],
+        "hardWarnings": [],
+        "capNotices": [],
+        "failed": [],
+        "rgsFailed": [],
+        "walletRequests": [
+          "200 /wallet/authenticate"
+        ],
+        "external": [],
+        "plays": [],
+        "endRounds": []
+      }
+    },
+    {
+      "viewport": "480x270",
+      "surfaces": {
+        "bar": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "menu": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "rules": {
+          "controls": 1,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "bet": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "autoplay": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "buy": {
+          "controls": 8,
+          "viaScroll": 4,
+          "bad": []
+        },
+        "buyPending": {
+          "controls": 9,
+          "viaScroll": 4,
+          "bad": []
+        }
+      },
+      "rec": {
+        "allCount": 1,
+        "errors": [],
+        "pageErrors": [],
+        "hardWarnings": [],
+        "capNotices": [],
+        "failed": [],
+        "rgsFailed": [],
+        "walletRequests": [
+          "200 /wallet/authenticate"
+        ],
+        "external": [],
+        "plays": [],
+        "endRounds": []
+      }
+    },
+    {
+      "viewport": "800x450",
+      "surfaces": {
+        "bar": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "menu": {
+          "controls": 7,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "rules": {
+          "controls": 1,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "bet": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "autoplay": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "buy": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "buyPending": {
+          "controls": 9,
+          "viaScroll": 0,
+          "bad": []
+        }
+      },
+      "rec": {
+        "allCount": 1,
+        "errors": [],
+        "pageErrors": [],
+        "hardWarnings": [],
+        "capNotices": [],
+        "failed": [],
+        "rgsFailed": [],
+        "walletRequests": [
+          "200 /wallet/authenticate"
+        ],
+        "external": [],
+        "plays": [],
+        "endRounds": []
+      }
+    },
+    {
+      "viewport": "320x568",
+      "surfaces": {
+        "bar": {
+          "controls": 8,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "menu": {
+          "controls": 7,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "rules": {
+          "controls": 1,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "bet": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "autoplay": {
+          "controls": 10,
+          "viaScroll": 0,
+          "bad": []
+        },
+        "buy": {
+          "controls": 8,
+          "viaScroll": 3,
+          "bad": []
+        },
+        "buyPending": {
+          "controls": 9,
+          "viaScroll": 3,
+          "bad": []
+        }
+      },
+      "rec": {
+        "allCount": 1,
+        "errors": [],
+        "pageErrors": [],
+        "hardWarnings": [],
+        "capNotices": [],
+        "failed": [],
+        "rgsFailed": [],
+        "walletRequests": [
+          "200 /wallet/authenticate"
+        ],
+        "external": [],
+        "plays": [],
+        "endRounds": []
+      }
+    }
+  ],
+  "checks": {
+    "everyPresetBooted": true,
+    "everySurfaceOpened": true,
+    "nonZeroControlsEverywhere": true,
+    "everyControlInsideAndHittable": true,
+    "zeroPageErrors": true
+  },
+  "failures": [],
+  "pass": true
+}

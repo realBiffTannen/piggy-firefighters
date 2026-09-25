@@ -1,0 +1,166 @@
+{
+  "leg": "d",
+  "runs": [
+    {
+      "viewport": "1440x900",
+      "rows": {
+        "mode": {
+          "label": "Mode",
+          "value": "BASE"
+        },
+        "base": {
+          "label": "Base Bet",
+          "value": "$1.00"
+        },
+        "cost-mult": {
+          "label": "Cost Multiplier",
+          "value": "1x"
+        },
+        "total-cost": {
+          "label": "Total Bet Cost",
+          "value": "$1.00"
+        },
+        "payout-mult": {
+          "label": "Payout Multiplier",
+          "value": "2.4x"
+        },
+        "total-win": {
+          "label": "Total Win",
+          "value": "$2.40"
+        }
+      },
+      "start": {
+        "label": "START REPLAY",
+        "id": "start-replay",
+        "rect": {
+          "l": 540,
+          "t": 616,
+          "r": 900,
+          "b": 662
+        },
+        "inside": true,
+        "hittable": true,
+        "hitBy": null
+      },
+      "rec": {
+        "allCount": 1,
+        "errors": [],
+        "pageErrors": [],
+        "hardWarnings": [],
+        "capNotices": [],
+        "failed": [],
+        "rgsFailed": [],
+        "walletRequests": [],
+        "external": []
+      },
+      "boardBeforeStart": true,
+      "ended": true,
+      "endRows": {
+        "payout-mult": "2.4x",
+        "total-win": "$2.40"
+      },
+      "endAudit": {
+        "label": "PLAY AGAIN",
+        "id": "start-replay",
+        "rect": {
+          "l": 540,
+          "t": 616,
+          "r": 900,
+          "b": 662
+        },
+        "inside": true,
+        "hittable": true,
+        "hitBy": null
+      },
+      "playedAgain": true,
+      "barText": "BET\n$1.00\nWIN\n$2.40"
+    },
+    {
+      "viewport": "400x225",
+      "rows": {
+        "mode": {
+          "label": "Mode",
+          "value": "BASE"
+        },
+        "base": {
+          "label": "Base Bet",
+          "value": "$1.00"
+        },
+        "cost-mult": {
+          "label": "Cost Multiplier",
+          "value": "1x"
+        },
+        "total-cost": {
+          "label": "Total Bet Cost",
+          "value": "$1.00"
+        },
+        "payout-mult": {
+          "label": "Payout Multiplier",
+          "value": "2.4x"
+        },
+        "total-win": {
+          "label": "Total Win",
+          "value": "$2.40"
+        }
+      },
+      "start": {
+        "label": "START REPLAY",
+        "id": "start-replay",
+        "rect": {
+          "l": 135,
+          "t": 179,
+          "r": 265,
+          "b": 197
+        },
+        "inside": true,
+        "hittable": true,
+        "hitBy": null
+      },
+      "rec": {
+        "allCount": 1,
+        "errors": [],
+        "pageErrors": [],
+        "hardWarnings": [],
+        "capNotices": [],
+        "failed": [],
+        "rgsFailed": [],
+        "walletRequests": [],
+        "external": []
+      },
+      "boardBeforeStart": true,
+      "ended": true,
+      "endRows": {
+        "payout-mult": "2.4x",
+        "total-win": "$2.40"
+      },
+      "endAudit": {
+        "label": "PLAY AGAIN",
+        "id": "start-replay",
+        "rect": {
+          "l": 135,
+          "t": 179,
+          "r": 265,
+          "b": 197
+        },
+        "inside": true,
+        "hittable": true,
+        "hitBy": null
+      },
+      "playedAgain": true,
+      "barText": "BET\n$1.00\nWIN\n$2.40"
+    }
+  ],
+  "walletHits": [],
+  "checks": {
+    "sixRowsBothViewports": true,
+    "startInsideAndHittable": true,
+    "playAgainInsideAndHittable": true,
+    "roundEndedBothViewports": true,
+    "playAgainReplayed": true,
+    "zeroWalletTraffic": true,
+    "zeroPageErrors": true,
+    "zeroConsoleErrors": true,
+    "payoutMultiplierMatchesBook": true
+  },
+  "pass": true
+}

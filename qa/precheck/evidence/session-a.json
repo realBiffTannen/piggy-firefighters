@@ -1,0 +1,290 @@
+{
+  "leg": "a",
+  "target": "http://127.0.0.1:3062/v70/",
+  "spins": 10,
+  "surfaces": [
+    {
+      "name": "menu",
+      "opened": true
+    },
+    {
+      "name": "rules",
+      "opened": true
+    },
+    {
+      "name": "bet",
+      "opened": true
+    },
+    {
+      "name": "autoplay",
+      "opened": true
+    },
+    {
+      "name": "buy",
+      "opened": true
+    },
+    {
+      "name": "buyPending",
+      "opened": true
+    }
+  ],
+  "buys": [
+    {
+      "fixture": "alarm_call_false",
+      "title": "ALARM CALL",
+      "mode": "ALARM_CALL",
+      "active": true,
+      "payoutMultiplier": 0,
+      "ms": 1923,
+      "pageErrorsDuring": 0,
+      "ok": true
+    },
+    {
+      "fixture": "alarm_call_false",
+      "title": "ALARM CALL",
+      "mode": "ALARM_CALL",
+      "active": true,
+      "payoutMultiplier": 0,
+      "ms": 1920,
+      "pageErrorsDuring": 0,
+      "ok": true
+    },
+    {
+      "fixture": "rescue_buy",
+      "title": "RESCUE SPINS",
+      "mode": "RESCUE",
+      "active": true,
+      "payoutMultiplier": 7.6,
+      "ms": 19722,
+      "pageErrorsDuring": 0,
+      "ok": true
+    },
+    {
+      "fixture": "rescue_buy",
+      "title": "RESCUE SPINS",
+      "mode": "RESCUE",
+      "active": true,
+      "payoutMultiplier": 7.6,
+      "ms": 19703,
+      "pageErrorsDuring": 0,
+      "ok": true
+    }
+  ],
+  "checks": {
+    "zeroConsoleErrors": true,
+    "zeroPageErrors": true,
+    "zeroHardWarnings": true,
+    "noWarningCap": true,
+    "zeroSameOrigin4xx": true,
+    "zeroExternalOrigins": true,
+    "tenSpins": true,
+    "everySurfaceOpened": true,
+    "fourBuysCompleted": true,
+    "buysWereBoughtModes": true,
+    "noLegError": true
+  },
+  "rec": {
+    "allCount": 1,
+    "errors": [],
+    "pageErrors": [],
+    "hardWarnings": [],
+    "capNotices": [],
+    "failed": [],
+    "rgsFailed": [],
+    "walletRequests": [
+      "200 /wallet/authenticate",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round",
+      "200 /wallet/play",
+      "200 /wallet/end-round"
+    ],
+    "external": [],
+    "plays": [
+      {
+        "t": 1790355585169,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 7.6
+      },
+      {
+        "t": 1790355608100,
+        "mode": "BASE",
+        "active": false,
+        "payoutMultiplier": 0
+      },
+      {
+        "t": 1790355609018,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 2.4
+      },
+      {
+        "t": 1790355612752,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 46
+      },
+      {
+        "t": 1790355642782,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 2.4
+      },
+      {
+        "t": 1790355646517,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 500
+      },
+      {
+        "t": 1790355658899,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 2.4
+      },
+      {
+        "t": 1790355662632,
+        "mode": "BASE",
+        "active": false,
+        "payoutMultiplier": 0
+      },
+      {
+        "t": 1790355663549,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 2.4
+      },
+      {
+        "t": 1790355667283,
+        "mode": "BASE",
+        "active": true,
+        "payoutMultiplier": 2.4
+      },
+      {
+        "t": 1790355677652,
+        "mode": "ALARM_CALL",
+        "active": true,
+        "payoutMultiplier": 0
+      },
+      {
+        "t": 1790355680301,
+        "mode": "ALARM_CALL",
+        "active": true,
+        "payoutMultiplier": 0
+      },
+      {
+        "t": 1790355682933,
+        "mode": "RESCUE",
+        "active": true,
+        "payoutMultiplier": 7.6
+      },
+      {
+        "t": 1790355703367,
+        "mode": "RESCUE",
+        "active": true,
+        "payoutMultiplier": 7.6
+      }
+    ],
+    "endRounds": [
+      1790355608017,
+      1790355609018,
+      1790355642669,
+      1790355642782,
+      1790355646517,
+      1790355658901,
+      1790355663549,
+      1790355667283,
+      1790355679555,
+      1790355682203,
+      1790355702685,
+      1790355723118
+    ]
+  },
+  "rounds": [
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 7.6,
+      "ms": 22826
+    },
+    {
+      "mode": "BASE",
+      "active": false,
+      "payoutMultiplier": 0,
+      "ms": 809
+    },
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 2.4,
+      "ms": 3623
+    },
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 46,
+      "ms": 29937
+    },
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 2.4,
+      "ms": 3628
+    },
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 500,
+      "ms": 12270
+    },
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 2.4,
+      "ms": 3628
+    },
+    {
+      "mode": "BASE",
+      "active": false,
+      "payoutMultiplier": 0,
+      "ms": 808
+    },
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 2.4,
+      "ms": 3626
+    },
+    {
+      "mode": "BASE",
+      "active": true,
+      "payoutMultiplier": 2.4,
+      "ms": 3626
+    }
+  ],
+  "playsSeen": 14,
+  "endRoundsSeen": 12,
+  "pass": true
+}

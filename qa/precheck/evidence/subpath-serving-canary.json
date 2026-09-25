@@ -1,0 +1,64 @@
+{
+  "probe": "subpath-serving",
+  "canary": true,
+  "dir": "/Users/jbull/code/piggy-firefighters/apps/piggy_firefighters/build",
+  "mount": "/v70",
+  "target": "http://127.0.0.1:3062/v70/",
+  "rgs": "127.0.0.1:3061",
+  "requests": {
+    "total": 386,
+    "failed": [
+      "404 /assets/fonts/InterVariable.woff2",
+      "FAILED /assets/fonts/InterVariable.woff2 (net::ERR_ABORTED)"
+    ],
+    "escapedMount": [
+      "404 /assets/fonts/InterVariable.woff2"
+    ],
+    "external": []
+  },
+  "fonts": {
+    "500 16px \"Inter\"": {
+      "faces": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "check": true
+    },
+    "900 16px \"Inter\"": {
+      "faces": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "check": true
+    },
+    "400 16px \"StationSign\"": {
+      "faces": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "check": true
+    },
+    "400 16px \"Lilita One\"": {
+      "faces": 3,
+      "statuses": [
+        "loaded",
+        "loaded",
+        "loaded"
+      ],
+      "check": true
+    },
+    "500 16px \"InterCanary\"": {
+      "faces": 1,
+      "statuses": [
+        "error"
+      ],
+      "check": false
+    }
+  },
+  "boot": "splash passed",
+  "checks": {
+    "canaryEscapedMount": true,
+    "canaryFaceDidNotLoad": true
+  },
+  "pass": true
+}

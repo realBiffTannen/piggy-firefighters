@@ -1,0 +1,167 @@
+{
+  "probe": "renderer-backend",
+  "canary": true,
+  "dir": "/Users/jbull/code/piggy-firefighters/apps/piggy_firefighters/build",
+  "target": "http://127.0.0.1:3062/v70/",
+  "rgs": "127.0.0.1:3061",
+  "webgpuAdapter": "available {\"vendor\":\"apple\",\"architecture\":\"metal-3\"}",
+  "wontRun": false,
+  "cells": [
+    {
+      "label": "1290x911@1.1",
+      "w": 1290,
+      "h": 911,
+      "dsf": 1.1,
+      "measuredBad": true,
+      "url": "http://127.0.0.1:3062/v70/?sessionID=rb-1290x911@1.1-1790354442524&rgs_url=127.0.0.1:3061&device=desktop",
+      "hello": null,
+      "backendName": "webgpu",
+      "gpuLines": [],
+      "sample": {
+        "min": 0,
+        "max": 255,
+        "mean": 95.74179928845858,
+        "litFraction": 0.9636987595239594,
+        "w": 1290,
+        "h": 911
+      },
+      "error": null,
+      "canvas": {
+        "width": 1419,
+        "height": 1002,
+        "cssW": 1290,
+        "cssH": 911,
+        "dpr": 1.100000023841858,
+        "backend": "webgpu",
+        "glVersion": null
+      },
+      "screenshot": "renderer-backend-canary-1290x911_1_1.png",
+      "gpuLineCount": 0
+    },
+    {
+      "label": "1512x945@1.25",
+      "w": 1512,
+      "h": 945,
+      "dsf": 1.25,
+      "url": "http://127.0.0.1:3062/v70/?sessionID=rb-1512x945@1.25-1790354456331&rgs_url=127.0.0.1:3061&device=desktop",
+      "hello": null,
+      "backendName": "webgpu",
+      "gpuLines": [],
+      "sample": {
+        "min": 0,
+        "max": 255,
+        "mean": 98.56724025066458,
+        "litFraction": 0.9627116888497592,
+        "w": 1512,
+        "h": 945
+      },
+      "error": null,
+      "canvas": {
+        "width": 1890,
+        "height": 1181,
+        "cssW": 1512,
+        "cssH": 945,
+        "dpr": 1.25,
+        "backend": "webgpu",
+        "glVersion": null
+      },
+      "screenshot": "renderer-backend-canary-1512x945_1_25.png",
+      "gpuLineCount": 0
+    },
+    {
+      "label": "1366x768@1.5",
+      "w": 1366,
+      "h": 768,
+      "dsf": 1.5,
+      "url": "http://127.0.0.1:3062/v70/?sessionID=rb-1366x768@1.5-1790354468645&rgs_url=127.0.0.1:3061&device=desktop",
+      "hello": null,
+      "backendName": "webgpu",
+      "gpuLines": [],
+      "sample": {
+        "min": 0,
+        "max": 255,
+        "mean": 100.53440960711221,
+        "litFraction": 0.9581364181420611,
+        "w": 1366,
+        "h": 768
+      },
+      "error": null,
+      "canvas": {
+        "width": 2049,
+        "height": 1152,
+        "cssW": 1366,
+        "cssH": 768,
+        "dpr": 1.5,
+        "backend": "webgpu",
+        "glVersion": null
+      },
+      "screenshot": "renderer-backend-canary-1366x768_1_5.png",
+      "gpuLineCount": 0
+    },
+    {
+      "label": "1440x900@1.0",
+      "w": 1440,
+      "h": 900,
+      "dsf": 1,
+      "url": "http://127.0.0.1:3062/v70/?sessionID=rb-1440x900@1.0-1790354480027&rgs_url=127.0.0.1:3061&device=desktop",
+      "hello": null,
+      "backendName": "webgpu",
+      "gpuLines": [],
+      "sample": {
+        "min": 0,
+        "max": 255,
+        "mean": 98.13068379582462,
+        "litFraction": 0.9617448898024438,
+        "w": 1440,
+        "h": 900
+      },
+      "error": null,
+      "canvas": {
+        "width": 1440,
+        "height": 900,
+        "cssW": 1440,
+        "cssH": 900,
+        "dpr": 1,
+        "backend": "webgpu",
+        "glVersion": null
+      },
+      "screenshot": "renderer-backend-canary-1440x900_1_0.png",
+      "gpuLineCount": 0
+    },
+    {
+      "label": "390x844@2.0",
+      "w": 390,
+      "h": 844,
+      "dsf": 2,
+      "url": "http://127.0.0.1:3062/v70/?sessionID=rb-390x844@2.0-1790354491537&rgs_url=127.0.0.1:3061&device=desktop",
+      "hello": null,
+      "backendName": "webgpu",
+      "gpuLines": [],
+      "sample": {
+        "min": 0,
+        "max": 255,
+        "mean": 86.34541025064638,
+        "litFraction": 0.9878610767674497,
+        "w": 390,
+        "h": 844
+      },
+      "error": null,
+      "canvas": {
+        "width": 780,
+        "height": 1688,
+        "cssW": 390,
+        "cssH": 844,
+        "dpr": 2,
+        "backend": "webgpu",
+        "glVersion": null
+      },
+      "screenshot": "renderer-backend-canary-390x844_2_0.png",
+      "gpuLineCount": 0
+    }
+  ],
+  "checks": {
+    "canaryUsedWebgpu": true,
+    "canaryReproducedFailure": false
+  },
+  "pass": false
+}

@@ -1,0 +1,63 @@
+{
+  "probe": "subpath-serving",
+  "canary": false,
+  "dir": "/Users/jbull/code/piggy-firefighters/apps/piggy_firefighters/build",
+  "mount": "/v70",
+  "target": "http://127.0.0.1:3062/v70/",
+  "rgs": "127.0.0.1:3061",
+  "requests": {
+    "total": 385,
+    "failed": [],
+    "escapedMount": [],
+    "external": []
+  },
+  "fonts": {
+    "500 16px \"Inter\"": {
+      "faces": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "check": true
+    },
+    "900 16px \"Inter\"": {
+      "faces": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "check": true
+    },
+    "400 16px \"StationSign\"": {
+      "faces": 1,
+      "statuses": [
+        "loaded"
+      ],
+      "check": true
+    },
+    "400 16px \"Lilita One\"": {
+      "faces": 3,
+      "statuses": [
+        "loaded",
+        "loaded",
+        "loaded"
+      ],
+      "check": true
+    },
+    "500 16px \"InterCanary\"": {
+      "faces": 0,
+      "statuses": [],
+      "check": true
+    }
+  },
+  "boot": "splash passed",
+  "checks": {
+    "booted": true,
+    "noFailedRequests": true,
+    "nothingEscapedMount": true,
+    "noExternalOrigins": true,
+    "interLoaded": true,
+    "stationSignLoaded": true,
+    "lilitaLoaded": true,
+    "gotRequests": true
+  },
+  "pass": true
+}
