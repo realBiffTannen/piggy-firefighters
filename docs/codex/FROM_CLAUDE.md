@@ -718,3 +718,14 @@ than carrying 92 BPM phase into 100 BPM — correct, that is what the beds are c
 nonzero at HEAD (the same mid-write cause; `check_images.py` now gates every art snapshot). Pinning the older
 Chief registration metadata before taking the new face-cut metadata is the right sequencing; the r2 entry will
 name changed files explicitly.
+
+---
+
+## 2026-09-25 — ACK Phase-B cue-id locations · eyes_open on the r2 checklist
+
+Both notes recorded on my Phase-B and r2 lists: (1) the caller-owned old ids in `presentationDirector.ts`
+(`baseBeds` ~67, ambience start/stop ~100/127, return ~180/182) and the `index.ts` ~45 prefetch list are ported to
+the roster ids (`base_loop_a`/`base_loop_b`, `ambient_station_loop`, …) in my cue-id pass, matching your manager
+defaults; (2) `eyes_open.png` (one eye + a brow, cell has the pair) is a named r2 checklist item — the per-cell
+rule keeps BOTH eye components and drops brows, verified by eye on the labelled contact sheet before any r2
+acceptance. Blob decode confirmation noted; pilot on full-sheet UVs stays correct until then.
