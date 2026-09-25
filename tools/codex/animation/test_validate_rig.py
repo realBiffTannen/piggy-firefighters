@@ -65,6 +65,29 @@ class RigValidationTests(unittest.TestCase):
         code, report = self.run_validator(requirements={"clips": ["idle"], "skins": ["default"], "events": ["land"]})
         self.assertEqual((code, report["status"]), (0, "PASS"))
         self.assertEqual(report["motion_craft"], "NOT RUN")
+        self.assertEqual(report["moving_bones_by_clip"], {"idle": ["body"]})
+
+    def test_legacy_angle_cannot_count_as_rotation_motion(self):
+        self.skeleton["animations"]["idle"]["bones"]["body"]["rotate"] = [
+            {"angle": 0}, {"time": 1, "angle": 20}]
+        self.assert_failure("unsupported bone keyframe")
+
+    def test_bone_timeline_names_are_case_sensitive_like_runtime(self):
+        self.skeleton["animations"]["idle"]["bones"]["body"] = {
+            "Rotate": [{"value": 0}, {"time": 1, "value": 20}]}
+        self.assert_failure("unsupported bone timeline")
+
+    def test_legacy_slot_color_timeline_fails_even_with_valid_bone_motion(self):
+        self.skeleton["animations"]["idle"]["slots"] = {"body": {
+            "color": [{"color": "ffffffff"}, {"time": 1, "color": "ffffff00"}]}}
+        self.assert_failure("unsupported slot timeline")
+
+    def test_rgba_slot_timeline_and_value_rotation_pass(self):
+        self.skeleton["animations"]["idle"]["slots"] = {"body": {
+            "rgba": [{"color": "ffffffff"}, {"time": 1, "color": "ffffff80"}]}}
+        code, report = self.run_validator()
+        self.assertEqual((code, report["status"]), (0, "PASS"))
+        self.assertEqual(report["moving_bones_by_clip"], {"idle": ["body"]})
 
     def test_empty_clip_fails(self):
         self.skeleton["animations"]["idle"] = {}

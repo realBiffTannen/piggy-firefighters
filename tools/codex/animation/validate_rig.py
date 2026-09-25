@@ -12,6 +12,7 @@ BONE_FIELDS = {
     "translatey": {"value": 0}, "scale": {"x": 1, "y": 1}, "scalex": {"value": 1},
     "scaley": {"value": 1}, "shear": {"x": 0, "y": 0}, "shearx": {"value": 0}, "sheary": {"value": 0},
 }
+SLOT_TIMELINES = {"attachment", "rgba", "rgb", "alpha", "rgba2", "rgb2"}
 
 
 class InvalidExport(ValueError):
@@ -161,6 +162,7 @@ def check_animations(skeleton, issues):
     bones = skeleton.get("bones", [])
     require(isinstance(bones, list) and bones and bones[0].get("name") == "root", "First bone must be root")
     bone_names = {bone["name"] for bone in bones}
+    slot_names = {slot["name"] for slot in skeleton.get("slots", [])}
     root = bones[0]
     require("parent" not in root, "root must have no parent")
     for field in ("x", "y", "rotation", "scaleX", "scaleY", "shearX", "shearY"):
@@ -184,7 +186,10 @@ def check_animations(skeleton, issues):
             require(isinstance(node, list) and node, f"{name}/{'.'.join(location)}: empty or malformed timeline")
             if location[0] == "bones":
                 require(len(location) == 3 and location[1] in bone_names, f"{name}: unknown animated bone {location[1]}")
-                require(location[2].lower() in BONE_FIELDS, f"{name}: unsupported bone timeline {location[2]}")
+                require(location[2] in BONE_FIELDS, f"{name}: unsupported bone timeline {location[2]}")
+            elif location[0] == "slots":
+                require(len(location) == 3 and location[1] in slot_names, f"{name}: unknown animated slot {location[1]}")
+                require(location[2] in SLOT_TIMELINES, f"{name}: unsupported slot timeline {location[2]}")
             previous = -1
             for frame in node:
                 require(isinstance(frame, dict), f"{name}: timeline frame must be an object")
@@ -193,7 +198,7 @@ def check_animations(skeleton, issues):
                 previous = time
                 duration = max(duration, time)
                 if location[0] == "bones":
-                    fields = BONE_FIELDS[location[2].lower()]
+                    fields = BONE_FIELDS[location[2]]
                     require(not set(frame) - set(fields) - {"time", "curve"}, f"{name}: unsupported bone keyframe properties")
                     require(all(number(frame.get(field, neutral)) for field, neutral in fields.items()),
                             f"{name}: bone keyframe values must be numeric")
@@ -207,7 +212,7 @@ def check_animations(skeleton, issues):
                     require(frame.get("name") in declared_events, f"{name}: undefined event {frame.get('name')}")
                     used_events.add(frame["name"])
             elif location[0] == "bones" and location[1] != "root":
-                fields = BONE_FIELDS[location[2].lower()]
+                fields = BONE_FIELDS[location[2]]
                 # Count numeric changes over positive time, not a static keyed pose or inherited motion.
                 if any(right.get("time", 0) > left.get("time", 0)
                        and any(abs(right.get(field, neutral) - left.get(field, neutral)) > 1e-6
@@ -220,7 +225,7 @@ def check_animations(skeleton, issues):
             issues.append(f"{name}: needs a positive-duration, nonempty pose timeline; empty blocking clips are not accepted")
         root_tracks = animation.get("bones", {}).get("root", {})
         for kind, frames in root_tracks.items():
-            normalized = kind.lower()
+            normalized = kind
             require(normalized in BONE_FIELDS, f"{name}: unsupported root timeline {kind}; neutrality unproven")
             if any(frame.get(field, neutral) != neutral for frame in frames for field, neutral in BONE_FIELDS[normalized].items()):
                 issues.append(f"{name}: root {kind} moves; runtime owns all travel")
