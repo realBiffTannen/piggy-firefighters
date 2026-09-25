@@ -323,8 +323,12 @@ def cue(cid, event, family, caps, *, bus='sfx', source=None, derive=None, loop=F
     return c
 
 
-NO_CELEBRATION = ('only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, '
-                  'the buy price for a bought feature); at or below it: a neutral cue or nothing')
+NO_CELEBRATION = ('contract §8 win-tier rule: only when the booked round total W is ABOVE the charged cost S of the selected mode '
+                  '(1x base bet B, 1.5x ALARM BOOST, the buy price for a bought feature); W <= S is tier 0 (no celebration: a neutral cue '
+                  'or nothing), and that stake check takes precedence over every floor')
+# contract §8 tiers (client-derived from W vs S, floors in BASE-BET units): 0 W <= S | 1 S < W < 15B | 2 BIG >= 15B | 3 HUGE >= 30B |
+# 4 MEGA >= 50B | 5 EPIC >= 100B | 6 MAX = the 15,000x cap. The SDK winLevel is informational; the client never reads it.
+TIER1 = 'tier 1 (S < W < 15B; W <= S = tier 0: nothing)'
 # --- beds (music bus)
 for pn, pl in PLANS.items():
     is_layer = pl['cue'] in ('anticipation_layer', 'backdraft_spins_layer')
@@ -408,10 +412,10 @@ cue('line_win_small', 'winInfo:lines total > 1x and < 3x bet', 'linewin', 'linew
     gate=NO_CELEBRATION, duck={'db': 3, 'holdMs': 120})
 cue('line_win_mid', 'winInfo:lines total >= 3x bet', 'linewin', 'linewin', source='line_win_mid', seam='gameSound.linesWin', replaces='way_win_mid',
     gate=NO_CELEBRATION, duck={'db': 3, 'holdMs': 150})
-cue('total_win_small', 'setWin:round total small (> 1x bet, below BIG)', 'total', 'total', source='total_win_small', seam='gameSound.win', gate=NO_CELEBRATION, duck={'db': 4, 'holdMs': 300})
-cue('total_win_mid', 'setWin:round total medium', 'total', 'total', source='total_win_mid', seam='gameSound.win', gate=NO_CELEBRATION, duck={'db': 4.5, 'holdMs': 400})
-cue('total_win_big', 'setWin:round total large (just under BIG WIN rungs)', 'total', 'total', source='total_win_big', seam='gameSound.win', gate=NO_CELEBRATION, duck={'db': 5, 'holdMs': 600})
-cue('win_max', 'wincap: MAX WIN 15,000x (cap level ONLY)', 'total', (11, 1, 0), source='win_max', seam='WinRungs MAX card / audioDirector.total(cap)',
+cue('total_win_small', f'setTotalWin/finalWin: round total W, {TIER1}, smallest of three sizes within tier 1', 'total', 'total', source='total_win_small', seam='gameSound.win', gate=NO_CELEBRATION, duck={'db': 4, 'holdMs': 300})
+cue('total_win_mid', f'setTotalWin/finalWin: round total W, {TIER1}, middle size within tier 1', 'total', 'total', source='total_win_mid', seam='gameSound.win', gate=NO_CELEBRATION, duck={'db': 4.5, 'holdMs': 400})
+cue('total_win_big', f'setTotalWin/finalWin: round total W, {TIER1}, largest size within tier 1 (W >= 15B goes to the win rungs)', 'total', 'total', source='total_win_big', seam='gameSound.win', gate=NO_CELEBRATION, duck={'db': 5, 'holdMs': 600})
+cue('win_max', 'wincap: MAX WIN, tier 6 = the 15,000x cap (cap level ONLY)', 'total', (11, 1, 0), source='win_max', seam='WinRungs MAX card / audioDirector.total(cap)',
     gate='the capped round only', duck={'db': 6, 'holdMs': 1200})
 cue('count_ticker_1', 'winRungs:countTick[0] (C5, ladder root)', 'ticker', 'ticker', derive={'from': 'count_ticker_src', 'op': 'hybrid-ping-ladder', 'semis': 0},
     seam='WinRungs count phase (every 150 ms)', planned_s=0.25)
@@ -419,8 +423,9 @@ CLAD = [0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24, 26]
 for i in range(2, 13):
     cue(f'count_ticker_{i}', f'winRungs:countTick[{i - 1}] (+{CLAD[i - 1]} st, resampled: shorter as it rises)', 'ticker', 'ticker',
         derive={'from': 'count_ticker_1', 'op': 'ladder-resample', 'semis': CLAD[i - 1]}, seam='WinRungs count phase', planned_s=round(0.25 / 2 ** (CLAD[i - 1] / 12), 3))
+RUNG_TIER = {'big': '2, W >= 15B', 'huge': '3, W >= 30B', 'mega': '4, W >= 50B', 'epic': '5, W >= 100B', 'max': '6, the 15,000x cap'}
 for k in ('big', 'huge', 'mega', 'epic', 'max'):
-    cue(f'rung_hit_{k}', f'winRungs:hit {k.upper()}', 'rung', 'rung', source=f'rung_hit_{k}', seam='WinRungs.svelte', replaces='rung_hit_super' if k == 'huge' else None)
+    cue(f'rung_hit_{k}', f'winRungs:hit {k.upper()} (tier {RUNG_TIER[k]}; W > S first)', 'rung', 'rung', source=f'rung_hit_{k}', seam='WinRungs.svelte', replaces='rung_hit_super' if k == 'huge' else None)
     cue(f'sign_impact_{k}', f'winRungs:sign lands {k.upper()}', 'impact', 'impact', source=f'sign_impact_{k}', seam='WinRungs.svelte')
 for b, k in (('water', 'big'), ('embers', 'huge'), ('badges', 'mega'), ('coins', 'epic'), ('gold', 'max')):
     cue(f'burst_{b}', f'winRungs:burst ({k.upper()} rung)', 'burst', 'burst', source=f'burst_{b}', seam='WinRungs.svelte RUNGS[].burstCue')
@@ -452,9 +457,9 @@ cue('spins_added', 'douse.spinsAdded / buildingCleared +5 spins', 'rescue', (8, 
     duck={'db': 3, 'holdMs': 150, 'releaseMs': 300})
 cue('last_spin', 'bonus:last spin', 'rescue', (8, 1, 1000), source='last_spin', seam='audioDirector.lastSpin')
 for sz in ('small', 'mid', 'big'):
-    cue(f'rescue_total_{sz}', f'rescueEnd {{bonus: rescue}}: total {sz}', 'total', (9, 1, 0), source=f'rescue_total_{sz}', seam='audioDirector.total(winLevel) (rescue)',
+    cue(f'rescue_total_{sz}', f'rescueEnd {{bonus: rescue}}: bonus round total W, {TIER1}, {sz} (W >= 15B: win rungs)', 'total', (9, 1, 0), source=f'rescue_total_{sz}', seam='audioDirector.total(winLevel) (rescue)',
         replaces=f'total_win_{sz}', gate=NO_CELEBRATION, duck={'db': 4.5, 'holdMs': 400})
-    cue(f'inferno_total_{sz}', f'rescueEnd {{bonus: inferno}}: total {sz}', 'total', (9, 1, 0), source=f'inferno_total_{sz}', seam='audioDirector.total(winLevel) (inferno)',
+    cue(f'inferno_total_{sz}', f'rescueEnd {{bonus: inferno}}: bonus round total W, {TIER1}, {sz} (W >= 15B: win rungs)', 'total', (9, 1, 0), source=f'inferno_total_{sz}', seam='audioDirector.total(winLevel) (inferno)',
         replaces=f'total_win_{sz}', gate=NO_CELEBRATION, duck={'db': 4.5, 'holdMs': 400})
 # --- Alarm Call
 cue('alarm_call_ring', 'alarmCall: the dispatch bell rings as the card appears', 'alarmcall', (8, 1, 500), source='alarm_call_ring', seam='audioDirector.alarmRing', replaces='alarm_ring')
@@ -491,6 +496,9 @@ for cid in list(CUES):
     t.pop('_turbo', None)
     if c.get('duck'): t['duck'] = c['duck']
     if c.get('gate'): t['gate'] = c['gate']
+    if cid in ('antic_riser', 'antic_riser_2'):  # r2: exempt from the 0.70 s turbo cap (build_audio.TURBO_CAP_EXEMPT, measure.py turbo gate)
+        t['turboCapExempt'] = ('held riser (playHeld; stopHeld when the anticipating reel resolves): the runtime ends it, so its length '
+                               'never extends the turbo cadence')
     c['turboVariant'] = f'{cid}_turbo'
 for c in CUES.values(): c.pop('_turbo', None)
 

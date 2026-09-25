@@ -49,6 +49,59 @@ def notes(c):
     return '; '.join(n)
 
 
+# ---- contract §8 event -> cues (r2, 2026-09-25): every SDK and custom book event of docs/GAME_CONTRACT.md §8, by name
+R = lambda p, a, b: [f'{p}{i}' for i in range(a, b + 1)]
+TIERS = ('**Win tier (contract §8, client-derived from the booked round total W; S = the CHARGED cost of the selected mode, B = the base bet):** '
+         'the stake check comes first: **W <= S is tier 0** (no celebration: no stinger, no rung, no plate; ordinary accounting only) even when '
+         'W clears a floor (a 90x Inferno buy returning 50x is tier 0). Then the floors in BASE-BET units: tier 1 S < W < 15B · BIG >= 15B (2) · '
+         'HUGE >= 30B (3) · MEGA >= 50B (4) · EPIC >= 100B (5) · MAX = the 15,000x cap (6). The SDK `winLevel` is informational; the client never '
+         'reads it for presentation. Per-spin wins inside a bonus get the ordinary win presentation; rungs play once, on the round total.')
+EVENTS = [
+    ('reveal', 'SDK', 'the board lands (base, ALARM BOOST, every bonus spin)',
+     ['spin_start', 'spin_whoosh', 'reel_spin_loop'] + R('reel_stop_', 1, 5) + ['reel_stop_turbo'] + R('alarm_land_', 1, 5) + ['galarm_glint', 'wild_land',
+      'anticipation_layer', 'antic_riser', 'antic_riser_2', 'antic_hit', 'antic_miss'],
+     'spin_start / spin_whoosh on the spin press, reel_spin_loop while the reels travel; one reel_stop_n per reel (reel_stop_turbo in Turbo); '
+     'alarm_land_n on the n-th alarm (ii -> V -> V7 -> V9 -> V13, unresolved); anticipation only while a trigger is still possible, resolved '
+     'by antic_hit / antic_miss (neutral)'),
+    ('winInfo', 'SDK', 'line wins of the spin', [f'sym_win_{s}' for s in ('h1', 'h2', 'h3', 'h4', 'l1', 'l2', 'l3', 'l4', 'w')] + ['line_win_small', 'line_win_mid'],
+     'per-symbol win cue + the line-total cue; never when the round return is at or below the stake (tier 0)'),
+    ('setWin', 'SDK', 'the spin win meter', ['line_win_small', 'line_win_mid'] + R('count_ticker_', 1, 12),
+     'inside a bonus a per-spin win gets the ordinary win presentation and counts into the running total; the count-up ticks climb the '
+     'pentatonic ladder while a meter counts'),
+    ('setTotalWin', 'SDK', 'the round total W is booked', ['dead_spin_settle', 'total_win_small', 'total_win_mid', 'total_win_big']
+     + [f'rung_hit_{k}' for k in ('big', 'huge', 'mega', 'epic', 'max')] + [f'rung_bed_{k}' for k in ('big', 'huge', 'mega', 'epic', 'max')]
+     + [f'sign_impact_{k}' for k in ('big', 'huge', 'mega', 'epic', 'max')] + [f'burst_{k}' for k in ('water', 'embers', 'badges', 'coins', 'gold')]
+     + ['rung_flare', 'rung_land', 'rung_out', 'win_max'],
+     'tier 0 (W <= S): nothing (dead_spin_settle for a W = 0 base spin with no alarms); tier 1: total_win_small / mid / big (three sizes inside '
+     'tier 1; the contract sets no sub-floors, the frontend picks the size); tiers 2-5: the win rungs BIG -> EPIC (rung_hit_* + rung_bed_* + '
+     'sign_impact_* + burst_* + flare / land / out + count-up), climbing to the round tier; tier 6: rung_hit_max + rung_bed_max + win_max'),
+    ('finalWin', 'SDK', 'the round closes', ['dead_spin_settle', 'total_win_small', 'total_win_mid', 'total_win_big', 'win_max'],
+     'same tier rule as setTotalWin (the presentation plays once per round, on whichever of the two the runtime keys it to)'),
+    ('freeSpinTrigger', 'SDK', 'a natural 3+ alarm trigger', ['trigger_fanfare', 'shutter_slam', 'shutter_haul_1', 'shutter_haul_2', 'shutter_haul_3'],
+     'trigger_fanfare is the ONLY cue that resolves the alarm ladder (its G C E G pickup lands on C); then the bay-door shutter'),
+    ('updateFreeSpin', 'SDK', 'the spin counter changes', ['spins_added', 'last_spin'], 'spins_added when spins are added, last_spin when one spin is left'),
+    ('freeSpinEnd', 'SDK', 'the bonus closes', [f'rescue_total_{s}' for s in ('small', 'mid', 'big')] + [f'inferno_total_{s}' for s in ('small', 'mid', 'big')]
+     + ['backdraft_spins_end'], 'tier 1: rescue_total_* / inferno_total_* by size; tier >= 2: the win rungs instead; Backdraft Spins close on backdraft_spins_end'),
+    ('wincap', 'SDK', 'the 15,000x cap is hit', ['win_max', 'rung_hit_max', 'rung_bed_max'], 'the capped round ONLY (tier 6); never for EPIC'),
+    ('backdraft', 'custom', 'cells ignite (base / ALARM BOOST / Backdraft Spins)', ['backdraft_whoosh', 'backdraft_roar', 'backdraft_chord', 'blaze_ignite']
+     + R('blaze_ignite_', 2, 5) + [f'blaze_mult_{m}' for m in (2, 3, 5, 10)],
+     'whoosh -> roar -> chord, one blaze_ignite_n per cell (C5 D5 E5 G5 A5), blaze_mult_x for a cell `mult` (Backdraft Spins only)'),
+    ('alarmCall', 'custom', 'first event of an alarm_call round', ['alarm_call_ring', 'alarm_card_flip', 'alarm_outcome_false', 'dog_bark', 'alarm_outcome_rescue', 'alarm_outcome_inferno'],
+     'False Alarm is neutral (muted trumpet + two happy barks), never a fail sound; Rescue < Inferno'),
+    ('rescueStart', 'custom', 'the bonus starts (natural / buy / Alarm Call)', ['rescue_enter', 'inferno_enter', 'rescue_loop', 'inferno_loop'],
+     'the entry flourish, then the feature bed (600 ms equal-power crossfade from the base bed); each feature has its own bed and sting'),
+    ('douse', 'custom', 'every bonus spin (may be empty)', ['hose_start', 'hose_loop', 'hose_end', 'steam', 'room_down'] + R('rescue_tada_', 1, 8) + ['prize_coins', 'prize_coins_big', 'spins_added'],
+     'hose per spray, room_down per room, rescue_tada_n per rescue at multiplier n (C4 D4 E4 G4 A4 C5 D5 E5), prize coins, spins_added when spinsAdded > 0'),
+    ('buildingCleared', 'custom', 'the last room of a building is rescued', ['building_cleared', 'siren_pass', 'block_slide', 'spins_added'],
+     'fanfare, the two-tone horn call passing, the next block sliding in, +5 spins'),
+    ('rescueEnd', 'custom', 'after the last spin\'s setTotalWin', [f'rescue_total_{s}' for s in ('small', 'mid', 'big')] + [f'inferno_total_{s}' for s in ('small', 'mid', 'big')],
+     'the bonus round total W against S: tier 0 nothing, tier 1 rescue_total_* / inferno_total_* by size, tier >= 2 the win rungs'),
+    ('backdraftSpinsStart', 'custom', 'Backdraft Spins begin', ['backdraft_spins_start', 'backdraft_spins_layer'], 'start flourish + the additive layer over the base bed'),
+    ('backdraftSpinsEnd', 'custom', 'Backdraft Spins end', ['backdraft_spins_end'], 'warm resolving close; the total follows the tier rule'),
+]
+ids = {c['id'] for c in cues}
+unknown = sorted({i for e in EVENTS for i in e[3] if i not in ids})
+covered = {i for e in EVENTS for i in e[3]}
 built = sum(1 for c in cues if c.get('status') == 'built')
 rows = []
 for c in cues:
@@ -83,10 +136,17 @@ with open(f'{ROOT}/docs/AUDIO_MAP.md', 'w') as f:
             'still asks for that donor id, which is no longer in the manifest (the runtime skips unknown ids silently): wiring the new id '
             'at its seam is a frontend task.\n'
             '- **Ids are the contract**: once wired, an id never changes; a better sound ships under the same id.\n'
-            '- **Gains come only from measurement** (`mix.py`: loudest 400 ms of the shipped .ogg vs the family target; reward chains '
-            'strictly rising). Beds keep gain 1.0 and are mastered to their LUFS target.\n'
+            '- **Gains come only from measurement** (`mix.py`: loudest 400 ms of the shipped .ogg vs the family target; every reward chain '
+            'strictly rising on the stereo power, the (L+R)/2 mono sum AND a 400 Hz high-pass phone proxy of that sum). Beds keep gain 1.0 '
+            'and are mastered to their LUFS target.\n'
             '- **Paid draws** (ElevenLabs) only through `gen_audio.mjs`, ledgered in `audio/source-record.json`; a redraw needs a named, '
             'measured defect (`--force --reason`); the coordinator issues it.\n\n')
+    f.write('## Contract §8 event -> cues\n\n' + TIERS + '\n\n| event | kind | when | cues | rule |\n|---|---|---|---|---|\n')
+    for ev, kind, when, cl, rule in EVENTS:
+        f.write(f"| `{ev}` | {kind} | {when} | {', '.join(f'`{i}`' for i in cl)} | {rule} |\n")
+    f.write(f"\nEvery event of contract §8 is listed ({len(EVENTS)}: 9 SDK + 8 custom); ids named here that are not in the registry: "
+            f"{unknown or 'none'}. HUD / scene cues outside the book events (ui clicks, bet change, ALARM BOOST toggle, buy, insufficient balance, "
+            f"ambience, base beds) are in the table below.\n\n")
     f.write('## Rules every cue follows\n\n' + '\n'.join(f'- {r}' for r in doc['mix']['rules']) + '\n\n')
     f.write('## Transitions\n\n' + '\n'.join(f'- **{k}**: {v}' for k, v in doc['transitions'].items()) + '\n\n')
     f.write('## Moment -> cue -> file\n\n| moment | cue | file | bus | loop | ms | gain | sounds like | seam (frontend call site) | notes |\n|---|---|---|---|---|---|---|---|---|---|\n')

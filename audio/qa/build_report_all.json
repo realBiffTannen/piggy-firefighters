@@ -2,8 +2,10 @@
  "music": {
   "base_loop_a": {
    "I_LUFS": -15.5,
-   "TP_dBFS": -1.5,
-   "TP_m4a_dBFS": -1.1,
+   "TP_dBFS": -1.82,
+   "TP_m4a_dBFS": -1.38,
+   "I_m4a_LUFS": -15.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 3681392,
    "source": "pf_base92a__1",
    "measuredBpm": 92.0,
@@ -18,13 +20,13 @@
    },
    "padSamples": 2646,
    "barSamples": 115043.5,
-   "blend": "head; start nudged +0.77 ms to the smallest seam step",
-   "wrap": 0.0047,
-   "bodyP999": 0.122,
+   "blend": "head; start nudged +0.84 ms to the smallest seam step",
+   "wrap": 0.0046,
+   "bodyP999": 0.1215,
    "headTail_dB": {
-    "50": 3.55,
-    "250": -3.76,
-    "1000": -2.95
+    "50": 3.45,
+    "250": -3.91,
+    "1000": -2.91
    },
    "sectionRMS_raw": [
     -20.0,
@@ -39,22 +41,31 @@
     0.0
    ],
    "limiterCeiling_dB": -2.0,
-   "limitedFraction": 0.1177,
+   "limitedFraction": 0.3756,
    "shippedBpmEst": 91.95,
-   "cpentShare": 0.56,
-   "chug": 4.14,
+   "cpentShare": 0.592,
+   "chug": 3.77,
    "selfSim": {
     "sections": 4,
     "pairs": {
-     "1-2": 0.531,
-     "1-3": 0.56,
-     "1-4": 0.494,
-     "2-3": 0.864,
-     "2-4": 0.798,
-     "3-4": 0.773
+     "1-2": 0.517,
+     "1-3": 0.575,
+     "1-4": 0.482,
+     "2-3": 0.836,
+     "2-4": 0.796,
+     "3-4": 0.751
     },
-    "maxPair": 0.864,
+    "maxPair": 0.836,
     "nearCopy": false
+   },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -15.26,
+    "mono": -15.41,
+    "phone": -17.0,
+    "corr": 0.757,
+    "monoLoss": 0.16
    },
    "hook": {
     "colour": "glock",
@@ -69,15 +80,17 @@
   },
   "base_loop_b": {
    "I_LUFS": -15.5,
-   "TP_dBFS": -2.0,
+   "TP_dBFS": -2.05,
    "TP_m4a_dBFS": -2.0,
+   "I_m4a_LUFS": -15.5,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 3681392,
    "source": "pf_base92b__1",
    "measuredBpm": 91.996,
    "bpmOverride": false,
    "gridBpm": 92,
    "bars": 32,
-   "startSeconds": 0.002,
+   "startSeconds": 0.0,
    "materialEnd_s": 88.5,
    "transposeSemis": null,
    "barLift_dB": {
@@ -86,13 +99,13 @@
    },
    "padSamples": 2646,
    "barSamples": 115043.5,
-   "blend": "head; start nudged +0.11 ms to the smallest seam step",
+   "blend": "head; start nudged +2.00 ms to the smallest seam step",
    "wrap": 0.0008,
-   "bodyP999": 0.0617,
+   "bodyP999": 0.0688,
    "headTail_dB": {
-    "50": 7.67,
-    "250": 7.13,
-    "1000": -1.49
+    "50": 7.65,
+    "250": 7.19,
+    "1000": -1.45
    },
    "sectionRMS_raw": [
     -19.8,
@@ -107,22 +120,31 @@
     -0.0
    ],
    "limiterCeiling_dB": -2.0,
-   "limitedFraction": 0.0051,
+   "limitedFraction": 0.005,
    "shippedBpmEst": 91.95,
-   "cpentShare": 0.864,
-   "chug": 1.11,
+   "cpentShare": 0.874,
+   "chug": 1.07,
    "selfSim": {
     "sections": 4,
     "pairs": {
-     "1-2": 0.548,
-     "1-3": 0.444,
-     "1-4": 0.558,
-     "2-3": 0.45,
-     "2-4": 0.742,
-     "3-4": 0.416
+     "1-2": 0.525,
+     "1-3": 0.473,
+     "1-4": 0.54,
+     "2-3": 0.43,
+     "2-4": 0.741,
+     "3-4": 0.4
     },
-    "maxPair": 0.742,
+    "maxPair": 0.741,
     "nearCopy": false
+   },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -14.45,
+    "mono": -14.64,
+    "phone": -15.38,
+    "corr": 0.818,
+    "monoLoss": 0.19
    },
    "hook": {
     "colour": "vibes",
@@ -137,8 +159,10 @@
   },
   "rescue_loop": {
    "I_LUFS": -15.5,
-   "TP_dBFS": -2.3,
-   "TP_m4a_dBFS": -2.0,
+   "TP_dBFS": -2.16,
+   "TP_m4a_dBFS": -2.2,
+   "I_m4a_LUFS": -15.5,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 3386880,
    "source": "pf_rescue100__1",
    "measuredBpm": 100.0,
@@ -155,9 +179,9 @@
    "barSamples": 105840.0,
    "blend": "head; start nudged -0.48 ms to the smallest seam step",
    "wrap": 0.0013,
-   "bodyP999": 0.1002,
+   "bodyP999": 0.1483,
    "headTail_dB": {
-    "50": 4.11,
+    "50": 4.1,
     "250": 1.38,
     "1000": 0.84
    },
@@ -165,7 +189,7 @@
     -17.1,
     -15.7,
     -15.5,
-    -15.7
+    -15.8
    ],
    "sectionRide_dB": [
     0.0,
@@ -176,20 +200,29 @@
    "limiterCeiling_dB": -2.0,
    "limitedFraction": 0.0,
    "shippedBpmEst": 100.0,
-   "cpentShare": 0.671,
-   "chug": 1.01,
+   "cpentShare": 0.688,
+   "chug": 1.08,
    "selfSim": {
     "sections": 4,
     "pairs": {
-     "1-2": 0.451,
-     "1-3": 0.633,
-     "1-4": 0.642,
-     "2-3": 0.384,
+     "1-2": 0.42,
+     "1-3": 0.663,
+     "1-4": 0.616,
+     "2-3": 0.352,
      "2-4": 0.584,
-     "3-4": 0.582
+     "3-4": 0.555
     },
-    "maxPair": 0.642,
+    "maxPair": 0.663,
     "nearCopy": false
+   },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -14.45,
+    "mono": -14.65,
+    "phone": -18.99,
+    "corr": 0.724,
+    "monoLoss": 0.19
    },
    "hook": {
     "colour": "bugle",
@@ -204,8 +237,10 @@
   },
   "inferno_loop": {
    "I_LUFS": -15.2,
-   "TP_dBFS": -1.7,
-   "TP_m4a_dBFS": -1.7,
+   "TP_dBFS": -1.9,
+   "TP_m4a_dBFS": -1.76,
+   "I_m4a_LUFS": -15.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 3386880,
    "source": "pf_inferno100__1",
    "measuredBpm": 100.0,
@@ -218,19 +253,19 @@
    "barLift_dB": null,
    "padSamples": 2646,
    "barSamples": 105840.0,
-   "blend": "head; start nudged +0.70 ms to the smallest seam step",
+   "blend": "head; start nudged +0.68 ms to the smallest seam step",
    "wrap": 0.0011,
-   "bodyP999": 0.0755,
+   "bodyP999": 0.1001,
    "headTail_dB": {
-    "50": 11.79,
-    "250": 4.53,
-    "1000": 0.85
+    "50": 11.72,
+    "250": 4.41,
+    "1000": 0.78
    },
    "sectionRMS_raw": [
-    -17.9,
+    -18.0,
     -15.5,
     -14.6,
-    -17.2
+    -17.3
    ],
    "sectionRide_dB": [
     0.0,
@@ -239,22 +274,31 @@
     0.0
    ],
    "limiterCeiling_dB": -2.0,
-   "limitedFraction": 0.0226,
+   "limitedFraction": 0.0294,
    "shippedBpmEst": 100.0,
-   "cpentShare": 0.775,
-   "chug": 1.49,
+   "cpentShare": 0.78,
+   "chug": 1.55,
    "selfSim": {
     "sections": 4,
     "pairs": {
-     "1-2": 0.576,
-     "1-3": 0.622,
-     "1-4": 0.633,
-     "2-3": 0.588,
+     "1-2": 0.553,
+     "1-3": 0.65,
+     "1-4": 0.598,
+     "2-3": 0.559,
      "2-4": 0.563,
-     "3-4": 0.51
+     "3-4": 0.486
     },
-    "maxPair": 0.633,
+    "maxPair": 0.65,
     "nearCopy": false
+   },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -13.53,
+    "mono": -14.28,
+    "phone": -16.63,
+    "corr": 0.349,
+    "monoLoss": 0.75
    },
    "hook": {
     "colour": "bugle",
@@ -269,8 +313,10 @@
   },
   "anticipation_layer": {
    "I_LUFS": -16.0,
-   "TP_dBFS": -2.4,
-   "TP_m4a_dBFS": -2.4,
+   "TP_dBFS": -2.55,
+   "TP_m4a_dBFS": -2.49,
+   "I_m4a_LUFS": -16.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 460174,
    "source": "pf_antic92__1",
    "measuredBpm": 92.0,
@@ -283,7 +329,7 @@
    "barLift_dB": null,
    "padSamples": 2646,
    "barSamples": 115043.5,
-   "blend": "head; start nudged -0.18 ms to the smallest seam step",
+   "blend": "head; start nudged -0.20 ms to the smallest seam step",
    "wrap": 0.0005,
    "bodyP999": 0.0911,
    "headTail_dB": {
@@ -314,39 +360,50 @@
     "maxPair": null,
     "nearCopy": false
    },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -13.07,
+    "mono": -13.27,
+    "phone": -21.32,
+    "corr": 0.435,
+    "monoLoss": 0.2
+   },
    "hook": null
   },
   "backdraft_spins_layer": {
-   "I_LUFS": -15.9,
-   "TP_dBFS": -2.7,
-   "TP_m4a_dBFS": -2.2,
+   "I_LUFS": -16.0,
+   "TP_dBFS": -1.61,
+   "TP_m4a_dBFS": -1.73,
+   "I_m4a_LUFS": -16.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 1380522,
    "source": "pf_backdraft92__1",
    "measuredBpm": 91.996,
    "bpmOverride": false,
    "gridBpm": 92,
    "bars": 12,
-   "startSeconds": 4.638,
+   "startSeconds": 5.286,
    "materialEnd_s": 45.0,
    "transposeSemis": null,
    "barLift_dB": null,
    "padSamples": 2646,
    "barSamples": 115043.5,
-   "blend": "head; start nudged +1.75 ms to the smallest seam step",
-   "wrap": 0.0065,
-   "bodyP999": 0.1182,
+   "blend": "head; start nudged -0.66 ms to the smallest seam step",
+   "wrap": 0.0006,
+   "bodyP999": 0.1175,
    "headTail_dB": {
-    "50": 3.67,
-    "250": -3.44,
-    "1000": -2.8
+    "50": 12.27,
+    "250": 5.45,
+    "1000": -0.09
    },
    "sectionRMS_raw": [
-    -16.6,
-    -15.2,
+    -16.3,
+    -15.0,
     -15.3,
     -14.5,
     -14.8,
-    -13.8
+    -13.7
    ],
    "sectionRide_dB": [
     0.0,
@@ -360,19 +417,30 @@
    "limitedFraction": 0.0,
    "shippedBpmEst": 91.95,
    "cpentShare": 0.715,
-   "chug": 0.88,
+   "chug": 0.85,
    "selfSim": {
     "sections": 1,
     "pairs": {},
     "maxPair": null,
     "nearCopy": false
    },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -14.87,
+    "mono": -16.25,
+    "phone": -21.95,
+    "corr": 0.447,
+    "monoLoss": 1.38
+   },
    "hook": null
   },
   "rung_bed_big": {
    "I_LUFS": -15.2,
-   "TP_dBFS": -1.8,
-   "TP_m4a_dBFS": -1.9,
+   "TP_dBFS": -1.82,
+   "TP_m4a_dBFS": -1.61,
+   "I_m4a_LUFS": -15.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 846720,
    "source": "pf_rung100_big__1",
    "measuredBpm": 100.0,
@@ -385,19 +453,19 @@
    "barLift_dB": null,
    "padSamples": 2646,
    "barSamples": 105840.0,
-   "blend": "head; start nudged -0.02 ms to the smallest seam step",
-   "wrap": 0.0003,
-   "bodyP999": 0.1684,
+   "blend": "head; start nudged -1.27 ms to the smallest seam step",
+   "wrap": 0.0023,
+   "bodyP999": 0.1726,
    "headTail_dB": {
-    "50": 22.87,
-    "250": 24.95,
-    "1000": 6.8
+    "50": 23.06,
+    "250": 22.02,
+    "1000": 4.76
    },
    "sectionRMS_raw": [
-    -19.0,
+    -18.9,
     -18.6,
     -18.8,
-    -18.9
+    -19.3
    ],
    "sectionRide_dB": [
     0.0,
@@ -406,15 +474,29 @@
     0.0
    ],
    "limiterCeiling_dB": -2.0,
-   "limitedFraction": 0.1497,
+   "limitedFraction": 0.2365,
    "shippedBpmEst": 100.0,
-   "cpentShare": 0.822,
-   "chug": 1.09,
+   "cpentShare": 0.835,
+   "chug": 1.07,
    "selfSim": {
     "sections": 1,
     "pairs": {},
     "maxPair": null,
     "nearCopy": false
+   },
+   "tailFill": {
+    "beats": 2.0,
+    "fromBar": 4.0,
+    "fillStartBeat": 30.0,
+    "why": null
+   },
+   "stereo": null,
+   "levels": {
+    "st": -14.1,
+    "mono": -14.59,
+    "phone": -18.59,
+    "corr": 0.898,
+    "monoLoss": 0.49
    },
    "hook": {
     "colour": "glock",
@@ -428,8 +510,10 @@
   },
   "rung_bed_huge": {
    "I_LUFS": -15.0,
-   "TP_dBFS": -1.9,
-   "TP_m4a_dBFS": -1.9,
+   "TP_dBFS": -1.87,
+   "TP_m4a_dBFS": -1.87,
+   "I_m4a_LUFS": -15.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 846720,
    "source": "pf_rung100_huge__1",
    "measuredBpm": 100.052,
@@ -442,13 +526,13 @@
    "barLift_dB": null,
    "padSamples": 2646,
    "barSamples": 105840.0,
-   "blend": "head; start nudged +1.66 ms to the smallest seam step",
+   "blend": "head; start nudged +1.63 ms to the smallest seam step",
    "wrap": 0.0004,
-   "bodyP999": 0.0887,
+   "bodyP999": 0.1416,
    "headTail_dB": {
-    "50": 11.04,
-    "250": 11.73,
-    "1000": 2.03
+    "50": 10.86,
+    "250": 11.24,
+    "1000": 1.69
    },
    "sectionRMS_raw": [
     -19.0,
@@ -463,15 +547,24 @@
     0.0
    ],
    "limiterCeiling_dB": -2.0,
-   "limitedFraction": 0.0329,
+   "limitedFraction": 0.0157,
    "shippedBpmEst": 100.0,
-   "cpentShare": 0.835,
-   "chug": 0.95,
+   "cpentShare": 0.848,
+   "chug": 0.96,
    "selfSim": {
     "sections": 1,
     "pairs": {},
     "maxPair": null,
     "nearCopy": false
+   },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -15.43,
+    "mono": -15.73,
+    "phone": -16.91,
+    "corr": 0.787,
+    "monoLoss": 0.31
    },
    "hook": {
     "colour": "bugle",
@@ -485,8 +578,10 @@
   },
   "rung_bed_mega": {
    "I_LUFS": -14.9,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -3.2,
+   "TP_dBFS": -2.93,
+   "TP_m4a_dBFS": -2.86,
+   "I_m4a_LUFS": -14.9,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 846720,
    "source": "pf_rung100_mega__1",
    "measuredBpm": 100.0,
@@ -499,19 +594,19 @@
    "barLift_dB": null,
    "padSamples": 2646,
    "barSamples": 105840.0,
-   "blend": "head; start nudged -0.20 ms to the smallest seam step",
-   "wrap": 0.0001,
-   "bodyP999": 0.0981,
+   "blend": "head; start nudged -0.43 ms to the smallest seam step",
+   "wrap": 0.0014,
+   "bodyP999": 0.1583,
    "headTail_dB": {
-    "50": 20.7,
-    "250": 20.59,
-    "1000": 2.94
+    "50": 20.35,
+    "250": 19.24,
+    "1000": 3.24
    },
    "sectionRMS_raw": [
     -16.4,
     -16.9,
     -16.6,
-    -16.6
+    -16.7
    ],
    "sectionRide_dB": [
     0.0,
@@ -522,13 +617,27 @@
    "limiterCeiling_dB": -2.0,
    "limitedFraction": 0.0,
    "shippedBpmEst": 100.0,
-   "cpentShare": 0.828,
-   "chug": 0.29,
+   "cpentShare": 0.845,
+   "chug": 0.32,
    "selfSim": {
     "sections": 1,
     "pairs": {},
     "maxPair": null,
     "nearCopy": false
+   },
+   "tailFill": {
+    "beats": 2.0,
+    "fromBar": 4.0,
+    "fillStartBeat": 30.0,
+    "why": null
+   },
+   "stereo": null,
+   "levels": {
+    "st": -16.1,
+    "mono": -16.37,
+    "phone": -16.96,
+    "corr": 0.824,
+    "monoLoss": 0.27
    },
    "hook": {
     "colour": "bugle",
@@ -542,8 +651,10 @@
   },
   "rung_bed_epic": {
    "I_LUFS": -14.6,
-   "TP_dBFS": -3.8,
-   "TP_m4a_dBFS": -3.8,
+   "TP_dBFS": -4.3,
+   "TP_m4a_dBFS": -4.42,
+   "I_m4a_LUFS": -14.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 846720,
    "source": "pf_rung100_epic__1",
    "measuredBpm": 100.0,
@@ -558,11 +669,11 @@
    "barSamples": 105840.0,
    "blend": "head; start nudged +1.54 ms to the smallest seam step",
    "wrap": 0.0022,
-   "bodyP999": 0.0701,
+   "bodyP999": 0.0883,
    "headTail_dB": {
-    "50": 1.62,
-    "250": -1.18,
-    "1000": -1.22
+    "50": 1.69,
+    "250": -0.69,
+    "1000": -0.81
    },
    "sectionRMS_raw": [
     -15.5,
@@ -579,13 +690,22 @@
    "limiterCeiling_dB": -2.0,
    "limitedFraction": 0.0,
    "shippedBpmEst": 100.0,
-   "cpentShare": 0.745,
-   "chug": 0.87,
+   "cpentShare": 0.784,
+   "chug": 0.89,
    "selfSim": {
     "sections": 1,
     "pairs": {},
     "maxPair": null,
     "nearCopy": false
+   },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -15.58,
+    "mono": -16.97,
+    "phone": -17.92,
+    "corr": 0.464,
+    "monoLoss": 1.39
    },
    "hook": {
     "colour": "bell",
@@ -598,9 +718,11 @@
    }
   },
   "rung_bed_max": {
-   "I_LUFS": -14.5,
-   "TP_dBFS": -1.7,
-   "TP_m4a_dBFS": -1.9,
+   "I_LUFS": -14.4,
+   "TP_dBFS": -1.74,
+   "TP_m4a_dBFS": -1.38,
+   "I_m4a_LUFS": -14.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 846720,
    "source": "pf_rung100_max__1",
    "measuredBpm": 100.0,
@@ -613,13 +735,13 @@
    "barLift_dB": null,
    "padSamples": 2646,
    "barSamples": 105840.0,
-   "blend": "head; start nudged -1.43 ms to the smallest seam step",
+   "blend": "head; start nudged -1.45 ms to the smallest seam step",
    "wrap": 0.0002,
-   "bodyP999": 0.053,
+   "bodyP999": 0.0891,
    "headTail_dB": {
-    "50": 21.81,
-    "250": 25.39,
-    "1000": 4.15
+    "50": 21.87,
+    "250": 25.59,
+    "1000": 4.22
    },
    "sectionRMS_raw": [
     -20.6,
@@ -634,15 +756,24 @@
     0.0
    ],
    "limiterCeiling_dB": -2.0,
-   "limitedFraction": 0.3517,
+   "limitedFraction": 0.299,
    "shippedBpmEst": 100.0,
-   "cpentShare": 0.947,
-   "chug": 0.51,
+   "cpentShare": 0.954,
+   "chug": 0.53,
    "selfSim": {
     "sections": 1,
     "pairs": {},
     "maxPair": null,
     "nearCopy": false
+   },
+   "tailFill": null,
+   "stereo": null,
+   "levels": {
+    "st": -14.75,
+    "mono": -14.9,
+    "phone": -18.14,
+    "corr": 0.93,
+    "monoLoss": 0.15
    },
    "hook": {
     "colour": "bell",
@@ -657,12 +788,14 @@
  },
  "sfx": {
   "ui_click_1": {
-   "I_LUFS": -22.6,
-   "TP_dBFS": -2.3,
-   "TP_m4a_dBFS": -1.9,
-   "samples": 11296,
+   "I_LUFS": -22.4,
+   "TP_dBFS": -1.92,
+   "TP_m4a_dBFS": -2.37,
+   "I_m4a_LUFS": -22.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 5672,
    "key": {
-    "offsetCents": -46.5,
+    "offsetCents": -46.4,
     "tonality": 0.679,
     "cpentShareDrawn": 0.404,
     "decision": "not tonal enough to judge (tonality 0.68 < 0.75)",
@@ -671,9 +804,11 @@
   },
   "ui_click_2": {
    "I_LUFS": -26.2,
-   "TP_dBFS": -3.0,
+   "TP_dBFS": -2.99,
    "TP_m4a_dBFS": -3.0,
-   "samples": 14848,
+   "I_m4a_LUFS": -26.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 14743,
    "key": {
     "offsetCents": -34.1,
     "tonality": 0.562,
@@ -683,36 +818,42 @@
    }
   },
   "ui_click_3": {
-   "I_LUFS": -20.7,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.1,
+   "I_LUFS": -23.6,
+   "TP_dBFS": -2.61,
+   "TP_m4a_dBFS": -2.95,
+   "I_m4a_LUFS": -23.9,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 21168,
    "key": {
     "offsetCents": 32.3,
-    "tonality": 0.651,
-    "cpentShareDrawn": 0.195,
+    "tonality": 0.65,
+    "cpentShareDrawn": 0.192,
     "decision": "not tonal enough to judge (tonality 0.65 < 0.75)",
     "semis": 0.0
    }
   },
   "bet_change": {
-   "I_LUFS": -17.8,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.4,
+   "I_LUFS": -17.3,
+   "TP_dBFS": -3.01,
+   "TP_m4a_dBFS": -3.03,
+   "I_m4a_LUFS": -17.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 21168,
    "key": {
-    "offsetCents": -49.8,
-    "tonality": 0.554,
-    "cpentShareDrawn": 0.415,
-    "decision": "not tonal enough to judge (tonality 0.55 < 0.75)",
+    "offsetCents": 48.1,
+    "tonality": 0.564,
+    "cpentShareDrawn": 0.448,
+    "decision": "not tonal enough to judge (tonality 0.56 < 0.75)",
     "semis": 0.0
    }
   },
   "ante_on": {
-   "I_LUFS": -25.9,
-   "TP_dBFS": -9.1,
-   "TP_m4a_dBFS": -4.0,
-   "samples": 35416,
+   "I_LUFS": -25.4,
+   "TP_dBFS": -9.19,
+   "TP_m4a_dBFS": -2.52,
+   "I_m4a_LUFS": -25.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 34987,
    "key": {
     "offsetCents": 23.1,
     "tonality": 0.985,
@@ -728,8 +869,10 @@
   },
   "ante_off": {
    "I_LUFS": -17.7,
-   "TP_dBFS": -2.1,
-   "TP_m4a_dBFS": -3.3,
+   "TP_dBFS": -2.17,
+   "TP_m4a_dBFS": -3.22,
+   "I_m4a_LUFS": -17.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280,
    "key": {
     "offsetCents": 21.2,
@@ -740,10 +883,12 @@
    }
   },
   "alert_insufficient": {
-   "I_LUFS": -26.7,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -2.9,
-   "samples": 21413,
+   "I_LUFS": -26.4,
+   "TP_dBFS": -3.03,
+   "TP_m4a_dBFS": -3.3,
+   "I_m4a_LUFS": -26.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 21408,
    "key": {
     "offsetCents": 31.9,
     "tonality": 0.589,
@@ -754,9 +899,11 @@
   },
   "buy_confirm": {
    "I_LUFS": -19.9,
-   "TP_dBFS": -2.4,
-   "TP_m4a_dBFS": -2.8,
-   "samples": 35318,
+   "TP_dBFS": -2.33,
+   "TP_m4a_dBFS": -2.96,
+   "I_m4a_LUFS": -20.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 35301,
    "key": {
     "offsetCents": 20.9,
     "tonality": 0.885,
@@ -764,17 +911,19 @@
     "decision": "transpose -2 st (share 0.07 -> 0.90), retune -21 c",
     "semis": -2.21,
     "cpentShare110_2500": [
-     0.104,
-     0.887
+     0.105,
+     0.885
     ],
-    "cpentShareShipped": 0.887
+    "cpentShareShipped": 0.885
    }
   },
   "spin_start": {
-   "I_LUFS": -18.9,
-   "TP_dBFS": -2.7,
-   "TP_m4a_dBFS": -1.8,
-   "samples": 20395,
+   "I_LUFS": -18.8,
+   "TP_dBFS": -2.74,
+   "TP_m4a_dBFS": -3.0,
+   "I_m4a_LUFS": -19.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 18736,
    "key": {
     "offsetCents": -31.9,
     "tonality": 0.57,
@@ -784,10 +933,12 @@
    }
   },
   "spin_whoosh": {
-   "I_LUFS": -21.2,
-   "TP_dBFS": -2.3,
-   "TP_m4a_dBFS": -3.2,
-   "samples": 35280,
+   "I_LUFS": -20.8,
+   "TP_dBFS": -2.81,
+   "TP_m4a_dBFS": -3.07,
+   "I_m4a_LUFS": -20.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26802,
    "key": {
     "offsetCents": -48.9,
     "tonality": 0.593,
@@ -799,10 +950,12 @@
   "reel_spin_loop": {
    "I_LUFS": -26.2,
    "TP_dBFS": -7.9,
-   "TP_m4a_dBFS": -8.0,
+   "TP_m4a_dBFS": -7.98,
+   "I_m4a_LUFS": -26.3,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 105840,
    "wrap": 0.0042,
-   "bodyP999": 0.2453,
+   "bodyP999": 0.245,
    "key": {
     "offsetCents": -14.0,
     "tonality": 0.686,
@@ -812,29 +965,41 @@
    }
   },
   "reel_stop_1": {
-   "I_LUFS": -21.8,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 21274,
-   "pitch": {
-    "measuredHz": 139.8,
-    "prominence": 39.5,
-    "op": "pitch-snapped",
-    "semis": -1.15,
-    "postHz": 135.4,
-    "midi": 48.0,
-    "postErrCents": 59.9,
-    "targetNote": "C3"
-   },
+   "I_LUFS": -19.6,
+   "TP_dBFS": -4.46,
+   "TP_m4a_dBFS": -3.5,
+   "I_m4a_LUFS": -19.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26460,
    "tonal": {
-    "op": "hybrid: drawn thunk (HP 45 Hz) + tuned wood knock C4 at 3 ms (-2 dB)",
-    "note": "C4"
+    "op": "hybrid: drawn thunk (HP 45 Hz) + tuned wood knock C5 at 8 ms (+7.0 dB, phone-proxy solved)",
+    "note": "C5",
+    "knock": "C5",
+    "knockRel_dB": 7.0,
+    "onset_ms": 8,
+    "levels": {
+     "st": -57.14,
+     "mono": -57.16,
+     "phone": -58.54,
+     "corr": 0.998,
+     "monoLoss": 0.02
+    },
+    "ringOut": {
+     "floor_dB": -50.0,
+     "fade_ms": 60.0,
+     "natural": false,
+     "extraDecay_dB": -7.0,
+     "knee_s": 0.15,
+     "len_s": 0.6
+    }
    }
   },
   "wild_land": {
-   "I_LUFS": -18.9,
-   "TP_dBFS": -2.7,
-   "TP_m4a_dBFS": -2.6,
+   "I_LUFS": -19.3,
+   "TP_dBFS": -2.99,
+   "TP_m4a_dBFS": -2.91,
+   "I_m4a_LUFS": -19.3,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280,
    "key": {
     "offsetCents": -6.2,
@@ -849,9 +1014,11 @@
    "len_s": 0.8
   },
   "galarm_glint": {
-   "I_LUFS": -13.3,
-   "TP_dBFS": -4.2,
-   "TP_m4a_dBFS": -4.4,
+   "I_LUFS": -13.4,
+   "TP_dBFS": -4.16,
+   "TP_m4a_dBFS": -3.91,
+   "I_m4a_LUFS": -13.5,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280,
    "key": {
     "offsetCents": 11.3,
@@ -862,16 +1029,20 @@
    }
   },
   "dead_spin_settle": {
-   "I_LUFS": -19.6,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -1.9,
+   "I_LUFS": -20.1,
+   "TP_dBFS": -3.31,
+   "TP_m4a_dBFS": -3.07,
+   "I_m4a_LUFS": -20.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 26460
   },
   "antic_riser": {
-   "I_LUFS": -15.9,
-   "TP_dBFS": -7.1,
-   "TP_m4a_dBFS": -7.7,
-   "samples": 105899,
+   "I_LUFS": -15.7,
+   "TP_dBFS": -6.83,
+   "TP_m4a_dBFS": -7.24,
+   "I_m4a_LUFS": -15.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 112308,
    "key": {
     "offsetCents": -30.9,
     "tonality": 0.629,
@@ -886,28 +1057,32 @@
    }
   },
   "antic_miss": {
-   "I_LUFS": -17.0,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.8,
-   "samples": 19878,
+   "I_LUFS": -16.5,
+   "TP_dBFS": -2.78,
+   "TP_m4a_dBFS": -2.92,
+   "I_m4a_LUFS": -16.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44542,
    "key": {
-    "offsetCents": 26.1,
-    "tonality": 0.654,
-    "cpentShareDrawn": 0.766,
-    "decision": "retune -26 c (share 0.77)",
-    "semis": -0.26,
+    "offsetCents": 25.4,
+    "tonality": 0.655,
+    "cpentShareDrawn": 0.767,
+    "decision": "retune -25 c (share 0.77)",
+    "semis": -0.25,
     "cpentShare110_2500": [
      0.779,
-     0.783
+     0.785
     ],
-    "cpentShareShipped": 0.783
+    "cpentShareShipped": 0.785
    }
   },
   "antic_hit": {
-   "I_LUFS": -14.0,
-   "TP_dBFS": -2.2,
-   "TP_m4a_dBFS": -3.5,
-   "samples": 34367,
+   "I_LUFS": -16.5,
+   "TP_dBFS": -3.28,
+   "TP_m4a_dBFS": -3.86,
+   "I_m4a_LUFS": -16.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 34640,
    "key": {
     "offsetCents": -24.2,
     "tonality": 0.725,
@@ -923,9 +1098,11 @@
   },
   "trigger_fanfare": {
    "I_LUFS": -16.6,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -3.2,
-   "samples": 113263,
+   "TP_dBFS": -2.87,
+   "TP_m4a_dBFS": -3.19,
+   "I_m4a_LUFS": -16.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 112839,
    "key": {
     "offsetCents": 23.8,
     "tonality": 0.964,
@@ -940,9 +1117,11 @@
    }
   },
   "backdraft_whoosh": {
-   "I_LUFS": -17.3,
-   "TP_dBFS": -4.0,
-   "TP_m4a_dBFS": -4.6,
+   "I_LUFS": -16.9,
+   "TP_dBFS": -3.82,
+   "TP_m4a_dBFS": -4.29,
+   "I_m4a_LUFS": -17.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 31241,
    "key": {
     "offsetCents": -48.0,
@@ -953,10 +1132,12 @@
    }
   },
   "backdraft_roar": {
-   "I_LUFS": -16.0,
-   "TP_dBFS": -6.4,
-   "TP_m4a_dBFS": -6.4,
-   "samples": 73696,
+   "I_LUFS": -15.3,
+   "TP_dBFS": -5.62,
+   "TP_m4a_dBFS": -5.53,
+   "I_m4a_LUFS": -15.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 88200,
    "key": {
     "offsetCents": 6.5,
     "tonality": 0.512,
@@ -966,9 +1147,11 @@
    }
   },
   "backdraft_chord": {
-   "I_LUFS": -21.3,
-   "TP_dBFS": -2.5,
-   "TP_m4a_dBFS": -1.6,
+   "I_LUFS": -23.0,
+   "TP_dBFS": -2.95,
+   "TP_m4a_dBFS": -3.11,
+   "I_m4a_LUFS": -23.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 70560,
    "key": {
     "offsetCents": -4.2,
@@ -979,13 +1162,21 @@
    }
   },
   "blaze_ignite": {
-   "I_LUFS": -22.5,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.4,
-   "samples": 27366,
+   "I_LUFS": -22.7,
+   "TP_dBFS": -2.64,
+   "TP_m4a_dBFS": -2.83,
+   "I_m4a_LUFS": -22.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 59087,
    "tonal": {
-    "op": "hybrid: drawn fwoomp + tuned glock/chime ping C5 at 120 ms (-3 dB)",
-    "note": "C5"
+    "op": "hybrid: drawn fwoomp + tuned glock/chime ping C5 at 120 ms (-3 dB), rings out",
+    "note": "C5",
+    "ringOut": {
+     "floor_dB": -50.0,
+     "fade_ms": 60.0,
+     "natural": true,
+     "len_s": 1.34
+    }
    }
   },
   "blaze_mult_src": {
@@ -993,19 +1184,29 @@
    "len_s": 0.8
   },
   "blaze_mult_10": {
-   "I_LUFS": -19.2,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -2.9,
-   "samples": 59976,
+   "I_LUFS": -19.8,
+   "TP_dBFS": -2.43,
+   "TP_m4a_dBFS": -3.03,
+   "I_m4a_LUFS": -19.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 66644,
    "tonal": {
-    "op": "hybrid: drawn slam/flare (-3 dB) + chime chord C6 E6 G6 + glock G6",
-    "chord": "C6 E6 G6"
+    "op": "hybrid: drawn slam/flare (-3 dB) + chime chord C6 E6 G6 (top voice +4 dB) + glock G6, rings out",
+    "chord": "C6 E6 G6",
+    "ringOut": {
+     "floor_dB": -50.0,
+     "fade_ms": 60.0,
+     "natural": true,
+     "len_s": 1.511
+    }
    }
   },
   "sym_win_h1": {
-   "I_LUFS": -15.5,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -1.2,
+   "I_LUFS": -17.5,
+   "TP_dBFS": -3.07,
+   "TP_m4a_dBFS": -4.13,
+   "I_m4a_LUFS": -17.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 43774,
    "key": {
     "offsetCents": 30.3,
@@ -1022,8 +1223,10 @@
   },
   "sym_win_h2": {
    "I_LUFS": -12.9,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.1,
+   "TP_dBFS": -3.29,
+   "TP_m4a_dBFS": -3.03,
+   "I_m4a_LUFS": -13.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": -30.2,
@@ -1032,17 +1235,19 @@
     "decision": "transpose +1 st (share 0.02 -> 0.97), retune +30 c -> whole-cue shift would drop the 110-2500 Hz share 0.71 -> 0.24; SPLIT-BAND: only > 2.5 kHz shifted +1.30 st (150-4000 Hz share 0.02 -> 0.63, 110-2500 Hz 0.71 -> 0.71)",
     "semis": 1.3,
     "cpentShare110_2500": [
-     0.707,
-     0.239
+     0.705,
+     0.24
     ],
     "splitBandHz": 2500,
-    "cpentShareShipped": 0.708
+    "cpentShareShipped": 0.706
    }
   },
   "sym_win_h3": {
    "I_LUFS": -14.0,
-   "TP_dBFS": -2.7,
-   "TP_m4a_dBFS": -2.3,
+   "TP_dBFS": -2.64,
+   "TP_m4a_dBFS": -2.35,
+   "I_m4a_LUFS": -14.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": -28.9,
@@ -1054,8 +1259,10 @@
   },
   "sym_win_h4": {
    "I_LUFS": -13.8,
-   "TP_dBFS": -5.4,
-   "TP_m4a_dBFS": -5.8,
+   "TP_dBFS": -5.54,
+   "TP_m4a_dBFS": -5.65,
+   "I_m4a_LUFS": -14.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": -27.5,
@@ -1066,9 +1273,11 @@
    }
   },
   "sym_win_l1": {
-   "I_LUFS": -13.4,
-   "TP_dBFS": -4.8,
-   "TP_m4a_dBFS": -4.2,
+   "I_LUFS": -13.5,
+   "TP_dBFS": -5.5,
+   "TP_m4a_dBFS": -4.9,
+   "I_m4a_LUFS": -13.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": 13.3,
@@ -1080,8 +1289,10 @@
   },
   "sym_win_l2": {
    "I_LUFS": -22.6,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -3.1,
+   "TP_dBFS": -3.02,
+   "TP_m4a_dBFS": -3.08,
+   "I_m4a_LUFS": -22.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 41192,
    "key": {
     "offsetCents": 37.5,
@@ -1093,9 +1304,11 @@
   },
   "sym_win_l3": {
    "I_LUFS": -22.8,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 41604,
+   "TP_dBFS": -3.02,
+   "TP_m4a_dBFS": -3.36,
+   "I_m4a_LUFS": -22.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 41562,
    "key": {
     "offsetCents": 33.3,
     "tonality": 0.512,
@@ -1105,48 +1318,56 @@
    }
   },
   "sym_win_l4": {
-   "I_LUFS": -24.5,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -3.9,
+   "I_LUFS": -23.3,
+   "TP_dBFS": -6.01,
+   "TP_m4a_dBFS": -5.25,
+   "I_m4a_LUFS": -23.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": 32.8,
-    "tonality": 0.582,
-    "cpentShareDrawn": 0.512,
+    "tonality": 0.581,
+    "cpentShareDrawn": 0.511,
     "decision": "not tonal enough to judge (tonality 0.58 < 0.75)",
     "semis": 0.0
    }
   },
   "sym_win_w": {
-   "I_LUFS": -15.4,
-   "TP_dBFS": -7.6,
-   "TP_m4a_dBFS": -7.3,
-   "samples": 35837,
+   "I_LUFS": -14.5,
+   "TP_dBFS": -6.69,
+   "TP_m4a_dBFS": -6.54,
+   "I_m4a_LUFS": -14.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100,
    "key": {
     "offsetCents": 7.6,
     "tonality": 0.673,
-    "cpentShareDrawn": 0.582,
+    "cpentShareDrawn": 0.583,
     "decision": "in key",
     "semis": 0.0
    }
   },
   "line_win_small": {
-   "I_LUFS": -18.6,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -1.8,
+   "I_LUFS": -20.6,
+   "TP_dBFS": -3.02,
+   "TP_m4a_dBFS": -3.17,
+   "I_m4a_LUFS": -20.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280,
    "key": {
     "offsetCents": 1.6,
-    "tonality": 0.97,
+    "tonality": 0.971,
     "cpentShareDrawn": 0.993,
     "decision": "in key",
     "semis": 0.0
    }
   },
   "line_win_mid": {
-   "I_LUFS": -16.7,
-   "TP_dBFS": -4.5,
-   "TP_m4a_dBFS": -4.5,
+   "I_LUFS": -16.0,
+   "TP_dBFS": -4.44,
+   "TP_m4a_dBFS": -4.39,
+   "I_m4a_LUFS": -16.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 52920,
    "key": {
     "offsetCents": 0.2,
@@ -1157,9 +1378,11 @@
    }
   },
   "total_win_small": {
-   "I_LUFS": -13.6,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -2.2,
+   "I_LUFS": -17.4,
+   "TP_dBFS": -3.27,
+   "TP_m4a_dBFS": -3.01,
+   "I_m4a_LUFS": -17.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 52920,
    "key": {
     "offsetCents": 9.4,
@@ -1170,9 +1393,11 @@
    }
   },
   "total_win_mid": {
-   "I_LUFS": -12.8,
-   "TP_dBFS": -4.5,
-   "TP_m4a_dBFS": -4.1,
+   "I_LUFS": -13.9,
+   "TP_dBFS": -3.11,
+   "TP_m4a_dBFS": -3.24,
+   "I_m4a_LUFS": -14.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 70560,
    "key": {
     "offsetCents": -1.6,
@@ -1183,9 +1408,11 @@
    }
   },
   "total_win_big": {
-   "I_LUFS": -13.2,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -1.5,
+   "I_LUFS": -14.6,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -2.07,
+   "I_m4a_LUFS": -14.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 97020,
    "key": {
     "offsetCents": -4.2,
@@ -1196,10 +1423,12 @@
    }
   },
   "win_max": {
-   "I_LUFS": -14.2,
-   "TP_dBFS": -6.0,
-   "TP_m4a_dBFS": -6.1,
-   "samples": 136164,
+   "I_LUFS": -14.3,
+   "TP_dBFS": -5.44,
+   "TP_m4a_dBFS": -5.54,
+   "I_m4a_LUFS": -14.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 134528,
    "key": {
     "offsetCents": 18.3,
     "tonality": 0.796,
@@ -1212,9 +1441,11 @@
    "source": "audio/masters/_src/count_ticker_src.wav"
   },
   "rung_hit_big": {
-   "I_LUFS": -18.5,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -2.4,
+   "I_LUFS": -18.7,
+   "TP_dBFS": -2.97,
+   "TP_m4a_dBFS": -2.3,
+   "I_m4a_LUFS": -19.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 52920,
    "key": {
     "offsetCents": 43.9,
@@ -1225,10 +1456,12 @@
    }
   },
   "rung_hit_huge": {
-   "I_LUFS": -17.2,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -2.6,
-   "samples": 59267,
+   "I_LUFS": -17.1,
+   "TP_dBFS": -2.76,
+   "TP_m4a_dBFS": -2.28,
+   "I_m4a_LUFS": -17.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 59186,
    "key": {
     "offsetCents": 2.6,
     "tonality": 0.93,
@@ -1243,9 +1476,11 @@
    }
   },
   "rung_hit_mega": {
-   "I_LUFS": -18.2,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -3.0,
+   "I_LUFS": -17.7,
+   "TP_dBFS": -2.99,
+   "TP_m4a_dBFS": -3.27,
+   "I_m4a_LUFS": -17.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 70560,
    "key": {
     "offsetCents": -5.3,
@@ -1257,8 +1492,10 @@
   },
   "rung_hit_epic": {
    "I_LUFS": -13.9,
-   "TP_dBFS": -6.9,
-   "TP_m4a_dBFS": -6.9,
+   "TP_dBFS": -5.92,
+   "TP_m4a_dBFS": -6.08,
+   "I_m4a_LUFS": -14.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 77616,
    "key": {
     "offsetCents": -1.5,
@@ -1269,9 +1506,11 @@
    }
   },
   "rung_hit_max": {
-   "I_LUFS": -13.8,
-   "TP_dBFS": -2.5,
-   "TP_m4a_dBFS": -2.4,
+   "I_LUFS": -14.3,
+   "TP_dBFS": -2.85,
+   "TP_m4a_dBFS": -3.11,
+   "I_m4a_LUFS": -14.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 97020,
    "key": {
     "offsetCents": 5.5,
@@ -1282,10 +1521,12 @@
    }
   },
   "sign_impact_big": {
-   "I_LUFS": -19.4,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -3.0,
-   "samples": 39699,
+   "I_LUFS": -19.5,
+   "TP_dBFS": -2.88,
+   "TP_m4a_dBFS": -3.19,
+   "I_m4a_LUFS": -19.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26745,
    "key": {
     "offsetCents": -21.7,
     "tonality": 0.599,
@@ -1296,22 +1537,26 @@
   },
   "sign_impact_huge": {
    "I_LUFS": -25.8,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -2.7,
-   "samples": 22880,
+   "TP_dBFS": -2.75,
+   "TP_m4a_dBFS": -2.57,
+   "I_m4a_LUFS": -25.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100,
    "key": {
-    "offsetCents": -29.4,
-    "tonality": 0.548,
-    "cpentShareDrawn": 0.401,
-    "decision": "not tonal enough to judge (tonality 0.55 < 0.75)",
+    "offsetCents": -30.0,
+    "tonality": 0.543,
+    "cpentShareDrawn": 0.4,
+    "decision": "not tonal enough to judge (tonality 0.54 < 0.75)",
     "semis": 0.0
    }
   },
   "sign_impact_mega": {
-   "I_LUFS": -18.9,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -2.8,
-   "samples": 31350,
+   "I_LUFS": -19.0,
+   "TP_dBFS": -2.74,
+   "TP_m4a_dBFS": -2.72,
+   "I_m4a_LUFS": -19.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30563,
    "key": {
     "offsetCents": -21.9,
     "tonality": 0.633,
@@ -1322,8 +1567,10 @@
   },
   "sign_impact_epic": {
    "I_LUFS": -20.6,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -3.0,
+   "TP_dBFS": -2.98,
+   "TP_m4a_dBFS": -2.99,
+   "I_m4a_LUFS": -20.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": 34.4,
@@ -1334,9 +1581,11 @@
    }
   },
   "sign_impact_max": {
-   "I_LUFS": -20.7,
-   "TP_dBFS": -2.2,
-   "TP_m4a_dBFS": -2.9,
+   "I_LUFS": -21.0,
+   "TP_dBFS": -2.77,
+   "TP_m4a_dBFS": -3.11,
+   "I_m4a_LUFS": -21.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 52920,
    "key": {
     "offsetCents": 31.9,
@@ -1348,8 +1597,10 @@
   },
   "burst_water": {
    "I_LUFS": -19.6,
-   "TP_dBFS": -2.1,
-   "TP_m4a_dBFS": -2.4,
+   "TP_dBFS": -2.26,
+   "TP_m4a_dBFS": -2.24,
+   "I_m4a_LUFS": -19.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": 16.0,
@@ -1361,9 +1612,11 @@
   },
   "burst_embers": {
    "I_LUFS": -26.6,
-   "TP_dBFS": -2.7,
-   "TP_m4a_dBFS": -1.9,
-   "samples": 42878,
+   "TP_dBFS": -2.67,
+   "TP_m4a_dBFS": -2.23,
+   "I_m4a_LUFS": -26.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 42882,
    "key": {
     "offsetCents": -7.8,
     "tonality": 0.516,
@@ -1373,22 +1626,26 @@
    }
   },
   "burst_badges": {
-   "I_LUFS": -17.2,
-   "TP_dBFS": -4.2,
-   "TP_m4a_dBFS": -4.0,
-   "samples": 26489,
+   "I_LUFS": -16.8,
+   "TP_dBFS": -3.52,
+   "TP_m4a_dBFS": -3.65,
+   "I_m4a_LUFS": -16.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26510,
    "key": {
-    "offsetCents": -11.9,
-    "tonality": 0.581,
-    "cpentShareDrawn": 0.515,
-    "decision": "not tonal enough to judge (tonality 0.58 < 0.75)",
+    "offsetCents": -8.2,
+    "tonality": 0.589,
+    "cpentShareDrawn": 0.485,
+    "decision": "not tonal enough to judge (tonality 0.59 < 0.75)",
     "semis": 0.0
    }
   },
   "burst_coins": {
    "I_LUFS": -15.2,
-   "TP_dBFS": -2.3,
-   "TP_m4a_dBFS": -2.2,
+   "TP_dBFS": -2.19,
+   "TP_m4a_dBFS": -2.17,
+   "I_m4a_LUFS": -15.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 59976,
    "key": {
     "offsetCents": 10.9,
@@ -1401,7 +1658,9 @@
   "burst_gold": {
    "I_LUFS": -17.5,
    "TP_dBFS": -2.6,
-   "TP_m4a_dBFS": -3.4,
+   "TP_m4a_dBFS": -3.9,
+   "I_m4a_LUFS": -17.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 70560,
    "key": {
     "offsetCents": -5.7,
@@ -1413,8 +1672,10 @@
   },
   "rung_flare": {
    "I_LUFS": -14.8,
-   "TP_dBFS": -3.2,
-   "TP_m4a_dBFS": -3.0,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.13,
+   "I_m4a_LUFS": -14.9,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280,
    "key": {
     "offsetCents": -40.3,
@@ -1425,9 +1686,11 @@
    }
   },
   "rung_land": {
-   "I_LUFS": -17.0,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.8,
+   "I_LUFS": -18.1,
+   "TP_dBFS": -3.04,
+   "TP_m4a_dBFS": -2.89,
+   "I_m4a_LUFS": -18.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 52920,
    "key": {
     "offsetCents": -6.1,
@@ -1438,9 +1701,11 @@
    }
   },
   "rung_out": {
-   "I_LUFS": -17.2,
-   "TP_dBFS": -7.3,
-   "TP_m4a_dBFS": -2.5,
+   "I_LUFS": -17.3,
+   "TP_dBFS": -7.26,
+   "TP_m4a_dBFS": -3.49,
+   "I_m4a_LUFS": -17.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280,
    "key": {
     "offsetCents": -5.6,
@@ -1453,7 +1718,9 @@
   "rescue_enter": {
    "I_LUFS": -14.7,
    "TP_dBFS": -6.8,
-   "TP_m4a_dBFS": -6.0,
+   "TP_m4a_dBFS": -6.54,
+   "I_m4a_LUFS": -14.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 105354,
    "key": {
     "offsetCents": -4.3,
@@ -1463,15 +1730,17 @@
     "semis": 1.0,
     "cpentShare110_2500": [
      0.177,
-     0.813
+     0.814
     ],
-    "cpentShareShipped": 0.813
+    "cpentShareShipped": 0.814
    }
   },
   "inferno_enter": {
    "I_LUFS": -15.8,
-   "TP_dBFS": -5.6,
-   "TP_m4a_dBFS": -5.6,
+   "TP_dBFS": -5.56,
+   "TP_m4a_dBFS": -5.52,
+   "I_m4a_LUFS": -15.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 73249,
    "key": {
     "offsetCents": -4.1,
@@ -1483,8 +1752,10 @@
   },
   "hose_start": {
    "I_LUFS": -13.4,
-   "TP_dBFS": -6.1,
-   "TP_m4a_dBFS": -5.6,
+   "TP_dBFS": -5.86,
+   "TP_m4a_dBFS": -6.19,
+   "I_m4a_LUFS": -13.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": -9.4,
@@ -1496,8 +1767,10 @@
   },
   "hose_loop": {
    "I_LUFS": -17.9,
-   "TP_dBFS": -9.8,
-   "TP_m4a_dBFS": -10.2,
+   "TP_dBFS": -9.78,
+   "TP_m4a_dBFS": -10.24,
+   "I_m4a_LUFS": -18.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 141120,
    "wrap": 0.0506,
    "bodyP999": 0.2605,
@@ -1510,9 +1783,11 @@
    }
   },
   "hose_end": {
-   "I_LUFS": -13.7,
-   "TP_dBFS": -4.3,
-   "TP_m4a_dBFS": -5.3,
+   "I_LUFS": -13.8,
+   "TP_dBFS": -3.55,
+   "TP_m4a_dBFS": -5.17,
+   "I_m4a_LUFS": -14.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": -23.1,
@@ -1523,9 +1798,11 @@
    }
   },
   "steam": {
-   "I_LUFS": -13.5,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.7,
+   "I_LUFS": -13.3,
+   "TP_dBFS": -3.31,
+   "TP_m4a_dBFS": -3.17,
+   "I_m4a_LUFS": -13.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 59976,
    "key": {
     "offsetCents": -12.5,
@@ -1536,10 +1813,12 @@
    }
   },
   "room_down": {
-   "I_LUFS": -21.0,
-   "TP_dBFS": -6.0,
-   "TP_m4a_dBFS": -7.6,
-   "samples": 34994,
+   "I_LUFS": -17.0,
+   "TP_dBFS": -2.94,
+   "TP_m4a_dBFS": -3.62,
+   "I_m4a_LUFS": -17.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100,
    "key": {
     "offsetCents": 47.7,
     "tonality": 0.533,
@@ -1551,46 +1830,54 @@
   "rescue_tada_src_lo": {
    "source": "audio/masters/_src/rescue_tada_src_lo.wav",
    "pitch": {
-    "measuredHz": 522.0,
-    "prominence": 125.4,
-    "op": "pitch-snapped",
-    "semis": 0.04,
-    "postHz": 522.0,
-    "midi": 72.0,
-    "postErrCents": -4.0,
-    "targetNote": "C5"
+    "method": "subharmonic summation (kit.shs_f0)",
+    "measuredF0Hz": 261.3,
+    "measuredNote": "C4",
+    "op": "pitch-snapped (fundamental)",
+    "semis": 0.02,
+    "postF0Hz": 261.3,
+    "midi": 60.0,
+    "postErrCents": -2.0,
+    "targetNote": "C4",
+    "shift": "rubberband, formants preserved"
    }
   },
   "rescue_tada_src_mid": {
    "source": "audio/masters/_src/rescue_tada_src_mid.wav",
    "pitch": {
-    "measuredHz": 391.6,
-    "prominence": 139.4,
-    "op": "pitch-snapped",
+    "method": "subharmonic summation (kit.shs_f0)",
+    "measuredF0Hz": 391.6,
+    "measuredNote": "G4",
+    "op": "pitch-snapped (fundamental)",
     "semis": 0.02,
-    "postHz": 391.6,
+    "postF0Hz": 391.6,
     "midi": 67.0,
-    "postErrCents": -1.7,
-    "targetNote": "G4"
+    "postErrCents": -1.6,
+    "targetNote": "G4",
+    "shift": "rubberband, formants preserved"
    }
   },
   "rescue_tada_src_hi": {
    "source": "audio/masters/_src/rescue_tada_src_hi.wav",
    "pitch": {
-    "measuredHz": 1401.3,
-    "prominence": 108.9,
-    "op": "pitch-snapped",
-    "semis": -5.05,
-    "postHz": 1046.5,
-    "midi": 84.0,
-    "postErrCents": 0.0,
-    "targetNote": "C6"
+    "method": "subharmonic summation (kit.shs_f0)",
+    "measuredF0Hz": 349.6,
+    "measuredNote": "F4",
+    "op": "pitch-snapped (fundamental)",
+    "semis": -5.02,
+    "postF0Hz": 261.7,
+    "midi": 60.0,
+    "postErrCents": 0.4,
+    "targetNote": "C4",
+    "shift": "rubberband, formants preserved"
    }
   },
   "prize_coins": {
    "I_LUFS": -19.8,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -2.7,
+   "TP_dBFS": -2.78,
+   "TP_m4a_dBFS": -2.63,
+   "I_m4a_LUFS": -19.9,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 59976,
    "key": {
     "offsetCents": 11.2,
@@ -1601,9 +1888,11 @@
    }
   },
   "prize_coins_big": {
-   "I_LUFS": -16.0,
-   "TP_dBFS": -3.9,
-   "TP_m4a_dBFS": -4.0,
+   "I_LUFS": -15.7,
+   "TP_dBFS": -3.39,
+   "TP_m4a_dBFS": -3.66,
+   "I_m4a_LUFS": -15.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 88200,
    "key": {
     "offsetCents": 32.1,
@@ -1615,8 +1904,10 @@
   },
   "building_cleared": {
    "I_LUFS": -12.7,
-   "TP_dBFS": -4.4,
-   "TP_m4a_dBFS": -4.5,
+   "TP_dBFS": -4.62,
+   "TP_m4a_dBFS": -4.44,
+   "I_m4a_LUFS": -12.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 105840,
    "key": {
     "offsetCents": 6.6,
@@ -1627,23 +1918,27 @@
    }
   },
   "siren_pass": {
-   "I_LUFS": -16.2,
-   "TP_dBFS": -7.7,
-   "TP_m4a_dBFS": -6.4,
-   "samples": 90139,
+   "I_LUFS": -15.5,
+   "TP_dBFS": -7.06,
+   "TP_m4a_dBFS": -6.1,
+   "I_m4a_LUFS": -15.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 105840,
    "key": {
     "offsetCents": -2.2,
     "tonality": 0.918,
-    "cpentShareDrawn": 0.914,
+    "cpentShareDrawn": 0.915,
     "decision": "in key",
     "semis": 0.0
    }
   },
   "block_slide": {
-   "I_LUFS": -19.3,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.0,
-   "samples": 55946,
+   "I_LUFS": -19.4,
+   "TP_dBFS": -3.02,
+   "TP_m4a_dBFS": -3.03,
+   "I_m4a_LUFS": -19.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 54955,
    "key": {
     "offsetCents": 14.5,
     "tonality": 0.579,
@@ -1653,9 +1948,11 @@
    }
   },
   "spins_added": {
-   "I_LUFS": -16.3,
-   "TP_dBFS": -1.4,
-   "TP_m4a_dBFS": -2.1,
+   "I_LUFS": -18.9,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -2.99,
+   "I_m4a_LUFS": -19.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100,
    "key": {
     "offsetCents": 10.0,
@@ -1667,9 +1964,11 @@
   },
   "last_spin": {
    "I_LUFS": -17.9,
-   "TP_dBFS": -2.1,
-   "TP_m4a_dBFS": -2.7,
-   "samples": 52959,
+   "TP_dBFS": -2.04,
+   "TP_m4a_dBFS": -2.0,
+   "I_m4a_LUFS": -17.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 53075,
    "key": {
     "offsetCents": 0.0,
     "tonality": 0.987,
@@ -1685,8 +1984,10 @@
   },
   "rescue_total_small": {
    "I_LUFS": -13.9,
-   "TP_dBFS": -5.3,
-   "TP_m4a_dBFS": -5.2,
+   "TP_dBFS": -4.07,
+   "TP_m4a_dBFS": -3.87,
+   "I_m4a_LUFS": -14.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 59976,
    "key": {
     "offsetCents": -0.8,
@@ -1697,10 +1998,12 @@
    }
   },
   "rescue_total_mid": {
-   "I_LUFS": -15.5,
-   "TP_dBFS": -5.1,
-   "TP_m4a_dBFS": -5.0,
-   "samples": 82556,
+   "I_LUFS": -15.3,
+   "TP_dBFS": -4.74,
+   "TP_m4a_dBFS": -4.61,
+   "I_m4a_LUFS": -15.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 88200,
    "key": {
     "offsetCents": -39.1,
     "tonality": 0.573,
@@ -1711,8 +2014,10 @@
   },
   "rescue_total_big": {
    "I_LUFS": -13.9,
-   "TP_dBFS": -2.2,
-   "TP_m4a_dBFS": -1.6,
+   "TP_dBFS": -2.26,
+   "TP_m4a_dBFS": -2.18,
+   "I_m4a_LUFS": -14.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 87454,
    "key": {
     "offsetCents": 2.0,
@@ -1724,8 +2029,10 @@
   },
   "inferno_total_small": {
    "I_LUFS": -16.1,
-   "TP_dBFS": -5.3,
-   "TP_m4a_dBFS": -5.5,
+   "TP_dBFS": -5.13,
+   "TP_m4a_dBFS": -5.38,
+   "I_m4a_LUFS": -16.1,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 59976,
    "key": {
     "offsetCents": -49.4,
@@ -1737,8 +2044,10 @@
   },
   "inferno_total_mid": {
    "I_LUFS": -13.6,
-   "TP_dBFS": -5.5,
-   "TP_m4a_dBFS": -5.1,
+   "TP_dBFS": -4.16,
+   "TP_m4a_dBFS": -3.76,
+   "I_m4a_LUFS": -13.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 88200,
    "key": {
     "offsetCents": -5.1,
@@ -1749,10 +2058,12 @@
    }
   },
   "inferno_total_big": {
-   "I_LUFS": -14.6,
-   "TP_dBFS": -5.3,
-   "TP_m4a_dBFS": -4.7,
-   "samples": 65413,
+   "I_LUFS": -14.9,
+   "TP_dBFS": -4.61,
+   "TP_m4a_dBFS": -4.92,
+   "I_m4a_LUFS": -14.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 63006,
    "key": {
     "offsetCents": -6.8,
     "tonality": 0.78,
@@ -1763,8 +2074,10 @@
   },
   "alarm_call_ring": {
    "I_LUFS": -17.5,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -2.2,
+   "TP_dBFS": -2.71,
+   "TP_m4a_dBFS": -2.14,
+   "I_m4a_LUFS": -17.5,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 50672,
    "key": {
     "offsetCents": 19.3,
@@ -1776,9 +2089,11 @@
   },
   "alarm_card_flip": {
    "I_LUFS": -23.4,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -2.6,
-   "samples": 29373,
+   "TP_dBFS": -2.86,
+   "TP_m4a_dBFS": -2.5,
+   "I_m4a_LUFS": -23.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 35280,
    "key": {
     "offsetCents": -43.2,
     "tonality": 0.524,
@@ -1790,8 +2105,10 @@
   "alarm_outcome_rescue": {
    "I_LUFS": -12.8,
    "TP_dBFS": -4.6,
-   "TP_m4a_dBFS": -3.6,
-   "samples": 77224,
+   "TP_m4a_dBFS": -3.62,
+   "I_m4a_LUFS": -12.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 77013,
    "key": {
     "offsetCents": 2.7,
     "tonality": 0.981,
@@ -1807,8 +2124,10 @@
   },
   "alarm_outcome_inferno": {
    "I_LUFS": -15.1,
-   "TP_dBFS": -7.2,
-   "TP_m4a_dBFS": -7.3,
+   "TP_dBFS": -6.54,
+   "TP_m4a_dBFS": -6.71,
+   "I_m4a_LUFS": -15.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 97020,
    "key": {
     "offsetCents": -5.3,
@@ -1820,32 +2139,33 @@
   },
   "alarm_outcome_false": {
    "I_LUFS": -14.9,
-   "TP_dBFS": -8.8,
-   "TP_m4a_dBFS": -7.4,
-   "samples": 53384,
+   "TP_dBFS": -7.77,
+   "TP_m4a_dBFS": -7.64,
+   "I_m4a_LUFS": -14.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 52920,
    "key": {
-    "offsetCents": -1.0,
-    "tonality": 0.958,
-    "cpentShareDrawn": 0.812,
-    "decision": "transpose -2 st (share 0.81 -> 0.99)",
-    "semis": -2.0,
-    "cpentShare110_2500": [
-     0.813,
-     0.99
-    ],
-    "cpentShareShipped": 0.99
+    "offsetCents": -0.6,
+    "tonality": 0.979,
+    "cpentShareDrawn": 0.942,
+    "decision": "in key",
+    "semis": 0.0
    }
   },
   "dog_bark": {
-   "I_LUFS": -15.1,
-   "TP_dBFS": -6.1,
-   "TP_m4a_dBFS": -5.7,
+   "I_LUFS": -15.6,
+   "TP_dBFS": -3.11,
+   "TP_m4a_dBFS": -3.05,
+   "I_m4a_LUFS": -15.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280
   },
   "backdraft_spins_start": {
    "I_LUFS": -12.6,
-   "TP_dBFS": -4.5,
-   "TP_m4a_dBFS": -4.4,
+   "TP_dBFS": -4.45,
+   "TP_m4a_dBFS": -4.2,
+   "I_m4a_LUFS": -12.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 97020,
    "key": {
     "offsetCents": -3.5,
@@ -1856,9 +2176,11 @@
    }
   },
   "backdraft_spins_end": {
-   "I_LUFS": -22.7,
-   "TP_dBFS": -4.1,
-   "TP_m4a_dBFS": -1.2,
+   "I_LUFS": -21.5,
+   "TP_dBFS": -2.84,
+   "TP_m4a_dBFS": -1.25,
+   "I_m4a_LUFS": -21.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 88200,
    "key": {
     "offsetCents": 10.1,
@@ -1869,12 +2191,14 @@
    }
   },
   "ambient_station_loop": {
-   "I_LUFS": -37.2,
-   "TP_dBFS": -14.1,
-   "TP_m4a_dBFS": -14.1,
+   "I_LUFS": -37.3,
+   "TP_dBFS": -14.14,
+   "TP_m4a_dBFS": -14.11,
+   "I_m4a_LUFS": -37.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 617400,
    "wrap": 0.0005,
-   "bodyP999": 0.0752,
+   "bodyP999": 0.0751,
    "key": {
     "offsetCents": -43.5,
     "tonality": 0.549,
@@ -1884,9 +2208,11 @@
    }
   },
   "shutter_slam": {
-   "I_LUFS": -19.8,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -2.1,
+   "I_LUFS": -22.9,
+   "TP_dBFS": -3.14,
+   "TP_m4a_dBFS": -2.49,
+   "I_m4a_LUFS": -23.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 35280,
    "key": {
     "offsetCents": -21.2,
@@ -1897,9 +2223,11 @@
    }
   },
   "shutter_haul_1": {
-   "I_LUFS": -20.7,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.1,
+   "I_LUFS": -20.6,
+   "TP_dBFS": -3.08,
+   "TP_m4a_dBFS": -3.08,
+   "I_m4a_LUFS": -20.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 19845,
    "key": {
     "offsetCents": 9.9,
@@ -1910,22 +2238,26 @@
    }
   },
   "shutter_haul_2": {
-   "I_LUFS": -18.6,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -2.9,
+   "I_LUFS": -19.0,
+   "TP_dBFS": -2.98,
+   "TP_m4a_dBFS": -2.89,
+   "I_m4a_LUFS": -19.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 19845,
    "key": {
     "offsetCents": -36.8,
-    "tonality": 0.725,
-    "cpentShareDrawn": 0.085,
-    "decision": "not tonal enough to judge (tonality 0.72 < 0.75)",
+    "tonality": 0.728,
+    "cpentShareDrawn": 0.083,
+    "decision": "not tonal enough to judge (tonality 0.73 < 0.75)",
     "semis": 0.0
    }
   },
   "shutter_haul_3": {
    "I_LUFS": -20.5,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.0,
+   "TP_dBFS": -3.24,
+   "TP_m4a_dBFS": -2.91,
+   "I_m4a_LUFS": -20.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 23139,
    "key": {
     "offsetCents": 28.4,
@@ -1938,289 +2270,381 @@
  },
  "derived": {
   "reel_stop_2": {
-   "I_LUFS": -22.1,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.4,
-   "samples": 20572
+   "I_LUFS": -19.6,
+   "TP_dBFS": -4.06,
+   "TP_m4a_dBFS": -2.6,
+   "I_m4a_LUFS": -19.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26460
   },
   "reel_stop_3": {
-   "I_LUFS": -22.0,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.4,
-   "samples": 20493
+   "I_LUFS": -19.4,
+   "TP_dBFS": -3.69,
+   "TP_m4a_dBFS": -3.56,
+   "I_m4a_LUFS": -19.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26460
   },
   "reel_stop_4": {
-   "I_LUFS": -21.8,
-   "TP_dBFS": -3.2,
-   "TP_m4a_dBFS": -3.4,
-   "samples": 21010
+   "I_LUFS": -19.3,
+   "TP_dBFS": -4.25,
+   "TP_m4a_dBFS": -4.07,
+   "I_m4a_LUFS": -19.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26460
   },
   "reel_stop_5": {
-   "I_LUFS": -21.7,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.4,
-   "samples": 20147
+   "I_LUFS": -19.2,
+   "TP_dBFS": -3.43,
+   "TP_m4a_dBFS": -3.38,
+   "I_m4a_LUFS": -19.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26460
   },
   "reel_stop_turbo": {
-   "I_LUFS": -22.0,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -3.0,
-   "samples": 21803
+   "I_LUFS": -20.5,
+   "TP_dBFS": -2.88,
+   "TP_m4a_dBFS": -3.07,
+   "I_m4a_LUFS": -20.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 26989
   },
   "alarm_land_1": {
-   "I_LUFS": -19.1,
-   "TP_dBFS": -3.5,
-   "TP_m4a_dBFS": -2.3,
-   "samples": 39707
+   "I_LUFS": -21.2,
+   "TP_dBFS": -2.51,
+   "TP_m4a_dBFS": -1.56,
+   "I_m4a_LUFS": -21.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 68021
   },
   "alarm_land_2": {
-   "I_LUFS": -18.5,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 39707
+   "I_LUFS": -20.2,
+   "TP_dBFS": -2.31,
+   "TP_m4a_dBFS": -2.5,
+   "I_m4a_LUFS": -20.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 68321
   },
   "alarm_land_3": {
-   "I_LUFS": -19.3,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -3.2,
-   "samples": 39707
+   "I_LUFS": -22.8,
+   "TP_dBFS": -3.06,
+   "TP_m4a_dBFS": -2.98,
+   "I_m4a_LUFS": -22.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 67823
   },
   "alarm_land_4": {
-   "I_LUFS": -18.2,
-   "TP_dBFS": -2.6,
-   "TP_m4a_dBFS": -2.9,
-   "samples": 39707
+   "I_LUFS": -20.8,
+   "TP_dBFS": -2.73,
+   "TP_m4a_dBFS": -2.67,
+   "I_m4a_LUFS": -20.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 68047
   },
   "alarm_land_5": {
-   "I_LUFS": -18.0,
-   "TP_dBFS": -1.9,
-   "TP_m4a_dBFS": -2.0,
-   "samples": 39707
+   "I_LUFS": -21.1,
+   "TP_dBFS": -1.83,
+   "TP_m4a_dBFS": -1.88,
+   "I_m4a_LUFS": -21.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 68022
   },
   "antic_riser_2": {
-   "I_LUFS": -15.9,
-   "TP_dBFS": -7.3,
-   "TP_m4a_dBFS": -7.6,
-   "samples": 105306
+   "I_LUFS": -15.7,
+   "TP_dBFS": -7.13,
+   "TP_m4a_dBFS": -7.29,
+   "I_m4a_LUFS": -15.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 111615
   },
   "blaze_ignite_2": {
-   "I_LUFS": -23.4,
-   "TP_dBFS": -3.2,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 27366
+   "I_LUFS": -22.4,
+   "TP_dBFS": -2.32,
+   "TP_m4a_dBFS": -3.27,
+   "I_m4a_LUFS": -22.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 59536
   },
   "blaze_ignite_3": {
-   "I_LUFS": -22.8,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.2,
-   "samples": 27366
+   "I_LUFS": -21.9,
+   "TP_dBFS": -1.89,
+   "TP_m4a_dBFS": -3.91,
+   "I_m4a_LUFS": -21.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 60264
   },
   "blaze_ignite_4": {
-   "I_LUFS": -21.4,
-   "TP_dBFS": -2.0,
-   "TP_m4a_dBFS": -3.2,
-   "samples": 27366
+   "I_LUFS": -21.8,
+   "TP_dBFS": -1.89,
+   "TP_m4a_dBFS": -3.02,
+   "I_m4a_LUFS": -21.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 60180
   },
   "blaze_ignite_5": {
-   "I_LUFS": -22.7,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.2,
-   "samples": 27366
+   "I_LUFS": -22.2,
+   "TP_dBFS": -2.3,
+   "TP_m4a_dBFS": -2.8,
+   "I_m4a_LUFS": -22.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 59520
   },
   "blaze_mult_2": {
    "I_LUFS": -17.2,
-   "TP_dBFS": -4.4,
-   "TP_m4a_dBFS": -4.4,
-   "samples": 42064
+   "TP_dBFS": -2.69,
+   "TP_m4a_dBFS": -2.92,
+   "I_m4a_LUFS": -17.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 70560
   },
   "blaze_mult_3": {
-   "I_LUFS": -16.6,
-   "TP_dBFS": -3.7,
-   "TP_m4a_dBFS": -3.8,
-   "samples": 42064
+   "I_LUFS": -16.7,
+   "TP_dBFS": -2.99,
+   "TP_m4a_dBFS": -3.08,
+   "I_m4a_LUFS": -16.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 70560
   },
   "blaze_mult_5": {
-   "I_LUFS": -16.0,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 42064
+   "I_LUFS": -17.0,
+   "TP_dBFS": -2.75,
+   "TP_m4a_dBFS": -3.01,
+   "I_m4a_LUFS": -17.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 70560
   },
   "count_ticker_1": {
    "I_LUFS": -21.3,
-   "TP_dBFS": -4.8,
-   "TP_m4a_dBFS": -4.7,
+   "TP_dBFS": -4.71,
+   "TP_m4a_dBFS": -4.69,
+   "I_m4a_LUFS": -21.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 11025
   },
   "count_ticker_2": {
    "I_LUFS": -21.7,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.7,
+   "TP_dBFS": -4.76,
+   "TP_m4a_dBFS": -4.83,
+   "I_m4a_LUFS": -21.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 9823
   },
   "count_ticker_3": {
    "I_LUFS": -22.1,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.8,
+   "TP_dBFS": -4.73,
+   "TP_m4a_dBFS": -4.77,
+   "I_m4a_LUFS": -22.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 8751
   },
   "count_ticker_4": {
    "I_LUFS": -22.7,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.8,
+   "TP_dBFS": -4.77,
+   "TP_m4a_dBFS": -4.92,
+   "I_m4a_LUFS": -22.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 7359
   },
   "count_ticker_5": {
    "I_LUFS": -23.0,
-   "TP_dBFS": -4.6,
-   "TP_m4a_dBFS": -4.7,
+   "TP_dBFS": -4.78,
+   "TP_m4a_dBFS": -4.81,
+   "I_m4a_LUFS": -23.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 6556
   },
   "count_ticker_6": {
-   "I_LUFS": -23.5,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.7,
+   "I_LUFS": -23.4,
+   "TP_dBFS": -4.78,
+   "TP_m4a_dBFS": -4.94,
+   "I_m4a_LUFS": -23.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 5513
   },
   "count_ticker_7": {
    "I_LUFS": -23.7,
-   "TP_dBFS": -4.6,
-   "TP_m4a_dBFS": -4.9,
+   "TP_dBFS": -4.76,
+   "TP_m4a_dBFS": -5.02,
+   "I_m4a_LUFS": -23.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 4911
   },
   "count_ticker_8": {
-   "I_LUFS": -23.9,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.9,
+   "I_LUFS": -23.8,
+   "TP_dBFS": -4.76,
+   "TP_m4a_dBFS": -5.08,
+   "I_m4a_LUFS": -24.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 4376
   },
   "count_ticker_9": {
    "I_LUFS": -24.0,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.6,
+   "TP_dBFS": -4.78,
+   "TP_m4a_dBFS": -5.14,
+   "I_m4a_LUFS": -24.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 3679
   },
   "count_ticker_10": {
-   "I_LUFS": -24.2,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -5.2,
+   "I_LUFS": -24.1,
+   "TP_dBFS": -4.78,
+   "TP_m4a_dBFS": -4.8,
+   "I_m4a_LUFS": -24.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 3278
   },
   "count_ticker_11": {
-   "I_LUFS": -24.5,
-   "TP_dBFS": -4.8,
-   "TP_m4a_dBFS": -4.6,
+   "I_LUFS": -24.4,
+   "TP_dBFS": -4.79,
+   "TP_m4a_dBFS": -5.15,
+   "I_m4a_LUFS": -24.5,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 2756
   },
   "count_ticker_12": {
    "I_LUFS": -24.7,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.9,
+   "TP_dBFS": -4.79,
+   "TP_m4a_dBFS": -5.76,
+   "I_m4a_LUFS": -25.0,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 2456
   },
   "rescue_tada_1": {
    "I_LUFS": -15.3,
-   "TP_dBFS": -4.9,
-   "TP_m4a_dBFS": -5.0,
+   "TP_dBFS": -4.88,
+   "TP_m4a_dBFS": -4.85,
+   "I_m4a_LUFS": -15.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 44100
   },
   "rescue_tada_2": {
-   "I_LUFS": -14.8,
-   "TP_dBFS": -4.6,
-   "TP_m4a_dBFS": -4.5,
-   "samples": 43199
+   "I_LUFS": -14.9,
+   "TP_dBFS": -3.25,
+   "TP_m4a_dBFS": -3.38,
+   "I_m4a_LUFS": -14.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100
   },
   "rescue_tada_3": {
-   "I_LUFS": -14.1,
-   "TP_dBFS": -4.1,
-   "TP_m4a_dBFS": -4.1,
-   "samples": 43710
+   "I_LUFS": -14.7,
+   "TP_dBFS": -2.87,
+   "TP_m4a_dBFS": -3.03,
+   "I_m4a_LUFS": -14.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 43786
   },
   "rescue_tada_4": {
-   "I_LUFS": -13.9,
-   "TP_dBFS": -4.0,
-   "TP_m4a_dBFS": -3.6,
-   "samples": 44832
+   "I_LUFS": -14.3,
+   "TP_dBFS": -2.97,
+   "TP_m4a_dBFS": -3.21,
+   "I_m4a_LUFS": -14.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100
   },
   "rescue_tada_5": {
-   "I_LUFS": -13.2,
-   "TP_dBFS": -3.7,
-   "TP_m4a_dBFS": -3.1,
-   "samples": 44800
+   "I_LUFS": -14.6,
+   "TP_dBFS": -2.92,
+   "TP_m4a_dBFS": -2.93,
+   "I_m4a_LUFS": -14.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100
   },
   "rescue_tada_6": {
-   "I_LUFS": -12.6,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 44366
+   "I_LUFS": -14.4,
+   "TP_dBFS": -3.01,
+   "TP_m4a_dBFS": -2.93,
+   "I_m4a_LUFS": -14.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 43573
   },
   "rescue_tada_7": {
-   "I_LUFS": -12.0,
-   "TP_dBFS": -2.6,
-   "TP_m4a_dBFS": -2.3,
-   "samples": 43769
+   "I_LUFS": -15.2,
+   "TP_dBFS": -2.88,
+   "TP_m4a_dBFS": -3.04,
+   "I_m4a_LUFS": -15.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 43054
   },
   "rescue_tada_8": {
-   "I_LUFS": -11.5,
-   "TP_dBFS": -2.4,
-   "TP_m4a_dBFS": -2.2,
-   "samples": 43761
+   "I_LUFS": -13.6,
+   "TP_dBFS": -2.99,
+   "TP_m4a_dBFS": -3.04,
+   "I_m4a_LUFS": -13.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 42161
   }
  },
  "shots": {
   "trigger_fanfare": {
-   "I_LUFS": -16.2,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -2.7,
-   "samples": 113263,
+   "I_LUFS": -15.9,
+   "TP_dBFS": -2.77,
+   "TP_m4a_dBFS": -3.0,
+   "I_m4a_LUFS": -16.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 112839,
    "cpentShare": 0.983
   },
   "rescue_enter": {
-   "I_LUFS": -13.4,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.3,
+   "I_LUFS": -13.5,
+   "TP_dBFS": -4.27,
+   "TP_m4a_dBFS": -4.09,
+   "I_m4a_LUFS": -13.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 105354,
-   "cpentShare": 0.813
+   "cpentShare": 0.814
   },
   "inferno_enter": {
-   "I_LUFS": -15.0,
-   "TP_dBFS": -4.4,
-   "TP_m4a_dBFS": -4.4,
+   "I_LUFS": -14.6,
+   "TP_dBFS": -4.29,
+   "TP_m4a_dBFS": -4.32,
+   "I_m4a_LUFS": -14.6,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 73249,
    "cpentShare": 0.893
   },
   "backdraft_spins_start": {
-   "I_LUFS": -13.5,
-   "TP_dBFS": -2.4,
-   "TP_m4a_dBFS": -2.8,
+   "I_LUFS": -13.4,
+   "TP_dBFS": -2.55,
+   "TP_m4a_dBFS": -2.85,
+   "I_m4a_LUFS": -13.5,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 97020,
    "cpentShare": 0.71
   },
   "building_cleared": {
    "I_LUFS": -11.7,
-   "TP_dBFS": -3.7,
-   "TP_m4a_dBFS": -3.5,
+   "TP_dBFS": -3.87,
+   "TP_m4a_dBFS": -4.14,
+   "I_m4a_LUFS": -11.8,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 105840,
    "cpentShare": 0.893
   },
   "total_win_big": {
-   "I_LUFS": -13.9,
-   "TP_dBFS": -1.5,
-   "TP_m4a_dBFS": -1.5,
+   "I_LUFS": -14.6,
+   "TP_dBFS": -2.57,
+   "TP_m4a_dBFS": -2.16,
+   "I_m4a_LUFS": -14.7,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 97020,
    "cpentShare": 0.832
   },
   "rescue_total_big": {
-   "I_LUFS": -14.5,
-   "TP_dBFS": -1.0,
-   "TP_m4a_dBFS": -1.7,
+   "I_LUFS": -14.2,
+   "TP_dBFS": -1.23,
+   "TP_m4a_dBFS": -1.83,
+   "I_m4a_LUFS": -14.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 87454,
    "cpentShare": 0.831
   },
   "inferno_total_big": {
-   "I_LUFS": -15.3,
-   "TP_dBFS": -3.2,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 65413,
+   "I_LUFS": -15.4,
+   "TP_dBFS": -3.84,
+   "TP_m4a_dBFS": -3.79,
+   "I_m4a_LUFS": -15.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 66151,
    "cpentShare": 0.736
   },
   "rung_hit_big": {
@@ -2229,23 +2653,29 @@
    "why": "C-pentatonic share 0.52 < 0.6"
   },
   "rung_hit_huge": {
-   "I_LUFS": -20.5,
-   "TP_dBFS": -2.0,
-   "TP_m4a_dBFS": -2.6,
-   "samples": 59267,
+   "I_LUFS": -20.4,
+   "TP_dBFS": -2.18,
+   "TP_m4a_dBFS": -2.25,
+   "I_m4a_LUFS": -20.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 66151,
    "cpentShare": 0.677
   },
   "rung_hit_mega": {
-   "I_LUFS": -19.2,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.1,
+   "I_LUFS": -18.2,
+   "TP_dBFS": -2.37,
+   "TP_m4a_dBFS": -2.78,
+   "I_m4a_LUFS": -18.3,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 70560,
    "cpentShare": 0.857
   },
   "rung_hit_epic": {
-   "I_LUFS": -13.1,
-   "TP_dBFS": -4.0,
-   "TP_m4a_dBFS": -4.0,
+   "I_LUFS": -13.3,
+   "TP_dBFS": -3.99,
+   "TP_m4a_dBFS": -3.85,
+   "I_m4a_LUFS": -13.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 77616,
    "cpentShare": 0.841
   },
@@ -2255,596 +2685,802 @@
    "why": "C-pentatonic share 0.58 < 0.6"
   },
   "win_max": {
-   "I_LUFS": -13.0,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -2.3,
-   "samples": 136164,
+   "I_LUFS": -12.9,
+   "TP_dBFS": -3.62,
+   "TP_m4a_dBFS": -3.48,
+   "I_m4a_LUFS": -13.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 134528,
    "cpentShare": 0.799
   },
   "alarm_outcome_rescue": {
-   "I_LUFS": -12.5,
-   "TP_dBFS": -3.5,
-   "TP_m4a_dBFS": -3.5,
-   "samples": 77224,
+   "I_LUFS": -12.6,
+   "TP_dBFS": -3.15,
+   "TP_m4a_dBFS": -3.3,
+   "I_m4a_LUFS": -12.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 77013,
    "cpentShare": 0.993
   },
   "alarm_outcome_inferno": {
-   "I_LUFS": -13.8,
-   "TP_dBFS": -4.0,
-   "TP_m4a_dBFS": -4.1,
+   "I_LUFS": -13.3,
+   "TP_dBFS": -3.78,
+   "TP_m4a_dBFS": -3.89,
+   "I_m4a_LUFS": -13.3,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 97020,
    "cpentShare": 0.803
   },
   "spins_added": {
-   "I_LUFS": -18.3,
-   "TP_dBFS": -1.0,
-   "TP_m4a_dBFS": -1.5,
-   "samples": 44100,
-   "cpentShare": 0.996
+   "pickup": false,
+   "cpentShare": 0.996,
+   "why": "too short for the whole pickup to ring out (1.00 s < 1.2 s; needs 1.50 s)"
   }
  },
  "turbo": {
   "spin_start_turbo": {
-   "I_LUFS": -21.9,
-   "TP_dBFS": -7.0,
-   "TP_m4a_dBFS": -6.7,
-   "samples": 12124
+   "I_LUFS": -22.0,
+   "TP_dBFS": -7.09,
+   "TP_m4a_dBFS": -6.9,
+   "I_m4a_LUFS": -22.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 10933
   },
   "spin_whoosh_turbo": {
-   "I_LUFS": -21.9,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.5,
-   "samples": 19692
+   "I_LUFS": -21.5,
+   "TP_dBFS": -4.31,
+   "TP_m4a_dBFS": -4.29,
+   "I_m4a_LUFS": -21.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 15311
   },
   "wild_land_turbo": {
-   "I_LUFS": -18.6,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -2.4,
-   "samples": 19440
+   "I_LUFS": -18.9,
+   "TP_dBFS": -2.97,
+   "TP_m4a_dBFS": -2.83,
+   "I_m4a_LUFS": -19.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19858
   },
   "alarm_land_1_turbo": {
-   "I_LUFS": -20.4,
-   "TP_dBFS": -4.6,
-   "TP_m4a_dBFS": -4.0,
-   "samples": 22027
+   "I_LUFS": -22.6,
+   "TP_dBFS": -3.93,
+   "TP_m4a_dBFS": -1.72,
+   "I_m4a_LUFS": -22.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "alarm_land_2_turbo": {
-   "I_LUFS": -19.7,
-   "TP_dBFS": -4.4,
-   "TP_m4a_dBFS": -4.3,
-   "samples": 22176
+   "I_LUFS": -22.0,
+   "TP_dBFS": -3.43,
+   "TP_m4a_dBFS": -2.67,
+   "I_m4a_LUFS": -22.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30518
   },
   "alarm_land_3_turbo": {
-   "I_LUFS": -20.5,
-   "TP_dBFS": -4.3,
-   "TP_m4a_dBFS": -4.9,
-   "samples": 22314
+   "I_LUFS": -24.4,
+   "TP_dBFS": -4.18,
+   "TP_m4a_dBFS": -4.39,
+   "I_m4a_LUFS": -24.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30837
   },
   "alarm_land_4_turbo": {
-   "I_LUFS": -19.6,
-   "TP_dBFS": -3.1,
-   "TP_m4a_dBFS": -3.7,
-   "samples": 22206
+   "I_LUFS": -22.7,
+   "TP_dBFS": -3.59,
+   "TP_m4a_dBFS": -3.86,
+   "I_m4a_LUFS": -22.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30803
   },
   "alarm_land_5_turbo": {
-   "I_LUFS": -19.1,
-   "TP_dBFS": -2.4,
-   "TP_m4a_dBFS": -2.6,
-   "samples": 22079
+   "I_LUFS": -22.9,
+   "TP_dBFS": -3.01,
+   "TP_m4a_dBFS": -3.24,
+   "I_m4a_LUFS": -23.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30458
   },
   "galarm_glint_turbo": {
-   "I_LUFS": -16.9,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.5,
-   "samples": 19560
+   "I_LUFS": -17.0,
+   "TP_dBFS": -4.61,
+   "TP_m4a_dBFS": -4.61,
+   "I_m4a_LUFS": -17.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19686
   },
   "antic_riser_turbo": {
-   "I_LUFS": -16.7,
-   "TP_dBFS": -7.7,
-   "TP_m4a_dBFS": -7.2,
-   "samples": 52367
+   "I_LUFS": -16.5,
+   "TP_dBFS": -7.54,
+   "TP_m4a_dBFS": -7.61,
+   "I_m4a_LUFS": -16.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 56778
   },
   "antic_riser_2_turbo": {
-   "I_LUFS": -16.7,
-   "TP_dBFS": -8.3,
-   "TP_m4a_dBFS": -8.2,
-   "samples": 53172
+   "I_LUFS": -16.4,
+   "TP_dBFS": -7.78,
+   "TP_m4a_dBFS": -8.04,
+   "I_m4a_LUFS": -16.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 56108
   },
   "antic_miss_turbo": {
-   "I_LUFS": -18.9,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.5,
-   "samples": 10662
+   "I_LUFS": -18.4,
+   "TP_dBFS": -3.66,
+   "TP_m4a_dBFS": -4.45,
+   "I_m4a_LUFS": -18.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24872
   },
   "antic_hit_turbo": {
-   "I_LUFS": -16.9,
-   "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -3.9,
-   "samples": 19429
+   "I_LUFS": -19.3,
+   "TP_dBFS": -3.57,
+   "TP_m4a_dBFS": -5.95,
+   "I_m4a_LUFS": -19.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19520
   },
   "trigger_fanfare_turbo": {
-   "I_LUFS": -17.3,
-   "TP_dBFS": -3.8,
-   "TP_m4a_dBFS": -4.0,
-   "samples": 57136
+   "I_LUFS": -17.5,
+   "TP_dBFS": -3.57,
+   "TP_m4a_dBFS": -3.78,
+   "I_m4a_LUFS": -17.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "backdraft_whoosh_turbo": {
-   "I_LUFS": -21.0,
-   "TP_dBFS": -5.5,
-   "TP_m4a_dBFS": -5.6,
-   "samples": 16441
+   "I_LUFS": -19.9,
+   "TP_dBFS": -4.2,
+   "TP_m4a_dBFS": -4.86,
+   "I_m4a_LUFS": -20.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 16911
   },
   "backdraft_roar_turbo": {
-   "I_LUFS": -18.6,
-   "TP_dBFS": -7.0,
-   "TP_m4a_dBFS": -7.5,
-   "samples": 36655
+   "I_LUFS": -17.9,
+   "TP_dBFS": -6.58,
+   "TP_m4a_dBFS": -6.52,
+   "I_m4a_LUFS": -17.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "backdraft_chord_turbo": {
-   "I_LUFS": -22.5,
-   "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -3.8,
-   "samples": 35154
+   "I_LUFS": -24.4,
+   "TP_dBFS": -3.64,
+   "TP_m4a_dBFS": -3.6,
+   "I_m4a_LUFS": -24.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30807
   },
   "blaze_mult_2_turbo": {
-   "I_LUFS": -18.8,
-   "TP_dBFS": -4.6,
-   "TP_m4a_dBFS": -4.6,
-   "samples": 22820
+   "I_LUFS": -19.9,
+   "TP_dBFS": -2.73,
+   "TP_m4a_dBFS": -3.09,
+   "I_m4a_LUFS": -19.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30625
   },
   "blaze_mult_3_turbo": {
-   "I_LUFS": -18.2,
-   "TP_dBFS": -3.5,
-   "TP_m4a_dBFS": -3.6,
-   "samples": 22856
+   "I_LUFS": -19.5,
+   "TP_dBFS": -3.9,
+   "TP_m4a_dBFS": -4.19,
+   "I_m4a_LUFS": -19.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30550
   },
   "blaze_mult_5_turbo": {
-   "I_LUFS": -17.4,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.5,
-   "samples": 23524
+   "I_LUFS": -19.9,
+   "TP_dBFS": -3.41,
+   "TP_m4a_dBFS": -3.52,
+   "I_m4a_LUFS": -19.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30550
   },
   "blaze_mult_10_turbo": {
-   "I_LUFS": -20.6,
-   "TP_dBFS": -2.5,
-   "TP_m4a_dBFS": -3.2,
-   "samples": 33247
+   "I_LUFS": -21.3,
+   "TP_dBFS": -3.73,
+   "TP_m4a_dBFS": -3.69,
+   "I_m4a_LUFS": -21.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30071
   },
   "sym_win_h1_turbo": {
-   "I_LUFS": -17.8,
-   "TP_dBFS": -4.3,
-   "TP_m4a_dBFS": -3.7,
-   "samples": 24443
+   "I_LUFS": -19.7,
+   "TP_dBFS": -3.21,
+   "TP_m4a_dBFS": -4.61,
+   "I_m4a_LUFS": -19.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24442
   },
   "sym_win_h2_turbo": {
    "I_LUFS": -15.4,
-   "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 24219
+   "TP_dBFS": -3.48,
+   "TP_m4a_dBFS": -3.35,
+   "I_m4a_LUFS": -15.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24302
   },
   "sym_win_h3_turbo": {
    "I_LUFS": -16.3,
-   "TP_dBFS": -3.7,
-   "TP_m4a_dBFS": -4.1,
-   "samples": 23744
+   "TP_dBFS": -3.66,
+   "TP_m4a_dBFS": -4.02,
+   "I_m4a_LUFS": -16.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 23572
   },
   "sym_win_h4_turbo": {
    "I_LUFS": -15.4,
-   "TP_dBFS": -5.7,
-   "TP_m4a_dBFS": -6.7,
-   "samples": 23988
+   "TP_dBFS": -6.21,
+   "TP_m4a_dBFS": -6.33,
+   "I_m4a_LUFS": -15.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24804
   },
   "sym_win_l1_turbo": {
-   "I_LUFS": -16.1,
-   "TP_dBFS": -5.7,
-   "TP_m4a_dBFS": -6.1,
-   "samples": 24589
+   "I_LUFS": -15.9,
+   "TP_dBFS": -5.53,
+   "TP_m4a_dBFS": -4.52,
+   "I_m4a_LUFS": -16.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24641
   },
   "sym_win_l2_turbo": {
    "I_LUFS": -27.1,
-   "TP_dBFS": -8.7,
+   "TP_dBFS": -8.75,
    "TP_m4a_dBFS": -8.9,
+   "I_m4a_LUFS": -27.2,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 22225
   },
   "sym_win_l3_turbo": {
-   "I_LUFS": -24.4,
-   "TP_dBFS": -4.4,
-   "TP_m4a_dBFS": -4.7,
-   "samples": 23180
+   "I_LUFS": -24.5,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.75,
+   "I_m4a_LUFS": -24.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 22953
   },
   "sym_win_l4_turbo": {
-   "I_LUFS": -27.5,
-   "TP_dBFS": -6.1,
-   "TP_m4a_dBFS": -5.3,
-   "samples": 24052
+   "I_LUFS": -23.1,
+   "TP_dBFS": -6.87,
+   "TP_m4a_dBFS": -6.94,
+   "I_m4a_LUFS": -23.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24571
   },
   "sym_win_w_turbo": {
-   "I_LUFS": -16.9,
-   "TP_dBFS": -7.9,
-   "TP_m4a_dBFS": -7.4,
-   "samples": 20057
+   "I_LUFS": -16.0,
+   "TP_dBFS": -6.95,
+   "TP_m4a_dBFS": -6.56,
+   "I_m4a_LUFS": -16.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24509
   },
   "line_win_small_turbo": {
-   "I_LUFS": -19.6,
-   "TP_dBFS": -3.2,
-   "TP_m4a_dBFS": -3.1,
-   "samples": 19506
+   "I_LUFS": -21.3,
+   "TP_dBFS": -3.18,
+   "TP_m4a_dBFS": -3.15,
+   "I_m4a_LUFS": -21.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19892
   },
   "line_win_mid_turbo": {
-   "I_LUFS": -18.3,
-   "TP_dBFS": -4.6,
-   "TP_m4a_dBFS": -4.7,
-   "samples": 28672
+   "I_LUFS": -18.2,
+   "TP_dBFS": -4.62,
+   "TP_m4a_dBFS": -4.6,
+   "I_m4a_LUFS": -18.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29411
   },
   "total_win_small_turbo": {
-   "I_LUFS": -15.0,
-   "TP_dBFS": -4.5,
-   "TP_m4a_dBFS": -4.4,
-   "samples": 29429
+   "I_LUFS": -18.7,
+   "TP_dBFS": -3.45,
+   "TP_m4a_dBFS": -3.43,
+   "I_m4a_LUFS": -18.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29228
   },
   "total_win_mid_turbo": {
-   "I_LUFS": -15.3,
-   "TP_dBFS": -4.8,
-   "TP_m4a_dBFS": -4.7,
-   "samples": 35746
+   "I_LUFS": -16.0,
+   "TP_dBFS": -3.37,
+   "TP_m4a_dBFS": -3.62,
+   "I_m4a_LUFS": -16.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "total_win_big_turbo": {
-   "I_LUFS": -16.1,
-   "TP_dBFS": -2.1,
-   "TP_m4a_dBFS": -1.6,
-   "samples": 49008
+   "I_LUFS": -16.4,
+   "TP_dBFS": -3.07,
+   "TP_m4a_dBFS": -3.35,
+   "I_m4a_LUFS": -16.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "win_max_turbo": {
-   "I_LUFS": -13.8,
-   "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -3.7,
-   "samples": 68477
+   "I_LUFS": -13.0,
+   "TP_dBFS": -3.66,
+   "TP_m4a_dBFS": -4.02,
+   "I_m4a_LUFS": -13.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "rung_hit_big_turbo": {
-   "I_LUFS": -21.6,
-   "TP_dBFS": -3.8,
-   "TP_m4a_dBFS": -3.5,
-   "samples": 29231
+   "I_LUFS": -22.0,
+   "TP_dBFS": -3.69,
+   "TP_m4a_dBFS": -3.68,
+   "I_m4a_LUFS": -22.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29420
   },
   "sign_impact_big_turbo": {
-   "I_LUFS": -22.6,
-   "TP_dBFS": -5.6,
-   "TP_m4a_dBFS": -5.6,
-   "samples": 21722
+   "I_LUFS": -22.7,
+   "TP_dBFS": -5.44,
+   "TP_m4a_dBFS": -5.5,
+   "I_m4a_LUFS": -22.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 15329
   },
   "rung_hit_huge_turbo": {
-   "I_LUFS": -21.6,
-   "TP_dBFS": -2.8,
-   "TP_m4a_dBFS": -2.6,
-   "samples": 32472
+   "I_LUFS": -22.0,
+   "TP_dBFS": -2.49,
+   "TP_m4a_dBFS": -2.91,
+   "I_m4a_LUFS": -22.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 27838
   },
   "sign_impact_huge_turbo": {
-   "I_LUFS": -28.6,
-   "TP_dBFS": -5.1,
-   "TP_m4a_dBFS": -5.7,
-   "samples": 12636
+   "I_LUFS": -28.7,
+   "TP_dBFS": -5.22,
+   "TP_m4a_dBFS": -5.78,
+   "I_m4a_LUFS": -28.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24338
   },
   "rung_hit_mega_turbo": {
-   "I_LUFS": -20.5,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.6,
-   "samples": 35125
+   "I_LUFS": -19.8,
+   "TP_dBFS": -3.17,
+   "TP_m4a_dBFS": -3.23,
+   "I_m4a_LUFS": -19.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30336
   },
   "sign_impact_mega_turbo": {
-   "I_LUFS": -19.0,
-   "TP_dBFS": -4.0,
-   "TP_m4a_dBFS": -2.4,
-   "samples": 16785
+   "I_LUFS": -19.1,
+   "TP_dBFS": -4.01,
+   "TP_m4a_dBFS": -2.26,
+   "I_m4a_LUFS": -18.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 17241
   },
   "rung_hit_epic_turbo": {
-   "I_LUFS": -14.7,
-   "TP_dBFS": -4.3,
-   "TP_m4a_dBFS": -4.1,
-   "samples": 39253
+   "I_LUFS": -14.8,
+   "TP_dBFS": -3.74,
+   "TP_m4a_dBFS": -3.9,
+   "I_m4a_LUFS": -14.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "sign_impact_epic_turbo": {
    "I_LUFS": -23.2,
-   "TP_dBFS": -4.5,
-   "TP_m4a_dBFS": -4.8,
-   "samples": 23916
+   "TP_dBFS": -4.93,
+   "TP_m4a_dBFS": -4.75,
+   "I_m4a_LUFS": -23.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24761
   },
   "rung_hit_max_turbo": {
-   "I_LUFS": -15.6,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.1,
-   "samples": 48547
+   "I_LUFS": -16.1,
+   "TP_dBFS": -3.32,
+   "TP_m4a_dBFS": -2.78,
+   "I_m4a_LUFS": -16.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "sign_impact_max_turbo": {
-   "I_LUFS": -20.3,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -3.0,
-   "samples": 29402
+   "I_LUFS": -21.5,
+   "TP_dBFS": -5.76,
+   "TP_m4a_dBFS": -5.68,
+   "I_m4a_LUFS": -21.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29160
   },
   "burst_water_turbo": {
    "I_LUFS": -22.6,
-   "TP_dBFS": -5.0,
-   "TP_m4a_dBFS": -5.0,
-   "samples": 24619
+   "TP_dBFS": -4.97,
+   "TP_m4a_dBFS": -5.24,
+   "I_m4a_LUFS": -22.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24758
   },
   "burst_embers_turbo": {
-   "I_LUFS": -25.8,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -1.9,
-   "samples": 23516
+   "I_LUFS": -25.7,
+   "TP_dBFS": -3.06,
+   "TP_m4a_dBFS": -1.96,
+   "I_m4a_LUFS": -26.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 23919
   },
   "burst_badges_turbo": {
-   "I_LUFS": -18.9,
-   "TP_dBFS": -4.1,
-   "TP_m4a_dBFS": -4.0,
-   "samples": 15197
+   "I_LUFS": -19.8,
+   "TP_dBFS": -3.66,
+   "TP_m4a_dBFS": -3.72,
+   "I_m4a_LUFS": -19.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 15040
   },
   "burst_coins_turbo": {
-   "I_LUFS": -16.7,
-   "TP_dBFS": -4.4,
-   "TP_m4a_dBFS": -4.9,
-   "samples": 33340
+   "I_LUFS": -17.1,
+   "TP_dBFS": -2.0,
+   "TP_m4a_dBFS": -1.94,
+   "I_m4a_LUFS": -17.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "burst_gold_turbo": {
-   "I_LUFS": -19.6,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -6.2,
-   "samples": 35643
+   "I_LUFS": -20.2,
+   "TP_dBFS": -4.81,
+   "TP_m4a_dBFS": -5.79,
+   "I_m4a_LUFS": -20.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "rung_flare_turbo": {
    "I_LUFS": -17.5,
-   "TP_dBFS": -4.1,
-   "TP_m4a_dBFS": -4.3,
-   "samples": 19755
+   "TP_dBFS": -4.28,
+   "TP_m4a_dBFS": -4.29,
+   "I_m4a_LUFS": -17.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19997
   },
   "rung_land_turbo": {
-   "I_LUFS": -19.5,
-   "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -4.0,
-   "samples": 29566
+   "I_LUFS": -20.6,
+   "TP_dBFS": -3.75,
+   "TP_m4a_dBFS": -4.04,
+   "I_m4a_LUFS": -20.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 28672
   },
   "rung_out_turbo": {
    "I_LUFS": -17.6,
-   "TP_dBFS": -7.5,
-   "TP_m4a_dBFS": -4.8,
-   "samples": 19663
+   "TP_dBFS": -7.43,
+   "TP_m4a_dBFS": -4.9,
+   "I_m4a_LUFS": -17.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19607
   },
   "rescue_enter_turbo": {
-   "I_LUFS": -14.3,
-   "TP_dBFS": -3.8,
-   "TP_m4a_dBFS": -4.0,
-   "samples": 52424
+   "I_LUFS": -14.2,
+   "TP_dBFS": -4.58,
+   "TP_m4a_dBFS": -4.68,
+   "I_m4a_LUFS": -14.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "inferno_enter_turbo": {
-   "I_LUFS": -15.8,
-   "TP_dBFS": -4.5,
-   "TP_m4a_dBFS": -4.6,
-   "samples": 36022
+   "I_LUFS": -16.1,
+   "TP_dBFS": -4.82,
+   "TP_m4a_dBFS": -4.82,
+   "I_m4a_LUFS": -16.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30087
   },
   "hose_start_turbo": {
-   "I_LUFS": -15.6,
-   "TP_dBFS": -6.4,
-   "TP_m4a_dBFS": -6.0,
-   "samples": 24699
+   "I_LUFS": -15.7,
+   "TP_dBFS": -6.88,
+   "TP_m4a_dBFS": -6.68,
+   "I_m4a_LUFS": -15.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24647
   },
   "hose_end_turbo": {
    "I_LUFS": -15.5,
-   "TP_dBFS": -5.8,
-   "TP_m4a_dBFS": -6.9,
-   "samples": 23878
+   "TP_dBFS": -4.04,
+   "TP_m4a_dBFS": -4.8,
+   "I_m4a_LUFS": -15.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24807
   },
   "steam_turbo": {
-   "I_LUFS": -16.0,
-   "TP_dBFS": -3.9,
-   "TP_m4a_dBFS": -4.3,
-   "samples": 33327
+   "I_LUFS": -16.5,
+   "TP_dBFS": -3.67,
+   "TP_m4a_dBFS": -3.71,
+   "I_m4a_LUFS": -16.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "room_down_turbo": {
-   "I_LUFS": -24.1,
-   "TP_dBFS": -6.4,
-   "TP_m4a_dBFS": -8.5,
-   "samples": 19502
+   "I_LUFS": -20.0,
+   "TP_dBFS": -4.35,
+   "TP_m4a_dBFS": -4.16,
+   "I_m4a_LUFS": -20.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24437
   },
   "rescue_tada_1_turbo": {
    "I_LUFS": -16.8,
-   "TP_dBFS": -5.0,
-   "TP_m4a_dBFS": -4.8,
-   "samples": 24215
+   "TP_dBFS": -4.86,
+   "TP_m4a_dBFS": -4.81,
+   "I_m4a_LUFS": -16.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24471
   },
   "rescue_tada_2_turbo": {
-   "I_LUFS": -16.4,
-   "TP_dBFS": -4.7,
-   "TP_m4a_dBFS": -4.7,
-   "samples": 23704
+   "I_LUFS": -16.5,
+   "TP_dBFS": -3.93,
+   "TP_m4a_dBFS": -4.28,
+   "I_m4a_LUFS": -16.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24078
   },
   "rescue_tada_3_turbo": {
-   "I_LUFS": -15.5,
-   "TP_dBFS": -4.4,
-   "TP_m4a_dBFS": -4.4,
-   "samples": 24151
+   "I_LUFS": -16.2,
+   "TP_dBFS": -4.13,
+   "TP_m4a_dBFS": -4.34,
+   "I_m4a_LUFS": -16.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 23552
   },
   "rescue_tada_4_turbo": {
-   "I_LUFS": -16.7,
-   "TP_dBFS": -4.1,
-   "TP_m4a_dBFS": -4.1,
-   "samples": 24660
+   "I_LUFS": -16.0,
+   "TP_dBFS": -3.26,
+   "TP_m4a_dBFS": -3.34,
+   "I_m4a_LUFS": -16.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 23824
   },
   "rescue_tada_5_turbo": {
-   "I_LUFS": -15.7,
-   "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -2.9,
-   "samples": 24621
+   "I_LUFS": -16.3,
+   "TP_dBFS": -4.11,
+   "TP_m4a_dBFS": -4.0,
+   "I_m4a_LUFS": -16.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24278
   },
   "rescue_tada_6_turbo": {
-   "I_LUFS": -15.1,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 24466
+   "I_LUFS": -15.9,
+   "TP_dBFS": -4.17,
+   "TP_m4a_dBFS": -4.17,
+   "I_m4a_LUFS": -15.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 23552
   },
   "rescue_tada_7_turbo": {
-   "I_LUFS": -14.7,
-   "TP_dBFS": -2.6,
-   "TP_m4a_dBFS": -2.8,
-   "samples": 24438
+   "I_LUFS": -16.5,
+   "TP_dBFS": -4.42,
+   "TP_m4a_dBFS": -4.58,
+   "I_m4a_LUFS": -16.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 23507
   },
   "rescue_tada_8_turbo": {
-   "I_LUFS": -14.0,
-   "TP_dBFS": -2.5,
-   "TP_m4a_dBFS": -2.3,
-   "samples": 24447
+   "I_LUFS": -15.0,
+   "TP_dBFS": -3.58,
+   "TP_m4a_dBFS": -3.69,
+   "I_m4a_LUFS": -15.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 23180
   },
   "prize_coins_turbo": {
-   "I_LUFS": -21.7,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -3.7,
-   "samples": 33418
+   "I_LUFS": -21.3,
+   "TP_dBFS": -2.23,
+   "TP_m4a_dBFS": -3.22,
+   "I_m4a_LUFS": -21.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29696
   },
   "prize_coins_big_turbo": {
-   "I_LUFS": -18.6,
-   "TP_dBFS": -4.3,
-   "TP_m4a_dBFS": -4.6,
-   "samples": 44075
+   "I_LUFS": -17.4,
+   "TP_dBFS": -3.89,
+   "TP_m4a_dBFS": -4.07,
+   "I_m4a_LUFS": -17.6,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "building_cleared_turbo": {
-   "I_LUFS": -13.2,
-   "TP_dBFS": -4.8,
-   "TP_m4a_dBFS": -4.8,
-   "samples": 53136
+   "I_LUFS": -12.9,
+   "TP_dBFS": -4.81,
+   "TP_m4a_dBFS": -4.84,
+   "I_m4a_LUFS": -13.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "siren_pass_turbo": {
-   "I_LUFS": -16.6,
-   "TP_dBFS": -7.7,
-   "TP_m4a_dBFS": -7.2,
-   "samples": 45309
+   "I_LUFS": -19.1,
+   "TP_dBFS": -7.22,
+   "TP_m4a_dBFS": -7.23,
+   "I_m4a_LUFS": -19.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "block_slide_turbo": {
-   "I_LUFS": -21.0,
-   "TP_dBFS": -3.5,
-   "TP_m4a_dBFS": -3.4,
-   "samples": 30825
+   "I_LUFS": -21.7,
+   "TP_dBFS": -4.12,
+   "TP_m4a_dBFS": -4.3,
+   "I_m4a_LUFS": -21.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29696
   },
   "spins_added_turbo": {
-   "I_LUFS": -19.7,
-   "TP_dBFS": -2.7,
-   "TP_m4a_dBFS": -3.1,
-   "samples": 24284
+   "I_LUFS": -21.8,
+   "TP_dBFS": -3.16,
+   "TP_m4a_dBFS": -3.15,
+   "I_m4a_LUFS": -21.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 24610
   },
   "last_spin_turbo": {
    "I_LUFS": -19.4,
-   "TP_dBFS": -3.3,
-   "TP_m4a_dBFS": -1.4,
-   "samples": 29490
+   "TP_dBFS": -3.26,
+   "TP_m4a_dBFS": -1.35,
+   "I_m4a_LUFS": -19.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29610
   },
   "rescue_total_small_turbo": {
-   "I_LUFS": -15.3,
-   "TP_dBFS": -5.4,
-   "TP_m4a_dBFS": -5.3,
-   "samples": 33322
+   "I_LUFS": -15.8,
+   "TP_dBFS": -4.3,
+   "TP_m4a_dBFS": -4.37,
+   "I_m4a_LUFS": -15.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "inferno_total_small_turbo": {
-   "I_LUFS": -18.6,
-   "TP_dBFS": -5.8,
-   "TP_m4a_dBFS": -5.7,
-   "samples": 33171
+   "I_LUFS": -18.4,
+   "TP_dBFS": -5.31,
+   "TP_m4a_dBFS": -5.47,
+   "I_m4a_LUFS": -18.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30582
   },
   "rescue_total_mid_turbo": {
-   "I_LUFS": -16.5,
-   "TP_dBFS": -5.4,
-   "TP_m4a_dBFS": -5.2,
-   "samples": 41660
+   "I_LUFS": -17.7,
+   "TP_dBFS": -5.41,
+   "TP_m4a_dBFS": -5.51,
+   "I_m4a_LUFS": -17.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "inferno_total_mid_turbo": {
    "I_LUFS": -15.7,
-   "TP_dBFS": -5.4,
-   "TP_m4a_dBFS": -5.0,
-   "samples": 44093
+   "TP_dBFS": -4.14,
+   "TP_m4a_dBFS": -3.89,
+   "I_m4a_LUFS": -15.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "rescue_total_big_turbo": {
-   "I_LUFS": -16.9,
-   "TP_dBFS": -2.0,
-   "TP_m4a_dBFS": -1.1,
-   "samples": 43368
+   "I_LUFS": -16.4,
+   "TP_dBFS": -1.6,
+   "TP_m4a_dBFS": -1.71,
+   "I_m4a_LUFS": -16.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "inferno_total_big_turbo": {
-   "I_LUFS": -16.9,
-   "TP_dBFS": -4.1,
-   "TP_m4a_dBFS": -3.9,
-   "samples": 33278
+   "I_LUFS": -17.8,
+   "TP_dBFS": -3.77,
+   "TP_m4a_dBFS": -3.71,
+   "I_m4a_LUFS": -17.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29574
   },
   "alarm_call_ring_turbo": {
    "I_LUFS": -18.5,
-   "TP_dBFS": -3.2,
-   "TP_m4a_dBFS": -3.6,
+   "TP_dBFS": -3.18,
+   "TP_m4a_dBFS": -3.26,
+   "I_m4a_LUFS": -18.4,
+   "tpMethod": "8x oversampled, native codec rate",
    "samples": 28018
   },
   "alarm_card_flip_turbo": {
    "I_LUFS": -23.4,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -2.7,
-   "samples": 16596
+   "TP_dBFS": -2.94,
+   "TP_m4a_dBFS": -2.44,
+   "I_m4a_LUFS": -23.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19468
   },
   "alarm_outcome_rescue_turbo": {
-   "I_LUFS": -13.7,
-   "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -3.7,
-   "samples": 38777
+   "I_LUFS": -13.8,
+   "TP_dBFS": -3.75,
+   "TP_m4a_dBFS": -3.49,
+   "I_m4a_LUFS": -13.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "alarm_outcome_inferno_turbo": {
-   "I_LUFS": -14.8,
-   "TP_dBFS": -4.8,
-   "TP_m4a_dBFS": -4.7,
-   "samples": 48988
+   "I_LUFS": -14.5,
+   "TP_dBFS": -4.46,
+   "TP_m4a_dBFS": -4.61,
+   "I_m4a_LUFS": -14.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "alarm_outcome_false_turbo": {
-   "I_LUFS": -17.3,
-   "TP_dBFS": -8.8,
-   "TP_m4a_dBFS": -7.4,
-   "samples": 29400
+   "I_LUFS": -17.2,
+   "TP_dBFS": -7.82,
+   "TP_m4a_dBFS": -7.8,
+   "I_m4a_LUFS": -17.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29493
   },
   "dog_bark_turbo": {
-   "I_LUFS": -17.3,
-   "TP_dBFS": -6.3,
-   "TP_m4a_dBFS": -6.2,
-   "samples": 20126
+   "I_LUFS": -17.8,
+   "TP_dBFS": -3.33,
+   "TP_m4a_dBFS": -3.31,
+   "I_m4a_LUFS": -17.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19962
   },
   "backdraft_spins_start_turbo": {
-   "I_LUFS": -15.8,
-   "TP_dBFS": -3.0,
-   "TP_m4a_dBFS": -3.6,
-   "samples": 48998
+   "I_LUFS": -15.3,
+   "TP_dBFS": -3.04,
+   "TP_m4a_dBFS": -3.72,
+   "I_m4a_LUFS": -15.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "backdraft_spins_end_turbo": {
-   "I_LUFS": -25.2,
-   "TP_dBFS": -6.1,
-   "TP_m4a_dBFS": -6.8,
-   "samples": 44486
+   "I_LUFS": -24.0,
+   "TP_dBFS": -4.99,
+   "TP_m4a_dBFS": -5.79,
+   "I_m4a_LUFS": -24.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 30869
   },
   "shutter_slam_turbo": {
-   "I_LUFS": -19.0,
-   "TP_dBFS": -3.4,
-   "TP_m4a_dBFS": -2.3,
-   "samples": 19249
+   "I_LUFS": -22.1,
+   "TP_dBFS": -3.36,
+   "TP_m4a_dBFS": -2.26,
+   "I_m4a_LUFS": -22.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 19256
   },
   "shutter_haul_1_turbo": {
-   "I_LUFS": -21.5,
-   "TP_dBFS": -5.0,
-   "TP_m4a_dBFS": -5.0,
-   "samples": 10824
+   "I_LUFS": -21.3,
+   "TP_dBFS": -5.13,
+   "TP_m4a_dBFS": -5.29,
+   "I_m4a_LUFS": -21.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 11315
   },
   "shutter_haul_2_turbo": {
-   "I_LUFS": -21.7,
-   "TP_dBFS": -4.5,
-   "TP_m4a_dBFS": -4.4,
-   "samples": 10545
+   "I_LUFS": -22.1,
+   "TP_dBFS": -4.1,
+   "TP_m4a_dBFS": -4.08,
+   "I_m4a_LUFS": -22.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 10849
   },
   "shutter_haul_3_turbo": {
    "I_LUFS": -22.9,
-   "TP_dBFS": -2.7,
-   "TP_m4a_dBFS": -3.3,
-   "samples": 13069
+   "TP_dBFS": -2.67,
+   "TP_m4a_dBFS": -3.33,
+   "I_m4a_LUFS": -23.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 13073
   }
  },
  "skipped": [],
  "warnings": [
-  "sym_win_h2: split-band key-fit above 2.5 kHz (0.02 -> 0.63; body 0.71 -> 0.71)"
+  "antic_hit: M/S narrowing, side x 0.5 (drawn corr -0.106 -> 0.528)",
+  "blaze_ignite: M/S narrowing, side x 0.5 (drawn corr 0.097 -> 0.676)",
+  "sym_win_h2: split-band key-fit above 2.5 kHz (0.02 -> 0.63; body 0.71 -> 0.71)",
+  "sym_win_h4: M/S narrowing, side x 0.5 (drawn corr -0.226 -> 0.433)",
+  "sym_win_l1: M/S narrowing, side x 0.5 (drawn corr -0.33 -> 0.337)",
+  "line_win_small: M/S narrowing, side x 0.5 (drawn corr -0.068 -> 0.608)",
+  "line_win_mid: M/S narrowing, side x 0.5 (drawn corr -0.324 -> 0.535)",
+  "total_win_big: M/S narrowing, side x 0.5 (drawn corr 0.138 -> 0.683)",
+  "win_max: M/S narrowing, side x 0.5 (drawn corr 0.124 -> 0.682)",
+  "count_ticker_src: M/S narrowing, side x 0.5 (drawn corr -0.287 -> 0.797)",
+  "rung_hit_mega: M/S narrowing, side x 0.5 (drawn corr 0.145 -> 0.685)",
+  "rung_hit_epic: M/S narrowing, side x 0.5 (drawn corr -0.015 -> 0.6)",
+  "hose_end: M/S narrowing, side x 0.5 (drawn corr 0.116 -> 0.674)",
+  "rescue_total_small: M/S narrowing, side x 0.5 (drawn corr -0.091 -> 0.565)",
+  "inferno_total_big: M/S narrowing, side x 0.5 (drawn corr 0.04 -> 0.627)",
+  "alarm_outcome_inferno: M/S narrowing, side x 0.5 (drawn corr 0.161 -> 0.713)",
+  "alarm_outcome_false: anti-phase draw: channel L as mono (drawn corr -0.741 -> 1.0)"
  ]
 }

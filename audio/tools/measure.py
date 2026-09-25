@@ -15,6 +15,18 @@ Shipped checks (the acceptance the family's accepted audio passed, plus the two 
     8-bar sections compared pairwise on band-mean-removed log spectra (an EQ'd copy of one 8-bar loop scores ~1.0; the
     tag the family got for "one 8-bar loop dressed as 32 bars" is caught here, not by ear);
   * bed LUFS vs the target in cues.json mix.bedLUFS; rung beds strictly rising.
+r2 gates (2026-09-25; summary.gates, PASS = all of them):
+  * truePeak8x: kit.true_peak (8x oversampled at the codec's native rate, unrounded) <= -1.0 dBTP, both codecs;
+  * monoSum: every cue, both codecs: inter-channel correlation >= 0 and loudest-400 ms loss of the (L+R)/2 sum <= 3 dB;
+  * tails: every one-shot (master, ogg, m4a): the 10 ms that ends 10 ms before the last sample <= -40 dB re peak and
+    |last sample| < 0.002 (a ring cut short, or a short fade into a loud ring, reads high);
+  * turbo700ms: every _turbo variant <= 700 ms (both codecs) unless the cue records turboCapExempt (held risers);
+  * tadaLadderRising: the SHS fundamental (kit.shs_f0) of rescue_tada_1..8 rises strictly (>= 0.5 st per rung);
+  * reelStopsPhone: every reel stop's effective 400 Hz phone-proxy level >= reel_spin_loop's + 6 dB, stops within 1 dB;
+  * chains_st_mono_phone: every mix.CHAINS entry rising on stereo power, the mono sum and the phone proxy (gain x file);
+  * alarmTopVoice: each alarm chord's top voice (A4 D5 F5 A5 B5) within 3 dB of its loudest partial on the mono sum;
+  * selfSimSliding: 8-bar windows at every half beat (cyclic), band spectrogram AND beat chroma, r < 0.90;
+  * bedTailDip1000ms: head-tail at 1000 ms <= 6 dB on every bed.
 """
 import csv, hashlib, json, os, sys
 from concurrent.futures import ProcessPoolExecutor
@@ -84,6 +96,44 @@ def selfsim(x, bpm, bars, per=8):
     return {'sections': n, 'pairs': pairs, 'maxPair': mx, 'nearCopy': bool(mx is not None and mx >= 0.90)}
 
 
+def selfsim_sliding(x, bpm, bars, per=8, thr=0.90):
+    """r2 (2026-09-25): repetition at ANY lag. The grid test above compares only 8-bar sections that start on bars 1 / 9 /
+    17 / 25, so it cannot see a near-copy offset by 4 bars (rescue_loop repeats at a 12-bar lag: bars 9-16 vs 21-28).
+    Every `per`-bar window starting on any half beat (cyclic: the loop wraps) is compared with every NON-overlapping one on
+    (a) the band-mean-removed log-band spectrogram (40 bands 60-8000 Hz, 1/8-beat frames; EQ-proof) and (b) BEAT chroma
+    (12 pitch classes per beat, 110-2500 Hz), each pitch class z-scored within the window: with mean removal alone the
+    static key profile (the C / E / G energy of every C-major bar) dominates the correlation and any two phrases in the key
+    read alike; standardising each pitch class makes the test about the 32-beat harmonic PATTERN. Pearson r; a near copy
+    is r >= thr on either feature."""
+    if bars < 2 * per: return None
+    m = x.mean(axis=1) if x.ndim > 1 else x; beat = 60.0 / bpm * SR; nf = int(bars * 32); hop = beat / 8
+    N = 4096; w = np.hanning(N); fr = np.fft.rfftfreq(N, 1 / SR); mc = np.concatenate([m, m[:N + 8]])
+    edges = np.geomspace(60, 8000, 41); band = np.digitize(fr, edges) - 1; okb = (band >= 0) & (band < 40)
+    selc = (fr > 110) & (fr < 2500); pc = np.round(69 + 12 * np.log2(fr[selc] / 440.0)).astype(int) % 12
+    F = np.zeros((nf, 40)); C = np.zeros((nf, 12))
+    for i in range(nf):
+        a = int(round(i * hop)); P = np.abs(np.fft.rfft(mc[a:a + N] * w)) ** 2
+        F[i] = np.log10(np.bincount(band[okb], P[okb], minlength=40) + 1e-10); C[i] = np.bincount(pc, P[selc], minlength=12)
+    Wf = per * 32; starts = np.arange(0, nf, 4); ns = len(starts); Wh = per * 8  # window length in half beats
+    def vecs(kind):
+        V = []
+        for s in starts:
+            idx = (s + np.arange(Wf)) % nf
+            if kind == 'band': Z = F[idx] - F[idx].mean(axis=0, keepdims=True)
+            else:
+                Z = C[idx].reshape(per * 4, 8, 12).sum(axis=1); Z = (Z - Z.mean(axis=0, keepdims=True)) / (Z.std(axis=0, keepdims=True) + 1e-12)
+            v = Z.ravel(); V.append(v / (np.linalg.norm(v) + 1e-12))
+        return np.array(V)
+    out = {}
+    d = np.abs(starts[:, None] - starts[None, :]) // 4; d = np.minimum(d, ns - d); valid = d >= Wh
+    for kind in ('band', 'chroma'):
+        V = vecs(kind); G = V @ V.T; G[~valid] = -1.0; i, j = np.unravel_index(int(np.argmax(G)), G.shape)
+        out[kind] = {'maxR': round(float(G[i, j]), 3), 'barsA': [round(starts[i] / 32 + 1, 2), round(starts[i] / 32 + per, 2)],
+                     'barsB': [round(starts[j] / 32 + 1, 2), round(starts[j] / 32 + per, 2)], 'lagBars': round(float(min(abs(starts[i] - starts[j]), nf - abs(starts[i] - starts[j])) / 32), 2)}
+    mx = max(out['band']['maxR'], out['chroma']['maxR'])
+    return {**out, 'maxR': mx, 'nearCopy': bool(mx >= thr), 'windowBars': per, 'hop': 'half beat, cyclic'}
+
+
 def level_profile(x, win_s=1.0):
     m = (x ** 2).mean(axis=1) if x.ndim > 1 else x ** 2; n = int(win_s * SR)
     k = len(m) // n
@@ -143,10 +193,14 @@ def one(c):
         ext = f.rsplit('.', 1)[1]; p = os.path.join(STATIC_BASE, f); r = f'{K.RUN}/{cid}.{ext}'
         d = {'present': os.path.exists(p)}
         if d['present']:
-            I, TP = K.measure(p); d.update(I_LUFS=I, TP_dBFS=TP)
+            I, TP4 = K.measure(p); d.update(I_LUFS=I, TP_dBFS=round(K.true_peak(p), 2), TP_ebur128_4x=TP4)
             d['sameAsRuntime'] = os.path.exists(r) and sha(r) == sha(p)
-            x = lk.decode(p); d['samples'] = len(x)
+            x = lk.decode(p); d['samples'] = len(x); d['ms'] = round(len(x) / SR * 1000, 1)
             if m is not None: d['lenDiff'] = len(x) - len(m)
+            d['levels'] = K.levels(x)
+            if not out['loop']: d['tail'] = K.tail_metrics(x)
+            if cid.startswith('rescue_tada_') and not cid.endswith('_turbo'): d['shsMidi'] = round(K.shs_f0(x, t_from=0.1)[1], 2)
+            if cid.startswith('alarm_land_') and not cid.endswith('_turbo') and ext == 'ogg': d['topVoice'] = top_voice(x, c)
             if out['loop']:
                 ls, le = loop_span(c, len(m) if m is not None else len(x))
                 y = x[ls:le]
@@ -154,6 +208,7 @@ def one(c):
             if c['bus'] == 'music' and c.get('tempoBpm') and out['loop']:
                 bpm = c['tempoBpm']; d['bpmEst'] = round(float(K.tempo_autocorr(x, bpm - 12, bpm + 12)), 2)
         out[ext] = d
+    if m is not None and not out['loop']: out['masterTail'] = K.tail_metrics(m)
     if out['loop'] and m is not None:
         ls, le = loop_span(c, len(m)); lm = m[ls:le]
         out['headTail_dB'] = {w: v[2] for w, v in lk.headtail(lm, (50, 250, 1000)).items()}
@@ -166,12 +221,26 @@ def one(c):
             out['grid'] = {'bpm': bpm, 'bars': bars, 'samples': len(lm), 'expected': want, 'exact': len(lm) == want,
                            'barSeconds': round(4 * 60 / bpm, 5), 'loopSeconds': round(len(lm) / SR, 4)}
             out['chug'] = chug_ratio(lm, bpm); out['selfSim'] = selfsim(lm, bpm, bars); out['cpentShare'] = round(cpent_share(lm), 3)
+            out['selfSimSliding'] = selfsim_sliding(lm, bpm, bars)
     return out
+
+
+def top_voice(x, c, t0=0.03, t1=0.45):
+    """Alarm chords (r2): level of each chord tone's fundamental on the MONO sum (30-450 ms), re the loudest partial in
+    150-2500 Hz; the top voice should lead (A4 D5 F5 A5 B5 up the ladder)."""
+    m = x.mean(axis=1)[int(t0 * SR):int(t1 * SR)]; N = 1 << 16; X = np.abs(np.fft.rfft(m * np.hanning(len(m)), N)); fr = np.fft.rfftfreq(N, 1 / SR)
+    sel = (fr > 150) & (fr < 2500); top = float(X[sel].max()); fl = fr[sel][int(np.argmax(X[sel]))]
+    notes = (c.get('derive') or {}).get('chord') or []
+    lv = {}
+    for n_ in notes:
+        f = 440 * 2 ** ((n_ - 69) / 12); s = (fr > f * 0.985) & (fr < f * 1.015); lv[K.note_name(n_)] = round(float(20 * np.log10(X[s].max() / top + 1e-12)), 1)
+    tv = K.note_name(max(notes)) if notes else None
+    return {'topVoice': tv, 'topVoice_dB_reLoudest': lv.get(tv), 'loudestPartial': K.note_name(69 + 12 * np.log2(fl / 440)), 'chordTones_dB': lv}
 
 
 def shipped():
     doc = json.load(open(f'{ROOT}/audio/cues.json')); cues = doc['cues']
-    with ProcessPoolExecutor(max_workers=6) as ex:
+    with ProcessPoolExecutor(max_workers=4) as ex:
         rows = list(ex.map(one, cues, chunksize=4))
     tp = [(r['id'], e, r[e]['TP_dBFS']) for r in rows for e in ('ogg', 'm4a') if r.get(e, {}).get('TP_dBFS') is not None]
     over = [t for t in tp if t[2] > -1.0]
@@ -182,8 +251,36 @@ def shipped():
     grid_bad = [r['id'] for r in rows if 'grid' in r and not r['grid']['exact']]
     pad_bad = [r['id'] for r in rows if r.get('padCyclic') is False]
     chug_bad = [(r['id'], r['chug']) for r in rows if r.get('chug') and r['chug'] > 3.0]
-    copy_bad = [(r['id'], r['selfSim']['maxPair']) for r in rows if (r.get('selfSim') or {}).get('nearCopy')]
+    copy_grid = [(r['id'], r['selfSim']['maxPair']) for r in rows if (r.get('selfSim') or {}).get('nearCopy')]
+    copy_bad = [(r['id'], r['selfSimSliding']['maxR'], r['selfSimSliding']['band'], r['selfSimSliding']['chroma']) for r in rows if (r.get('selfSimSliding') or {}).get('nearCopy')]
+    sliding = {r['id']: {k: r['selfSimSliding'][k] for k in ('band', 'chroma', 'maxR')} for r in rows if r.get('selfSimSliding')}
     tail_dip = [(r['id'], r['headTail_dB'].get(1000)) for r in rows if r.get('headTail_dB') and r['bus'] == 'music' and (r['headTail_dB'].get(1000) or 0) > 6.0]
+    # ---- r2 gates (2026-09-25)
+    by0 = {c['id']: c for c in cues}; E = ('ogg', 'm4a')
+    mono_bad = [(r['id'], e, r[e]['levels']['corr'], r[e]['levels']['monoLoss']) for r in rows for e in E if r.get(e, {}).get('levels')
+                and (r[e]['levels']['corr'] < 0.0 or r[e]['levels']['monoLoss'] > 3.0)]
+    def tail_fail(t): return t and (t['endLevel_dB'] > -40.0 or t['lastSample'] >= 0.002)
+    tail_bad = [(r['id'], w, (r.get(w) or {}).get('tail') if w in E else r.get('masterTail')) for r in rows if not r['loop'] for w in ('master', 'ogg', 'm4a')
+                if tail_fail((r.get(w) or {}).get('tail') if w in E else r.get('masterTail'))]
+    turbo_long = [(r['id'], max(r[e]['ms'] for e in E if r.get(e, {}).get('ms'))) for r in rows if r['id'].endswith('_turbo') and r.get('ogg', {}).get('ms')
+                  and max(r[e]['ms'] for e in E if r.get(e, {}).get('ms')) > 700.0 and not by0[r['id']].get('turboCapExempt')]
+    turbo_exempt = {r['id']: by0[r['id']].get('turboCapExempt') for r in rows if r['id'].endswith('_turbo') and by0[r['id']].get('turboCapExempt')}
+    rb = {r['id']: r for r in rows}
+    tada = [rb[f'rescue_tada_{i}']['ogg'].get('shsMidi') for i in range(1, 9) if f'rescue_tada_{i}' in rb and rb[f'rescue_tada_{i}'].get('ogg', {}).get('shsMidi') is not None]
+    tada_ok = len(tada) == 8 and all(b > a + 0.5 for a, b in zip(tada, tada[1:]))
+    gdb = lambda cid: 20 * np.log10(by0[cid].get('gain', 1.0))
+    effp = lambda cid: round(rb[cid]['ogg']['levels']['phone'] + gdb(cid), 2) if cid in rb and rb[cid].get('ogg', {}).get('levels') else None
+    stops = [effp(f'reel_stop_{i}') for i in range(1, 6)]; spin = effp('reel_spin_loop')
+    reel_ok = None not in stops and spin is not None and min(stops) >= spin + 6.0 and max(stops) - min(stops) <= 1.0
+    import mix as MX
+    chains = {}
+    for name, chain in MX.CHAINS.items():
+        if not all(c in rb and rb[c].get('ogg', {}).get('levels') for c in chain): continue
+        eff = {k: [round(rb[c]['ogg']['levels'][k] + gdb(c), 2) for c in chain] for k in ('st', 'mono', 'phone')}
+        chains[name] = {**eff, 'rising': all(all(b > a for a, b in zip(v, v[1:])) for v in eff.values())}
+    chains_bad = [k for k, v in chains.items() if not v['rising']]
+    alarm_top = {f'alarm_land_{i}': rb[f'alarm_land_{i}']['ogg'].get('topVoice') for i in range(1, 6) if f'alarm_land_{i}' in rb}
+    alarm_bad = [k for k, v in alarm_top.items() if not v or v['topVoice_dB_reLoudest'] is None or v['topVoice_dB_reLoudest'] < -3.0]
     by = {c['id']: c for c in cues}; bedLUFS = doc.get('mix', {}).get('bedLUFS', {})
     lufs_off = [(r['id'], r['ogg'].get('I_LUFS'), bedLUFS[r['id']]) for r in rows if r['id'] in bedLUFS and r.get('ogg', {}).get('I_LUFS') is not None
                 and abs(r['ogg']['I_LUFS'] - bedLUFS[r['id']]) > 1.0 and not r['id'].endswith('_layer')]
@@ -194,8 +291,17 @@ def shipped():
                'maxTP_dBFS': max((t[2] for t in tp), default=None), 'overMinus1dBTP': over, 'staticDiffersFromRuntime': notsame,
                'loops': len(loops), 'seamNotClean': seam_bad, 'gridNotExact': grid_bad, 'padNotCyclic': pad_bad, 'chugOver3': chug_bad, 'nearCopySections': copy_bad,
                'bedTailDipOver6dB_1000ms': tail_dip, 'bedLUFSoffTarget': lufs_off,
-               'rungBedsLUFS': rung, 'rungBedsStrictlyRising': bool(rung and None not in rung and all(b > a for a, b in zip(rung, rung[1:])))}
-    summary['PASS'] = bool(built) and not (over or notsame or seam_bad or grid_bad or pad_bad or chug_bad or copy_bad) and summary['filesPresent'] == summary['filesExpected']
+               'rungBedsLUFS': rung, 'rungBedsStrictlyRising': bool(rung and None not in rung and all(b > a for a, b in zip(rung, rung[1:]))),
+               'nearCopyGridSections': copy_grid, 'selfSimSliding': sliding,
+               'monoNotCompatible': mono_bad, 'tailCutOrClick': tail_bad, 'turboOver700ms': turbo_long, 'turboCapExempt': turbo_exempt,
+               'tadaShsMidi': tada, 'tadaStrictlyRising': tada_ok, 'reelStopsPhoneEffective_dBFS': stops, 'reelSpinLoopPhoneEffective_dBFS': spin,
+               'reelStopsPhoneOK': reel_ok, 'chains3': chains, 'chainsNotRising3': chains_bad, 'alarmTopVoice': alarm_top, 'alarmTopVoiceNotLeading': alarm_bad}
+    gates = {'files': summary['filesPresent'] == summary['filesExpected'] and not notsame, 'truePeak8x': not over, 'loopSeams': not seam_bad,
+             'grid': not grid_bad, 'pads': not pad_bad, 'chug': not chug_bad, 'selfSimSliding': not copy_bad, 'bedTailDip1000ms': not tail_dip,
+             'monoSum': not mono_bad, 'tails': not tail_bad, 'turbo700ms': not turbo_long, 'tadaLadderRising': tada_ok, 'reelStopsPhone': bool(reel_ok),
+             'chains_st_mono_phone': not chains_bad, 'alarmTopVoice': not alarm_bad, 'rungBedsRising': summary['rungBedsStrictlyRising']}
+    summary['gates'] = gates; summary['failingGates'] = [k for k, v in gates.items() if not v]
+    summary['PASS'] = bool(built) and all(gates.values())
     os.makedirs(QA, exist_ok=True)
     json.dump({'summary': summary, 'rows': rows}, open(f'{QA}/measure_all.json', 'w'), indent=1, default=str)
     with open(f'{QA}/cues_table.csv', 'w', newline='') as f:

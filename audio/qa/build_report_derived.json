@@ -1,0 +1,74 @@
+{
+ "music": {},
+ "sfx": {},
+ "derived": {
+  "rescue_tada_1": {
+   "I_LUFS": -15.3,
+   "TP_dBFS": -5.38,
+   "TP_m4a_dBFS": -5.69,
+   "I_m4a_LUFS": -15.3,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100
+  },
+  "rescue_tada_2": {
+   "I_LUFS": -14.8,
+   "TP_dBFS": -3.78,
+   "TP_m4a_dBFS": -4.06,
+   "I_m4a_LUFS": -14.8,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100
+  },
+  "rescue_tada_3": {
+   "I_LUFS": -14.4,
+   "TP_dBFS": -2.86,
+   "TP_m4a_dBFS": -3.07,
+   "I_m4a_LUFS": -14.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 43786
+  },
+  "rescue_tada_4": {
+   "I_LUFS": -14.0,
+   "TP_dBFS": -2.86,
+   "TP_m4a_dBFS": -2.93,
+   "I_m4a_LUFS": -14.0,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100
+  },
+  "rescue_tada_5": {
+   "I_LUFS": -13.7,
+   "TP_dBFS": -2.96,
+   "TP_m4a_dBFS": -2.96,
+   "I_m4a_LUFS": -13.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 44100
+  },
+  "rescue_tada_6": {
+   "I_LUFS": -14.1,
+   "TP_dBFS": -2.94,
+   "TP_m4a_dBFS": -3.04,
+   "I_m4a_LUFS": -14.1,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 43573
+  },
+  "rescue_tada_7": {
+   "I_LUFS": -12.9,
+   "TP_dBFS": -2.96,
+   "TP_m4a_dBFS": -3.06,
+   "I_m4a_LUFS": -12.9,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 43054
+  },
+  "rescue_tada_8": {
+   "I_LUFS": -13.2,
+   "TP_dBFS": -3.01,
+   "TP_m4a_dBFS": -3.03,
+   "I_m4a_LUFS": -13.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 42161
+  }
+ },
+ "shots": {},
+ "turbo": {},
+ "skipped": [],
+ "warnings": []
+}

@@ -1,0 +1,73 @@
+{
+ "music": {},
+ "sfx": {
+  "rescue_tada_src_lo": {
+   "source": "audio/masters/_src/rescue_tada_src_lo.wav",
+   "pitch": {
+    "method": "subharmonic summation (kit.shs_f0)",
+    "measuredF0Hz": 261.3,
+    "measuredNote": "C4",
+    "op": "pitch-snapped (fundamental)",
+    "semis": 0.02,
+    "postF0Hz": 261.3,
+    "midi": 60.0,
+    "postErrCents": -2.0,
+    "targetNote": "C4",
+    "shift": "rubberband, formants preserved",
+    "harmonicOnly": {
+     "f0Hz": 261.63,
+     "floor_dB": -18.0,
+     "energyKept_dB": -0.43,
+     "cpentShare": 0.953
+    }
+   }
+  },
+  "rescue_tada_src_mid": {
+   "source": "audio/masters/_src/rescue_tada_src_mid.wav",
+   "pitch": {
+    "method": "subharmonic summation (kit.shs_f0)",
+    "measuredF0Hz": 391.6,
+    "measuredNote": "G4",
+    "op": "pitch-snapped (fundamental)",
+    "semis": 0.02,
+    "postF0Hz": 391.6,
+    "midi": 67.0,
+    "postErrCents": -1.6,
+    "targetNote": "G4",
+    "shift": "rubberband, formants preserved",
+    "harmonicOnly": {
+     "f0Hz": 392.0,
+     "floor_dB": -18.0,
+     "energyKept_dB": -3.25,
+     "cpentShare": 0.936
+    }
+   }
+  },
+  "rescue_tada_src_hi": {
+   "source": "audio/masters/_src/rescue_tada_src_hi.wav",
+   "pitch": {
+    "method": "subharmonic summation (kit.shs_f0)",
+    "measuredF0Hz": 349.6,
+    "measuredNote": "F4",
+    "op": "pitch-snapped (fundamental)",
+    "semis": -5.02,
+    "postF0Hz": 261.7,
+    "midi": 60.0,
+    "postErrCents": 0.4,
+    "targetNote": "C4",
+    "shift": "rubberband, formants preserved",
+    "harmonicOnly": {
+     "f0Hz": 261.63,
+     "floor_dB": -18.0,
+     "energyKept_dB": -1.15,
+     "cpentShare": 0.979
+    }
+   }
+  }
+ },
+ "derived": {},
+ "shots": {},
+ "turbo": {},
+ "skipped": [],
+ "warnings": []
+}

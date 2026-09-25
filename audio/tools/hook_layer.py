@@ -74,6 +74,10 @@ def tone(f, dur_s, colour, hold_s=None):
     else:
         raise ValueError(colour)
     a = int(0.003 * SR); y[:a] *= np.linspace(0, 1, min(a, n))
+    # r2 (2026-09-25): a note used to END on a hard cut wherever `dur_s` fell (a 92 BPM glock hook note at -14 dB, a
+    # 132 BPM pickup note at -5 dB, the bell at -5 dB): a click at every note end. Now a cos^2 release over the last
+    # 30 % of the note (10-250 ms), so every note ends at zero.
+    r = int(min(0.25 * SR, max(0.01 * SR, 0.3 * n))); y[-r:] *= np.cos(np.linspace(0, np.pi / 2, r)) ** 2
     return y / (np.abs(y).max() + 1e-12)
 
 
@@ -89,19 +93,22 @@ def render(notes, bpm, colour, octave=0, note_beats=1.0):
     return out
 
 
-def chord(notes, dur_s, colour='chime', spread_ms=0.0):
-    """Notes sounded together (optionally rolled by spread_ms per voice), normalised to peak 1."""
-    n = int(dur_s * SR); out = np.zeros(n)
-    for i, m in enumerate(notes):
+def chord(notes, dur_s, colour='chime', spread_ms=0.0, weights=None):
+    """Notes sounded together (optionally rolled by spread_ms per voice; per-voice `weights`), normalised to peak 1."""
+    n = int(dur_s * SR); out = np.zeros(n); weights = weights or [1.0] * len(notes)
+    for i, (m, wt) in enumerate(zip(notes, weights)):
         s = int(i * spread_ms * SR / 1000); tn = tone(hz(m), dur_s, colour)
-        out[s:] += tn[: n - s] / np.sqrt(len(notes))
+        out[s:] += wt * tn[: n - s] / np.sqrt(len(notes))
     return out / (np.abs(out).max() + 1e-12)
 
 
 def stereo(m, width=0.08):
-    """slight width: a 0.4 ms inter-channel offset"""
-    d = int(0.0004 * SR); l = np.concatenate([m, np.zeros(d)]); r = np.concatenate([np.zeros(d), m])
-    return np.stack([l * (1 + width), r * (1 - width)], axis=1) * 0.5
+    """Slight width by LEVEL only: the identical signal in both channels, L x (1 + width), R x (1 - width) (~0.7 dB apart).
+    r2 (2026-09-25): this was a 0.4 ms (17-sample) inter-channel delay. Summed to mono (a phone speaker) that is a comb
+    filter with notches at 1250 / 3750 / 6250 Hz (A5 -6.3, C6 -10.5, D6 -16.6 dB): the alarm ladder stopped rising in
+    mono, the multipliers flattened, and every bed's hook bars lost ~1 dB more than the rest (the glock's E6 sat in the
+    notch). Level-only width is perfectly mono-compatible (corr 1, no mono loss)."""
+    return np.stack([m * (1 + width), m * (1 - width)], axis=1) * 0.5
 
 
 def rms_db(x): return 20 * np.log10(np.sqrt((x ** 2).mean()) + 1e-12)

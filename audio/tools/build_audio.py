@@ -133,6 +133,13 @@ def hp(v, hz_):
     return sosfilt(butter(4, hz_, 'highpass', fs=SR, output='sos'), v, axis=0)
 
 
+def dc_block(x, hz_=20.0):
+    """r2 (2026-09-25): zero-phase 20 Hz high-pass on every raw draw. Draws carry DC offsets up to 0.017 (blaze_mult_src);
+    Opus's encoder rejects DC itself, so a faded-to-zero master decoded with a slow step tail (line_win_small.ogg ended
+    on a constant 0.004 = -48 dBFS). Applied to the whole draw before any cut, so loop seams stay continuous."""
+    return sosfiltfilt(butter(2, hz_, 'highpass', fs=SR, output='sos'), x, axis=0)
+
+
 def pad_to(y, n):
     return y if len(y) >= n else np.concatenate([y, np.zeros((n - len(y), 2))])
 
@@ -200,9 +207,27 @@ def add_hook(x, bpm, colour, octave, places, rel):
     return x
 
 
+def tail_fill(y, s, L, X, bars, tf, loop):
+    """r2 (2026-09-25): a loop whose last beats sit in a composed rest dips at EVERY loop point (rung_bed_big's final beat
+    -18 dB under the bed median, rung_bed_mega's -5 dB: +25 / +20.6 dB head-tail at 250 ms, repeating every 19.2 s under
+    the whole count-up). Fill the loop's last `beats` beats with the SAME beats of phrase bar `fromBar` (1-based; the
+    same position in the 4-bar phrase) from the time-scaled draw `y`: a 30 ms equal-power splice just before the fill's
+    first beat, and the head blend re-made from the FILL's own continuation (y after the end of `fromBar`), so the wrap
+    stays sample-continuous by construction. The grid is untouched (same length, sample-exact)."""
+    BAR = L / bars; beat = BAR / 4; nb = float(tf.get('beats', 2)); fb = float(tf['fromBar'])
+    a = int(round(L - nb * beat)); se = int(round(fb * BAR)); sa = se - (L - a); F = int(0.03 * SR)
+    new = loop.copy(); w_out, w_in = lk.equal_power(F)
+    new[a - F:a] = loop[a - F:a] * w_out + y[s + sa - F:s + sa] * w_in
+    new[a:] = y[s + sa:s + se]
+    wo, wi = lk.equal_power(X)
+    new[:X] = y[s:s + X] * wi + y[s + se:s + se + X] * wo
+    return new, {'beats': nb, 'fromBar': fb, 'fillStartBeat': round(a / beat, 2), 'why': tf.get('why')}
+
+
 def bed(cid, cfg):
     src, bpm, bars, target_I = cfg['src'], cfg['bpm'], cfg['bars'], cfg['I']
-    x = K.load(f'{K.PCM}/{src}.wav')
+    x = dc_block(K.load(f'{K.PCM}/{src}.wav'))
+    x, sinfo = K.narrow(x)  # r2: mono-compatibility guard (no music draw needs it today: corr >= 0.36)
     semis = cfg.get('semis') or 0.0
     if semis:  # measured wrong centre (e.g. the Inferno draw came back in C minor: -3 st puts it on A = the plan's A-minor pentatonic)
         x = pitch_bed(x, semis)
@@ -235,6 +260,9 @@ def bed(cid, cfg):
         if ds: how = f'head; start nudged {ds / SR * 1000:+.2f} ms to the smallest seam step'
         loop = lk.cut(y, s, L, X, 'head')
     assert len(loop) == L, (len(loop), L)
+    tf_info = None
+    if cfg.get('tailFill') and how.startswith('head'):
+        loop, tf_info = tail_fill(y, s, L, X, bars, cfg['tailFill'], loop)
     loop, ride_g, lv = section_ride(loop, bpm, bars)
     loop, lift_g = bar_lift(loop, bpm, bars)
     hk = cfg.get('hook')
@@ -261,7 +289,7 @@ def bed(cid, cfg):
                 samples=len(out), padSamples=K.PAD, barSamples=round(len(out) / bars, 2), blend=how, wrap=round(float(wrap), 4), bodyP999=round(float(body), 4),
                 headTail_dB={w: v[2] for w, v in ht.items()}, sectionRMS_raw=lv, sectionRide_dB=ride_g, limiterCeiling_dB=ceiling,
                 limitedFraction=round(limited, 4), shippedBpmEst=round(float(shipped_bpm), 2), cpentShare=round(M.cpent_share(out), 3),
-                chug=round(M.chug_ratio(out, bpm), 2), selfSim=M.selfsim(out, bpm, bars),
+                chug=round(M.chug_ratio(out, bpm), 2), selfSim=M.selfsim(out, bpm, bars), tailFill=tf_info, stereo=sinfo, levels=K.levels(out),
                 hook=({'colour': hk[0], 'octave': hk[1], 'bars': hk[2], 'relDb': hk[3], 'notes': 'G C E G | A G E C x2'} if hk else None))
     print(f"{cid}: {src} draw={meas:.3f} grid={bpm} bars={bars} {how} wrap={wrap:.4f}/{body:.4f} ride={ride_g} I={res['I_LUFS']} TP={res['TP_dBFS']} "
           f"shippedBpm~{shipped_bpm:.2f} chug={meta['chug']} selfSimMax={meta['selfSim'].get('maxPair')} lift={meta['barLift_dB']} ht={meta['headTail_dB']}")
@@ -286,13 +314,31 @@ def music(only=None):
 # ------------------------------------------------------------------------------------------ SFX
 SNAP = {  # tonal ladder roots / sources: snap the measured partial to the TONIC (or the named pitch class)
     'reel_stop_1': dict(target_pc=0, t_from=0.0, lo=100, hi=700, min_prom=8.0),
-    'rescue_tada_src_lo': dict(target_pc=0, t_from=0.15, lo=90, hi=1400, min_prom=6.0),
-    'rescue_tada_src_mid': dict(target_pc=7, t_from=0.15, lo=120, hi=1600, min_prom=6.0),
-    'rescue_tada_src_hi': dict(target_pc=0, t_from=0.15, lo=200, hi=2400, min_prom=6.0),
+    # r2 (2026-09-25): the ta-da sources are labelled and snapped by their FUNDAMENTAL (subharmonic summation, kit.shs_f0),
+    # never by their loudest partial: r1 recorded lo as C5 and hi as C6 (their 2nd / 4th harmonics; both are C4 harmonic
+    # series) and the ladder dropped a minor sixth at rung 3 -> 4 (perceived C4 D4 E4 G3 A3 C4 D4 E4).
+    'rescue_tada_src_lo': dict(target_pc=0, t_from=0.1, method='shs'),
+    'rescue_tada_src_mid': dict(target_pc=7, t_from=0.1, method='shs'),
+    'rescue_tada_src_hi': dict(target_pc=0, t_from=0.1, method='shs'),
 }
 
 
+def pitch_fix_shs(cid, y, spec):
+    """Snap a pitched source by its SHS fundamental (the perceived pitch) to the target pitch class; verify with SHS again."""
+    f0, mm = K.shs_f0(y, t_from=spec.get('t_from', 0.1))
+    st = snap_semis(f0, spec.get('target_pc'))
+    info = {'method': 'subharmonic summation (kit.shs_f0)', 'measuredF0Hz': round(f0, 1), 'measuredNote': K.note_name(mm)}
+    if abs(st) > 7: info['op'] = f'correction {st:+.2f} st too large; left as drawn'; report['warnings'].append(f'{cid}: {info["op"]}'); return y, info
+    if abs(st) >= 0.12: y = pitch_bed(y, st)
+    f1, m1 = K.shs_f0(y, t_from=spec.get('t_from', 0.1)); want = mm + st
+    info.update(op='pitch-snapped (fundamental)', semis=round(float(st), 2), postF0Hz=round(f1, 1), midi=round(float(want), 2),
+                postErrCents=round(float(100 * (m1 - want)), 1), targetNote=K.note_name(want), shift='rubberband, formants preserved')
+    if abs(m1 - want) > 0.5: report['warnings'].append(f'{cid}: post-snap SHS {K.note_name(m1)} != {K.note_name(want)}')
+    return y, info
+
+
 def pitch_fix(cid, y, spec):
+    if spec.get('method') == 'shs': return pitch_fix_shs(cid, y, spec)
     hz, prom = ping(y, spec.get('t_from', 0.0), spec.get('lo', 200), spec.get('hi', 3000))
     info = {'measuredHz': round(hz, 1) if hz else None, 'prominence': round(prom, 1)}
     if not hz or prom < spec.get('min_prom', 10.0):
@@ -312,31 +358,67 @@ def pitch_fix(cid, y, spec):
     return y, info
 
 
-def tuned(note, dur, colours=(('glock', 0.6), ('chime', 0.55)), blip=False):
+# r2 (2026-09-25): tuned layers are rendered long (>= 1.5 s) with a natural exponential decay (`damp_s` on top of each
+# colour's own partial decays) and the cue then RINGS OUT (kit.ring_out: cut once the whole sum is below -50 dB re peak,
+# cap 1.6 s, cos^2 fade >= 60 ms). r1 rendered a fixed 0.5 / 0.7 / 0.9 s layer with no release, so blaze_ignite ended on a
+# hard cut (ping at -25 dB), blaze_mult_2/3/5 went into a 20 ms fade at -18 dB and the alarm chords into 40 ms at -20 dB.
+LAYER_S = 1.6
+
+
+def tuned(note, dur, colours=(('glock', 0.6), ('chime', 0.55)), blip=False, damp_s=None):
     """the tuned layer of a hybrid cue: glockenspiel + chime at an exact note (C major pentatonic)."""
     f = HL.hz(note); y = sum(g * HL.tone(f, dur, c) for c, g in colours)
-    if blip: y *= np.exp(-np.arange(len(y)) / SR / 0.05)
+    t = np.arange(len(y)) / SR
+    if blip: y *= np.exp(-t / 0.05)
+    if damp_s: y *= np.exp(-t / damp_s)
     return HL.stereo(y / (np.abs(y).max() + 1e-12))
 
 
-def hybrid_ping(drawn, note, rel_db=0.0, dur=0.6, colours=(('glock', 0.6), ('chime', 0.55))):
+def hybrid_ping(drawn, note, rel_db=0.0, dur=LAYER_S, colours=(('glock', 0.6), ('chime', 0.55)), damp_s=0.45):
     """drawn character (kept as drawn) + a tuned ping at `note` placed on the drawn onset peak."""
     on = max(0, onset_peak(drawn) - int(0.01 * SR))
-    t = tuned(note, dur, colours)
+    t = tuned(note, dur, colours, damp_s=damp_s)
     lvl = HL.rms_db(drawn[on:on + int(0.12 * SR)]) if len(drawn) - on > 100 else HL.rms_db(drawn)
     t = t * 10 ** ((lvl + rel_db - HL.rms_db(t[: int(0.12 * SR)])) / 20)
     out = pad_to(drawn.copy(), on + len(t)); out[on:on + len(t)] += t
     return out, on
 
 
-def hybrid_chord(strike, notes, dur=0.9, strike_db=-4.0, top_glock=True):
-    """a short drawn strike (the bell's clapper transient) + a synthesised chime chord (+ the top note on glockenspiel)."""
-    c = HL.chord(notes, dur, 'chime', spread_ms=6.0)
+def hybrid_chord(strike, notes, dur=LAYER_S, strike_db=-4.0, top_glock=True, top_w=1.6, damp_s=0.6):
+    """a short drawn strike (the bell's clapper transient) + a synthesised chime chord (+ the top note on glockenspiel).
+    r2: the TOP voice is weighted `top_w` (+4 dB over each inner voice) so the ladder's top line (alarm A4 D5 F5 A5 B5)
+    is the loudest partial of every rung: r1's alarm 3 carried the same G4 B4 D5 triad as alarm 2 with its added F5
+    11 dB under the loudest partial, so the 2 -> 3 step barely read as a rise."""
+    w = [1.0] * (len(notes) - 1) + [top_w]; order = np.argsort(notes); ws = [0.0] * len(notes)
+    for rank, i in enumerate(order): ws[i] = w[rank]
+    c = HL.chord(notes, dur, 'chime', spread_ms=6.0, weights=ws)
     if top_glock: c = 0.8 * c + 0.35 * HL.tone(HL.hz(max(notes)), dur, 'glock')
+    if damp_s: c = c * np.exp(-np.arange(len(c)) / SR / damp_s)
     c = HL.stereo(c / (np.abs(c).max() + 1e-12))
     s = strike / (np.abs(strike).max() + 1e-12) * 10 ** (strike_db / 20)
     out = pad_to(c.copy(), len(s)); out[:len(s)] += s
     return out
+
+
+# r2 (2026-09-25): reel-stop voicing. r1 put the tuned wood knock at C4-A4 (262-440 Hz), below a phone speaker's band:
+# through a 400 Hz high-pass the loudest 400 ms fell 12.4 / 10.7 / 9.3 / 7.4 / 6.3 dB, so stops 1-2 sat UNDER the
+# reel_spin_loop still running and the level rose 6 dB across the ladder. Now the knock is voiced an octave up
+# (C5 D5 E5 G5 A5, rendered per stop at its exact note, never resampled) over the drawn thunk (the low body, pitched
+# with the ladder as before), and its level is solved per stop so the phone proxy sits within PHONE_GAP_DB of the
+# stereo level: every stop reads the same on a phone and on headphones.
+REEL_KNOCK_ROOT = 72            # C5
+PHONE_GAP_DB = 1.5
+
+
+def reel_stop_voice(thunk, note, cap_s=0.6):
+    """drawn thunk (low body) + tuned wood knock at `note`; knock level solved on the 400 Hz phone proxy."""
+    for rel in np.arange(0.0, 14.01, 0.5):
+        y, on = hybrid_ping(thunk, note, rel_db=float(rel), dur=cap_s, colours=(('wood', 1.0),), damp_s=None)
+        lv = K.levels(y)
+        if lv['st'] - lv['phone'] <= PHONE_GAP_DB: break
+    y, ro = K.ring_out(y, cap_s=cap_s, fade_ms=60.0, knee_s=0.15)
+    lv = K.levels(y)
+    return y, {'knock': HL.name(note), 'knockRel_dB': float(rel), 'onset_ms': round(on / SR * 1000), 'levels': lv, 'ringOut': ro}
 
 
 def keyfit(cid, y):
@@ -363,7 +445,10 @@ def keyfit(cid, y):
 
 def master_draw(name):
     """One raw draw -> a shipped cue (cue id == draw name) or a mastered ladder SOURCE (audio/masters/_src)."""
-    j = JOBS[name]; x = K.load(f'{K.PCM}/{name}.wav')
+    j = JOBS[name]; x = dc_block(K.load(f'{K.PCM}/{name}.wav'))
+    x, sinfo = K.narrow(x)  # r2: a (partly) anti-phase draw is made mono-compatible before anything else (kit.narrow)
+    if sinfo: report['warnings'].append(f'{name}: {sinfo["op"]} (drawn corr {sinfo["corrDrawn"]} -> {sinfo["corr"]})')
+    tinfo = {}
     if name in LOOP_CUES:
         L, xf = LOOP_CUES[name]
         x, kinfo = keyfit(name, x)
@@ -371,39 +456,52 @@ def master_draw(name):
         y = K.norm_rms(y, pre_rms(name), peak_db=-8.0 if name != 'ambient_station_loop' else -14.0)
         wrap, body = lk.wrap_step(y)
         res = ship(y, name); res['wrap'] = round(float(wrap), 4); res['bodyP999'] = round(float(body), 4)
-        set_cue(name, y, {'source': f'{name}.wav', 'loopCut_s': L, 'xfade_ms': xf, 'wrap': res['wrap'], 'bodyP999': res['bodyP999'], 'key': kinfo}, loop=True)
+        set_cue(name, y, {'source': f'{name}.wav', 'loopCut_s': L, 'xfade_ms': xf, 'wrap': res['wrap'], 'bodyP999': res['bodyP999'], 'key': kinfo, 'stereo': sinfo}, loop=True)
         return {**res, 'key': kinfo}
     if name in TRANSITION:
         cap, rms = TRANSITION[name]
-        y = K.trim(x, max_s=cap); y, kinfo = keyfit(name, y); y = K.norm_rms(y, rms)
-        res = ship(y, name); set_cue(name, y, {'source': f'{name}.wav', 'trimCap_s': cap, 'key': kinfo}, loop=False)
+        y = K.trim(x, max_s=cap, info=tinfo); y, kinfo = keyfit(name, y); y = K.norm_rms(y, rms)
+        res = ship(y, name); set_cue(name, y, {'source': f'{name}.wav', 'trimCap_s': cap, 'key': kinfo, 'stereo': sinfo, 'tail': tinfo or None}, loop=False)
         return {**res, 'key': kinfo}
     cap = max(0.25, j['s'] + 0.05)  # a new title has no donor lengths: cap = the drawn length
     extra = {'source': f'{name}.wav', 'trimCap_s': round(cap, 2)}
+    if sinfo: extra['stereo'] = sinfo
     if name == 'count_ticker_src':
         y = K.trim(x, max_s=0.25); p = K.save_src(y, name); return {'source': os.path.relpath(p, ROOT)}
     if name in ('alarm_land_src', 'blaze_mult_src'):
         y = K.trim(x, max_s=cap); p = K.save_src(y, name); return {'source': os.path.relpath(p, ROOT), 'len_s': round(len(y) / SR, 3)}
-    y = K.trim(x, max_s=cap)
+    y = K.trim(x, max_s=cap, info=tinfo)
+    if tinfo: extra['tail'] = tinfo
     if name in SNAP:
         y, info = pitch_fix(name, y, SNAP[name]); extra['pitch'] = info
         if name == 'reel_stop_1':
             # measured 2026-09-25: the drawn wooden thunk holds 99-100 % of its energy under 200 Hz (partials 65 / 91 / 139 /
             # 200 Hz, inharmonic), i.e. it is close to silent on a phone speaker and has no clear pitch for a C D E G A
-            # ladder. Hybrid: the thunk (sub-sonic rumble high-passed at 45 Hz) + a tuned marimba/woodblock knock at C4 on
-            # its onset, -2 dB; the derived ladder transposes both, so stops 1-5 read C4 D4 E4 G4 A4 on any speaker.
-            y = hp(y, 45.0); y, on = hybrid_ping(y, 60, rel_db=-2.0, dur=0.35, colours=(('wood', 1.0),))
-            extra['tonal'] = {'op': f'hybrid: drawn thunk (HP 45 Hz) + tuned wood knock C4 at {on / SR * 1000:.0f} ms (-2 dB)', 'note': 'C4'}
+            # ladder. Hybrid: the thunk (sub-sonic rumble high-passed at 45 Hz) = the low body, + a tuned marimba/woodblock
+            # knock at C5 on its onset (r2: an octave up from r1's C4, level solved on the 400 Hz phone proxy,
+            # reel_stop_voice); the derived ladder pitches the thunk and renders a fresh knock per stop (C5 D5 E5 G5 A5).
+            y = hp(y, 45.0); K.save_src(y, 'reel_stop_thunk')
+            y, vinfo = reel_stop_voice(y, REEL_KNOCK_ROOT)
+            extra['tonal'] = {'op': f'hybrid: drawn thunk (HP 45 Hz) + tuned wood knock C5 at {vinfo["onset_ms"]} ms ({vinfo["knockRel_dB"]:+.1f} dB, phone-proxy solved)',
+                              'note': 'C5', **vinfo}
+            y = K.norm_rms(y, pre_rms(name), peak_db=-3.0); res = ship(y, name); set_cue(name, y, extra)
+            return {**res, 'tonal': extra['tonal']}
         if name in SOURCES:
+            if SNAP[name].get('method') == 'shs' and info.get('midi') is not None:  # a ladder rung is ONE note (kit.harmonic_only)
+                f0 = 440.0 * 2 ** ((info['midi'] - 69) / 12); e0 = float((y ** 2).sum()); y = K.harmonic_only(y, f0)
+                info['harmonicOnly'] = {'f0Hz': round(f0, 2), 'floor_dB': -18.0, 'energyKept_dB': round(10 * np.log10(float((y ** 2).sum()) / (e0 + 1e-12)), 2),
+                                        'cpentShare': round(M.cpent_share(y), 3)}
             p = K.save_src(y, name); json.dump(info, open(p[:-4] + '.json', 'w')); return {'source': os.path.relpath(p, ROOT), 'pitch': info}
     elif name == 'blaze_ignite':
         K.save_src(y, 'blaze_ignite_drawn')
-        y, on = hybrid_ping(y, 72, rel_db=-3.0, dur=0.5); extra['tonal'] = {'op': f'hybrid: drawn fwoomp + tuned glock/chime ping C5 at {on / SR * 1000:.0f} ms (-3 dB)', 'note': 'C5'}
+        y, on = hybrid_ping(y, 72, rel_db=-3.0); y, ro = K.ring_out(y)
+        extra['tonal'] = {'op': f'hybrid: drawn fwoomp + tuned glock/chime ping C5 at {on / SR * 1000:.0f} ms (-3 dB), rings out', 'note': 'C5', 'ringOut': ro}
     elif name == 'blaze_mult_10':
         strike = y[: min(len(y), int(0.12 * SR))].copy(); n = int(0.04 * SR); strike[-n:] *= np.linspace(1, 0, n)[:, None]
-        body = hybrid_chord(hp(strike, 400.0), [84, 88, 91], dur=1.0, strike_db=-2.0)
+        body = hybrid_chord(hp(strike, 400.0), [84, 88, 91], strike_db=-2.0)
         out = pad_to(y * 10 ** (-3 / 20), len(body)); out[:len(body)] += body * (np.abs(y).max() + 1e-9)
-        y = out; extra['tonal'] = {'op': 'hybrid: drawn slam/flare (-3 dB) + chime chord C6 E6 G6 + glock G6', 'chord': 'C6 E6 G6'}
+        y, ro = K.ring_out(out)
+        extra['tonal'] = {'op': 'hybrid: drawn slam/flare (-3 dB) + chime chord C6 E6 G6 (top voice +4 dB) + glock G6, rings out', 'chord': 'C6 E6 G6', 'ringOut': ro}
     elif name not in NO_KEYFIT:
         y, info = keyfit(name, y); extra['key'] = info
     y = K.norm_rms(y, pre_rms(name), peak_db=-3.0)
@@ -440,20 +538,28 @@ def derived(only=None):
         return lk.decode(p) if os.path.exists(p) else None
 
     def put(cid, y, extra, fade_ms=10):
-        fo = min(int(fade_ms * SR / 1000), max(1, int(0.2 * len(y)))); y = y.copy(); y[-fo:] *= np.linspace(1, 0, fo)[:, None]; y = y - y.mean(axis=0)
+        fo = min(int(fade_ms * SR / 1000), max(1, int(0.2 * len(y)))); y = y - y.mean(axis=0); y[-fo:] *= np.linspace(1, 0, fo)[:, None]  # DC first, so the fade ends on 0
         res = ship(y, cid); set_cue(cid, y, extra); out[cid] = res
 
-    # reel stops: C D E G A from the tonic-snapped root (length preserved)
-    x = mast('reel_stop_1')
-    if x is not None:
+    # reel stops: C D E G A. r2: the drawn thunk (tonic-snapped, HP 45 Hz; masters/_src/reel_stop_thunk) is pitched with the
+    # ladder (length kept) as the low body, and each stop gets its OWN tuned wood knock one octave up (C5 D5 E5 G5 A5),
+    # level-solved on the 400 Hz phone proxy (reel_stop_voice), so the stops sit together on a phone speaker.
+    th = src('reel_stop_thunk')
+    if th is not None:
         for i, st in zip(range(2, 6), PENT5[1:]):
-            if want(f'reel_stop_{i}'): put(f'reel_stop_{i}', K.pitch(x, st, True), {'from': 'reel_stop_1', 'semis': st, 'op': 'tonic ladder (C D E G A)'})
+            cid = f'reel_stop_{i}'
+            if not want(cid): continue
+            y, vinfo = reel_stop_voice(K.pitch(th, st, True), REEL_KNOCK_ROOT + st)
+            y = K.norm_rms(y, pre_rms(cid), peak_db=-3.0)
+            put(cid, y, {'from': 'reel_stop_1', 'semis': st, 'op': f'tonic ladder: thunk +{st} st + wood knock {HL.name(REEL_KNOCK_ROOT + st)}', 'tonal': vinfo}, fade_ms=2)
         if want('reel_stop_turbo'):
-            parts = [x, K.pitch(x, 4, True), K.pitch(x, 9, True)]; n = max(len(p) for p in parts) + int(0.012 * SR); y = np.zeros((n, 2))
+            parts = [m for m in (mast('reel_stop_1'), mast('reel_stop_3'), mast('reel_stop_5')) if m is not None]
+            n = max(len(p) for p in parts) + int(0.012 * SR); y = np.zeros((n, 2))
             for k, p in enumerate(parts): y[int(k * 0.006 * SR):int(k * 0.006 * SR) + len(p)] += p / 1.6
-            put('reel_stop_turbo', K.norm_rms(y, -20.0), {'from': 'reel_stop_1', 'op': 'stack C+E+A, 6 ms roll (one merged stop for Turbo)'})
-    else: report['skipped'].append('reel_stop ladder: no reel_stop_1 master')
-    # alarm ladder: drawn strike + synthesised ii-V chords (NOT pentatonic by design, never key-fitted)
+            put('reel_stop_turbo', K.norm_rms(y, -20.0), {'from': 'reel_stop_1', 'op': 'stack of stops 1 + 3 + 5 (C5 + E5 + A5 knocks), 6 ms roll (one merged stop for Turbo)'}, fade_ms=2)
+    else: report['skipped'].append('reel_stop ladder: no masters/_src/reel_stop_thunk (run sfx --only reel_stop_1 first)')
+    # alarm ladder: drawn strike + synthesised ii-V chords (NOT pentatonic by design, never key-fitted). r2: the chord rings
+    # out (kit.ring_out) and its top voice leads (A4 D5 F5 A5 B5, hybrid_chord top_w).
     x = src('alarm_land_src')
     if x is not None:
         on = onset_peak(x); a = max(0, on - int(0.004 * SR)); strike = x[a:a + int(0.07 * SR)].copy()
@@ -462,10 +568,10 @@ def derived(only=None):
             cid = f'alarm_land_{n_}'
             if not want(cid): continue
             d = CUES[cid]['derive']; s = K.pitch(strike, d['strikeSemis'], True) if d['strikeSemis'] else strike
-            y = hybrid_chord(s, d['chord'], dur=0.9, strike_db=-3.0)
+            y = hybrid_chord(s, d['chord'], strike_db=-3.0); y, ro = K.ring_out(y)
             y = K.norm_rms(y, -20.0 + 0.5 * (n_ - 1), peak_db=-3.0)
-            put(cid, y, {'from': 'alarm_land_src', 'op': 'hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord', 'chord': [HL.name(m) for m in d['chord']],
-                         'strikeSemis': d['strikeSemis']}, fade_ms=40)
+            put(cid, y, {'from': 'alarm_land_src', 'op': 'hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord (top voice +4 dB), rings out', 'chord': [HL.name(m) for m in d['chord']],
+                         'topVoice': HL.name(max(d['chord'])), 'strikeSemis': d['strikeSemis'], 'ringOut': ro}, fade_ms=2)
     else: report['skipped'].append('alarm ladder: no alarm_land_src')
     # anticipation riser, stepped up
     x = mast('antic_riser')
@@ -477,8 +583,8 @@ def derived(only=None):
         for i, note in zip(range(2, 6), (74, 76, 79, 81)):
             cid = f'blaze_ignite_{i}'
             if not want(cid): continue
-            y, on = hybrid_ping(x, note, rel_db=-3.0, dur=0.5); y = K.norm_rms(y, -20.0, peak_db=-3.0)
-            put(cid, y, {'from': 'blaze_ignite', 'op': f'hybrid: drawn fwoomp + tuned ping {HL.name(note)}', 'note': HL.name(note)}, fade_ms=20)
+            y, on = hybrid_ping(x, note, rel_db=-3.0); y, ro = K.ring_out(y); y = K.norm_rms(y, -20.0, peak_db=-3.0)
+            put(cid, y, {'from': 'blaze_ignite', 'op': f'hybrid: drawn fwoomp + tuned ping {HL.name(note)}, rings out', 'note': HL.name(note), 'ringOut': ro}, fade_ms=2)
     # multiplier badges x2 / x3 / x5 (x10 is its own draw)
     x = src('blaze_mult_src')
     if x is not None:
@@ -486,8 +592,8 @@ def derived(only=None):
             cid = f'blaze_mult_{m}'
             if not want(cid): continue
             note = CUES[cid]['derive']['note']
-            y, on = hybrid_ping(x, note, rel_db=0.0, dur=0.7); y = K.norm_rms(y, lvl, peak_db=-3.0)
-            put(cid, y, {'from': 'blaze_mult_src', 'op': f'hybrid: drawn clank/flare + tuned ping {HL.name(note)}', 'note': HL.name(note)}, fade_ms=20)
+            y, on = hybrid_ping(x, note, rel_db=0.0); y, ro = K.ring_out(y); y = K.norm_rms(y, lvl, peak_db=-3.0)
+            put(cid, y, {'from': 'blaze_mult_src', 'op': f'hybrid: drawn clank/flare + tuned ping {HL.name(note)}, rings out', 'note': HL.name(note), 'ringOut': ro}, fade_ms=2)
     # count-up ticker: hybrid C5 blip, then a 12-step resampled ladder (shorter as it rises)
     x = src('count_ticker_src')
     if x is not None:
@@ -501,28 +607,39 @@ def derived(only=None):
         for i in range(2, 13):
             if base is not None and want(f'count_ticker_{i}'):
                 put(f'count_ticker_{i}', K.pitch(base, CLAD[i - 1], False), {'from': 'count_ticker_1', 'semis': CLAD[i - 1], 'op': 'pentatonic ladder (resampled)'}, fade_ms=6)
-    # rescue ta-da ladder C D E G A C' D' E' from three snapped brass sources (smallest shift wins)
+    # rescue ta-da ladder C4 D4 E4 G4 A4 C5 D5 E5 (perceived pitch = the FUNDAMENTAL). r2: every source is labelled by its
+    # SHS fundamental (lo C4, mid G4, hi C4 -- r1 read lo / hi as C5 / C6 from their loudest partials, and its smallest-
+    # shift planner built rungs 4-8 from hi, so the ladder fell a minor sixth at 3 -> 4 and rungs 6-8 repeated 1-3). The
+    # planner now takes the smallest UPWARD shift (ties: the source listed first), which gives exactly the registry's
+    # derivation: rungs 1-3 from lo (0 / +2 / +4), 4-5 from mid (0 / +2), 6-8 from mid (+5 / +7 / +9); every shift is
+    # the rubberband formant-preserving transposition used for Inferno (pitch_bed), not asetrate. hi (a C4 series, same
+    # register as lo) is not used. measure.py gates the shipped ladder: SHS fundamental strictly rising.
     srcs = {}
     for k in ('lo', 'mid', 'hi'):
         p = f'{K.SRC_MAST}/rescue_tada_src_{k}.json'; y = src(f'rescue_tada_src_{k}')
         if y is not None and os.path.exists(p):
             info = json.load(open(p))
-            if info.get('midi') is not None: srcs[k] = (y, float(info['midi']))
+            if info.get('midi') is not None and info.get('method', '').startswith('subharmonic'): srcs[k] = (y, float(info['midi']))
+            else: report['warnings'].append(f'rescue_tada_src_{k}: label is not an SHS fundamental; re-run sfx --only rescue_tada_src_{k}')
     if srcs:
         steps = [0, 2, 4, 7, 9, 12, 14, 16]
-        def cost(r):  # the tonic whose 8 rungs need the smallest worst-case shift from the nearest source
-            sh = [min(abs(r + st - v[1]) for v in srcs.values()) for st in steps]; return (max(sh), sum(sh))
-        root = min(range(36, 85, 12), key=cost)
+        lowest = min(v[1] for v in srcs.values()); root = int(round(lowest / 12.0) * 12)  # the tonic nearest the lowest source
+        plan = []
         for i, st in enumerate(steps, 1):
+            target = root + st
+            up = [(target - srcs[k][1], n) for n, k in enumerate(srcs) if target - srcs[k][1] > -0.5]
+            k = list(srcs)[min(up)[1]] if up else min(srcs, key=lambda kk: abs(target - srcs[kk][1]))
+            plan.append((i, target, k, target - srcs[k][1]))
+        expect = [('lo', 0), ('lo', 2), ('lo', 4), ('mid', 0), ('mid', 2), ('mid', 5), ('mid', 7), ('mid', 9)]
+        if [(k, round(s)) for _, _, k, s in plan] != expect: report['warnings'].append(f'ta-da plan {[(k, round(s, 2)) for _, _, k, s in plan]} != registry {expect}')
+        for i, target, k, shift in plan:
             cid = f'rescue_tada_{i}'
             if not want(cid): continue
-            target = root + st
-            k = min(srcs, key=lambda kk: (abs(target - srcs[kk][1]), -srcs[kk][1]))
-            shift = target - srcs[k][1]
-            if abs(shift) > 5: report['warnings'].append(f'{cid}: shifted {shift:+.2f} st from {k} (sources did not spread across registers)')
-            y = K.pitch(srcs[k][0], shift, True) if abs(shift) >= 0.05 else srcs[k][0].copy()
+            y = pitch_bed(srcs[k][0], shift) if abs(shift) >= 0.05 else srcs[k][0].copy()
             y = K.norm_rms(y, -20.0 + 0.4 * (i - 1), peak_db=-3.0)
-            put(cid, y, {'from': f'rescue_tada_src_{k}', 'semis': round(float(shift), 2), 'targetNote': HL.name(target), 'op': 'snap ladder (held note)'}, fade_ms=25)
+            f0, m0 = K.shs_f0(y, t_from=0.1)
+            put(cid, y, {'from': f'rescue_tada_src_{k}', 'semis': round(float(shift), 2), 'targetNote': HL.name(target), 'shs': K.note_name(m0), 'shsMidi': round(m0, 2),
+                         'op': 'snap ladder (held note; rubberband, formants preserved)'}, fade_ms=25)
     else: report['skipped'].append('rescue ta-da ladder: no snapped sources')
     return out
 
@@ -538,28 +655,53 @@ def shots(min_share=0.6, only=None):
     in C pentatonic. IDEMPOTENT: always mixes into the pre-pickup master (saved on first run)."""
     out = {}; os.makedirs(PREPICK, exist_ok=True)
     pick = HL.stereo(HL.render(HL.FIRST_BAR, 132, 'glock', 1, note_beats=0.5))
+    # r2 (2026-09-25): the pickup is used WHOLE, never sliced. r1 cut it to the cue length (h = pick[:len(x) - s]) with no
+    # fade, so on spins_added (1.0 s) its last note (G6) was cut mid-ring. The rendered bar is trimmed to its own content
+    # (every note now ends in a release, hook_layer.tone), and a cue must hold the whole pickup + PICK_TAIL_S; a cue of
+    # >= PICK_EXTEND_MIN_S that is a little short is extended with silence so the pickup rings out; a shorter cue is refused.
+    e = K.env_db(pick); pick = pick[:int(np.nonzero(e > -70)[0][-1]) + 1]
+    PICK_TAIL_S, PICK_EXTEND_MIN_S = 0.3, 1.2
     for cid in SHOTS:
         if only and cid not in only: continue
         mp = f'{K.MAST}/{cid}.wav'; pp = f'{PREPICK}/{cid}.wav'
         if not os.path.exists(mp): report['skipped'].append(f'shot {cid}: no master'); continue
         if not os.path.exists(pp): shutil.copy(mp, pp)
         x = lk.decode(pp); share = M.cpent_share(x)
-        s = int(0.02 * SR); h = pick[: max(0, len(x) - s)]
+        s = int(0.02 * SR); need = s + len(pick) + int(PICK_TAIL_S * SR)
         rec = CUES[cid].setdefault('build', {})
-        if len(h) < int(0.6 * SR) or share < min_share:
-            out[cid] = {'pickup': False, 'cpentShare': round(share, 3), 'why': 'too short' if len(h) < int(0.6 * SR) else f'C-pentatonic share {share:.2f} < {min_share}'}
+        short = len(x) < need and len(x) < int(PICK_EXTEND_MIN_S * SR)
+        if short or share < min_share:
+            out[cid] = {'pickup': False, 'cpentShare': round(share, 3),
+                        'why': (f'too short for the whole pickup to ring out ({len(x) / SR:.2f} s < {PICK_EXTEND_MIN_S} s; needs {need / SR:.2f} s)' if short
+                                else f'C-pentatonic share {share:.2f} < {min_share}')}
             ship(x, cid)  # no pickup: the pre-pickup master IS the master (undoes a pickup from an earlier run)
-            rec['hook'] = out[cid]; TOUCHED.add(cid); print('no pickup', cid, out[cid]); continue
-        h = h * 10 ** ((HL.rms_db(x[: len(h)]) - 5.0 - HL.rms_db(h)) / 20)
+            set_cue(cid, x, {**{k: v for k, v in rec.items() if k not in ('pass', 'at', 'hook', 'remaster')}, 'hook': out[cid]}); print('no pickup', cid, out[cid]); continue
+        ext = max(0, need - len(x)); x = pad_to(x, len(x) + ext)
+        h = pick * 10 ** ((HL.rms_db(x[s:s + len(pick)]) - 5.0 - HL.rms_db(pick)) / 20)
         y = x.copy(); y[s:s + len(h)] += h
         y = K.norm_rms(y, HL.rms_db(y), peak_db=-1.5); y, _ = K.limit(y, ceiling_db=-1.5)
         res = ship(y, cid)
-        rec['hook'] = {'pickup': True, 'firstBar': 'G5 C6 E6 G6 glockenspiel, 132 BPM eighths, -5 dB', 'cpentShare': round(share, 3)}
-        TOUCHED.add(cid); out[cid] = {**res, 'cpentShare': round(share, 3)}; print('pickup', cid, out[cid])
+        hook = {'pickup': True, 'firstBar': 'G5 C6 E6 G6 glockenspiel, 132 BPM eighths, -5 dB, whole (rings out)', 'cpentShare': round(share, 3),
+                'pickup_s': round(len(pick) / SR, 3), 'extended_ms': round(ext / SR * 1000, 1) if ext else None}
+        set_cue(cid, y, {**{k: v for k, v in rec.items() if k not in ('pass', 'at', 'hook', 'remaster')}, 'hook': hook})
+        out[cid] = {**res, 'cpentShare': round(share, 3)}; print('pickup', cid, out[cid])
     return out
 
 
 # ------------------------------------------------------------------------------------------ turbo variants
+# r2 (2026-09-25): turbo length cap. r1 applied a fixed timeScale (0.5-0.55) with no cap: 33 of 94 variants ran over 0.7 s
+# (win_max_turbo 1.55 s, trigger_fanfare_turbo 1.30 s ...), i.e. the turbo cue outlived the turbo cadence. Now: a variant
+# longer than TURBO_MAX_S is re-scaled to fit (0.69 / parent length) when that factor is >= TURBO_MIN_SCALE, otherwise the
+# time-scaled cue keeps its head up to TURBO_HEAD_S and gets a TURBO_REL_MS exponential release. HELD cues are exempt
+# (recorded on the cue as turboCapExempt): the runtime stops them itself (stopHeld on resolve), so their file length is an
+# upper bound, not a played length; cutting them would leave the anticipation silent before the reel resolves.
+TURBO_MAX_S, TURBO_HEAD_S, TURBO_REL_MS, TURBO_MIN_SCALE = 0.70, 0.58, 120.0, 0.4
+TURBO_CAP_EXEMPT = {
+    'antic_riser_turbo': 'held riser (playHeld; stopHeld when the anticipating reel resolves): the runtime ends it, so its length never extends the turbo cadence',
+    'antic_riser_2_turbo': 'held riser (playHeld; stopHeld when the anticipating reel resolves): the runtime ends it, so its length never extends the turbo cadence',
+}
+
+
 def turbo(only=None):
     out = {}
     for cid, c in CUES.items():
@@ -567,9 +709,20 @@ def turbo(only=None):
         if d.get('op') != 'turbo' or (only and cid not in only): continue
         p = f"{K.MAST}/{d['from']}.wav"
         if not os.path.exists(p): report['skipped'].append(f'{cid}: parent {d["from"]} not built'); continue
-        x = lk.decode(p); y = K.time_scale(x, d['timeScale'])
-        n = min(len(y), int(0.02 * SR)); y[-n:] *= np.linspace(1, 0, n)[:, None]
-        res = ship(y, cid); set_cue(cid, y, {'from': d['from'], 'timeScale': d['timeScale'], 'op': 'turbo variant (atempo, pitch kept)'}); out[cid] = res
+        x = lk.decode(p); f = d['timeScale']; y = K.time_scale(x, f); how = f'atempo x{f}'
+        cap = None
+        if len(y) > TURBO_MAX_S * SR and cid not in TURBO_CAP_EXEMPT:
+            f2 = (TURBO_MAX_S - 0.01) * SR / len(x)
+            if f2 >= TURBO_MIN_SCALE:
+                y = K.time_scale(x, f2); how = f'atempo x{f2:.3f} (re-scaled to fit {TURBO_MAX_S} s)'; cap = {'op': 'rescaled', 'timeScale': round(f2, 3)}
+            else:
+                y = K.release(y[:int((TURBO_HEAD_S + TURBO_REL_MS / 1000) * SR)], TURBO_REL_MS, floor_db=-80.0)
+                how = f'atempo x{f}, head {TURBO_HEAD_S} s + {TURBO_REL_MS:.0f} ms release'; cap = {'op': 'head+release', 'head_s': TURBO_HEAD_S, 'release_ms': TURBO_REL_MS}
+            if len(y) > TURBO_MAX_S * SR: y = K.release(y[:int(TURBO_MAX_S * SR)], 60.0, floor_db=-80.0)
+        if cap is None or cap['op'] == 'rescaled':
+            n = min(len(y), int(0.02 * SR)); y[-n:] *= np.linspace(1, 0, n)[:, None]
+        if cid in TURBO_CAP_EXEMPT: cap = {'op': 'exempt', 'why': TURBO_CAP_EXEMPT[cid]}; c['turboCapExempt'] = TURBO_CAP_EXEMPT[cid]
+        res = ship(y, cid); set_cue(cid, y, {'from': d['from'], 'timeScale': d['timeScale'], 'op': f'turbo variant ({how}, pitch kept)', 'turboCap': cap}); out[cid] = res
     return out
 
 

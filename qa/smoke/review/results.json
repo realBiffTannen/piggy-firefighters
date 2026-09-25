@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-25T05:38:29.475Z",
+  "browser": "chromium 141.0.7390.37",
+  "game": "http://127.0.0.1:3004/",
+  "rgs": "127.0.0.1:3037",
+  "results": [
+    {
+      "fixture": "base_trigger_rescue",
+      "passed": false,
+      "console_errors": 0,
+      "finalWin": null,
+      "ms": 920804,
+      "errors": [
+        "driver: page.waitForFunction: Timeout 900000ms exceeded."
+      ],
+      "audio404": 0
+    },
+    {
+      "fixture": "alarm_call_false",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 0,
+      "ms": 22013,
+      "errors": [],
+      "expected": 0,
+      "audio404": 0
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
- "_note": "Which draw ships per bed, chosen by MEASUREMENT (audio/qa/music_draws_measured.json from `measure.py draws`). Empty until the first music pass. One entry per bed that is NOT served by its plan's first draw, e.g. \"base_loop_a\": {\"src\": \"pf_base92a_v2__1\", \"why\": \"v1 chug 4.8 -> v2 1.9\"}. Optional keys: bpmOverride (measured tempo when the onset comb is ambiguous), start (bars to skip after the first onset). One redraw per NAMED, MEASURED defect; the better draw by measurement ships; never a blind re-roll. Build-side keys added 2026-09-25: semis (whole-mix rubberband transposition for a draw in the wrong centre), onsetAfter (seconds of near-silence to skip before looking for the first onset), bars (a shorter whole-bar loop when the draw does not hold the planned length).",
+ "_note": "Which draw ships per bed, chosen by MEASUREMENT (audio/qa/music_draws_measured.json from `measure.py draws`). Empty until the first music pass. One entry per bed that is NOT served by its plan's first draw, e.g. \"base_loop_a\": {\"src\": \"pf_base92a_v2__1\", \"why\": \"v1 chug 4.8 -> v2 1.9\"}. Optional keys: bpmOverride (measured tempo when the onset comb is ambiguous), start (bars to skip after the first onset). One redraw per NAMED, MEASURED defect; the better draw by measurement ships; never a blind re-roll. Build-side keys added 2026-09-25: semis (whole-mix rubberband transposition for a draw in the wrong centre), onsetAfter (seconds of near-silence to skip before looking for the first onset), bars (a shorter whole-bar loop when the draw does not hold the planned length). r2 (2026-09-25): tailFill {fromBar, beats} = fill the loop's last `beats` beats with the same beats of phrase bar `fromBar` (build_audio.tail_fill: a composed rest at the loop end dips at every loop point).",
  "base_loop_a": {
   "start": 1,
   "why": "measure.py draws 2026-09-25: pf_base92a__1 opens with ~5 s (2 bars) of sparse intro at -27 dB against a -17 dB body ('quiet intro -10.5 dB'); the draw's closing decay starts at 87.7 s, so a 32-bar loop (83.48 s) can start at bar 1 at the latest; the remaining quiet bar is lifted by build_audio.bar_lift. Interim: this draw also measures chug 3.99, C-pent 0.56, sections 2-3 r 0.906 -> redraw requested (pf_base92a_v2)."
@@ -21,5 +21,19 @@
   "onsetAfter": 0.65,
   "why": "measure.py draws 2026-09-25: pf_antic92__1 opens with 0.6 s of a -35..-44 dB pre-roll before the roll enters at ~0.7 s (-17 dB); the 4-bar layer starts at that entry (measured 0.775 s: the first sample within 12 dB of the draw's peak) so the loop head is not a dip (it ends at 11.1 s, before the draw's closing decay at ~12.8 s). Tempo: the layer is a continuous roll + tremolo, so the onset comb has no beat to lock to (fine_tempo 93.75 from only the 8/16-beat lags of a 16 s draw, autocorr 81.1, envelope comb 89-90): no reliable measurement, so bpmOverride 92 = the plan's tempo, no stretch (a 1.9% stretch toward a spurious 93.75 would only add WSOLA smear).",
   "bpmOverride": 92.0
+ },
+ "rung_bed_big": {
+  "tailFill": {
+   "fromBar": 4,
+   "beats": 2
+  },
+  "why": "measure.py 2026-09-25: the loop's last beat sits in the draw's composed rest (-18 dB under the bed median; head-tail +25.0 dB at 250 ms), and a rung bed loops for the whole count-up, so the dip repeats every 19.2 s. Fill the final half-bar (beats 31-32) with beats 15-16 (the end of bar 4, the same place in the 4-bar phrase) through a 30 ms splice and a re-made head blend; grid unchanged."
+ },
+ "rung_bed_mega": {
+  "tailFill": {
+   "fromBar": 4,
+   "beats": 2
+  },
+  "why": "measure.py 2026-09-25: the loop's last beat sits in the draw's composed rest (-5 dB under the bed median; head-tail +20.6 dB at 250 ms), and a rung bed loops for the whole count-up, so the dip repeats every 19.2 s. Fill the final half-bar (beats 31-32) with beats 15-16 (the end of bar 4, the same place in the 4-bar phrase) through a 30 ms splice and a re-made head blend; grid unchanged."
  }
 }

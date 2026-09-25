@@ -1,0 +1,152 @@
+0.2s console.debug: [vite] connecting...
+0.2s console.debug: [vite] connected.
+1.2s req /wallet/authenticate {"sessionID":"probe-base_trigger_rescue-1790316835532","language":"en"}
+4.4s console.info: [devFixture] mock RGS pinned to fixture: base_trigger_rescue
+5.4s console.log: %c  %c  %c  %c  %c PixiJS %c v8.8.1 (webgl 2) http://www.pixijs.com/
+
+ background: #E72264; padding:5px 0; background: #6CA2EA; padding:5px 0; background: #B5D33D; padding:5px 0; background: #FED23F; padding:5px 0; color: #FFFFFF; backgroun
+12.2s trace: {"map":false,"em":true}
+12.2s probe: {"r":"http://127.0.0.1:3004/src/game/rescue/stateRescue.svelte.ts","s":"http://127.0.0.1:3004/src/game/fx/stateScene.svelte.ts","x":"http://127.0.0.1:3004/src/game/stateXstate.ts","e":[null,null,null]}
+12.2s req /wallet/play {"mode":"BASE","currency":"USD","sessionID":"probe-base_trigger_rescue-1790316835532","amount":10000
+12.2s state {"fin":null,"r":{"a":false,"m":1,"b":1,"left":0,"tot":0,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"base"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+12.2s trace 0.0   b hotKey
+12.2s trace 0.0   b bet
+12.2s trace 0.0   b hotKey
+12.2s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"0"}
+13.2s trace 0.1   ~ card=false/null cov=false act=false
+125.2s trace 108.7   bA> boardWithAnimateSymbols
+129.3s trace 116.3   bA< boardWithAnimateSymbols
+129.3s trace 116.3   b winShow
+129.3s trace 116.3   bA> winUpdate
+132.3s trace 119.9   bA< winUpdate
+132.3s trace 119.9   bA> uiShow
+132.3s trace 119.9   b winHide
+132.3s trace 119.9   bA< uiShow
+136.4s trace 124.0   bA> boardWithAnimateSymbols
+140.5s state {"fin":null,"r":{"a":false,"m":1,"b":1,"left":0,"tot":0,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"base"},"card":"false/intro","idle":false,"cardSets":1,"canvases":1}
+140.5s trace 127.9   bA< boardWithAnimateSymbols
+140.5s trace 128.0   bA> shutterClose card=intro
+140.5s trace 128.1   ~ card=false/intro cov=false act=false
+145.5s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":10,"tot":20,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":true,"busy":false,"mood":"rescue"},"card":"true/intro","idle":false,"cardSets":1,"canvases":1}
+145.5s trace 132.5   bA< shutterClose
+145.5s trace 132.6   ~ card=true/intro cov=true act=true
+146.5s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":10,"tot":20,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":true,"busy":false,"mood":"rescue"},"card":"false/intro","idle":false,"cardSets":1,"canvases":1}
+146.5s trace 133.9   bA> shutterOpen
+146.5s trace 134.0   ~ card=false/intro cov=true act=true
+151.5s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":10,"tot":20,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+151.5s trace 139.3   bA< shutterOpen
+151.5s trace 139.3   ~ card=false/null cov=false act=true
+151.6s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"7"}
+152.5s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":9,"tot":20,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+161.6s trace 149.2   bA> boardWithAnimateSymbols
+164.6s trace 151.6   bA< boardWithAnimateSymbols
+164.6s trace 151.6   bA> boardWithAnimateSymbols
+167.7s trace 155.4   bA< boardWithAnimateSymbols
+167.7s trace 155.4   bA> boardWithAnimateSymbols
+171.7s trace 159.5   bA< boardWithAnimateSymbols
+171.7s trace 159.5   bA> boardWithAnimateSymbols
+175.8s trace 163.0   bA< boardWithAnimateSymbols
+175.8s trace 163.0   bA> paylinesAll
+175.8s trace 163.5   bA< paylinesAll
+175.8s trace 163.5   b winShow
+175.8s trace 163.5   bA> winUpdate
+179.4s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"13"}
+179.9s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":8,"tot":60,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+179.9s trace 167.2   bA< winUpdate
+179.9s trace 167.2   bA> uiShow
+179.9s trace 167.2   b winHide
+179.9s trace 167.2   bA< uiShow
+198.4s trace 186.0   bA> boardWithAnimateSymbols
+203.5s trace 191.2   bA< boardWithAnimateSymbols
+203.5s trace 191.2   b winShow
+203.5s trace 191.2   bA> winUpdate
+208.7s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"19"}
+209.5s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":7,"tot":70,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+209.5s trace 196.5   bA< winUpdate
+209.5s trace 196.5   bA> uiShow
+209.5s trace 196.5   b winHide
+209.5s trace 196.5   bA< uiShow
+223.7s trace 210.8   bA> boardWithAnimateSymbols
+227.7s trace 215.1   bA< boardWithAnimateSymbols
+227.7s trace 215.1   b winShow
+227.7s trace 215.1   bA> winUpdate
+231.2s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"25"}
+231.8s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":6,"tot":90,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+231.8s trace 219.0   bA< winUpdate
+231.8s trace 219.0   bA> uiShow
+231.8s trace 219.0   b winHide
+231.8s trace 219.0   bA< uiShow
+247.2s trace 234.4   bA> boardWithAnimateSymbols
+251.2s trace 239.0   bA< boardWithAnimateSymbols
+251.2s trace 239.0   bA> boardWithAnimateSymbols
+256.3s trace 243.9   bA< boardWithAnimateSymbols
+256.3s trace 243.9   bA> boardWithAnimateSymbols
+261.4s trace 249.1   bA< boardWithAnimateSymbols
+261.4s trace 249.1   bA> boardWithAnimateSymbols
+267.4s trace 254.3   bA< boardWithAnimateSymbols
+267.4s trace 254.3   bA> paylinesAll
+267.4s trace 254.8   bA< paylinesAll
+267.4s trace 254.8   b winShow
+267.4s trace 254.8   bA> winUpdate
+270.0s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"31"}
+270.6s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":5,"tot":210,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+270.6s trace 257.8   bA< winUpdate
+270.6s trace 257.8   bA> uiShow
+270.6s trace 257.8   b winHide
+270.6s trace 257.8   bA< uiShow
+285.4s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"35"}
+285.8s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":4,"tot":210,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+300.9s trace 288.0   bA> boardWithAnimateSymbols
+305.0s trace 292.2   bA< boardWithAnimateSymbols
+305.0s trace 292.2   bA> boardWithAnimateSymbols
+310.1s trace 297.8   bA< boardWithAnimateSymbols
+310.1s trace 297.8   bA> paylinesAll
+311.1s trace 298.2   bA< paylinesAll
+311.1s trace 298.2   b winShow
+311.1s trace 298.2   bA> winUpdate
+313.5s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"41"}
+314.1s state {"fin":null,"r":{"a":true,"m":1,"b":1,"left":3,"tot":230,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+314.1s trace 301.3   bA< winUpdate
+314.1s trace 301.3   bA> uiShow
+314.1s trace 301.3   b winHide
+314.1s trace 301.3   bA< uiShow
+328.2s state {"fin":null,"r":{"a":true,"m":2,"b":1,"left":4,"tot":230,"ban":"+1 SPIN","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+328.2s trace 315.8   bA> boardWithAnimateSymbols
+333.2s trace 320.8   bA< boardWithAnimateSymbols
+333.2s trace 320.8   b winShow
+333.2s trace 320.8   bA> winUpdate
+336.3s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"47"}
+336.3s state {"fin":null,"r":{"a":true,"m":2,"b":1,"left":3,"tot":330,"ban":"+1 SPIN","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+336.3s trace 324.1   bA< winUpdate
+336.3s trace 324.1   bA> uiShow
+336.3s trace 324.1   b winHide
+336.3s trace 324.1   bA< uiShow
+351.2s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"51"}
+351.5s state {"fin":null,"r":{"a":true,"m":2,"b":1,"left":2,"tot":330,"ban":"+1 SPIN","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+366.4s trace 353.6   bA> boardWithAnimateSymbols
+369.5s trace 357.1   bA< boardWithAnimateSymbols
+369.5s trace 357.1   b winShow
+369.5s trace 357.1   bA> winUpdate
+373.2s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"57"}
+373.5s state {"fin":null,"r":{"a":true,"m":2,"b":1,"left":1,"tot":370,"ban":"+1 SPIN","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+373.5s trace 361.0   bA< winUpdate
+373.5s trace 361.0   bA> uiShow
+373.5s trace 361.0   b winHide
+373.5s trace 361.0   bA< uiShow
+387.7s req /bet/event {"sessionID":"probe-base_trigger_rescue-1790316835532","event":"61"}
+387.7s state {"fin":null,"r":{"a":true,"m":2,"b":1,"left":0,"tot":370,"ban":"+1 SPIN","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/null","idle":false,"cardSets":1,"canvases":1}
+407.0s state {"fin":null,"r":{"a":true,"m":2,"b":1,"left":0,"tot":370,"ban":"RESCUE SPINS COMPLETE","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"rescue"},"card":"false/outro","idle":false,"cardSets":1,"canvases":1}
+407.0s trace 394.6   bA> shutterClose card=outro
+407.0s trace 394.6   ~ card=false/outro cov=false act=true
+418.3s state {"fin":null,"r":{"a":true,"m":2,"b":1,"left":0,"tot":370,"ban":"RESCUE SPINS COMPLETE","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":true,"busy":false,"mood":"rescue"},"card":"true/outro","idle":false,"cardSets":1,"canvases":1}
+418.3s trace 405.4   bA< shutterClose
+418.3s trace 405.5   ~ card=true/outro cov=true act=true
+419.3s state {"fin":null,"r":{"a":false,"m":2,"b":1,"left":0,"tot":370,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":true,"busy":false,"mood":"base"},"card":"false/outro","idle":false,"cardSets":1,"canvases":1}
+419.3s trace 406.8   bA> shutterOpen
+419.3s trace 406.9   ~ card=false/outro cov=true act=false
+438.9s req /wallet/end-round {"sessionID":"probe-base_trigger_rescue-1790316835532"}
+439.1s state {"fin":370,"r":{"a":false,"m":2,"b":1,"left":0,"tot":370,"ban":"","cap":false,"skip":false},"bd":false,"ac":"false/idle","sc":{"cov":false,"busy":false,"mood":"base"},"card":"false/null","idle":true,"cardSets":1,"canvases":1}
+439.1s trace 426.7   bA< shutterOpen
+439.1s trace 426.8   ~ card=false/null cov=false act=false
+439.1s round ms since Space: 426900
+441.6s hud: BALANCE $10,002.70 WIN $3.70 BET $1.00 0 SPIN G

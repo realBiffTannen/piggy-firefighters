@@ -9,6 +9,14 @@ checked). Gains clamp to [0.12, 2.0]; a cue that needs more than +6 dB is re-mas
 re-shipped so both codecs stay <= -1 dBTP) instead of being redrawn. `_turbo` variants take their parent's target.
 Primary beds keep gain 1.0 (mastered to LUFS); the two additive layers get MUSIC_LAYER_TARGET.
 
+r2 (2026-09-25): every cue is measured three ways (kit.levels): `st` the per-channel stereo power (headphones; the family
+level and the one the targets are set on), `mono` the (L+R)/2 sum (a phone speaker / mono box) and `phone` that sum through
+a 4th-order 400 Hz high-pass (a phone speaker's band). r1 checked the chains on `st` only, so they rose on headphones while
+the mono sum of partly anti-phase draws and comb-filtered synth layers fell (rung hits BIG..MAX -16.0 / -16.7 / -17.5 /
+-18.0 / -14.9 in mono). Now every CHAINS entry must rise by >= CHAIN_MARGIN_DB on ALL THREE: a later entry's gain is nudged
+up (or, at the +6 dB clamp, the earlier entry's down) until it does; `_turbo` variants follow their parent's nudge and
+their own chains are enforced the same way. Nudges are recorded per cue (`mix.chainNudge_dB`).
+
 Writes gains into audio/cues.json and audio/qa/mix_pass.csv + mix_ladder.json.   usage: python3 audio/tools/mix.py
 """
 import json, os, re, subprocess, sys
@@ -135,10 +143,47 @@ def remaster(cid, target):
     return {'raised_dB': round(up, 2), 'crest_dB': round(float(crest), 1), 'softClip': clip, 'limitedFraction': round(frac, 4), 'passes': k + 1, **res}
 
 
+METRICS = ('st', 'mono', 'phone')   # kit.levels: stereo power (headphones), (L+R)/2 (phone / mono box), 400 Hz HP of the sum (phone band)
+CHAIN_MARGIN_DB = 0.25              # every chain step must rise by at least this on EVERY metric
+G_MIN_DB, G_MAX_DB = 20 * np.log10(0.12), 20 * np.log10(2.0)
+
+
+def enforce_chains(chains, lv, g, log):
+    """r2 (2026-09-25): raise (or, at the clamp, lower the previous entry) so every chain rises strictly on st, mono AND phone.
+    r1 checked stereo power only; the mono sum of partly anti-phase draws / comb-filtered layers fell along several chains
+    (rung hits BIG..MAX -16.0 / -16.7 / -17.5 / -18.0 / -14.9 in mono). Iterates to a fixpoint (chains share members)."""
+    for _ in range(40):
+        changed = False
+        for name, chain in chains.items():
+            if not all(c in lv for c in chain): continue
+            for a, b in zip(chain, chain[1:]):
+                req = max(lv[a][k] + g[a] + CHAIN_MARGIN_DB - lv[b][k] for k in METRICS)
+                if g[b] < req - 1e-6:
+                    if req <= G_MAX_DB: log.append((name, b, round(req - g[b], 2))); g[b] = req; changed = True
+                    else:
+                        if g[b] < G_MAX_DB: g[b] = G_MAX_DB; changed = True
+                        ga = min(lv[b][k] + g[b] - CHAIN_MARGIN_DB - lv[a][k] for k in METRICS)
+                        if ga < g[a] - 1e-6: log.append((name, a, round(ga - g[a], 2))); g[a] = max(G_MIN_DB, ga); changed = True
+        if not changed: break
+    return g
+
+
+def chain_checks(chains, lv, g):
+    out = {}
+    for name, chain in chains.items():
+        if not all(c in lv for c in chain): out[name] = {'chain': chain, 'skipped': 'not all built'}; continue
+        eff = {k: [round(lv[c][k] + g[c], 2) for c in chain] for k in METRICS}
+        rising = {k: all(y - x >= CHAIN_MARGIN_DB - 0.01 for x, y in zip(v, v[1:])) for k, v in eff.items()}
+        out[name] = {'chain': chain, 'effective_dBFS': eff['st'], 'effective_mono_dBFS': eff['mono'], 'effective_phone_dBFS': eff['phone'],
+                     'strictlyRising': all(rising.values()), 'risingBy': rising}
+    return out
+
+
 def main():
     doc = json.load(open(f'{ROOT}/audio/cues.json'))
-    rows, remastered, unmatched, unbuilt = [], {}, [], []
-    ids = {c['id'] for c in doc['cues']}
+    remastered, unmatched, unbuilt = {}, [], []
+    ids = {c['id'] for c in doc['cues']}; cues = {c['id']: c for c in doc['cues']}
+    lv, g, tgt = {}, {}, {}
     for c in doc['cues']:
         t = target_for(c, ids)
         if t is None:
@@ -147,39 +192,52 @@ def main():
         ogg = os.path.join(STATIC_BASE, c['files'][0])
         if not os.path.exists(ogg): unbuilt.append(c['id']); continue
         if restore_pristine(c['id']): c.get('build', {}).pop('remaster', None)
-        lvl = loud400(decode(ogg)); need = t - lvl
+        L = K.levels(decode(ogg)); need = t - L['st']
         if need > 6.02:
-            r = remaster(c['id'], t); lvl = loud400(decode(ogg)); need = t - lvl
+            r = remaster(c['id'], t); L = K.levels(decode(ogg))
             remastered[c['id']] = r
             c['measured'] = {'I_LUFS': r['I_LUFS'], 'TP_dBFS': r['TP_dBFS'], 'TP_m4a_dBFS': r.get('TP_m4a_dBFS')}
             c.setdefault('build', {})['remaster'] = r
-        g = round(float(min(2.0, max(0.12, 10 ** (need / 20)))), 3); old = c.get('gain', 1.0); c['gain'] = g
-        eff = round(lvl + 20 * np.log10(g), 2)
-        c['mix'] = {'file_loud400_dBFS': round(lvl, 1), 'target_dBFS': t, 'effective_dBFS': eff, 'pass': 'pf_0925 (mix.py)'}
-        rows.append((c['id'], round(lvl, 2), t, old, g, eff))
+        lv[c['id']] = L; tgt[c['id']] = t; g[c['id']] = float(min(G_MAX_DB, max(G_MIN_DB, t - L['st'])))
+    base = dict(g); log = []
+    g = enforce_chains(CHAINS, lv, g, log)
+    # a _turbo variant follows its parent's nudge, then its own chains are enforced the same way
+    for cid in g:
+        if cid.endswith('_turbo') and cid[:-6] in g and abs(g[cid[:-6]] - base[cid[:-6]]) > 1e-6:
+            g[cid] = float(min(G_MAX_DB, max(G_MIN_DB, g[cid] + g[cid[:-6]] - base[cid[:-6]])))
+    turbo_chains = {f'{k}_turbo': [f'{c}_turbo' for c in v] for k, v in CHAINS.items() if all(f'{c}_turbo' in lv for c in v)}
+    g = enforce_chains(turbo_chains, lv, g, log)
+    rows = []
+    for cid, L in lv.items():
+        c = cues[cid]; gl = round(float(10 ** (g[cid] / 20)), 3); old = c.get('gain', 1.0); c['gain'] = gl; gd = 20 * np.log10(gl)
+        eff = {k: round(L[k] + gd, 2) for k in METRICS}
+        c['mix'] = {'file_loud400_dBFS': round(L['st'], 1), 'file_mono_dBFS': round(L['mono'], 1), 'file_phone400_dBFS': round(L['phone'], 1), 'corr': L['corr'],
+                    'target_dBFS': tgt[cid], 'chainNudge_dB': round(g[cid] - base[cid], 2), 'effective_dBFS': eff['st'], 'effective_mono_dBFS': eff['mono'],
+                    'effective_phone_dBFS': eff['phone'], 'pass': 'pf_0925r2 (mix.py: st + mono + phone)'}
+        rows.append((cid, round(L['st'], 2), round(L['mono'], 2), round(L['phone'], 2), L['corr'], tgt[cid], old, gl, eff['st'], eff['mono'], eff['phone']))
     tmp = f'{ROOT}/audio/cues.json.tmp'; json.dump(doc, open(tmp, 'w'), indent=1, default=float); os.replace(tmp, f'{ROOT}/audio/cues.json')  # atomic
-    by = {r[0]: r for r in rows}; cues = {c['id']: c for c in doc['cues']}
-    checks = {}
-    for name, chain in CHAINS.items():
-        if not all(c in by for c in chain): checks[name] = {'chain': chain, 'skipped': 'not all built'}; continue
-        effs = [by[c][5] for c in chain]
-        checks[name] = {'chain': chain, 'effective_dBFS': effs, 'strictlyRising': all(b > a for a, b in zip(effs, effs[1:]))}
+    gq = {cid: 20 * np.log10(cues[cid]['gain']) for cid in lv}  # the gains as registered (rounded)
+    checks = chain_checks(CHAINS, lv, gq); checks.update(chain_checks(turbo_chains, lv, gq))
     lufs = [cues[c].get('measured', {}).get('I_LUFS') for c in MUSIC_RISING if c in cues]
     checks['rung_beds_LUFS'] = {'chain': MUSIC_RISING, 'I_LUFS': lufs, 'strictlyRising': None not in lufs and all(b > a for a, b in zip(lufs, lufs[1:]))}
-    alts = {k: [by[c][5] for c in v if c in by] for k, v in ALTERNATES.items()}
-    checks['alternates_levelMatched'] = {k: {'effective_dBFS': v, 'spread_dB': round(max(v) - min(v), 2) if v else None} for k, v in alts.items()}
-    clamped = [(r[0], r[1], r[2], r[4]) for r in rows if r[4] in (2.0, 0.12) and abs(r[5] - r[2]) > 0.2]
+    alts = {k: {m: [round(lv[c][m] + gq[c], 2) for c in v if c in lv] for m in METRICS} for k, v in ALTERNATES.items()}
+    checks['alternates_levelMatched'] = {k: {m: {'effective_dBFS': v, 'spread_dB': round(max(v) - min(v), 2) if v else None} for m, v in d.items()} for k, d in alts.items()}
+    clamped = [(r[0], r[1], r[5], r[7]) for r in rows if r[7] in (2.0, 0.12) and abs(r[8] - r[5]) > 0.2 and abs(cues[r[0]]['mix']['chainNudge_dB']) < 0.01]
     failing = [k for k, v in checks.items() if v.get('strictlyRising') is False]
+    nudged = {cid: cues[cid]['mix']['chainNudge_dB'] for cid in lv if abs(cues[cid]['mix']['chainNudge_dB']) >= 0.01}
     os.makedirs(QA, exist_ok=True)
     with open(f'{QA}/mix_pass.csv', 'w') as f:
-        f.write('cue,file_loud400_dBFS,target_dBFS,old_gain,new_gain,effective_dBFS\n')
+        f.write('cue,file_loud400_dBFS,file_mono_dBFS,file_phone400_dBFS,corr,target_dBFS,old_gain,new_gain,effective_dBFS,effective_mono_dBFS,effective_phone_dBFS\n')
         for r in rows: f.write(','.join(map(str, r)) + '\n')
-    json.dump({'levelled': len(rows), 'unmatched': unmatched, 'notBuilt': len(unbuilt), 'remastered': remastered, 'clampedOffTarget': clamped,
-               'chainsNotRising': failing, 'checks': checks}, open(f'{QA}/mix_ladder.json', 'w'), indent=1, default=str)
+    json.dump({'pass': 'pf_0925r2', 'metrics': {'st': 'loudest 400 ms, per-channel stereo power', 'mono': 'loudest 400 ms of (L+R)/2',
+                                                 'phone': 'loudest 400 ms of (L+R)/2 through a 4th-order 400 Hz high-pass'},
+               'chainMargin_dB': CHAIN_MARGIN_DB, 'levelled': len(rows), 'unmatched': unmatched, 'notBuilt': len(unbuilt), 'remastered': remastered,
+               'clampedOffTarget': clamped, 'chainNudges_dB': nudged, 'chainsNotRising': failing, 'checks': checks}, open(f'{QA}/mix_ladder.json', 'w'), indent=1, default=str)
     print(len(rows), 'cues levelled;', len(unbuilt), 'not built;', len(unmatched), 'unmatched:', unmatched)
     print('remastered (> +6 dB):', {k: v['raised_dB'] for k, v in remastered.items()})
+    print('chain nudges (dB over the family target):', nudged)
     print('clamped off target:', clamped)
-    print('chains not rising:', failing or 'none')
+    print('chains not rising (st / mono / phone):', failing or 'none')
 
 
 if __name__ == '__main__':

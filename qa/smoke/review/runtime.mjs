@@ -46,7 +46,10 @@ const attach = (page, log) => {
 	});
 };
 const passSplash = async (page) => {
-	await page.waitForSelector('.splash .press', { timeout: 120000 });
+	await page.waitForSelector('.splash .press', { timeout: 180000 });
+	// SPEED=super|turbo arms the tier BEFORE the gate opens, so a resumed round plays at that speed from its first event
+	if (process.env.SPEED === 'super') log.speed = await page.evaluate(() => window.__qaSetSpeedForTest?.('super') ?? 'no-hook');
+	else if (process.env.SPEED === 'turbo') log.speed = await page.evaluate(() => (window.__pffSetTurbo?.(true), 'turbo'));
 	await sleep(400);
 	await page.mouse.click(720, 450);
 	await page.waitForFunction(() => document.documentElement.dataset.splashShutter === 'done', null, { timeout: 30000 });
@@ -127,6 +130,6 @@ try {
 	try { await page.screenshot({ path: join(HERE, `runtime_${kind}_${a1}.FAILED.png`) }); } catch { /* */ }
 }
 out.log = log;
-writeFileSync(join(HERE, `runtime_${kind}_${a1 ?? ''}.json`.replace(/[:]/g, '_'), JSON.stringify(out, null, 2));
+writeFileSync(join(HERE, `runtime_${kind}_${a1 ?? ''}.json`.replace(/[:]/g, '_')), JSON.stringify(out, null, 2));
 console.log(JSON.stringify({ ...out, log: { console: log.console.slice(0, 20), audio404: log.audio404, rgs: log.rgs.slice(-12) } }, null, 1));
 await browser.close();
