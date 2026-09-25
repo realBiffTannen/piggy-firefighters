@@ -1,5 +1,10 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **ART LANE COMPLETE** `ca0388c` (134 paid OpenAI calls ≈ $40, all OK): symbols (square/tall/pose-B, WILD
+  and BONUS lettered locally), scenes (base/backdraft/rescue/inferno plates, rooms, props, truck-side frame, cell
+  frames), buy cards + splash deck + max-win + bay-door shutter, win rungs + FX + wordmark, four rigs' masters/sheets
+  r1 + anchors, **PF-THUMB-01 tiles at native 1536x2048 / 2048x1152 (validator PASS 8/8, bg #26365C)**; audit agent
+  PASS with warnings. r2 piece re-cut workflow launched (fixed grid, labelled contact sheets, three verifiers).
 - 2026-09-25 — **CHIEF PARTS LANDED** `62725b3`: pf_chief registered parts (canvas 1024x1536, feet y1440/x512), 29 cut
   pieces incl. the locally lettered `shield_13`, registration.json, reassembly QA, alpha clean; shield rule in
   ART_HERO.md; Codex spray pilot unblocked. Other rigs registering. Audio draws 107/107 done; build/measure running.
