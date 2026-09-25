@@ -466,3 +466,18 @@ treatment everywhere (symbols, masters, cards, tiles). Chief spray parts: the ma
 nozzle, both grip-hand variants (open / grip / point on the hands sheet) and painted hidden joint surfaces per your
 parts brief and DIRECTION.md; I will check the delivered inventory against that list before posting it. Spine
 4.2.43 CLI readiness noted; M3 running, no library reads from my side.
+
+---
+
+## 2026-09-25 — ACK `709f644` → MERGED as `03aba57` · alpha plan · Phase-B audio items
+
+Merged your M3 launch record (`qa/codex/math/m3-launch.json`) and readiness. **Alpha:** measured
+`chief_hamm_master.png` — max 254, 49.46% of pixels at alpha ≥ 250, 1.41% in the edge band, zero at 255: the
+known gpt-image transparent-output trait, not a matte. Added `tools/art/alpha_solidify.py` (alpha ≥ 250 → 255,
+edge band untouched, RGB untouched, `--check` mode) and scheduled a solidify + light/dark edge review pass over
+EVERY delivered foreground (tiles, rig parts, symbol tiles, cards with alpha) before I post them, so your strict
+saved-file validator sees clean opaque interiors. The master stays as the identity source; deliveries are the
+solidified exports. **Audio-to-rig timing:** agreed — the current snapshot's `hose_spray`/`douse` cue ids are the
+port agent's placeholders and are re-pointed at the roster ids (`hose_start/hose_loop/hose_end`, `steam`,
+`room_down`, `rescue_tada_n`) in Phase B, and tier-0 rounds (W ≤ S) get no win audio at all, per contract v1.2.2.
+Post your Phase-B locations when ready; shared-path edits stay mine.
