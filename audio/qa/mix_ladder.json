@@ -1,0 +1,459 @@
+{
+ "levelled": 223,
+ "unmatched": [],
+ "notBuilt": 0,
+ "remastered": {
+  "alert_insufficient": {
+   "raised_dB": 6.0,
+   "crest_dB": 22.8,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 3,
+   "I_LUFS": -22.0,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -2.8,
+   "samples": 21413
+  },
+  "sym_win_l3": {
+   "raised_dB": 3.37,
+   "crest_dB": 22.4,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -19.9,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -3.6,
+   "samples": 41604
+  },
+  "rung_hit_big": {
+   "raised_dB": 4.31,
+   "crest_dB": 19.2,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 3,
+   "I_LUFS": -15.6,
+   "TP_dBFS": -3.2,
+   "TP_m4a_dBFS": -1.0,
+   "samples": 52920
+  },
+  "sign_impact_huge": {
+   "raised_dB": 6.43,
+   "crest_dB": 23.2,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 3,
+   "I_LUFS": -20.6,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -2.9,
+   "samples": 22880
+  },
+  "burst_embers": {
+   "raised_dB": 16.2,
+   "crest_dB": 27.8,
+   "softClip": true,
+   "limitedFraction": 0.7711,
+   "passes": 4,
+   "I_LUFS": -17.9,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -1.4,
+   "samples": 42878
+  },
+  "backdraft_chord_turbo": {
+   "raised_dB": 4.23,
+   "crest_dB": 20.7,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -19.2,
+   "TP_dBFS": -3.8,
+   "TP_m4a_dBFS": -2.4,
+   "samples": 35154
+  },
+  "sym_win_l2_turbo": {
+   "raised_dB": 6.55,
+   "crest_dB": 19.6,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -21.0,
+   "TP_dBFS": -4.8,
+   "TP_m4a_dBFS": -5.1,
+   "samples": 22225
+  },
+  "sym_win_l3_turbo": {
+   "raised_dB": 5.68,
+   "crest_dB": 23.2,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -19.4,
+   "TP_dBFS": -3.8,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 23180
+  },
+  "rung_hit_big_turbo": {
+   "raised_dB": 12.68,
+   "crest_dB": 21.3,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 4,
+   "I_LUFS": -16.1,
+   "TP_dBFS": -4.1,
+   "TP_m4a_dBFS": -1.4,
+   "samples": 29231
+  },
+  "sign_impact_huge_turbo": {
+   "raised_dB": 8.48,
+   "crest_dB": 22.9,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 3,
+   "I_LUFS": -21.6,
+   "TP_dBFS": -3.1,
+   "TP_m4a_dBFS": -2.6,
+   "samples": 12636
+  },
+  "burst_embers_turbo": {
+   "raised_dB": 12.33,
+   "crest_dB": 27.9,
+   "softClip": true,
+   "limitedFraction": 0.3172,
+   "passes": 3,
+   "I_LUFS": -17.4,
+   "TP_dBFS": -1.8,
+   "TP_m4a_dBFS": -1.3,
+   "samples": 23516
+  },
+  "burst_gold_turbo": {
+   "raised_dB": 3.16,
+   "crest_dB": 18.0,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -16.7,
+   "TP_dBFS": -3.5,
+   "TP_m4a_dBFS": -3.7,
+   "samples": 35643
+  },
+  "rung_land_turbo": {
+   "raised_dB": 4.06,
+   "crest_dB": 18.4,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -16.2,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -1.9,
+   "samples": 29566
+  },
+  "prize_coins_turbo": {
+   "raised_dB": 3.51,
+   "crest_dB": 20.3,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -18.6,
+   "TP_dBFS": -2.6,
+   "TP_m4a_dBFS": -3.1,
+   "samples": 33418
+  },
+  "alarm_card_flip_turbo": {
+   "raised_dB": 3.12,
+   "crest_dB": 24.1,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -21.2,
+   "TP_dBFS": -4.0,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 16596
+  },
+  "backdraft_spins_end_turbo": {
+   "raised_dB": 6.51,
+   "crest_dB": 18.8,
+   "softClip": true,
+   "limitedFraction": 0.0,
+   "passes": 2,
+   "I_LUFS": -19.4,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -2.7,
+   "samples": 44486
+  }
+ },
+ "clampedOffTarget": [],
+ "chainsNotRising": [],
+ "checks": {
+  "alarm_ladder": {
+   "chain": [
+    "alarm_land_1",
+    "alarm_land_2",
+    "alarm_land_3",
+    "alarm_land_4",
+    "alarm_land_5"
+   ],
+   "effective_dBFS": [
+    -20.0,
+    -19.5,
+    -19.0,
+    -18.5,
+    -18.0
+   ],
+   "strictlyRising": true
+  },
+  "anticipation": {
+   "chain": [
+    "antic_riser",
+    "antic_riser_2"
+   ],
+   "effective_dBFS": [
+    -18.0,
+    -17.5
+   ],
+   "strictlyRising": true
+  },
+  "blaze_mult": {
+   "chain": [
+    "blaze_mult_2",
+    "blaze_mult_3",
+    "blaze_mult_5",
+    "blaze_mult_10"
+   ],
+   "effective_dBFS": [
+    -18.0,
+    -17.5,
+    -17.0,
+    -16.0
+   ],
+   "strictlyRising": true
+  },
+  "line_wins": {
+   "chain": [
+    "line_win_small",
+    "line_win_mid"
+   ],
+   "effective_dBFS": [
+    -19.0,
+    -18.0
+   ],
+   "strictlyRising": true
+  },
+  "total_win": {
+   "chain": [
+    "total_win_small",
+    "total_win_mid",
+    "total_win_big"
+   ],
+   "effective_dBFS": [
+    -18.0,
+    -16.5,
+    -15.0
+   ],
+   "strictlyRising": true
+  },
+  "rung_hits": {
+   "chain": [
+    "rung_hit_big",
+    "rung_hit_huge",
+    "rung_hit_mega",
+    "rung_hit_epic",
+    "rung_hit_max"
+   ],
+   "effective_dBFS": [
+    -16.0,
+    -15.5,
+    -15.0,
+    -14.5,
+    -14.0
+   ],
+   "strictlyRising": true
+  },
+  "sign_impacts": {
+   "chain": [
+    "sign_impact_big",
+    "sign_impact_huge",
+    "sign_impact_mega",
+    "sign_impact_epic",
+    "sign_impact_max"
+   ],
+   "effective_dBFS": [
+    -18.5,
+    -18.0,
+    -17.5,
+    -17.0,
+    -16.5
+   ],
+   "strictlyRising": true
+  },
+  "bursts": {
+   "chain": [
+    "burst_water",
+    "burst_embers",
+    "burst_badges",
+    "burst_coins",
+    "burst_gold"
+   ],
+   "effective_dBFS": [
+    -19.0,
+    -18.5,
+    -18.0,
+    -17.5,
+    -17.0
+   ],
+   "strictlyRising": true
+  },
+  "rescue_tada": {
+   "chain": [
+    "rescue_tada_1",
+    "rescue_tada_2",
+    "rescue_tada_3",
+    "rescue_tada_4",
+    "rescue_tada_5",
+    "rescue_tada_6",
+    "rescue_tada_7",
+    "rescue_tada_8"
+   ],
+   "effective_dBFS": [
+    -18.99,
+    -18.5,
+    -18.0,
+    -17.5,
+    -17.0,
+    -16.5,
+    -15.99,
+    -15.5
+   ],
+   "strictlyRising": true
+  },
+  "rescue_total": {
+   "chain": [
+    "rescue_total_small",
+    "rescue_total_mid",
+    "rescue_total_big"
+   ],
+   "effective_dBFS": [
+    -17.99,
+    -16.5,
+    -15.0
+   ],
+   "strictlyRising": true
+  },
+  "inferno_total": {
+   "chain": [
+    "inferno_total_small",
+    "inferno_total_mid",
+    "inferno_total_big"
+   ],
+   "effective_dBFS": [
+    -17.5,
+    -16.0,
+    -14.5
+   ],
+   "strictlyRising": true
+  },
+  "prizes": {
+   "chain": [
+    "prize_coins",
+    "prize_coins_big"
+   ],
+   "effective_dBFS": [
+    -18.0,
+    -16.5
+   ],
+   "strictlyRising": true
+  },
+  "entries": {
+   "chain": [
+    "backdraft_spins_start",
+    "rescue_enter",
+    "inferno_enter"
+   ],
+   "effective_dBFS": [
+    -15.5,
+    -15.0,
+    -14.5
+   ],
+   "strictlyRising": true
+  },
+  "alarm_call": {
+   "chain": [
+    "alarm_outcome_false",
+    "alarm_outcome_rescue",
+    "alarm_outcome_inferno"
+   ],
+   "effective_dBFS": [
+    -20.0,
+    -15.5,
+    -14.5
+   ],
+   "strictlyRising": true
+  },
+  "reward_to_max": {
+   "chain": [
+    "total_win_big",
+    "rung_hit_max",
+    "win_max"
+   ],
+   "effective_dBFS": [
+    -15.0,
+    -14.0,
+    -13.5
+   ],
+   "strictlyRising": true
+  },
+  "rung_beds_LUFS": {
+   "chain": [
+    "rung_bed_big",
+    "rung_bed_huge",
+    "rung_bed_mega",
+    "rung_bed_epic",
+    "rung_bed_max"
+   ],
+   "I_LUFS": [
+    -15.2,
+    -15.0,
+    -14.9,
+    -14.6,
+    -14.5
+   ],
+   "strictlyRising": true
+  },
+  "alternates_levelMatched": {
+   "ui_click": {
+    "effective_dBFS": [
+     -27.0,
+     -27.0,
+     -27.0
+    ],
+    "spread_dB": 0.0
+   },
+   "shutter_haul": {
+    "effective_dBFS": [
+     -23.0,
+     -23.0,
+     -23.0
+    ],
+    "spread_dB": 0.0
+   },
+   "reel_stops": {
+    "effective_dBFS": [
+     -22.0,
+     -22.0,
+     -22.0,
+     -22.0,
+     -22.0
+    ],
+    "spread_dB": 0.0
+   },
+   "blaze_ignite": {
+    "effective_dBFS": [
+     -19.0,
+     -19.0,
+     -19.0,
+     -19.0,
+     -19.0
+    ],
+    "spread_dB": 0.0
+   }
+  }
+ }
+}
