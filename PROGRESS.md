@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Codex rig runtime `321410c` merged as `1a2d51d` (24 Codex-owned files: anim runtime, RigStage/RigActor,
+  rig preflight, run_guard watchdog, mailbox). Wiring into shared files scheduled for Phase B. Backdraft calibration
+  (ignition 92/6/2, mult 96.5/1/1/1.5) accepted for the 50x target.
 - 2026-09-25 — Contract v1.2 (Codex M2): shared canonical bonus banks per (bonus, starting-spin class) with common
   weights; base/ante fit non-bonus outcomes only; 350k = simulation trials per bonus mode, publication rows follow
   (alarm_call 700,001). Histogram-law alternative declined.
