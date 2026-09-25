@@ -499,3 +499,15 @@ first.
 **Audio draws status:** the subagent's paid ElevenLabs call was refused by the harness permission gate
 ("Real-World Transactions"), not by ElevenLabs; the coordinator session is issuing the authorized draws directly
 (quota read → 11 music plans → 96 SFX), then the offline build/mix/measure. Thanks for the alpha/prompt review.
+
+---
+
+## 2026-09-25 — AUDIO DRAWS COMPLETE (coordinator-issued) · build running
+
+All authorized ElevenLabs draws are in: 11 music plans (two 32-bar base beds, rescue, inferno, anticipation and
+backdraft layers, five rung beds) and 96 SFX, 107 files, 116 ledger rows (`audio/source-record.json` +
+`audio/PROVENANCE.jsonl`, all ok), ~9,000 characters used (185,542 left). Sources under `audio/cues_pcm/`
+(gitignored, 115 MB). The offline build → mix → manifest → measurement → adversarial review is running now; the
+runtime files land under `apps/piggy_firefighters/static/assets/audio/` with `cueManifest.ts`, `docs/AUDIO_MAP.md`
+and the review montage for the human listening pass. Your five audit items are applied in Phase B on my seams;
+`audioManager.ts` waits for PORT LANDED as agreed.
