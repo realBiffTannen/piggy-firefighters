@@ -20,6 +20,7 @@ Colours (additive partials, per-partial exponential decay; no samples, nothing f
     bell   brass fire bell: 1 / 2.0 / 2.43 / 3.0 / 4.1, strike noise, very long ring
     chime  a clean harmonic chime (1 / 2 / 3 / 4.02) for CHORDS (inharmonic bell partials make chords muddy)
     vibes  vibraphone: 1 / 4.0 / 10.0 with a 5.5 Hz tremolo
+    wood   tuned marimba / woodblock knock: 1 / 3.93 / 9.2, 160 ms (the reel-stop ladder's pitched layer)
 """
 import os, sys
 import numpy as np
@@ -61,6 +62,10 @@ def tone(f, dur_s, colour, hold_s=None):
     elif colour == 'chime':
         for ratio, amp, tau in [(1.0, 1.0, 1.4), (2.0, 0.35, 0.9), (3.0, 0.12, 0.5), (4.02, 0.06, 0.3)]:
             if f * ratio < 16000: y += amp * np.sin(2 * np.pi * f * ratio * t) * np.exp(-t / tau)
+    elif colour == 'wood':  # a tuned marimba / woodblock knock (bar partials 1 : 3.93 : 9.2, short), phone-audible pitch for thunks
+        for ratio, amp, tau in [(1.0, 1.0, 0.16), (3.93, 0.3, 0.05), (9.2, 0.08, 0.018)]:
+            if f * ratio < 16000: y += amp * np.sin(2 * np.pi * f * ratio * t) * np.exp(-t / tau)
+        y += rng.standard_normal(n) * np.exp(-t / 0.0008) * 0.06          # mallet contact
     elif colour == 'vibes':
         trem = 1 + 0.25 * np.sin(2 * np.pi * 5.5 * t)
         for ratio, amp, tau in [(1.0, 1.0, 1.6), (4.0, 0.2, 0.4), (10.0, 0.05, 0.1)]:

@@ -812,9 +812,9 @@
    }
   },
   "reel_stop_1": {
-   "I_LUFS": -34.9,
-   "TP_dBFS": -10.6,
-   "TP_m4a_dBFS": -10.1,
+   "I_LUFS": -21.8,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.3,
    "samples": 21274,
    "pitch": {
     "measuredHz": 139.8,
@@ -825,6 +825,10 @@
     "midi": 48.0,
     "postErrCents": 59.9,
     "targetNote": "C3"
+   },
+   "tonal": {
+    "op": "hybrid: drawn thunk (HP 45 Hz) + tuned wood knock C4 at 3 ms (-2 dB)",
+    "note": "C4"
    }
   },
   "wild_land": {
@@ -1017,20 +1021,22 @@
    }
   },
   "sym_win_h2": {
-   "I_LUFS": -13.5,
-   "TP_dBFS": -2.5,
-   "TP_m4a_dBFS": -1.7,
+   "I_LUFS": -12.9,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.1,
    "samples": 44100,
    "key": {
     "offsetCents": -30.2,
     "tonality": 0.971,
     "cpentShareDrawn": 0.02,
-    "decision": "transpose +1 st (share 0.02 -> 0.97), retune +30 c -> REVERTED (C-pent share 110-2500 Hz 0.71 -> 0.24)",
-    "semis": 0.0,
+    "decision": "transpose +1 st (share 0.02 -> 0.97), retune +30 c -> whole-cue shift would drop the 110-2500 Hz share 0.71 -> 0.24; SPLIT-BAND: only > 2.5 kHz shifted +1.30 st (150-4000 Hz share 0.02 -> 0.63, 110-2500 Hz 0.71 -> 0.71)",
+    "semis": 1.3,
     "cpentShare110_2500": [
      0.707,
      0.239
-    ]
+    ],
+    "splitBandHz": 2500,
+    "cpentShareShipped": 0.708
    }
   },
   "sym_win_h3": {
@@ -1932,33 +1938,33 @@
  },
  "derived": {
   "reel_stop_2": {
-   "I_LUFS": -35.7,
-   "TP_dBFS": -12.9,
-   "TP_m4a_dBFS": -12.6,
-   "samples": 21180
+   "I_LUFS": -22.1,
+   "TP_dBFS": -3.1,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 20572
   },
   "reel_stop_3": {
-   "I_LUFS": -35.7,
-   "TP_dBFS": -13.2,
-   "TP_m4a_dBFS": -12.7,
-   "samples": 21081
+   "I_LUFS": -22.0,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 20493
   },
   "reel_stop_4": {
-   "I_LUFS": -35.2,
-   "TP_dBFS": -13.2,
-   "TP_m4a_dBFS": -12.8,
-   "samples": 21009
+   "I_LUFS": -21.8,
+   "TP_dBFS": -3.2,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 21010
   },
   "reel_stop_5": {
-   "I_LUFS": -34.1,
-   "TP_dBFS": -13.1,
-   "TP_m4a_dBFS": -12.6,
-   "samples": 20910
+   "I_LUFS": -21.7,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 20147
   },
   "reel_stop_turbo": {
-   "I_LUFS": -38.5,
-   "TP_dBFS": -14.8,
-   "TP_m4a_dBFS": -14.0,
+   "I_LUFS": -22.0,
+   "TP_dBFS": -2.8,
+   "TP_m4a_dBFS": -3.0,
    "samples": 21803
   },
   "alarm_land_1": {
@@ -2411,10 +2417,10 @@
    "samples": 24443
   },
   "sym_win_h2_turbo": {
-   "I_LUFS": -14.9,
-   "TP_dBFS": -2.9,
-   "TP_m4a_dBFS": -2.9,
-   "samples": 23864
+   "I_LUFS": -15.4,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 24219
   },
   "sym_win_h3_turbo": {
    "I_LUFS": -16.3,
@@ -2839,6 +2845,6 @@
  },
  "skipped": [],
  "warnings": [
-  "sym_win_h2: key-fit reverted (0.71 -> 0.24 below 2.5 kHz)"
+  "sym_win_h2: split-band key-fit above 2.5 kHz (0.02 -> 0.63; body 0.71 -> 0.71)"
  ]
 }

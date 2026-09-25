@@ -1,0 +1,125 @@
+{
+ "music": {},
+ "sfx": {},
+ "derived": {},
+ "shots": {
+  "trigger_fanfare": {
+   "I_LUFS": -16.2,
+   "TP_dBFS": -2.9,
+   "TP_m4a_dBFS": -2.7,
+   "samples": 113263,
+   "cpentShare": 0.983
+  },
+  "rescue_enter": {
+   "I_LUFS": -13.4,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 105354,
+   "cpentShare": 0.813
+  },
+  "inferno_enter": {
+   "I_LUFS": -15.0,
+   "TP_dBFS": -4.4,
+   "TP_m4a_dBFS": -4.4,
+   "samples": 73249,
+   "cpentShare": 0.893
+  },
+  "backdraft_spins_start": {
+   "I_LUFS": -13.5,
+   "TP_dBFS": -2.4,
+   "TP_m4a_dBFS": -2.8,
+   "samples": 97020,
+   "cpentShare": 0.71
+  },
+  "building_cleared": {
+   "I_LUFS": -11.7,
+   "TP_dBFS": -3.7,
+   "TP_m4a_dBFS": -3.5,
+   "samples": 105840,
+   "cpentShare": 0.893
+  },
+  "total_win_big": {
+   "I_LUFS": -13.9,
+   "TP_dBFS": -1.5,
+   "TP_m4a_dBFS": -1.5,
+   "samples": 97020,
+   "cpentShare": 0.832
+  },
+  "rescue_total_big": {
+   "I_LUFS": -14.5,
+   "TP_dBFS": -1.0,
+   "TP_m4a_dBFS": -1.7,
+   "samples": 87454,
+   "cpentShare": 0.831
+  },
+  "inferno_total_big": {
+   "I_LUFS": -15.3,
+   "TP_dBFS": -3.2,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 65413,
+   "cpentShare": 0.736
+  },
+  "rung_hit_big": {
+   "pickup": false,
+   "cpentShare": 0.525,
+   "why": "C-pentatonic share 0.52 < 0.6"
+  },
+  "rung_hit_huge": {
+   "I_LUFS": -20.5,
+   "TP_dBFS": -2.0,
+   "TP_m4a_dBFS": -2.6,
+   "samples": 59267,
+   "cpentShare": 0.677
+  },
+  "rung_hit_mega": {
+   "I_LUFS": -19.2,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -3.1,
+   "samples": 70560,
+   "cpentShare": 0.857
+  },
+  "rung_hit_epic": {
+   "I_LUFS": -13.1,
+   "TP_dBFS": -4.0,
+   "TP_m4a_dBFS": -4.0,
+   "samples": 77616,
+   "cpentShare": 0.841
+  },
+  "rung_hit_max": {
+   "pickup": false,
+   "cpentShare": 0.578,
+   "why": "C-pentatonic share 0.58 < 0.6"
+  },
+  "win_max": {
+   "I_LUFS": -13.0,
+   "TP_dBFS": -2.9,
+   "TP_m4a_dBFS": -2.3,
+   "samples": 136164,
+   "cpentShare": 0.799
+  },
+  "alarm_outcome_rescue": {
+   "I_LUFS": -12.5,
+   "TP_dBFS": -3.5,
+   "TP_m4a_dBFS": -3.5,
+   "samples": 77224,
+   "cpentShare": 0.993
+  },
+  "alarm_outcome_inferno": {
+   "I_LUFS": -13.8,
+   "TP_dBFS": -4.0,
+   "TP_m4a_dBFS": -4.1,
+   "samples": 97020,
+   "cpentShare": 0.803
+  },
+  "spins_added": {
+   "I_LUFS": -18.3,
+   "TP_dBFS": -1.0,
+   "TP_m4a_dBFS": -1.5,
+   "samples": 44100,
+   "cpentShare": 0.996
+  }
+ },
+ "turbo": {},
+ "skipped": [],
+ "warnings": []
+}

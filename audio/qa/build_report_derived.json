@@ -1,0 +1,238 @@
+{
+ "music": {},
+ "sfx": {},
+ "derived": {
+  "reel_stop_2": {
+   "I_LUFS": -22.1,
+   "TP_dBFS": -3.1,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 20572
+  },
+  "reel_stop_3": {
+   "I_LUFS": -22.0,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 20493
+  },
+  "reel_stop_4": {
+   "I_LUFS": -21.8,
+   "TP_dBFS": -3.2,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 21010
+  },
+  "reel_stop_5": {
+   "I_LUFS": -21.7,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 20147
+  },
+  "reel_stop_turbo": {
+   "I_LUFS": -22.0,
+   "TP_dBFS": -2.8,
+   "TP_m4a_dBFS": -3.0,
+   "samples": 21803
+  },
+  "alarm_land_1": {
+   "I_LUFS": -19.1,
+   "TP_dBFS": -3.5,
+   "TP_m4a_dBFS": -2.3,
+   "samples": 39707
+  },
+  "alarm_land_2": {
+   "I_LUFS": -18.5,
+   "TP_dBFS": -3.1,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 39707
+  },
+  "alarm_land_3": {
+   "I_LUFS": -19.3,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -3.2,
+   "samples": 39707
+  },
+  "alarm_land_4": {
+   "I_LUFS": -18.2,
+   "TP_dBFS": -2.6,
+   "TP_m4a_dBFS": -2.9,
+   "samples": 39707
+  },
+  "alarm_land_5": {
+   "I_LUFS": -18.0,
+   "TP_dBFS": -1.9,
+   "TP_m4a_dBFS": -2.0,
+   "samples": 39707
+  },
+  "antic_riser_2": {
+   "I_LUFS": -15.9,
+   "TP_dBFS": -7.3,
+   "TP_m4a_dBFS": -7.6,
+   "samples": 105306
+  },
+  "blaze_ignite_2": {
+   "I_LUFS": -23.4,
+   "TP_dBFS": -3.2,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 27366
+  },
+  "blaze_ignite_3": {
+   "I_LUFS": -22.8,
+   "TP_dBFS": -3.1,
+   "TP_m4a_dBFS": -3.2,
+   "samples": 27366
+  },
+  "blaze_ignite_4": {
+   "I_LUFS": -21.4,
+   "TP_dBFS": -2.0,
+   "TP_m4a_dBFS": -3.2,
+   "samples": 27366
+  },
+  "blaze_ignite_5": {
+   "I_LUFS": -22.7,
+   "TP_dBFS": -3.1,
+   "TP_m4a_dBFS": -3.2,
+   "samples": 27366
+  },
+  "blaze_mult_2": {
+   "I_LUFS": -17.2,
+   "TP_dBFS": -4.4,
+   "TP_m4a_dBFS": -4.4,
+   "samples": 42064
+  },
+  "blaze_mult_3": {
+   "I_LUFS": -16.6,
+   "TP_dBFS": -3.7,
+   "TP_m4a_dBFS": -3.8,
+   "samples": 42064
+  },
+  "blaze_mult_5": {
+   "I_LUFS": -16.0,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 42064
+  },
+  "count_ticker_1": {
+   "I_LUFS": -21.3,
+   "TP_dBFS": -4.8,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 11025
+  },
+  "count_ticker_2": {
+   "I_LUFS": -21.7,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 9823
+  },
+  "count_ticker_3": {
+   "I_LUFS": -22.1,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.8,
+   "samples": 8751
+  },
+  "count_ticker_4": {
+   "I_LUFS": -22.7,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.8,
+   "samples": 7359
+  },
+  "count_ticker_5": {
+   "I_LUFS": -23.0,
+   "TP_dBFS": -4.6,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 6556
+  },
+  "count_ticker_6": {
+   "I_LUFS": -23.5,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 5513
+  },
+  "count_ticker_7": {
+   "I_LUFS": -23.7,
+   "TP_dBFS": -4.6,
+   "TP_m4a_dBFS": -4.9,
+   "samples": 4911
+  },
+  "count_ticker_8": {
+   "I_LUFS": -23.9,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.9,
+   "samples": 4376
+  },
+  "count_ticker_9": {
+   "I_LUFS": -24.0,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.6,
+   "samples": 3679
+  },
+  "count_ticker_10": {
+   "I_LUFS": -24.2,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -5.2,
+   "samples": 3278
+  },
+  "count_ticker_11": {
+   "I_LUFS": -24.5,
+   "TP_dBFS": -4.8,
+   "TP_m4a_dBFS": -4.6,
+   "samples": 2756
+  },
+  "count_ticker_12": {
+   "I_LUFS": -24.7,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.9,
+   "samples": 2456
+  },
+  "rescue_tada_1": {
+   "I_LUFS": -15.3,
+   "TP_dBFS": -4.9,
+   "TP_m4a_dBFS": -5.0,
+   "samples": 44100
+  },
+  "rescue_tada_2": {
+   "I_LUFS": -14.8,
+   "TP_dBFS": -4.6,
+   "TP_m4a_dBFS": -4.5,
+   "samples": 43199
+  },
+  "rescue_tada_3": {
+   "I_LUFS": -14.1,
+   "TP_dBFS": -4.1,
+   "TP_m4a_dBFS": -4.1,
+   "samples": 43710
+  },
+  "rescue_tada_4": {
+   "I_LUFS": -13.9,
+   "TP_dBFS": -4.0,
+   "TP_m4a_dBFS": -3.6,
+   "samples": 44832
+  },
+  "rescue_tada_5": {
+   "I_LUFS": -13.2,
+   "TP_dBFS": -3.7,
+   "TP_m4a_dBFS": -3.1,
+   "samples": 44800
+  },
+  "rescue_tada_6": {
+   "I_LUFS": -12.6,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 44366
+  },
+  "rescue_tada_7": {
+   "I_LUFS": -12.0,
+   "TP_dBFS": -2.6,
+   "TP_m4a_dBFS": -2.3,
+   "samples": 43769
+  },
+  "rescue_tada_8": {
+   "I_LUFS": -11.5,
+   "TP_dBFS": -2.4,
+   "TP_m4a_dBFS": -2.2,
+   "samples": 43761
+  }
+ },
+ "shots": {},
+ "turbo": {},
+ "skipped": [],
+ "warnings": []
+}

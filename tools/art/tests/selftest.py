@@ -76,6 +76,12 @@ def main():
         [t("derive_scene.py"), "--map", f"{root}/scene.map.json", "--relight", "backdraft=base:backdraft", "--out", assets, "--strict"])
     meta = json.load(open(f"{assets}/ui_scene/frame.meta.json"))
     check("board frame opening lands on OPEN", abs(meta["x0"] - 212 / 1497) < 0.002 and abs(meta["y1"] - 761 / 946) < 0.002, str(meta))
+    out = run("derive_rescue (rooms registered + masked, facade, props tiles, cell frames)",
+              [t("derive_rescue.py"), "--map", f"{root}/rescue.map.json", "--out", assets, "--strict"])
+    rm = json.load(open(f"{assets}/features/rescue/rooms.meta.json"))
+    check("rescue: 5 rooms x 6 states share one box each", len(rm["rooms"]) == 5 and all(len(r["files"]) == 6 for r in rm["rooms"]), out[-400:])
+    pm = json.load(open(f"{assets}/features/rescue/props.meta.json"))["props"]
+    check("rescue: ladder tile is whole rung periods, seamless", pm.get("ladder_segment", {}).get("seam_mean_abs_diff", 99) < 8, str(pm.get("ladder_segment")))
     sys.path.insert(0, ART)
     import derive_cards
 

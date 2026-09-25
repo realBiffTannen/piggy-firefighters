@@ -22,7 +22,7 @@ usage: python3 audio/tools/build_audio.py music|sfx|derived|shots|turbo|all [--o
 """
 import json, os, shutil, sys, time
 import numpy as np
-from scipy.signal import butter, sosfilt
+from scipy.signal import butter, sosfilt, sosfiltfilt
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kit as K
 import loopkit as lk
@@ -309,10 +309,10 @@ def tuned(note, dur, colours=(('glock', 0.6), ('chime', 0.55)), blip=False):
     return HL.stereo(y / (np.abs(y).max() + 1e-12))
 
 
-def hybrid_ping(drawn, note, rel_db=0.0, dur=0.6):
+def hybrid_ping(drawn, note, rel_db=0.0, dur=0.6, colours=(('glock', 0.6), ('chime', 0.55))):
     """drawn character (kept as drawn) + a tuned ping at `note` placed on the drawn onset peak."""
     on = max(0, onset_peak(drawn) - int(0.01 * SR))
-    t = tuned(note, dur)
+    t = tuned(note, dur, colours)
     lvl = HL.rms_db(drawn[on:on + int(0.12 * SR)]) if len(drawn) - on > 100 else HL.rms_db(drawn)
     t = t * 10 ** ((lvl + rel_db - HL.rms_db(t[: int(0.12 * SR)])) / 20)
     out = pad_to(drawn.copy(), on + len(t)); out[on:on + len(t)] += t
@@ -338,8 +338,15 @@ def keyfit(cid, y):
         # guard: keyfit.analyse reads 150-4000 Hz and can be steered by one very high ring (sym_win_h2: a 3.9 kHz shield
         # partial) while the body under 2.5 kHz was already in key; a transposition that makes the body worse is reverted.
         if after < before - 0.05:
-            info['decision'] += f' -> REVERTED (C-pent share 110-2500 Hz {before:.2f} -> {after:.2f})'; info['semis'] = 0.0
-            report['warnings'].append(f'{cid}: key-fit reverted ({before:.2f} -> {after:.2f} below 2.5 kHz)')
+            # split-band fit: the body under 2.5 kHz stays as drawn (already in key), only the band above it (the ring that
+            # steered the analysis) is transposed. Zero-phase low-pass + its exact complement, so unshifted it sums to the input.
+            lo = sosfiltfilt(butter(4, 2500.0, 'lowpass', fs=SR, output='sos'), y, axis=0); hi_ = y - lo
+            z = lo + pad_to(K.pitch(hi_, st, preserve_len=True), len(y))[:len(y)]
+            a2 = KF.analyse(z); after2 = M.cpent_share(z); best0 = a2['share'][0]
+            info['decision'] += (f' -> whole-cue shift would drop the 110-2500 Hz share {before:.2f} -> {after:.2f}; SPLIT-BAND: only > 2.5 kHz '
+                                 f'shifted {st:+.2f} st (150-4000 Hz share {a["share"][0]:.2f} -> {best0:.2f}, 110-2500 Hz {before:.2f} -> {after2:.2f})')
+            info['splitBandHz'] = 2500; info['cpentShareShipped'] = round(after2, 3); y = z
+            report['warnings'].append(f'{cid}: split-band key-fit above 2.5 kHz ({a["share"][0]:.2f} -> {best0:.2f}; body {before:.2f} -> {after2:.2f})')
         else: y = z; info['cpentShareShipped'] = round(after, 3)
     return y, info
 
@@ -370,6 +377,13 @@ def master_draw(name):
     y = K.trim(x, max_s=cap)
     if name in SNAP:
         y, info = pitch_fix(name, y, SNAP[name]); extra['pitch'] = info
+        if name == 'reel_stop_1':
+            # measured 2026-09-25: the drawn wooden thunk holds 99-100 % of its energy under 200 Hz (partials 65 / 91 / 139 /
+            # 200 Hz, inharmonic), i.e. it is close to silent on a phone speaker and has no clear pitch for a C D E G A
+            # ladder. Hybrid: the thunk (sub-sonic rumble high-passed at 45 Hz) + a tuned marimba/woodblock knock at C4 on
+            # its onset, -2 dB; the derived ladder transposes both, so stops 1-5 read C4 D4 E4 G4 A4 on any speaker.
+            y = hp(y, 45.0); y, on = hybrid_ping(y, 60, rel_db=-2.0, dur=0.35, colours=(('wood', 1.0),))
+            extra['tonal'] = {'op': f'hybrid: drawn thunk (HP 45 Hz) + tuned wood knock C4 at {on / SR * 1000:.0f} ms (-2 dB)', 'note': 'C4'}
         if name in SOURCES:
             p = K.save_src(y, name); json.dump(info, open(p[:-4] + '.json', 'w')); return {'source': os.path.relpath(p, ROOT), 'pitch': info}
     elif name == 'blaze_ignite':

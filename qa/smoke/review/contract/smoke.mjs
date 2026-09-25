@@ -135,6 +135,9 @@ const runOne = async (browser, spec) => {
 	await context.addInitScript(() => {
 		globalThis.__PFF_QA = true;
 	});
+	// Shared dev server: other lanes edit src/ while this runs. Swallow the Vite HMR socket so no hot update or full
+	// reload lands mid-round (the page loads the modules as they are at navigation time).
+	await context.routeWebSocket(/\?token=/, (ws) => ws.onMessage(() => {}));
 	const page = await context.newPage();
 	const errors = [];
 	page.on('console', (msg) => {

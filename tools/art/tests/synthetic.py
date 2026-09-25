@@ -194,11 +194,90 @@ def thumbs():
     save(quirks(im, specks=False), "thumb/chief_hero.png")
 
 
+def rescue_plate(size, sky, wins, inner, frame_top, frame_h, state=None, seed=0):
+    """Opaque rescue plate: sky, cream cornice, brick facade, five cream-framed windows with dark interiors;
+    `state` paints a fire/smoke/lamp shape into and above every window (the same-framing edits)."""
+    W, H = size
+    im = Image.new("RGB", size, sky)
+    d = ImageDraw.Draw(im)
+    fx0, fx1 = int(W * 0.078), int(W * 0.922)
+    top = frame_top - int(frame_h * 0.75)
+    d.rectangle([fx0, top, fx1, int(H * 0.88)], fill=(150, 45, 40))
+    d.rectangle([fx0 - 20, top, fx1 + 20, top + int(frame_h * 0.45)], fill=(230, 215, 180), outline=INK, width=6)
+    for y in range(top + int(frame_h * 0.6), int(H * 0.88), 28):
+        d.line([fx0, y, fx1, y], fill=(110, 30, 28), width=3)
+    d.rectangle([0, int(H * 0.88), W, H], fill=(60, 60, 70))
+    for cx in wins:
+        fw = inner[0] * 2.2
+        d.rectangle([cx - fw / 2, frame_top, cx + fw / 2, frame_top + frame_h], fill=(230, 215, 180), outline=INK, width=6)
+        iy0 = frame_top + (frame_h - inner[1]) / 2
+        d.rectangle([cx - inner[0] / 2, iy0, cx + inner[0] / 2, iy0 + inner[1]], fill=(15, 20, 45))
+        if state == "roaring":
+            d.polygon([(cx - 60, frame_top + frame_h - 30), (cx, frame_top - 90), (cx + 60, frame_top + frame_h - 30)],
+                      fill=FLAME, outline=INK)
+        elif state == "smouldering":
+            d.ellipse([cx - 30, frame_top - 70, cx + 30, frame_top + 10], fill=SMOKE, outline=INK, width=5)
+            d.rectangle([cx - 20, iy0 + inner[1] - 30, cx + 20, iy0 + inner[1] - 5], fill=FLAME)
+        elif state == "safe":
+            d.rectangle([cx - inner[0] / 2, iy0, cx + inner[0] / 2, iy0 + inner[1]], fill=(250, 220, 140))
+            d.ellipse([cx - 12, iy0 + 10, cx + 12, iy0 + 34], fill=BRASS, outline=INK, width=4)
+    return im
+
+
+def rescue():
+    """Rescue plates + same-framing state edits, the two props sheets and the ui_frames sheet (derive_rescue)."""
+    L, P = (1536, 1024), (1024, 1536)
+    wl = [299 + 234 * i for i in range(5)]
+    wp = [162 + 174 * i for i in range(5)]
+    m = {}
+    for mood, sky in (("rescue", NAVY), ("inferno", (60, 70, 120))):
+        save(rescue_plate(L, sky, wl, (80, 110), 232, 172), f"rescue/plate_{mood}.png")
+        save(rescue_plate(P, sky, wp, (60, 98), 328, 158), f"rescue/portrait_{mood}.png")
+        m[f"plate_{mood}"] = f"{G}/rescue/plate_{mood}.png"
+        m[f"portrait_{mood}"] = f"{G}/rescue/portrait_{mood}.png"
+        for st in ("roaring", "smouldering", "safe"):
+            save(rescue_plate(L, sky, wl, (80, 110), 232, 172, st), f"rescue/{mood}_{st}.png")
+            m[f"{mood}_{st}"] = f"{G}/rescue/{mood}_{st}.png"
+    a = Image.new("RGBA", L, (0, 0, 0, 0))
+    d = ImageDraw.Draw(a)
+    for x in (70, 290):  # ladder: two rails + 5 rungs
+        d.rectangle([x, 50, x + 75, 970], fill=RED + (255,), outline=INK + (255,), width=6)
+    for y in range(150, 950, 177):
+        d.rectangle([145, y, 290, y + 60], fill=BRASS + (255,), outline=INK + (255,), width=6)
+    for x in (440, 650):
+        d.rectangle([x, 70, x + 70, 495], fill=RED + (255,), outline=INK + (255,), width=6)
+    d.rectangle([510, 250, 650, 310], fill=BRASS + (255,), outline=INK + (255,), width=6)
+    d.ellipse([795, 140, 1510, 528], fill=CREAM + (255,), outline=RED + (255,), width=20)
+    d.ellipse([460, 575, 802, 912], fill=BRASS + (255,), outline=INK + (255,), width=8)
+    d.rounded_rectangle([900, 680, 1468, 900], radius=20, fill=BRASS + (255,), outline=INK + (255,), width=8)
+    save(a, "rescue/props_a.png")
+    b = Image.new("RGBA", L, (0, 0, 0, 0))
+    d = ImageDraw.Draw(b)
+    d.rounded_rectangle([40, 150, 740, 380], radius=40, fill=BRASS + (255,), outline=INK + (255,), width=8)
+    d.rectangle([815, 192, 1512, 352], fill=CREAM + (255,), outline=INK + (255,), width=6)
+    d.ellipse([1215, 400, 1520, 720], fill=(230, 235, 240, 255), outline=INK + (255,), width=8)
+    d.arc([40, 480, 1100, 1500], 200, 280, fill=(140, 200, 240, 255), width=60)
+    d.ellipse([650, 460, 720, 510], fill=(140, 200, 240, 255))
+    d.ellipse([770, 620, 1270, 965], fill=(140, 200, 240, 255), outline=INK + (255,), width=8)
+    save(b, "rescue/props_b.png")
+    u = Image.new("RGBA", L, (0, 0, 0, 0))
+    d = ImageDraw.Draw(u)
+    for x0, col in ((24, NAVY), (535, BRASS), (1039, RED)):
+        d.rectangle([x0, 137, x0 + 466, 585], fill=col + (255,), outline=INK + (255,), width=8)
+        d.rectangle([x0 + 75, 212, x0 + 391, 510], fill=(0, 0, 0, 0), outline=INK + (255,), width=6)
+    d.rounded_rectangle([612, 640, 922, 932], radius=40, fill=BRASS + (255,), outline=INK + (255,), width=8)
+    d.rectangle([660, 720, 874, 880], fill=CREAM + (255,))
+    save(u, "rescue/ui_frames.png")
+    m.update(props_a=f"{G}/rescue/props_a.png", props_b=f"{G}/rescue/props_b.png", ui_frames=f"{G}/rescue/ui_frames.png")
+    with open(os.path.join(T, "rescue.map.json"), "w") as f:
+        json.dump(m, f)
+
+
 def build(root):
     """Write every synthetic source under <root>/gen and the id->path maps under <root>. Returns the file count."""
     global T, G
     T, G = root, os.path.join(root, "gen")
-    symbols(); scene(); cards(); winrungs(); thumbs()
+    symbols(); scene(); rescue(); cards(); winrungs(); thumbs()
     return sum(len(f) for _, _, f in os.walk(G))
 
 

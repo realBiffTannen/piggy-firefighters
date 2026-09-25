@@ -1,0 +1,568 @@
+{
+ "music": {},
+ "sfx": {},
+ "derived": {},
+ "shots": {},
+ "turbo": {
+  "spin_start_turbo": {
+   "I_LUFS": -21.9,
+   "TP_dBFS": -7.0,
+   "TP_m4a_dBFS": -6.7,
+   "samples": 12124
+  },
+  "spin_whoosh_turbo": {
+   "I_LUFS": -21.9,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -3.5,
+   "samples": 19692
+  },
+  "wild_land_turbo": {
+   "I_LUFS": -18.6,
+   "TP_dBFS": -2.8,
+   "TP_m4a_dBFS": -2.4,
+   "samples": 19440
+  },
+  "alarm_land_1_turbo": {
+   "I_LUFS": -20.4,
+   "TP_dBFS": -4.6,
+   "TP_m4a_dBFS": -4.0,
+   "samples": 22027
+  },
+  "alarm_land_2_turbo": {
+   "I_LUFS": -19.7,
+   "TP_dBFS": -4.4,
+   "TP_m4a_dBFS": -4.3,
+   "samples": 22176
+  },
+  "alarm_land_3_turbo": {
+   "I_LUFS": -20.5,
+   "TP_dBFS": -4.3,
+   "TP_m4a_dBFS": -4.9,
+   "samples": 22314
+  },
+  "alarm_land_4_turbo": {
+   "I_LUFS": -19.6,
+   "TP_dBFS": -3.1,
+   "TP_m4a_dBFS": -3.7,
+   "samples": 22206
+  },
+  "alarm_land_5_turbo": {
+   "I_LUFS": -19.1,
+   "TP_dBFS": -2.4,
+   "TP_m4a_dBFS": -2.6,
+   "samples": 22079
+  },
+  "galarm_glint_turbo": {
+   "I_LUFS": -16.9,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.5,
+   "samples": 19560
+  },
+  "antic_riser_turbo": {
+   "I_LUFS": -16.7,
+   "TP_dBFS": -7.7,
+   "TP_m4a_dBFS": -7.2,
+   "samples": 52367
+  },
+  "antic_riser_2_turbo": {
+   "I_LUFS": -16.7,
+   "TP_dBFS": -8.3,
+   "TP_m4a_dBFS": -8.2,
+   "samples": 53172
+  },
+  "antic_miss_turbo": {
+   "I_LUFS": -18.9,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.5,
+   "samples": 10662
+  },
+  "antic_hit_turbo": {
+   "I_LUFS": -16.9,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -3.9,
+   "samples": 19429
+  },
+  "trigger_fanfare_turbo": {
+   "I_LUFS": -17.3,
+   "TP_dBFS": -3.8,
+   "TP_m4a_dBFS": -4.0,
+   "samples": 57136
+  },
+  "backdraft_whoosh_turbo": {
+   "I_LUFS": -21.0,
+   "TP_dBFS": -5.5,
+   "TP_m4a_dBFS": -5.6,
+   "samples": 16441
+  },
+  "backdraft_roar_turbo": {
+   "I_LUFS": -18.6,
+   "TP_dBFS": -7.0,
+   "TP_m4a_dBFS": -7.5,
+   "samples": 36655
+  },
+  "backdraft_chord_turbo": {
+   "I_LUFS": -22.5,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -3.8,
+   "samples": 35154
+  },
+  "blaze_mult_2_turbo": {
+   "I_LUFS": -18.8,
+   "TP_dBFS": -4.6,
+   "TP_m4a_dBFS": -4.6,
+   "samples": 22820
+  },
+  "blaze_mult_3_turbo": {
+   "I_LUFS": -18.2,
+   "TP_dBFS": -3.5,
+   "TP_m4a_dBFS": -3.6,
+   "samples": 22856
+  },
+  "blaze_mult_5_turbo": {
+   "I_LUFS": -17.4,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -3.5,
+   "samples": 23524
+  },
+  "blaze_mult_10_turbo": {
+   "I_LUFS": -20.6,
+   "TP_dBFS": -2.5,
+   "TP_m4a_dBFS": -3.2,
+   "samples": 33247
+  },
+  "sym_win_h1_turbo": {
+   "I_LUFS": -17.8,
+   "TP_dBFS": -4.3,
+   "TP_m4a_dBFS": -3.7,
+   "samples": 24443
+  },
+  "sym_win_h2_turbo": {
+   "I_LUFS": -14.9,
+   "TP_dBFS": -2.9,
+   "TP_m4a_dBFS": -2.9,
+   "samples": 23864
+  },
+  "sym_win_h3_turbo": {
+   "I_LUFS": -16.3,
+   "TP_dBFS": -3.7,
+   "TP_m4a_dBFS": -4.1,
+   "samples": 23744
+  },
+  "sym_win_h4_turbo": {
+   "I_LUFS": -15.4,
+   "TP_dBFS": -5.7,
+   "TP_m4a_dBFS": -6.7,
+   "samples": 23988
+  },
+  "sym_win_l1_turbo": {
+   "I_LUFS": -16.1,
+   "TP_dBFS": -5.7,
+   "TP_m4a_dBFS": -6.1,
+   "samples": 24589
+  },
+  "sym_win_l2_turbo": {
+   "I_LUFS": -27.1,
+   "TP_dBFS": -8.7,
+   "TP_m4a_dBFS": -8.9,
+   "samples": 22225
+  },
+  "sym_win_l3_turbo": {
+   "I_LUFS": -24.4,
+   "TP_dBFS": -4.4,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 23180
+  },
+  "sym_win_l4_turbo": {
+   "I_LUFS": -27.5,
+   "TP_dBFS": -6.1,
+   "TP_m4a_dBFS": -5.3,
+   "samples": 24052
+  },
+  "sym_win_w_turbo": {
+   "I_LUFS": -16.9,
+   "TP_dBFS": -7.9,
+   "TP_m4a_dBFS": -7.4,
+   "samples": 20057
+  },
+  "line_win_small_turbo": {
+   "I_LUFS": -19.6,
+   "TP_dBFS": -3.2,
+   "TP_m4a_dBFS": -3.1,
+   "samples": 19506
+  },
+  "line_win_mid_turbo": {
+   "I_LUFS": -18.3,
+   "TP_dBFS": -4.6,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 28672
+  },
+  "total_win_small_turbo": {
+   "I_LUFS": -15.0,
+   "TP_dBFS": -4.5,
+   "TP_m4a_dBFS": -4.4,
+   "samples": 29429
+  },
+  "total_win_mid_turbo": {
+   "I_LUFS": -15.3,
+   "TP_dBFS": -4.8,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 35746
+  },
+  "total_win_big_turbo": {
+   "I_LUFS": -16.1,
+   "TP_dBFS": -2.1,
+   "TP_m4a_dBFS": -1.6,
+   "samples": 49008
+  },
+  "win_max_turbo": {
+   "I_LUFS": -13.8,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -3.7,
+   "samples": 68477
+  },
+  "rung_hit_big_turbo": {
+   "I_LUFS": -21.6,
+   "TP_dBFS": -3.8,
+   "TP_m4a_dBFS": -3.5,
+   "samples": 29231
+  },
+  "sign_impact_big_turbo": {
+   "I_LUFS": -22.6,
+   "TP_dBFS": -5.6,
+   "TP_m4a_dBFS": -5.6,
+   "samples": 21722
+  },
+  "rung_hit_huge_turbo": {
+   "I_LUFS": -21.6,
+   "TP_dBFS": -2.8,
+   "TP_m4a_dBFS": -2.6,
+   "samples": 32472
+  },
+  "sign_impact_huge_turbo": {
+   "I_LUFS": -28.6,
+   "TP_dBFS": -5.1,
+   "TP_m4a_dBFS": -5.7,
+   "samples": 12636
+  },
+  "rung_hit_mega_turbo": {
+   "I_LUFS": -20.5,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.6,
+   "samples": 35125
+  },
+  "sign_impact_mega_turbo": {
+   "I_LUFS": -19.0,
+   "TP_dBFS": -4.0,
+   "TP_m4a_dBFS": -2.4,
+   "samples": 16785
+  },
+  "rung_hit_epic_turbo": {
+   "I_LUFS": -14.7,
+   "TP_dBFS": -4.3,
+   "TP_m4a_dBFS": -4.1,
+   "samples": 39253
+  },
+  "sign_impact_epic_turbo": {
+   "I_LUFS": -23.2,
+   "TP_dBFS": -4.5,
+   "TP_m4a_dBFS": -4.8,
+   "samples": 23916
+  },
+  "rung_hit_max_turbo": {
+   "I_LUFS": -15.6,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.1,
+   "samples": 48547
+  },
+  "sign_impact_max_turbo": {
+   "I_LUFS": -20.3,
+   "TP_dBFS": -2.9,
+   "TP_m4a_dBFS": -3.0,
+   "samples": 29402
+  },
+  "burst_water_turbo": {
+   "I_LUFS": -22.6,
+   "TP_dBFS": -5.0,
+   "TP_m4a_dBFS": -5.0,
+   "samples": 24619
+  },
+  "burst_embers_turbo": {
+   "I_LUFS": -25.8,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -1.9,
+   "samples": 23516
+  },
+  "burst_badges_turbo": {
+   "I_LUFS": -18.9,
+   "TP_dBFS": -4.1,
+   "TP_m4a_dBFS": -4.0,
+   "samples": 15197
+  },
+  "burst_coins_turbo": {
+   "I_LUFS": -16.7,
+   "TP_dBFS": -4.4,
+   "TP_m4a_dBFS": -4.9,
+   "samples": 33340
+  },
+  "burst_gold_turbo": {
+   "I_LUFS": -19.6,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -6.2,
+   "samples": 35643
+  },
+  "rung_flare_turbo": {
+   "I_LUFS": -17.5,
+   "TP_dBFS": -4.1,
+   "TP_m4a_dBFS": -4.3,
+   "samples": 19755
+  },
+  "rung_land_turbo": {
+   "I_LUFS": -19.5,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -4.0,
+   "samples": 29566
+  },
+  "rung_out_turbo": {
+   "I_LUFS": -17.6,
+   "TP_dBFS": -7.5,
+   "TP_m4a_dBFS": -4.8,
+   "samples": 19663
+  },
+  "rescue_enter_turbo": {
+   "I_LUFS": -14.3,
+   "TP_dBFS": -3.8,
+   "TP_m4a_dBFS": -4.0,
+   "samples": 52424
+  },
+  "inferno_enter_turbo": {
+   "I_LUFS": -15.8,
+   "TP_dBFS": -4.5,
+   "TP_m4a_dBFS": -4.6,
+   "samples": 36022
+  },
+  "hose_start_turbo": {
+   "I_LUFS": -15.6,
+   "TP_dBFS": -6.4,
+   "TP_m4a_dBFS": -6.0,
+   "samples": 24699
+  },
+  "hose_end_turbo": {
+   "I_LUFS": -15.5,
+   "TP_dBFS": -5.8,
+   "TP_m4a_dBFS": -6.9,
+   "samples": 23878
+  },
+  "steam_turbo": {
+   "I_LUFS": -16.0,
+   "TP_dBFS": -3.9,
+   "TP_m4a_dBFS": -4.3,
+   "samples": 33327
+  },
+  "room_down_turbo": {
+   "I_LUFS": -24.1,
+   "TP_dBFS": -6.4,
+   "TP_m4a_dBFS": -8.5,
+   "samples": 19502
+  },
+  "rescue_tada_1_turbo": {
+   "I_LUFS": -16.8,
+   "TP_dBFS": -5.0,
+   "TP_m4a_dBFS": -4.8,
+   "samples": 24215
+  },
+  "rescue_tada_2_turbo": {
+   "I_LUFS": -16.4,
+   "TP_dBFS": -4.7,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 23704
+  },
+  "rescue_tada_3_turbo": {
+   "I_LUFS": -15.5,
+   "TP_dBFS": -4.4,
+   "TP_m4a_dBFS": -4.4,
+   "samples": 24151
+  },
+  "rescue_tada_4_turbo": {
+   "I_LUFS": -16.7,
+   "TP_dBFS": -4.1,
+   "TP_m4a_dBFS": -4.1,
+   "samples": 24660
+  },
+  "rescue_tada_5_turbo": {
+   "I_LUFS": -15.7,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -2.9,
+   "samples": 24621
+  },
+  "rescue_tada_6_turbo": {
+   "I_LUFS": -15.1,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 24466
+  },
+  "rescue_tada_7_turbo": {
+   "I_LUFS": -14.7,
+   "TP_dBFS": -2.6,
+   "TP_m4a_dBFS": -2.8,
+   "samples": 24438
+  },
+  "rescue_tada_8_turbo": {
+   "I_LUFS": -14.0,
+   "TP_dBFS": -2.5,
+   "TP_m4a_dBFS": -2.3,
+   "samples": 24447
+  },
+  "prize_coins_turbo": {
+   "I_LUFS": -21.7,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -3.7,
+   "samples": 33418
+  },
+  "prize_coins_big_turbo": {
+   "I_LUFS": -18.6,
+   "TP_dBFS": -4.3,
+   "TP_m4a_dBFS": -4.6,
+   "samples": 44075
+  },
+  "building_cleared_turbo": {
+   "I_LUFS": -13.2,
+   "TP_dBFS": -4.8,
+   "TP_m4a_dBFS": -4.8,
+   "samples": 53136
+  },
+  "siren_pass_turbo": {
+   "I_LUFS": -16.6,
+   "TP_dBFS": -7.7,
+   "TP_m4a_dBFS": -7.2,
+   "samples": 45309
+  },
+  "block_slide_turbo": {
+   "I_LUFS": -21.0,
+   "TP_dBFS": -3.5,
+   "TP_m4a_dBFS": -3.4,
+   "samples": 30825
+  },
+  "spins_added_turbo": {
+   "I_LUFS": -19.7,
+   "TP_dBFS": -2.7,
+   "TP_m4a_dBFS": -3.1,
+   "samples": 24284
+  },
+  "last_spin_turbo": {
+   "I_LUFS": -19.4,
+   "TP_dBFS": -3.3,
+   "TP_m4a_dBFS": -1.4,
+   "samples": 29490
+  },
+  "rescue_total_small_turbo": {
+   "I_LUFS": -15.3,
+   "TP_dBFS": -5.4,
+   "TP_m4a_dBFS": -5.3,
+   "samples": 33322
+  },
+  "inferno_total_small_turbo": {
+   "I_LUFS": -18.6,
+   "TP_dBFS": -5.8,
+   "TP_m4a_dBFS": -5.7,
+   "samples": 33171
+  },
+  "rescue_total_mid_turbo": {
+   "I_LUFS": -16.5,
+   "TP_dBFS": -5.4,
+   "TP_m4a_dBFS": -5.2,
+   "samples": 41660
+  },
+  "inferno_total_mid_turbo": {
+   "I_LUFS": -15.7,
+   "TP_dBFS": -5.4,
+   "TP_m4a_dBFS": -5.0,
+   "samples": 44093
+  },
+  "rescue_total_big_turbo": {
+   "I_LUFS": -16.9,
+   "TP_dBFS": -2.0,
+   "TP_m4a_dBFS": -1.1,
+   "samples": 43368
+  },
+  "inferno_total_big_turbo": {
+   "I_LUFS": -16.9,
+   "TP_dBFS": -4.1,
+   "TP_m4a_dBFS": -3.9,
+   "samples": 33278
+  },
+  "alarm_call_ring_turbo": {
+   "I_LUFS": -18.5,
+   "TP_dBFS": -3.2,
+   "TP_m4a_dBFS": -3.6,
+   "samples": 28018
+  },
+  "alarm_card_flip_turbo": {
+   "I_LUFS": -23.4,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -2.7,
+   "samples": 16596
+  },
+  "alarm_outcome_rescue_turbo": {
+   "I_LUFS": -13.7,
+   "TP_dBFS": -3.6,
+   "TP_m4a_dBFS": -3.7,
+   "samples": 38777
+  },
+  "alarm_outcome_inferno_turbo": {
+   "I_LUFS": -14.8,
+   "TP_dBFS": -4.8,
+   "TP_m4a_dBFS": -4.7,
+   "samples": 48988
+  },
+  "alarm_outcome_false_turbo": {
+   "I_LUFS": -17.3,
+   "TP_dBFS": -8.8,
+   "TP_m4a_dBFS": -7.4,
+   "samples": 29400
+  },
+  "dog_bark_turbo": {
+   "I_LUFS": -17.3,
+   "TP_dBFS": -6.3,
+   "TP_m4a_dBFS": -6.2,
+   "samples": 20126
+  },
+  "backdraft_spins_start_turbo": {
+   "I_LUFS": -15.8,
+   "TP_dBFS": -3.0,
+   "TP_m4a_dBFS": -3.6,
+   "samples": 48998
+  },
+  "backdraft_spins_end_turbo": {
+   "I_LUFS": -25.2,
+   "TP_dBFS": -6.1,
+   "TP_m4a_dBFS": -6.8,
+   "samples": 44486
+  },
+  "shutter_slam_turbo": {
+   "I_LUFS": -19.0,
+   "TP_dBFS": -3.4,
+   "TP_m4a_dBFS": -2.3,
+   "samples": 19249
+  },
+  "shutter_haul_1_turbo": {
+   "I_LUFS": -21.5,
+   "TP_dBFS": -5.0,
+   "TP_m4a_dBFS": -5.0,
+   "samples": 10824
+  },
+  "shutter_haul_2_turbo": {
+   "I_LUFS": -21.7,
+   "TP_dBFS": -4.5,
+   "TP_m4a_dBFS": -4.4,
+   "samples": 10545
+  },
+  "shutter_haul_3_turbo": {
+   "I_LUFS": -22.9,
+   "TP_dBFS": -2.7,
+   "TP_m4a_dBFS": -3.3,
+   "samples": 13069
+  }
+ },
+ "skipped": [],
+ "warnings": []
+}

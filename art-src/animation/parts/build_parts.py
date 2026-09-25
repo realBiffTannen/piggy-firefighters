@@ -82,16 +82,39 @@ SHEETS = {
 # placement priors (vertical centre as a fraction of the master height)
 YRANGE = {"head_no_helmet": (0.0, 0.5), "head_blank": (0.0, 0.5), "head": (0.0, 0.5), "helmet_only": (0.0, 0.4),
           "legs": (0.5, 1.0), "coat_tails": (0.35, 0.9)}
-SRANGE = {"helmet_only": (0.7, 1.4), "body_no_head_no_arms": (0.6, 1.6), "body_no_head_no_legs": (0.6, 1.6),
+SRANGE = {"skin_grandma": (0.8, 1.25), "skin_twins": (0.8, 1.25), "skin_dad": (0.8, 1.25), "skin_baby": (0.8, 1.25),
+          "skin_teen": (0.8, 1.25), "helmet_only": (0.7, 1.4), "body_no_head_no_arms": (0.6, 1.6), "body_no_head_no_legs": (0.6, 1.6),
           "legs": (0.5, 1.6)}
-SHEET_REF = {
-    "pf_chief": {"hands_sheet": ("hand_r_open", "arm_right", "fit"), "face_sheet": ("moustache", "head_no_helmet", "fit"),
-                 "props": ("shield_plate", "helmet_only", "fit")},
-    "pf_rookie": {"hands_sheet": ("hand_r_open", "arm_right", "fit"), "face_sheet": ("ear_left", "head_no_helmet", "fit")},
-    "pf_dog": {"parts_sheet": ("ear_left", "head_no_helmet", "fit"), "face_sheet": ("eyes_open", "head_no_helmet", "fit")},
-    "pf_rescued": {"face_sheet": ("ear_left", "head", "fit"), "wave_arm": ("wave_arm_up", "arm_right", "area"),
+SHEET_REF = {  # (reference piece, registered counterpart, method[, colour])
+    "pf_chief": {"hands_sheet": ("hand_r_open", "arm_right", "colour", "skin"),
+                 "face_sheet": ("moustache", "head_no_helmet", "colour", "brown"),
+                 "props": ("shield_plate", "helmet_only", "colour", "brass")},
+    "pf_rookie": {"hands_sheet": ("hand_r_open", "arm_right", "colour", "skin"),
+                  "face_sheet": ("eyes_open", "head_no_helmet", "colour", "white"),
+                  "props": ("@hands_sheet",)},
+    "pf_dog": {"parts_sheet": ("head_no_jaw", "head_no_helmet", "width"),
+               "face_sheet": ("mouth_closed", "head_no_helmet", "fitcrop")},
+    "pf_rescued": {"face_sheet": ("eyes_open", "head", "colour", "white"), "wave_arm": ("wave_arm_up", "arm_right", "area"),
                    "slide_poses": ("pose_cheer", "master", "area")},
 }
+COLOURS = {
+    "white": lambda r, g, b: (r > 225) & (g > 225) & (b > 225),
+    "skin": lambda r, g, b: (r > 215) & (g > 120) & (g < 205) & (b > 90) & (b < 190) & (r - b > 40),
+    "brown": lambda r, g, b: (r > 50) & (r < 150) & (g < 75) & (b < 55) & (r > g + 20),
+    "brass": lambda r, g, b: (r > 200) & (g > 150) & (b < 120),
+}
+
+
+def colour_area(a, name):
+    r, g, bl = (a[..., i].astype(int) for i in range(3))
+    m = COLOURS[name](r, g, bl) & (a[..., 3] > 128)
+    m = ndimage.binary_closing(m, iterations=2)
+    lab, n = ndimage.label(m)
+    if n == 0:
+        return 0
+    return int(np.bincount(lab.ravel())[1:].max())
+
+
 # raised arms: placed at the shoulder of the registered down arm, scaled by area
 RAISED = {"pf_chief": "arms_raised", "pf_rookie": "arms_raised"}
 # pieces whose scale is taken from a registration against the master (others use the sheet median)
@@ -148,21 +171,70 @@ def kmeans1d(vals, k):
     return rank[lab]
 
 
+def _bands(profile, n, min_gap=6):
+    """Split a 1-D occupancy profile into exactly n runs: occupied runs separated by empty gaps; if there are more
+    runs than n, the narrowest gaps are merged first (a gap inside a cell is narrower than a gap between cells)."""
+    occ = profile > 0
+    runs, i, L = [], 0, len(occ)
+    while i < L:
+        if occ[i]:
+            j = i
+            while j < L and occ[j]:
+                j += 1
+            runs.append([i, j])
+            i = j
+        else:
+            i += 1
+    if not runs:
+        return []
+    # close gaps below min_gap
+    merged = [runs[0]]
+    for r in runs[1:]:
+        if r[0] - merged[-1][1] < min_gap:
+            merged[-1][1] = r[1]
+        else:
+            merged.append(r)
+    while len(merged) > n:
+        gaps = [merged[k + 1][0] - merged[k][1] for k in range(len(merged) - 1)]
+        k = int(np.argmin(gaps))
+        merged[k][1] = merged[k + 1][1]
+        del merged[k + 1]
+    return merged if len(merged) == n else None
+
+
 def split_grid(a, rows, min_area=400):
-    """Group the sheet's components into the named grid cells (rows known, columns per row known)."""
+    """Group the sheet's components into the named grid cells: rows = horizontal bands of the alpha projection,
+    columns = bands of each row's own projection (fallback: 1-D k-means on component centres)."""
     lab, cs = comps(a, min_area)
-    # drop specks relative to the biggest piece
     big = max(c["area"] for c in cs)
-    cs = [c for c in cs if c["area"] >= max(min_area, big * 0.004)]
-    r = kmeans1d([c["cy"] for c in cs], len(rows))
+    keep = [c for c in cs if c["area"] >= max(min_area, big * 0.004)]
+    m = np.isin(lab, [c["i"] for c in keep])
+    rb = _bands(m.any(axis=1).astype(int), len(rows))
+    if rb is None:
+        r = kmeans1d([c["cy"] for c in keep], len(rows))
+        rb_of = {c["i"]: rr for c, rr in zip(keep, r)}
+    else:
+        rb_of = {}
+        for c in keep:
+            for ri, (y0, y1) in enumerate(rb):
+                if y0 <= c["cy"] < y1:
+                    rb_of[c["i"]] = ri
     cells = {}
     for ri, names in enumerate(rows):
-        rc = [c for c, rr in zip(cs, r) if rr == ri]
+        rc = [c for c in keep if rb_of.get(c["i"]) == ri]
         if not rc:
             continue
-        col = kmeans1d([c["cx"] for c in rc], len(names)) if len(rc) >= len(names) else list(range(len(rc)))
-        for c, ci in zip(rc, col):
-            cells.setdefault(names[ci], []).append(c["i"])
+        rowmask = np.isin(lab, [c["i"] for c in rc])
+        cb = _bands(rowmask.any(axis=0).astype(int), len(names), min_gap=4)
+        if cb is not None:
+            for c in rc:
+                for ci, (x0, x1) in enumerate(cb):
+                    if x0 <= c["cx"] < x1:
+                        cells.setdefault(names[ci], []).append(c["i"])
+        else:
+            col = kmeans1d([c["cx"] for c in rc], len(names)) if len(rc) >= len(names) else list(range(len(rc)))
+            for c, ci in zip(rc, col):
+                cells.setdefault(names[ci], []).append(c["i"])
     return lab, cells
 
 
@@ -206,7 +278,9 @@ def build(rig):
     registered = {}
     for rawname, (outname, split) in SAME.get(rig, {}).items():
         p = rgba(os.path.join(raw_dir, f"{rawname}.png"))
-        f = fit(m_raw, p, yrange=YRANGE.get(rawname), srange=SRANGE.get(rawname, (0.35, 1.6)))
+        f = fit(m_raw, p, yrange=YRANGE.get(rawname), srange=SRANGE.get(rawname, (0.35, 1.6)),
+                mode="alpha" if rawname.startswith("skin_") else "colour")
+        f["mode"] = "alpha" if rawname.startswith("skin_") else "colour"
         placed = place(p, f, (sx, sy))
         registered[outname] = placed
         entry = {"raw": os.path.relpath(os.path.join(raw_dir, f"{rawname}.png"), REPO), "fit": f,
@@ -225,6 +299,21 @@ def build(rig):
             else:
                 entry["split_error"] = f"expected {len(split)} components, found {len(cs)}"
         rec["parts"][outname] = entry
+    # helmet_front: the painted navy lining is kept only where it does not cover the head (layer-ready helmet)
+    if "helmet_only" in registered:
+        head = registered.get("head_no_helmet")
+        h = registered["helmet_only"].copy()
+        if head is not None:
+            r, g, bl = (h[..., i].astype(int) for i in range(3))
+            navy = (bl > r + 15) & (r < 90) & (g < 90) & (h[..., 3] > 0)
+            inner = ndimage.binary_erosion(head[..., 3] > 128, iterations=6)
+            cut = navy & inner
+            cut = ndimage.binary_dilation(cut, iterations=2) & (h[..., 3] > 0) & ~((r + g + bl) < 150) | cut
+            h[cut] = 0
+            registered["helmet_front"] = h
+            rec["parts"]["helmet_front"] = {"derived_from": "helmet_only", "method": "navy lining pixels over the "
+                                            "registered head (eroded 6 px) made transparent; the ink rim is kept",
+                                            "file": save(h, os.path.join(out_dir, "helmet_front.png"))}
     if rig in RAISED:
         p = rgba(os.path.join(raw_dir, f"{RAISED[rig]}.png"))
         lab, cs = comps(p, 800)
@@ -263,18 +352,33 @@ def build(rig):
         # one scale per sheet, measured on ONE reference piece against its registered counterpart on the canvas
         ref = SHEET_REF.get(rig, {}).get(rawname)
         med, how = None, "no counterpart on the master: size it by eye in Spine"
-        if ref and ref[0] in pieces:
-            pnm, target, method = ref
+        if ref and ref[0].startswith("@"):
+            other = rec["pieces"].get(ref[0][1:])
+            if other and other["sheet_scale_to_canvas"]:
+                med = other["sheet_scale_to_canvas"]
+                how = f"assumed equal to the {ref[0][1:]} scale (no counterpart on the master; hose ~ grip hole)"
+        elif ref and ref[0] in pieces:
+            pnm, target, method = ref[:3]
             tgt = master if target == "master" else registered.get(target)
             arr = pieces[pnm]["_arr"]
             if tgt is not None and method == "area":
                 med = float(np.sqrt((tgt[..., 3] > 128).sum() / max(1, (arr[..., 3] > 128).sum())))
-                how = f"sqrt(area of {target} / area of {pnm})"
-            elif tgt is not None:
-                f = fit(tgt, arr, srange=(0.15, 1.3))
+                how = f"sqrt(alpha area of {target} / {pnm}) (approximate: poses differ)"
+            elif tgt is not None and method == "colour":
+                at, ap = colour_area(tgt, ref[3]), colour_area(arr, ref[3])
+                if at and ap:
+                    med = float(np.sqrt(at / ap))
+                    how = f"sqrt(largest {ref[3]} region of {target} / of {pnm})"
+            elif tgt is not None and method == "width":
+                w = lambda x: np.nonzero((x[..., 3] > 128).any(axis=0))[0].ptp() + 1
+                med = float(w(tgt) / w(arr))
+                how = f"width of {target} / width of {pnm}"
+            elif tgt is not None and method == "fitcrop":
+                ys, xs = np.nonzero(tgt[..., 3] > 0)
+                crop = tgt[max(0, ys.min() - 20):ys.max() + 20, max(0, xs.min() - 20):xs.max() + 20]
+                f = fit(crop, arr, q=2, srange=(0.1, 1.3))
                 med = f["s"]
-                how = f"{pnm} registered to {target} (score {f['score']})"
-                pieces[pnm]["fit_to_canvas"] = f
+                how = f"{pnm} registered inside the {target} crop (score {f['score']})"
         for nm, v in pieces.items():
             v.pop("_arr")
             v["scale_to_canvas"] = round(med, 4) if med else None
@@ -282,9 +386,9 @@ def build(rig):
         rec["pieces"][rawname] = {"sheet": sheet_file, "raw": os.path.relpath(os.path.join(raw_dir, f"{rawname}.png"),
                                   REPO), "sheet_scale_to_canvas": med, "scale_method": how, "pieces": pieces, "missing": missing}
     # reassembly check (same-framing layers stacked in rig order)
-    order = {"pf_chief": ["legs", "coat_tails", "body_no_head_no_arms", "arms_down", "head_no_helmet", "helmet_only"],
-             "pf_rookie": ["legs", "coat_tails", "body_no_head_no_arms", "arms_down", "head_no_helmet", "helmet_only"],
-             "pf_dog": ["legs", "body_no_head_no_legs", "head_no_helmet", "helmet_only"],
+    order = {"pf_chief": ["legs", "coat_tails", "body_no_head_no_arms", "arms_down", "head_no_helmet", "helmet_front"],
+             "pf_rookie": ["legs", "coat_tails", "body_no_head_no_arms", "arms_down", "head_no_helmet", "helmet_front"],
+             "pf_dog": ["legs", "body_no_head_no_legs", "head_no_helmet", "helmet_front"],
              "pf_rescued": ["legs", "body_no_head_no_arms", "arms_down", "head"]}[rig]
     stack = np.zeros_like(master)
     for nm in order:

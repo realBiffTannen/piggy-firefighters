@@ -120,7 +120,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:04:40",
+    "at": "2026-09-25T05:14:44",
     "source": "pf_base92a__1",
     "measuredBpm": 92.0,
     "bpmOverride": false,
@@ -223,7 +223,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:04:58",
+    "at": "2026-09-25T05:15:01",
     "source": "pf_base92b__1",
     "measuredBpm": 91.996,
     "bpmOverride": false,
@@ -328,7 +328,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:05:14",
+    "at": "2026-09-25T05:15:18",
     "source": "pf_rescue100__1",
     "measuredBpm": 100.0,
     "bpmOverride": false,
@@ -432,7 +432,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:05:35",
+    "at": "2026-09-25T05:15:36",
     "source": "pf_inferno100__1",
     "measuredBpm": 100.0,
     "bpmOverride": false,
@@ -533,7 +533,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:05:38",
+    "at": "2026-09-25T05:15:39",
     "source": "pf_antic92__1",
     "measuredBpm": 92.0,
     "bpmOverride": true,
@@ -624,7 +624,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:05:43",
+    "at": "2026-09-25T05:15:45",
     "source": "pf_backdraft92__1",
     "measuredBpm": 91.996,
     "bpmOverride": false,
@@ -719,7 +719,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:05:49",
+    "at": "2026-09-25T05:15:51",
     "source": "pf_rung100_big__1",
     "measuredBpm": 100.0,
     "bpmOverride": false,
@@ -813,7 +813,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:05:53",
+    "at": "2026-09-25T05:15:54",
     "source": "pf_rung100_huge__1",
     "measuredBpm": 100.052,
     "bpmOverride": false,
@@ -906,7 +906,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:05:58",
+    "at": "2026-09-25T05:15:59",
     "source": "pf_rung100_mega__1",
     "measuredBpm": 100.0,
     "bpmOverride": false,
@@ -999,7 +999,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:02",
+    "at": "2026-09-25T05:16:02",
     "source": "pf_rung100_epic__1",
     "measuredBpm": 100.0,
     "bpmOverride": false,
@@ -1092,7 +1092,7 @@
    "status": "built",
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:06",
+    "at": "2026-09-25T05:16:06",
     "source": "pf_rung100_max__1",
     "measuredBpm": 100.0,
     "bpmOverride": false,
@@ -1179,7 +1179,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:06",
+    "at": "2026-09-25T05:16:06",
     "source": "ui_click_1.wav",
     "trimCap_s": 0.55,
     "key": {
@@ -1224,7 +1224,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:06",
+    "at": "2026-09-25T05:16:07",
     "source": "ui_click_2.wav",
     "trimCap_s": 0.55,
     "key": {
@@ -1269,7 +1269,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:06",
+    "at": "2026-09-25T05:16:07",
     "source": "ui_click_3.wav",
     "trimCap_s": 0.55,
     "key": {
@@ -1313,7 +1313,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:07",
+    "at": "2026-09-25T05:16:07",
     "source": "bet_change.wav",
     "trimCap_s": 0.55,
     "key": {
@@ -1357,7 +1357,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:08",
+    "at": "2026-09-25T05:16:08",
     "source": "ante_on.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -1406,7 +1406,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:09",
+    "at": "2026-09-25T05:16:08",
     "source": "ante_off.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -1444,13 +1444,13 @@
    "seam": "AlertSound.svelte",
    "status": "built",
    "measured": {
-    "I_LUFS": -22.0,
-    "TP_dBFS": -3.6,
-    "TP_m4a_dBFS": -2.8
+    "I_LUFS": -26.7,
+    "TP_dBFS": -3.1,
+    "TP_m4a_dBFS": -2.9
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:09",
+    "at": "2026-09-25T05:16:09",
     "source": "alert_insufficient.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -1459,17 +1459,6 @@
      "cpentShareDrawn": 0.379,
      "decision": "not tonal enough to judge (tonality 0.59 < 0.75)",
      "semis": 0.0
-    },
-    "remaster": {
-     "raised_dB": 6.0,
-     "crest_dB": 22.8,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 3,
-     "I_LUFS": -22.0,
-     "TP_dBFS": -3.6,
-     "TP_m4a_dBFS": -2.8,
-     "samples": 21413
     }
    },
    "mix": {
@@ -1505,7 +1494,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:09",
+    "at": "2026-09-25T05:16:09",
     "source": "buy_confirm.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -1555,7 +1544,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:10",
+    "at": "2026-09-25T05:16:09",
     "source": "spin_start.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -1600,7 +1589,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:10",
+    "at": "2026-09-25T05:16:10",
     "source": "spin_whoosh.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -1649,7 +1638,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:11",
+    "at": "2026-09-25T05:16:10",
     "source": "reel_spin_loop.wav",
     "loopCut_s": 2.4,
     "xfade_ms": 80,
@@ -1694,13 +1683,13 @@
    "seam": "gameSound.reelStop(0)",
    "status": "built",
    "measured": {
-    "I_LUFS": -34.9,
-    "TP_dBFS": -10.6,
-    "TP_m4a_dBFS": -10.1
+    "I_LUFS": -21.8,
+    "TP_dBFS": -3.3,
+    "TP_m4a_dBFS": -3.3
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:11",
+    "at": "2026-09-25T05:16:10",
     "source": "reel_stop_1.wav",
     "trimCap_s": 0.55,
     "pitch": {
@@ -1712,6 +1701,10 @@
      "midi": 48.0,
      "postErrCents": 59.9,
      "targetNote": "C3"
+    },
+    "tonal": {
+     "op": "hybrid: drawn thunk (HP 45 Hz) + tuned wood knock C4 at 3 ms (-2 dB)",
+     "note": "C4"
     }
    },
    "mix": {
@@ -1730,7 +1723,7 @@
     "assets/audio/piggy_firefighters/reel_stop_2.m4a"
    ],
    "gain": 1.539,
-   "durationMs": 480.3,
+   "durationMs": 466.5,
    "priority": 5,
    "maxInstances": 2,
    "cooldownMs": 20,
@@ -1745,13 +1738,13 @@
    "seam": "gameSound.reelStop(1)",
    "status": "built",
    "measured": {
-    "I_LUFS": -35.7,
-    "TP_dBFS": -12.9,
-    "TP_m4a_dBFS": -12.6
+    "I_LUFS": -22.1,
+    "TP_dBFS": -3.1,
+    "TP_m4a_dBFS": -3.4
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:42",
+    "at": "2026-09-25T05:16:40",
     "from": "reel_stop_1",
     "semis": 2,
     "op": "tonic ladder (C D E G A)"
@@ -1772,7 +1765,7 @@
     "assets/audio/piggy_firefighters/reel_stop_3.m4a"
    ],
    "gain": 1.604,
-   "durationMs": 478.0,
+   "durationMs": 464.7,
    "priority": 5,
    "maxInstances": 2,
    "cooldownMs": 20,
@@ -1787,13 +1780,13 @@
    "seam": "gameSound.reelStop(2)",
    "status": "built",
    "measured": {
-    "I_LUFS": -35.7,
-    "TP_dBFS": -13.2,
-    "TP_m4a_dBFS": -12.7
+    "I_LUFS": -22.0,
+    "TP_dBFS": -3.3,
+    "TP_m4a_dBFS": -3.4
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:42",
+    "at": "2026-09-25T05:16:40",
     "from": "reel_stop_1",
     "semis": 4,
     "op": "tonic ladder (C D E G A)"
@@ -1829,13 +1822,13 @@
    "seam": "gameSound.reelStop(3)",
    "status": "built",
    "measured": {
-    "I_LUFS": -35.2,
-    "TP_dBFS": -13.2,
-    "TP_m4a_dBFS": -12.8
+    "I_LUFS": -21.8,
+    "TP_dBFS": -3.2,
+    "TP_m4a_dBFS": -3.4
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:43",
+    "at": "2026-09-25T05:16:40",
     "from": "reel_stop_1",
     "semis": 7,
     "op": "tonic ladder (C D E G A)"
@@ -1856,7 +1849,7 @@
     "assets/audio/piggy_firefighters/reel_stop_5.m4a"
    ],
    "gain": 1.666,
-   "durationMs": 474.1,
+   "durationMs": 456.8,
    "priority": 5,
    "maxInstances": 2,
    "cooldownMs": 20,
@@ -1871,13 +1864,13 @@
    "seam": "gameSound.reelStop(4)",
    "status": "built",
    "measured": {
-    "I_LUFS": -34.1,
-    "TP_dBFS": -13.1,
-    "TP_m4a_dBFS": -12.6
+    "I_LUFS": -21.7,
+    "TP_dBFS": -3.3,
+    "TP_m4a_dBFS": -3.4
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:43",
+    "at": "2026-09-25T05:16:40",
     "from": "reel_stop_1",
     "semis": 9,
     "op": "tonic ladder (C D E G A)"
@@ -1918,13 +1911,13 @@
    "replaces": "reel_stop_3 (coalesced)",
    "status": "built",
    "measured": {
-    "I_LUFS": -38.5,
-    "TP_dBFS": -14.8,
-    "TP_m4a_dBFS": -14.0
+    "I_LUFS": -22.0,
+    "TP_dBFS": -2.8,
+    "TP_m4a_dBFS": -3.0
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:43",
+    "at": "2026-09-25T05:16:41",
     "from": "reel_stop_1",
     "op": "stack C+E+A, 6 ms roll (one merged stop for Turbo)"
    },
@@ -1962,7 +1955,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:11",
+    "at": "2026-09-25T05:16:11",
     "source": "wild_land.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -2018,7 +2011,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:44",
+    "at": "2026-09-25T05:16:41",
     "from": "alarm_land_src",
     "op": "hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord",
     "chord": [
@@ -2073,7 +2066,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:44",
+    "at": "2026-09-25T05:16:41",
     "from": "alarm_land_src",
     "op": "hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord",
     "chord": [
@@ -2129,7 +2122,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:44",
+    "at": "2026-09-25T05:16:42",
     "from": "alarm_land_src",
     "op": "hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord",
     "chord": [
@@ -2186,7 +2179,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:45",
+    "at": "2026-09-25T05:16:42",
     "from": "alarm_land_src",
     "op": "hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord",
     "chord": [
@@ -2243,7 +2236,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:45",
+    "at": "2026-09-25T05:16:42",
     "from": "alarm_land_src",
     "op": "hybrid: drawn strike (70 ms, HP 700 Hz) + chime chord",
     "chord": [
@@ -2289,7 +2282,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:12",
+    "at": "2026-09-25T05:16:11",
     "source": "galarm_glint.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -2333,7 +2326,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:12",
+    "at": "2026-09-25T05:16:11",
     "source": "dead_spin_settle.wav",
     "trimCap_s": 0.65
    },
@@ -2372,7 +2365,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:13",
+    "at": "2026-09-25T05:16:12",
     "source": "antic_riser.wav",
     "trimCap_s": 2.65,
     "key": {
@@ -2427,7 +2420,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:46",
+    "at": "2026-09-25T05:16:43",
     "from": "antic_riser",
     "semis": 2,
     "op": "stepped riser (+2 st, same length)"
@@ -2467,7 +2460,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:13",
+    "at": "2026-09-25T05:16:12",
     "source": "antic_miss.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -2518,7 +2511,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:14",
+    "at": "2026-09-25T05:16:12",
     "source": "antic_hit.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -2572,7 +2565,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:14",
+    "at": "2026-09-25T05:16:13",
     "source": "trigger_fanfare.wav",
     "trimCap_s": 2.65,
     "key": {
@@ -2627,7 +2620,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:15",
+    "at": "2026-09-25T05:16:13",
     "source": "backdraft_whoosh.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -2672,7 +2665,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:16",
+    "at": "2026-09-25T05:16:13",
     "source": "backdraft_roar.wav",
     "trimCap_s": 2.05,
     "key": {
@@ -2722,7 +2715,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:16",
+    "at": "2026-09-25T05:16:14",
     "source": "backdraft_chord.wav",
     "trimCap_s": 1.65,
     "key": {
@@ -2770,7 +2763,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:16",
+    "at": "2026-09-25T05:16:14",
     "source": "blaze_ignite.wav",
     "trimCap_s": 0.65,
     "tonal": {
@@ -2815,7 +2808,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:46",
+    "at": "2026-09-25T05:16:43",
     "from": "blaze_ignite",
     "op": "hybrid: drawn fwoomp + tuned ping D5",
     "note": "D5"
@@ -2857,7 +2850,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:46",
+    "at": "2026-09-25T05:16:43",
     "from": "blaze_ignite",
     "op": "hybrid: drawn fwoomp + tuned ping E5",
     "note": "E5"
@@ -2899,7 +2892,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:47",
+    "at": "2026-09-25T05:16:44",
     "from": "blaze_ignite",
     "op": "hybrid: drawn fwoomp + tuned ping G5",
     "note": "G5"
@@ -2941,7 +2934,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:47",
+    "at": "2026-09-25T05:16:44",
     "from": "blaze_ignite",
     "op": "hybrid: drawn fwoomp + tuned ping A5",
     "note": "A5"
@@ -2984,7 +2977,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:47",
+    "at": "2026-09-25T05:16:44",
     "from": "blaze_mult_src",
     "op": "hybrid: drawn clank/flare + tuned ping C5",
     "note": "C5"
@@ -3027,7 +3020,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:48",
+    "at": "2026-09-25T05:16:44",
     "from": "blaze_mult_src",
     "op": "hybrid: drawn clank/flare + tuned ping E5",
     "note": "E5"
@@ -3070,7 +3063,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:48",
+    "at": "2026-09-25T05:16:45",
     "from": "blaze_mult_src",
     "op": "hybrid: drawn clank/flare + tuned ping G5",
     "note": "G5"
@@ -3121,7 +3114,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:17",
+    "at": "2026-09-25T05:16:15",
     "source": "blaze_mult_10.wav",
     "trimCap_s": 1.45,
     "tonal": {
@@ -3164,7 +3157,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:17",
+    "at": "2026-09-25T05:16:15",
     "source": "sym_win_h1.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3209,25 +3202,27 @@
    "turboVariant": "sym_win_h2_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -13.5,
-    "TP_dBFS": -2.5,
-    "TP_m4a_dBFS": -1.7
+    "I_LUFS": -12.9,
+    "TP_dBFS": -3.3,
+    "TP_m4a_dBFS": -3.1
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:18",
+    "at": "2026-09-25T05:16:15",
     "source": "sym_win_h2.wav",
     "trimCap_s": 1.05,
     "key": {
      "offsetCents": -30.2,
      "tonality": 0.971,
      "cpentShareDrawn": 0.02,
-     "decision": "transpose +1 st (share 0.02 -> 0.97), retune +30 c -> REVERTED (C-pent share 110-2500 Hz 0.71 -> 0.24)",
-     "semis": 0.0,
+     "decision": "transpose +1 st (share 0.02 -> 0.97), retune +30 c -> whole-cue shift would drop the 110-2500 Hz share 0.71 -> 0.24; SPLIT-BAND: only > 2.5 kHz shifted +1.30 st (150-4000 Hz share 0.02 -> 0.63, 110-2500 Hz 0.71 -> 0.71)",
+     "semis": 1.3,
      "cpentShare110_2500": [
       0.707,
       0.239
-     ]
+     ],
+     "splitBandHz": 2500,
+     "cpentShareShipped": 0.708
     }
    },
    "mix": {
@@ -3265,7 +3260,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:18",
+    "at": "2026-09-25T05:16:16",
     "source": "sym_win_h3.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3311,7 +3306,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:18",
+    "at": "2026-09-25T05:16:16",
     "source": "sym_win_h4.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3357,7 +3352,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:19",
+    "at": "2026-09-25T05:16:16",
     "source": "sym_win_l1.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3403,7 +3398,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:19",
+    "at": "2026-09-25T05:16:17",
     "source": "sym_win_l2.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3443,13 +3438,13 @@
    "turboVariant": "sym_win_l3_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -19.9,
-    "TP_dBFS": -3.6,
-    "TP_m4a_dBFS": -3.6
+    "I_LUFS": -22.8,
+    "TP_dBFS": -3.0,
+    "TP_m4a_dBFS": -3.3
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:19",
+    "at": "2026-09-25T05:16:17",
     "source": "sym_win_l3.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3458,17 +3453,6 @@
      "cpentShareDrawn": 0.389,
      "decision": "not tonal enough to judge (tonality 0.51 < 0.75)",
      "semis": 0.0
-    },
-    "remaster": {
-     "raised_dB": 3.37,
-     "crest_dB": 22.4,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -19.9,
-     "TP_dBFS": -3.6,
-     "TP_m4a_dBFS": -3.6,
-     "samples": 41604
     }
    },
    "mix": {
@@ -3506,7 +3490,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:19",
+    "at": "2026-09-25T05:16:17",
     "source": "sym_win_l4.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3552,7 +3536,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:20",
+    "at": "2026-09-25T05:16:18",
     "source": "sym_win_w.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -3603,7 +3587,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:20",
+    "at": "2026-09-25T05:16:18",
     "source": "line_win_small.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -3654,7 +3638,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:20",
+    "at": "2026-09-25T05:16:18",
     "source": "line_win_mid.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -3704,7 +3688,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:20",
+    "at": "2026-09-25T05:16:19",
     "source": "total_win_small.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -3754,7 +3738,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:21",
+    "at": "2026-09-25T05:16:19",
     "source": "total_win_mid.wav",
     "trimCap_s": 1.65,
     "key": {
@@ -3804,7 +3788,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:21",
+    "at": "2026-09-25T05:16:20",
     "source": "total_win_big.wav",
     "trimCap_s": 2.25,
     "key": {
@@ -3859,7 +3843,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:22",
+    "at": "2026-09-25T05:16:21",
     "source": "win_max.wav",
     "trimCap_s": 4.05,
     "key": {
@@ -3912,7 +3896,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:48",
+    "at": "2026-09-25T05:16:45",
     "from": "count_ticker_src",
     "op": "hybrid: tuned glock/chime blip C5 + drawn click (15 ms, HP 1 kHz, -8 dB)",
     "note": "C5"
@@ -3954,7 +3938,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:49",
+    "at": "2026-09-25T05:16:45",
     "from": "count_ticker_1",
     "semis": 2,
     "op": "pentatonic ladder (resampled)"
@@ -3996,7 +3980,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:49",
+    "at": "2026-09-25T05:16:45",
     "from": "count_ticker_1",
     "semis": 4,
     "op": "pentatonic ladder (resampled)"
@@ -4038,7 +4022,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:49",
+    "at": "2026-09-25T05:16:46",
     "from": "count_ticker_1",
     "semis": 7,
     "op": "pentatonic ladder (resampled)"
@@ -4080,7 +4064,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:50",
+    "at": "2026-09-25T05:16:46",
     "from": "count_ticker_1",
     "semis": 9,
     "op": "pentatonic ladder (resampled)"
@@ -4122,7 +4106,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:50",
+    "at": "2026-09-25T05:16:46",
     "from": "count_ticker_1",
     "semis": 12,
     "op": "pentatonic ladder (resampled)"
@@ -4164,7 +4148,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:50",
+    "at": "2026-09-25T05:16:47",
     "from": "count_ticker_1",
     "semis": 14,
     "op": "pentatonic ladder (resampled)"
@@ -4206,7 +4190,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:50",
+    "at": "2026-09-25T05:16:47",
     "from": "count_ticker_1",
     "semis": 16,
     "op": "pentatonic ladder (resampled)"
@@ -4248,7 +4232,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:51",
+    "at": "2026-09-25T05:16:47",
     "from": "count_ticker_1",
     "semis": 19,
     "op": "pentatonic ladder (resampled)"
@@ -4290,7 +4274,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:51",
+    "at": "2026-09-25T05:16:47",
     "from": "count_ticker_1",
     "semis": 21,
     "op": "pentatonic ladder (resampled)"
@@ -4332,7 +4316,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:51",
+    "at": "2026-09-25T05:16:47",
     "from": "count_ticker_1",
     "semis": 24,
     "op": "pentatonic ladder (resampled)"
@@ -4374,7 +4358,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:51",
+    "at": "2026-09-25T05:16:48",
     "from": "count_ticker_1",
     "semis": 26,
     "op": "pentatonic ladder (resampled)"
@@ -4407,13 +4391,13 @@
    "turboVariant": "rung_hit_big_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -15.6,
-    "TP_dBFS": -3.2,
-    "TP_m4a_dBFS": -1.0
+    "I_LUFS": -18.5,
+    "TP_dBFS": -2.9,
+    "TP_m4a_dBFS": -2.4
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:22",
+    "at": "2026-09-25T05:16:21",
     "source": "rung_hit_big.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -4427,17 +4411,6 @@
      "pickup": false,
      "cpentShare": 0.525,
      "why": "C-pentatonic share 0.52 < 0.6"
-    },
-    "remaster": {
-     "raised_dB": 4.31,
-     "crest_dB": 19.2,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 3,
-     "I_LUFS": -15.6,
-     "TP_dBFS": -3.2,
-     "TP_m4a_dBFS": -1.0,
-     "samples": 52920
     }
    },
    "mix": {
@@ -4474,7 +4447,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:23",
+    "at": "2026-09-25T05:16:23",
     "source": "sign_impact_big.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -4520,7 +4493,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:22",
+    "at": "2026-09-25T05:16:21",
     "source": "rung_hit_huge.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -4569,13 +4542,13 @@
    "turboVariant": "sign_impact_huge_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -20.6,
-    "TP_dBFS": -3.0,
-    "TP_m4a_dBFS": -2.9
+    "I_LUFS": -25.8,
+    "TP_dBFS": -2.9,
+    "TP_m4a_dBFS": -2.7
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:24",
+    "at": "2026-09-25T05:16:23",
     "source": "sign_impact_huge.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -4584,17 +4557,6 @@
      "cpentShareDrawn": 0.401,
      "decision": "not tonal enough to judge (tonality 0.55 < 0.75)",
      "semis": 0.0
-    },
-    "remaster": {
-     "raised_dB": 6.43,
-     "crest_dB": 23.2,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 3,
-     "I_LUFS": -20.6,
-     "TP_dBFS": -3.0,
-     "TP_m4a_dBFS": -2.9,
-     "samples": 22880
     }
    },
    "mix": {
@@ -4631,7 +4593,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:23",
+    "at": "2026-09-25T05:16:22",
     "source": "rung_hit_mega.wav",
     "trimCap_s": 1.65,
     "key": {
@@ -4681,7 +4643,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:24",
+    "at": "2026-09-25T05:16:23",
     "source": "sign_impact_mega.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -4726,7 +4688,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:23",
+    "at": "2026-09-25T05:16:22",
     "source": "rung_hit_epic.wav",
     "trimCap_s": 1.85,
     "key": {
@@ -4776,7 +4738,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:24",
+    "at": "2026-09-25T05:16:24",
     "source": "sign_impact_epic.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -4821,7 +4783,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:23",
+    "at": "2026-09-25T05:16:23",
     "source": "rung_hit_max.wav",
     "trimCap_s": 2.25,
     "key": {
@@ -4871,7 +4833,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:25",
+    "at": "2026-09-25T05:16:24",
     "source": "sign_impact_max.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -4916,7 +4878,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:25",
+    "at": "2026-09-25T05:16:24",
     "source": "burst_water.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -4955,13 +4917,13 @@
    "turboVariant": "burst_embers_turbo",
    "status": "built",
    "measured": {
-    "I_LUFS": -17.9,
-    "TP_dBFS": -3.4,
-    "TP_m4a_dBFS": -1.4
+    "I_LUFS": -26.6,
+    "TP_dBFS": -2.7,
+    "TP_m4a_dBFS": -1.9
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:25",
+    "at": "2026-09-25T05:16:24",
     "source": "burst_embers.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -4970,17 +4932,6 @@
      "cpentShareDrawn": 0.373,
      "decision": "not tonal enough to judge (tonality 0.52 < 0.75)",
      "semis": 0.0
-    },
-    "remaster": {
-     "raised_dB": 16.2,
-     "crest_dB": 27.8,
-     "softClip": true,
-     "limitedFraction": 0.7711,
-     "passes": 4,
-     "I_LUFS": -17.9,
-     "TP_dBFS": -3.4,
-     "TP_m4a_dBFS": -1.4,
-     "samples": 42878
     }
    },
    "mix": {
@@ -5017,7 +4968,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:26",
+    "at": "2026-09-25T05:16:25",
     "source": "burst_badges.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -5062,7 +5013,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:26",
+    "at": "2026-09-25T05:16:25",
     "source": "burst_coins.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -5107,7 +5058,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:27",
+    "at": "2026-09-25T05:16:25",
     "source": "burst_gold.wav",
     "trimCap_s": 1.65,
     "key": {
@@ -5152,7 +5103,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:27",
+    "at": "2026-09-25T05:16:26",
     "source": "rung_flare.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -5197,7 +5148,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:27",
+    "at": "2026-09-25T05:16:26",
     "source": "rung_land.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -5242,7 +5193,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:28",
+    "at": "2026-09-25T05:16:26",
     "source": "rung_out.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -5292,7 +5243,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:28",
+    "at": "2026-09-25T05:16:27",
     "source": "rescue_enter.wav",
     "trimCap_s": 2.45,
     "key": {
@@ -5352,7 +5303,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:29",
+    "at": "2026-09-25T05:16:27",
     "source": "inferno_enter.wav",
     "trimCap_s": 2.65,
     "key": {
@@ -5403,7 +5354,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:29",
+    "at": "2026-09-25T05:16:27",
     "source": "hose_start.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -5452,7 +5403,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:30",
+    "at": "2026-09-25T05:16:28",
     "source": "hose_loop.wav",
     "loopCut_s": 3.2,
     "xfade_ms": 150,
@@ -5500,7 +5451,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:30",
+    "at": "2026-09-25T05:16:28",
     "source": "hose_end.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -5545,7 +5496,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:30",
+    "at": "2026-09-25T05:16:28",
     "source": "steam.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -5590,7 +5541,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:31",
+    "at": "2026-09-25T05:16:29",
     "source": "room_down.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -5639,7 +5590,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:52",
+    "at": "2026-09-25T05:16:48",
     "from": "rescue_tada_src_lo",
     "semis": 0.0,
     "targetNote": "C5",
@@ -5683,7 +5634,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:52",
+    "at": "2026-09-25T05:16:48",
     "from": "rescue_tada_src_lo",
     "semis": 2.0,
     "targetNote": "D5",
@@ -5727,7 +5678,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:53",
+    "at": "2026-09-25T05:16:49",
     "from": "rescue_tada_src_lo",
     "semis": 4.0,
     "targetNote": "E5",
@@ -5771,7 +5722,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:53",
+    "at": "2026-09-25T05:16:49",
     "from": "rescue_tada_src_hi",
     "semis": -5.0,
     "targetNote": "G5",
@@ -5815,7 +5766,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:54",
+    "at": "2026-09-25T05:16:49",
     "from": "rescue_tada_src_hi",
     "semis": -3.0,
     "targetNote": "A5",
@@ -5859,7 +5810,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:54",
+    "at": "2026-09-25T05:16:50",
     "from": "rescue_tada_src_hi",
     "semis": 0.0,
     "targetNote": "C6",
@@ -5903,7 +5854,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:55",
+    "at": "2026-09-25T05:16:50",
     "from": "rescue_tada_src_hi",
     "semis": 2.0,
     "targetNote": "D6",
@@ -5947,7 +5898,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:55",
+    "at": "2026-09-25T05:16:50",
     "from": "rescue_tada_src_hi",
     "semis": 4.0,
     "targetNote": "E6",
@@ -5988,7 +5939,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:31",
+    "at": "2026-09-25T05:16:29",
     "source": "prize_coins.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -6037,7 +5988,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:32",
+    "at": "2026-09-25T05:16:30",
     "source": "prize_coins_big.wav",
     "trimCap_s": 2.05,
     "key": {
@@ -6086,7 +6037,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:32",
+    "at": "2026-09-25T05:16:30",
     "source": "building_cleared.wav",
     "trimCap_s": 2.45,
     "key": {
@@ -6137,7 +6088,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:32",
+    "at": "2026-09-25T05:16:30",
     "source": "siren_pass.wav",
     "trimCap_s": 2.45,
     "key": {
@@ -6182,7 +6133,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:33",
+    "at": "2026-09-25T05:16:31",
     "source": "block_slide.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -6233,7 +6184,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:33",
+    "at": "2026-09-25T05:16:31",
     "source": "spins_added.wav",
     "trimCap_s": 1.05,
     "key": {
@@ -6283,7 +6234,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:33",
+    "at": "2026-09-25T05:16:31",
     "source": "last_spin.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -6339,7 +6290,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:34",
+    "at": "2026-09-25T05:16:32",
     "source": "rescue_total_small.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -6390,7 +6341,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:35",
+    "at": "2026-09-25T05:16:33",
     "source": "inferno_total_small.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -6441,7 +6392,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:34",
+    "at": "2026-09-25T05:16:32",
     "source": "rescue_total_mid.wav",
     "trimCap_s": 2.05,
     "key": {
@@ -6492,7 +6443,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:35",
+    "at": "2026-09-25T05:16:33",
     "source": "inferno_total_mid.wav",
     "trimCap_s": 2.05,
     "key": {
@@ -6543,7 +6494,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:35",
+    "at": "2026-09-25T05:16:32",
     "source": "rescue_total_big.wav",
     "trimCap_s": 2.85,
     "key": {
@@ -6599,7 +6550,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:36",
+    "at": "2026-09-25T05:16:34",
     "source": "inferno_total_big.wav",
     "trimCap_s": 2.85,
     "key": {
@@ -6650,7 +6601,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:36",
+    "at": "2026-09-25T05:16:34",
     "source": "alarm_call_ring.wav",
     "trimCap_s": 1.45,
     "key": {
@@ -6695,7 +6646,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:36",
+    "at": "2026-09-25T05:16:34",
     "source": "alarm_card_flip.wav",
     "trimCap_s": 0.85,
     "key": {
@@ -6745,7 +6696,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:36",
+    "at": "2026-09-25T05:16:34",
     "source": "alarm_outcome_rescue.wav",
     "trimCap_s": 1.85,
     "key": {
@@ -6805,7 +6756,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:37",
+    "at": "2026-09-25T05:16:35",
     "source": "alarm_outcome_inferno.wav",
     "trimCap_s": 2.25,
     "key": {
@@ -6856,7 +6807,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:37",
+    "at": "2026-09-25T05:16:35",
     "source": "alarm_outcome_false.wav",
     "trimCap_s": 1.25,
     "key": {
@@ -6906,7 +6857,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:37",
+    "at": "2026-09-25T05:16:35",
     "source": "dog_bark.wav",
     "trimCap_s": 0.85
    },
@@ -6948,7 +6899,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:38",
+    "at": "2026-09-25T05:16:36",
     "source": "backdraft_spins_start.wav",
     "trimCap_s": 2.25,
     "key": {
@@ -7003,7 +6954,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:39",
+    "at": "2026-09-25T05:16:37",
     "source": "backdraft_spins_end.wav",
     "trimCap_s": 2.05,
     "key": {
@@ -7053,7 +7004,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:41",
+    "at": "2026-09-25T05:16:38",
     "source": "ambient_station_loop.wav",
     "loopCut_s": 14.0,
     "xfade_ms": 400,
@@ -7106,7 +7057,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:41",
+    "at": "2026-09-25T05:16:39",
     "source": "shutter_slam.wav",
     "trimCap_s": 0.8,
     "key": {
@@ -7151,7 +7102,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:41",
+    "at": "2026-09-25T05:16:39",
     "source": "shutter_haul_1.wav",
     "trimCap_s": 0.45,
     "key": {
@@ -7196,7 +7147,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:41",
+    "at": "2026-09-25T05:16:39",
     "source": "shutter_haul_2.wav",
     "trimCap_s": 0.45,
     "key": {
@@ -7241,7 +7192,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:06:42",
+    "at": "2026-09-25T05:16:39",
     "source": "shutter_haul_3.wav",
     "trimCap_s": 0.65,
     "key": {
@@ -7289,7 +7240,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:06",
+    "at": "2026-09-25T05:17:00",
     "from": "spin_start",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7331,7 +7282,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:06",
+    "at": "2026-09-25T05:17:00",
     "from": "spin_whoosh",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7373,7 +7324,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:06",
+    "at": "2026-09-25T05:17:00",
     "from": "wild_land",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7415,7 +7366,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:07",
+    "at": "2026-09-25T05:17:00",
     "from": "alarm_land_1",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7457,7 +7408,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:07",
+    "at": "2026-09-25T05:17:01",
     "from": "alarm_land_2",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7499,7 +7450,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:08",
+    "at": "2026-09-25T05:17:01",
     "from": "alarm_land_3",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7541,7 +7492,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:08",
+    "at": "2026-09-25T05:17:01",
     "from": "alarm_land_4",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7583,7 +7534,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:08",
+    "at": "2026-09-25T05:17:02",
     "from": "alarm_land_5",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7625,7 +7576,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:09",
+    "at": "2026-09-25T05:17:02",
     "from": "galarm_glint",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7668,7 +7619,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:09",
+    "at": "2026-09-25T05:17:02",
     "from": "antic_riser",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7711,7 +7662,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:09",
+    "at": "2026-09-25T05:17:03",
     "from": "antic_riser_2",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7753,7 +7704,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:10",
+    "at": "2026-09-25T05:17:03",
     "from": "antic_miss",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7795,7 +7746,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:10",
+    "at": "2026-09-25T05:17:03",
     "from": "antic_hit",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7841,7 +7792,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:10",
+    "at": "2026-09-25T05:17:04",
     "from": "trigger_fanfare",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7883,7 +7834,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:11",
+    "at": "2026-09-25T05:17:04",
     "from": "backdraft_whoosh",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7925,7 +7876,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:11",
+    "at": "2026-09-25T05:17:04",
     "from": "backdraft_roar",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -7966,27 +7917,16 @@
    },
    "status": "built",
    "measured": {
-    "I_LUFS": -19.2,
-    "TP_dBFS": -3.8,
-    "TP_m4a_dBFS": -2.4
+    "I_LUFS": -22.5,
+    "TP_dBFS": -3.6,
+    "TP_m4a_dBFS": -3.8
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:12",
+    "at": "2026-09-25T05:17:05",
     "from": "backdraft_chord",
     "timeScale": 0.5,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 4.23,
-     "crest_dB": 20.7,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -19.2,
-     "TP_dBFS": -3.8,
-     "TP_m4a_dBFS": -2.4,
-     "samples": 35154
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -21.0,
@@ -8025,7 +7965,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:12",
+    "at": "2026-09-25T05:17:05",
     "from": "blaze_mult_2",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8067,7 +8007,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:12",
+    "at": "2026-09-25T05:17:05",
     "from": "blaze_mult_3",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8109,7 +8049,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:13",
+    "at": "2026-09-25T05:17:05",
     "from": "blaze_mult_5",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8155,7 +8095,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:13",
+    "at": "2026-09-25T05:17:06",
     "from": "blaze_mult_10",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8198,7 +8138,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:13",
+    "at": "2026-09-25T05:17:06",
     "from": "sym_win_h1",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8219,7 +8159,7 @@
     "assets/audio/piggy_firefighters/sym_win_h2_turbo.m4a"
    ],
    "gain": 1.0,
-   "durationMs": 541.1,
+   "durationMs": 549.2,
    "priority": 6,
    "maxInstances": 2,
    "cooldownMs": 90,
@@ -8235,13 +8175,13 @@
    "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "built",
    "measured": {
-    "I_LUFS": -14.9,
-    "TP_dBFS": -2.9,
-    "TP_m4a_dBFS": -2.9
+    "I_LUFS": -15.4,
+    "TP_dBFS": -3.6,
+    "TP_m4a_dBFS": -3.3
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:14",
+    "at": "2026-09-25T05:17:06",
     "from": "sym_win_h2",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8284,7 +8224,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:14",
+    "at": "2026-09-25T05:17:06",
     "from": "sym_win_h3",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8327,7 +8267,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:15",
+    "at": "2026-09-25T05:17:07",
     "from": "sym_win_h4",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8370,7 +8310,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:15",
+    "at": "2026-09-25T05:17:07",
     "from": "sym_win_l1",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8407,27 +8347,16 @@
    "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "built",
    "measured": {
-    "I_LUFS": -21.0,
-    "TP_dBFS": -4.8,
-    "TP_m4a_dBFS": -5.1
+    "I_LUFS": -27.1,
+    "TP_dBFS": -8.7,
+    "TP_m4a_dBFS": -8.9
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:15",
+    "at": "2026-09-25T05:17:07",
     "from": "sym_win_l2",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 6.55,
-     "crest_dB": 19.6,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -21.0,
-     "TP_dBFS": -4.8,
-     "TP_m4a_dBFS": -5.1,
-     "samples": 22225
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -22.6,
@@ -8461,27 +8390,16 @@
    "gate": "only when the round total return is ABOVE the stake paid for the round (bet x mode cost: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature); at or below it: a neutral cue or nothing",
    "status": "built",
    "measured": {
-    "I_LUFS": -19.4,
-    "TP_dBFS": -3.8,
-    "TP_m4a_dBFS": -3.3
+    "I_LUFS": -24.4,
+    "TP_dBFS": -4.4,
+    "TP_m4a_dBFS": -4.7
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:16",
+    "at": "2026-09-25T05:17:07",
     "from": "sym_win_l3",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 5.68,
-     "crest_dB": 23.2,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -19.4,
-     "TP_dBFS": -3.8,
-     "TP_m4a_dBFS": -3.3,
-     "samples": 23180
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -22.6,
@@ -8521,7 +8439,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:16",
+    "at": "2026-09-25T05:17:08",
     "from": "sym_win_l4",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8564,7 +8482,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:17",
+    "at": "2026-09-25T05:17:08",
     "from": "sym_win_w",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8611,7 +8529,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:17",
+    "at": "2026-09-25T05:17:08",
     "from": "line_win_small",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8658,7 +8576,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:18",
+    "at": "2026-09-25T05:17:08",
     "from": "line_win_mid",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8705,7 +8623,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:18",
+    "at": "2026-09-25T05:17:09",
     "from": "total_win_small",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8752,7 +8670,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:18",
+    "at": "2026-09-25T05:17:09",
     "from": "total_win_mid",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8799,7 +8717,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:18",
+    "at": "2026-09-25T05:17:09",
     "from": "total_win_big",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8846,7 +8764,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:19",
+    "at": "2026-09-25T05:17:10",
     "from": "win_max",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8882,27 +8800,16 @@
    "seam": "WinRungs.svelte when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -16.1,
-    "TP_dBFS": -4.1,
-    "TP_m4a_dBFS": -1.4
+    "I_LUFS": -21.6,
+    "TP_dBFS": -3.8,
+    "TP_m4a_dBFS": -3.5
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:19",
+    "at": "2026-09-25T05:17:10",
     "from": "rung_hit_big",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 12.68,
-     "crest_dB": 21.3,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 4,
-     "I_LUFS": -16.1,
-     "TP_dBFS": -4.1,
-     "TP_m4a_dBFS": -1.4,
-     "samples": 29231
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -19.8,
@@ -8941,7 +8848,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:19",
+    "at": "2026-09-25T05:17:10",
     "from": "sign_impact_big",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -8983,7 +8890,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:20",
+    "at": "2026-09-25T05:17:11",
     "from": "rung_hit_huge",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9019,27 +8926,16 @@
    "seam": "WinRungs.svelte when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -21.6,
-    "TP_dBFS": -3.1,
-    "TP_m4a_dBFS": -2.6
+    "I_LUFS": -28.6,
+    "TP_dBFS": -5.1,
+    "TP_m4a_dBFS": -5.7
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:20",
+    "at": "2026-09-25T05:17:11",
     "from": "sign_impact_huge",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 8.48,
-     "crest_dB": 22.9,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 3,
-     "I_LUFS": -21.6,
-     "TP_dBFS": -3.1,
-     "TP_m4a_dBFS": -2.6,
-     "samples": 12636
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -21.3,
@@ -9078,7 +8974,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:20",
+    "at": "2026-09-25T05:17:11",
     "from": "rung_hit_mega",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9120,7 +9016,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:21",
+    "at": "2026-09-25T05:17:12",
     "from": "sign_impact_mega",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9162,7 +9058,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:21",
+    "at": "2026-09-25T05:17:12",
     "from": "rung_hit_epic",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9204,7 +9100,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:21",
+    "at": "2026-09-25T05:17:12",
     "from": "sign_impact_epic",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9246,7 +9142,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:22",
+    "at": "2026-09-25T05:17:12",
     "from": "rung_hit_max",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9288,7 +9184,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:22",
+    "at": "2026-09-25T05:17:13",
     "from": "sign_impact_max",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9330,7 +9226,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:22",
+    "at": "2026-09-25T05:17:13",
     "from": "burst_water",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9366,27 +9262,16 @@
    "seam": "WinRungs.svelte RUNGS[].burstCue when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -17.4,
-    "TP_dBFS": -1.8,
-    "TP_m4a_dBFS": -1.3
+    "I_LUFS": -25.8,
+    "TP_dBFS": -3.0,
+    "TP_m4a_dBFS": -1.9
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:23",
+    "at": "2026-09-25T05:17:13",
     "from": "burst_embers",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 12.33,
-     "crest_dB": 27.9,
-     "softClip": true,
-     "limitedFraction": 0.3172,
-     "passes": 3,
-     "I_LUFS": -17.4,
-     "TP_dBFS": -1.8,
-     "TP_m4a_dBFS": -1.3,
-     "samples": 23516
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -22.4,
@@ -9425,7 +9310,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:23",
+    "at": "2026-09-25T05:17:14",
     "from": "burst_badges",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9467,7 +9352,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:24",
+    "at": "2026-09-25T05:17:14",
     "from": "burst_coins",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9503,27 +9388,16 @@
    "seam": "WinRungs.svelte RUNGS[].burstCue when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -16.7,
-    "TP_dBFS": -3.5,
-    "TP_m4a_dBFS": -3.7
+    "I_LUFS": -19.6,
+    "TP_dBFS": -4.7,
+    "TP_m4a_dBFS": -6.2
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:24",
+    "at": "2026-09-25T05:17:15",
     "from": "burst_gold",
     "timeScale": 0.5,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 3.16,
-     "crest_dB": 18.0,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -16.7,
-     "TP_dBFS": -3.5,
-     "TP_m4a_dBFS": -3.7,
-     "samples": 35643
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -20.3,
@@ -9562,7 +9436,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:25",
+    "at": "2026-09-25T05:17:15",
     "from": "rung_flare",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9598,27 +9472,16 @@
    "seam": "WinRungs.svelte when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -16.2,
+    "I_LUFS": -19.5,
     "TP_dBFS": -3.6,
-    "TP_m4a_dBFS": -1.9
+    "TP_m4a_dBFS": -4.0
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:25",
+    "at": "2026-09-25T05:17:15",
     "from": "rung_land",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 4.06,
-     "crest_dB": 18.4,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -16.2,
-     "TP_dBFS": -3.6,
-     "TP_m4a_dBFS": -1.9,
-     "samples": 29566
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -18.8,
@@ -9657,7 +9520,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:25",
+    "at": "2026-09-25T05:17:16",
     "from": "rung_out",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9703,7 +9566,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:26",
+    "at": "2026-09-25T05:17:16",
     "from": "rescue_enter",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9749,7 +9612,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:26",
+    "at": "2026-09-25T05:17:16",
     "from": "inferno_enter",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9791,7 +9654,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:26",
+    "at": "2026-09-25T05:17:17",
     "from": "hose_start",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9833,7 +9696,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:27",
+    "at": "2026-09-25T05:17:17",
     "from": "hose_end",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9875,7 +9738,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:27",
+    "at": "2026-09-25T05:17:17",
     "from": "steam",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9917,7 +9780,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:27",
+    "at": "2026-09-25T05:17:17",
     "from": "room_down",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -9959,7 +9822,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:28",
+    "at": "2026-09-25T05:17:18",
     "from": "rescue_tada_1",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10001,7 +9864,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:28",
+    "at": "2026-09-25T05:17:18",
     "from": "rescue_tada_2",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10043,7 +9906,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:28",
+    "at": "2026-09-25T05:17:18",
     "from": "rescue_tada_3",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10085,7 +9948,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:28",
+    "at": "2026-09-25T05:17:18",
     "from": "rescue_tada_4",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10127,7 +9990,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:29",
+    "at": "2026-09-25T05:17:18",
     "from": "rescue_tada_5",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10169,7 +10032,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:29",
+    "at": "2026-09-25T05:17:19",
     "from": "rescue_tada_6",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10211,7 +10074,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:29",
+    "at": "2026-09-25T05:17:19",
     "from": "rescue_tada_7",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10253,7 +10116,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:30",
+    "at": "2026-09-25T05:17:19",
     "from": "rescue_tada_8",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10289,27 +10152,16 @@
    "seam": "audioDirector.prize when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -18.6,
-    "TP_dBFS": -2.6,
-    "TP_m4a_dBFS": -3.1
+    "I_LUFS": -21.7,
+    "TP_dBFS": -3.4,
+    "TP_m4a_dBFS": -3.7
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:30",
+    "at": "2026-09-25T05:17:20",
     "from": "prize_coins",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 3.51,
-     "crest_dB": 20.3,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -18.6,
-     "TP_dBFS": -2.6,
-     "TP_m4a_dBFS": -3.1,
-     "samples": 33418
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -21.4,
@@ -10352,7 +10204,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:31",
+    "at": "2026-09-25T05:17:20",
     "from": "prize_coins_big",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10398,7 +10250,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:31",
+    "at": "2026-09-25T05:17:20",
     "from": "building_cleared",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10440,7 +10292,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:32",
+    "at": "2026-09-25T05:17:20",
     "from": "siren_pass",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10482,7 +10334,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:32",
+    "at": "2026-09-25T05:17:21",
     "from": "block_slide",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10529,7 +10381,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:33",
+    "at": "2026-09-25T05:17:21",
     "from": "spins_added",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10571,7 +10423,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:34",
+    "at": "2026-09-25T05:17:21",
     "from": "last_spin",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10618,7 +10470,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:34",
+    "at": "2026-09-25T05:17:21",
     "from": "rescue_total_small",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10665,7 +10517,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:34",
+    "at": "2026-09-25T05:17:22",
     "from": "inferno_total_small",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10712,7 +10564,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:35",
+    "at": "2026-09-25T05:17:22",
     "from": "rescue_total_mid",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10759,7 +10611,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:35",
+    "at": "2026-09-25T05:17:23",
     "from": "inferno_total_mid",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10806,7 +10658,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:36",
+    "at": "2026-09-25T05:17:23",
     "from": "rescue_total_big",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10853,7 +10705,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:36",
+    "at": "2026-09-25T05:17:23",
     "from": "inferno_total_big",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10895,7 +10747,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:36",
+    "at": "2026-09-25T05:17:23",
     "from": "alarm_call_ring",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -10931,27 +10783,16 @@
    "seam": "NEW audioDirector.alarmFlip when isTurbo()",
    "status": "built",
    "measured": {
-    "I_LUFS": -21.2,
-    "TP_dBFS": -4.0,
-    "TP_m4a_dBFS": -3.4
+    "I_LUFS": -23.4,
+    "TP_dBFS": -3.0,
+    "TP_m4a_dBFS": -2.7
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:37",
+    "at": "2026-09-25T05:17:24",
     "from": "alarm_card_flip",
     "timeScale": 0.55,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 3.12,
-     "crest_dB": 24.1,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -21.2,
-     "TP_dBFS": -4.0,
-     "TP_m4a_dBFS": -3.4,
-     "samples": 16596
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -25.0,
@@ -10994,7 +10835,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:38",
+    "at": "2026-09-25T05:17:24",
     "from": "alarm_outcome_rescue",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11040,7 +10881,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:38",
+    "at": "2026-09-25T05:17:24",
     "from": "alarm_outcome_inferno",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11082,7 +10923,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:39",
+    "at": "2026-09-25T05:17:24",
     "from": "alarm_outcome_false",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11124,7 +10965,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:40",
+    "at": "2026-09-25T05:17:25",
     "from": "dog_bark",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11170,7 +11011,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:40",
+    "at": "2026-09-25T05:17:25",
     "from": "backdraft_spins_start",
     "timeScale": 0.5,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11211,27 +11052,16 @@
    "gate": "plays for every end; use total/rung cues for the amount (no extra celebration at or below the cost)",
    "status": "built",
    "measured": {
-    "I_LUFS": -19.4,
-    "TP_dBFS": -3.0,
-    "TP_m4a_dBFS": -2.7
+    "I_LUFS": -25.2,
+    "TP_dBFS": -6.1,
+    "TP_m4a_dBFS": -6.8
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:41",
+    "at": "2026-09-25T05:17:25",
     "from": "backdraft_spins_end",
     "timeScale": 0.5,
-    "op": "turbo variant (atempo, pitch kept)",
-    "remaster": {
-     "raised_dB": 6.51,
-     "crest_dB": 18.8,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 2,
-     "I_LUFS": -19.4,
-     "TP_dBFS": -3.0,
-     "TP_m4a_dBFS": -2.7,
-     "samples": 44486
-    }
+    "op": "turbo variant (atempo, pitch kept)"
    },
    "mix": {
     "file_loud400_dBFS": -19.6,
@@ -11275,7 +11105,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:41",
+    "at": "2026-09-25T05:17:25",
     "from": "shutter_slam",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11317,7 +11147,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:41",
+    "at": "2026-09-25T05:17:26",
     "from": "shutter_haul_1",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11359,7 +11189,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:42",
+    "at": "2026-09-25T05:17:26",
     "from": "shutter_haul_2",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"
@@ -11401,7 +11231,7 @@
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T05:07:42",
+    "at": "2026-09-25T05:17:26",
     "from": "shutter_haul_3",
     "timeScale": 0.55,
     "op": "turbo variant (atempo, pitch kept)"

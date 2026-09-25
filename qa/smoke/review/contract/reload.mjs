@@ -52,6 +52,7 @@ const context = await browser.newContext({ viewport: { width: 1440, height: 900 
 await context.addInitScript(() => {
 	globalThis.__PFF_QA = true;
 });
+await context.routeWebSocket(/\?token=/, (ws) => ws.onMessage(() => {}));
 const page = await context.newPage();
 const errors = [];
 const requests = [];

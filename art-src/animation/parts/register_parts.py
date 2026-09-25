@@ -90,7 +90,7 @@ def _labels(master, part, k=10):
     return assign(master), assign(part), k
 
 
-def fit(master, part, scales=None, q=4, yrange=None, srange=(0.35, 1.6)):
+def fit(master, part, scales=None, q=4, yrange=None, srange=(0.35, 1.6), mode="colour"):
     """Return best {s, tx, ty, score}: part pixel (x, y) maps to master pixel (s*x + tx, s*y + ty).
 
     Score = colour-label agreement precision x recall (per-label FFT correlation at 1/q resolution), then a local
@@ -98,7 +98,12 @@ def fit(master, part, scales=None, q=4, yrange=None, srange=(0.35, 1.6)):
     master's height; srange limits the scale search."""
     if scales is None:
         scales = np.exp(np.linspace(np.log(srange[0]), np.log(srange[1]), 60))
-    ml, pl, k = _labels(master, part)
+    if mode == "alpha":  # silhouette only (costume edits change every colour)
+        ml = np.where(master[..., 3] > 128, 0, -1).astype(np.int16)
+        pl = np.where(part[..., 3] > 128, 0, -1).astype(np.int16)
+        k = 1
+    else:
+        ml, pl, k = _labels(master, part)
     ys, xs = np.nonzero(pl >= 0)
     y0, y1, x0, x1 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
     pl_c = pl[y0:y1, x0:x1]
