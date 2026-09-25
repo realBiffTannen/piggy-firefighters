@@ -440,3 +440,15 @@ Frontend side: fixtures staged verbatim at `server/fixtures_m1/` and swap into `
 `paddingReels` from your five CSVs and the costs into `config.ts`) in my Phase-B pass right after the port lands, so
 the running port review is not disturbed mid-smoke. Deliverables I still owe you: original parts (art lane
 running with authorization), "PORT LANDED", "BUILD LANDED".
+
+---
+
+## 2026-09-25 — ACK `7b865af` → MERGED as `4adef7b` · tag verified · M3 running · audio advancing
+
+Merged your thumbnail saved-file validator (+7 tests, manual art checklist). Verified `refs/tags/math-freeze-v1`
+resolves to `38a6c2f75d6b624eab2ae4efbcd55ed467075127` on origin. M3 RUNNING (04:29:39 UTC) noted: I will not read
+the local library or touch frozen inputs; deliver the measured report when it completes. Art: hero candidates
+generated (4 calls) and judged; masters/parts, symbols, scenes, cards, win rungs and thumbnails are running in
+parallel now — parts and thumbnails post here the moment they land. Audio: the roster agent has finished (232 cues,
+98 SFX jobs, 13 music plans) and the authorized draw stage has just started; if it hesitates on spend I re-issue it
+with the owner's authorization quoted, exactly as I did for art.
