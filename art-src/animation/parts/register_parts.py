@@ -68,66 +68,89 @@ def _fftcorr(big, small):
     return c[small.shape[0] - 1:, small.shape[1] - 1:]
 
 
-def fit(master, part, scales=None, q=4):
-    """Return best {s, tx, ty, score}: part pixel (x, y) maps to master pixel (s*x + tx, s*y + ty)."""
+def _labels(master, part, k=10):
+    """Quantise the master's opaque colours to k labels and give every opaque pixel of both images its nearest
+    label (-1 = transparent). Colour agreement is a far stronger registration cue than ink alone: the rookie's thin
+    coat and a helmet brim both look like 'dense ink' to an ink-only score."""
+    mo = master[..., 3] > 128
+    pix = master[..., :3][mo].astype(np.float32)
+    rng = np.random.default_rng(0)
+    c = pix[rng.choice(len(pix), size=min(len(pix), 20000), replace=False)]
+    cent = c[rng.choice(len(c), size=k, replace=False)]
+    for _ in range(25):
+        lab = np.argmin(((c[:, None, :] - cent[None]) ** 2).sum(-1), axis=1)
+        cent = np.array([c[lab == j].mean(0) if (lab == j).any() else cent[j] for j in range(k)])
+
+    def assign(a):
+        out = np.full(a.shape[:2], -1, np.int16)
+        o = a[..., 3] > 128
+        px = a[..., :3][o].astype(np.float32)
+        out[o] = np.argmin(((px[:, None, :] - cent[None]) ** 2).sum(-1), axis=1)
+        return out
+    return assign(master), assign(part), k
+
+
+def fit(master, part, scales=None, q=4, yrange=None, srange=(0.35, 1.6)):
+    """Return best {s, tx, ty, score}: part pixel (x, y) maps to master pixel (s*x + tx, s*y + ty).
+
+    Score = colour-label agreement precision x recall (per-label FFT correlation at 1/q resolution), then a local
+    refinement at 1/2 resolution. yrange=(lo, hi): the placed part's vertical centre must fall within lo..hi of the
+    master's height; srange limits the scale search."""
     if scales is None:
-        scales = np.exp(np.linspace(np.log(0.35), np.log(1.6), 70))
-    mi = ink(master)
-    pi = ink(part)
-    pal = (part[..., 3] > 128).astype(np.float32)
-    ys, xs = np.nonzero(pal)
+        scales = np.exp(np.linspace(np.log(srange[0]), np.log(srange[1]), 60))
+    ml, pl, k = _labels(master, part)
+    ys, xs = np.nonzero(pl >= 0)
     y0, y1, x0, x1 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
-    pi_c, pal_c = pi[y0:y1, x0:x1], pal[y0:y1, x0:x1]
-    mq = _resize(mi, 1.0 / q)
-    mq_d = ndimage.grey_dilation(mq, size=(3, 3))
-    best = None
-    for s in scales:
-        f = s / q
-        p = _resize(pi_c, f)
-        if p.shape[0] < 4 or p.shape[1] < 4 or p.shape[0] > mq.shape[0] * 1.3 or p.shape[1] > mq.shape[1] * 1.3:
-            continue
-        pa = _resize(pal_c, f)
-        pd = ndimage.grey_dilation(p, size=(3, 3))
-        n_p = p.sum() + 1e-6
-        prec = _fftcorr(mq_d, p) / n_p
-        rec_num = _fftcorr(mq, pd)
-        rec_den = _fftcorr(mq, pa) + 1e-6
-        rec = np.clip(rec_num / rec_den, 0, 1)
-        sc = prec * rec
-        # only placements that keep the part on the master canvas (allow 10 % overhang)
-        H = mq.shape[0] - int(p.shape[0] * 0.9)
-        W = mq.shape[1] - int(p.shape[1] * 0.9)
-        if H <= 0 or W <= 0:
-            continue
-        sc = sc[:H, :W]
-        k = np.unravel_index(np.argmax(sc), sc.shape)
-        v = float(sc[k])
-        if best is None or v > best[0]:
-            best = (v, s, k[1] * q, k[0] * q)
-    v, s, ox, oy = best
-    # refine at full resolution: scale +-3 %, translation +-6 px
-    mi_d = ndimage.grey_dilation(mi, size=(3, 3))
-    bestf = None
-    for s2 in s * np.linspace(0.97, 1.03, 13):
-        p = _resize(pi_c, s2)
-        n_p = p.sum() + 1e-6
-        for dy in range(-6, 7, 2):
-            for dx in range(-6, 7, 2):
-                X, Y = int(ox + dx), int(oy + dy)
-                if X < 0 or Y < 0:
-                    continue
-                hh = min(p.shape[0], mi.shape[0] - Y)
-                ww = min(p.shape[1], mi.shape[1] - X)
-                if hh <= 0 or ww <= 0:
-                    continue
-                o = (mi_d[Y:Y + hh, X:X + ww] * p[:hh, :ww]).sum() / n_p
-                if bestf is None or o > bestf[0]:
-                    bestf = (o, s2, X, Y)
-    o, s2, X, Y = bestf
-    for dy in (-1, 0, 1):  # 1 px polish
-        for dx in (-1, 0, 1):
-            pass
-    return {"s": float(s2), "tx": float(X - s2 * x0), "ty": float(Y - s2 * y0), "precision": round(float(o), 4),
+    pl_c = pl[y0:y1, x0:x1]
+
+    def stacks(lab, f, dil):
+        chans = []
+        for j in range(k):
+            ch = (lab == j).astype(np.float32)
+            if f != 1:
+                ch = ndimage.zoom(ch, f, order=1, prefilter=False)
+            if dil:
+                ch = ndimage.grey_dilation(ch, size=(dil, dil))
+            chans.append(ch)
+        return chans
+
+    def search(qq, scale_list, window=None):
+        M = stacks(ml, 1.0 / qq, 3)
+        Ma = sum(stacks(ml, 1.0 / qq, 0))
+        best = None
+        for s_ in scale_list:
+            P = stacks(pl_c, s_ / qq, 0)
+            Pa = sum(P)
+            if Pa.shape[0] < 4 or Pa.shape[1] < 4 or Pa.shape[0] > Ma.shape[0] * 1.3 or Pa.shape[1] > Ma.shape[1] * 1.3:
+                continue
+            n_p = Pa.sum() + 1e-6
+            num = sum(_fftcorr(M[j], P[j]) for j in range(k) if P[j].any())
+            den = _fftcorr(np.clip(Ma, 0, 1), Pa) + 1e-6
+            sc = (num / n_p) * np.clip(num / den, 0, 1)
+            H = Ma.shape[0] - int(Pa.shape[0] * 0.9)
+            W = Ma.shape[1] - int(Pa.shape[1] * 0.9)
+            if H <= 0 or W <= 0:
+                continue
+            sc = sc[:H, :W].copy()
+            if yrange is not None:
+                cy = np.arange(H) + Pa.shape[0] / 2.0
+                sc[(cy < yrange[0] * Ma.shape[0]) | (cy > yrange[1] * Ma.shape[0]), :] = -1
+            if window is not None:
+                (wx, wy, r) = window
+                mask = np.full(sc.shape, -1.0)
+                ya, yb = max(0, int(wy / qq) - r), min(H, int(wy / qq) + r + 1)
+                xa, xb = max(0, int(wx / qq) - r), min(W, int(wx / qq) + r + 1)
+                mask[ya:yb, xa:xb] = 0
+                sc = np.where(mask == 0, sc, -1)
+            kk = np.unravel_index(np.argmax(sc), sc.shape)
+            v = float(sc[kk])
+            if best is None or v > best[0]:
+                best = (v, float(s_), kk[1] * qq, kk[0] * qq)
+        return best
+
+    v, s, ox, oy = search(q, scales)
+    v2, s2, X, Y = search(2, s * np.linspace(0.96, 1.04, 9), window=(ox, oy, 6))
+    return {"s": float(s2), "tx": float(X - s2 * x0), "ty": float(Y - s2 * y0), "score": round(float(v2), 4),
             "coarse_score": round(v, 4)}
 
 

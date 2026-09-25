@@ -7,15 +7,16 @@ modified). Subcommands (default: all):
              a mood without its own painting may be a relight of another: --relight backdraft=base:backdraft)
   ambient    ambient/plate_<mood>_landscape.webp 1536x1024 + plate_<mood>_portrait.webp 1024x1536, q80;
              the whole ambient/ dir must stay <= 1.5 MB (exit 1 over budget)
-  frame      environment/board_frame.webp 1497x946 (+ board_frame.meta.json): the generated truck-panel frame is
+  frame      ui_scene/board_frame.webp 1497x946 (+ ui_scene/frame.meta.json): the generated truck-panel frame is
              warped (separable piecewise-linear, premultiplied cubic) so its outer edge and inner opening land exactly
              on the family's sliced geometry OPEN {x0:212, x1:1279, y0:178, y1:761}; the top rail (repeated WITHOUT
              mirroring at runtime from TOP_TILE [340,36,487,154]) is rebuilt as an exact whole-period tile
-  backplate  environment/cell_backplate.webp 963x645 (the dark reel field; drawn bottom-centre at 963:645)
+  backplate  ui_scene/cell_backplate.webp 963x645 (the dark reel field; drawn bottom-centre at 963:645)
   shutter    splash/shutter_slats_tile.webp 1024x512 (whole slats, seamless vertical repeat, autocorrelation period)
              + splash/shutter_bottom_bar.webp 1024x115 (the bay door's bottom beam, ends kept, middle repeated)
 
-Default sources (override with --map <json> {"plate_base_16_9": "b3/plate_base_16_9_r2", ...}):
+Default sources (then art-src/generated/scene.sources.json when present, then --map <json>
+{"plate_base_16_9": "b3/plate_base_16_9_r2", ...}):
   scene/plate_<mood>_16_9, scene/plate_<mood>_portrait, scene/board_frame, scene/cell_backplate, scene/shutter
 Missing sources are PENDING and skipped. --out <assets root> redirects every write (tests / staging).
 """
@@ -28,8 +29,11 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from art_common import (clean_specks, cover, exists_src, fit_into, load_rgb, load_rgba, out_root, period, prepare_out,  # noqa: E402
-                        rel, relight, save_webp, src_path, warp_sep, write_json)
+from art_common import (GEN, clean_specks, cover, exists_src, fit_into, load_rgb, load_rgba, out_root, period,  # noqa: E402
+                        prepare_out, rel, relight, save_webp, src_path, warp_sep, write_json)
+
+SCENE_MAP_FILE = os.path.join(GEN, "scene.sources.json")  # accepted redraws (e.g. board_frame -> scene/board_frame_r2)
+FRAME_DIR = "ui_scene"  # board frame, its meta and the cell backplate live with the other scene UI sprites
 
 LAND, PORT = (2039, 1000), (1242, 2208)
 PLATE_LAND, PLATE_PORT = (1536, 1024), (1024, 1536)
@@ -174,15 +178,15 @@ def cmd_frame(srcs, root, rail, pending):
     info = {}
     if rail:
         fr, info = rebuild_rail(fr)
-    out = prepare_out(os.path.join(root, "environment"))
+    out = prepare_out(os.path.join(root, FRAME_DIR))
     im = Image.fromarray(fr, "RGBA")
     n = save_webp(im, os.path.join(out, "board_frame.webp"), quality=92)
     meta = inner_opening(fr)
     meta.update({"w": FW, "h": FH, "open_px": OPEN, "top_tile": list(TOP_TILE), "source": rel(src_path(srcs["board_frame"])),
                  "source_edges": {"x": [sx0, sox0, sox1, sx1], "y": [sy0, soy0, soy1, sy1]}, **info,
                  "generated_by": "tools/art/derive_scene.py frame"})
-    write_json(os.path.join(out, "board_frame.meta.json"), meta)
-    print(f"environment/board_frame.webp {im.size} {n} B opening {inner_opening(fr)} {info}")
+    write_json(os.path.join(out, "frame.meta.json"), meta)
+    print(f"{FRAME_DIR}/board_frame.webp {im.size} {n} B opening {inner_opening(fr)} {info}")
 
 
 def cmd_backplate(srcs, root, pending):
@@ -192,13 +196,13 @@ def cmd_backplate(srcs, root, pending):
     im = Image.fromarray(load_rgba(srcs["cell_backplate"]), "RGBA")
     im = im.crop(im.getbbox())
     W, H = BACKPLATE
-    if abs(im.width / im.height - W / H) < 0.12:
+    if abs(im.width / im.height - W / H) < 0.2:  # a flat field: a mild non-uniform resize beats a letterbox
         can = im.resize(BACKPLATE, Image.LANCZOS)
     else:
         can = fit_into(im, BACKPLATE, anchor="bottom")[0]
-    out = prepare_out(os.path.join(root, "environment"))
+    out = prepare_out(os.path.join(root, FRAME_DIR))
     n = save_webp(can, os.path.join(out, "cell_backplate.webp"), quality=90)
-    print(f"environment/cell_backplate.webp {can.size} {n} B (source aspect {im.width / im.height:.3f})")
+    print(f"{FRAME_DIR}/cell_backplate.webp {can.size} {n} B (source aspect {im.width / im.height:.3f})")
 
 
 def dark_runs(prof, thr):
@@ -277,6 +281,8 @@ def main():
     ap.add_argument("--strict", action="store_true")
     a = ap.parse_args()
     srcs = default_sources()
+    if os.path.isfile(SCENE_MAP_FILE):
+        srcs.update(json.load(open(SCENE_MAP_FILE)))
     if a.map:
         srcs.update(json.load(open(a.map)))
     root = out_root(a.out)

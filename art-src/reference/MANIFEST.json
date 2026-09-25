@@ -1,51 +1,62 @@
 {
-  "note": "style / character references only - never shipped (see README.md)",
-  "origin": "/home/user/lucky/art-src/reference/cartoon (read-only donor checkout)",
-  "files": {
-    "cartoon/house-brick.png": {
-      "sha256": "da51cd98881e0a22341774d7c595e2a84095b7652864e54d43e0d00f815dee67",
-      "size": [
-        1254,
-        1254
-      ],
-      "mode": "RGBA",
-      "donor_sha256_match": true
-    },
-    "cartoon/paint.png": {
-      "sha256": "ff40e484f72cffbc08347c2c36f86dcfdff26b512bb35a24ac00e1b485645b44",
-      "size": [
-        1254,
-        1254
-      ],
-      "mode": "RGBA",
-      "donor_sha256_match": true
-    },
-    "cartoon/pig.png": {
-      "sha256": "1df46f07604dc02ffcbd658d9fac908dd48ef610cb57195e79ac4d7f1393dc5d",
-      "size": [
-        1254,
-        1254
-      ],
-      "mode": "RGBA",
-      "donor_sha256_match": true
-    },
-    "cartoon/tools.png": {
-      "sha256": "d1ec80803007e41a3c1428bf8c527a4ba698cc4d5786f82cd32a7c5db3ca9281",
-      "size": [
-        1254,
-        1254
-      ],
-      "mode": "RGBA",
-      "donor_sha256_match": true
-    },
-    "cartoon/woods.png": {
-      "sha256": "c66a4d5c2a33860dee846df5a8472673e2aaa7b46ae7592d96254a1eeac798c5",
-      "size": [
-        1254,
-        1254
-      ],
-      "mode": "RGBA",
-      "donor_sha256_match": true
-    }
+ "note": "style / character references only - never shipped (see README.md)",
+ "origin": "/home/user/lucky/art-src/reference/cartoon (read-only donor checkout)",
+ "files": {
+  "cartoon/house-brick.png": {
+   "sha256": "da51cd98881e0a22341774d7c595e2a84095b7652864e54d43e0d00f815dee67",
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "donor_sha256_match": true
+  },
+  "cartoon/paint.png": {
+   "sha256": "ff40e484f72cffbc08347c2c36f86dcfdff26b512bb35a24ac00e1b485645b44",
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "donor_sha256_match": true
+  },
+  "cartoon/pig.png": {
+   "sha256": "1df46f07604dc02ffcbd658d9fac908dd48ef610cb57195e79ac4d7f1393dc5d",
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "donor_sha256_match": true
+  },
+  "cartoon/tools.png": {
+   "sha256": "d1ec80803007e41a3c1428bf8c527a4ba698cc4d5786f82cd32a7c5db3ca9281",
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "donor_sha256_match": true
+  },
+  "cartoon/woods.png": {
+   "sha256": "c66a4d5c2a33860dee846df5a8472673e2aaa7b46ae7592d96254a1eeac798c5",
+   "size": [
+    1254,
+    1254
+   ],
+   "mode": "RGBA",
+   "donor_sha256_match": true
+  },
+  "geometry/board_frame_raw.png": {
+   "sha256": "b5814b8db7f732bbd7b03ba563aae480602f2f07706c92f9f0022970e448cdf1",
+   "size": [
+    1536,
+    1024
+   ],
+   "mode": "RGBA",
+   "donor_sha256_match": true,
+   "origin": "/home/user/lucky/art-src/generated/board_frame_raw.png",
+   "use": "GEOMETRY ONLY for the reel frame edit (outer rect, beams, posts, corner blocks, opening); its hazard stripe and timber are retired construction art and must not appear"
   }
+ }
 }

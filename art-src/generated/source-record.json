@@ -3574,5 +3574,845 @@
       "total_tokens": 3257
     },
     "seconds": 30.8
+  },
+  {
+    "asset": "cell_backplate",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our red ladder fire truck: take its materials and finish only. Draw ONE wide panel that fills the canvas: the recessed back wall of the reel window of a fire truck's equipment locker, seen straight on, in the exact 2D cartoon style of Image 1 (bold thick dark-brown ink outline, flat colours, ONE hard shadow tone, no gradients). It is a single rounded rectangle about 96 percent of the canvas width and 94 percent of its height (a 3:2 shape), perfectly straight and centred. Its field is flat, dark dusk navy #1E2A4A, very quiet and low-contrast so that game symbols read clearly on top of it: a slightly darker inset band just inside the edge as the one hard shadow tone along the top and left inner edges, and a thin smoke-blue-grey #7C8AA0 steel lip around the outer border with small dark rivets spaced evenly along it. No texture pattern, no stripes, no grooves across the field, no gloss streaks. Genuinely transparent background outside the panel. No text, no letters, no numbers, no logos, no characters.",
+    "prompt_files": [
+      "art-src/generated/prompts/scene_cell_backplate.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: reel field backplate (dark navy)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:49:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/cell_backplate.png",
+    "sha256": "564e31b28b0e265cd7f65c4650f318ea5a12d58075a4de471c2b60290e70d759",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1278,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 254
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2650
+    },
+    "seconds": 24.4
+  },
+  {
+    "asset": "board_frame",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is the old board frame of this slot game. Use it for GEOMETRY ONLY and copy that geometry exactly: the same outer rectangle, the same thick top beam, bottom beam and two side posts, the same four square corner blocks, the same small bracket halfway down each post, and the same large EMPTY rectangular opening in the centre (about 71 percent of the total width and 62 percent of the total height, perfectly centred). Its wood and its black-and-yellow stripe are the old theme and must NOT appear. Image 2 is our red ladder fire truck: take its materials, colours and finish.\nRepaint the frame as the SIDE OF A RED LADDER FIRE TRUCK, in the exact 2D cartoon style of Image 2 (bold thick dark-brown ink outlines, flat saturated colours, ONE hard shadow tone, one small cream highlight, light from the top left): the top beam, the bottom beam and the two side posts are engine-red painted steel body panels with a thin dark panel seam; along the whole TOP BEAM runs a straight polished CHROME grab rail on short chrome posts spaced perfectly evenly, so that the rail pattern repeats at a regular interval; a single hydrant-yellow reflective stripe runs straight along the bottom beam; the four corner blocks are square polished brass plates, each with four round rivets; the bracket halfway down each post is a small brass hinge plate with two rivets. Everything is perfectly straight and front-on, perfectly symmetrical left to right. Everything outside the frame and the whole central opening are FULLY TRANSPARENT (nothing inside the opening).\nNo text, no letters, no numbers, no badges, no logos, no hazard stripes, no wood, no people, no characters.",
+    "prompt_files": [
+      "art-src/generated/prompts/scene_board_frame.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/geometry/board_frame_raw.png",
+      "art-src/generated/symbols/sym_sq_h1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: reel frame = ladder-truck side panel (donor frame = geometry only)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:49:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/board_frame.png",
+    "sha256": "94d1727a40a606dac9d7d2338d25336f2caa4286453dbf19774c2dced335a6db",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2938,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 378
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4310
+    },
+    "seconds": 27.8
+  },
+  {
+    "asset": "ui_frames",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our red ladder fire truck: take its materials, colours and finish only. Draw a SHEET of FOUR separate game-interface pieces for a cartoon fire-brigade slot game, in the exact 2D cartoon style of Image 1 (bold thick dark-brown ink outlines, flat saturated colours, ONE hard shadow tone, one small cream highlight, light from the top left, no gradients). Layout: the three square cell frames stand in one row across the top two thirds of the canvas, identical in outer size, with WIDE empty gaps between them; the fourth piece sits alone, centred, in the bottom third. No piece touches another.\n(1) LEFT, the PLAIN cell frame: a square picture-frame ring made of thin dusk-navy steel with a narrow chrome inner lip and one small brass rivet in each corner. The centre is completely EMPTY and transparent; the hole is about 84 percent of the frame's width.\n(2) MIDDLE, the WIN cell frame: the same square ring, same size and same thickness, in polished brass gold with a hydrant-yellow inner edge and one small brass rivet in each corner. The centre is completely EMPTY and transparent.\n(3) RIGHT, the LOCKED cell frame: the same square ring, same size, in engine-red painted steel with chunky brass corner brackets bolted over each corner. The centre is completely EMPTY and transparent.\n(4) BOTTOM, a small BLANK line-number plate: a brass tag in the shape of a rounded shield about one quarter the width of a cell frame, with one rivet at the top and a FLAT BLANK cream centre facing the viewer straight on, with nothing painted on it.\nGenuinely transparent background everywhere, including inside each frame. No text, no letters, no numbers, no logos, no characters.",
+    "prompt_files": [
+      "art-src/generated/prompts/scene_ui_frames.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: cell frames plain/win/locked + blank line-number plate sheet",
+    "attempt": 1,
+    "ts": "2026-09-25T04:49:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/ui_frames.png",
+    "sha256": "e97104fa11d6c37595d34230b034d799bfb7a2bbbc06d404f195d3dab4dd30d4",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1416,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 392
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2788
+    },
+    "seconds": 28.0
+  },
+  {
+    "asset": "rescue_props_b",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our brass-nozzle reel symbol (a coiled cream hose with a brass nozzle): take its hose and nozzle design, colours and style. Draw a SHEET of FIVE separate pieces for the hose-spray effect of a cartoon fire-brigade slot game, in the exact 2D cartoon style of Image 1 (bold thick dark-brown ink outlines, chunky rounded forms, flat saturated colours, ONE hard shadow tone and one small cream highlight, no gradients, no glow). Arrange them in a tidy grid with WIDE empty transparent gaps so no two pieces touch:\n(1) A polished brass fire-hose NOZZLE, lying horizontal and pointing to the right, with the cream hose coupling on its left end cut flat.\n(2) A STRAIGHT horizontal piece of hose cream #F4E9D2 canvas fire hose with a flat red seam line, both ends cut flat and square so copies laid end to end form one continuous hose.\n(3) A thick WATER JET arc: one continuous cartoon stream of water in pale sky blue with white highlight streaks and a dark-brown ink outline, starting narrow at the lower left and arcing up and over to the upper right, getting slightly wider, with a few separate flat round droplets along its edges.\n(4) A WATER SPLASH burst where the jet hits: a flat star-like crown of pale blue water with white highlights and droplets flying outward.\n(5) A STEAM PUFF: one soft-edged but flat cartoon cloud of white-and-smoke-blue-grey steam with a dark-brown ink outline and three rounded lobes.\nGenuinely transparent background. No text, no letters, no numbers, no logos, no characters, no fire.",
+    "prompt_files": [
+      "art-src/generated/prompts/scene_rescue_props_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: rescue props sheet B (nozzle, hose segment, water jet arc, splash, steam)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:49:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/rescue_props_b.png",
+    "sha256": "c9d83830ad6edb70b1a25d128d868d82242be4a68ba244bfeb3cd6c13782b099",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1395,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 371
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2767
+    },
+    "seconds": 28.7
+  },
+  {
+    "asset": "plate_base_16_9",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 defines the STYLE ONLY of our red-brick buildings (ink weight, brick pattern, cel shading); do not copy the little house. Image 2 is our brass fire-alarm bell on its red box: use exactly this bell design, small, mounted over the bay door.\nPaint a WIDE background plate for a cartoon slot game: the front of a red-brick FIREHOUSE seen straight-on from the street at DUSK. Composition, strictly:\n(1) The firehouse facade spans the whole width: warm red brick with cream stone trim, a flat parapet roofline with a simple cream cornice about 24 percent down from the top. Set into the parapet is a plain empty cream stone panel with nothing on it.\n(2) CENTRE: one very wide arched truck-bay doorway taking the middle 60 percent of the width, from about 32 percent down to the pavement. Its roll-up door is CLOSED: plain flat engine-red horizontal slats with a thin brass trim, quiet and low-contrast (the game reels cover this area). On the keystone above the arch sits the small brass alarm bell of Image 2.\n(3) LEFT 18 percent: a brick pilaster with one tall arched upstairs window glowing warm yellow from inside, a simple wall lamp, and at street level an EMPTY patch of pavement with a yellow fire hydrant right at the left edge (keep the pavement clear: a character stands there later).\n(4) RIGHT 18 percent: a matching pilaster with a lit arched upstairs window, a brass hose reel with coiled cream hose on the wall, and an EMPTY patch of pavement (a dog sits there later).\n(5) TOP: a flat dusk sky in hard-edged bands, dusk navy #1E2A4A at the top stepping down to smoke blue-grey and then a warm peach-orange strip just above the roofline, a few small four-point stars, no clouds, no sun; small distant cartoon rooftops and one water tower as flat silhouettes behind the parapet.\n(6) BOTTOM 13 percent: grey stone pavement with a cream kerb and a strip of dark street.\nThe top 13 percent and the bottom 13 percent of the image will be cropped away, so keep the roofline, the bell, the windows, the hydrant and the hose reel inside the middle 74 percent of the height. Light from the top left; window light is a flat warm shape on the brick, never a soft glow haze. No people, no pigs, no animals, no vehicles, no characters of any kind.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_base_16_9.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/house-brick.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: base plate, firehouse truck bay at dusk (landscape master)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:49:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_base_16_9.png",
+    "sha256": "bfeedbe76151a122823fb58e5643debe7fcb1ab9c3bee29c6b88d9d4a6a8e1fc",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3341,
+      "input_tokens_details": {
+        "image_tokens": 2545,
+        "text_tokens": 796
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4713
+    },
+    "seconds": 28.9
+  },
+  {
+    "asset": "plate_rescue_16_9",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 defines the STYLE ONLY of our red-brick buildings (ink weight, brick pattern, cel shading); do not copy the little house. Image 2 is our red ladder fire truck: use exactly this truck design (red body, cream bumper, brass bell, chrome grille, yellow stripe), with its doors plain and unmarked.\nPaint a WIDE background plate for the rescue bonus of a cartoon slot game: a city street at NIGHT, seen straight-on, where the fire truck has pulled up in front of a burning-block apartment building. Composition, strictly:\n(1) The apartment building is a four-storey red-brick block that spans the middle 76 percent of the width, with a flat roofline and a cream stone cornice about 15 percent down from the top of the image.\n(2) Its TOP FLOOR has exactly FIVE identical large square windows in ONE evenly spaced horizontal row, centred, spread across the central 64 percent of the width, each window about 11 percent of the image width wide, the row sitting between 17 and 36 percent of the image height. Each window has a cream stone frame, a cream sill and a four-pane dark glass window standing open; the rooms behind are DARK and unlit (dusk navy). The five windows must look the same, equally spaced, perfectly straight and facing the viewer.\n(3) Below that window row, the lower floors of the block are plain dark brick in shadow with no windows, no doors and no detail at all: quiet and low-contrast, because the game reels cover this whole area.\n(4) BOTTOM LEFT corner: the front half of the red ladder fire truck of Image 2 parked at the kerb, cut off by the left edge, facing right, its headlights on as flat cream shapes. Do NOT draw an extended ladder: the ladder is added later.\n(5) BOTTOM RIGHT corner: a yellow fire hydrant and a simple cast-iron street lamp with a flat cream lamp shape.\n(6) Left and right of the building: narrow slices of neighbouring dark buildings as flat navy silhouettes with a few small lit windows.\n(7) SKY above the roof: flat night sky of dusk navy #1E2A4A with small four-point stars and a big flat cream moon at the upper right, no clouds.\n(8) BOTTOM 12 percent: dark pavement, a cream kerb and the dark street.\nThe top 12 percent and the bottom 12 percent of the image will be cropped away, so keep the window row and the truck inside the middle 76 percent of the height. No fire yet, no smoke, no people, no pigs, no animals, no characters of any kind, no ladder, no hose.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_rescue_16_9.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/house-brick.png",
+      "art-src/generated/symbols/sym_sq_h1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: rescue night block plate (landscape master; room overlays are same-framing edits of it)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:49:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_rescue_16_9.png",
+    "sha256": "19c61427eb636cc65f51432be2bd9dd30003d7129f6f76aa94bf211467c586f3",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3367,
+      "input_tokens_details": {
+        "image_tokens": 2545,
+        "text_tokens": 822
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4739
+    },
+    "seconds": 29.8
+  },
+  {
+    "asset": "rescue_props_a",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our short ladder reel symbol: take its style, rail colour and rung material. Image 2 is our red ladder fire truck: take its colours and finish. Draw a SHEET of FIVE separate props for the rescue scene of a cartoon fire-brigade slot game, in the exact 2D cartoon style of the images (bold thick dark-brown ink outlines, chunky rounded forms, flat saturated colours, ONE hard shadow tone and one small cream highlight, light from the top left, no gradients). Arrange them in a tidy grid with WIDE empty transparent gaps so no two pieces touch:\n(1) A STRAIGHT VERTICAL SECTION of a fire-truck extension ladder, drawn perfectly straight, upright and front-on: two parallel engine-red rails and exactly five cream-wood rungs, evenly spaced, the section cut perfectly flat and square at its top and bottom ends (no caps), so that copies stacked end to end form one continuous ladder. Make it tall: about 80 percent of the canvas height.\n(2) The ladder's TOP END: the same two red rails, same width and style, with two rungs, the rails ending in two polished brass hooks curving forward, the bottom cut flat and square.\n(3) A round rescue JUMP SHEET: a taut circular canvas net, hose cream #F4E9D2 with an engine-red rim, brass grommets around the rim and a red target ring in the middle, seen from a low three-quarter angle so it is a wide flat ellipse, empty, with four short stubby red handles around the rim.\n(4) A round BLANK multiplier badge: a polished brass round shield plate with an engine-red enamel ring and a FLAT BLANK cream centre disc facing the viewer straight on, with nothing painted on it.\n(5) A BLANK spins plate: a wide horizontal rounded-rectangle brass plate, about three times as wide as it is tall, with one rivet in each corner and a FLAT BLANK cream centre panel facing the viewer straight on, with nothing painted on it.\nGenuinely transparent background. No text, no letters, no numbers, no logos, no characters, no ground shadows.",
+    "prompt_files": [
+      "art-src/generated/prompts/scene_rescue_props_a.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l3.png",
+      "art-src/generated/symbols/sym_sq_h1.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: rescue props sheet A (ladder segment, ladder top, jump sheet, blank badge, blank spins plate)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:49:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/rescue_props_a.png",
+    "sha256": "032b24bed31b46ed8429861d3f0798e91964e1d6ffdc266a726cdae5ab9ff859",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2527,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 479
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3899
+    },
+    "seconds": 34.2
+  },
+  {
+    "asset": "plate_base_portrait",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted WIDE background: the red-brick firehouse at dusk. Paint the TALL phone version of THIS SAME firehouse: the same style, colours, bricks, cream stone trim, arched bay with the closed red roll-up door, the brass alarm bell on the keystone, the lit arched windows, the wall lamps, the yellow hydrant, the brass hose reel and the dusk sky. Composition for a tall 2:3 canvas, strictly:\n(1) TOP 22 percent: the dusk sky in hard-edged bands (dusk navy at the top, a warm peach-orange strip above the roofline) with the flat distant rooftops and the water tower, then the cream parapet and cornice with the plain empty cream stone panel centred on it.\n(2) From 24 percent to 82 percent of the height: the tall arched truck-bay doorway filling the central 76 percent of the width, the brass alarm bell on its keystone at the top of the arch, the door CLOSED with plain flat red horizontal slats, quiet and low-contrast (the game reels cover this area). Narrow brick pilasters on each side with one small lit arched window each, high up.\n(3) BOTTOM 18 percent: grey stone pavement, a cream kerb and a strip of dark street; the yellow hydrant at the far left and the brass hose reel low on the wall at the far right, with clear empty pavement between them.\nThe left 8 percent and the right 8 percent of the width will be cropped away, so keep the bell, the bay arch, the hydrant and the hose reel inside the central 84 percent of the width. No people, no pigs, no animals, no vehicles, no characters of any kind.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_base_portrait.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_base_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: base plate portrait (edit of the accepted landscape)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_base_portrait.png",
+    "sha256": "6bd1123e17d482cdd42a427acfb6c979ff2c5580f3163a4cfd0fd8696eb52560",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2156,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 620
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3528
+    },
+    "seconds": 27.5
+  },
+  {
+    "asset": "board_frame_r2",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our reel frame painted as the side of a red ladder fire truck. This is a SAME-FRAMING edit: keep the SAME canvas, scale, position, outer rectangle, beam and post thickness, colours, chrome top rail with its posts, brass corner plates, brass mid-post hinge plates, the yellow stripe on the bottom beam and the exact ink and cel style. Change ONLY this: REMOVE the four diagonal red corner braces (the angled gussets with a brass rivet that cut across the inside corners of the opening). Where they were, the posts and beams simply continue straight. The central opening must be a clean empty rectangle whose four edges are perfectly straight lines meeting in clean right-angled corners; nothing of the frame crosses into the opening. Everything outside the frame and the whole central opening are FULLY TRANSPARENT. No text, no letters, no numbers, no logos, no hazard stripes, no wood.",
+    "prompt_files": [
+      "art-src/generated/prompts/scene_board_frame_r2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/board_frame.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "REDRAW (named defect): the four diagonal corner braces intrude ~70x130 px into the reel opening and would cover the corner symbols",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/board_frame_r2.png",
+    "sha256": "9df1b00f746f49d5cabc67d2d5a0a783e2fd4053d1c37e957b6031fc666bd846",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1740,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 204
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3112
+    },
+    "seconds": 27.7
+  },
+  {
+    "asset": "plate_rescue_portrait",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted WIDE rescue background: the red-brick apartment block at night with five top-floor windows, the red ladder fire truck at the kerb, the hydrant and the street lamp. Paint the TALL phone version of THIS SAME place: the same style, colours, brick, cream cornice, the same window design (cream stone frame, cream sill, four-pane window standing open, dark unlit rooms), the same night sky with small stars and the flat cream moon. Composition for a tall 2:3 canvas, strictly:\n(1) TOP 10 percent: night sky with stars and the moon at the upper right.\n(2) The apartment block fills the central 88 percent of the width, its cream cornice at about 12 percent of the height. Its TOP FLOOR has exactly FIVE identical windows in ONE evenly spaced horizontal row across the central 80 percent of the width, the row sitting between 15 and 27 percent of the height. The five windows look the same, equally spaced, perfectly straight and facing the viewer; the rooms behind are dark and unlit.\n(3) From 29 percent to 84 percent of the height: plain dark brick in shadow with no windows, doors or detail, quiet and low-contrast (the game reels cover it).\n(4) BOTTOM 16 percent: the front of the red ladder fire truck at the bottom left, facing right, cut off by the left edge, with its headlights as flat cream shapes; the yellow hydrant and the street lamp at the bottom right; dark pavement, a cream kerb and the dark street.\nThe left 8 percent and the right 8 percent of the width will be cropped away, so keep all five windows inside the central 84 percent of the width. No fire yet, no smoke, no ladder, no hose, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_rescue_portrait.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_rescue_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: rescue plate portrait (edit of the accepted landscape)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_rescue_portrait.png",
+    "sha256": "cc88fe5a7b8748a6aee66e799719688f7078cc004743f0f30d1f6dd2def3ecf8",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2174,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 638
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3546
+    },
+    "seconds": 28.5
+  },
+  {
+    "asset": "rooms_fire1",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted rescue background. This is a SAME-FRAMING edit: the output must line up with Image 1 exactly when the two are stacked, so keep the SAME canvas, scale and framing, and keep the sky, the moon, the stars, the cornice, the brick, the lower floors, the fire truck, the hydrant, the street lamp and the street pixel-for-pixel the same. Change ONLY the five top-floor windows and the brick immediately around each window (up to the cornice above it), as described. All five windows are in the same state; they look alike but each flame or smoke shape is slightly different.\nThe state is SMOULDERING (fire level 1): the fire in each of the five windows has died down. The room behind glows a dull deep orange, a low small flame flickers along the inside of the sill, and one thick curling ribbon of smoke blue-grey #7C8AA0 smoke rises from the top of the window up the brick, flat and ink-outlined; the brick just above the window is darkened with a flat soot mark. No big flames, no glow haze, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_rooms_fire1.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_rescue_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: rescue room state overlay source, level 1 smouldering (same-framing edit)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/rooms_fire1.png",
+    "sha256": "95c22ff8f35f3e46c32cf1b6863d209a65827b2b558f434c2b53439920321ec8",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2035,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 499
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3407
+    },
+    "seconds": 28.8
+  },
+  {
+    "asset": "rooms_safe",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted rescue background. This is a SAME-FRAMING edit: the output must line up with Image 1 exactly when the two are stacked, so keep the SAME canvas, scale and framing, and keep the sky, the moon, the stars, the cornice, the brick, the lower floors, the fire truck, the hydrant, the street lamp and the street pixel-for-pixel the same. Change ONLY the five top-floor windows and the brick immediately around each window (up to the cornice above it), as described. All five windows are in the same state; they look alike but each flame or smoke shape is slightly different.\nThe state is SAFE (fire level 0): the fire in each of the five windows is out and the room is safe. The window stands open, the room behind is now lit by a warm cream-yellow room lamp (a flat lamp shape visible inside, a flat warm light shape on the inner wall), a small wisp of white steam drifts from the top corner of the window, the sill is wet with a couple of flat water drips, and a faint flat soot mark remains on the brick above. No flames at all, no smoke column, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_rooms_safe.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_rescue_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: rescue room state overlay source, level 0 dark-safe lit window (same-framing edit)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/rooms_safe.png",
+    "sha256": "2455fc4c798dec9f25d684da6e367e8f453572578458f9a37f95c8c50ba6d606",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2043,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 507
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3415
+    },
+    "seconds": 29.2
+  },
+  {
+    "asset": "rooms_fire2",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted rescue background. This is a SAME-FRAMING edit: the output must line up with Image 1 exactly when the two are stacked, so keep the SAME canvas, scale and framing, and keep the sky, the moon, the stars, the cornice, the brick, the lower floors, the fire truck, the hydrant, the street lamp and the street pixel-for-pixel the same. Change ONLY the five top-floor windows and the brick immediately around each window (up to the cornice above it), as described. All five windows are in the same state; they look alike but each flame or smoke shape is slightly different.\nThe state is ROARING (fire level 2): each of the five windows is ablaze. Big flat cartoon flames in flame orange #FF7A1A with hydrant-yellow cores and hard-edged, ink-outlined tongues pour out of the open window, lick up the brick above it and nearly reach the cornice; the room behind glows bright orange; a small flat puff of smoke blue-grey #7C8AA0 smoke curls from the top of each flame; small ink-outlined embers float nearby; the brick around the window catches a flat orange rim light. No glow haze, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_rooms_fire2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_rescue_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: rescue room state overlay source, level 2 roaring (same-framing edit)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/rooms_fire2.png",
+    "sha256": "d5c962bbbcc51cd01f39f98dc3a8a37d8fee383575ebc6dc494d9ff6463d30a2",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2053,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 517
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3425
+    },
+    "seconds": 30.2
+  },
+  {
+    "asset": "plate_backdraft_16_9",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted base background (the firehouse at dusk). Repaint it as the BACKDRAFT moment: the SAME scene with the SAME composition, every brick, window, lamp, pilaster, the bell, the hydrant and the hose reel in the SAME place at the SAME size, in the same style. Change ONLY this: the bay door has been BLOWN OPEN. The red slat door is rolled up almost out of sight, its bottom edge buckled and bent upward, and the arch now opens onto the bay interior filled with a bright rolling wall of flat cartoon flame: flame orange #FF7A1A tongues with hydrant-yellow cores and hard-edged, ink-outlined shapes, curling out of the arch. Every surface facing the bay catches a hard orange rim light as a flat shape (the arch stones, the pilaster edges, the pavement near the door). Small flat orange and yellow ink-outlined embers drift upward across the whole picture. The upstairs windows glow orange, the sky's low strip is a hotter orange, and the brass bell catches an orange highlight. No smoke clouds hiding the edges, no people, no pigs, no animals, no vehicles.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_backdraft_16_9.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_base_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: backdraft plate landscape (bay door blown open, orange rim light; edit of base)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_backdraft_16_9.png",
+    "sha256": "a014a7041c00d32c2bee5fcf5a5e0adcb842151d5be16dd6fd19cc8fe605857e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2031,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 495
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3403
+    },
+    "seconds": 30.9
+  },
+  {
+    "asset": "plate_inferno_16_9",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted rescue background (the apartment block at night). Repaint it as the INFERNO RESCUE mood: the SAME scene with the SAME composition, the block, its five top-floor windows, the cornice, the fire truck, the hydrant and the street lamp in the SAME place at the SAME size, in the same style. Change ONLY this: the sky is a deep flat crimson-red night sky in hard-edged bands (dark wine red at the top stepping to a hotter red-orange along the roofline), the moon becomes a flat pale orange disc, and flat ink-outlined orange and yellow embers drift everywhere across the picture. The five top-floor windows get thick polished GOLD rims and gold sills (brass gold #E9B23B with a cream highlight), the rooms behind them still dark. The fire truck's trim, bell and grille turn gleaming polished brass. The brick is warmer and redder, lit by a flat orange rim light along its edges; the neighbouring silhouettes are dark maroon. The lower brick stays quiet and low-contrast. No flames in the windows yet, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_inferno_16_9.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_rescue_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: inferno plate landscape (red sky, embers, gold-rimmed windows; edit of rescue)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:51:10",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_inferno_16_9.png",
+    "sha256": "3f1b19f0eff62e44fc732e77eaef7e71df674014c7d27556fd1141c443ddd7a5",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2026,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 490
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3398
+    },
+    "seconds": 34.5
+  },
+  {
+    "asset": "inferno_rooms_safe",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted INFERNO rescue background (red night sky, embers, gold-rimmed windows). This is a SAME-FRAMING edit: the output must line up with Image 1 exactly when the two are stacked, so keep the SAME canvas, scale and framing, and keep the red sky, the moon, the drifting embers, the cornice, the brick, the lower floors, the fire truck, the hydrant, the street lamp and the street pixel-for-pixel the same. Change ONLY the five top-floor windows and the brick immediately around each window (up to the cornice above it), as described; the thick polished gold window rims and gold sills stay exactly as they are. All five windows are in the same state; they look alike but each flame or smoke shape is slightly different.\nThe state is SAFE (fire level 0): the fire in each of the five windows is out and the room is safe. The window stands open, the room behind is now lit by a warm cream-yellow room lamp (a flat lamp shape visible inside, a flat warm light shape on the inner wall), a small wisp of white steam drifts from the top corner of the window, the sill is wet with a couple of flat water drips, and a faint flat soot mark remains on the brick above. No flames at all, no smoke column, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_inferno_rooms_safe.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_inferno_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: inferno room state overlay source (safe), same-framing edit of the inferno plate",
+    "attempt": 1,
+    "ts": "2026-09-25T04:52:21",
+    "status": "OK",
+    "output": "art-src/generated/scene/inferno_rooms_safe.png",
+    "sha256": "4ac9e169962d8045f5d3ec69a3a26620a665c1b1296b2ad0f9abec57f3683a6c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2078,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 542
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3450
+    },
+    "seconds": 27.5
+  },
+  {
+    "asset": "inferno_rooms_fire2",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted INFERNO rescue background (red night sky, embers, gold-rimmed windows). This is a SAME-FRAMING edit: the output must line up with Image 1 exactly when the two are stacked, so keep the SAME canvas, scale and framing, and keep the red sky, the moon, the drifting embers, the cornice, the brick, the lower floors, the fire truck, the hydrant, the street lamp and the street pixel-for-pixel the same. Change ONLY the five top-floor windows and the brick immediately around each window (up to the cornice above it), as described; the thick polished gold window rims and gold sills stay exactly as they are. All five windows are in the same state; they look alike but each flame or smoke shape is slightly different.\nThe state is ROARING (fire level 2): each of the five windows is ablaze. Big flat cartoon flames in flame orange #FF7A1A with hydrant-yellow cores and hard-edged, ink-outlined tongues pour out of the open window, lick up the brick above it and nearly reach the cornice; the room behind glows bright orange; a small flat puff of smoke blue-grey #7C8AA0 smoke curls from the top of each flame; small ink-outlined embers float nearby; the brick around the window catches a flat orange rim light. No glow haze, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_inferno_rooms_fire2.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_inferno_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: inferno room state overlay source (fire2), same-framing edit of the inferno plate",
+    "attempt": 1,
+    "ts": "2026-09-25T04:52:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/inferno_rooms_fire2.png",
+    "sha256": "ac5a62c4a8686456b9bf98defc91b6fe16186c2a22c5b808eb0e7e42e3cde119",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2088,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 552
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3460
+    },
+    "seconds": 29.1
+  },
+  {
+    "asset": "inferno_rooms_fire1",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted INFERNO rescue background (red night sky, embers, gold-rimmed windows). This is a SAME-FRAMING edit: the output must line up with Image 1 exactly when the two are stacked, so keep the SAME canvas, scale and framing, and keep the red sky, the moon, the drifting embers, the cornice, the brick, the lower floors, the fire truck, the hydrant, the street lamp and the street pixel-for-pixel the same. Change ONLY the five top-floor windows and the brick immediately around each window (up to the cornice above it), as described; the thick polished gold window rims and gold sills stay exactly as they are. All five windows are in the same state; they look alike but each flame or smoke shape is slightly different.\nThe state is SMOULDERING (fire level 1): the fire in each of the five windows has died down. The room behind glows a dull deep orange, a low small flame flickers along the inside of the sill, and one thick curling ribbon of smoke blue-grey #7C8AA0 smoke rises from the top of the window up the brick, flat and ink-outlined; the brick just above the window is darkened with a flat soot mark. No big flames, no glow haze, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_inferno_rooms_fire1.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_inferno_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: inferno room state overlay source (fire1), same-framing edit of the inferno plate",
+    "attempt": 1,
+    "ts": "2026-09-25T04:52:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/inferno_rooms_fire1.png",
+    "sha256": "bf08ea31604bba32465c50c13284c872bdef6d009c272e21bb74114b17364fb7",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2070,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 534
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3442
+    },
+    "seconds": 29.1
+  },
+  {
+    "asset": "plate_inferno_portrait",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted TALL rescue background (the apartment block at night). Image 2 is the accepted WIDE Inferno version of the same place: copy its red sky, embers, gold window rims, brass truck trim and warm rim light exactly. Repaint Image 1 as the INFERNO RESCUE mood: the SAME tall scene with the SAME composition, the block, its five top-floor windows, the cornice, the fire truck, the hydrant and the street lamp in the SAME place at the SAME size, in the same style. Change ONLY this: a deep flat crimson-red night sky in hard-edged bands with a flat pale orange moon, flat ink-outlined orange and yellow embers drifting everywhere, the five windows with thick polished GOLD rims and gold sills (rooms still dark), gleaming brass truck trim, bell and grille, warmer redder brick with a flat orange rim light along its edges, dark maroon neighbouring silhouettes. The lower brick stays quiet and low-contrast. No flames in the windows, no people, no pigs, no animals.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_inferno_portrait.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_rescue_portrait.png",
+      "art-src/generated/scene/plate_inferno_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: inferno plate portrait (edit of rescue portrait, look from inferno landscape)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:52:22",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_inferno_portrait.png",
+    "sha256": "54a6e4ee61ec5978d3b369b5c8f95221217bc19d90e89327c78ed3ff6aaa9018",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3555,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 483
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4927
+    },
+    "seconds": 30.9
+  },
+  {
+    "asset": "plate_backdraft_portrait",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our accepted TALL phone background (the firehouse at dusk). Image 2 is the accepted WIDE Backdraft version of the same firehouse: copy its flame style, rim light and embers exactly. Repaint Image 1 as the BACKDRAFT moment: the SAME tall scene with the SAME composition, every brick, window, lamp, pilaster, the bell, the hydrant and the hose reel in the SAME place at the SAME size, in the same style. Change ONLY this: the bay door has been BLOWN OPEN, rolled up almost out of sight with its bottom edge buckled upward, and the tall arch now opens onto the bay interior filled with a bright rolling wall of flat cartoon flame (flame orange #FF7A1A tongues with hydrant-yellow cores, hard-edged and ink-outlined) exactly like Image 2. Every surface facing the bay catches a hard flat orange rim light; small flat ink-outlined orange and yellow embers drift upward across the whole picture; the upstairs windows glow orange and the sky's low strip is hotter orange. No people, no pigs, no animals, no vehicles.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_plate_backdraft_portrait.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_base_portrait.png",
+      "art-src/generated/scene/plate_backdraft_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "Step3 scene: backdraft plate portrait (edit of base portrait, flame style from backdraft landscape)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:52:21",
+    "status": "OK",
+    "output": "art-src/generated/scene/plate_backdraft_portrait.png",
+    "sha256": "78c605007709a079a733a64249d35e275b88310a3bdd6884b5af8ff32c89ba3e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3569,
+      "input_tokens_details": {
+        "image_tokens": 3072,
+        "text_tokens": 497
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4941
+    },
+    "seconds": 31.5
   }
 ]

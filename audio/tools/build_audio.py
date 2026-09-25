@@ -152,6 +152,44 @@ def section_ride(x, bpm, bars, window_db=2.0, max_db=6.0):
     return x * (10 ** (gi / 20))[:, None], [round(float(v), 2) for v in g], [round(float(v), 1) for v in lv]
 
 
+def bar_lift(x, bpm, bars, below_db=4.0, aim_db=2.5, max_db=8.0):
+    """BAR-level lift for a sparse intro bar the 8-bar section ride cannot see (a draw's quiet first bar, found by
+    `measure.py draws` as 'quiet intro'): any bar more than `below_db` under the loop's median bar level is raised to
+    median - `aim_db` (at most +max_db). Lift only (never a cut); the gain ramps UP over the lifted bar's first half beat
+    (so the seam, which sits on a bar line, stays at unity gain) and DOWN over its last beat (so the next bar's downbeat
+    is never boosted)."""
+    L = len(x); bar = L / bars; beat = bar / 4
+    lv = np.array([HL.rms_db(x[int(i * bar):int((i + 1) * bar)]) for i in range(bars)]); med = float(np.median(lv))
+    g = np.where(lv < med - below_db, np.minimum(max_db, med - aim_db - lv), 0.0)
+    if not g.any(): return x, [0.0] * bars
+    gd = np.zeros(L)
+    for i in range(bars):
+        if g[i] <= 0: continue
+        a, b = int(round(i * bar)), int(round((i + 1) * bar)); up, dn = int(beat / 2), int(beat)
+        env = np.full(b - a, g[i])
+        env[:up] = g[i] * (1 - np.cos(np.linspace(0, np.pi, up))) / 2
+        env[-dn:] = np.minimum(env[-dn:], g[i] * (1 + np.cos(np.linspace(0, np.pi, dn))) / 2)
+        gd[a:b] = np.maximum(gd[a:b], env)
+    return x * (10 ** (gd / 20))[:, None], [round(float(v), 2) for v in g]
+
+
+def material_end(x, drop_db=15.0, win_s=0.25):
+    """Sample index where the draw's own ending (its closing decay / fade) starts: the last window within drop_db of the
+    body median. Every music_v1 draw closes with a decay, and a loop that runs into it dips at the seam."""
+    n = int(win_s * SR); m = (x ** 2).mean(axis=1); k = len(m) // n
+    lv = np.array([10 * np.log10(m[i * n:(i + 1) * n].mean() + 1e-12) for i in range(k)]); body = np.median(lv)
+    ok = np.nonzero(lv > body - drop_db)[0]
+    return int((ok[-1] + 1) * n) if len(ok) else len(x)
+
+
+def pitch_bed(x, semis):
+    """Whole-mix transposition for a bed drawn in the wrong mode/centre (rubberband, formants kept, length kept)."""
+    r = 2 ** (semis / 12.0); os.makedirs(K.RUN, exist_ok=True); tin, tout = f'{K.RUN}/_pb_in.wav', f'{K.RUN}/_pb_out.wav'; K.enc_wav(x, tin)
+    K.run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-i', tin, '-af', f'rubberband=pitch={r:.8f}:transients=mixed:formant=preserved:pitchq=quality',
+          '-ac', '2', '-c:a', 'pcm_s24le', tout, check=True)
+    y = lk.decode(tout); n = min(len(x), len(y)); return y[:n]
+
+
 def add_hook(x, bpm, colour, octave, places, rel):
     hook = HL.stereo(HL.render(HL.HOOK * 2, bpm, colour, octave)); bar = int(4 * 60.0 / bpm * SR)
     for pb in places:
@@ -165,8 +203,13 @@ def add_hook(x, bpm, colour, octave, places, rel):
 def bed(cid, cfg):
     src, bpm, bars, target_I = cfg['src'], cfg['bpm'], cfg['bars'], cfg['I']
     x = K.load(f'{K.PCM}/{src}.wav')
+    semis = cfg.get('semis') or 0.0
+    if semis:  # measured wrong centre (e.g. the Inferno draw came back in C minor: -3 st puts it on A = the plan's A-minor pentatonic)
+        x = pitch_bed(x, semis)
+    end = material_end(x); x = x[:end]  # never loop into the draw's closing decay
     meas = cfg.get('bpmOverride') or K.fine_tempo(x, bpm - 4.0, bpm + 4.0); factor = meas / bpm
-    t0 = K.first_onset(x) + cfg.get('start', 0) * 4 * 60.0 / meas
+    oa = cfg.get('onsetAfter', 0.0)  # a draw that opens with near-silence: the first onset AFTER it is the downbeat
+    t0 = oa + K.first_onset(x[int(oa * SR):]) + cfg.get('start', 0) * 4 * 60.0 / meas
     y = K.time_scale(x, factor)
     STAGE = K.stage_for(bpm); BAR = STAGE // 8
     s = int(round(t0 * factor * SR)); L = int(round(bars / 8 * STAGE)); X = int(0.06 * SR)
@@ -183,6 +226,7 @@ def bed(cid, cfg):
         loop = lk.cut(y, s, L, X, 'head')
     assert len(loop) == L, (len(loop), L)
     loop, ride_g, lv = section_ride(loop, bpm, bars)
+    loop, lift_g = bar_lift(loop, bpm, bars)
     hk = cfg.get('hook')
     if hk: loop = add_hook(loop, bpm, *hk)
     K.enc_wav(loop, f'{K.RUN}/_m.wav'); I, _ = K.measure(f'{K.RUN}/_m.wav'); base = loop * 10 ** ((target_I - I) / 20)
@@ -202,13 +246,15 @@ def bed(cid, cfg):
     shipped = lk.decode(f'{K.RUN}/{cid}.ogg')[K.PAD:K.PAD + L]
     shipped_bpm = K.tempo_autocorr(shipped, bpm - 12, bpm + 12)
     meta = dict(source=src, measuredBpm=round(float(meas), 3), bpmOverride=bool(cfg.get('bpmOverride')), gridBpm=bpm, bars=bars,
+                startSeconds=round(t0, 3), materialEnd_s=round(end / SR, 2), transposeSemis=semis or None,
+                barLift_dB=({i: v for i, v in enumerate(lift_g) if v} or None),
                 samples=len(out), padSamples=K.PAD, barSamples=round(len(out) / bars, 2), blend=how, wrap=round(float(wrap), 4), bodyP999=round(float(body), 4),
                 headTail_dB={w: v[2] for w, v in ht.items()}, sectionRMS_raw=lv, sectionRide_dB=ride_g, limiterCeiling_dB=ceiling,
                 limitedFraction=round(limited, 4), shippedBpmEst=round(float(shipped_bpm), 2), cpentShare=round(M.cpent_share(out), 3),
                 chug=round(M.chug_ratio(out, bpm), 2), selfSim=M.selfsim(out, bpm, bars),
                 hook=({'colour': hk[0], 'octave': hk[1], 'bars': hk[2], 'relDb': hk[3], 'notes': 'G C E G | A G E C x2'} if hk else None))
     print(f"{cid}: {src} draw={meas:.3f} grid={bpm} bars={bars} {how} wrap={wrap:.4f}/{body:.4f} ride={ride_g} I={res['I_LUFS']} TP={res['TP_dBFS']} "
-          f"shippedBpm~{shipped_bpm:.2f} chug={meta['chug']} selfSimMax={meta['selfSim'].get('maxPair')}")
+          f"shippedBpm~{shipped_bpm:.2f} chug={meta['chug']} selfSimMax={meta['selfSim'].get('maxPair')} lift={meta['barLift_dB']} ht={meta['headTail_dB']}")
     return out, res, meta
 
 
@@ -244,9 +290,14 @@ def pitch_fix(cid, y, spec):
     st = snap_semis(hz, spec.get('target_pc'))
     if abs(st) > 7: info['op'] = f'correction {st:+.2f} st too large; left as drawn'; report['warnings'].append(f'{cid}: {info["op"]}'); return y, info
     if abs(st) >= 0.12: y = K.pitch(y, st, preserve_len=True)
-    hz2, _ = ping(y, spec.get('t_from', 0.0), spec.get('lo', 200), spec.get('hi', 3000))
-    mm = midi(hz2 or hz)
+    # verify the SAME partial moved where it should: search +-1.5 st around the expected frequency. (A free re-measure in the
+    # whole band can pick another partial, e.g. the 3rd harmonic G5 of a C source, and the ta-da ladder then treats a C
+    # source as G, landing its rungs a fourth off: every rung built from it would carry an F.)
+    want = hz * 2 ** (st / 12)
+    hz2, _ = ping(y, spec.get('t_from', 0.0), want * 2 ** (-1.5 / 12), want * 2 ** (1.5 / 12))
+    mm = midi(want)
     info.update(op='pitch-snapped', semis=round(float(st), 2), postHz=round(hz2, 1) if hz2 else None, midi=round(float(mm), 2),
+                postErrCents=round(float(1200 * np.log2(hz2 / want)), 1) if hz2 else None,
                 targetNote=NAMES[int(round(mm)) % 12] + str(int(round(mm)) // 12 - 1))
     return y, info
 
@@ -281,7 +332,15 @@ def hybrid_chord(strike, notes, dur=0.9, strike_db=-4.0, top_glock=True):
 def keyfit(cid, y):
     pal = PROMPTS.get(cid, {}).get('palette', 'mech'); a = KF.analyse(y); st, why = KF.decide(a, pal)
     info = {'offsetCents': a['offsetCents'], 'tonality': a['tonality'], 'cpentShareDrawn': a['share'][0], 'decision': why, 'semis': st}
-    if st: y = K.pitch(y, st, preserve_len=True); info['cpentShareShipped'] = round(M.cpent_share(y), 3)
+    if st:
+        before = M.cpent_share(y); z = K.pitch(y, st, preserve_len=True); after = M.cpent_share(z)
+        info['cpentShare110_2500'] = [round(before, 3), round(after, 3)]
+        # guard: keyfit.analyse reads 150-4000 Hz and can be steered by one very high ring (sym_win_h2: a 3.9 kHz shield
+        # partial) while the body under 2.5 kHz was already in key; a transposition that makes the body worse is reverted.
+        if after < before - 0.05:
+            info['decision'] += f' -> REVERTED (C-pent share 110-2500 Hz {before:.2f} -> {after:.2f})'; info['semis'] = 0.0
+            report['warnings'].append(f'{cid}: key-fit reverted ({before:.2f} -> {after:.2f} below 2.5 kHz)')
+        else: y = z; info['cpentShareShipped'] = round(after, 3)
     return y, info
 
 

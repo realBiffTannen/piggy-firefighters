@@ -74,7 +74,7 @@ def main():
     json.dump(scene_map, open(f"{root}/scene.map.json", "w"))
     run("derive_scene (env, ambient, frame warp, backplate, shutter; backdraft = relight)",
         [t("derive_scene.py"), "--map", f"{root}/scene.map.json", "--relight", "backdraft=base:backdraft", "--out", assets, "--strict"])
-    meta = json.load(open(f"{assets}/environment/board_frame.meta.json"))
+    meta = json.load(open(f"{assets}/ui_scene/frame.meta.json"))
     check("board frame opening lands on OPEN", abs(meta["x0"] - 212 / 1497) < 0.002 and abs(meta["y1"] - 761 / 946) < 0.002, str(meta))
     sys.path.insert(0, ART)
     import derive_cards

@@ -15,3 +15,7 @@ These files are **inputs to prompts** (`tools/art/gen_art.py --ref ...`). They n
 Rules: always say "the reference images define the STYLE ONLY, do not copy their objects" (see
 `generated/prompts/_style_sprite.txt`). Never ship, trace, recolour or crop these pixels. Donor motion or design
 videos are not kept here. `MANIFEST.json` records each file's sha256.
+
+## Geometry references
+
+- `geometry/board_frame_raw.png` (1536x1024 RGBA), the LUCKY donor frame raw from `/home/user/lucky/art-src/generated/board_frame_raw.png` (read-only). It is used as GEOMETRY ONLY for `scene/board_frame`: the outer rectangle, beam and post widths, corner blocks, mid-post brackets and the empty opening. Its timber and hazard stripe are retired construction art and must never appear. The derive warps our own painting, never these pixels.

@@ -39,8 +39,11 @@ RULES = [
     ("sprites/symbolsCartoonTall/symT_*.webp", (384, 500), "RGBA", {"corners", "box_tall"}),
     ("environment/*_landscape.webp", (2039, 1000), "RGB", set()),
     ("environment/*_portrait.webp", (1242, 2208), "RGB", set()),
-    ("environment/board_frame.webp", (1497, 946), "RGBA", set()),
-    ("environment/cell_backplate.webp", (963, 645), "RGBA", set()),
+    ("ui_scene/board_frame.webp", (1497, 946), "RGBA", set()),
+    ("ui_scene/cell_backplate.webp", (963, 645), "RGBA", set()),
+    ("ui_scene/cell_frame_*.webp", (384, 384), "RGBA", {"corners"}),
+    ("features/rescue/room_*.webp", None, "RGBA", set()),
+    ("features/rescue/*.webp", None, "RGBA", {"corners"}),
     ("ambient/plate_*_landscape.webp", (1536, 1024), "RGB", set()),
     ("ambient/plate_*_portrait.webp", (1024, 1536), "RGB", set()),
     ("buycards/*.webp", (768, 512), "RGB", set()),
@@ -65,7 +68,10 @@ EXPECTED = (
     [f"sprites/symbolsCartoon/sym_{s}.webp" for s in SYM]
     + [f"sprites/symbolsCartoonTall/symT_{s}.webp" for s in SYM]
     + [f"environment/{m}_{o}.webp" for m in MOODS for o in ("landscape", "portrait")]
-    + ["environment/board_frame.webp", "environment/cell_backplate.webp"]
+    + ["ui_scene/board_frame.webp", "ui_scene/frame.meta.json", "ui_scene/cell_backplate.webp"]
+    + [f"ui_scene/cell_frame_{k}.webp" for k in ("plain", "win", "locked")] + ["ui_scene/line_plate.webp"]
+    + [f"features/rescue/room_{r}_{st}.webp" for r in range(5) for st in ("roaring", "smouldering", "safe", "inferno_roaring", "inferno_smouldering", "inferno_safe")]
+    + ["features/rescue/rooms.meta.json", "features/rescue/props.meta.json"]
     + [f"buycards/{k}.webp" for k in ("ante", "backdraft-spins", "alarm-call", "rescue", "inferno")]
     + [f"splash/card_{k}.webp" for k in ("chief", "lines", "backdraft", "alarm", "rescue", "maxwin")]
     + ["splash/shutter_slats_tile.webp", "splash/shutter_bottom_bar.webp"]
@@ -82,7 +88,9 @@ MANIFESTS = {  # manifest -> how to list the files it names (relative to the man
     "splash/manifest.json": lambda m: [c["art"] for c in m.get("cards", [])],
     "maxwin/manifest.json": lambda m: list(m.get("files", {}).values()),
     "winrungs/signs/flat_manifest.json": lambda m: [os.path.basename(v["file"]) for v in m.values()],
-    "environment/board_frame.meta.json": lambda m: ["board_frame.webp"],
+    "ui_scene/frame.meta.json": lambda m: ["board_frame.webp"],
+    "features/rescue/rooms.meta.json": lambda m: [f for r in m.get("rooms", []) for f in r.get("files", {}).values()] + list(m.get("facade", {}).get("files", {}).values()),
+    "features/rescue/props.meta.json": lambda m: [v["file"] for v in m.get("props", {}).values()],
 }
 BASE_SYMS = {f"sym_{s}.webp" for s in SYM if s != "W_blaze"} | {f"symT_{s}.webp" for s in SYM if s != "W_blaze"}
 BUDGETS = {"ambient": 1.5 * 1048576, "splash": 1.2 * 1048576}
@@ -204,7 +212,7 @@ def main():
             d = os.path.dirname(full)
             missing = sorted(n for n in named if not os.path.isfile(os.path.join(d, n)))
             present = {f for f in os.listdir(d) if f.lower().endswith(IMG)}
-            orphans = sorted(present - named) if not mp.endswith("board_frame.meta.json") else []
+            orphans = sorted(present - named) if not mp.endswith(("frame.meta.json", "rooms.meta.json", "props.meta.json")) else []
             if mp == "splash/manifest.json":  # shutter tiles are named in its "shutter" block
                 sm = json.load(open(full)).get("shutter", {})
                 orphans = [o for o in orphans if o not in sm.values()]
