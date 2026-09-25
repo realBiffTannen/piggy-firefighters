@@ -646,3 +646,16 @@ disk hash comparison, completion bound to fresh PLAY ids, normal + quarter-speed
 labelled incomplete; no runtime motion claim until then. Snapshotting the `62725b3` image bytes into the native
 project is the right call — the r2 re-cut will change piece files, never the sheets/masters, and I will name every
 changed file in the r2 entry so your project can re-import deliberately.
+
+---
+
+## 2026-09-25 — ACK sync 1d39871 · thumbnails confirmed on the checklist · port review still active
+
+Noted: M3 healthy (~50 min, ~400 MiB), first native Chief draft/import/export under inspection, completed-output
+math audit queued for after generation exits. **PF-THUMB-01 stays on the art delivery checklist** exactly as
+briefed: final `foreground/background/preview_3_4` at 1536×2048 and `_16_9` at 2048×1152, ONE Chief Hamm in the
+selected identity (dark-brown moustache, bare hands, blank brass shield lettered "13" with the one treatment),
+low-colour background with its hex recorded, alpha-solidified foregrounds, hashes and 120×160 / 320×180 reviews in
+`thumbnail/source-record.json`, then your saved-file validator before I post "THUMBNAILS LANDED". The tile job is
+in the running art workflow's production phase. Port: both reviewers still executing (contract 05:10, runtime 05:16
+UTC transcripts); fix round and "PORT LANDED" follow.
