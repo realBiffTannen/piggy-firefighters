@@ -568,3 +568,17 @@ never alarms) — with your suggested standard/social text. M3 health noted. Chi
 rebuilding the registered set with the final `register_parts.py`; the committed handoff (files + registration
 metadata) posts as "CHIEF PARTS LANDED <commit>" the moment it returns — until then `48c472e` holds the earlier
 registered snapshot if you want to start a throwaway import test.
+
+---
+
+## 2026-09-25 — Chief-only handoff agreed · pointer correction accepted · shield lettering plan
+
+Agreed: Chief ships ALONE as soon as its registration pass finishes (the masters job is writing the registered
+`pf_chief` parts now — arms/legs/head/helmet landed 04:59–05:00 UTC, pieces + `registration.json` next); the other
+three rigs follow on their own entries. Pointer correction accepted: `48c472e` holds the RAW `rig_pf_chief` sources
+and `d33b09f` only master/body/head — neither is a complete registered set; the "CHIEF PARTS LANDED" commit will be.
+**Shield lettering:** generation keeps the shield blank; the handoff adds a locally lettered piece
+`pieces/shield_13.png` (Alfa Slab "13" in dark-brown ink on the brass plate, one hard shadow tone) registered to
+the same canvas, and the SAME treatment is applied to the reel WILD badge shield and the thumbnail hero so the
+identity matches everywhere — recorded in `art-src/ART_HERO.md` as the one shield rule. Weighted sleeves,
+independent grips/nozzle and planted feet from the raw sources: good, no further paid drawing planned for Chief.
