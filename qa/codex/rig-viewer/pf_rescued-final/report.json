@@ -1,0 +1,109 @@
+{
+  "url": "http://127.0.0.1:3041/rigs",
+  "cases": [
+    {
+      "skin": "grandma",
+      "clip": "wave_window",
+      "at": 0.02,
+      "file": "frames/grandma-wave_window-0p02.png"
+    },
+    {
+      "skin": "grandma",
+      "clip": "wave_window",
+      "at": 0.55,
+      "file": "frames/grandma-wave_window-0p55.png"
+    },
+    {
+      "skin": "grandma",
+      "clip": "cheer",
+      "at": 0.3,
+      "file": "frames/grandma-cheer-0p3.png"
+    },
+    {
+      "skin": "twins",
+      "clip": "wave_window",
+      "at": 0.02,
+      "file": "frames/twins-wave_window-0p02.png"
+    },
+    {
+      "skin": "twins",
+      "clip": "wave_window",
+      "at": 0.9,
+      "file": "frames/twins-wave_window-0p9.png"
+    },
+    {
+      "skin": "twins",
+      "clip": "cheer",
+      "at": 0.45,
+      "file": "frames/twins-cheer-0p45.png"
+    },
+    {
+      "skin": "dad",
+      "clip": "slide",
+      "at": 0.5,
+      "file": "frames/dad-slide-0p5.png"
+    },
+    {
+      "skin": "dad",
+      "clip": "land",
+      "at": 0.14,
+      "file": "frames/dad-land-0p14.png"
+    },
+    {
+      "skin": "baby",
+      "clip": "wave_window",
+      "at": 0.55,
+      "file": "frames/baby-wave_window-0p55.png"
+    },
+    {
+      "skin": "baby",
+      "clip": "land",
+      "at": 0.34,
+      "file": "frames/baby-land-0p34.png"
+    },
+    {
+      "skin": "teen",
+      "clip": "wave_window",
+      "at": 1.95,
+      "file": "frames/teen-wave_window-1p95.png"
+    },
+    {
+      "skin": "teen",
+      "clip": "slide",
+      "at": 1.15,
+      "file": "frames/teen-slide-1p15.png"
+    }
+  ],
+  "log": [
+    "031PLAY slide · teen · once",
+    "030PLAY slide · teen · once",
+    "029PLAY wave_window · teen · loop",
+    "028PLAY wave_window · teen · loop",
+    "027PLAY land · teen · once",
+    "026EVENT land · land @ 0.040s",
+    "025PLAY land · baby · once",
+    "024PLAY land · baby · once",
+    "023PLAY wave_window · baby · loop",
+    "022PLAY wave_window · baby · loop",
+    "021PLAY land · baby · once",
+    "020EVENT land · land @ 0.040s",
+    "019PLAY land · dad · once",
+    "018PLAY land · dad · once",
+    "017PLAY slide · dad · once",
+    "016PLAY slide · dad · once",
+    "015PLAY cheer · dad · loop",
+    "014PLAY cheer · twins · loop",
+    "013PLAY cheer · twins · loop",
+    "012PLAY wave_window · twins · loop",
+    "011PLAY wave_window · twins · loop",
+    "010PLAY wave_window · twins · loop",
+    "009PLAY cheer · twins · loop",
+    "008PLAY cheer · grandma · loop",
+    "007PLAY cheer · grandma · loop",
+    "006PLAY wave_window · grandma · loop",
+    "005PLAY wave_window · grandma · loop",
+    "004PLAY wave_window · grandma · loop",
+    "003LOADED pf_rescued · Spine 4.2.43 · bounds 187.12000699540005 × 284.9399957275389"
+  ],
+  "errors": []
+}

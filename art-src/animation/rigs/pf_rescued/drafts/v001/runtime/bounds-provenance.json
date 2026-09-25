@@ -1,0 +1,56 @@
+{
+  "status": "FULL_RIG_UNREVIEWED",
+  "nativeExportSha256": "8f44218abec85cf0fda0c8482f825acd8ee7d82b8fd12a3504530a8100ca8b32",
+  "runtime": "spine-core4.2.74",
+  "method": "per skin: Skeleton.setSkin; setToSetupPose; updateWorldTransform(Physics.update); getBounds; union of the five",
+  "bounds": {
+    "x": -100.59000517439364,
+    "y": -1.1899972534179568,
+    "width": 187.12000699540005,
+    "height": 284.9399957275389
+  },
+  "perSkin": {
+    "baby": {
+      "x": -92.080005457929,
+      "y": -1.1899972534179568,
+      "width": 178.02000758248644,
+      "height": 261.77999389648426
+    },
+    "dad": {
+      "x": -92.28000817696997,
+      "y": -0.9900003051757693,
+      "width": 178.81000999797638,
+      "height": 270.1000027465819
+    },
+    "grandma": {
+      "x": -100.59000517439364,
+      "y": -1.1899972534179568,
+      "width": 186.73000685451615,
+      "height": 284.9399957275389
+    },
+    "teen": {
+      "x": -92.08000896904619,
+      "y": -1.1899972534179568,
+      "width": 178.02001059082252,
+      "height": 272.0799966430663
+    },
+    "twins": {
+      "x": -81.38000627673273,
+      "y": -0.9900003051757693,
+      "width": 159.6000080718951,
+      "height": 283.56000518798817
+    }
+  },
+  "pages": [
+    "pf_rescued.png",
+    "pf_rescued_2.png",
+    "pf_rescued_3.png"
+  ],
+  "change": "Only skeleton x/y/width/height header values; original native export preserved",
+  "page_sha256": {
+    "pf_rescued.png": "e83a22cc4c7c1edffa514771e3f56e1df9d0fa25421d6089f3c9452b661483f3",
+    "pf_rescued_2.png": "6f40bbcdc86fd840719983eab959dc47f95b8bd2dd45469af46deeb0ce658bcc",
+    "pf_rescued_3.png": "ba6fd4d2da8793e9a848b6c5dac97ff463c7c2142219d1611c38e1db254ed125"
+  },
+  "installed_at": "apps/piggy_firefighters/static/assets/spine/pf_rescued/"
+}

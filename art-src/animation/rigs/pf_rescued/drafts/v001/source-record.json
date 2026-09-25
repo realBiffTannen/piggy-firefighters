@@ -1,0 +1,148 @@
+{
+  "status": "FULL_RIG_UNREVIEWED",
+  "rig": "pf_rescued",
+  "editor": "4.2.43",
+  "registration_sha256": "35c1cca38477cf023da0e86e957ca3b88d5da4a7b2f86d33c43ee2e566a2f0b9",
+  "standing_scale": 0.19801980198019803,
+  "source_files": {
+    "baby_arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/baby/arm_left.png",
+      "sha256": "14fef7ff7890f9caedb9a7044349f52f763318790d3849383f09c65449ccbf6e"
+    },
+    "baby_arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/baby/arm_right.png",
+      "sha256": "cd9d6c20fc7dfc1e176f5990080c104ab2dd37bc12903d66532e40a1a76a88eb"
+    },
+    "baby_body": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/baby/body_no_head_no_arms.png",
+      "sha256": "77172f3c2d459c90d7cc64c20bb2d531c60e75fbaa64da59ffb0c6dd6e5de842"
+    },
+    "baby_head": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/baby/head.png",
+      "sha256": "5deee7ae8e6b2ffbba210977455ccead94d3e7c97be766d779704d9f47db48e1"
+    },
+    "baby_leg_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/baby/leg_left.png",
+      "sha256": "7191be0356c104ba8c23f72a31fb7a898ebde4fafc452dcf95b613a71ab61ebf"
+    },
+    "baby_leg_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/baby/leg_right.png",
+      "sha256": "036d0fe4fdce2a4d151b067dd11fb6e8bc0674c3b35306179700e18e9d5a47c4"
+    },
+    "dad_arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/dad/arm_left.png",
+      "sha256": "78c674429c88ad6c1cc5d9305e3555b40a2e93f85db2e74c35d957ac4150c921"
+    },
+    "dad_arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/dad/arm_right.png",
+      "sha256": "cf2ebb75c113ade101295f8fa85784eda123c3d5271e31e6de0f3425ab8a46d0"
+    },
+    "dad_body": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/dad/body_no_head_no_arms.png",
+      "sha256": "9f564c401b61bb4605c8629c1b9622bc4ebae72fd1bfb613ed5125ce63173e2b"
+    },
+    "dad_head": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/dad/head.png",
+      "sha256": "0f131810499358e488a62037d86080ee3a7c36b81036b8e1628e58e8871f7c02"
+    },
+    "dad_leg_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/dad/leg_left.png",
+      "sha256": "2b0af2019afe6fe4ea03241ed400686cf96446ddd62e771408dcd7f9ba1a81a7"
+    },
+    "dad_leg_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/dad/leg_right.png",
+      "sha256": "7134b11aea3d731f5b7f96c17d116303a340527d3b3987ef0354e4f39da7aca8"
+    },
+    "grandma_arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/grandma/arm_left.png",
+      "sha256": "5f8046a21090147823ef2c046e59087290c3efa16c0f9cc40abcf82228057113"
+    },
+    "grandma_arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/grandma/arm_right.png",
+      "sha256": "ce58d8ae1c19940805b1926eba95e3277da46a50d2963b0b54185907c165bfa1"
+    },
+    "grandma_body": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/grandma/body_no_head_no_arms.png",
+      "sha256": "a7d49b600ca8f3910af3fd1e16577375424c8f3e10ac3c6024dc6889999ae3c7"
+    },
+    "grandma_head": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/grandma/head.png",
+      "sha256": "1ae932651dbe383fb4f55ddc877e8cf47d87c0f6e299d9d4e6369f0cc7bed2d7"
+    },
+    "grandma_leg_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/grandma/leg_left.png",
+      "sha256": "f459b4ccb6548f84ae0bce9ba5fe85021122f915f9aeb711d867a38e2ed3b8dc"
+    },
+    "grandma_leg_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/grandma/leg_right.png",
+      "sha256": "2b99c4f80e68bdda80066abf433208796269878a42d0f0c719df706afd3d4215"
+    },
+    "mouth_call": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/pieces/mouth_call.png",
+      "sha256": "cbebd49bd9073eb9a511f1de446a814793eb9ecb8446d039ead293c19c5783bb"
+    },
+    "mouth_cheer": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/pieces/mouth_cheer.png",
+      "sha256": "0e90238cb862dd3c08f6bf27a15cc22c6a1e20c348296d26864022db9e2a47a5"
+    },
+    "mouth_o": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/pieces/mouth_o.png",
+      "sha256": "c5e6c9900395aa4706e8df71e04db6804a4c8fa12517ba2a4fb7f86f677b0d7a"
+    },
+    "teen_arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/teen/arm_left.png",
+      "sha256": "afcc67bdf98214a0edf4801d60d5df57b09edd8fbb474f25822b19d71af21c1f"
+    },
+    "teen_arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/teen/arm_right.png",
+      "sha256": "a97e579f0408ccf965980ac9a9807b71bd9c343ee0ba5b016a44bb4ef495003f"
+    },
+    "teen_body": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/teen/body_no_head_no_arms.png",
+      "sha256": "0ee43c5b72a01dda65b42a7de1cc2eb9ba73e3541f6188d881b1baadc8a58888"
+    },
+    "teen_head": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/teen/head.png",
+      "sha256": "3114cf5d11bb1ca373b063a86251c33384a7b6d791426639c0b27843e3dac15f"
+    },
+    "teen_leg_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/teen/leg_left.png",
+      "sha256": "0701970a1a155fddc614b212bdb519de95fc864ecde46e4dbea2527d7c1fd705"
+    },
+    "teen_leg_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/teen/leg_right.png",
+      "sha256": "b3854c94fa4e98d7623acc1db77d86c0d844332c65c905afbb5381f3c27a2d54"
+    },
+    "twins_arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/twins/arm_left.png",
+      "sha256": "1ceeb7a2f7bc0ae95643aefcc50905677d6e43f07b9c604cfdf10a8222b44fee"
+    },
+    "twins_arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/twins/arm_right.png",
+      "sha256": "c1c5affbcce6c20809be00dc88548f2ed7d47f3a5cd4aaa90e58f45e9c646d1f"
+    },
+    "twins_body": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/twins/body_no_head_no_arms.png",
+      "sha256": "4c42849367157501c2b50389699b15e6a8b709ea250520c15339d75da57ac402"
+    },
+    "twins_head": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/twins/head.png",
+      "sha256": "fdccf34404874aa71e87025eea4388a208ff2221b980772b5f848097a9963016"
+    },
+    "twins_leg_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/twins/leg_left.png",
+      "sha256": "07a1c3b6d4dfd5baab276ce66a3286044f75815b6ab445d8b4c0e7f8c6d8f9d7"
+    },
+    "twins_leg_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/skins/twins/leg_right.png",
+      "sha256": "16fab295d45242c1b6770e26ef8515d03470b13f83fc651695bd7e29f10eb368"
+    },
+    "wave_hand_front": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rescued/pieces/wave_hand_front.png",
+      "sha256": "16989b536c0bfbb3f9775cd85b9d6080fb3b8a78f569dc71ed68f8e574244436"
+    }
+  },
+  "derivation": "Weighted quad meshes on per-skin pivot bones; source PNG bytes unchanged (renamed copies per skin)",
+  "paid_generation": "none",
+  "motion_review": "NOT RUN"
+}

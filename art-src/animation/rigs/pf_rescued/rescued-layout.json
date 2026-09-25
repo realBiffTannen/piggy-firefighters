@@ -1,0 +1,194 @@
+{
+  "rig": "pf_rescued",
+  "registration_sha256": "35c1cca38477cf023da0e86e957ca3b88d5da4a7b2f86d33c43ee2e566a2f0b9",
+  "coordinate_basis": "canvas 1024x1536, x right, y down; root pivot = feet centre (512,1440)",
+  "runtime_height_px": 260,
+  "master_height_px": 1313,
+  "spine_scale": 0.19801980198019803,
+  "bones": {
+    "root": [
+      512,
+      1440
+    ],
+    "feet": [
+      512,
+      1440
+    ],
+    "hips": [
+      512,
+      905
+    ],
+    "chest": [
+      512,
+      720
+    ],
+    "leg_r": [
+      392,
+      905
+    ],
+    "leg_l": [
+      648,
+      905
+    ],
+    "why": "hips at the trouser top under the shirt hem (the leg layers extend 140 px above it for hidden overlap); chest carries the heads and shoulders; leg pivots on each trouser column centre at the hip line"
+  },
+  "pieces": {
+    "mouth_call": {
+      "scale_to_canvas": 0.78
+    },
+    "mouth_cheer": {
+      "scale_to_canvas": 0.6
+    },
+    "mouth_o": {
+      "scale_to_canvas": 0.75
+    },
+    "wave_hand_front": {
+      "scale_to_canvas": 0.68
+    },
+    "why": "BY EYE on qa overlays: each open mouth must cover the skin's baked smile (~150 px wide); the open palm must cover the baked closed hand"
+  },
+  "skins": {
+    "grandma": {
+      "neck": [
+        526.1,
+        560.5
+      ],
+      "shoulder_r": [
+        310.9,
+        566.5
+      ],
+      "shoulder_l": [
+        692.1,
+        553.9
+      ],
+      "hand_r": [
+        126.4,
+        945.1
+      ],
+      "hand_l": [
+        880.9,
+        948.5
+      ],
+      "mouth": [
+        520,
+        432
+      ],
+      "wave_side": "l",
+      "raise_cap": {
+        "r": 40
+      }
+    },
+    "twins": {
+      "neck": [
+        589.9,
+        634.2
+      ],
+      "shoulder_r": [
+        326.4,
+        700.5
+      ],
+      "shoulder_l": [
+        718.3,
+        696.0
+      ],
+      "hand_r": [
+        174.7,
+        1018.6
+      ],
+      "hand_l": [
+        842.9,
+        1023.0
+      ],
+      "mouth": [
+        515,
+        530
+      ],
+      "wave_side": "r",
+      "raise_cap": {}
+    },
+    "dad": {
+      "neck": [
+        535.1,
+        571.8
+      ],
+      "shoulder_r": [
+        279.3,
+        540.5
+      ],
+      "shoulder_l": [
+        722.2,
+        561.4
+      ],
+      "hand_r": [
+        125.7,
+        940.2
+      ],
+      "hand_l": [
+        891.0,
+        932.7
+      ],
+      "mouth": [
+        490,
+        410
+      ],
+      "wave_side": "r",
+      "raise_cap": {}
+    },
+    "baby": {
+      "neck": [
+        469.5,
+        538.2
+      ],
+      "shoulder_r": [
+        293.7,
+        570.9
+      ],
+      "shoulder_l": [
+        744.8,
+        590.0
+      ],
+      "hand_r": [
+        125.8,
+        945.1
+      ],
+      "hand_l": [
+        880.2,
+        948.6
+      ],
+      "mouth": [
+        508,
+        412
+      ],
+      "wave_side": "r",
+      "raise_cap": {}
+    },
+    "teen": {
+      "neck": [
+        545.1,
+        571.4
+      ],
+      "shoulder_r": [
+        294.4,
+        557.7
+      ],
+      "shoulder_l": [
+        702.0,
+        599.8
+      ],
+      "hand_r": [
+        125.7,
+        943.8
+      ],
+      "hand_l": [
+        880.2,
+        948.1
+      ],
+      "mouth": [
+        520,
+        425
+      ],
+      "wave_side": "r",
+      "raise_cap": {}
+    }
+  }
+}
