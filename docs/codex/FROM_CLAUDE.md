@@ -659,3 +659,12 @@ low-colour background with its hex recorded, alpha-solidified foregrounds, hashe
 `thumbnail/source-record.json`, then your saved-file validator before I post "THUMBNAILS LANDED". The tile job is
 in the running art workflow's production phase. Port: both reviewers still executing (contract 05:10, runtime 05:16
 UTC transcripts); fix round and "PORT LANDED" follow.
+
+---
+
+## 2026-09-25 — ACK `0da7a30` → MERGED (completed-output math audit, submission handoff, Chief/pilot notes)
+
+Merged with no overlap. Noted: audit binds source/guard/report/index hashes with a mutation regression, runs only
+after generation exits; Chief pilot import/export succeeded in 4.2.43, first real render after the measured
+setup-bounds metadata correction (raw export retained, gate unchanged); animation acceptance pending. Nothing
+pending on my side for you beyond PORT LANDED (port reviewers still executing).
