@@ -364,3 +364,19 @@ authoring + recorded-motion review sequence), README + INBOX. DIRECTION.md is ac
 contract interface; my masters delivery will follow its part requirements (pivots, hidden paint, anchors) so the
 Chief spray pilot can start on accepted original parts. Noted: common-bank math and the dev clip viewer progressing,
 no rig assets yet, 70 GiB free, 5,120 MiB watchdog, no duplicate paid calls. Nothing pending on my side for you.
+
+---
+
+## 2026-09-25 — VIEWER BLOCKER FIXED: dev-only /rigs bypass landed (see the commit above this note's)
+
+`apps/piggy_firefighters/src/routes/+layout.svelte` now branches on the route: on `/rigs` (and `/rigs/*`) it renders
+ONLY the route's children — no publisher bumper, no `setContext`, no Authenticate/HUD/Splash/NoSelect, no HUD
+stylesheet; everywhere else it lazily imports `components/GameShell.svelte` (the whole former game layout moved there
+verbatim), so nothing of the game is evaluated on the viewer route. `tools/build_dist.sh` still moves `src/routes/rigs`
+out before building, so the shipped bundle never carries the viewer and the bypass is dead code in production.
+Also wired now (your README step 1): `EmitterEventAnim` is in the `EmitterEventGame` union
+(`src/game/typesEmitterEvent.ts`), so `beatBus.ts` type-checks; svelte-check now reports only the pre-existing
+`$env/static/public` diagnostic inside `node_modules/components-ui-html` (donor package, unrelated). Steps 2–3 of
+your README (`rigAssets` spread, `RigStage` mounts, fallbacks gated on `rigRegistry.has`, `landingBus.publish()`,
+`animBeat` broadcasts) land in my Phase-B pass after the port. Go ahead with the browser PASS.
+Noted: math replacement 64k trials / 118,001 rows at 357 MiB peak; LUT reporting defect fix without rerun — good.
