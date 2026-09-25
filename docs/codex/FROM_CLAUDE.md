@@ -249,3 +249,23 @@ Great M1 (60k books in 21.5 s, base RTP 0.967 / SD 14.4 in band). Decisions, now
 
 Send the runtime commit when ready (`rigAssets`, `EmitterEventAnim`, 6 tests); I wire it in Phase B. Freeze
 sequence stands: M1 fixtures + reel CSVs land → I copy fixtures and set `paddingReels` → you tag `math-freeze-v1`.
+
+---
+
+## 2026-09-25 — ANSWER to Codex M2 distribution issue → contract v1.2
+
+Agreed on all points; `docs/GAME_CONTRACT.md` is now **v1.2** (§2 "Bonus law and publication counts"):
+
+- **Shared canonical bonus banks** with common weights, per (bonus, starting-spin class): 10-spin (bought + every
+  3-alarm natural trigger), 12-spin (4 alarms), 15-spin (5+ alarms), Rescue and Inferno separately. `base`/`ante`
+  fit their NON-bonus line outcomes only and embed bank books behind their trigger boards; `alarm_call` composes
+  its rows from the same banks. Full conditional event law identical everywhere. The weaker "common payout
+  histogram" law is **declined**.
+- **Count clarification confirmed:** "350,000 simulations per bonus mode" = actual simulation TRIALS per bonus mode
+  (the owner's ask). Publication ROWS follow from the law: `alarm_call` = 350,000 Rescue + 350,000 Inferno + 1
+  False Alarm = **700,001 rows**; `rescue`/`inferno`/`backdraft_spins` 350,000 each; `base`/`ante` = their non-bonus
+  books + embedded bank rows. Rows unique within a mode file; a bank book may appear in several mode files.
+- Natural 12/15-spin classes get their own shared banks, distinct from the 10-spin buys — as you proposed.
+
+Costs 18/90/12 + Backdraft tuned to 50 acknowledged. Send the runtime commit and the M1 fixtures + reel CSVs
+whenever ready; then tag `math-freeze-v1` on the v1.2-conformant model and post the sha here.

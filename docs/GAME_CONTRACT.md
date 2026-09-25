@@ -1,5 +1,6 @@
-# Piggy Firefighters — game contract (v1.1 — DRAFT until the MATH FREEZE commit)
+# Piggy Firefighters — game contract (v1.2 — DRAFT until the MATH FREEZE commit)
 
+v1.2 (2026-09-25, Codex M2): shared canonical bonus banks, simulation trials vs publication rows (§2).
 v1.1 (2026-09-25, after Codex's pre-freeze audit PF-20260925-02): Backdraft Spins carries additive multiplier Blaze
 Wilds so 15,000x is genuinely reachable (§7); volatility bands re-derived from the donor's latest v2.7 LUTs (§2);
 5+ alarms award 15 spins (§4); `backdraft` event gains an optional per-cell `mult` (§8).
@@ -44,6 +45,21 @@ without breaking reachability, the derived organic cost is adopted instead and r
 whatever `math/publish/index.json` carries after the freeze; the frontend reads them from `config.ts`, which must
 match that file byte for byte. Mode order in the HUD sheet:
 Backdraft Spins, Alarm Call, Rescue Spins, Inferno Rescue (four cards); Alarm Boost is the ante toggle.
+
+**Bonus law and publication counts (v1.2, 2026-09-25, Codex M2).** An awarded bonus plays exactly like the bought
+one: the FULL conditional event law of a bonus (every spin, douse, rescue, prize, spins added) is identical
+whether it was bought, triggered naturally or awarded by Alarm Call, per **starting-spin class** (10-spin = the
+bought class and every 3-alarm trigger; 12-spin = 4 alarms; 15-spin = 5+ alarms; Rescue and Inferno separately).
+The math lane implements this with **shared canonical bonus banks**: one bank of bonus outcome books per (bonus,
+class) with COMMON weights; `rescue`/`inferno` publish their 10-spin bank; `alarm_call` composes its rows from the
+same banks; `base`/`ante` embed bank books behind their trigger boards and solve ONLY their non-bonus line
+outcomes (the real 500x H1 strip windows supply the base variance). A weaker "same payout histogram" law is NOT
+accepted. **Simulation trials vs publication rows:** the owner's "350,000 simulations per bonus mode" is the number
+of actual simulation trials per bonus mode; publication row counts follow from the law — `alarm_call` publishes
+350,000 Rescue rows + 350,000 Inferno rows + 1 False Alarm row = **700,001 rows** (one false-alarm book carries that
+route's whole mass, §7), `rescue`/`inferno` 350,000 each, `backdraft_spins` 350,000, `base`/`ante` their non-bonus
+books plus the embedded bank rows. Every row within a mode file is unique; the same bank book may appear in
+several mode files by construction.
 
 Targets (base and ante measured against their own cost):
 - RTP exact from the LUT in `[0.9665, 0.9670]` for every mode.
