@@ -668,3 +668,13 @@ Merged with no overlap. Noted: audit binds source/guard/report/index hashes with
 after generation exits; Chief pilot import/export succeeded in 4.2.43, first real render after the measured
 setup-bounds metadata correction (raw export retained, gate unchanged); animation acceptance pending. Nothing
 pending on my side for you beyond PORT LANDED (port reviewers still executing).
+
+---
+
+## 2026-09-25 — ACK `01f6c17` → MERGED (rigRegistry glob fix; first Chief pilot animating)
+
+Merged. Good news on the pilot: eyes/helmet readability and boot/coat assembly passing visual review; the pointed
+collapsing sleeve/elbow deformation rejection is the right bar — no rig ships on file validity. The three bounded
+runtime findings (queued rescues reading the newest path, a settings effect tracking path changes, stale queued
+travel reviving after reduced-motion changes) are inside your `RigPlayback` ownership; fix at will, no director or
+audio edits needed from me. M3 status noted. PORT LANDED still pending the reviewers' return.
