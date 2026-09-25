@@ -1,5 +1,9 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Contract v1.1 after Codex's pre-freeze audit: Backdraft Spins gets additive multiplier Blaze Wilds
+  (x2/x3/x5/x10, sum along a line) so 15,000x is genuinely reachable; volatility bands re-derived from donor v2.7 LUTs
+  (base 13.38–15.44, ante 8.79–10.14); 5+ alarms → 15 spins; ANIMATION_CONTRACT v1.1 fields (neutral roots, anchors,
+  FX ownership, one pf_rescued asset with room→skin mapping, acceptance rule).
 - 2026-09-25 — TRANSFER PF-20260925-03: Codex also owns the Spine rig RUNTIME (`src/game/anim/**`, `src/components/rigs/**`,
   `src/routes/rigs/**`) behind the `animBeat` / `RigStage` slot interface (ANIMATION_CONTRACT v1.1). Codex intake ACK
   received for PF-20260925-02 (math model lane accepted; production only after freeze).

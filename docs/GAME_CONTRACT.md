@@ -1,4 +1,8 @@
-# Piggy Firefighters — game contract (v1.0 — DRAFT until the MATH FREEZE commit)
+# Piggy Firefighters — game contract (v1.1 — DRAFT until the MATH FREEZE commit)
+
+v1.1 (2026-09-25, after Codex's pre-freeze audit PF-20260925-02): Backdraft Spins carries additive multiplier Blaze
+Wilds so 15,000x is genuinely reachable (§7); volatility bands re-derived from the donor's latest v2.7 LUTs (§2);
+5+ alarms award 15 spins (§4); `backdraft` event gains an optional per-cell `mult` (§8).
 
 Single source of truth for math, runtime book events, UI copy and help screens. Player-facing title
 **PIGGY FIREFIGHTERS**; internal game id `piggy_firefighters`. Platform name in player copy is **Engine**
@@ -23,7 +27,7 @@ and emits `wincap`.
 |---|---|---|---|---|
 | `base` | 1x | default spin | — | 5 reels × 3 rows, **20 fixed lines**, left to right. Backdraft modifier. 3+ ALARM trigger Rescue Spins; ≥1 GOLDEN ALARM among them → Inferno Rescue. |
 | `ante` | 1.5x | activate toggle | **ALARM BOOST** | Reel set `BRA`: **exactly 2x** the base probability of each bonus (Rescue Spins and Inferno Rescue separately); Backdraft rate unchanged. |
-| `backdraft_spins` | 25x *(tuned)* | buy card | **BACKDRAFT SPINS** | 5 spins on reel set `BRB` (no alarms); **every spin gets a Backdraft** of 3–5 Blaze Wilds *(tuned weights)*. Line pays only. |
+| `backdraft_spins` | 25x *(tuned)* | buy card | **BACKDRAFT SPINS** | 5 spins on reel set `BRB` (no alarms); **every spin gets a Backdraft** of 3–5 Blaze Wilds *(tuned weights)*, each carrying a **multiplier x2/x3/x5/x10** *(tuned)*; a line's win is multiplied by the SUM of the Blaze Wild multipliers on it (§7). |
 | `alarm_call` | 40x *(tuned)* | buy card | **ALARM CALL** | One card: Rescue Spins (share solved to close RTP, ≈50%) / Inferno Rescue (**3% fixed**) / **False Alarm** (the rest; pays 0). An awarded bonus plays exactly like the bought one. |
 | `rescue` | 60x *(tuned)* | buy card | **RESCUE SPINS** | Direct buy of the tier-1 bonus, 10 spins (§5). |
 | `inferno` | 300x *(tuned)* | buy card | **INFERNO RESCUE** | Direct buy of the tier-2 bonus, 10 spins (§6). Also reachable naturally (GOLDEN ALARM) and from Alarm Call. |
@@ -35,13 +39,17 @@ Backdraft Spins, Alarm Call, Rescue Spins, Inferno Rescue (four cards); Alarm Bo
 
 Targets (base and ante measured against their own cost):
 - RTP exact from the LUT in `[0.9665, 0.9670]` for every mode.
-- **Volatility (owner rule):** base `SD/cost` **25–35% below piggy-builders-3's published base figure**. Donor
-  published base SD/cost = 34.83 (docs/MATH_V24_REPORT.md, production books) → target band **22.6–26.1**, aim
-  **24.5**; ante donor 21.46 → band **13.9–16.1**. If the math lane finds a later donor figure (v2.7 books), the
-  band is re-derived from it and recorded in §9.
+- **Volatility (owner rule):** base `SD/cost` **25–35% below piggy-builders-3's latest published base figure**.
+  Codex recomputed the donor v2.7 LUTs (commit `e3ff80d54c5c8033312fa6cf79661617b3ae94f7`, hashes match its
+  MANIFEST): base SD/cost **20.5820**, ante **13.5190**. Target bands: **base 13.38–15.44 (aim 14.4)**, **ante
+  8.79–10.14 (aim 9.5)**. (v1.0 quoted the v2.4 report's 34.83 / 21.46, which are superseded.)
 - Base any-win 33–40%, regular hit (≥ 1x) 12–18%, sub-hit ≥ 15% *(tuned)*.
 - Platform limits (checked by the math lane on every mode): etl10k ≤ 0.8, etl40b ≤ 0.9, cvar ≤ 800, unique
-  books, payouts multiples of 0.1x, no cost multiplier above 1000x, max win reachable in every mode.
+  books, payouts multiples of 0.1x, no cost multiplier above 1000x, **max win genuinely reachable in every mode by
+  the rules below — no scripted book may pay the cap through an outcome the rules cannot produce.** Reachability:
+  base/ante via a natural Rescue/Inferno (unbounded multiplier, buildings reset), `rescue`/`inferno` likewise,
+  `alarm_call` through its bonus routes, `backdraft_spins` through multiplier Blaze Wilds (§7: a full screen of
+  x10 Blaze Wilds pays 20 lines × 25 × 50 = 25,000x before the cap).
 - Natural trigger rates *(tuned targets)*: Rescue Spins 1 in 150–180 base spins; Inferno Rescue 1 in 1,800–2,500;
   Backdraft 1 in 35–50; ante exactly 2x for both bonuses. Max win: base ≈ 1 in 5–10 million; bought Inferno
   1 in 250,000; bought Rescue 1 in 1,000,000; Alarm Call = its route mix.
@@ -81,7 +89,9 @@ the reels stopped) → `backdraft` → `winInfo` (positions may reference ignite
 **Anticipation.** The reveal carries the SDK `anticipation` array: after 2 alarms have landed with reels still
 to stop, the remaining reels slow with the tension cue (docs/AUDIO_MAP.md). Never on a spin that cannot trigger.
 
-**Trigger.** 3 / 4 / 5 alarms → **10 / 12 / 15** spins. No GALARM among them → Rescue Spins; ≥1 GALARM →
+**Trigger.** 3 / 4 / **5 or more** alarms → **10 / 12 / 15** spins (a reel window can show more than one alarm;
+the math lane may space alarms ≥ 3 stops apart on the strips so at most one shows per reel, but the rule above
+holds either way). No GALARM among them → Rescue Spins; ≥1 GALARM →
 Inferno Rescue (more than one changes nothing). A GALARM on a spin with fewer than 3 alarms is just an alarm
 that did not trigger; the frontend may glint it but never implies a near miss the book does not contain. Book
 order on a trigger: `reveal` → `winInfo`/`setWin` (if any) → `setTotalWin` → `freeSpinTrigger` → `rescueStart`.
@@ -114,8 +124,12 @@ per building cleared, and every rescued pig also carries an **instant prize** dr
 `alarmCall`, 10 spins) exactly like the bought bonus; `falseAlarm` continues with `setTotalWin 0` → `finalWin 0`.
 
 **Backdraft Spins** (`backdraft_spins`): `backdraftSpinsStart {spins: 5}`, then per spin `reveal` (reel set BRB,
-`gameType: "freegame"`) → `backdraft` (count weights `{3: 50, 4: 35, 5: 15}` *(tuned)*) → `winInfo`/`setWin` →
-`updateFreeSpin` → `setTotalWin`; then `backdraftSpinsEnd {amount}` → `finalWin`. No alarms, no Rescue.
+`gameType: "freegame"`) → `backdraft` (count weights `{3: 50, 4: 35, 5: 15}` *(tuned)*; every ignited cell carries
+`mult` drawn from `{2: 60, 3: 30, 5: 8, 10: 2}` *(tuned)*) → `winInfo`/`setWin` → `updateFreeSpin` → `setTotalWin`;
+then `backdraftSpinsEnd {amount}` → `finalWin`. No alarms, no Rescue. **Multiplier rule:** a line's win is
+multiplied by the SUM of the `mult` values of the Blaze Wilds it uses (a line using no Blaze Wild pays x1; reel W
+carry no multiplier); `winInfo.meta.lineMultiplier` carries the applied sum and `winWithoutMult` the raw pay.
+Base/ante Backdrafts (§4) stay plain (x1) so the base game keeps its low volatility.
 
 ## 8. Book events (runtime contract)
 
@@ -125,7 +139,7 @@ Standard SDK events keep their SDK shapes (`reveal`, `winInfo`, `setWin`, `setTo
 
 | Event | Shape | When |
 |---|---|---|
-| `backdraft` | `{cells: [{reel,row}], count}` | after `reveal`, before `winInfo`, base/ante/Backdraft Spins |
+| `backdraft` | `{cells: [{reel,row,mult?}], count}` — `mult` present only in Backdraft Spins (§7) | after `reveal`, before `winInfo`, base/ante/Backdraft Spins |
 | `alarmCall` | `{outcome}` | first event of an `alarm_call` round |
 | `rescueStart` | `{bonus: "rescue"\|"inferno", source: "natural"\|"buy"\|"alarmCall", spins, rooms: [{reel, fire}], multiplier: 1}` | after `freeSpinTrigger` (natural) or as the first bonus event (buy / Alarm Call) |
 | `douse` | `{sprays: [{reel, from, to}], rescues: [{reel, prize?}], multiplier, spinsAdded, spinsLeft}` | every bonus spin after `reveal`, before `winInfo`; may be empty (`sprays: []`) so the frontend cadence is uniform |

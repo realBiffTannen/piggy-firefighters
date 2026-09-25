@@ -21,13 +21,21 @@ centre for characters; skeleton units = pixels at 1080p desktop board scale (Chi
 | Rig | Skeleton | Animations (name → loop? → notes) | Events | Size |
 |---|---|---|---|---|
 | `pf_chief` (Chief Hamm, mascot left of the reels; WILD sign holder) | `pf_chief` | `idle` loop 4–6 s breathing + helmet wobble · `idle_alt` loop (checks watch / bugle) · `win` once 1.2 s (fist pump) · `big_win` once 2.4 s · `point_reels` once 0.8 s · `spray_start` once 0.6 s → `spray_loop` loop → `spray_end` once 0.5 s · `celebrate` once 2.0 s · `sad` once 1.5 s (false alarm) | `step` (foot down), `spray_on`, `spray_off`, `sign_hit` | 420 px tall |
-| `pf_rookie` (Sprocket, ambient/dispatch) | `pf_rookie` | `idle` loop · `fumble` once 2.5 s (hose tangle) · `card_flip` once 1.0 s · `hold_sheet` loop (jump sheet) · `catch` once 0.7 s | `flip`, `catch` | 380 px |
+| `pf_rookie` (Sprocket, ambient/dispatch) | `pf_rookie` | `idle` loop · `fumble` once 2.5 s (hose tangle) · `card_flip` once 1.0 s · `hold_sheet` loop (jump sheet) · `catch` once 0.7 s · `celebrate` once 1.5 s · `sad` once 1.5 s (false alarm) | `flip`, `catch` | 380 px |
 | `pf_dog` (Ember) | `pf_dog` | `sit_idle` loop · `bark` once 0.6 s · `run_loop` loop · `celebrate` once 1.5 s · `hold_sheet` loop | `bark` | 220 px |
-| `pf_rescued_<n>` n=1..5 (Trotter family, one per room) | `pf_rescued` with 5 skins `grandma`, `twins`, `dad`, `baby`, `cat_lady` | `wave_window` loop · `slide` once 1.2 s (down the ladder) · `land` once 0.6 s · `cheer` loop | `land` | 260 px |
+| `pf_rescued` (Trotter family; ONE asset, five runtime instances `rescued_0..4` = rooms 0..4) | `pf_rescued` with 5 skins `grandma`, `twins`, `dad`, `baby`, `teen`; room r of building b shows skin `[(r + b) mod 5]` | `wave_window` loop · `slide` once 1.2 s (pose only; the runtime moves the actor along the ladder) · `land` once 0.6 s · `cheer` loop | `land` | 260 px |
 
-Every animation name above must exist in the export (empty is acceptable while blocking). Mix times: 0.15 s
-default, `spray_start→spray_loop` 0, `slide→land` 0. No animation may move the root bone off-origin except
-`slide` (its travel is set by the runtime; the rig animates the pose only). Skins may not add slots.
+Every animation name above must exist in the export. Mix times: 0.15 s default, `spray_start→spray_loop` 0,
+`slide→land` 0. **ALL root bones stay neutral in every clip** (the runtime owns every translation, including the
+ladder travel of `slide`); skins may not add slots. **Anchors (bones, required):** `pf_chief`: `nozzle_tip` (spray
+FX spawn point, along the nozzle axis), `grip_l`, `grip_r` (hose hand-holds), `head_top` (badge/plate anchor);
+`pf_rookie`/`pf_dog`: `sheet_l`/`sheet_r` (jump-sheet corners); `pf_rescued`: `feet`. **FX ownership:** water
+spray, steam, flame, embers, coins and dust are the runtime's Pixi particles (Claude), spawned at the anchor
+world positions Codex's `RigActor` exposes (`getBoneWorldPosition(name)`), timed by the Spine events
+(`spray_on`/`spray_off`/`land`/`catch`); rigs carry no FX slots. **Acceptance:** `check_contract.py` passes
+(names, anchors, events, sizes, neutral roots), **no empty clip** (every clip keys at least two bones with visible
+motion), and a recorded motion review (one capture per clip via the rig viewer) posted in the mailbox for the
+coordinator's/owner's eyes before a rig is marked accepted.
 
 ## What the runtime does with them
 

@@ -33,7 +33,7 @@ used as composition references only), every paid call recorded in the lane's `so
 | Hero / WILD / splash | **Chief Hamm** — stout pig fire chief, white helmet with a brass "13" shield, red turnout coat with yellow reflective bands, moustache, brass bugle on the belt | WILD symbol (holds a WILD badge), mascot beside the reels, spray hero in the bonus |
 | Rookie | **Sprocket** — lanky young pig, helmet too big, always mid-fumble with the hose | Ambient loops, Backdraft reaction, Alarm Call card presenter |
 | Dog | **Ember** — Dalmatian pup in a tiny helmet (the only non-pig) | Ambient, celebrates wins, barks at the alarm |
-| The rescued | **The Trotter family** — grandma pig with a cat, twin piglets, a dad pig in a bathrobe, a baby in a blanket | One per room in the bonus; each has a distinct silhouette so the five rescues read differently |
+| The rescued | **The Trotter family** — five skins of one rig: `grandma` (with her cat), `twins`, `dad` (bathrobe), `baby` (blanket), `teen` (headphones, oblivious) | One per room; room r of building b shows skin `[(r + b) mod 5]` so rescues vary across buildings; distinct silhouettes |
 
 ## 3. Reel symbols (contract §3)
 
@@ -81,7 +81,7 @@ anticipation reel. Every symbol sits in the same fit-box as the donor's.
 | Key | Cost | Title | Card line |
 |---|---|---|---|
 | ante | 1.5x | ALARM BOOST | 2x the chance to trigger Rescue Spins and Inferno Rescue |
-| backdraft_spins | 25x | BACKDRAFT SPINS | 5 spins, every spin a Backdraft of 3–5 Blaze Wilds |
+| backdraft_spins | 25x | BACKDRAFT SPINS | 5 spins, every spin a Backdraft of 3–5 Blaze Wilds carrying x2–x10 that ADD UP along a line |
 | alarm_call | 40x | ALARM CALL | Rescue Spins · Inferno Rescue · or a False Alarm that wins nothing |
 | rescue | 60x | RESCUE SPINS | 10 spins, five rooms, every rescue +1x and +1 spin |
 | inferno | 300x | INFERNO RESCUE | 10 spins, rooms fall in one spray, every rescue +2x, +1 spin and a prize |
