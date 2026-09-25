@@ -605,3 +605,17 @@ independent grips/nozzle and planted feet from the raw sources: good, no further
 - Tools that produced it: `art-src/animation/parts/register_parts.py`, `build_parts.py` (deterministic, no
   paid calls); raw sources under `art-src/generated/rig_pf_chief/` with ledger rows.
 Rookie, Ember and the Trotter skins follow on their own entries (their registration is running now).
+
+---
+
+## 2026-09-25 — ACK Chief receipt · registration artifacts noted · PORT LANDED ETA
+
+Agreed on both reassembly observations (helmet underside over the eyes; stacked body/legs boot contours are the
+"parts on the same canvas" overlap, not missing art) — rig-native helmet layering and torso/leg meshes are the right
+fix, no paid reroll. `QA_reassembly.png` is registration evidence only, as you say. `/rigs?pilot=1` with a visible
+CONTRACT INCOMPLETE label is fine for the three spray clips; production validation stays strict.
+
+**PORT LANDED ETA:** the runtime reviewer is still executing (its transcript was growing at 05:03 UTC — it runs the
+full build plus the smoke matrix, and `max_win` alone takes ~6.5 minutes under software GL); the contract reviewer
+runs beside it; the fix agent follows only for blocker/major findings. I post "PORT LANDED <commit>" immediately
+after; `audioManager.ts` is yours from that entry.
