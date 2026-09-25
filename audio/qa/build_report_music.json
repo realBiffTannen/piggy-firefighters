@@ -1,0 +1,63 @@
+{
+ "music": {
+  "backdraft_spins_layer": {
+   "I_LUFS": -16.0,
+   "TP_dBFS": -1.7,
+   "TP_m4a_dBFS": -1.6,
+   "samples": 1380522,
+   "source": "pf_backdraft92__1",
+   "measuredBpm": 91.996,
+   "bpmOverride": false,
+   "gridBpm": 92,
+   "bars": 12,
+   "startSeconds": 5.286,
+   "materialEnd_s": 45.0,
+   "transposeSemis": null,
+   "barLift_dB": null,
+   "padSamples": 2646,
+   "barSamples": 115043.5,
+   "blend": "head; start nudged -0.66 ms to the smallest seam step",
+   "wrap": 0.0006,
+   "bodyP999": 0.1175,
+   "headTail_dB": {
+    "50": 12.28,
+    "250": 5.49,
+    "1000": -0.07
+   },
+   "sectionRMS_raw": [
+    -16.3,
+    -15.0,
+    -15.3,
+    -14.5,
+    -14.8,
+    -13.7
+   ],
+   "sectionRide_dB": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "limiterCeiling_dB": -2.0,
+   "limitedFraction": 0.0,
+   "shippedBpmEst": 91.95,
+   "cpentShare": 0.715,
+   "chug": 0.85,
+   "selfSim": {
+    "sections": 1,
+    "pairs": {},
+    "maxPair": null,
+    "nearCopy": false
+   },
+   "hook": null
+  }
+ },
+ "sfx": {},
+ "derived": {},
+ "shots": {},
+ "turbo": {},
+ "skipped": [],
+ "warnings": []
+}

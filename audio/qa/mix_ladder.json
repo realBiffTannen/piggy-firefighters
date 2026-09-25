@@ -11,7 +11,7 @@
    "passes": 3,
    "I_LUFS": -22.0,
    "TP_dBFS": -3.6,
-   "TP_m4a_dBFS": -3.0,
+   "TP_m4a_dBFS": -2.8,
    "samples": 21413
   },
   "sym_win_l3": {
@@ -88,7 +88,7 @@
    "passes": 2,
    "I_LUFS": -19.4,
    "TP_dBFS": -3.8,
-   "TP_m4a_dBFS": -3.2,
+   "TP_m4a_dBFS": -3.3,
    "samples": 23180
   },
   "rung_hit_big_turbo": {
@@ -109,19 +109,19 @@
    "limitedFraction": 0.0,
    "passes": 3,
    "I_LUFS": -21.6,
-   "TP_dBFS": -3.0,
+   "TP_dBFS": -3.1,
    "TP_m4a_dBFS": -2.6,
    "samples": 12636
   },
   "burst_embers_turbo": {
-   "raised_dB": 15.02,
+   "raised_dB": 12.33,
    "crest_dB": 27.9,
    "softClip": true,
-   "limitedFraction": 0.5754,
-   "passes": 4,
-   "I_LUFS": -17.6,
-   "TP_dBFS": -2.3,
-   "TP_m4a_dBFS": -1.8,
+   "limitedFraction": 0.3172,
+   "passes": 3,
+   "I_LUFS": -17.4,
+   "TP_dBFS": -1.8,
+   "TP_m4a_dBFS": -1.3,
    "samples": 23516
   },
   "burst_gold_turbo": {

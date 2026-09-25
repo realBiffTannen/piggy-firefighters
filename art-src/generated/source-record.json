@@ -4456,5 +4456,417 @@
       "total_tokens": 3351
     },
     "seconds": 23.3
+  },
+  {
+    "asset": "shutter",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nImage 1 is our firehouse: its red roll-up slat bay door is the design to paint, in exactly this style.\nPaint a flat texture of that red roll-up fire-station bay door, seen perfectly straight-on and filling the WHOLE canvas edge to edge: no arch, no wall, no frame, no side rails, no sky, no ground, no perspective. It is made of identical horizontal engine-red metal slats stacked from the very top of the image downward, TWELVE slats in the upper 90 percent, every slat exactly the same height and perfectly horizontal, running the full width with no ends visible. Each slat: a flat engine-red face (#D7262B), a thin flat cream highlight line along its top edge, one hard darker-red shadow band along its lower third, and a thick dark-brown ink seam line between slats. No rivets, dents, scratches or wear that would break the repeat; every slat identical. The BOTTOM 10 percent is the door's heavy bottom beam running the full width: a chunky brass-gold bar with a thick ink outline, one hard shadow tone and a cream highlight, with a dark rubber seal strip along its lower edge and two simple brass pull handles placed near the left and right ends (none in the middle). Flat hand-inked cel painting, no gradients, no text, no letters, no numbers, no logos.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/scene_shutter.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_base_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF splash shutter: red roll-up bay door slats + bottom beam",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:36",
+    "status": "OK",
+    "output": "art-src/generated/scene/shutter.png",
+    "sha256": "5ae0b880895e149b418579b53be113cffc96776b5fb4c3e719207121b30af202",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2078,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 542
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3450
+    },
+    "seconds": 22.8
+  },
+  {
+    "asset": "card_chief",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is OUR HERO Chief Hamm: keep his identity exactly (head shape, short flat wide pink snout with two dark oval nostrils, pink ears folded forward outside the brim, thick dark-brown chevron moustache, confident near-level brows, big white eyes with round black pupils and a hard white catch-light, warm open smile; the white fire helmet worn low with a plain BLANK brass shield plate on its front; engine-red turnout coat with hydrant-yellow reflective bands, brass toggle clasps, dusk-navy collar lining, black belt with a square brass buckle). Image 2 is our hero badge design: a red-rimmed shield badge with a brass-gold edge and a BLANK flat near-white centre. Image 3 is our firehouse at dusk; use it as the background setting and style.\nPaint this hero card picture: Chief Hamm chest-up, big and centred, in a proud slight three-quarter turn in front of the firehouse's red roll-up bay door at dusk. With one hand he holds the shield badge of Image 2 raised high beside his head, turned flat towards the viewer, its white centre completely BLANK; his other hand gives a confident thumbs-up (a proper cartoon hand with a thumb and separated fingers). A bright hard-edged burst of flat brass-gold and hydrant-yellow rays spreads from behind the badge, and a few flat gold sparkles float around it. His face and the badge sit on the horizontal middle line of the picture. Warm, heroic, trustworthy: the leader of the fire crew.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_chief.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/generated/symbols/sym_sq_w.png",
+      "art-src/generated/scene/plate_base_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: splash chief (wild) card",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:35",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_chief.png",
+    "sha256": "b4e32a3ec6d4b87278bdd201e0d115314d346898c90fe18a6f85424dba469dab",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 4985,
+      "input_tokens_details": {
+        "image_tokens": 4096,
+        "text_tokens": 889
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 6357
+    },
+    "seconds": 30.0
+  },
+  {
+    "asset": "card_ante",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is OUR HERO Chief Hamm: keep his identity exactly (short flat wide pink snout, pink ears, thick dark-brown chevron moustache, confident near-level brows, the white fire helmet with a plain BLANK brass shield plate on its front, the engine-red turnout coat with hydrant-yellow reflective bands and brass clasps, black belt, brass bugle on his hip). Image 2 is our firehouse at dusk: use its red-brick wall, cream stone arch, red roll-up slat bay door and the brass alarm bell on its red box above the arch as the setting, in exactly that style. Image 3 is Ember, our Dalmatian pup (white with black spots, red collar); give him a tiny red fire helmet with a blank brass plate.\nPaint this card picture: a closer, lower camera looking slightly up at the top of the bay door arch of Image 2. The brass alarm bell on its red box above the arch is the hero object, big, placed in the upper centre of the middle band, RINGING HARD: the bell tilted mid-swing, its hammer blurred, three bold hydrant-yellow motion arcs on each side and a few flat cream sound rings. Directly below and in front of it, framed by the arch and the closed red slat door: Chief Hamm in the left-centre, half-length, looking up at the bell with a big delighted open smile, one hand cupped at his ear, the other hand holding his brass bugle; Ember in the right-centre, front paws up, head thrown back, barking at the bell with a happy face. Warm lit upstairs windows either side, dusk sky just visible above the cornice. The mood is excited and hopeful, the moment right before the call-out.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_ante.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/generated/scene/plate_base_16_9.png",
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: ante (alarm boost) buy card painting",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:36",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_ante.png",
+    "sha256": "9da17ca8b465d0d37b2534b2979e1c0ac477343a1c13674c8805344593647612",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 5545,
+      "input_tokens_details": {
+        "image_tokens": 4608,
+        "text_tokens": 937
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 6917
+    },
+    "seconds": 32.9
+  },
+  {
+    "asset": "maxwin_16_9",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nImage 1 is OUR HERO Chief Hamm: keep his identity exactly (short flat wide pink snout, thick dark-brown chevron moustache, near-level confident brows, big white eyes with catch-lights, white fire helmet with a plain BLANK brass shield plate, engine-red turnout coat with hydrant-yellow bands, brass clasps, black belt, brass bugle). Image 2 is our red ladder fire truck design. Image 3 is Sprocket the lanky rookie pig (helmet too big, freckles, no moustache). Image 4 is Ember our Dalmatian pup; give him a tiny red helmet with a blank brass plate.\nPaint the grand celebration card picture, WIDE. HARD RULE: the LEFT 45 percent of the image is kept CALM and nearly empty so a large title and a number can be placed there later: only a flat dusk-navy night sky with a very few tiny four-point stars, no objects, no characters, no coins, no rays, no busy texture on that side. All the action sits in the RIGHT 55 percent: the red ladder fire truck of Image 2 parked in three-quarter view, its ladder raised high, and Chief Hamm standing triumphantly on top of the truck, one fist raised, blowing his brass bugle with puffed cheeks and happy eyes; Sprocket sits on the truck's ladder cheering with both arms up, his big helmet flying off; Ember jumps beside the front wheel, barking with joy. A towering fountain of gold coins (chunky, ink-outlined, each with a raised pig-snout emblem, no numbers or currency signs) bursts from the truck's water cannon and showers down over the right side, with bold flat brass-gold rays and sparkles behind the truck. A red-brick firehouse edge and pavement at the very bottom right. Joyous and legendary.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/cards_maxwin_16_9.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png",
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: max-win card landscape, calm left 45%",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:36",
+    "status": "OK",
+    "output": "art-src/generated/cards/maxwin_16_9.png",
+    "sha256": "479a46aa1e0433c6e78376f0e48ba47b6811113b2336ded87c3018659eedb80c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 6412,
+      "input_tokens_details": {
+        "image_tokens": 5632,
+        "text_tokens": 780
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 7784
+    },
+    "seconds": 33.7
+  },
+  {
+    "asset": "card_backdraft",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is our accepted flame-burst background: the firehouse at dusk with its bay door blown open and flat cartoon flame rolling out of the arch; paint in exactly this style, brick, arch and flame design. Image 2 is our burning badge: a red-rimmed shield badge with a brass-gold edge and a BLANK flat white centre, wrapped in flame. Image 3 is Sprocket, our lanky rookie pig firefighter (helmet too big, red coat with yellow bands); keep his identity.\nPaint this card picture: a closer, dramatic, straight-on view of the blown-open bay door arch. A huge rolling WAVE of flat cartoon flame bursts out of the arch towards the viewer and sweeps from left to right across the middle band of the picture: flame orange #FF7A1A tongues with hydrant-yellow cores, hard-edged and ink-outlined, curling like a breaking wave. Riding the crest of the flame wave, FOUR of the shield badges of Image 2 tumble at different angles and sizes, each one wrapped in its own small ring of flame, their white centres completely BLANK and empty. The buckled red slat door is rolled up at the top of the arch, its bottom edge bent upward. At the right edge of the middle band, Sprocket crouches with both arms up in a comic startled flinch, his oversized helmet blown up off his head and floating above it, his coat tails flapping, wide surprised eyes and an open grin (thrilled, not hurt). Embers drift up everywhere; the arch stones and pavement catch hard flat orange rim light. Nobody is hurt; the fire is bright, bouncy and fun.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_backdraft.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_backdraft_16_9.png",
+      "art-src/generated/symbols/sym_sq_w_blaze.png",
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: backdraft_spins buy card + splash backdraft",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:36",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_backdraft.png",
+    "sha256": "c815052ecba978267ec7679476efae25cfce4afb2f10e386df912e4af0d70b8b",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 5013,
+      "input_tokens_details": {
+        "image_tokens": 4096,
+        "text_tokens": 917
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 6385
+    },
+    "seconds": 35.0
+  },
+  {
+    "asset": "card_rescue",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is our accepted rescue background: the burning-block apartment building at night with its row of five top-floor windows and our red ladder fire truck at the kerb; keep this building, truck design and style. Image 2 shows the fire inside those windows in our style. Image 3 is OUR HERO Chief Hamm: keep his identity exactly (short flat wide pink snout, thick dark-brown chevron moustache, near-level confident brows, white fire helmet with a plain BLANK brass shield plate, engine-red coat with hydrant-yellow bands, brass bugle on his belt).\nPaint this card picture: a closer, three-quarter view of the red ladder fire truck of Image 1 parked in front of the red-brick block at night. The truck's ladder is RAISED in one long straight diagonal from the truck in the lower left-centre up to an open top-floor window in the upper right-centre. Three top-floor windows show flat cartoon flame (flame orange with yellow cores) and grey-blue smoke puffs; the window at the top of the ladder has a cheerful civilian pig in a striped bathrobe waving happily from the sill. On the truck platform in the middle of the picture, Chief Hamm braces with both hands on a brass hose nozzle, sending a thick, bold, cream-and-light-blue water arc up into a burning window, with flat cream steam puffs where it hits. Sky dusk-navy with small four-point stars and a flat cream moon. The subject (truck, ladder, chief, water arc, the waving pig) stays inside the central 60 percent of the width and the middle band of the height. Heroic, bright and hopeful; nobody is hurt.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_rescue.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/scene/plate_rescue_16_9.png",
+      "art-src/generated/scene/rooms_fire2.png",
+      "art-src/generated/hero/chief_hamm_master.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: rescue buy card + splash rescue",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:35",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_rescue.png",
+    "sha256": "4ffcb876890f38a4a8f267dfac54367cd639207f72b7a1455d031a3bb2e7ab20",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 5526,
+      "input_tokens_details": {
+        "image_tokens": 4608,
+        "text_tokens": 918
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 6898
+    },
+    "seconds": 35.9
+  },
+  {
+    "asset": "maxwin_portrait",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nImage 1 is OUR HERO Chief Hamm: keep his identity exactly (short flat wide pink snout, thick dark-brown chevron moustache, near-level confident brows, big white eyes with catch-lights, white fire helmet with a plain BLANK brass shield plate, engine-red turnout coat with hydrant-yellow bands, brass clasps, black belt, brass bugle). Image 2 is our red ladder fire truck design. Image 3 is Sprocket the lanky rookie pig (helmet too big, freckles, no moustache). Image 4 is Ember our Dalmatian pup; give him a tiny red helmet with a blank brass plate.\nPaint the grand celebration card picture, TALL portrait. HARD RULE: the TOP 38 percent of the image is kept CALM and nearly empty so a large title and a number can be placed there later: only a flat dusk-navy night sky with a very few tiny four-point stars, no objects, no characters, no coins, no rays there. All the action sits in the LOWER 60 percent, centred: the red ladder fire truck of Image 2 in three-quarter view at the bottom, its ladder raised; Chief Hamm standing triumphantly on top of the truck in the middle of the lower part, one fist raised, blowing his brass bugle with puffed cheeks and happy eyes; Sprocket cheering on the ladder with both arms up, his big helmet flying off; Ember jumping beside the front wheel, barking with joy. A fountain of chunky gold coins (ink-outlined, each with a raised pig-snout emblem, no numbers or currency signs) bursts from the truck's water cannon and showers down around them, with bold flat brass-gold rays behind the truck that stay below the calm sky band. Joyous and legendary.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/cards_maxwin_portrait.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png",
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: max-win card portrait, calm top third; also splash maxwin",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:36",
+    "status": "OK",
+    "output": "art-src/generated/cards/maxwin_portrait.png",
+    "sha256": "7639d82623ce894a543d6514c9c9e25b1d96fe9c5f7ff62d3138220c63eae8ff",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 6397,
+      "input_tokens_details": {
+        "image_tokens": 5632,
+        "text_tokens": 765
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 7769
+    },
+    "seconds": 36.2
+  },
+  {
+    "asset": "card_alarm",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is Sprocket, our lanky rookie pig firefighter: keep his identity exactly (narrow face, small round freckled snout, big eager eyes, no moustache, a white fire helmet clearly too big for him with a plain BLANK brass shield plate, engine-red turnout coat with hydrant-yellow bands, dusk-navy trousers). Image 2 is our red ALARM bell on its red box and Image 3 is our GOLDEN alarm bell on its gold box: draw both exactly in this design. Image 4 is Ember, our Dalmatian pup with a red collar; give him a tiny red fire helmet with a blank brass plate.\nPaint this card picture, indoors at the firehouse dispatch desk at night: behind, a big wall-mounted dispatch board in a brass frame, a dark dusk-navy panel with a neat grid of small round lamps glowing cream, yellow and red, and a simple flat cartoon city map drawn as plain shapes (blocks and streets, no writing). The red alarm bell of Image 2 is mounted on the board's upper left and the golden alarm bell of Image 3 on its upper right, both ringing with bold yellow motion arcs. In the centre of the middle band, Sprocket stands at the desk in three-quarter view, half-length, one arm flung out, having just FLIPPED a large playing-card-sized dispatch card up into the air: the card spins mid-flip in front of the board at the exact centre of the picture, big and readable, shown edge-turning in perspective with flat speed arcs; its front is a plain cream card with a thick engine-red border and a brass corner trim and a BLANK centre, its back is solid engine red with a simple brass flame-and-snout emblem (no letters). Sprocket watches it with wide hopeful eyes and a nervous excited grin, his big helmet slipping over one brow. Ember sits on the desk at the right, head tilted, ears up, watching the card. Warm lamp light, rich red and brass, a cosy busy station.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_alarm.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png",
+      "art-src/generated/symbols/sym_sq_alarm.png",
+      "art-src/generated/symbols/sym_sq_galarm.png",
+      "art-src/generated/rig_pf_dog/master_pf_dog.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: alarm_call buy card + splash alarm",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:35",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_alarm.png",
+    "sha256": "835b175bcae2a647eed6af6cd700899ab0c9e22be4a5718b14ca2007af41f111",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 6123,
+      "input_tokens_details": {
+        "image_tokens": 5120,
+        "text_tokens": 1003
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 7495
+    },
+    "seconds": 37.0
+  },
+  {
+    "asset": "card_lines",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is OUR HERO Chief Hamm (keep his identity exactly: flat wide pink snout, dark-brown chevron moustache, near-level brows, white fire helmet with a plain BLANK brass shield plate, engine-red coat with hydrant-yellow bands). Image 2 is Sprocket, the lanky rookie pig with a helmet too big for him (no moustache, freckles). Image 3 is Ember, our Dalmatian pup; give him a tiny red helmet with a blank brass plate. Image 4 is our firehouse at dusk; use it as the setting and style.\nPaint this card picture: the apron in front of the firehouse at dusk, seen straight-on. THREE long cream fire hoses run perfectly PARALLEL and straight across the whole middle band of the picture from the left edge to the right edge, one above the other with even gaps, like three clean horizontal lines, each ending on the right in a brass nozzle that shoots a bold flat cream-and-light-blue water jet off to the right. Chief Hamm stands at the left-centre, half-length, holding the top hose steady under one arm and pointing along the line to the right with a big confident smile. Sprocket in the centre hugs the middle hose, comically wrapped in one loop of it, grinning. Ember at the right-centre trots along holding the bottom hose in his mouth, tail up. The hoses are the strongest shapes in the picture: clean, readable, running left to right. Red slat bay door and red brick behind, warm glowing windows.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_lines.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/generated/rig_pf_rookie/master_pf_rookie.png",
+      "art-src/generated/rig_pf_dog/master_pf_dog.png",
+      "art-src/generated/scene/plate_base_16_9.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "PF cards step 4: splash lines card",
+    "attempt": 1,
+    "ts": "2026-09-25T05:27:36",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_lines.png",
+    "sha256": "af4781ec8a31d7c9c636e1ec1056b25f5a67b1757ee047af3b526ec1f2ffaa9d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 7044,
+      "input_tokens_details": {
+        "image_tokens": 6144,
+        "text_tokens": 900
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 8416
+    },
+    "seconds": 37.2
   }
 ]

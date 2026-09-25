@@ -123,7 +123,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/anticipation_layer.ogg",
 			"assets/audio/piggy_firefighters/anticipation_layer.m4a"
 		],
-		"gain": 0.4,
+		"gain": 0.401,
 		"durationMs": 10554.8,
 		"priority": 9,
 		"maxInstances": 1,
@@ -140,7 +140,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/backdraft_spins_layer.ogg",
 			"assets/audio/piggy_firefighters/backdraft_spins_layer.m4a"
 		],
-		"gain": 0.545,
+		"gain": 0.552,
 		"durationMs": 31424.4,
 		"priority": 9,
 		"maxInstances": 1,
@@ -1364,7 +1364,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_embers.ogg",
 			"assets/audio/piggy_firefighters/burst_embers.m4a"
 		],
-		"gain": 1.541,
+		"gain": 1.542,
 		"durationMs": 972.3,
 		"priority": 7,
 		"maxInstances": 2,
@@ -2698,7 +2698,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_embers_turbo.ogg",
 			"assets/audio/piggy_firefighters/burst_embers_turbo.m4a"
 		],
-		"gain": 1.431,
+		"gain": 1.57,
 		"durationMs": 533.2,
 		"priority": 7,
 		"maxInstances": 2,

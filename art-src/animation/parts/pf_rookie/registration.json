@@ -14,7 +14,8 @@
         "tx": 11.855408101354698,
         "ty": 59.667004747012186,
         "score": 0.6986,
-        "coarse_score": 0.7736
+        "coarse_score": 0.7736,
+        "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_rookie/body_no_head_no_arms.png"
     },
@@ -25,7 +26,8 @@
         "tx": 238.00669969704745,
         "ty": -18.86409569574218,
         "score": 0.6484,
-        "coarse_score": 0.7057
+        "coarse_score": 0.7057,
+        "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_rookie/head_no_helmet.png"
     },
@@ -36,7 +38,8 @@
         "tx": 366.4324709744948,
         "ty": 259.3877513057813,
         "score": 0.608,
-        "coarse_score": 0.6752
+        "coarse_score": 0.6752,
+        "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_rookie/head_blank.png"
     },
@@ -47,7 +50,8 @@
         "tx": 168.44600000000003,
         "ty": 3.260000000000005,
         "score": 0.3197,
-        "coarse_score": 0.3426
+        "coarse_score": 0.3426,
+        "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_rookie/helmet_only.png"
     },
@@ -58,7 +62,8 @@
         "tx": 188.38190554474656,
         "ty": 316.39457151878236,
         "score": 0.6769,
-        "coarse_score": 0.7999
+        "coarse_score": 0.7999,
+        "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_rookie/arms_down.png",
       "split": {
@@ -73,7 +78,8 @@
         "tx": 65.62033787644907,
         "ty": 270.93053836003844,
         "score": 0.8011,
-        "coarse_score": 0.8711
+        "coarse_score": 0.8711,
+        "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_rookie/legs.png",
       "split": {
@@ -88,9 +94,15 @@
         "tx": 52.397659308204766,
         "ty": 116.43914448736541,
         "score": 0.6724,
-        "coarse_score": 0.7428
+        "coarse_score": 0.7428,
+        "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_rookie/coat_tails.png"
+    },
+    "helmet_front": {
+      "derived_from": "helmet_only",
+      "method": "navy lining pixels over the registered head (eroded 6 px) made transparent; the ink rim is kept",
+      "file": "art-src/animation/parts/pf_rookie/helmet_front.png"
     },
     "arms_raised": {
       "raw": "art-src/generated/rig_pf_rookie/arms_raised.png",
@@ -128,8 +140,8 @@
     "hands_sheet": {
       "sheet": "art-src/animation/parts/pf_rookie/hands_sheet.png",
       "raw": "art-src/generated/rig_pf_rookie/hands_sheet.png",
-      "sheet_scale_to_canvas": 0.5786325004867234,
-      "scale_method": "hand_r_open registered to arm_right (score 0.5862)",
+      "sheet_scale_to_canvas": 0.6346548918997281,
+      "scale_method": "sqrt(largest skin region of arm_right / of hand_r_open)",
       "pieces": {
         "hand_r_open": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_open.png",
@@ -142,14 +154,7 @@
             150
           ],
           "components": 1,
-          "fit_to_canvas": {
-            "s": 0.5786325004867234,
-            "tx": 233.6854699980531,
-            "ty": 787.6854699980531,
-            "score": 0.5862,
-            "coarse_score": 0.7062
-          },
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_r_grip": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_grip.png",
@@ -162,7 +167,7 @@
             150
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_r_catch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_catch.png",
@@ -175,7 +180,7 @@
             168
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_r_pinch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_pinch.png",
@@ -188,7 +193,7 @@
             178
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_r_point": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_point.png",
@@ -201,7 +206,7 @@
             191
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_l_open": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_open.png",
@@ -214,7 +219,7 @@
             567
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_l_grip": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_grip.png",
@@ -227,7 +232,7 @@
             567
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_l_catch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_catch.png",
@@ -240,7 +245,7 @@
             571
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_l_pinch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_pinch.png",
@@ -253,7 +258,7 @@
             585
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         },
         "hand_l_point": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_point.png",
@@ -266,7 +271,7 @@
             608
           ],
           "components": 1,
-          "scale_to_canvas": 0.5786
+          "scale_to_canvas": 0.6347
         }
       },
       "missing": []
@@ -274,89 +279,50 @@
     "face_sheet": {
       "sheet": "art-src/animation/parts/pf_rookie/face_sheet.png",
       "raw": "art-src/generated/rig_pf_rookie/face_sheet.png",
-      "sheet_scale_to_canvas": 0.557836625637996,
-      "scale_method": "ear_left registered to head_no_helmet (score 0.9978)",
+      "sheet_scale_to_canvas": 0.6225401367695543,
+      "scale_method": "sqrt(largest white region of head_no_helmet / of eyes_open)",
       "pieces": {
         "eyes_open": {
           "file": "art-src/animation/parts/pf_rookie/pieces/eyes_open.png",
           "size": [
-            265,
-            82
+            282,
+            195
           ],
           "sheet_origin": [
             67,
             57
           ],
-          "components": 2,
-          "scale_to_canvas": 0.5578
+          "components": 4,
+          "scale_to_canvas": 0.6225
         },
         "eyes_dart": {
           "file": "art-src/animation/parts/pf_rookie/pieces/eyes_dart.png",
           "size": [
-            257,
-            77
+            269,
+            182
           ],
           "sheet_origin": [
             1209,
             72
           ],
-          "components": 2,
-          "scale_to_canvas": 0.5578
-        },
-        "eyes_happy": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/eyes_happy.png",
-          "size": [
-            103,
-            60
-          ],
-          "sheet_origin": [
-            623,
-            101
-          ],
-          "components": 1,
-          "scale_to_canvas": 0.5578
+          "components": 4,
+          "scale_to_canvas": 0.6225
         },
         "eyes_closed": {
           "file": "art-src/animation/parts/pf_rookie/pieces/eyes_closed.png",
           "size": [
-            107,
-            60
+            294,
+            112
           ],
           "sheet_origin": [
             432,
-            109
+            101
           ],
-          "components": 1,
-          "scale_to_canvas": 0.5578
+          "components": 4,
+          "scale_to_canvas": 0.6225
         },
-        "brows_neutral": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/brows_neutral.png",
-          "size": [
-            280,
-            153
-          ],
-          "sheet_origin": [
-            69,
-            99
-          ],
-          "components": 2,
-          "scale_to_canvas": 0.5578
-        },
-        "brows_embarrassed": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/brows_embarrassed.png",
-          "size": [
-            262,
-            136
-          ],
-          "sheet_origin": [
-            1216,
-            118
-          ],
-          "components": 2,
-          "scale_to_canvas": 0.5578
-        },
-        "brows_worried": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/brows_worried.png",
+        "eyes_happy": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/eyes_happy.png",
           "size": [
             304,
             63
@@ -366,98 +332,150 @@
             145
           ],
           "components": 2,
-          "scale_to_canvas": 0.5578
+          "scale_to_canvas": 0.6225
         },
-        "brows_raised": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/brows_raised.png",
-          "size": [
-            291,
-            45
-          ],
-          "sheet_origin": [
-            433,
-            168
-          ],
-          "components": 2,
-          "scale_to_canvas": 0.5578
-        },
-        "mouth_oops": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_oops.png",
+        "brows_embarrassed": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/brows_embarrassed.png",
           "size": [
             285,
-            328
+            99
           ],
           "sheet_origin": [
             1203,
             338
           ],
-          "components": 3,
-          "scale_to_canvas": 0.5578
+          "components": 2,
+          "scale_to_canvas": 0.6225
         },
-        "mouth_open": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_open.png",
+        "brows_raised": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/brows_raised.png",
           "size": [
             295,
-            341
+            82
           ],
           "sheet_origin": [
             434,
             343
           ],
-          "components": 3,
-          "scale_to_canvas": 0.5578
+          "components": 2,
+          "scale_to_canvas": 0.6225
         },
-        "mouth_smile": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_smile.png",
+        "brows_worried": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/brows_worried.png",
           "size": [
-            277,
-            345
+            272,
+            77
           ],
           "sheet_origin": [
-            822,
+            824,
             348
           ],
-          "components": 3,
-          "scale_to_canvas": 0.5578
+          "components": 2,
+          "scale_to_canvas": 0.6225
         },
-        "mouth_closed": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_closed.png",
+        "brows_neutral": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/brows_neutral.png",
           "size": [
             302,
-            281
+            60
           ],
           "sheet_origin": [
             51,
             379
           ],
-          "components": 3,
-          "scale_to_canvas": 0.5578
+          "components": 2,
+          "scale_to_canvas": 0.6225
         },
-        "ear_right": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/ear_right.png",
+        "mouth_smile": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_smile.png",
           "size": [
-            634,
+            277,
+            161
+          ],
+          "sheet_origin": [
+            822,
+            532
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.6225
+        },
+        "mouth_open": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_open.png",
+          "size": [
+            264,
+            141
+          ],
+          "sheet_origin": [
+            446,
+            543
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.6225
+        },
+        "mouth_oops": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_oops.png",
+          "size": [
+            222,
+            91
+          ],
+          "sheet_origin": [
+            1233,
+            575
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.6225
+        },
+        "mouth_closed": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/mouth_closed.png",
+          "size": [
+            247,
+            70
+          ],
+          "sheet_origin": [
+            85,
+            590
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.6225
+        },
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/ear_left.png",
+          "size": [
+            234,
             235
           ],
           "sheet_origin": [
             833,
             742
           ],
-          "components": 2,
-          "scale_to_canvas": 0.5578
+          "components": 1,
+          "scale_to_canvas": 0.6225
+        },
+        "ear_right": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/ear_right.png",
+          "size": [
+            230,
+            233
+          ],
+          "sheet_origin": [
+            1237,
+            742
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.6225
         },
         "mouth_shout": {
           "file": "art-src/animation/parts/pf_rookie/pieces/mouth_shout.png",
           "size": [
-            217,
-            177
+            236,
+            181
           ],
           "sheet_origin": [
             458,
             754
           ],
-          "components": 2,
-          "scale_to_canvas": 0.5578
+          "components": 3,
+          "scale_to_canvas": 0.6225
         },
         "mouth_sad": {
           "file": "art-src/animation/parts/pf_rookie/pieces/mouth_sad.png",
@@ -470,27 +488,7 @@
             833
           ],
           "components": 1,
-          "scale_to_canvas": 0.5578
-        },
-        "ear_left": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/ear_left.png",
-          "size": [
-            48,
-            48
-          ],
-          "sheet_origin": [
-            646,
-            887
-          ],
-          "components": 1,
-          "fit_to_canvas": {
-            "s": 0.557836625637996,
-            "tx": 465.76865349744804,
-            "ty": 121.76865349744801,
-            "score": 0.9978,
-            "coarse_score": 1.0
-          },
-          "scale_to_canvas": 0.5578
+          "scale_to_canvas": 0.6225
         }
       },
       "missing": []
@@ -498,21 +496,34 @@
     "props": {
       "sheet": "art-src/animation/parts/pf_rookie/props.png",
       "raw": "art-src/generated/rig_pf_rookie/props.png",
-      "sheet_scale_to_canvas": null,
-      "scale_method": "no counterpart on the master: size it by eye in Spine",
+      "sheet_scale_to_canvas": 0.6346548918997281,
+      "scale_method": "assumed equal to the hands_sheet scale (no counterpart on the master; hose ~ grip hole)",
       "pieces": {
         "hose_flexible": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hose_flexible.png",
           "size": [
             1494,
-            537
+            162
           ],
           "sheet_origin": [
             21,
             90
           ],
-          "components": 2,
-          "scale_to_canvas": null
+          "components": 1,
+          "scale_to_canvas": 0.6347
+        },
+        "hose_coil": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/hose_coil.png",
+          "size": [
+            1127,
+            324
+          ],
+          "sheet_origin": [
+            234,
+            303
+          ],
+          "components": 1,
+          "scale_to_canvas": 0.6347
         },
         "card_back": {
           "file": "art-src/animation/parts/pf_rookie/pieces/card_back.png",
@@ -525,7 +536,7 @@
             669
           ],
           "components": 1,
-          "scale_to_canvas": null
+          "scale_to_canvas": 0.6347
         },
         "card_blank": {
           "file": "art-src/animation/parts/pf_rookie/pieces/card_blank.png",
@@ -538,12 +549,10 @@
             670
           ],
           "components": 1,
-          "scale_to_canvas": null
+          "scale_to_canvas": 0.6347
         }
       },
-      "missing": [
-        "hose_coil"
-      ]
+      "missing": []
     }
   },
   "master": {
