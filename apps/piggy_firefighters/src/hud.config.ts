@@ -85,7 +85,7 @@ const stringOverrides = {
 
 	BUY_BACKDRAFT_SPINS_TITLE: MODE_TITLE.backdraft_spins,
 	BUY_BACKDRAFT_SPINS_SPEC: '{spins} spins · a Backdraft every spin',
-	BUY_BACKDRAFT_SPINS_DESC: `{spins} spins, and every spin gets a ${MECHANIC.backdraft}: {blazeMin}–{blazeMax} cells burst into ${MECHANIC.blazeWild}s before the line wins are counted.`,
+	BUY_BACKDRAFT_SPINS_DESC: `{spins} spins, and every spin gets a ${MECHANIC.backdraft}: {blazeMin}–{blazeMax} cells burst into ${MECHANIC.blazeWild}s carrying {mults} that ADD UP along a line.`,
 
 	BUY_ALARM_CALL_TITLE: MODE_TITLE.alarm_call,
 	BUY_ALARM_CALL_SPEC: `${FEATURE.rescue} · ${FEATURE.inferno} · or a ${MECHANIC.falseAlarm}`,
@@ -111,7 +111,7 @@ const copySubs = (modeKey: string): Record<string, string | number> => {
 		case 'ante':
 			return { cost: config.betModes.ante.cost, chance: CONTRACT.anteChance };
 		case 'backdraft_spins':
-			return { spins: CONTRACT.backdraftSpins, blazeMin: CONTRACT.backdraftSpinsBlaze[0], blazeMax: CONTRACT.backdraftSpinsBlaze[1] };
+			return { spins: CONTRACT.backdraftSpins, blazeMin: CONTRACT.backdraftSpinsBlaze[0], blazeMax: CONTRACT.backdraftSpinsBlaze[1], mults: CONTRACT.backdraftSpinsMultText };
 		case 'alarm_call':
 			return { infernoPct: CONTRACT.alarmCallInferno };
 		case 'rescue':

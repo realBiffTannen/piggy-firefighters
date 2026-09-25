@@ -1,3 +1,4 @@
+// @ts-nocheck — a node-run config file, not app code (svelte-check type-checks every .js with checkJs)
 // ESLint 9 flat config for the game app. The donor's `.eslintrc.cjs` (extends `custom`, plugin `svelte3`) cannot load
 // under ESLint 9 (no flat config, and eslint-plugin-svelte3 is not installed), so `pnpm lint` failed before linting a
 // single file. This config uses the SAME plugins the workspace's `eslint-config-custom` package installs

@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Contract v1.2 (Codex M2): shared canonical bonus banks per (bonus, starting-spin class) with common
+  weights; base/ante fit non-bonus outcomes only; 350k = simulation trials per bonus mode, publication rows follow
+  (alarm_call 700,001). Histogram-law alternative declined.
 - 2026-09-25 — Codex M1: 60k dev books, base RTP 0.967 SD 14.4 in band; ante etl40b 1.009 (solver fix in progress).
   Pricing decision: adopt derived 18x rescue / 90x inferno / ≈12x alarm_call; tune backdraft_spins toward 50x (organic
   109x rejected as above the flagship). `buildingCleared.building` = 1-based ordinal of the cleared building.

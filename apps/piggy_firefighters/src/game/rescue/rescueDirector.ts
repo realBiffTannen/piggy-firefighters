@@ -99,7 +99,7 @@ export const igniteCell = (cell: Cell) => {
 	const reel = stateGame.board[cell.reel];
 	const symbol = reel?.reelState.symbols[cell.row + 1];
 	if (!symbol || symbol.rawSymbol.blaze) return;
-	symbol.rawSymbol = { name: 'W', wild: true, blaze: true };
+	symbol.rawSymbol = cell.mult ? { name: 'W', wild: true, blaze: true, blazeMult: cell.mult } : { name: 'W', wild: true, blaze: true };
 };
 
 export const backdraft = async (e: Ev<'backdraft'>) => {

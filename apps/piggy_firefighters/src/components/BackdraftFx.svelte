@@ -34,6 +34,25 @@
 	const cellY = (row: number) => (row + 0.5) * S;
 	const FLAME = [0xff7a1a, 0xf5d23c, 0xff4a1a, 0xffb347];
 
+	// Backdraft Spins: every Blaze Wild carries a multiplier (contract v1.1 §7). Its badge sits on the cell until the
+	// next reveal clears the board (`paylinesClear`). Placeholder picture: a brass disc with the figure.
+	const badges: PIXI.Container[] = [];
+	const badge = (c: { reel: number; row: number; mult?: number }) => {
+		if (!root || !c.mult) return;
+		const node = new PIXI.Container();
+		const disc = new PIXI.Graphics().circle(0, 0, S * 0.17).fill(0xe9b23b).stroke({ width: 4, color: 0x3a2213 });
+		const label = new PIXI.Text({
+			text: `x${c.mult}`,
+			style: { fontFamily: 'StationSign, Lilita One, Inter, sans-serif', fontSize: S * 0.17, fill: 0x3a2213, align: 'center' },
+		});
+		label.anchor.set(0.5);
+		node.addChild(disc, label);
+		node.position.set(cellX(c.reel) + S * 0.3, cellY(c.row) - S * 0.3);
+		root.addChild(node);
+		badges.push(node);
+	};
+	const clearBadges = () => badges.splice(0).forEach((b) => b.destroy({ children: true }));
+
 	type P = { g: PIXI.Graphics; on: boolean; x: number; y: number; vx: number; vy: number; life: number; max: number; s: number };
 	const MAX = 120;
 	let root: PIXI.Container | undefined;
@@ -79,7 +98,9 @@
 		run = undefined;
 		if (!r) return;
 		r.cells.forEach((c) => {
-			if (!c.done) igniteCell(c);
+			if (c.done) return;
+			igniteCell(c);
+			badge(c);
 		});
 		if (flash) flash.alpha = 0;
 		r.resolve();
@@ -121,6 +142,7 @@
 			if (c.done || front < cellX(c.reel)) return;
 			c.done = true;
 			igniteCell(c);
+			badge(c);
 			burst(cellX(c.reel), cellY(c.row));
 			audioDirector.blazeIgnite(n);
 		});
@@ -128,12 +150,16 @@
 	};
 
 	context.eventEmitter.subscribeOnMount({
+		paylinesClear: () => clearBadges(),
 		backdraftFx: ({ cells }) =>
 			new Promise<void>((resolve) => {
 				finish(); // a newer backdraft supersedes an older one (never left hanging)
 				const ordered = [...cells].sort((a, b) => a.reel - b.reel || a.row - b.row).map((c) => ({ ...c, at: 0, done: false }));
 				if (prefersReducedMotion() || !root) {
-					ordered.forEach((c) => igniteCell(c));
+					ordered.forEach((c) => {
+						igniteCell(c);
+						badge(c);
+					});
 					setTimeout(resolve, 300);
 					return;
 				}
@@ -162,6 +188,7 @@
 		return () => {
 			boardTicker.remove(tick);
 			finish();
+			clearBadges();
 			parts.splice(0).forEach((p) => p.g.destroy());
 			flash?.destroy();
 			flash = undefined;

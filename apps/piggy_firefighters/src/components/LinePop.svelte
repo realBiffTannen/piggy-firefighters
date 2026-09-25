@@ -6,7 +6,7 @@
 				lineIndex: number;
 				positions: { reel: number; row: number }[];
 				amount: number;
-				/** the global (Rescue) multiplier this win was paid at, if above x1 */
+				/** the multiplier this win was paid at (Rescue global x Blaze Wild sum), if above x1 */
 				multiplier?: number;
 		  };
 </script>

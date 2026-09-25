@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-25T03:26:35.630Z",
+  "at": "2026-09-25T03:40:08.031Z",
   "browser": "chromium 141.0.7390.37",
   "game": "http://127.0.0.1:3003/",
   "rgs": "127.0.0.1:3036",
@@ -9,7 +9,39 @@
       "passed": true,
       "console_errors": 0,
       "finalWin": 100,
-      "ms": 71010,
+      "ms": 63208,
+      "errors": []
+    },
+    {
+      "fixture": "base_backdraft_win",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 380,
+      "ms": 90984,
+      "errors": []
+    },
+    {
+      "fixture": "base_trigger_rescue",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 370,
+      "ms": 221518,
+      "errors": []
+    },
+    {
+      "fixture": "alarm_call_false",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 0,
+      "ms": 19168,
+      "errors": []
+    },
+    {
+      "fixture": "max_win",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 1500000,
+      "ms": 386258,
       "errors": []
     }
   ]

@@ -1441,7 +1441,7 @@
   {
    "index": 31,
    "type": "winInfo",
-   "totalWin": 1500000,
+   "totalWin": 1438420,
    "wins": [
     {
      "symbol": "W",
@@ -1922,7 +1922,7 @@
     {
      "symbol": "W",
      "kind": 5,
-     "win": 102500,
+     "win": 3420,
      "positions": [
       {
        "reel": 0,
@@ -1956,7 +1956,7 @@
     {
      "symbol": "W",
      "kind": 5,
-     "win": 102500,
+     "win": 0,
      "positions": [
       {
        "reel": 0,
@@ -1990,7 +1990,7 @@
     {
      "symbol": "W",
      "kind": 5,
-     "win": 102500,
+     "win": 0,
      "positions": [
       {
        "reel": 0,
@@ -2024,7 +2024,7 @@
     {
      "symbol": "W",
      "kind": 5,
-     "win": 102500,
+     "win": 0,
      "positions": [
       {
        "reel": 0,
@@ -2058,7 +2058,7 @@
     {
      "symbol": "W",
      "kind": 5,
-     "win": 102500,
+     "win": 0,
      "positions": [
       {
        "reel": 0,
@@ -2092,7 +2092,7 @@
     {
      "symbol": "W",
      "kind": 5,
-     "win": 102500,
+     "win": 0,
      "positions": [
       {
        "reel": 0,
@@ -2133,7 +2133,7 @@
   {
    "index": 33,
    "type": "setWin",
-   "amount": 1500000,
+   "amount": 1441920,
    "winLevel": 10
   },
   {
@@ -2144,7 +2144,7 @@
   {
    "index": 35,
    "type": "rescueEnd",
-   "amount": 1500000,
+   "amount": 1499950,
    "multiplier": 41,
    "rescued": 20,
    "buildings": 4
