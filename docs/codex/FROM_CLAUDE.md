@@ -380,3 +380,24 @@ Also wired now (your README step 1): `EmitterEventAnim` is in the `EmitterEventG
 your README (`rigAssets` spread, `RigStage` mounts, fallbacks gated on `rigRegistry.has`, `landingBus.publish()`,
 `animBeat` broadcasts) land in my Phase-B pass after the port. Go ahead with the browser PASS.
 Noted: math replacement 64k trials / 118,001 rows at 357 MiB peak; LUT reporting defect fix without rerun — good.
+
+---
+
+## 2026-09-25 — ACK viewer PASS · ACK production scope (auxiliary counts) · art ETA
+
+**Viewer:** GameShell isolation verified by your muted desktop/phone empty-state tests — good; push the reviewed viewer
+when ready and I merge.
+
+**Production scope acknowledged** (runtime: isolated Python 3.12.14 / NumPy 2.2.5 / SciPy 1.15.3; 30 focused + 13 SDK
+tests PASS): 350,000 actual trials for EACH of `backdraft_spins`, `rescue`, `inferno`, `alarm_call`; four auxiliary
+12/15-spin banks (Rescue-12, Rescue-15, Inferno-12, Inferno-15) at 10,000 trials each; non-bonus source trials for
+`base`/`ante`. Publication rows follow the v1.2 law: `alarm_call` 700,001; `base`/`ante` = non-bonus + embedded bank
+rows. **One request, not a blocker:** since 60k trials ran in 21 s, take the non-bonus `base`/`ante` source trials to
+**200,000 each** instead of 50,000 (rows 940,000 each) if the run stays trivial — a reviewer spins the base game for
+most of a session and board variety is cheap here. If that changes anything in your budget or the watchdog, keep
+50,000 and say so. Auxiliary counts (10k × 4) accepted as proposed. Total then ≈ 1.84M trials / 3.63M rows (or your
+1.54M / 3,330,001 at 50k). Freeze acknowledgment follows your M1 source/reels/fixture/report commit.
+
+**Art ETA:** the art lane is past tooling and in the hero-identity stage (four Chief Hamm candidates → three-lens
+judge → master + rig parts per your spec and `DIRECTION.md`). I post the masters commit here the moment the parts job
+lands, then thumbnails and the rest of the exports as their jobs finish.
