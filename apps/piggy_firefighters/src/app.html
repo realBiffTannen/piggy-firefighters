@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+		<title>LUCKY</title>
+		<style>
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+				overscroll-behavior: none;
+			}
+			canvas {
+				display: block;
+			}
+			.hud-readout__mult-name {
+				display: none;
+			}
+			.feature-buy__card-title,
+			.hud-rules__sub {
+				text-transform: none;
+			}
+			@media (min-width: 721px) {
+				html body .feature-buy__cards--crowded {
+					flex-wrap: wrap;
+					row-gap: clamp(6px, 1.2vw, 20px);
+				}
+				html body .feature-buy__cards--crowded .feature-buy__card {
+					flex: 0 0 calc((100% - 3 * clamp(6px, 1.2vw, 20px)) / 4);
+					max-width: 275px;
+				}
+				html body .feature-buy__cards--crowded .feature-buy__card-top {
+					gap: clamp(6px, 1.8vh, 14px);
+				}
+				html body .feature-buy__card-price {
+					overflow-wrap: normal;
+					word-break: keep-all;
+				}
+			}
+			@media (min-width: 1000px) {
+				html body .feature-buy__cards--crowded .feature-buy__card-title {
+					min-height: 0;
+				}
+			}
+			.hud-rules__award > .hud-rules__award-value {
+				flex: 0 1 auto;
+				min-width: 0;
+			}
+			html,
+			html *:not(input):not(textarea) {
+				-webkit-user-select: none;
+				user-select: none;
+				-webkit-touch-callout: none;
+				-webkit-user-drag: none;
+			}
+			@font-face {
+				font-family: 'Inter';
+				font-style: normal;
+				font-weight: 100 900;
+				font-display: swap;
+				src: url('%sveltekit.assets%/assets/fonts/InterVariable.woff2') format('woff2');
+			}
+			@font-face {
+				font-family: 'LuckySign';
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url('%sveltekit.assets%/assets/fonts/AlfaSlabOne-Regular.woff2') format('woff2');
+			}
+			@font-face {
+				font-family: 'Lilita One';
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url('%sveltekit.assets%/assets/fonts/LilitaOne/LilitaOne-Regular.ttf') format('truetype');
+			}
+			html[data-replay-error] .replay-preroll {
+				display: none !important;
+			}
+			@media (max-height: 210px) and (min-aspect-ratio: 13/10) {
+				@media not all and (max-aspect-ratio: 13/10) {
+					html body .hud {
+						gap: 3px;
+					}
+					html body .hud-panel--info {
+						display: grid;
+						grid-auto-flow: column;
+						grid-template-rows: auto auto;
+						grid-auto-columns: max-content;
+						align-content: center;
+						justify-content: start;
+						column-gap: 4px;
+						row-gap: 1px;
+						padding: 0 5px 0 4px;
+					}
+					html body .hud-panel--info > .hud-menu-anchor {
+						grid-row: 1 / span 2;
+						margin: 0;
+						align-self: center;
+					}
+					html body .hud-panel--info > .hud-readout {
+						justify-content: center;
+						min-width: 0;
+						max-width: none;
+						margin: 0;
+						padding: 0;
+					}
+					html body .hud-panel--info > .hud-readout--spins,
+					html body .hud-panel--info > .hud-readout--netpos,
+					html body .hud-panel--info > .hud-readout--session {
+						grid-row: 1 / span 2;
+						align-self: center;
+					}
+					html body .hud-panel--info .hud-readout__label {
+						font-size: 6.5px;
+						line-height: 7px;
+					}
+					html body .hud-panel--info .hud-readout__value {
+						font-size: 8.5px;
+						line-height: 9.5px;
+						white-space: nowrap;
+					}
+					html body .hud-spin-group {
+						gap: 3px;
+						padding-right: 3px;
+					}
+					html body .hud-bet-block {
+						padding-left: 3px;
+					}
+					html body .hud-bet-amount {
+						padding: 2px;
+						gap: 2px;
+					}
+					html body .hud-readout__labelrow,
+					html body .hud-readout__labelrow-sizer,
+					html body .hud-readout__labelrow-live {
+						gap: 3px;
+					}
+					html body .hud-readout__mult {
+						padding: 0 3px;
+						font-size: 7px;
+						letter-spacing: 0.2px;
+						border-radius: 3px;
+					}
+					html body .hud-panel--info .hud-readout__value--long {
+						font-size: 7.5px;
+					}
+				}
+			}
+			@media (max-height: 210px) and (min-aspect-ratio: 13/10) and (max-width: 339px) {
+				@media not all and (max-aspect-ratio: 13/10) {
+					html body .hud,
+					html body .hud-spin-group {
+						gap: 2px;
+					}
+					html body .hud-spin-group {
+						padding-right: 1px;
+					}
+					html body .hud-spin-actions {
+						padding-right: 0;
+					}
+					html body .hud-bonus {
+						width: 41px;
+						min-width: 0;
+					}
+					html body .hud-panel--info {
+						column-gap: 3px;
+						padding: 0 3px;
+					}
+					html body .hud-panel--info > .hud-menu-anchor {
+						margin-inline: -2px;
+					}
+					html body .hud-panel--info .hud-readout__label {
+						font-size: 6px;
+						line-height: 6.5px;
+					}
+					html body .hud-panel--info .hud-readout__value {
+						font-size: 7.5px;
+						line-height: 8.5px;
+					}
+					html body .hud-panel--info .hud-readout__value--long {
+						font-size: 6.5px;
+					}
+					html body .hud-bet-amount .hud-readout__label {
+						font-size: 6px;
+					}
+					html body .hud-readout__mult {
+						font-size: 6.5px;
+						padding: 0 2px;
+					}
+					html body .hud-bet-amount .hud-readout__value {
+						font-size: 8.5px;
+					}
+					html body .hud-panel--info:has(> .hud-readout--spins:not(.empty)) > .hud-menu-anchor {
+						grid-column: 1;
+						grid-row: 1;
+					}
+					html body .hud-panel--info > .hud-readout--spins {
+						grid-column: 1;
+						grid-row: 2;
+						align-self: end;
+						justify-self: center;
+					}
+				}
+			}
+			@media (max-height: 210px) and (min-aspect-ratio: 13/10) {
+				@media not all and (max-aspect-ratio: 13/10) {
+					html body .hud:has(> .hud-bonus) .hud-panel--info > .hud-menu-anchor > .hud-menu {
+						box-sizing: border-box;
+						margin-inline: -7px -17px;
+						padding: 0 10px 0 0;
+					}
+				}
+			}
+			@media (max-height: 210px) and (min-aspect-ratio: 13/10) and (max-width: 339px) {
+				@media not all and (max-aspect-ratio: 13/10) {
+					html body .hud:has(> .hud-bonus) .hud-panel--info > .hud-menu-anchor > .hud-menu {
+						margin-inline: -1px -23px;
+						padding: 0 22px 0 0;
+					}
+				}
+			}
+		</style>
+		%sveltekit.head%
+	</head>
+	<body style="margin: 0; padding: 0; overflow: hidden; background-color: black">
+		<div>%sveltekit.body%</div>
+	</body>
+</html>
