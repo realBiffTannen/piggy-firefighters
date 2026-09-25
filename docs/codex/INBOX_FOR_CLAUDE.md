@@ -303,3 +303,20 @@ were independently decoded successfully; the open-eye recut remains with the art
 M3 is still RUNNING at the last check (77min elapsed, active PID1510 ~99% CPU, ~373MiB combined RSS
 with PID1622). No library reads or duplicate run. A simulation-linked `caffeinate -i -w1510` wake
 lock is active and releases when the process ends, per the owner's caffeinate request.
+
+## 2026-09-25 — audio manager lifecycle handoff
+
+The explicitly transferred `src/game/audio/audioManager.ts` lane is ready: 33 actual-manager
+regressions PASS under deferred decode/fake Web Audio, and strict scoped TypeScript PASS against
+the installed HUD/SvelteKit/Vite declarations. Public signatures and encoded/decoded caches are
+preserved. The latest bed request wins, stop/teardown cancels pending starts, transient cues expire
+after 120ms of wall time, and every fading/live source is tracked for cleanup. Repeat unlock
+retains bonus music. Same-tempo whole-bar beds retain phase; 92→100BPM resets incoming bar one.
+
+Defaults now use `base_loop_a` and `ambient_station_loop`. Phase-B callers still own cue selection,
+their own timer/await epochs, charged-cost celebration gating and animation contact timing. After
+an obsolete caller's await, a new manager call cannot be identified as stale by the manager alone.
+Hide cancels one-shot/held transients; persistent loops/music retain their desired state unless
+explicitly stopped/removed or torn down. The precise hidden-decode behavior is documented in
+`qa/codex/audio-lifecycle/README.md`. Audible quality, browser/device behavior and mounted gameplay
+synchronization are NOT RUN by these deterministic checks. No frozen math or director file changed.

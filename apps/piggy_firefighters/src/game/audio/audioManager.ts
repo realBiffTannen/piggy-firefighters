@@ -1,5 +1,5 @@
 /**
- * Piggy Workers — the ONE game audio manager.
+ * Piggy Firefighters — the game audio manager.
  *
  * A single Web Audio graph:
  *
@@ -29,6 +29,8 @@ const GAME_ID = 'piggy-firefighters';
 const MASTER_KEY = `${GAME_ID}-volume`;
 const MUTED_KEY = `${GAME_ID}-muted`;
 const MASTER_MAX_STEP = 20; // mirrors @crashgalaxy/hud VOLUME_MAX_STEP
+const DEFAULT_BED = 'base_loop_a';
+const DEFAULT_AMBIENCE = 'ambient_station_loop';
 
 const lsGet = (k: string): string | null => {
 	try {
@@ -89,7 +91,7 @@ const EVERYDAY_CUES = [
 	'anticipation_layer',
 	'reel_spin_loop',
 	'spin_whoosh',
-	'ambient_site_loop',
+	DEFAULT_AMBIENCE,
 	'sym_win_h1',
 	'sym_win_h2',
 	'sym_win_h3',
@@ -109,7 +111,7 @@ const EVERYDAY_CUES = [
 	'dead_spin_settle',
 ];
 
-/** A short one-shot that could not start within this window of its moment is dropped. */
+/** Any one-shot that could not start within this wall-time window is dropped. */
 const LATE_ONESHOT_MS = 120;
 
 // ---- log --------------------------------------------------------------------
@@ -117,10 +119,13 @@ type LogEntry = { t: number; kind: string; detail?: unknown };
 const LOG_CAP = 600;
 
 // ---- a live music bed voice -------------------------------------------------
-interface Bed {
-	id: string;
+interface Voice {
 	source: AudioBufferSourceNode;
 	gain: GainNode;
+	dispose: () => void;
+}
+interface Bed extends Voice {
+	id: string;
 	loopStart: number; // seconds
 	loopDur: number; // seconds
 	anchorTime: number; // ctx time the loop offset below was true at
@@ -147,6 +152,13 @@ class AudioManager implements Sfx {
 	private beds = new Map<string, Bed>(); // active music beds (usually one + a crossfade)
 	private layers = new Map<string, Bed>(); // additive stems (e.g. anticipation)
 	private currentBedId: string | null = null;
+	private liveVoices = new Set<Voice>(); // includes fading voices removed from their active map
+	private oneShots = new Set<Voice>();
+	private sceneEpoch = 0;
+	private transientEpoch = 0;
+	private requests = new Map<string, number>();
+	private bedRequest = 0;
+	private bedIntent: { id: string; fadeMs: number; crossfade: boolean } | null = null;
 
 	// per-cue concurrency + cooldown, and per-family coalescing
 	private active = new Map<string, number>();
@@ -164,6 +176,52 @@ class AudioManager implements Sfx {
 	private pushLog(kind: string, detail?: unknown) {
 		this.log.push({ t: Math.round(now()), kind, detail });
 		if (this.log.length > LOG_CAP) this.log.shift();
+	}
+
+	private transientReady(): boolean {
+		return !!this.ctx && this.unlocked && this.ctx.state === 'running'
+			&& !(typeof document !== 'undefined' && document.hidden);
+	}
+	private invalidateRequest(key: string): number {
+		const token = (this.requests.get(key) ?? 0) + 1;
+		this.requests.set(key, token);
+		return token;
+	}
+	private requestValidity(key: string): () => boolean {
+		const epoch = this.sceneEpoch;
+		const token = this.invalidateRequest(key);
+		return () => this.sceneEpoch === epoch && this.requests.get(key) === token;
+	}
+	private whenDecoded(id: string, valid: () => boolean, start: (buffer: AudioBuffer) => void): void {
+		const buffer = this.buffers.get(id);
+		if (buffer) { if (valid()) start(buffer); }
+		else void this.decode(id).then((decoded) => { if (decoded && valid()) start(decoded); });
+	}
+	private trackVoice(source: AudioBufferSourceNode, gain: GainNode, ended: (voice: Voice) => void = () => {}): Voice {
+		const voice: Voice = { source, gain, dispose: () => {
+			if (!this.liveVoices.delete(voice)) return;
+			source.onended = null;
+			try { source.disconnect(); } catch { /* already disconnected */ }
+			try { gain.disconnect(); } catch { /* already disconnected */ }
+			ended(voice);
+		} };
+		this.liveVoices.add(voice);
+		source.onended = voice.dispose;
+		return voice;
+	}
+	private stopVoice(voice: Voice, fadeMs = 0, ramp = true): void {
+		if (!this.liveVoices.has(voice)) return;
+		const t = this.ctx?.currentTime ?? 0;
+		const duration = Math.max(0, fadeMs) / 1000;
+		try {
+			if (duration && ramp) {
+				voice.gain.gain.cancelScheduledValues(t);
+				voice.gain.gain.setValueAtTime(Math.max(0.0001, voice.gain.gain.value), t);
+				voice.gain.gain.linearRampToValueAtTime(0.0001, t + duration);
+			}
+			voice.source.stop(t + (duration ? duration + 0.02 : 0));
+		} catch { voice.dispose(); }
+		if (!duration) voice.dispose();
 	}
 
 	constructor() {
@@ -247,18 +305,24 @@ class AudioManager implements Sfx {
 	 *  base bed. Safe to call more than once. Never throws to the caller. */
 	async unlock(): Promise<void> {
 		try {
+			const epoch = this.sceneEpoch;
 			if (!this.ctx) this.buildGraph();
 			if (!this.ctx) return; // no Web Audio: game continues silent
 			if (this.ctx.state === 'suspended') await this.ctx.resume().catch(() => {});
-			if (!this.unlocked) {
-				this.unlocked = true;
-				this.installVisibility();
-				this.pushLog('unlock', { state: this.ctx.state });
-			}
-			// start (or keep) the base bed on the shared grid
-			await this.ensureDecoded(['base_loop']);
-			this.startBed('base_loop');
-			void this.warmAll(EVERYDAY_CUES).then(() => this.startSfxLoop('ambient_site_loop', 1500));
+			if (this.ctx.state !== 'running' || epoch !== this.sceneEpoch || this.unlocked) return;
+			this.unlocked = true;
+			this.installVisibility();
+			this.pushLog('unlock', { state: this.ctx.state });
+			const intent = this.bedIntent ?? { id: DEFAULT_BED, fadeMs: 400, crossfade: false };
+			this.requestBed(intent.id, intent.fadeMs, intent.crossfade);
+			const request = this.bedRequest;
+			await this.ensureDecoded([intent.id]);
+			void this.warmAll(EVERYDAY_CUES);
+			void this.ensureDecoded([DEFAULT_AMBIENCE]).then(() => {
+				if (epoch === this.sceneEpoch && request === this.bedRequest && this.isBaseBed(this.currentBedId)) {
+					this.startSfxLoop(DEFAULT_AMBIENCE, 1500);
+				}
+			});
 		} catch (err) {
 			this.pushLog('unlockError', String(err));
 		}
@@ -304,6 +368,9 @@ class AudioManager implements Sfx {
 		document.addEventListener('visibilitychange', () => {
 			if (!this.ctx) return;
 			if (document.hidden) {
+				this.transientEpoch++;
+				for (const voice of [...this.oneShots]) this.stopVoice(voice);
+				for (const id of this.heldVoices.keys()) this.stopHeld(id, 0);
 				this.pushLog('hidden');
 			} else {
 				// Returning must NOT emit a backlog: we never queue one-shots, so
@@ -323,7 +390,9 @@ class AudioManager implements Sfx {
 		return this.turbo;
 	}
 	setTurbo(level: number): void {
-		this.turbo = Math.max(0, Math.min(2, Math.round(level)));
+		const next = Math.max(0, Math.min(2, Math.round(level)));
+		if (next !== this.turbo) this.transientEpoch++;
+		this.turbo = next;
 	}
 
 	// ===== decode / preload ==================================================
@@ -407,49 +476,53 @@ class AudioManager implements Sfx {
 			if (cue && cue.bus === 'music') this.pushLog('playCueWrongBus', { id });
 			return;
 		}
-		if (!this.ctx || !this.unlocked) return;
-		const t = now();
+		if (!this.transientReady()) return;
+		const requestedAt = now();
+		const epoch = this.sceneEpoch;
+		const transient = this.transientEpoch;
+		const options = { ...opts };
+		if (!this.canStartCue(id, cue, options, requestedAt)) return;
+		this.whenDecoded(id, () => {
+			if (epoch !== this.sceneEpoch || transient !== this.transientEpoch || !this.transientReady()) return false;
+			const lateMs = now() - requestedAt;
+			if (lateMs > LATE_ONESHOT_MS) {
+				this.pushLog('drop', { id, reason: 'late', lateMs: Math.round(lateMs) });
+				return false;
+			}
+			return this.canStartCue(id, cue, options, now());
+		}, (buffer) => {
+			this.startOneShot(id, cue, buffer, options.rate);
+			this.lastStartAt.set(id, now());
+			if (options.family) this.familyLastAt.set(options.family, now());
+		});
+	}
 
-		// Turbo: skip redundant decorative accents (never the soundtrack).
+	private canStartCue(id: string, cue: CueDef, opts: { family?: string; coalesceMs?: number }, t: number): boolean {
 		if (this.turbo >= 1 && cue.priority <= 2) {
 			this.pushLog('turboSkip', { id });
-			return;
+			return false;
 		}
 		// per-cue cooldown
 		const last = this.lastStartAt.get(id) ?? -1e9;
 		if (t - last < cue.cooldownMs) {
 			this.pushLog('drop', { id, reason: 'cooldown' });
-			return;
+			return false;
 		}
 		// per-family coalescing (readable clusters)
 		if (opts.family && opts.coalesceMs) {
 			const fl = this.familyLastAt.get(opts.family) ?? -1e9;
 			if (t - fl < opts.coalesceMs) {
 				this.pushLog('coalesce', { id, family: opts.family });
-				return;
+				return false;
 			}
 		}
 		// per-cue instance cap
 		const act = this.active.get(id) ?? 0;
 		if (act >= cue.maxInstances) {
 			this.pushLog('drop', { id, reason: 'maxInstances', cap: cue.maxInstances });
-			return;
+			return false;
 		}
-
-		const buf = this.buffers.get(id);
-		if (!buf) {
-			// Not decoded yet (should be rare after warmAll): a one-shot that arrives late is worse than
-			// none, because it lands on the wrong picture. Play it only if it is ready almost at once.
-			this.decode(id).then((b) => {
-				if (!b) return;
-				if (now() - t <= LATE_ONESHOT_MS || cue.durationMs >= 1500) this.startOneShot(id, cue, b, opts.rate);
-				else this.pushLog('drop', { id, reason: 'late', lateMs: Math.round(now() - t) });
-			});
-			return;
-		}
-		this.startOneShot(id, cue, buf, opts.rate);
-		this.lastStartAt.set(id, t);
-		if (opts.family) this.familyLastAt.set(opts.family, t);
+		return true;
 	}
 
 	private startOneShot(id: string, cue: CueDef, buf: AudioBuffer, rate?: number) {
@@ -465,14 +538,11 @@ class AudioManager implements Sfx {
 		src.connect(g);
 		g.connect(this.sfxUserGain);
 		this.active.set(id, (this.active.get(id) ?? 0) + 1);
-		src.onended = () => {
+		const voice = this.trackVoice(src, g, (ended) => {
+			this.oneShots.delete(ended);
 			this.active.set(id, Math.max(0, (this.active.get(id) ?? 1) - 1));
-			try {
-				g.disconnect();
-			} catch {
-				/* already gone */
-			}
-		};
+		});
+		this.oneShots.add(voice);
 		src.start(t0);
 		this.pushLog('cue', { id, bus: 'sfx', gain: cue.gain });
 	}
@@ -486,19 +556,22 @@ class AudioManager implements Sfx {
 	hasCue(id: string): boolean {
 		return id in CUES;
 	}
-	private heldVoices = new Map<string, { source: AudioBufferSourceNode; gain: GainNode }>();
+	private heldVoices = new Map<string, Voice>();
 	/** Start a stoppable one-shot from 0. Calling it again RESTARTS it (the previous voice fades in 40 ms). */
 	playHeld(id: string, opts: { rate?: number; level?: number } = {}): void {
-		if (!this.ctx || !this.unlocked || !this.sfxUserGain) return;
+		if (!this.transientReady() || !this.sfxUserGain) return;
 		const cue = CUES[id];
-		if (!cue) return;
-		const buf = this.buffers.get(id);
-		if (!buf) {
-			void this.decode(id);
-			return; // not ready: skipped this time, never started late
-		}
+		if (!cue || cue.bus !== 'sfx') return;
 		this.stopHeld(id, 40);
-		const ctx = this.ctx;
+		const valid = this.requestValidity(`held:${id}`);
+		const epoch = this.transientEpoch;
+		const requestedAt = now();
+		const options = { ...opts };
+		this.whenDecoded(id, () => valid() && epoch === this.transientEpoch && this.transientReady()
+			&& now() - requestedAt <= LATE_ONESHOT_MS, (buf) => this.startHeld(id, cue, buf, options));
+	}
+	private startHeld(id: string, cue: CueDef, buf: AudioBuffer, opts: { rate?: number; level?: number }) {
+		const ctx = this.ctx!;
 		const source = ctx.createBufferSource();
 		source.buffer = buf;
 		if (opts.rate && opts.rate > 0) source.playbackRate.value = opts.rate;
@@ -507,34 +580,21 @@ class AudioManager implements Sfx {
 		gain.gain.setValueAtTime(0.0001, t0);
 		gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, cue.gain * (opts.level ?? 1)), t0 + 0.012);
 		source.connect(gain);
-		gain.connect(this.sfxUserGain);
-		const voice = { source, gain };
+		gain.connect(this.sfxUserGain!);
+		const voice = this.trackVoice(source, gain, (ended) => {
+			if (this.heldVoices.get(id) === ended) this.heldVoices.delete(id);
+		});
 		this.heldVoices.set(id, voice);
-		source.onended = () => {
-			if (this.heldVoices.get(id) === voice) this.heldVoices.delete(id);
-			try {
-				gain.disconnect();
-			} catch {
-				/* already gone */
-			}
-		};
 		source.start(t0);
 		this.pushLog('heldStart', { id, rate: opts.rate ?? 1 });
 	}
 	/** Fade a held one-shot out and stop it. Safe when nothing is playing. */
 	stopHeld(id: string, fadeMs = 90): void {
+		this.invalidateRequest(`held:${id}`);
 		const voice = this.heldVoices.get(id);
-		if (!voice || !this.ctx) return;
+		if (!voice) return;
 		this.heldVoices.delete(id);
-		const t = this.ctx.currentTime;
-		try {
-			voice.gain.gain.cancelScheduledValues(t);
-			voice.gain.gain.setValueAtTime(Math.max(0.0001, voice.gain.gain.value), t);
-			voice.gain.gain.linearRampToValueAtTime(0.0001, t + fadeMs / 1000);
-			voice.source.stop(t + fadeMs / 1000 + 0.02);
-		} catch {
-			/* already stopped */
-		}
+		this.stopVoice(voice, fadeMs);
 		this.pushLog('heldStop', { id });
 	}
 
@@ -555,66 +615,70 @@ class AudioManager implements Sfx {
 	/** Start a bed as the sole primary bed (idempotent: a running same-id bed is
 	 *  kept). Used for the initial base bed on unlock and for teardown restore. */
 	startBed(id: string, fadeMs = 400): void {
-		if (!this.ctx || !this.musicDuckGain) return;
-		if (this.currentBedId === id && this.beds.has(id)) return; // already primary
-		const buf = this.buffers.get(id);
-		if (!buf) {
-			this.decode(id).then((b) => {
-				if (b && this.currentBedId !== id) this.startBed(id, fadeMs);
-			});
-			return;
-		}
-		// stop any other beds with a short fade, start this one from its phrase top
-		for (const [bid, bed] of this.beds) if (bid !== id) this.stopBedVoice(bed, 0.12);
-		this.beds.clear();
-		const cue = CUES[id];
-		const bed = this.spawnBed(id, cue, buf, this.ctx.currentTime + 0.02, 0);
-		this.rampBedGain(bed, 0.0001, cue.gain, fadeMs / 1000);
-		this.beds.set(id, bed);
-		this.currentBedId = id;
-		this.pushLog('bedStart', { id, fadeMs });
+		this.requestBed(id, fadeMs, false);
 	}
 
-	/**
-	 * Equal-power crossfade the primary bed to `id`, phase-aligned to the shared
-	 * grid so there is no doubled bass hit. Idempotent: crossfading to the bed
-	 * that is already primary is a no-op.
-	 */
+	/** Equal-power crossfade. Preserve phase only for compatible tempo/bar grids;
+	 *  otherwise begin the incoming bed at bar one. An already-primary bed stays
+	 *  playing, while its request still cancels any older pending switch. */
 	crossfadeToBed(id: string, durationMs = 700): void {
-		if (!this.ctx || !this.musicDuckGain) return;
-		if (this.currentBedId === id) return;
-		const buf = this.buffers.get(id);
-		if (!buf) {
-			this.decode(id).then((b) => {
-				if (b && this.currentBedId !== id) this.crossfadeToBed(id, durationMs);
-			});
-			return;
-		}
-		const ctx = this.ctx;
+		this.requestBed(id, durationMs, true);
+	}
+	private requestBed(id: string, durationMs: number, crossfade: boolean): void {
 		const cue = CUES[id];
+		if (!cue || cue.bus !== 'music') return;
+		this.bedIntent = { id, fadeMs: durationMs, crossfade };
+		const request = ++this.bedRequest;
+		const epoch = this.sceneEpoch;
+		// Preserve the latest intent before a user gesture without creating a context.
+		if (!this.ctx || !this.unlocked || !this.musicDuckGain) return;
+		// Even an idempotent request invalidates an older pending switch.
+		if (this.currentBedId === id && this.beds.has(id)) return;
+		this.whenDecoded(id, () => request === this.bedRequest && epoch === this.sceneEpoch,
+			(buffer) => this.activateBed(id, cue, buffer, durationMs, crossfade));
+	}
+	private isBaseBed(id: string | null): boolean {
+		return id === DEFAULT_BED || id === 'base_loop_b';
+	}
+	private compatibleGrid(a: CueDef, b: CueDef): boolean {
+		const tempo = a.tempoBpm;
+		if (!tempo || !Number.isFinite(tempo) || tempo <= 0 || tempo !== b.tempoBpm) return false;
+		const bar = 240 / tempo; // authored 4/4 beds
+		return [a, b].every(cue => {
+			const duration = this.bedGrid(cue).loopDur;
+			const bars = Math.round(duration / bar);
+			return bars > 0 && Math.abs(duration - bars * bar) <= 0.005;
+		});
+	}
+	private phaseAt(bed: Bed, time: number): number {
+		return ((bed.anchorPhase - bed.loopStart + time - bed.anchorTime) % bed.loopDur + bed.loopDur) % bed.loopDur;
+	}
+	private activateBed(id: string, cue: CueDef, buf: AudioBuffer, durationMs: number, crossfade: boolean) {
+		const ctx = this.ctx!;
 		const dur = Math.max(0.1, durationMs / 1000);
-		const startAt = ctx.currentTime + 0.03;
+		const startAt = ctx.currentTime + (crossfade ? 0.03 : 0.02);
 		const outgoing = this.currentBedId ? this.beds.get(this.currentBedId) : undefined;
-
-		// phase-align the incoming bed to the outgoing grid (all beds share tempo
-		// and are whole-bar loops), so downbeats/bass line up.
-		let offset = 0;
-		if (outgoing) {
-			const elapsed = startAt - outgoing.anchorTime;
-			const phase = (((outgoing.anchorPhase - outgoing.loopStart + elapsed) % outgoing.loopDur) + outgoing.loopDur) % outgoing.loopDur;
-			offset = phase;
-		}
+		const aligned = !!(crossfade && outgoing && this.compatibleGrid(CUES[outgoing.id], cue));
+		const offset = aligned && outgoing ? this.phaseAt(outgoing, startAt) : 0;
 		const incoming = this.spawnBed(id, cue, buf, startAt, offset);
-		// equal-power curves
-		this.equalPowerRamp(incoming.gain, 0, cue.gain, startAt, dur);
-		if (outgoing) {
-			this.equalPowerRamp(outgoing.gain, outgoing.gain.gain.value || CUES[outgoing.id].gain, 0, startAt, dur, true);
-			this.stopBedVoice(outgoing, dur + 0.05);
-			this.beds.delete(outgoing.id);
+		if (crossfade) this.equalPowerRamp(incoming.gain, 0, cue.gain, startAt, dur);
+		else this.rampBedGain(incoming, 0.0001, cue.gain, durationMs / 1000);
+		for (const bed of this.beds.values()) {
+			if (crossfade && bed === outgoing) {
+				this.equalPowerRamp(bed.gain, bed.gain.gain.value || CUES[bed.id].gain, 0, startAt, dur, true);
+				this.stopVoice(bed, (dur + 0.05) * 1000, false);
+			} else this.stopBedVoice(bed, 0.12);
 		}
+		this.beds.clear();
 		this.beds.set(id, incoming);
 		this.currentBedId = id;
-		this.pushLog('bedCrossfade', { to: id, durationMs, aligned: !!outgoing });
+		// A layer from a different known tempo cannot remain under the new scene.
+		for (const layerId of this.layers.keys()) {
+			const layer = CUES[layerId];
+			if (layer.tempoBpm && cue.tempoBpm && layer.tempoBpm !== cue.tempoBpm) this.removeLayer(layerId);
+		}
+		this.pushLog(crossfade ? 'bedCrossfade' : 'bedStart', crossfade
+			? { to: id, durationMs, aligned } : { id, fadeMs: durationMs });
 	}
 
 	private spawnBed(id: string, cue: CueDef, buf: AudioBuffer, startAt: number, offsetInLoop: number): Bed {
@@ -630,83 +694,85 @@ class AudioManager implements Sfx {
 		src.connect(g);
 		g.connect(this.musicDuckGain!);
 		const startOffset = loopStart + (offsetInLoop % loopDur);
-		src.start(startAt, startOffset);
-		return {
+		const voice = this.trackVoice(src, g, () => {
+			if (this.beds.get(id)?.source === src) {
+				this.beds.delete(id);
+				if (this.currentBedId === id) this.currentBedId = null;
+			}
+			if (this.layers.get(id)?.source === src) this.layers.delete(id);
+		});
+		const bed = Object.assign(voice, {
 			id,
-			source: src,
-			gain: g,
 			loopStart,
 			loopDur,
 			anchorTime: startAt,
 			anchorPhase: startOffset,
-		};
+		});
+		src.start(startAt, startOffset);
+		return bed;
 	}
 
 	// ===== SFX-bus loops (reel travel, site ambience) =========================
-	private sfxLoops = new Map<string, { source: AudioBufferSourceNode; gain: GainNode }>();
+	private sfxLoops = new Map<string, Voice>();
 	/** Start a looping SFX (idempotent). Unlike a music layer it is not grid-aligned and sits on the SFX bus. */
 	startSfxLoop(id: string, fadeMs = 120, level = 1): void {
-		if (!this.ctx || !this.unlocked || !this.sfxUserGain || this.sfxLoops.has(id)) return;
+		if (!this.transientReady() || !this.sfxUserGain || this.sfxLoops.has(id)) return;
 		const cue = CUES[id];
-		if (!cue) return;
-		const buf = this.buffers.get(id);
-		if (!buf) {
-			void this.decode(id);
-			return; // a loop that is not ready is simply skipped this time (never started late)
-		}
-		const ctx = this.ctx;
+		if (!cue || cue.bus !== 'sfx') return;
+		const valid = this.requestValidity(`loop:${id}`);
+		this.whenDecoded(id, () => valid() && this.transientReady(),
+			(buffer) => this.startLoop(id, cue, buffer, fadeMs, level));
+	}
+	private startLoop(id: string, cue: CueDef, buf: AudioBuffer, fadeMs: number, level: number) {
+		const ctx = this.ctx!;
 		const source = ctx.createBufferSource();
 		source.buffer = buf;
 		source.loop = true;
 		const gain = ctx.createGain();
 		gain.gain.value = 0.0001;
 		source.connect(gain);
-		gain.connect(this.sfxUserGain);
+		gain.connect(this.sfxUserGain!);
+		const voice = this.trackVoice(source, gain, (ended) => {
+			if (this.sfxLoops.get(id) === ended) this.sfxLoops.delete(id);
+		});
+		this.sfxLoops.set(id, voice);
 		source.start(ctx.currentTime + 0.01, Math.random() * Math.max(0, buf.duration - 0.05));
 		gain.gain.linearRampToValueAtTime(cue.gain * level, ctx.currentTime + 0.01 + fadeMs / 1000);
-		this.sfxLoops.set(id, { source, gain });
 		this.pushLog('sfxLoopStart', { id });
 	}
 	stopSfxLoop(id: string, fadeMs = 160): void {
+		this.invalidateRequest(`loop:${id}`);
 		const loop = this.sfxLoops.get(id);
-		if (!loop || !this.ctx) return;
+		if (!loop) return;
 		this.sfxLoops.delete(id);
-		const t = this.ctx.currentTime;
-		loop.gain.gain.cancelScheduledValues(t);
-		loop.gain.gain.setValueAtTime(Math.max(0.0001, loop.gain.gain.value), t);
-		loop.gain.gain.linearRampToValueAtTime(0.0001, t + fadeMs / 1000);
-		try {
-			loop.source.stop(t + fadeMs / 1000 + 0.02);
-		} catch {
-			/* already stopped */
-		}
+		this.stopVoice(loop, fadeMs);
 		this.pushLog('sfxLoopStop', { id });
 	}
 
 	/** Add a synchronized additive stem under the primary bed (no bed swap). */
 	addLayer(id: string, fadeMs = 300): void {
-		if (!this.ctx || !this.musicDuckGain || this.layers.has(id)) return;
-		const buf = this.buffers.get(id);
-		if (!buf) {
-			this.decode(id).then((b) => {
-				if (b) this.addLayer(id, fadeMs);
-			});
+		if (!this.ctx || !this.unlocked || !this.musicDuckGain || this.layers.has(id)) return;
+		const cue = CUES[id];
+		if (!cue || cue.bus !== 'music') return;
+		const valid = this.requestValidity(`layer:${id}`);
+		this.whenDecoded(id, valid, (buffer) => this.startLayer(id, cue, buffer, fadeMs));
+	}
+	private startLayer(id: string, cue: CueDef, buf: AudioBuffer, fadeMs: number) {
+		const primary = this.currentBedId ? this.beds.get(this.currentBedId) : undefined;
+		const primaryCue = primary ? CUES[primary.id] : undefined;
+		if (primaryCue?.tempoBpm && cue.tempoBpm && primaryCue.tempoBpm !== cue.tempoBpm) {
+			this.pushLog('layerSkip', { id, reason: 'tempoMismatch', bed: primary?.id });
 			return;
 		}
-		const cue = CUES[id];
-		// phase-align to the primary bed so the layer sits on the grid
-		let offset = 0;
-		const primary = this.currentBedId ? this.beds.get(this.currentBedId) : undefined;
-		if (primary && this.ctx) {
-			const elapsed = this.ctx.currentTime + 0.03 - primary.anchorTime;
-			offset = (((primary.anchorPhase - primary.loopStart + elapsed) % primary.loopDur) + primary.loopDur) % primary.loopDur;
-		}
-		const bed = this.spawnBed(id, cue, buf, this.ctx.currentTime + 0.03, offset);
+		const startAt = this.ctx!.currentTime + 0.03;
+		const offset = primary && primaryCue && this.compatibleGrid(primaryCue, cue) ? this.phaseAt(primary, startAt) : 0;
+		const bed = this.spawnBed(id, cue, buf, startAt, offset);
 		this.rampBedGain(bed, 0.0001, cue.gain, fadeMs / 1000);
 		this.layers.set(id, bed);
 		this.pushLog('layerAdd', { id });
 	}
 	removeLayer(id: string, fadeMs = 300): void {
+		this.invalidateRequest(`layer:${id}`);
 		const bed = this.layers.get(id);
 		if (!bed) return;
 		this.stopBedVoice(bed, fadeMs / 1000);
@@ -742,23 +808,7 @@ class AudioManager implements Sfx {
 	}
 
 	private stopBedVoice(bed: Bed, fadeSec: number) {
-		if (!this.ctx) return;
-		const t0 = this.ctx.currentTime;
-		try {
-			bed.gain.gain.cancelScheduledValues(t0);
-			bed.gain.gain.setValueAtTime(Math.max(0.0001, bed.gain.gain.value), t0);
-			bed.gain.gain.linearRampToValueAtTime(0.0001, t0 + Math.max(0.02, fadeSec));
-			bed.source.stop(t0 + Math.max(0.03, fadeSec) + 0.02);
-			bed.source.onended = () => {
-				try {
-					bed.gain.disconnect();
-				} catch {
-					/* gone */
-				}
-			};
-		} catch {
-			/* already stopped */
-		}
+		this.stopVoice(bed, fadeSec * 1000);
 	}
 
 	// ===== ducking (music only; below the player gains) ======================
@@ -781,20 +831,34 @@ class AudioManager implements Sfx {
 	}
 
 	// ===== teardown ==========================================================
-	/** Cancel every scheduled source and restore the base bed exactly once.
+	/** Cancel scene audio and restore base, retaining an already-running base bed.
 	 *  Called on route teardown / a new game start between rounds. */
 	teardownToBase(): void {
-		if (!this.ctx) return;
-		for (const [, bed] of this.layers) this.stopBedVoice(bed, 0.1);
+		const from = this.currentBedId;
+		const retained = this.isBaseBed(from) && from ? this.beds.get(from) : undefined;
+		this.sceneEpoch++;
+		this.transientEpoch++;
+		this.bedRequest++;
+		this.requests.clear();
+		// Fading voices are no longer in their maps, but are still scheduled sources.
+		for (const voice of [...this.liveVoices]) if (voice !== retained) this.stopVoice(voice);
+		this.beds.clear();
+		if (retained) this.beds.set(retained.id, retained);
+		this.currentBedId = retained?.id ?? null;
 		this.layers.clear();
+		this.heldVoices.clear();
+		this.sfxLoops.clear();
+		this.active.clear();
+		this.lastStartAt.clear();
+		this.familyLastAt.clear();
 		// reset the duck to unity immediately (with a tiny ramp)
-		if (this.musicDuckGain) {
+		if (this.musicDuckGain && this.ctx) {
 			const t0 = this.ctx.currentTime;
 			this.musicDuckGain.gain.cancelScheduledValues(t0);
 			this.musicDuckGain.gain.setTargetAtTime(1, t0, 0.05);
 		}
-		this.pushLog('teardownToBase', { from: this.currentBedId });
-		if (this.currentBedId !== 'base_loop') this.crossfadeToBed('base_loop', 700);
+		this.pushLog('teardownToBase', { from });
+		this.startBed(retained?.id ?? DEFAULT_BED, 700);
 	}
 
 	// ===== state snapshot (for the focused check) ============================
@@ -805,6 +869,9 @@ class AudioManager implements Sfx {
 			currentBed: this.currentBedId,
 			activeBeds: Array.from(this.beds.keys()),
 			activeLayers: Array.from(this.layers.keys()),
+			activeHeld: Array.from(this.heldVoices.keys()),
+			activeSfxLoops: Array.from(this.sfxLoops.keys()),
+			liveVoices: this.liveVoices.size,
 			masterStep: this.masterStep,
 			masterFactor: Number(this.masterFactor.toFixed(3)),
 			muted: this.muted,
