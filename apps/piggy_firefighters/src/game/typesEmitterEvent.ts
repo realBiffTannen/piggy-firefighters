@@ -1,3 +1,4 @@
+import type { EmitterEventAnim } from './anim/beatBus';
 import type { EmitterEventBoard } from '../components/Board.svelte';
 import type { EmitterEventBoardFrame } from '../components/BoardFrame.svelte';
 import type { EmitterEventWin } from '../components/Win.svelte';
@@ -19,4 +20,6 @@ export type EmitterEventGame =
 	| EmitterEventLinePop
 	| EmitterEventBackdraftFx
 	| EmitterEventAlarmCall
-	| EmitterEventShutter;
+	| EmitterEventShutter
+	// Codex rig runtime (docs/ANIMATION_CONTRACT.md v1.1 §Runtime interface): the ONE `animBeat` event type
+	| EmitterEventAnim;
