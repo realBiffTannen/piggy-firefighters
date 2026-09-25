@@ -1,6 +1,21 @@
 import type { getContextSpine } from 'pixi-svelte';
+import type { BeatPlan, LadderPath } from './rigLogic';
 
 type SpineActor = ReturnType<typeof getContextSpine>;
+
+export function snapshotRigRequest(plan: BeatPlan, path?: LadderPath) {
+  return { plan: { ...plan, steps: plan.steps.map(step => ({ ...step })) }, path: path ? { ...path } : undefined };
+}
+
+/** Each queued rescue belongs to the room/path present when its beat arrived. */
+export function createRescueQueue() {
+  const pending: ReturnType<typeof snapshotRigRequest>[] = [];
+  return {
+    push: (plan: BeatPlan, path?: LadderPath) => { if (pending.length < 5) pending.push(snapshotRigRequest(plan, path)); },
+    shift: () => pending.shift(),
+    clear: () => { pending.length = 0; },
+  };
+}
 
 /** Ordinary transitions retain their outgoing TrackEntry, so Spine can mix it out. */
 export function transitionRigClip(actor: Pick<SpineActor, 'state' | 'skeleton'>, animation: string, loop: boolean, resetPose = false) {

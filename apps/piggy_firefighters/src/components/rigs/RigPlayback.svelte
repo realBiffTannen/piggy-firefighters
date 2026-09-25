@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, untrack } from 'svelte';
   import { getContextSpine, getContextApp } from 'pixi-svelte';
   import { subscribeToBeats } from '../../game/anim/beatBus';
   import { registerMountedRig } from '../../game/anim/rigRegistry';
-  import { createPlaybackEpoch, defaultLoop, motionTimeScale, planBeat, planLanding, RIG_DEFINITIONS, resolveSkin, type BeatPlan, type EmitterEventAnim, type MotionSettings } from '../../game/anim/rigLogic';
-  import { createFrameQueue, transitionRigClip, landingBus } from '../../game/anim/playbackControl';
+  import { createPlaybackEpoch, defaultLoop, motionTimeScale, planBeat, planLanding, RIG_DEFINITIONS, resolveSkin, type BeatPlan, type EmitterEventAnim, type MotionSettings, type LadderPath } from '../../game/anim/rigLogic';
+  import { createFrameQueue, createRescueQueue, snapshotRigRequest, transitionRigClip, landingBus } from '../../game/anim/playbackControl';
   import type { RigActorProps, RigHandle } from '../../game/anim/rigTypes';
 
   const props: RigActorProps = $props();
@@ -20,7 +20,7 @@
   let entry: ReturnType<typeof spine.state.setAnimation> | null = null;
   let release: (() => void) | undefined;
   let spraying = false;
-  const pendingRescues: BeatPlan[] = [];
+  const pendingRescues = createRescueQueue();
   let activePath = props.path;
   let resetPose = true;
   let arrivalPending = false;
@@ -74,18 +74,19 @@
     // leave a wave_window pose at the sheet, duplicating the next rescued pig.
     if (props.slot === 'ladder' && step.loop && !step.holdSeconds) {
       const next = pendingRescues.shift();
-      if (next) play(next);
+      if (next) play(next.plan, next.path);
       else spine.visible = false;
     }
   }
-  function play(plan: BeatPlan) {
+  function play(plan: BeatPlan, path?: LadderPath) {
     if (!live || spine.destroyed) return;
     if (spraying) emitRigEvent('spray_off');
     activeEpoch = epoch.begin();
     frameQueue.clear();
     arrivalPending = false;
-    activePath = props.path ? { ...props.path } : undefined;
-    active = plan;
+    const snapshot = snapshotRigRequest(plan, path);
+    activePath = snapshot.path;
+    active = snapshot.plan;
     stepIndex = 0;
     resetPose = !entry || settings.reducedMotion;
     if (plan.skin && props.rig === 'pf_rescued') {
@@ -107,11 +108,11 @@
     if (props.slot === 'ladder' && event.beat === 'rescue' && active?.travel && !active.steps[stepIndex]?.loop) {
       // One douse can save several rooms. Preserve every local performance without
       // returning a promise to, or delaying, the game director. Spin/exit cancels all.
-      if (pendingRescues.length < 5) pendingRescues.push(plan);
+      pendingRescues.push(plan, props.path);
       return;
     }
-    pendingRescues.length = 0;
-    play(plan);
+    pendingRescues.clear();
+    play(plan, props.path);
   }
   subscribeToBeats(handleBeat);
 
@@ -121,9 +122,16 @@
     spine.position.set(props.x ?? 0, props.y ?? 0);
   });
   $effect(() => {
-    settings = { speedTier: props.speedTier ?? 0, reducedMotion: props.reducedMotion ?? false };
-    spine.state.timeScale = motionTimeScale(settings);
-    if (live) play({ steps: [{ animation: defaultLoop(props.rig, props.slot), loop: true }] });
+    const nextSettings: MotionSettings = { speedTier: props.speedTier ?? 0, reducedMotion: props.reducedMotion ?? false };
+    // Playback reads layout/path props; those must not become settings dependencies.
+    untrack(() => {
+      settings = nextSettings;
+      spine.state.timeScale = motionTimeScale(settings);
+      if (live) {
+        pendingRescues.clear();
+        play({ steps: [{ animation: defaultLoop(props.rig, props.slot), loop: true }] });
+      }
+    });
   });
 
   onMount(() => {
@@ -180,7 +188,7 @@
     return () => {
       if (spraying) emitRigEvent('spray_off');
       live = false;
-      pendingRescues.length = 0;
+      pendingRescues.clear();
       frameQueue.clear();
       unsubscribeLanding();
       epoch.dispose();

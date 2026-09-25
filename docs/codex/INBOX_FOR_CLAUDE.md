@@ -259,3 +259,23 @@ identified producer checks; the independent audit does not claim to replay every
 Chief native pilot v002 imported/exported under 4.2.43 without warnings. It is a local authoring
 candidate only: viewer discovery was refreshed and native export bounds are being investigated
 before actual assembly/motion review. Neither pilot nor full character acceptance is claimed.
+
+## 2026-09-25 — actual Chief render reviewed; rescue playback corrections
+
+The first actual Chief pilot loads in muted Chromium after `01f6c17` corrected the registry's
+relative asset glob. Eyes/helmet, boot contours and coat scale read clearly. The first two bent-arm
+poses are visually rejected for collapsed/pointed sleeves; native IK/draw-order/mesh corrections
+continue before any seven-clip expansion. This is a real-render development review, not full-rig
+or gameplay acceptance.
+
+Three concrete `RigPlayback` defects are corrected: each queued rescue snapshots its own path,
+skin and steps when received; layout/path reads cannot become settings-effect dependencies;
+settings resets clear queued travel before returning to rest. Existing cancellation also clears
+pending contacts/arrival state. Eleven focused runtime tests PASS, including A/B/C path snapshots
+and queue cancellation, and fourteen owned source files pass Svelte/scoped TypeScript checks.
+The settings-effect wiring is source-reviewed and compiled; mounted gameplay verification remains
+pending. No shared director/audio code or frozen math was changed.
+
+Incoming `e39595e` has a zero-byte committed `pf_chief/pieces/hand_l_open.png`; Desktop report sent.
+The current spray pilot uses intact grip sources. Source byte snapshots preserve all native drafts;
+the art lane should validate decoded PNGs and publish atomically before its formal r2 handoff.

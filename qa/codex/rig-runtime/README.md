@@ -1,8 +1,8 @@
 # Rig runtime handoff — PF-20260925-03
 
-Status: **implementation + focused static/unit verification PASS; real-rig browser/motion review NOT RUN.**
-No original Spine exports exist in this checkout at this checkpoint. No art was fabricated or generated.
-The `/rigs` dev route deliberately shows an empty readiness state, not a claimed motion viewer.
+Status: **implementation + focused static/unit verification PASS; full-rig gameplay motion review NOT RUN.**
+The `/rigs` dev route has a separate authoring/capture workflow documented under
+`qa/codex/rig-viewer/`; a partial pilot is not accepted gameplay animation.
 
 ## Claude integration (shared files remain in Claude's lane)
 
@@ -58,7 +58,8 @@ Ladder accepts `path={{fromX,fromY,toX,toY}}` or those four coordinates directly
 coordinates. Its slot must enclose the complete path. A rescue drives slide → land → hidden loop.
 Up to five rescue beats arriving during a slide are queued locally; a new spin/exit cancels them.
 Directors still own the presentation interval and must allow time for any desired sequential rescues
-before broadcasting the next spin. Each arrival snapshots its skin; director-provided skin overrides
+before broadcasting the next spin. Each rescue beat snapshots its path and skin, including queued
+rescues; a later room's path cannot change an earlier rescue. Director-provided skin overrides
 the `(room + building) mod 5` fallback. Book `buildingCleared.building` is 1-based, so using its count
 as the next building's zero-based skin offset produces the correct next-building family.
 
@@ -87,7 +88,7 @@ node --experimental-strip-types --test qa/codex/rig-runtime/rigLogic.test.mts qa
 node qa/codex/rig-runtime/check-components.mjs
 ```
 
-Latest result: **10 tests PASS**, **10 source files compile / scoped TypeScript diagnostics PASS**, zero
+Latest result: **11 tests PASS**, **14 source files compile / scoped TypeScript diagnostics PASS**, zero
 Svelte warnings. Tests cover loss/turbo behavior, rescue skin/room mapping, reduced motion,
 cancellation epochs, and fail-closed validation for incomplete/malformed data. The checker uses the
 installed Svelte compiler, svelte2tsx and TypeScript and reports only owned runtime-file diagnostics;
@@ -122,3 +123,21 @@ The four regression tests first failed, then passed after implementation. Event 
 use the installed real Spine core, not fake state methods. These remain focused runtime-logic evidence;
 real original art, mounted WebGL, full-app integration and motion acceptance remain pending. The reviewer
 identified the issues but has not performed a post-fix review; no approval is claimed.
+
+## Rescue queue and settings regression correction
+
+Queued requests now copy each beat's path, skin and clip steps on receipt. Playback
+uses that request's path, including an explicitly missing path, rather than reading
+the next room's live props. Settings effects read only speed/reduced-motion props;
+playback side effects run inside Svelte `untrack`. A settings reset clears queued
+rescues before the idle transition, whose existing cancellation clears pending
+contact callbacks and arrivals and hides the ladder actor.
+
+The focused regression uses the production queue helper: A/B/C rescue path and
+skin snapshots survive later path mutation, and clearing the queue discards its
+pending travel. Snapshot coverage first failed, then passed after implementation.
+The production settings effect's `untrack` and cancellation calls were source-
+reviewed and component-compiled; their behavior in mounted gameplay remains
+**NOT RUN**. A test that merely copied the intended effect pattern was removed.
+Existing real-Spine contact, crossfade and cancellation checks remain passing.
+No full build or motion capture was run for this correction.
