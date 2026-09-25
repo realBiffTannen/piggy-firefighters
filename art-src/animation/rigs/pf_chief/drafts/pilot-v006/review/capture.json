@@ -1,0 +1,6 @@
+{
+  "status": "PILOT_VISUAL_REVIEW_PENDING",
+  "errors": [],
+  "log": "Event log\nClear\n010COMPLETE spray_start\n009EVENT spray_on · spray_start @ 0.440s\n008PLAY spray_start · default · once\n007PLAY spray_start · default · once\n006PLAY spray_loop · default · loop\n005COMPLETE spray_end\n004EVENT spray_off · spray_end @ 0.000s\n003PLAY spray_end · default · once\n002PILOT ONLY · missing clips: idle, idle_alt, win, big_win, point_reels, celebrate, sad · gameplay contract incomplete\n001LOADED pf_chief · Spine 4.2.43 · bounds 287.93999934052664 × 423.8300040054319",
+  "note": "Quarter-speed paused samples use nominal wall-clock offsets; independent clip view, not director sequence."
+}

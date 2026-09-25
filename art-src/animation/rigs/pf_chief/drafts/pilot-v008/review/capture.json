@@ -1,0 +1,28 @@
+{
+  "status": "PILOT_VISUAL_REVIEW_PENDING",
+  "errors": [],
+  "cases": [
+    {
+      "frame": "desktop",
+      "speed": "1",
+      "log": "Event log\nClear\n015SEQUENCE COMPLETE chief_spray\n014COMPLETE spray_end\n013EVENT spray_off · spray_end @ 0.000s\n012PLAY spray_end · default · once\n011SEQUENCE HOLD spray_loop @ 0.817s\n010PLAY spray_loop · default · loop\n009COMPLETE spray_start\n008EVENT spray_on · spray_start @ 0.440s\n007PLAY spray_start · default · once\n006SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+    },
+    {
+      "frame": "desktop",
+      "speed": "0.25",
+      "log": "Event log\nClear\n025SEQUENCE COMPLETE chief_spray\n024COMPLETE spray_end\n023EVENT spray_off · spray_end @ 0.000s\n022PLAY spray_end · default · once\n021SEQUENCE HOLD spray_loop @ 0.804s\n020PLAY spray_loop · default · loop\n019COMPLETE spray_start\n018EVENT spray_on · spray_start @ 0.440s\n017PLAY spray_start · default · once\n016SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+    },
+    {
+      "frame": "mobile",
+      "speed": "1",
+      "log": "Event log\nClear\n015SEQUENCE COMPLETE chief_spray\n014COMPLETE spray_end\n013EVENT spray_off · spray_end @ 0.000s\n012PLAY spray_end · default · once\n011SEQUENCE HOLD spray_loop @ 0.800s\n010PLAY spray_loop · default · loop\n009COMPLETE spray_start\n008EVENT spray_on · spray_start @ 0.440s\n007PLAY spray_start · default · once\n006SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+    },
+    {
+      "frame": "mobile",
+      "speed": "0.25",
+      "log": "Event log\nClear\n025SEQUENCE COMPLETE chief_spray\n024COMPLETE spray_end\n023EVENT spray_off · spray_end @ 0.000s\n022PLAY spray_end · default · once\n021SEQUENCE HOLD spray_loop @ 0.800s\n020PLAY spray_loop · default · loop\n019COMPLETE spray_start\n018EVENT spray_on · spray_start @ 0.440s\n017PLAY spray_start · default · once\n016SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+    }
+  ],
+  "exportSha256": "214986a9f74755ff4e5185e2e4d2b886c09609b7b130e52d41e5b874563be468",
+  "note": "Actual dev sequence: .6s start, .8 animation-seconds loop, .5s end; mixes0/.15. Videos contain uninterrupted normal then quarter speed. Screenshot names indicate nominal wall-clock stage; screenshots do not precisely measure animation time."
+}

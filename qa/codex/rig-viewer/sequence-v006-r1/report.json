@@ -1,0 +1,198 @@
+{
+  "status": "FAIL",
+  "failure": "AssertionError [ERR_ASSERTION]: Runtime export not fetched: pf_chief/pf_chief.png",
+  "browser": "151.0.7922.34",
+  "scope": "Dev-only real-Chief sequence controls, keyed events, pause/resume and replacement; not mounted gameplay or artistic acceptance",
+  "motionAcceptance": "NOT RUN",
+  "export": {
+    "rig": "pf_chief",
+    "spineVersion": "4.2.43",
+    "clips": [
+      "spray_end",
+      "spray_loop",
+      "spray_start"
+    ],
+    "skins": [
+      "default"
+    ],
+    "contractCoverage": {
+      "requiredClips": [
+        "idle",
+        "idle_alt",
+        "win",
+        "big_win",
+        "point_reels",
+        "spray_start",
+        "spray_loop",
+        "spray_end",
+        "celebrate",
+        "sad"
+      ],
+      "missingClips": [
+        "idle",
+        "idle_alt",
+        "win",
+        "big_win",
+        "point_reels",
+        "celebrate",
+        "sad"
+      ],
+      "requiredAnchors": [
+        "nozzle_tip",
+        "grip_l",
+        "grip_r",
+        "head_top"
+      ],
+      "missingAnchors": [],
+      "requiredEvents": [
+        "step",
+        "spray_on",
+        "spray_off",
+        "sign_hit"
+      ],
+      "missingEvents": [],
+      "requiredSkins": [],
+      "missingSkins": [],
+      "note": "Declaration coverage only; timelines, contacts and authored motion require separate review"
+    },
+    "files": [
+      {
+        "path": "pf_chief/pf_chief.json",
+        "bytes": 85508,
+        "sha256": "3d8aab7ea7e4cbd81b26e8c7b4cd63ebfd4d50bdccce0939df73e0dd2f838822"
+      },
+      {
+        "path": "pf_chief/pf_chief.atlas",
+        "bytes": 611,
+        "sha256": "eb3912ac49d30ca8965b34690b50985f5708182f164c314acdba974de3b4d2c6"
+      },
+      {
+        "path": "pf_chief/pf_chief.png",
+        "bytes": 2917323,
+        "sha256": "3c22b0700569736d4ed7d3f9c2ab3e69030584a4118c806e73160efd5e66ef1a"
+      }
+    ]
+  },
+  "responses": [
+    {
+      "path": "pf_chief/pf_chief.json",
+      "bytes": 85508,
+      "sha256": "3d8aab7ea7e4cbd81b26e8c7b4cd63ebfd4d50bdccce0939df73e0dd2f838822"
+    },
+    {
+      "path": "pf_chief/pf_chief.atlas",
+      "bytes": 611,
+      "sha256": "eb3912ac49d30ca8965b34690b50985f5708182f164c314acdba974de3b4d2c6"
+    }
+  ],
+  "cases": [
+    {
+      "speed": 1,
+      "pausedAndResumed": false,
+      "rows": [
+        {
+          "id": 5,
+          "text": "SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+        },
+        {
+          "id": 6,
+          "text": "PLAY spray_start · default · once"
+        },
+        {
+          "id": 7,
+          "text": "EVENT spray_on · spray_start @ 0.440s"
+        },
+        {
+          "id": 8,
+          "text": "COMPLETE spray_start"
+        },
+        {
+          "id": 9,
+          "text": "PLAY spray_loop · default · loop"
+        },
+        {
+          "id": 10,
+          "text": "PLAY spray_end · default · once"
+        },
+        {
+          "id": 11,
+          "text": "EVENT spray_off · spray_end @ 0.000s"
+        },
+        {
+          "id": 12,
+          "text": "COMPLETE spray_end"
+        },
+        {
+          "id": 13,
+          "text": "SEQUENCE COMPLETE chief_spray"
+        }
+      ],
+      "screenshot": "sequence-1-final.png"
+    },
+    {
+      "speed": 0.25,
+      "pausedAndResumed": true,
+      "rows": [
+        {
+          "id": 14,
+          "text": "SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+        },
+        {
+          "id": 15,
+          "text": "PLAY spray_start · default · once"
+        },
+        {
+          "id": 16,
+          "text": "EVENT spray_on · spray_start @ 0.440s"
+        },
+        {
+          "id": 17,
+          "text": "COMPLETE spray_start"
+        },
+        {
+          "id": 18,
+          "text": "PLAY spray_loop · default · loop"
+        },
+        {
+          "id": 19,
+          "text": "PLAY spray_end · default · once"
+        },
+        {
+          "id": 20,
+          "text": "EVENT spray_off · spray_end @ 0.000s"
+        },
+        {
+          "id": 21,
+          "text": "COMPLETE spray_end"
+        },
+        {
+          "id": 22,
+          "text": "SEQUENCE COMPLETE chief_spray"
+        }
+      ],
+      "screenshot": "sequence-0.25-final.png"
+    },
+    {
+      "manualClipCancelsSequence": true,
+      "rows": [
+        {
+          "id": 23,
+          "text": "SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+        },
+        {
+          "id": 24,
+          "text": "PLAY spray_start · default · once"
+        },
+        {
+          "id": 25,
+          "text": "PLAY spray_loop · default · loop"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "Error: response.body: Protocol error (Network.loadNetworkResource): Target not supported\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation."
+  ],
+  "video": "page@e890a1762cc9c177adf965c9eaeb3f56.webm",
+  "videoSha256": "6e1649b4e901cda6c57bcd21df40e8685e90b9cffafdb28da6d6bffa86f707b6"
+}

@@ -91,7 +91,7 @@
     },
     "alarm_call_inferno": {
       "mode": "alarm_call",
-      "publication_row_id": 10002,
+      "publication_row_id": 350002,
       "criterion": "bank_alarmCall_1",
       "origin": {
         "type": "canonical_bank_composition",
@@ -100,7 +100,7 @@
         "source_simulation_seed": 1,
         "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab"
       },
-      "sha256": "9d35a8dc20b6c54c8fda6529edddeb488d9035320da68c39572ebc4ec235a77b"
+      "sha256": "83a41d213fde7befba7d2154794b8402f203b3b1e820264aa36c3ede4c8ae78e"
     },
     "alarm_call_rescue": {
       "mode": "alarm_call",
@@ -167,7 +167,7 @@
     },
     "base_trigger_inferno": {
       "mode": "base",
-      "publication_row_id": 22001,
+      "publication_row_id": 570001,
       "criterion": "bank_natural_1",
       "origin": {
         "type": "canonical_bank_composition",
@@ -189,11 +189,11 @@
           "line_award_x100": 0
         }
       },
-      "sha256": "bc7829e346a4ea827d3f689421e32bb5780e40c3141bc69daa17dde0e3b7dfe8"
+      "sha256": "7aba836b6b5628ac55ec90dca516c13b9007ea1039901aba8f0c36f482193f9e"
     },
     "base_trigger_rescue": {
       "mode": "base",
-      "publication_row_id": 10001,
+      "publication_row_id": 200001,
       "criterion": "bank_natural_1",
       "origin": {
         "type": "canonical_bank_composition",
@@ -215,7 +215,7 @@
           "line_award_x100": 0
         }
       },
-      "sha256": "169a859b769497f41d22252907b51b74a04e710d386deb6926a083ed15104116"
+      "sha256": "cfbb64b90d693a695eb39fa7b5c659d7ec367b5423b80a6105772ba0b03ddee6"
     },
     "base_win": {
       "mode": "base",

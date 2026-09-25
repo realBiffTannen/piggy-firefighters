@@ -101,3 +101,26 @@ test('rig asset URLs preserve a nested production release prefix and dev root', 
   assert.equal(control.resolveRigAssetUrl(suffix,'https://cdn.example/games/piggy-firefighters/v1/_app/immutable/bundle.js',false),'https://cdn.example/games/piggy-firefighters/v1/assets/'+suffix);
   assert.equal(control.resolveRigAssetUrl(suffix,'http://localhost:3003/src/game/anim/rigRegistry.ts',true),'http://localhost:3003/assets/'+suffix);
 });
+
+test('hidden presentation starts are suppressed but an active spray always receives its cancellation', () => {
+  assert.ok(control && typeof control.canEmitRigEvent === 'function', 'presentation visibility guard is required');
+  const parent = { visible: true, renderable: true, alpha: 1, destroyed: false, parent: null };
+  const actor = { ...parent, parent };
+  assert.equal(control.canEmitRigEvent('spray_on', actor, false), true);
+  actor.visible = false;
+  assert.equal(control.canEmitRigEvent('spray_on', actor, false), false);
+  assert.equal(control.canEmitRigEvent('step', actor, false), false);
+  assert.equal(control.canEmitRigEvent('spray_off', actor, true), true);
+  assert.equal(control.canEmitRigEvent('spray_off', actor, false), false);
+  actor.visible = true;
+  parent.visible = false;
+  assert.equal(control.canEmitRigEvent('sign_hit', actor, false), false);
+  parent.visible = true;
+  parent.alpha = 0;
+  assert.equal(control.canEmitRigEvent('spray_on', actor, false), false);
+  parent.alpha = 1;
+  actor.renderable = false;
+  assert.equal(control.canEmitRigEvent('spray_on', actor, false), false);
+  actor.destroyed = true;
+  assert.equal(control.canEmitRigEvent('spray_off', actor, true), true);
+});

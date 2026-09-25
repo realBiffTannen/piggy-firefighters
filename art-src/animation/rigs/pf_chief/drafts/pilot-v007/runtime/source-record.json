@@ -1,0 +1,69 @@
+{
+  "status": "PILOT_UNREVIEWED",
+  "rig": "pf_chief",
+  "editor": "4.2.43",
+  "registration_sha256": "6c180d004168e9ed1be9d7b6973d46d3295bfdc610917a38d696bb1c5696ce8e",
+  "standing_scale": 0.2951510892480675,
+  "source_files": {
+    "arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/arm_left.png",
+      "sha256": "79a8ca3a39e744c5db1b2010005dd49f74e479716632765f926418de091192a3"
+    },
+    "arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/arm_right.png",
+      "sha256": "64af08fe925a767b5a6a20d2a4fc58a8b6b11455839abd2bdeeb8e2fad8ce559"
+    },
+    "body_no_head_no_arms": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/body_no_head_no_arms.png",
+      "sha256": "5484b06f70bce6871888f73e0fa59d7c1cb7e9e4e4d43793b3f3f1117fa2a1f1"
+    },
+    "face_sheet": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/face_sheet.png",
+      "sha256": "26e51b85c8579822337b2369299bc74a3d3fe62257dbea6360998e211e4f234a"
+    },
+    "hand_l_grip": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/pieces/hand_l_grip.png",
+      "sha256": "02eb7f49e64280af5b679d4b69b6b0525cddb7a0c329ecaab2156d87f20486a4"
+    },
+    "hand_r_grip": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/pieces/hand_r_grip.png",
+      "sha256": "471faef741ec5995cf1ca22422d1db2fba278ea48d92c79492d528a7d9913b97"
+    },
+    "head_blank": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/head_blank.png",
+      "sha256": "73270c901bc641e025e35a2c716b02d45b254ecb05b387835ce4a10c68fe5d45"
+    },
+    "helmet_only": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/helmet_only.png",
+      "sha256": "eb53e42e35e32ed1f64bb5cbb95fd4a96210de0c768306c598558b95329d2ef5"
+    },
+    "hose_original": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hose_flexible.png",
+      "sha256": "5903ebd801fdf96d8a5fe1e9ede22d7757b908065fc20ac38452511d66a742b8"
+    },
+    "nozzle": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/pieces/nozzle.png",
+      "sha256": "dce2fc692424452d638b958593a0683473b91a5c4d960a361a24e0cb5531c542"
+    },
+    "shield_13": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_chief/pieces/shield_13.png",
+      "sha256": "845dba39356b0444d742ba1c1042c019c2ae187fc1c6dedbf6bd08f845856711"
+    }
+  },
+  "derivation": "Spine UV submeshes and bone weights; source PNG bytes unchanged",
+  "motion_review": "NOT RUN",
+  "remaining_clips": "Deferred until spray pilot review",
+  "runtime_export": {
+    "status": "PILOT_UNREVIEWED",
+    "nativeExportSha256": "e795902614ad834e3c64753bc140561485d4d050871e6ae366b2ee1a38f10011",
+    "runtime": "spine-core4.2.74",
+    "method": "Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds",
+    "bounds": {
+      "x": -171.0599975701963,
+      "y": -1.4700003433227504,
+      "width": 287.93999934052664,
+      "height": 423.8300040054319
+    },
+    "change": "Only skeleton x/y/width/height header values; original native export preserved"
+  }
+}

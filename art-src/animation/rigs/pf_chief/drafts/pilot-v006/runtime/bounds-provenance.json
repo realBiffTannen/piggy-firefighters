@@ -1,0 +1,13 @@
+{
+  "status": "PILOT_UNREVIEWED",
+  "nativeExportSha256": "a4ebac428dc3f3ffb9f2d821aad9f12fea28e895cc9f2960e58132f7c9c29813",
+  "runtime": "spine-core4.2.74",
+  "method": "Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds",
+  "bounds": {
+    "x": -171.0599975701963,
+    "y": -1.4700003433227504,
+    "width": 287.93999934052664,
+    "height": 423.8300040054319
+  },
+  "change": "Only skeleton x/y/width/height header values; original native export preserved"
+}

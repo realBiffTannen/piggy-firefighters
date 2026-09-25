@@ -47,3 +47,34 @@ test('malformed parsed-looking data fails closed without breaking the fallback',
   const malformed = {version:42,width:100,height:100,findAnimation(){},findBone(){},findSkin(){}};
   assert.equal(logic!.isUsableRigData('pf_chief', malformed), false);
 });
+
+test('negative Chief bounds fit with feet centered and a motion gutter', () => {
+  assert.ok(logic && typeof logic.fitRigInSlot === 'function', 'bounds-aware slot layout is required');
+  const bounds = { x: -171.06, y: -1.47, width: 287.94, height: 423.83 };
+  const slot = { width: 200, height: 420 };
+  const result = logic.fitRigInSlot(bounds, slot.width, slot.height, 1);
+  assert.equal(result.x, slot.width / 2, 'keep the authored feet/root horizontally centered');
+  assert.ok(result.scale > 0);
+  const edges = {
+    left: result.x + bounds.x * result.scale,
+    right: result.x + (bounds.x + bounds.width) * result.scale,
+    top: result.y - (bounds.y + bounds.height) * result.scale,
+    bottom: result.y - bounds.y * result.scale,
+  };
+  assert.ok(edges.left >= 7.99 && edges.right <= slot.width - 7.99);
+  assert.ok(edges.top >= 7.99 && edges.bottom <= slot.height - 7.99);
+  assert.equal(logic.fitRigInSlot(bounds, slot.width, slot.height, .5).scale, result.scale / 2);
+  assert.equal(logic.fitRigInSlot(bounds, slot.width, slot.height, 2).scale, result.scale,
+    'layout scale cannot crop the fitted actor');
+});
+
+test('the win plate ignores mascot douse/idle beats and uses only its own lifecycle', () => {
+  assert.ok(logic);
+  const settings = { speedTier: 0 as const, reducedMotion: false };
+  const douse = {type:'animBeat' as const,beat:'douse' as const,sprays:[{reel:0,from:2,to:1}],rescues:[],multiplier:1,spinsAdded:0};
+  assert.equal(logic.planBeat('pf_chief', 'winPlate', douse, settings), null);
+  assert.equal(logic.planBeat('pf_chief', 'winPlate', {type:'animBeat',beat:'idle',seconds:10}, settings), null);
+  assert.equal(logic.planBeat('pf_chief', 'winPlate', {type:'animBeat',beat:'bigWinStart',tier:2,amount:15}, settings)?.visible, true);
+  assert.equal(logic.planBeat('pf_chief', 'winPlate', {type:'animBeat',beat:'bigWinEnd',tier:2,amount:15}, settings)?.visible, false);
+  assert.equal(logic.planBeat('pf_chief', 'mascotLeft', douse, settings)?.steps[0].animation, 'spray_start');
+});
