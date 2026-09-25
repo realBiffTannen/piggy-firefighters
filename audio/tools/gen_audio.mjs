@@ -4,7 +4,7 @@
  * Lossless pcm_44100 -> true-channel 16-bit WAV in audio/cues_pcm/<name>.wav (git-ignored).
  *
  *   node audio/tools/gen_audio.mjs sfx   audio/tools/jobs.json  <name...|--all> [--dry-run] [--force --reason "<measured defect>"]
- *   node audio/tools/gen_audio.mjs music audio/tools/plans.json <plan__N...>   [--dry-run] [--force --reason "<measured defect>"]
+ *   node audio/tools/gen_audio.mjs music audio/tools/plans.json <plan__N...|--all> [--dry-run] [--force --reason "<measured defect>"]
  *   node audio/tools/gen_audio.mjs quota                                        # read the character quota only (ledgered)
  *
  * Rules (CLAUDE.md, the lane brief, the family's lessons):
@@ -163,7 +163,10 @@ async function main() {
 	let names = rest.filter((a, i) => !a.startsWith('--') && !(ri >= 0 && i === ri + 1));
 	if (!['sfx', 'music'].includes(kind) || !path) { console.error('usage: gen_audio.mjs sfx|music <doc.json> <names...|--all> [--dry-run] [--force --reason "..."] | quota'); process.exit(2); }
 	const DOC = JSON.parse(readFileSync(path, 'utf8'));
-	if (rest.includes('--all')) names = Object.keys(DOC).filter((k) => !k.startsWith('_'));
+	// --all: every SFX job; for music, draw 1 (`<plan>__1`) of every original plan. A measured-defect redraw plan
+	// (`<plan>_v2` carrying `redrawOf`) is never swept up by --all: it is named explicitly with its defect.
+	if (rest.includes('--all')) names = Object.keys(DOC).filter((k) => !k.startsWith('_') && !(kind === 'music' && DOC[k].redrawOf))
+		.map((k) => (kind === 'music' ? `${k}__1` : k));
 	if (!names.length) { console.error('no names given'); process.exit(2); }
 	if (force && !reason) { console.error('--force needs --reason "<the measured defect>" (one redraw per named defect, no speculative rerolls)'); process.exit(2); }
 	const lookup = (n) => (kind === 'sfx' ? DOC[n] : DOC[n.replace(/__\d+$/, '')]);

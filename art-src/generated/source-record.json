@@ -162,5 +162,130 @@
       "total_tokens": 3435
     },
     "seconds": 30.9
+  },
+  {
+    "asset": "chief_hamm_master",
+    "batch": "hero",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is our accepted hero, a stout pig fire chief. Redraw THIS SAME character with the SAME pose, the SAME framing, the SAME size and position on the canvas, the SAME proportions, costume, colours and thick dark-brown ink style. Do not move, resize, recentre or restyle anything except the four fixes below.\n\nFix 1, expression: replace the angry V-shaped scowling brows with confident, near-level brows (at most one brow very slightly lowered), so the face reads warm and heroic, not angry. Keep the open, happy smile and the proud dark-brown chevron moustache.\nFix 2, eyes: make the far eye's white area clearly larger and pull it away from the snout and the ear so it has its own clean space. Give both round black pupils one clear hard white catch-light in the same upper-left spot, so neither eye can become a dark dot at small size.\nFix 3, the hand on the belt: replace the fingerless mitten with a clearly defined cartoon pig hand: a visible thumb and separated fingers drawn with ink lines, clearly gripping the brass ring from which the bugle hangs. The hand is its own shape, separate from the belt and from the bugle.\nFix 4, the pointing hand: add a visible thumb and separate the three curled fingers with ink lines; pull the pointing index fingertip slightly inwards so the whole hand keeps a clear margin inside the canvas edge.\n\nKeep: white fire helmet with a blank smooth brass shield plate on the front (no marks on it), deep engine-red turnout coat with hydrant-yellow reflective bands on sleeves and hem, brass toggle clasps, black belt with a brass buckle, polished brass bugle hanging at the hip, dusk-navy trousers with yellow bands, black fire boots, pink pig skin, curly tail. Flat cel shading with ONE hard shadow tone and one small cream highlight, light from the top left, clean saturated fills, no gradients, no airbrush glow, no 3D render look.\n\nBackground: genuinely transparent, no floor, no ground shadow, no frame, no scenery. Absolutely no text, no letters, no numbers, no logos, no watermark anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.",
+    "prompt_files": [
+      "art-src/generated/prompts/hero_chief_hamm_master.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/hero_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "A: hero_c must-fix edit (brows, eye whites+catchlights, belt hand grip, pointing hand thumb/margin); same framing",
+    "attempt": 1,
+    "ts": "2026-09-25T04:33:37",
+    "status": "OK",
+    "output": "art-src/generated/hero/chief_hamm_master.png",
+    "sha256": "6fde2e1318164c2e7bbae54b97944ea8445dce71dba9bc95f3d5e72da2cac16f",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2019,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 483
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3391
+    },
+    "seconds": 30.5
+  },
+  {
+    "asset": "sym_sq_alarm",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 is a cartoon object from our slot-game family, used for STYLE ONLY (ink weight, cel shading, highlight): do not copy the paint can, the brush or their colours.\n\nSubject: a reel-symbol icon of a FIRE ALARM, the bonus scatter symbol. A big polished brass alarm bell (a wide round dome gong with a small brass striker at its side) mounted on the front of a chunky rounded engine-red wall box, the box's face a plain slightly raised red panel with one round cream push-button (no lettering, no glass sign). The bell is the hero of the shape and fills the upper two thirds; the red box sits below and behind it. Three short, thick, curved hydrant-yellow \"ringing\" strokes on each side of the bell and a tight warm hydrant-yellow glow halo drawn as ONE flat cel shape with a hard edge right around the bell (no soft airbrush glow), so it reads as ringing and alive. One bold, compact silhouette that reads instantly at 40 pixels. No flames, no smoke, no people, no pigs.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_alarm.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/paint.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol ALARM Fire Alarm square source (paint.png style ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:34:01",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_alarm.png",
+    "sha256": "45fd933e53411309f230b2e5d4874d5176abe0c83e44b617f3eaf04f08d4d044",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2047,
+      "input_tokens_details": {
+        "image_tokens": 1521,
+        "text_tokens": 526
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3803
+    },
+    "seconds": 34.1
+  },
+  {
+    "asset": "sym_sq_h1",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are cartoon art from our 2D slot-game family; they define the STYLE ONLY. Do not copy their objects, costumes or colours. Draw a NEW item in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is a clean, hand-inked game icon. It is not glossy, not a 3D render, and has no gradients, airbrush glow, bevel or border. It must read clearly at 40 pixels. Composition: a single object, centred, exactly as TALL as it is WIDE so it fills a square, filling about 90 percent of the canvas. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nImage 1 is a cartoon object from our slot-game family, used for STYLE ONLY (ink weight, cel shading, highlight): do not copy the paint can, the brush or their colours.\n\nSubject: a reel-symbol icon of a FIRE TRUCK, the most valuable symbol of the set. A chunky, toy-like, stubby red ladder fire engine seen in a lively three-quarter front view, cab on the left facing the viewer, short body so the whole truck is compact and nearly as tall as it is wide. Deep engine-red body with ONE plain hydrant-yellow stripe along the side (no numbers, no emblem, no lettering on the doors), a big polished brass bell on the cab roof, a cream-and-brass extension ladder folded on top and angled slightly up and back, bright round headlights, a simple chrome-grey front grille, big chunky black tyres with brass hubcaps, cream bumper. Friendly, heroic, instantly readable silhouette: bold blocky outer shape, no thin fussy parts, no hoses dangling, no people, no pigs, no water, no fire.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h1.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/paint.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "reel symbol H1 Fire Truck square source (first of set; paint.png style ref)",
+    "attempt": 1,
+    "ts": "2026-09-25T04:34:01",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h1.png",
+    "sha256": "99bbbefbc0e57c74657f85fca6642e2436ad1d5d52a04a4b12c9bed17567920f",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2044,
+      "input_tokens_details": {
+        "image_tokens": 1521,
+        "text_tokens": 523
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 3800
+    },
+    "seconds": 36.6
   }
 ]
