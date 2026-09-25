@@ -81,10 +81,10 @@ anticipation reel. Every symbol sits in the same fit-box as the donor's.
 | Key | Cost | Title | Card line |
 |---|---|---|---|
 | ante | 1.5x | ALARM BOOST | 2x the chance to trigger Rescue Spins and Inferno Rescue |
-| backdraft_spins | 25x | BACKDRAFT SPINS | 5 spins, every spin a Backdraft of 3–5 Blaze Wilds carrying x2–x10 that ADD UP along a line |
-| alarm_call | 40x | ALARM CALL | Rescue Spins · Inferno Rescue · or a False Alarm that wins nothing |
-| rescue | 60x | RESCUE SPINS | 10 spins, five rooms, every rescue +1x and +1 spin |
-| inferno | 300x | INFERNO RESCUE | 10 spins, rooms fall in one spray, every rescue +2x, +1 spin and a prize |
+| backdraft_spins | 50x (tuned) | BACKDRAFT SPINS | 5 spins, every spin a Backdraft of 3–5 Blaze Wilds carrying x2–x10 that ADD UP along a line |
+| alarm_call | 12x | ALARM CALL | Rescue Spins · Inferno Rescue · or a False Alarm that wins nothing |
+| rescue | 18x | RESCUE SPINS | 10 spins, five rooms, every rescue +1x and +1 spin |
+| inferno | 90x | INFERNO RESCUE | 10 spins, rooms fall in one spray, every rescue +2x, +1 spin and a prize |
 
 Win rungs (art themed, names conventional and jurisdiction-safe): **BIG WIN** (≥ 15x) → **HUGE WIN** (≥ 30x) →
 **MEGA WIN** (≥ 50x) → **EPIC WIN** (≥ 100x) → **MAX WIN** (cap). Thresholds are x bet on the round total,

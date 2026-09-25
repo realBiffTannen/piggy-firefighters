@@ -27,14 +27,22 @@ and emits `wincap`.
 |---|---|---|---|---|
 | `base` | 1x | default spin | — | 5 reels × 3 rows, **20 fixed lines**, left to right. Backdraft modifier. 3+ ALARM trigger Rescue Spins; ≥1 GOLDEN ALARM among them → Inferno Rescue. |
 | `ante` | 1.5x | activate toggle | **ALARM BOOST** | Reel set `BRA`: **exactly 2x** the base probability of each bonus (Rescue Spins and Inferno Rescue separately); Backdraft rate unchanged. |
-| `backdraft_spins` | 25x *(tuned)* | buy card | **BACKDRAFT SPINS** | 5 spins on reel set `BRB` (no alarms); **every spin gets a Backdraft** of 3–5 Blaze Wilds *(tuned weights)*, each carrying a **multiplier x2/x3/x5/x10** *(tuned)*; a line's win is multiplied by the SUM of the Blaze Wild multipliers on it (§7). |
-| `alarm_call` | 40x *(tuned)* | buy card | **ALARM CALL** | One card: Rescue Spins (share solved to close RTP, ≈50%) / Inferno Rescue (**3% fixed**) / **False Alarm** (the rest; pays 0). An awarded bonus plays exactly like the bought one. |
-| `rescue` | 60x *(tuned)* | buy card | **RESCUE SPINS** | Direct buy of the tier-1 bonus, 10 spins (§5). |
-| `inferno` | 300x *(tuned)* | buy card | **INFERNO RESCUE** | Direct buy of the tier-2 bonus, 10 spins (§6). Also reachable naturally (GOLDEN ALARM) and from Alarm Call. |
+| `backdraft_spins` | 50x *(tuned target; M1 organic 109x — see note)* | buy card | **BACKDRAFT SPINS** | 5 spins on reel set `BRB` (no alarms); **every spin gets a Backdraft** of 3–5 Blaze Wilds *(tuned weights)*, each carrying a **multiplier x2/x3/x5/x10** *(tuned)*; a line's win is multiplied by the SUM of the Blaze Wild multipliers on it (§7). |
+| `alarm_call` | 12x *(derived, M1)* | buy card | **ALARM CALL** | One card: Rescue Spins (share solved to close RTP, ≈50%) / Inferno Rescue (**3% fixed**) / **False Alarm** (the rest; pays 0). An awarded bonus plays exactly like the bought one. |
+| `rescue` | 18x *(derived, M1)* | buy card | **RESCUE SPINS** | Direct buy of the tier-1 bonus, 10 spins (§5). |
+| `inferno` | 90x *(derived, M1)* | buy card | **INFERNO RESCUE** | Direct buy of the tier-2 bonus, 10 spins (§6). Also reachable naturally (GOLDEN ALARM) and from Alarm Call. |
 
 Buy costs are DERIVED: `cost = mean(bonus) / 0.967`, rounded to a whole multiple of the bet the HUD can show, then
 the bonus reel densities are tuned so the mean lands on `0.967 × cost` exactly (the solver closes the last
-fraction with a tilt on the bonus books, never on the bought/natural split). Mode order in the HUD sheet:
+fraction with a tilt on the bonus books, never on the bought/natural split). **Pricing decision after Codex's M1
+(2026-09-25):** the organic means of the frozen rules are adopted for `rescue` (17.58x → **18x**), `inferno`
+(87.10x → **90x**) and `alarm_call` (≈ **12x**, Rescue share solved, Inferno 3% fixed). `backdraft_spins` came out at
+109x organically, which would price the modifier buy above the flagship; the math lane instead TUNES it toward a
+**50x** target by lowering the Blaze multiplier weights (e.g. `{2: 68, 3: 24, 5: 6, 10: 2}`) and/or the ignition
+weights (within 3–5), keeping `mult 10` at ≥ 1.5% weight so the cap route stays legal; if 50x ± 10% cannot be met
+without breaking reachability, the derived organic cost is adopted instead and recorded here. Final costs are
+whatever `math/publish/index.json` carries after the freeze; the frontend reads them from `config.ts`, which must
+match that file byte for byte. Mode order in the HUD sheet:
 Backdraft Spins, Alarm Call, Rescue Spins, Inferno Rescue (four cards); Alarm Boost is the ante toggle.
 
 Targets (base and ante measured against their own cost):
@@ -152,7 +160,7 @@ Standard SDK events keep their SDK shapes (`reveal`, `winInfo`, `setWin`, `setTo
 | `alarmCall` | `{outcome}` | first event of an `alarm_call` round |
 | `rescueStart` | `{bonus: "rescue"\|"inferno", source: "natural"\|"buy"\|"alarmCall", spins, rooms: [{reel, fire}], multiplier: 1}` | after `freeSpinTrigger` (natural) or as the first bonus event (buy / Alarm Call) |
 | `douse` | `{sprays: [{reel, from, to}], rescues: [{reel, prize?}], multiplier, spinsAdded, spinsLeft}` | every bonus spin after `reveal`, before `winInfo`; may be empty (`sprays: []`) so the frontend cadence is uniform |
-| `buildingCleared` | `{building, spinsAdded: 5, spinsLeft}` | right after the `douse` that rescued the last room |
+| `buildingCleared` | `{building, spinsAdded: 5, spinsLeft}` — `building` is the 1-based ordinal of the building JUST CLEARED (1 for the first); the next building is `building + 1` | right after the `douse` that rescued the last room |
 | `rescueEnd` | `{amount, multiplier, rescued, buildings}` | after the last spin's `setTotalWin`, before `freeSpinEnd` |
 | `backdraftSpinsStart` / `backdraftSpinsEnd` | `{spins}` / `{amount}` | Backdraft Spins bookends |
 

@@ -1,5 +1,9 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Codex M1: 60k dev books, base RTP 0.967 SD 14.4 in band; ante etl40b 1.009 (solver fix in progress).
+  Pricing decision: adopt derived 18x rescue / 90x inferno / ≈12x alarm_call; tune backdraft_spins toward 50x (organic
+  109x rejected as above the flagship). `buildingCleared.building` = 1-based ordinal of the cleared building.
+  All 10 donor maps complete (scratchpad); art + audio lanes launched as workflows.
 - 2026-09-25 — Codex handoff `f4a00ca` merged (INBOX, LOCAL_READINESS, math-contract-audit, thumbnail/instructions.md);
   Codex accepted A–F + PF-03, Blender present, M1 + rig runtime underway. Contract prose: real-table cap proof (9,875x/spin),
   cap clipping of booked amounts, one false-alarm book. build_dist.sh kill scoped to its own process tree.
