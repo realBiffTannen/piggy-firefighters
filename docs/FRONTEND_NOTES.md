@@ -120,6 +120,14 @@ Smoke: `node qa/smoke/port/smoke.mjs [fixtures]` (screenshots + `results.json` i
   permitted in this lane's session.
 - Audio: `static/assets/audio/lucky/*` and `game/audio/cueManifest.ts` are the audio lane's (donor cues still referenced).
 - No portrait `symT_*` tiles / pose-B art / Spine rigs registered yet; `fx_transition` FX rig optional.
-- Contract v1.1 leftovers (coordinator task list "Phase B"): per-room Trotter skin rotation art, RigStage slots,
-  `animBeat` emission per ANIMATION_CONTRACT v1.1.
+- Contract v1.1 already folded in: `backdraft.cells[].mult` (Backdraft Spins badges on the Blaze Wilds, LinePop shows
+  the whole `meta.multiplier`), "5 or more alarms: 15 spins" copy, Backdraft Spins multiplier rules/card copy, cap
+  clipping in the dev fixtures, Trotter skin rotation `[(r + b) mod 5]` as a placeholder label on rescued rooms
+  (`names.trotterSkin`). Still owed: the rig art per skin, RigStage slots and `animBeat` emission per
+  ANIMATION_CONTRACT v1.1.
+- `tsconfig.json` now also extends the generated `.svelte-kit/tsconfig.json` (SvelteKit's own advice; needs a
+  `svelte-kit sync` / dev run first). Residual svelte-check error: `packages/envs` (`$env/static/public`) — a workspace
+  package, outside the app.
+- `packages/pixi-svelte` must be built once (`pnpm --filter pixi-svelte build`, output `dist/` is git-ignored) before
+  dev / build / svelte-check can resolve `pixi-svelte`.
 - `.eslintrc.cjs` (donor) is now dead (flat `eslint.config.js` wins); remove when convenient.
