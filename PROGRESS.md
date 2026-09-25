@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Codex handoff `f4a00ca` merged (INBOX, LOCAL_READINESS, math-contract-audit, thumbnail/instructions.md);
+  Codex accepted A–F + PF-03, Blender present, M1 + rig runtime underway. Contract prose: real-table cap proof (9,875x/spin),
+  cap clipping of booked amounts, one false-alarm book. build_dist.sh kill scoped to its own process tree.
 - 2026-09-25 — Contract v1.1 after Codex's pre-freeze audit: Backdraft Spins gets additive multiplier Blaze Wilds
   (x2/x3/x5/x10, sum along a line) so 15,000x is genuinely reachable; volatility bands re-derived from donor v2.7 LUTs
   (base 13.38–15.44, ante 8.79–10.14); 5+ alarms → 15 spins; ANIMATION_CONTRACT v1.1 fields (neutral roots, anchors,

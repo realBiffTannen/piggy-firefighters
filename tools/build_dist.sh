@@ -18,8 +18,10 @@ for i in $(seq 1 240); do
   sleep 2
 done
 sleep 2
-kill $(cat $REPO/qa/build/build.pid) 2>/dev/null
-pkill -f "vite build" 2>/dev/null
+# Terminate ONLY this build's own process tree (never an unscoped `pkill -f "vite build"`: the Mac is shared
+# between lanes and another lane's vite may be running). Children first, then the pid.
+BPID=$(cat $REPO/qa/build/build.pid 2>/dev/null)
+if [ -n "$BPID" ]; then pkill -TERM -P "$BPID" 2>/dev/null; kill -TERM "$BPID" 2>/dev/null; sleep 1; pkill -KILL -P "$BPID" 2>/dev/null; kill -KILL "$BPID" 2>/dev/null; fi
 if ! grep -q "Wrote site to" $LOG; then echo "BUILD FAILED"; tail -30 $LOG; exit 1; fi
 # bundleStrategy 'inline' puts the CSS inside index.html, so a url(./file) that Vite wrote relative to
 # the emitted stylesheet resolves against the PAGE and 404s. Point those at the real emitted files.
