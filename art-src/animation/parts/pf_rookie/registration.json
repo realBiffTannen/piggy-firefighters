@@ -1,6 +1,7 @@
 {
   "rig": "pf_rookie",
   "version": "r2",
+  "revision": "r2.1 (2026-09-25: verifier fixes, local re-processing, no paid call)",
   "canvas": [
     1024,
     1536
@@ -47,6 +48,95 @@
         "tail_ink_px": 20,
         "leg_extend_px": 140,
         "why": "the belt's grey rows run y 730-790 (measured grey-row profile)"
+      },
+      "r2_1_tail": "the redraw's own curly tail (10-15 px left of the master's) is replaced by the master's tail pixels, so at rest one tail shows, where the master has it",
+      "r2_1_edge_to_master": {
+        "body_no_head_no_arms": {
+          "trimmed_px": 7270,
+          "inked_px": 4917,
+          "islands_dropped": [
+            [
+              1,
+              406,
+              787
+            ],
+            [
+              1,
+              404,
+              788
+            ],
+            [
+              1,
+              403,
+              789
+            ],
+            [
+              1,
+              402,
+              790
+            ],
+            [
+              1,
+              401,
+              791
+            ],
+            [
+              1,
+              400,
+              793
+            ],
+            [
+              1,
+              399,
+              794
+            ],
+            [
+              1,
+              398,
+              796
+            ],
+            [
+              1,
+              397,
+              798
+            ],
+            [
+              3,
+              396,
+              801
+            ],
+            [
+              5,
+              388,
+              809
+            ],
+            [
+              7,
+              387,
+              815
+            ],
+            [
+              5,
+              386,
+              824
+            ],
+            [
+              4,
+              385,
+              834
+            ]
+          ],
+          "method": "r2.1: a layer drawn wider than the master (the registered redraw's far sleeve / collar) loses the pixels that\n    show at rest OUTSIDE the master's silhouette (hidden overlap under the layers in front of it is kept), and the\n    new edge is closed with the master's own outline: within `band_px` of the cut, the master's ink and antialias\n    pixels are copied (RGBA), so at rest the edge is the master's and in motion the layer still has an inked edge.",
+          "params": {
+            "layers": [
+              "arm_left",
+              "body_no_head_no_arms"
+            ],
+            "band_px": 12,
+            "min_island_px": 30,
+            "why": "r2.1 (verifier: 'torso 12-16 px wider on the image-right side, rows 560-840, 7862 px outside'): measured per layer, that overhang is the far sleeve arm_left (x 759 vs 743 at y 720), plus the body's collar and shoulders above it; what shows at rest outside the master's silhouette is trimmed and the new edge takes the master's own outline pixels (band_px). Hidden overlap under the layers in front is kept for rotation"
+          }
+        }
       }
     },
     "head_no_helmet": {
@@ -109,80 +199,321 @@
       "split": {
         "arm_right": "art-src/animation/parts/pf_rookie/arm_right.png",
         "arm_left": "art-src/animation/parts/pf_rookie/arm_left.png"
+      },
+      "r2_1_edge_to_master": {
+        "arm_left": {
+          "trimmed_px": 5058,
+          "inked_px": 5879,
+          "islands_dropped": [],
+          "method": "r2.1: a layer drawn wider than the master (the registered redraw's far sleeve / collar) loses the pixels that\n    show at rest OUTSIDE the master's silhouette (hidden overlap under the layers in front of it is kept), and the\n    new edge is closed with the master's own outline: within `band_px` of the cut, the master's ink and antialias\n    pixels are copied (RGBA), so at rest the edge is the master's and in motion the layer still has an inked edge.",
+          "params": {
+            "layers": [
+              "arm_left",
+              "body_no_head_no_arms"
+            ],
+            "band_px": 12,
+            "min_island_px": 30,
+            "why": "r2.1 (verifier: 'torso 12-16 px wider on the image-right side, rows 560-840, 7862 px outside'): measured per layer, that overhang is the far sleeve arm_left (x 759 vs 743 at y 720), plus the body's collar and shoulders above it; what shows at rest outside the master's silhouette is trimmed and the new edge takes the master's own outline pixels (band_px). Hidden overlap under the layers in front is kept for rotation"
+          }
+        }
       }
     },
     "coat_tails": {
-      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "derived_from": "master_pf_rookie (r2.1: the master's own pixels)",
       "file": "art-src/animation/parts/pf_rookie/coat_tails.png",
       "bbox": [
-        373,
-        759,
-        702,
-        954
+        394,
+        740,
+        686,
+        948
       ],
       "size": [
-        330,
-        196
+        293,
+        209
       ],
-      "method": "the registered body's pixels from the belt's middle line down to the hem (the cut edge hides under the belt); the tail stays on the body",
+      "method": "r2.1 (rookie): coat_tails and the two legs are cut from the MASTER's own pixels, so at rest they are the master\n    (the r2 cut from the registered body redraw put the hem 8 px low and 30 px too wide per side, and the legs 3 px\n    low and 8-13 px narrow at the boots). The master is split into the template's slots with `assign_cells`\n    (template = the registered arm_right, arm_left, body, coat_tails, leg_right, leg_left); coat_tails = the master's\n    body/coat pixels from the master's own belt middle line down, without the curly tail (`tail_mask`; the tail goes\n    to the body layer, replacing the redraw's own tail, which sat 10-15 px to the left); the legs = the master's leg\n    pixels, their tops extended `leg_extend_px` straight up where the coat or the body covers them (hidden overlap for\n    rotation, as in r2; never outside the coat/body silhouette). Islands under `min_island_px` are dropped.",
       "params": {
-        "lower_from": 730,
+        "ink_lum": 75,
+        "cell_major": 0.8,
+        "small_cell_px": 4000,
+        "ink_px": 14,
         "belt_band": [
           720,
           800
         ],
-        "coat": true,
-        "hem_ink_px": 12,
         "tail_ink_px": 20,
         "leg_extend_px": 140,
-        "why": "the belt's grey rows run y 730-790 (measured grey-row profile)"
-      }
+        "min_island_px": 30,
+        "why": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat"
+      },
+      "meta": {
+        "belt_middle_y": [
+          740,
+          770
+        ],
+        "tail_px": 1623,
+        "coat_islands_dropped": [
+          [
+            1,
+            385,
+            838
+          ],
+          [
+            6,
+            384,
+            843
+          ],
+          [
+            3,
+            383,
+            852
+          ],
+          [
+            3,
+            685,
+            892
+          ],
+          [
+            2,
+            687,
+            893
+          ],
+          [
+            4,
+            690,
+            894
+          ]
+        ],
+        "leg_right_islands_dropped": [],
+        "leg_right_extended_px": 16069,
+        "leg_left_islands_dropped": [],
+        "leg_left_extended_px": 15668,
+        "body_tail_removed_px": 2532
+      },
+      "r2_superseded": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat"
     },
     "legs": {
-      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "derived_from": "master_pf_rookie (r2.1: the master's own pixels)",
       "file": "art-src/animation/parts/pf_rookie/legs.png",
       "bbox": [
-        185,
-        771,
-        842,
+        177,
+        757,
+        849,
         1440
       ],
       "size": [
-        658,
-        670
+        673,
+        684
       ],
-      "method": "leg_right + leg_left on one layer"
+      "method": "r2.1 (rookie): coat_tails and the two legs are cut from the MASTER's own pixels, so at rest they are the master\n    (the r2 cut from the registered body redraw put the hem 8 px low and 30 px too wide per side, and the legs 3 px\n    low and 8-13 px narrow at the boots). The master is split into the template's slots with `assign_cells`\n    (template = the registered arm_right, arm_left, body, coat_tails, leg_right, leg_left); coat_tails = the master's\n    body/coat pixels from the master's own belt middle line down, without the curly tail (`tail_mask`; the tail goes\n    to the body layer, replacing the redraw's own tail, which sat 10-15 px to the left); the legs = the master's leg\n    pixels, their tops extended `leg_extend_px` straight up where the coat or the body covers them (hidden overlap for\n    rotation, as in r2; never outside the coat/body silhouette). Islands under `min_island_px` are dropped.",
+      "params": {
+        "ink_lum": 75,
+        "cell_major": 0.8,
+        "small_cell_px": 4000,
+        "ink_px": 14,
+        "belt_band": [
+          720,
+          800
+        ],
+        "tail_ink_px": 20,
+        "leg_extend_px": 140,
+        "min_island_px": 30,
+        "why": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat"
+      },
+      "meta": {
+        "belt_middle_y": [
+          740,
+          770
+        ],
+        "tail_px": 1623,
+        "coat_islands_dropped": [
+          [
+            1,
+            385,
+            838
+          ],
+          [
+            6,
+            384,
+            843
+          ],
+          [
+            3,
+            383,
+            852
+          ],
+          [
+            3,
+            685,
+            892
+          ],
+          [
+            2,
+            687,
+            893
+          ],
+          [
+            4,
+            690,
+            894
+          ]
+        ],
+        "leg_right_islands_dropped": [],
+        "leg_right_extended_px": 16069,
+        "leg_left_islands_dropped": [],
+        "leg_left_extended_px": 15668,
+        "body_tail_removed_px": 2532
+      },
+      "r2_superseded": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat"
     },
     "leg_right": {
-      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "derived_from": "master_pf_rookie (r2.1: the master's own pixels)",
       "file": "art-src/animation/parts/pf_rookie/leg_right.png",
       "bbox": [
-        185,
-        802,
+        177,
+        787,
         530,
         1440
       ],
       "size": [
-        346,
-        639
+        354,
+        654
       ],
-      "method": "the registered body's own leg pixels (navy/boot regions below the coat hem), moved 4 px so the soles sit on y 1440; the top is extended up to 140 px under the hem (hidden overlap for rotation)",
+      "method": "r2.1 (rookie): coat_tails and the two legs are cut from the MASTER's own pixels, so at rest they are the master\n    (the r2 cut from the registered body redraw put the hem 8 px low and 30 px too wide per side, and the legs 3 px\n    low and 8-13 px narrow at the boots). The master is split into the template's slots with `assign_cells`\n    (template = the registered arm_right, arm_left, body, coat_tails, leg_right, leg_left); coat_tails = the master's\n    body/coat pixels from the master's own belt middle line down, without the curly tail (`tail_mask`; the tail goes\n    to the body layer, replacing the redraw's own tail, which sat 10-15 px to the left); the legs = the master's leg\n    pixels, their tops extended `leg_extend_px` straight up where the coat or the body covers them (hidden overlap for\n    rotation, as in r2; never outside the coat/body silhouette). Islands under `min_island_px` are dropped.",
+      "params": {
+        "ink_lum": 75,
+        "cell_major": 0.8,
+        "small_cell_px": 4000,
+        "ink_px": 14,
+        "belt_band": [
+          720,
+          800
+        ],
+        "tail_ink_px": 20,
+        "leg_extend_px": 140,
+        "min_island_px": 30,
+        "why": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat"
+      },
+      "meta": {
+        "belt_middle_y": [
+          740,
+          770
+        ],
+        "tail_px": 1623,
+        "coat_islands_dropped": [
+          [
+            1,
+            385,
+            838
+          ],
+          [
+            6,
+            384,
+            843
+          ],
+          [
+            3,
+            383,
+            852
+          ],
+          [
+            3,
+            685,
+            892
+          ],
+          [
+            2,
+            687,
+            893
+          ],
+          [
+            4,
+            690,
+            894
+          ]
+        ],
+        "leg_right_islands_dropped": [],
+        "leg_right_extended_px": 16069,
+        "leg_left_islands_dropped": [],
+        "leg_left_extended_px": 15668,
+        "body_tail_removed_px": 2532
+      },
+      "r2_superseded": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat",
       "soles_y": 1440
     },
     "leg_left": {
-      "derived_from": "body_no_head_no_arms (registered, master scale)",
+      "derived_from": "master_pf_rookie (r2.1: the master's own pixels)",
       "file": "art-src/animation/parts/pf_rookie/leg_left.png",
       "bbox": [
-        530,
-        771,
-        842,
+        531,
+        757,
+        849,
         1439
       ],
       "size": [
-        313,
-        669
+        319,
+        683
       ],
-      "method": "the registered body's own leg pixels (navy/boot regions below the coat hem), moved 4 px so the soles sit on y 1440; the top is extended up to 140 px under the hem (hidden overlap for rotation)",
+      "method": "r2.1 (rookie): coat_tails and the two legs are cut from the MASTER's own pixels, so at rest they are the master\n    (the r2 cut from the registered body redraw put the hem 8 px low and 30 px too wide per side, and the legs 3 px\n    low and 8-13 px narrow at the boots). The master is split into the template's slots with `assign_cells`\n    (template = the registered arm_right, arm_left, body, coat_tails, leg_right, leg_left); coat_tails = the master's\n    body/coat pixels from the master's own belt middle line down, without the curly tail (`tail_mask`; the tail goes\n    to the body layer, replacing the redraw's own tail, which sat 10-15 px to the left); the legs = the master's leg\n    pixels, their tops extended `leg_extend_px` straight up where the coat or the body covers them (hidden overlap for\n    rotation, as in r2; never outside the coat/body silhouette). Islands under `min_island_px` are dropped.",
+      "params": {
+        "ink_lum": 75,
+        "cell_major": 0.8,
+        "small_cell_px": 4000,
+        "ink_px": 14,
+        "belt_band": [
+          720,
+          800
+        ],
+        "tail_ink_px": 20,
+        "leg_extend_px": 140,
+        "min_island_px": 30,
+        "why": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat"
+      },
+      "meta": {
+        "belt_middle_y": [
+          740,
+          770
+        ],
+        "tail_px": 1623,
+        "coat_islands_dropped": [
+          [
+            1,
+            385,
+            838
+          ],
+          [
+            6,
+            384,
+            843
+          ],
+          [
+            3,
+            383,
+            852
+          ],
+          [
+            3,
+            685,
+            892
+          ],
+          [
+            2,
+            687,
+            893
+          ],
+          [
+            4,
+            690,
+            894
+          ]
+        ],
+        "leg_right_islands_dropped": [],
+        "leg_right_extended_px": 16069,
+        "leg_left_islands_dropped": [],
+        "leg_left_extended_px": 15668,
+        "body_tail_removed_px": 2532
+      },
+      "r2_superseded": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat",
       "soles_y": 1439
     },
     "helmet_front": {
@@ -202,7 +533,14 @@
       },
       "meta": {
         "helmet_px": 73515,
-        "gap_fill_px": 1163
+        "gap_fill_px": 1163,
+        "islands_dropped": [
+          [
+            9,
+            349,
+            374
+          ]
+        ]
       },
       "file": "art-src/animation/parts/pf_rookie/helmet_front.png"
     },
@@ -260,7 +598,7 @@
         },
         "ears": {
           "scale_to_canvas": 0.45,
-          "how": "fit of ear_left on the master ear (0.47, overlay reviewed; foreshortened)"
+          "how": "fit of ear_right (the image-left, near ear; 'ear_left' in r2) on the master's image-left ear (0.47, overlay reviewed; foreshortened)"
         }
       },
       "components": 32,
@@ -694,8 +1032,8 @@
           "scale_family": "mouth",
           "scale_to_canvas": 0.32
         },
-        "ear_left": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/ear_left.png",
+        "ear_right": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/ear_right.png",
           "size": [
             236,
             235
@@ -720,8 +1058,8 @@
           "scale_family": "ears",
           "scale_to_canvas": 0.45
         },
-        "ear_right": {
-          "file": "art-src/animation/parts/pf_rookie/pieces/ear_right.png",
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_rookie/pieces/ear_left.png",
           "size": [
             230,
             234
@@ -757,8 +1095,8 @@
       "sheet_scale_to_canvas": null,
       "scales": {
         "hands": {
-          "scale_to_canvas": 0.45,
-          "how": "BY EYE: hand_r_open over arm_right's hand at 0.40/0.50/0.63"
+          "scale_to_canvas": 0.6,
+          "how": "r2.1 (verifier: 0.45 read 25-30 % small): pink-area ratio 0.63 (hand_r_open vs arm_right's hand); side by side at 0.45 / 0.55 / 0.60 / 0.65 / 0.70 the palm, finger length and navy cuff match arm_right's and arm_left's own hands at 0.60 (reviewed by eye; the verifier's cuff-width estimate was 0.58-0.62). r2 used 0.45"
         }
       },
       "components": 10,
@@ -789,7 +1127,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_r_grip": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_grip.png",
@@ -815,7 +1153,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_r_point": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_point.png",
@@ -841,7 +1179,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_r_catch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_catch.png",
@@ -867,7 +1205,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_r_pinch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_r_pinch.png",
@@ -893,7 +1231,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_l_open": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_open.png",
@@ -919,7 +1257,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_l_grip": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_grip.png",
@@ -945,7 +1283,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_l_point": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_point.png",
@@ -971,7 +1309,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_l_catch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_catch.png",
@@ -997,7 +1335,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "hand_l_pinch": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hand_l_pinch.png",
@@ -1023,7 +1361,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         }
       },
       "missing": []
@@ -1036,12 +1374,12 @@
       "sheet_scale_to_canvas": null,
       "scales": {
         "cards": {
-          "scale_to_canvas": 0.45,
-          "how": "no counterpart on the master: assumed equal to the hands (the pinch hand holds the card)"
+          "scale_to_canvas": 0.6,
+          "how": "no counterpart on the master: equal to the hands (the pinch hand holds the card); follows the r2.1 hand scale 0.60 (r2: 0.45)"
         },
         "hose": {
-          "scale_to_canvas": 0.237,
-          "how": "so the hose (91 px thick on the sheet) passes the grip hole (48 px on the hands sheet x 0.45): 0.45 x 48 / 91"
+          "scale_to_canvas": 0.316,
+          "how": "so the hose (91 px thick on the sheet) passes the grip tunnel (48 px equivalent diameter on hand_r_grip / hand_l_grip at sheet scale, 29 px on the canvas at the hand scale 0.60): 0.60 x 48 / 91 = 0.316 (r2: 0.237 from the old hand scale 0.45)"
         }
       },
       "components": 4,
@@ -1072,7 +1410,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hose",
-          "scale_to_canvas": 0.237
+          "scale_to_canvas": 0.316
         },
         "hose_coil": {
           "file": "art-src/animation/parts/pf_rookie/pieces/hose_coil.png",
@@ -1098,7 +1436,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hose",
-          "scale_to_canvas": 0.237
+          "scale_to_canvas": 0.316
         },
         "card_blank": {
           "file": "art-src/animation/parts/pf_rookie/pieces/card_blank.png",
@@ -1124,7 +1462,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "cards",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         },
         "card_back": {
           "file": "art-src/animation/parts/pf_rookie/pieces/card_back.png",
@@ -1150,7 +1488,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "cards",
-          "scale_to_canvas": 0.45
+          "scale_to_canvas": 0.6
         }
       },
       "missing": []
@@ -1201,9 +1539,65 @@
     "note": "immutable input: verified identical to the integer shift of the raw master, not rewritten",
     "crown_note": "the helmet crown sits on y 0: the raw master's top rows are y 40-42 with alpha <= 44/255 (faint antialias), so one faint row is lost; the sole line must stay on y 1440, so the master is not moved (moving it 12 px down would put the soles on y 1452); helmet_only keeps its crown from y 1"
   },
+  "islands_dropped": {
+    "arms_raised": [
+      [
+        1,
+        857,
+        303
+      ],
+      [
+        1,
+        841,
+        320
+      ],
+      [
+        1,
+        815,
+        394
+      ],
+      [
+        1,
+        814,
+        395
+      ],
+      [
+        1,
+        766,
+        459
+      ]
+    ],
+    "arm_left_raised": [
+      [
+        1,
+        857,
+        303
+      ],
+      [
+        1,
+        841,
+        320
+      ],
+      [
+        1,
+        815,
+        394
+      ],
+      [
+        1,
+        814,
+        395
+      ],
+      [
+        1,
+        766,
+        459
+      ]
+    ]
+  },
   "qa": {
     "reassembly": "qa/art/parts/pf_rookie_reassembly.png",
-    "reassembly_iou": 0.9496,
+    "reassembly_iou": 0.991,
     "pieces_contact": "qa/art/parts/pf_rookie_pieces_r2.png",
     "layers_contact": "qa/art/parts/pf_rookie_layers_r2.png"
   }

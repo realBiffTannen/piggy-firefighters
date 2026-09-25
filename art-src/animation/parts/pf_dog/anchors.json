@@ -31,5 +31,50 @@
       ],
       "note": "Ember holds ONE corner; if the rig needs both, put sheet_l on the same jaw bone offset along the sheet edge"
     }
+  },
+  "guidance": {
+    "muzzle_nose": {
+      "head_canvas": [
+        815.9,
+        664.9
+      ],
+      "head_spine": [
+        55.9,
+        142.7
+      ],
+      "head_nose_w": 117,
+      "pieces": {
+        "pieces/muzzle_bark.png": {
+          "nose_piece_xy": [
+            141.1,
+            40.2
+          ],
+          "nose_w": 108
+        },
+        "pieces/muzzle_closed.png": {
+          "nose_piece_xy": [
+            150.2,
+            42.3
+          ],
+          "nose_w": 116
+        },
+        "pieces/muzzle_pant.png": {
+          "nose_piece_xy": [
+            138.1,
+            39.1
+          ],
+          "nose_w": 108
+        },
+        "pieces/muzzle_sad.png": {
+          "nose_piece_xy": [
+            110.8,
+            40.0
+          ],
+          "nose_w": 110
+        }
+      },
+      "piece_scale_to_canvas": 1.05,
+      "note": "not a contract bone: muzzle_* are opaque muzzle overlays that include the black nose; place each so its nose_piece_xy (x piece_scale_to_canvas) lands on head_canvas, on the head/jaw bone. Centres are the neutral-black nose blob (highlight included), measured the same way on the head and on each piece"
+    }
   }
 }

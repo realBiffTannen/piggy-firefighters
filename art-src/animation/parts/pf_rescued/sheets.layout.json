@@ -175,22 +175,24 @@
      ],
      "cells": [
       {
-       "label": "ear_left",
+       "label": "ear_right",
        "x": [
         0,
         397
        ],
        "rule": "single",
-       "family": "ears"
+       "family": "ears",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       },
       {
-       "label": "ear_right",
+       "label": "ear_left",
        "x": [
         397,
         799
        ],
        "rule": "single",
-       "family": "ears"
+       "family": "ears",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       },
       {
        "label": "mouth_sigh",
@@ -228,7 +230,7 @@
     },
     "ears": {
      "scale_to_canvas": 0.66,
-     "how": "BY EYE: ear_left over the master ear at 0.55/0.66"
+     "how": "BY EYE: ear_right (the image-left ear; 'ear_left' in r2) over the master's image-left ear at 0.55/0.66"
     }
    }
   },
@@ -395,5 +397,6 @@
    }
   }
  },
- "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible",
+ "revision": "r2.1 (2026-09-25): verifier fixes. Ears named by the character's side (labels swapped); rookie/chief hand family scales re-measured; Ember's mouth_* renamed muzzle_* (nose-on-nose, scale 1.05) and the head cell named head_open_smile (head_no_jaw is derived from it, derive.layout.json 'pieces')"
 }

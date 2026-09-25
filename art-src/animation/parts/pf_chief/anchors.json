@@ -35,8 +35,12 @@
         178.6,
         217.4
       ],
-      "piece_scale_to_canvas": 0.47,
-      "note": "centre of the empty fist tunnel the hose passes through"
+      "piece_scale_to_canvas": 0.58,
+      "tunnel_diameter_px": {
+        "piece": 67.8,
+        "canvas": 39.3
+      },
+      "note": "centre of the empty fist tunnel the hose passes through (r2.1: hand scale 0.58, was 0.47)"
     },
     "grip_l": {
       "piece": "pieces/hand_l_grip.png",
@@ -44,8 +48,12 @@
         127.8,
         210.8
       ],
-      "piece_scale_to_canvas": 0.47,
-      "note": "centre of the empty fist tunnel the hose passes through"
+      "piece_scale_to_canvas": 0.58,
+      "tunnel_diameter_px": {
+        "piece": 68.0,
+        "canvas": 39.4
+      },
+      "note": "centre of the empty fist tunnel the hose passes through (r2.1: hand scale 0.58, was 0.47)"
     }
   }
 }

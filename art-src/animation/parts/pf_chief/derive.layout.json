@@ -28,5 +28,34 @@
  "raised_arms": {
   "margin_px": 4,
   "why": "r1 raised arms touched the canvas edge (86 rows at x 0, 15 at x 1023): each raised arm is rotated about its recorded shoulder pivot by the smallest angle that keeps 4 px of margin"
+ },
+ "edge_to_master": {
+  "layers": [
+   "arm_left",
+   "body_no_head_no_arms"
+  ],
+  "band_px": 12,
+  "min_island_px": 30,
+  "why": "r2.1 (verifier: arm_left's shoulder cap and outer sleeve bulged out of the master silhouette on the image-right side, x 762 vs 724 at y 560, 7784 px outside): the far arm keeps its drawing, but what shows at rest outside the master's silhouette is trimmed and the new edge takes the master's own outline pixels (band_px); the body's shoulder that the old bulge hid is fitted the same way. Hidden overlap under the layers in front is kept for rotation"
+ },
+ "head_blank_adjust": {
+  "scale": 1.005,
+  "about": [
+   592.9,
+   412.5
+  ],
+  "dx": -4,
+  "dy": -17,
+  "why": "r2.1 (verifier: the r1 fit, score 0.538, put the chin and jowls 12-27 px below head_no_helmet and 4563 px outside it): a similarity correction on top of the r1 fit, about the blank's nostril midpoint, found by a grid search that matches the nostrils and the jaw/chin/neck outline (below the snout) to the registered head_no_helmet: scale 1.005, dx -4, dy -17. The chin at x 500 lands on y 581 (head 582), the nostrils coincide within 2 px, 1474 px outside head_no_helmet (was 4563); overlay reviewed. The crown stays lumpy and the right jowl a little narrower: the blank head is its own drawing"
+ },
+ "pieces": {
+  "shield_13": {
+   "from": "shield_plate",
+   "method": "letter_shield",
+   "text": "13",
+   "fill": 0.42,
+   "dy": 0.02,
+   "why": "r2.1: the Station 13 shield, lettered locally from the r2 shield_plate with tools/art/letter_shield.py (ART_HERO.md shield rule; the r2 file was lettered from the r1 plate and no longer matched it). Contract v1.3: the mascot rig carries no lettering, so the rig uses the blank shield_plate and the runtime letters it; shield_13 serves the static uses (reel W, thumbnail) and its place in the rig delivery is the coordinator's call"
+  }
  }
 }

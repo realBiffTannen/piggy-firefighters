@@ -15,7 +15,7 @@
   "cell_major": 0.8,
   "ink_px": 14,
   "leg_extend_px": 140,
-  "why": "cells (flat colour regions between ink lines) follow the template slot that holds >= 80 % of them; straddling cells split on the template boundary; overrides keep each skin's extras on the right slot (reviewed on qa/art/parts/pf_rescued_skin_slots_r2.png)",
+  "why": "cells (flat colour regions between ink lines) follow the template slot that holds >= 80 % of them; straddling cells split on the template boundary; overrides keep each skin's extras on the right slot (reviewed on qa/art/parts/pf_rescued_skin_slots_r2.png); r2.1: ink_tol_px 6 (a slot claims an outline pixel only within 6 px of the nearest cell's distance, so torso seams and strap edges no longer ride on the arms as loose strokes), 4-connected crumbs relabelled to the slot they touch most, leftover specks under min_island_px dropped; each skin is snapped so its lowest alpha>128 row is the feet line y 1440 (sole_snap_px in registration.json); arm_spur_px 3: thin strays hanging off an arm slot (thinner than the arm's own outline: a torso side line, a strap edge, a button rim) go to the slot they touch",
   "overrides": {
    "grandma": [
     {
@@ -181,6 +181,58 @@
      ],
      "mode": "pixels",
      "not_skin": true
+    },
+    {
+     "slot": "body",
+     "mode": "reassign",
+     "only_from": [
+      "arm_left"
+     ],
+     "why": "r2.1: the cardigan placket stroke left of the far sleeve (x 630-655, y 570-645) belongs to the body",
+     "polygon": [
+      [
+       628,
+       568
+      ],
+      [
+       656,
+       568
+      ],
+      [
+       654,
+       646
+      ],
+      [
+       630,
+       646
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "mode": "reassign",
+     "only_from": [
+      "arm_left"
+     ],
+     "why": "r2.1: the rim of a cardigan button (x 668-695, y 648-690) belongs to the body",
+     "polygon": [
+      [
+       666,
+       646
+      ],
+      [
+       697,
+       646
+      ],
+      [
+       697,
+       692
+      ],
+      [
+       666,
+       692
+      ]
+     ]
     }
    ],
    "dad": [
@@ -249,6 +301,32 @@
       [
        300,
        620
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "mode": "pixels",
+     "only_from": [
+      "head"
+     ],
+     "why": "r2.1: the bare chest inside the robe's V (y 586-653, below the chin line at y ~525 and the template head's bottom at y 574) belongs to the body, so it does not tear away from the robe collar when the head bone turns",
+     "polygon": [
+      [
+       430,
+       586
+      ],
+      [
+       650,
+       586
+      ],
+      [
+       650,
+       700
+      ],
+      [
+       430,
+       700
       ]
      ]
     }
@@ -685,6 +763,123 @@
        760
       ]
      ]
+    },
+    {
+     "slot": "arm_right",
+     "mode": "pixels",
+     "only_from": [
+      "body"
+     ],
+     "not_skin": true,
+     "why": "r2.1: the near arm's striped sleeve from the shoulder cap down to the cuff belongs to arm_right (r2 left it on the body, so the forearm rotated away from its sleeve); the right edge follows the sleeve/torso seam read by eye",
+     "polygon": [
+      [
+       140,
+       770
+      ],
+      [
+       262,
+       708
+      ],
+      [
+       300,
+       684
+      ],
+      [
+       330,
+       662
+      ],
+      [
+       352,
+       664
+      ],
+      [
+       378,
+       690
+      ],
+      [
+       396,
+       712
+      ],
+      [
+       399,
+       745
+      ],
+      [
+       388,
+       775
+      ],
+      [
+       368,
+       815
+      ],
+      [
+       350,
+       852
+      ],
+      [
+       322,
+       864
+      ],
+      [
+       200,
+       815
+      ],
+      [
+       140,
+       795
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "mode": "reassign",
+     "only_from": [
+      "arm_left"
+     ],
+     "why": "r2.1: the torso's right side outline (a thin stroke left of the far forearm, x 705-740, y 830-980) belongs to the body, not to arm_left",
+     "polygon": [
+      [
+       688,
+       832
+      ],
+      [
+       714,
+       832
+      ],
+      [
+       726,
+       870
+      ],
+      [
+       733,
+       905
+      ],
+      [
+       738,
+       940
+      ],
+      [
+       741,
+       980
+      ],
+      [
+       722,
+       982
+      ],
+      [
+       716,
+       940
+      ],
+      [
+       708,
+       900
+      ],
+      [
+       698,
+       865
+      ]
+     ]
     }
    ],
    "baby": [
@@ -731,6 +926,52 @@
       [
        425,
        650
+      ]
+     ]
+    },
+    {
+     "slot": "body",
+     "mode": "reassign",
+     "only_from": [
+      "arm_left"
+     ],
+     "why": "r2.1: the sling strap's edge and outline shards along the far sleeve's upper left edge (x 696-756, y 540-706) belong to the body",
+     "polygon": [
+      [
+       696,
+       540
+      ],
+      [
+       716,
+       545
+      ],
+      [
+       733,
+       600
+      ],
+      [
+       748,
+       650
+      ],
+      [
+       756,
+       700
+      ],
+      [
+       740,
+       706
+      ],
+      [
+       722,
+       690
+      ],
+      [
+       708,
+       640
+      ],
+      [
+       698,
+       590
       ]
      ]
     }
@@ -803,6 +1044,19 @@
    ]
   },
   "small_cell_px": 4000,
-  "island_px": 2500
+  "island_px": 2500,
+  "ink_tol_px": 6,
+  "min_island_px": 30,
+  "arm_spur_px": 3
+ },
+ "head_blank_adjust": {
+  "scale": 1.0,
+  "about": [
+   588.2,
+   373.9
+  ],
+  "dx": 0,
+  "dy": -5,
+  "why": "r2.1 (verifier: the chin sat 3-9 px below head.png, 578 vs 573 at x 500; 2607 px outside head.png): the r1 fit moved up 5 px. The chin at x 500 lands on y 573 (head 573), the nostrils coincide within 1 px, 2131 px outside head.png (the jowl at x 600 is the blank's own drawing, 545 vs 534); dy -3..-8 compared, -5 is the minimum"
  }
 }

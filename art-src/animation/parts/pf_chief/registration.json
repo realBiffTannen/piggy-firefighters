@@ -1,6 +1,7 @@
 {
   "rig": "pf_chief",
   "version": "r2",
+  "revision": "r2.1 (2026-09-25: verifier fixes, local re-processing, no paid call)",
   "canvas": [
     1024,
     1536
@@ -47,6 +48,23 @@
         "tail_ink_px": 20,
         "leg_extend_px": 140,
         "why": "the belt's grey rows start at y 797-845 and end by 899 (measured grey-row profile); everything above y 800 is torso; the coat hem outline (within 12 px of red) is drawn over the trousers and stays with the coat; legs are the navy/boot regions below"
+      },
+      "r2_1_edge_to_master": {
+        "body_no_head_no_arms": {
+          "trimmed_px": 1833,
+          "inked_px": 2568,
+          "islands_dropped": [],
+          "method": "r2.1: a layer drawn wider than the master (the registered redraw's far sleeve / collar) loses the pixels that\n    show at rest OUTSIDE the master's silhouette (hidden overlap under the layers in front of it is kept), and the\n    new edge is closed with the master's own outline: within `band_px` of the cut, the master's ink and antialias\n    pixels are copied (RGBA), so at rest the edge is the master's and in motion the layer still has an inked edge.",
+          "params": {
+            "layers": [
+              "arm_left",
+              "body_no_head_no_arms"
+            ],
+            "band_px": 12,
+            "min_island_px": 30,
+            "why": "r2.1 (verifier: arm_left's shoulder cap and outer sleeve bulged out of the master silhouette on the image-right side, x 762 vs 724 at y 560, 7784 px outside): the far arm keeps its drawing, but what shows at rest outside the master's silhouette is trimmed and the new edge takes the master's own outline pixels (band_px); the body's shoulder that the old bulge hid is fitted the same way. Hidden overlap under the layers in front is kept for rotation"
+          }
+        }
       }
     },
     "head_no_helmet": {
@@ -64,12 +82,30 @@
     "head_blank": {
       "raw": "art-src/generated/rig_pf_chief/head_blank.png",
       "fit": {
-        "s": 0.6266306330213978,
-        "tx": 194.55376529478463,
-        "ty": 60.183098451201204,
-        "score": 0.5377,
-        "coarse_score": 0.6427,
-        "mode": "colour"
+        "s": 0.6297637861865046,
+        "tx": 188.5620341212586,
+        "ty": 10.266513943457255,
+        "frame": "canvas",
+        "mode": "r2.1: r1 colour fit + similarity correction (head_blank_adjust in derive.layout.json)",
+        "r1_fit": {
+          "s": 0.6266306330213978,
+          "tx": 194.55376529478463,
+          "ty": 60.183098451201204,
+          "score": 0.5377,
+          "coarse_score": 0.6427,
+          "mode": "colour"
+        }
+      },
+      "why": "r2.1 (verifier: the r1 fit, score 0.538, put the chin and jowls 12-27 px below head_no_helmet and 4563 px outside it): a similarity correction on top of the r1 fit, about the blank's nostril midpoint, found by a grid search that matches the nostrils and the jaw/chin/neck outline (below the snout) to the registered head_no_helmet: scale 1.005, dx -4, dy -17. The chin at x 500 lands on y 581 (head 582), the nostrils coincide within 2 px, 1474 px outside head_no_helmet (was 4563); overlay reviewed. The crown stays lumpy and the right jowl a little narrower: the blank head is its own drawing",
+      "adjust": {
+        "scale": 1.005,
+        "about": [
+          592.9,
+          412.5
+        ],
+        "dx": -4,
+        "dy": -17,
+        "why": "r2.1 (verifier: the r1 fit, score 0.538, put the chin and jowls 12-27 px below head_no_helmet and 4563 px outside it): a similarity correction on top of the r1 fit, about the blank's nostril midpoint, found by a grid search that matches the nostrils and the jaw/chin/neck outline (below the snout) to the registered head_no_helmet: scale 1.005, dx -4, dy -17. The chin at x 500 lands on y 581 (head 582), the nostrils coincide within 2 px, 1474 px outside head_no_helmet (was 4563); overlay reviewed. The crown stays lumpy and the right jowl a little narrower: the blank head is its own drawing"
       },
       "file": "art-src/animation/parts/pf_chief/head_blank.png"
     },
@@ -99,6 +135,29 @@
       "split": {
         "arm_right": "art-src/animation/parts/pf_chief/arm_right.png",
         "arm_left": "art-src/animation/parts/pf_chief/arm_left.png"
+      },
+      "r2_1_edge_to_master": {
+        "arm_left": {
+          "trimmed_px": 7784,
+          "inked_px": 7110,
+          "islands_dropped": [
+            [
+              1,
+              832,
+              914
+            ]
+          ],
+          "method": "r2.1: a layer drawn wider than the master (the registered redraw's far sleeve / collar) loses the pixels that\n    show at rest OUTSIDE the master's silhouette (hidden overlap under the layers in front of it is kept), and the\n    new edge is closed with the master's own outline: within `band_px` of the cut, the master's ink and antialias\n    pixels are copied (RGBA), so at rest the edge is the master's and in motion the layer still has an inked edge.",
+          "params": {
+            "layers": [
+              "arm_left",
+              "body_no_head_no_arms"
+            ],
+            "band_px": 12,
+            "min_island_px": 30,
+            "why": "r2.1 (verifier: arm_left's shoulder cap and outer sleeve bulged out of the master silhouette on the image-right side, x 762 vs 724 at y 560, 7784 px outside): the far arm keeps its drawing, but what shows at rest outside the master's silhouette is trimmed and the new edge takes the master's own outline pixels (band_px); the body's shoulder that the old bulge hid is fitted the same way. Hidden overlap under the layers in front is kept for rotation"
+          }
+        }
       }
     },
     "coat_tails": {
@@ -192,7 +251,8 @@
       },
       "meta": {
         "helmet_px": 91370,
-        "gap_fill_px": 2309
+        "gap_fill_px": 2309,
+        "islands_dropped": []
       },
       "file": "art-src/animation/parts/pf_chief/helmet_front.png"
     },
@@ -283,7 +343,7 @@
         },
         "ears": {
           "scale_to_canvas": 0.4,
-          "how": "fit of ear_left on the master ear (overlay reviewed; the master ear is foreshortened and tucked under the brim)"
+          "how": "fit of ear_right (the image-left, near ear; 'ear_left' in r2) on the master's image-left ear (overlay reviewed; the master ear is foreshortened and tucked under the brim)"
         }
       },
       "components": 32,
@@ -738,8 +798,8 @@
           "scale_family": "moustache",
           "scale_to_canvas": 0.93
         },
-        "ear_left": {
-          "file": "art-src/animation/parts/pf_chief/pieces/ear_left.png",
+        "ear_right": {
+          "file": "art-src/animation/parts/pf_chief/pieces/ear_right.png",
           "size": [
             223,
             196
@@ -764,8 +824,8 @@
           "scale_family": "ears",
           "scale_to_canvas": 0.4
         },
-        "ear_right": {
-          "file": "art-src/animation/parts/pf_chief/pieces/ear_right.png",
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_chief/pieces/ear_left.png",
           "size": [
             226,
             197
@@ -801,8 +861,8 @@
       "sheet_scale_to_canvas": null,
       "scales": {
         "hands": {
-          "scale_to_canvas": 0.47,
-          "how": "BY EYE: hand_r_open over arm_right's hand at 0.45/0.55 (r1 area measure 0.55 read too big)"
+          "scale_to_canvas": 0.58,
+          "how": "r2.1 (verifier: 0.47 read small): navy cuff length across the forearm axis vs arm_right / arm_left gives 0.54-0.64 (mean 0.58); pink-area ratios give 0.60 (hand_r_open vs arm_right) and 0.57 (hand_l_open vs arm_left); side by side at 0.47 / 0.55 / 0.58 / 0.62 the palm and cuff match the arm's own hand at 0.58 (reviewed by eye). r2 used 0.47"
         }
       },
       "components": 8,
@@ -833,7 +893,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         },
         "hand_r_grip": {
           "file": "art-src/animation/parts/pf_chief/pieces/hand_r_grip.png",
@@ -859,7 +919,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         },
         "hand_r_point": {
           "file": "art-src/animation/parts/pf_chief/pieces/hand_r_point.png",
@@ -885,7 +945,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         },
         "hand_r_thumb": {
           "file": "art-src/animation/parts/pf_chief/pieces/hand_r_thumb.png",
@@ -911,7 +971,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         },
         "hand_l_open": {
           "file": "art-src/animation/parts/pf_chief/pieces/hand_l_open.png",
@@ -937,7 +997,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         },
         "hand_l_grip": {
           "file": "art-src/animation/parts/pf_chief/pieces/hand_l_grip.png",
@@ -963,7 +1023,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         },
         "hand_l_point": {
           "file": "art-src/animation/parts/pf_chief/pieces/hand_l_point.png",
@@ -989,7 +1049,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         },
         "hand_l_thumb": {
           "file": "art-src/animation/parts/pf_chief/pieces/hand_l_thumb.png",
@@ -1015,7 +1075,7 @@
           "components_kept": 1,
           "dropped": [],
           "scale_family": "hands",
-          "scale_to_canvas": 0.47
+          "scale_to_canvas": 0.58
         }
       },
       "missing": []
@@ -1029,7 +1089,7 @@
       "scales": {
         "props": {
           "scale_to_canvas": 0.574,
-          "how": "fit of shield_plate on the helmet's brass plate (overlay reviewed). The nozzle's hose is then 80 px thick on the canvas while the grip hole is 32 px: resize the nozzle by eye if it must pass through the fist"
+          "how": "fit of shield_plate on the helmet's brass plate (overlay reviewed). The nozzle's hose is then 80 px thick on the canvas (140 px on the sheet) while the grip tunnel of hand_*_grip is about 39 px at the r2.1 hand scale 0.58 (68 px on the sheet): resize the nozzle by eye if it must pass through the fist, or let the hose pass behind it"
         }
       },
       "components": 4,
@@ -1139,6 +1199,47 @@
           "dropped": [],
           "scale_family": "props",
           "scale_to_canvas": 0.574
+        },
+        "shield_13": {
+          "sheet_origin": [
+            960,
+            114
+          ],
+          "cell": [
+            821,
+            0,
+            1536,
+            588
+          ],
+          "grid": [
+            0,
+            1
+          ],
+          "scale_family": "props",
+          "scale_to_canvas": 0.574,
+          "file": "art-src/animation/parts/pf_chief/pieces/shield_13.png",
+          "size": [
+            316,
+            364
+          ],
+          "rule": "derived (letter_shield)",
+          "components_kept": null,
+          "dropped": [],
+          "derived_from": "art-src/animation/parts/pf_chief/pieces/shield_plate.png",
+          "method": "tools/art/letter_shield.py (ART_HERO.md shield rule: Alfa Slab One, ink #3B2313, one hard brass shadow #B8862B, numerals at `fill` of the plate's opaque-bbox height, centred, offset `dy`), run on this plate",
+          "params": {
+            "from": "shield_plate",
+            "method": "letter_shield",
+            "text": "13",
+            "fill": 0.42,
+            "dy": 0.02
+          },
+          "why": "r2.1: the Station 13 shield, lettered locally from the r2 shield_plate with tools/art/letter_shield.py (ART_HERO.md shield rule; the r2 file was lettered from the r1 plate and no longer matched it). Contract v1.3: the mascot rig carries no lettering, so the rig uses the blank shield_plate and the runtime letters it; shield_13 serves the static uses (reel W, thumbnail) and its place in the rig delivery is the coordinator's call",
+          "meta": {
+            "text": "13",
+            "fill": 0.42,
+            "dy": 0.02
+          }
         }
       },
       "missing": []
@@ -1188,9 +1289,10 @@
     ],
     "note": "immutable input: verified identical to the integer shift of the raw master, not rewritten"
   },
+  "islands_dropped": {},
   "qa": {
     "reassembly": "qa/art/parts/pf_chief_reassembly.png",
-    "reassembly_iou": 0.9672,
+    "reassembly_iou": 0.9776,
     "pieces_contact": "qa/art/parts/pf_chief_pieces_r2.png",
     "layers_contact": "qa/art/parts/pf_chief_layers_r2.png"
   }

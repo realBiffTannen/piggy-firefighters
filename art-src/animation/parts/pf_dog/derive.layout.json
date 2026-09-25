@@ -25,7 +25,13 @@
   },
   "outline_px": 14,
   "outline_max_green": 14,
-  "why": "Ember faces screen-right: image-left legs are his RIGHT (near) side. Image order: near hind (x 43-345), far hind (326-557, partly behind the near front leg), near front (412-648, lowest sole), far front (662-971). The near front leg overlaps the far hind leg, so the watershed runs on the dark-red outline only (the black spots count as fur) and the near front leg keeps the shared outline."
+  "why": "Ember faces screen-right: image-left legs are his RIGHT (near) side. Image order: near hind (x 43-345), far hind (326-557, partly behind the near front leg), near front (412-648, lowest sole), far front (662-971). The near front leg overlaps the far hind leg, so the watershed runs on the dark-red outline only (the black spots count as fur) and the near front leg keeps the shared outline.",
+  "clip_hidden_top": {
+   "leg_front_left": {
+    "above_y": 1120,
+    "why": "r2.1: 4636 px of the far front leg's top lay outside the master silhouette and outside body_no_head_no_legs at x 726-851, y 924-1120, reading as a second outlined column beside the collar and chest; above y 1120 the leg keeps only what the body covers or the master shows"
+   }
+  }
  },
  "helmet_front": {
   "zone_px": 40,
@@ -34,10 +40,96 @@
   "min_island_px": 150,
   "min_head_area_px": 400,
   "fill_reach_px": 8,
-  "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole; Ember: fill_reach_px 8 (at 30 the gap fill picked up strips of the far ear's fur under the brim); white_needs_enclosure: Ember's white fur and the shell's white highlights share one colour, so white is helmet only where the red shell encloses it",
+  "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole; Ember: fill_reach_px 8 (at 30 the gap fill picked up strips of the far ear's fur under the brim); white_needs_enclosure: Ember's white fur and the shell's white highlights share one colour, so white is helmet only where the red shell encloses it; r2.1 (verifier: the r2 layer lost 3-17 px of the crown/brim ink ring, had binary alpha, and let the head's white fur replace the brim's grey shadow): grow_px 8 grows the helmet through the master's own outline ink and antialias edge (partial alpha copied, never binarised) so the whole outer ring and the brim tips are kept; shadow_rgb/shadow_tol/shadow_reach_px then grow it through the master's shadow-coloured pixels under the brim (measured 14-20 px deep, rgb ~220,208,196), stopping at the white fur and the head's own outline",
   "min_island_frac": 0.02,
   "spur_px": 4,
   "spur_min_px": 40,
-  "white_needs_enclosure": true
+  "white_needs_enclosure": true,
+  "grow_px": 8,
+  "shadow_rgb": [
+   220,
+   208,
+   196
+  ],
+  "shadow_tol": 24,
+  "shadow_reach_px": 20
+ },
+ "pieces": {
+  "head_no_jaw": {
+   "from": "head_open_smile",
+   "method": "mask_jaw",
+   "jaw_polygon": [
+    [
+     324,
+     284
+    ],
+    [
+     336,
+     312
+    ],
+    [
+     380,
+     322
+    ],
+    [
+     430,
+     318
+    ],
+    [
+     458,
+     305
+    ],
+    [
+     470,
+     298
+    ],
+    [
+     490,
+     300
+    ],
+    [
+     520,
+     308
+    ],
+    [
+     560,
+     330
+    ],
+    [
+     560,
+     430
+    ],
+    [
+     330,
+     430
+    ],
+    [
+     348,
+     398
+    ],
+    [
+     360,
+     374
+    ],
+    [
+     352,
+     354
+    ],
+    [
+     342,
+     332
+    ],
+    [
+     332,
+     308
+    ]
+   ],
+   "cavity_seed": [
+    380,
+    320
+   ],
+   "ink_px": 7,
+   "why": "r2.1 (verifier: the sheet's 'head_no_jaw' cell is a whole head with a painted lower jaw, so stacking pieces/jaw gave two jaws and two chins): derived from head_open_smile without a paid call. jaw_polygon (piece pixels, read by eye on a 3x gridded zoom) covers the lower lip line under the mouth, the chin and the head outline under it, from just inside the mouth's left corner (the corner and the lip line beside the cheek stay) to the head's right outline under the nose; the dark mouth interior is kept (tongue repainted with the interior colour) and the cut through the fur is closed with the head's own outline ink"
+  }
  }
 }

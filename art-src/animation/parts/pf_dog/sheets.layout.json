@@ -130,40 +130,44 @@
      ],
      "cells": [
       {
-       "label": "mouth_closed",
+       "label": "muzzle_closed",
        "x": [
         0,
         395
        ],
        "rule": "mouth",
-       "family": "mouth"
+       "family": "muzzle",
+       "r2_label": "mouth_closed"
       },
       {
-       "label": "mouth_bark",
+       "label": "muzzle_bark",
        "x": [
         395,
         770
        ],
        "rule": "mouth",
-       "family": "mouth"
+       "family": "muzzle",
+       "r2_label": "mouth_bark"
       },
       {
-       "label": "mouth_pant",
+       "label": "muzzle_pant",
        "x": [
         770,
         1160
        ],
        "rule": "mouth",
-       "family": "mouth"
+       "family": "muzzle",
+       "r2_label": "mouth_pant"
       },
       {
-       "label": "mouth_sad",
+       "label": "muzzle_sad",
        "x": [
         1160,
         1536
        ],
        "rule": "mouth",
-       "family": "mouth"
+       "family": "muzzle",
+       "r2_label": "mouth_sad"
       }
      ]
     }
@@ -177,9 +181,9 @@
      "scale_to_canvas": 0.87,
      "how": "width of the master's near brow vs brows_neutral's near brow"
     },
-    "mouth": {
-     "scale_to_canvas": 0.85,
-     "how": "BY EYE: mouth_closed over the master muzzle at 0.78/0.85/0.92"
+    "muzzle": {
+     "scale_to_canvas": 1.05,
+     "how": "r2.1: each cell is an opaque muzzle (cream patch + mouth) WITH its own black nose, so it is an overlay that must sit nose-on-nose with head_no_helmet's nose (anchors.json muzzle_nose). The scale matches the noses: head nose 117 px wide on the canvas vs 108-116 px on the sheet (1.01-1.08); at 1.05 nose-on-nose the two noses coincide (overlay reviewed). r2 used 0.85 (muzzle width by eye), which left the head's nose rim showing around the smaller sheet nose"
     }
    }
   },
@@ -209,22 +213,24 @@
      ],
      "cells": [
       {
-       "label": "ear_left",
+       "label": "ear_right",
        "x": [
         0,
         536
        ],
        "rule": "single",
-       "family": "parts"
+       "family": "parts",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       },
       {
-       "label": "ear_right",
+       "label": "ear_left",
        "x": [
         536,
         1061
        ],
        "rule": "single",
-       "family": "parts"
+       "family": "parts",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       },
       {
        "label": "tail",
@@ -253,13 +259,15 @@
        "family": "parts"
       },
       {
-       "label": "head_no_jaw",
+       "label": "head_open_smile",
        "x": [
         478,
         1178
        ],
        "rule": "whole",
-       "family": "parts"
+       "family": "parts",
+       "r2_label": "head_no_jaw",
+       "content_note": "r2.1: the cell is a WHOLE head with an open smiling mouth (tongue, lower lip, chin), drawn independently of the master (different spot pattern and head tuft); kept under its true name. pieces/head_no_jaw is derived from it (derive.layout.json 'pieces')"
       },
       {
        "label": "tongue",
@@ -276,10 +284,11 @@
    "scales": {
     "parts": {
      "scale_to_canvas": 1.19,
-     "how": "fit of head_no_jaw over the master head (1.187, overlay reviewed: ears, eyes and nose coincide)"
+     "how": "fit of head_open_smile (r2: 'head_no_jaw', the same cell) over the master head (1.187, overlay reviewed: ears, eyes and nose coincide)"
     }
    }
   }
  },
- "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible",
+ "revision": "r2.1 (2026-09-25): verifier fixes. Ears named by the character's side (labels swapped); rookie/chief hand family scales re-measured; Ember's mouth_* renamed muzzle_* (nose-on-nose, scale 1.05) and the head cell named head_open_smile (head_no_jaw is derived from it, derive.layout.json 'pieces')"
 }

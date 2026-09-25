@@ -20,5 +20,186 @@
       ],
       "note": "root pivot = feet centre on the feet line; land event at contact"
     }
+  },
+  "guidance": {
+    "skin_joints": {
+      "canvas": {
+        "template": {
+          "neck": [
+            506.4,
+            559.0
+          ],
+          "shoulder_r": [
+            313.9,
+            541.6
+          ],
+          "shoulder_l": [
+            688.6,
+            544.5
+          ]
+        },
+        "grandma": {
+          "neck": {
+            "canvas": [
+              526.1,
+              560.5
+            ],
+            "offset_from_template": [
+              19.7,
+              1.5
+            ]
+          },
+          "shoulder_r": {
+            "canvas": [
+              310.9,
+              566.5
+            ],
+            "offset_from_template": [
+              -3.0,
+              24.9
+            ]
+          },
+          "shoulder_l": {
+            "canvas": [
+              692.1,
+              553.9
+            ],
+            "offset_from_template": [
+              3.5,
+              9.4
+            ]
+          }
+        },
+        "twins": {
+          "neck": {
+            "canvas": [
+              589.9,
+              634.2
+            ],
+            "offset_from_template": [
+              83.5,
+              75.2
+            ]
+          },
+          "shoulder_r": {
+            "canvas": [
+              326.4,
+              700.5
+            ],
+            "offset_from_template": [
+              12.5,
+              158.9
+            ]
+          },
+          "shoulder_l": {
+            "canvas": [
+              718.3,
+              696.0
+            ],
+            "offset_from_template": [
+              29.7,
+              151.5
+            ]
+          }
+        },
+        "dad": {
+          "neck": {
+            "canvas": [
+              535.1,
+              571.8
+            ],
+            "offset_from_template": [
+              28.7,
+              12.8
+            ]
+          },
+          "shoulder_r": {
+            "canvas": [
+              279.3,
+              540.5
+            ],
+            "offset_from_template": [
+              -34.6,
+              -1.1
+            ]
+          },
+          "shoulder_l": {
+            "canvas": [
+              722.2,
+              561.4
+            ],
+            "offset_from_template": [
+              33.6,
+              16.9
+            ]
+          }
+        },
+        "baby": {
+          "neck": {
+            "canvas": [
+              469.5,
+              538.2
+            ],
+            "offset_from_template": [
+              -36.9,
+              -20.8
+            ]
+          },
+          "shoulder_r": {
+            "canvas": [
+              293.7,
+              570.9
+            ],
+            "offset_from_template": [
+              -20.2,
+              29.3
+            ]
+          },
+          "shoulder_l": {
+            "canvas": [
+              744.8,
+              590.0
+            ],
+            "offset_from_template": [
+              56.2,
+              45.5
+            ]
+          }
+        },
+        "teen": {
+          "neck": {
+            "canvas": [
+              545.1,
+              571.4
+            ],
+            "offset_from_template": [
+              38.7,
+              12.4
+            ]
+          },
+          "shoulder_r": {
+            "canvas": [
+              294.4,
+              557.7
+            ],
+            "offset_from_template": [
+              -19.5,
+              16.1
+            ]
+          },
+          "shoulder_l": {
+            "canvas": [
+              702.0,
+              599.8
+            ],
+            "offset_from_template": [
+              13.4,
+              55.3
+            ]
+          }
+        }
+      },
+      "note": "not contract bones: where each skin's neck (centre of the head slot's lowest 25 rows) and shoulders (centre of each arm slot's top 60 rows) sit on the canvas, measured the same way on the template layers and on every skin, with the offset from the template joint. Spine shares one set of bones across skins, so a skin with a large offset turns about the template pivot: the twins' neck sits ~84 px right / 75 px lower and both shoulders ~150-160 px lower than the template's (the lower twin carries his brother), so keep the twins' head and arms at or near rest, or place that skin's attachments on skin-specific bones at these points; the other skins are within ~40 px (teen shoulder_l 55 px lower)"
+    }
   }
 }

@@ -5,7 +5,8 @@ Canvas coordinates are image pixels on the common canvas (x right, y down). Spin
   spine_x = (x - 512) * scale,  spine_y = (1440 - y) * scale,  scale = runtime height / master height_px
 Piece coordinates (pieces/*.png) are pixels inside that trimmed piece at SHEET scale; multiply by the piece's
 scale_to_canvas (registration.json, per family since r2) to get canvas pixels. r2: pieces are re-cut on the fixed
-grid, so piece coordinates are re-measured here; the file is written atomically.
+grid, so piece coordinates are re-measured here; the file is written atomically. r2.1 adds a `guidance` block
+(not contract bones): Ember's muzzle-on-nose registration and the rescued skins' joint offsets.
 """
 import json
 import os
@@ -57,6 +58,25 @@ def top_centre(a):
     return [round(float(xs.mean()), 1), int(y)]
 
 
+NOSE_BOX = (740, 600, 900, 740)  # Ember's nose on the canvas (x0, y0, x1, y1), read by eye: excludes the far eye
+
+
+def dog_nose(a, box=None):
+    """The neutral-black nose blob (the outline ink is red-brown, so it is excluded), highlight filled in."""
+    r, g, b = (a[..., i].astype(int) for i in range(3))
+    blk = (np.maximum(np.maximum(r, g), b) < 90) & (a[..., 3] > 128) & (np.abs(r - g) < 18) & (np.abs(r - b) < 18)
+    if box is not None:
+        m = np.zeros_like(blk)
+        m[box[1]:box[3], box[0]:box[2]] = True
+        blk &= m
+    blk = ndimage.binary_fill_holes(ndimage.binary_closing(blk, iterations=2))
+    lab, n = ndimage.label(blk)
+    sz = np.bincount(lab.ravel())
+    sz[0] = 0
+    ys, xs = np.nonzero(lab == int(np.argmax(sz)))
+    return {"cx": round(float(xs.mean()), 1), "cy": round(float(ys.mean()), 1), "w": int(np.ptp(xs) + 1)}
+
+
 def spine(pt, s):
     return [round((pt[0] - FEET[0]) * s, 1), round((FEET[1] - pt[1]) * s, 1)]
 
@@ -103,9 +123,14 @@ def main():
                     p = os.path.join(d, "pieces", f"{nm}.png")
                     if os.path.exists(p):
                         c = hole_centroid(A(p))
+                        sc = piece_scale(reg, nm)
+                        diam = 2 * float(np.sqrt(c[2] / np.pi)) if c else None
                         out["anchors"][side] = {"piece": f"pieces/{nm}.png", "piece_xy": c[:2] if c else None,
-                                                "piece_scale_to_canvas": piece_scale(reg, nm),
-                                                "note": "centre of the empty fist tunnel the hose passes through"}
+                                                "piece_scale_to_canvas": sc,
+                                                "tunnel_diameter_px": {"piece": round(diam, 1),
+                                                                       "canvas": round(diam * sc, 1)} if c else None,
+                                                "note": "centre of the empty fist tunnel the hose passes through "
+                                                        "(r2.1: hand scale 0.58, was 0.47)"}
             else:
                 for side, nm in (("sheet_r", "hand_r_catch"), ("sheet_l", "hand_l_catch")):
                     p = os.path.join(d, "pieces", f"{nm}.png")
@@ -121,7 +146,7 @@ def main():
                         out["anchors"][side] = {"piece": f"pieces/{nm}.png", "piece_xy": [int(xs[k]), int(ys[k])],
                                                 "piece_scale_to_canvas": piece_scale(reg, nm),
                                                 "note": "fingertip point farthest from the cuff = where the sheet "
-                                                        "edge sits"}
+                                                        "edge sits (r2.1: hand scale 0.60, was 0.45)"}
         if rig == "pf_dog":
             head = A(os.path.join(d, "head_no_helmet.png"))
             m = alpha(head)
@@ -151,9 +176,36 @@ def main():
             out["anchors"]["sheet_l"] = {"canvas": t, "spine": spine(t, s),
                                          "note": "Ember holds ONE corner; if the rig needs both, put sheet_l on the "
                                                  "same jaw bone offset along the sheet edge"}
+            # r2.1: the muzzle_* face pieces carry their own nose, so they register nose-on-nose with the head
+            hn = dog_nose(head, NOSE_BOX)
+            muz = {}
+            for f in sorted(os.listdir(os.path.join(d, "pieces"))):
+                if f.startswith("muzzle_"):
+                    n = dog_nose(A(os.path.join(d, "pieces", f)))
+                    muz[f"pieces/{f}"] = {"nose_piece_xy": [n["cx"], n["cy"]], "nose_w": n["w"]}
+            out.setdefault("guidance", {})["muzzle_nose"] = {
+                "head_canvas": [hn["cx"], hn["cy"]], "head_spine": spine([hn["cx"], hn["cy"]], s),
+                "head_nose_w": hn["w"], "pieces": muz,
+                "piece_scale_to_canvas": piece_scale(reg, "muzzle_closed"),
+                "note": ("not a contract bone: muzzle_* are opaque muzzle overlays that include the black nose; place each "
+                         "so its nose_piece_xy (x piece_scale_to_canvas) lands on head_canvas, on the head/jaw bone. "
+                         "Centres are the neutral-black nose blob (highlight included), measured the same way on the "
+                         "head and on each piece")}
         if rig == "pf_rescued":
             out["anchors"]["feet"] = {"canvas": list(FEET), "spine": [0.0, 0.0],
                                       "note": "root pivot = feet centre on the feet line; land event at contact"}
+            sj = reg.get("skin_slots", {}).get("joints")
+            if sj:
+                out.setdefault("guidance", {})["skin_joints"] = {
+                    "canvas": sj,
+                    "note": ("not contract bones: where each skin's neck (centre of the head slot's lowest 25 rows) and "
+                             "shoulders (centre of each arm slot's top 60 rows) sit on the canvas, measured the same way on "
+                             "the template layers and on every skin, with the offset from the template joint. Spine shares "
+                             "one set of bones across skins, so a skin with a large offset turns about the template pivot: "
+                             "the twins' neck sits ~84 px right / 75 px lower and both shoulders ~150-160 px lower than the "
+                             "template's (the lower twin carries his brother), so keep the twins' head and arms at or near "
+                             "rest, or place that skin's attachments on skin-specific bones at these points; the other "
+                             "skins are within ~40 px (teen shoulder_l 55 px lower)")}
         path = os.path.join(d, "anchors.json")
         old = open(path).read() if os.path.exists(path) else None
         write_json(out, path)

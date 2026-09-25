@@ -193,22 +193,24 @@
        "family": "moustache"
       },
       {
-       "label": "ear_left",
+       "label": "ear_right",
        "x": [
         822,
         1166
        ],
        "rule": "single",
-       "family": "ears"
+       "family": "ears",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       },
       {
-       "label": "ear_right",
+       "label": "ear_left",
        "x": [
         1166,
         1536
        ],
        "rule": "single",
-       "family": "ears"
+       "family": "ears",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       }
      ]
     }
@@ -232,7 +234,7 @@
     },
     "ears": {
      "scale_to_canvas": 0.4,
-     "how": "fit of ear_left on the master ear (overlay reviewed; the master ear is foreshortened and tucked under the brim)"
+     "how": "fit of ear_right (the image-left, near ear; 'ear_left' in r2) on the master's image-left ear (overlay reviewed; the master ear is foreshortened and tucked under the brim)"
     }
    }
   },
@@ -346,8 +348,8 @@
    ],
    "scales": {
     "hands": {
-     "scale_to_canvas": 0.47,
-     "how": "BY EYE: hand_r_open over arm_right's hand at 0.45/0.55 (r1 area measure 0.55 read too big)"
+     "scale_to_canvas": 0.58,
+     "how": "r2.1 (verifier: 0.47 read small): navy cuff length across the forearm axis vs arm_right / arm_left gives 0.54-0.64 (mean 0.58); pink-area ratios give 0.60 (hand_r_open vs arm_right) and 0.57 (hand_l_open vs arm_left); side by side at 0.47 / 0.55 / 0.58 / 0.62 the palm and cuff match the arm's own hand at 0.58 (reviewed by eye). r2 used 0.47"
     }
    }
   },
@@ -426,10 +428,11 @@
    "scales": {
     "props": {
      "scale_to_canvas": 0.574,
-     "how": "fit of shield_plate on the helmet's brass plate (overlay reviewed). The nozzle's hose is then 80 px thick on the canvas while the grip hole is 32 px: resize the nozzle by eye if it must pass through the fist"
+     "how": "fit of shield_plate on the helmet's brass plate (overlay reviewed). The nozzle's hose is then 80 px thick on the canvas (140 px on the sheet) while the grip tunnel of hand_*_grip is about 39 px at the r2.1 hand scale 0.58 (68 px on the sheet): resize the nozzle by eye if it must pass through the fist, or let the hose pass behind it"
     }
    }
   }
  },
- "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible",
+ "revision": "r2.1 (2026-09-25): verifier fixes. Ears named by the character's side (labels swapped); rookie/chief hand family scales re-measured; Ember's mouth_* renamed muzzle_* (nose-on-nose, scale 1.05) and the head cell named head_open_smile (head_no_jaw is derived from it, derive.layout.json 'pieces')"
 }

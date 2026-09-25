@@ -33,7 +33,7 @@
     ],
     "what": "raw outputs are never edited; parts are registered to their rig master (uniform scale + translation fitted on colour-label agreement, feet alignment for costume skins, hem alignment for coat tails), placed on the common 1024x1536 canvas with the soles on y=1440 and the feet centre on x=512, split into components, sheet pieces cut from known grid layouts; helmet_front removes the painted lining where the head sits"
   },
-  "self_assessment": "agent PASS on registration by overlay review (qa/art/parts/*); this is NOT human sign-off and not rig acceptance",
+  "self_assessment": "agent PASS on registration by overlay review (qa/art/parts/*); this is NOT human sign-off and not rig acceptance; r2.1 re-processing reviewed by eye on the regenerated QA sheets (agent review, not human sign-off)",
   "rows": [
     {
       "asset": "chief_hamm_master",
@@ -1020,6 +1020,45 @@
       "ts": "2026-09-25T05:17:28",
       "seconds": 23.3,
       "actual_model": "gpt-image-2.5-sunburst"
+    }
+  ],
+  "local_processing_revisions": [
+    {
+      "revision": "r2",
+      "date": "2026-09-25",
+      "paid_calls": 0,
+      "scripts": [
+        "art-src/animation/parts/build_parts.py",
+        "art-src/animation/parts/cut_sheets.py",
+        "art-src/animation/parts/derive_r2.py",
+        "art-src/animation/parts/register_parts.py",
+        "art-src/animation/parts/make_anchors.py",
+        "art-src/animation/parts/make_inventory.py"
+      ],
+      "inputs_read_by_eye": [
+        "art-src/animation/parts/<rig>/sheets.layout.json (sheet cell rectangles in the measured gutters, labels, cut rule per cell, per-family scale_to_canvas and how each was measured)",
+        "art-src/animation/parts/<rig>/derive.layout.json (belt bands, leg seeds, helmet cut parameters, skin-slot override polygons)"
+      ],
+      "what": "fixed-grid sheet cutting replaced r1's component clustering (a component belongs to the cell holding its centroid, then the cell's rule keeps eyes / brows / mouth / single / hand / plate / whole / figure); one scale per piece family; derived layers cut from registered pixels at master scale: body without legs, coat_tails from the registered body (belt middle to hem), leg_right/leg_left from the body's own leg pixels with soles moved onto y 1440 and hidden tops extended, helmet_front from the master's own pixels inside the registered helmet, the chief's raised arms rotated about their shoulder pivots to stay on the canvas, Ember's legs split into four layers by a seeded watershed, the rescued skins cut into the template's six slots; rookie head_blank re-fitted to head_no_helmet. Masters, sheets and raw outputs unchanged",
+      "supersedes": "r1 'hem alignment for coat tails' and 'helmet_front removes the painted lining' (local_processing above)"
+    },
+    {
+      "revision": "r2.1",
+      "date": "2026-09-25",
+      "paid_calls": 0,
+      "scripts": [
+        "art-src/animation/parts/build_parts.py",
+        "art-src/animation/parts/derive_r2.py",
+        "art-src/animation/parts/make_anchors.py",
+        "art-src/animation/parts/make_inventory.py",
+        "tools/art/letter_shield.py (shield_13 lettering)"
+      ],
+      "inputs_read_by_eye": [
+        "sheets.layout.json: ear labels swapped (character's side), hand/card/hose scales, Ember muzzle_* and head_open_smile labels",
+        "derive.layout.json: Ember helmet shadow colour and growth, far-front-leg clip line, head_no_jaw jaw polygon; rookie lower_from_master and edge_to_master; chief edge_to_master and head_blank_adjust; rescued head_blank_adjust, skin sole snap, dad chest / twins sleeve / stray 'reassign' polygons, ink_tol_px, arm_spur_px"
+      ],
+      "what": "verifier fixes, all local: rookie coat_tails and legs cut from the master's own pixels; chief/rookie far sleeve and the body parts it hid trimmed to the master silhouette and closed with the master's own outline pixels; Ember helmet_front grown over the master's ink ring and brim shadow with its alpha; Ember far front leg top clipped; chief/rescued head_blank re-seated (similarity correction measured on nostrils and chin); skins snapped to the feet line and re-slotted (sleeve, chest, strays); islands under 30 px (4-connected) dropped everywhere; Ember head_no_jaw derived from the sheet's open-smile head by masking the jaw (cut closed with the head's own outline ink); chief shield_13 re-lettered from the r2 shield_plate; joint and nose guidance measured into anchors.json",
+      "review": "qa/art/parts/<rig>_pieces_r2.png, <rig>_layers_r2.png, <rig>_reassembly.png, pf_rescued_skin_slots_r2.png (regenerated; looked at by eye)"
     }
   ]
 }

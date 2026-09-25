@@ -1,6 +1,7 @@
 {
   "rig": "pf_dog",
   "version": "r2",
+  "revision": "r2.1 (2026-09-25: verifier fixes, local re-processing, no paid call)",
   "canvas": [
     1024,
     1536
@@ -55,6 +56,7 @@
         "mode": "colour"
       },
       "file": "art-src/animation/parts/pf_dog/legs.png",
+      "r2_1": "the far front leg's hidden top that showed beside the chest at rest is clipped here too (legs.png stays the union of the four leg layers)",
       "split": {
         "leg_hind_right": "art-src/animation/parts/pf_dog/leg_hind_right.png",
         "leg_hind_left": "art-src/animation/parts/pf_dog/leg_hind_left.png",
@@ -63,6 +65,7 @@
       },
       "split_method": "Cut Ember's four-leg layer into one layer per leg. Separate legs are separate components; where one leg\n    overlaps another (the near front leg in front of the far hind leg) a marker watershed on the ink ridge splits\n    them from one seed per leg (derive.layout.json), then the FRONT leg takes back the outline it shares with the\n    leg behind it (ink within `outline_px` of its own fur). The hidden part of a rear leg is not painted.",
       "split_meta": {
+        "leg_front_left_clipped_px": 4418,
         "leg_hind_right": {
           "bbox": [
             43,
@@ -97,7 +100,7 @@
             971,
             1423
           ],
-          "px": 94109
+          "px": 89691
         }
       },
       "split_params": {
@@ -124,7 +127,13 @@
         },
         "outline_px": 14,
         "outline_max_green": 14,
-        "why": "Ember faces screen-right: image-left legs are his RIGHT (near) side. Image order: near hind (x 43-345), far hind (326-557, partly behind the near front leg), near front (412-648, lowest sole), far front (662-971). The near front leg overlaps the far hind leg, so the watershed runs on the dark-red outline only (the black spots count as fur) and the near front leg keeps the shared outline."
+        "why": "Ember faces screen-right: image-left legs are his RIGHT (near) side. Image order: near hind (x 43-345), far hind (326-557, partly behind the near front leg), near front (412-648, lowest sole), far front (662-971). The near front leg overlaps the far hind leg, so the watershed runs on the dark-red outline only (the black spots count as fur) and the near front leg keeps the shared outline.",
+        "clip_hidden_top": {
+          "leg_front_left": {
+            "above_y": 1120,
+            "why": "r2.1: 4636 px of the far front leg's top lay outside the master silhouette and outside body_no_head_no_legs at x 726-851, y 924-1120, reading as a second outlined column beside the collar and chest; above y 1120 the leg keeps only what the body covers or the master shows"
+          }
+        }
       }
     },
     "helmet_front": {
@@ -137,15 +146,73 @@
         "min_island_px": 150,
         "min_head_area_px": 400,
         "fill_reach_px": 8,
-        "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole; Ember: fill_reach_px 8 (at 30 the gap fill picked up strips of the far ear's fur under the brim); white_needs_enclosure: Ember's white fur and the shell's white highlights share one colour, so white is helmet only where the red shell encloses it",
+        "why": "helmet_front r2 is cut from the MASTER's pixels (no seam at rest). zone_px: search band around the registered helmet; palette_margin: a pixel is head only when its colour is nearer the head palette by this much (shell shading stays helmet); ink_px: outline within this distance of helmet colour is helmet; fill_reach_px: master pixels next to the helmet that head_no_helmet does not cover are kept so the stack has no hole; Ember: fill_reach_px 8 (at 30 the gap fill picked up strips of the far ear's fur under the brim); white_needs_enclosure: Ember's white fur and the shell's white highlights share one colour, so white is helmet only where the red shell encloses it; r2.1 (verifier: the r2 layer lost 3-17 px of the crown/brim ink ring, had binary alpha, and let the head's white fur replace the brim's grey shadow): grow_px 8 grows the helmet through the master's own outline ink and antialias edge (partial alpha copied, never binarised) so the whole outer ring and the brim tips are kept; shadow_rgb/shadow_tol/shadow_reach_px then grow it through the master's shadow-coloured pixels under the brim (measured 14-20 px deep, rgb ~220,208,196), stopping at the white fur and the head's own outline",
         "min_island_frac": 0.02,
         "spur_px": 4,
         "spur_min_px": 40,
-        "white_needs_enclosure": true
+        "white_needs_enclosure": true,
+        "grow_px": 8,
+        "shadow_rgb": [
+          220,
+          208,
+          196
+        ],
+        "shadow_tol": 24,
+        "shadow_reach_px": 20
       },
       "meta": {
         "helmet_px": 92736,
-        "gap_fill_px": 299
+        "gap_fill_px": 299,
+        "grow_px": 8,
+        "ring_px": 5135,
+        "shadow_px": 7865,
+        "islands_dropped": [
+          [
+            1,
+            823,
+            477
+          ],
+          [
+            1,
+            810,
+            491
+          ],
+          [
+            1,
+            874,
+            494
+          ],
+          [
+            2,
+            428,
+            552
+          ],
+          [
+            1,
+            392,
+            581
+          ],
+          [
+            1,
+            388,
+            584
+          ],
+          [
+            1,
+            387,
+            585
+          ],
+          [
+            1,
+            380,
+            593
+          ],
+          [
+            1,
+            352,
+            625
+          ]
+        ]
       },
       "file": "art-src/animation/parts/pf_dog/helmet_front.png"
     },
@@ -210,9 +277,9 @@
           "scale_to_canvas": 0.87,
           "how": "width of the master's near brow vs brows_neutral's near brow"
         },
-        "mouth": {
-          "scale_to_canvas": 0.85,
-          "how": "BY EYE: mouth_closed over the master muzzle at 0.78/0.85/0.92"
+        "muzzle": {
+          "scale_to_canvas": 1.05,
+          "how": "r2.1: each cell is an opaque muzzle (cream patch + mouth) WITH its own black nose, so it is an overlay that must sit nose-on-nose with head_no_helmet's nose (anchors.json muzzle_nose). The scale matches the noses: head nose 117 px wide on the canvas vs 108-116 px on the sheet (1.01-1.08); at 1.05 nose-on-nose the two noses coincide (overlay reviewed). r2 used 0.85 (muzzle width by eye), which left the head's nose rim showing around the smaller sheet nose"
         }
       },
       "components": 20,
@@ -427,8 +494,8 @@
           "scale_family": "brows",
           "scale_to_canvas": 0.87
         },
-        "mouth_closed": {
-          "file": "art-src/animation/parts/pf_dog/pieces/mouth_closed.png",
+        "muzzle_closed": {
+          "file": "art-src/animation/parts/pf_dog/pieces/muzzle_closed.png",
           "size": [
             296,
             157
@@ -450,11 +517,11 @@
           "rule": "mouth",
           "components_kept": 1,
           "dropped": [],
-          "scale_family": "mouth",
-          "scale_to_canvas": 0.85
+          "scale_family": "muzzle",
+          "scale_to_canvas": 1.05
         },
-        "mouth_bark": {
-          "file": "art-src/animation/parts/pf_dog/pieces/mouth_bark.png",
+        "muzzle_bark": {
+          "file": "art-src/animation/parts/pf_dog/pieces/muzzle_bark.png",
           "size": [
             286,
             239
@@ -476,11 +543,11 @@
           "rule": "mouth",
           "components_kept": 1,
           "dropped": [],
-          "scale_family": "mouth",
-          "scale_to_canvas": 0.85
+          "scale_family": "muzzle",
+          "scale_to_canvas": 1.05
         },
-        "mouth_pant": {
-          "file": "art-src/animation/parts/pf_dog/pieces/mouth_pant.png",
+        "muzzle_pant": {
+          "file": "art-src/animation/parts/pf_dog/pieces/muzzle_pant.png",
           "size": [
             278,
             227
@@ -502,11 +569,11 @@
           "rule": "mouth",
           "components_kept": 1,
           "dropped": [],
-          "scale_family": "mouth",
-          "scale_to_canvas": 0.85
+          "scale_family": "muzzle",
+          "scale_to_canvas": 1.05
         },
-        "mouth_sad": {
-          "file": "art-src/animation/parts/pf_dog/pieces/mouth_sad.png",
+        "muzzle_sad": {
+          "file": "art-src/animation/parts/pf_dog/pieces/muzzle_sad.png",
           "size": [
             222,
             149
@@ -528,8 +595,8 @@
           "rule": "mouth",
           "components_kept": 1,
           "dropped": [],
-          "scale_family": "mouth",
-          "scale_to_canvas": 0.85
+          "scale_family": "muzzle",
+          "scale_to_canvas": 1.05
         }
       },
       "missing": []
@@ -543,15 +610,15 @@
       "scales": {
         "parts": {
           "scale_to_canvas": 1.19,
-          "how": "fit of head_no_jaw over the master head (1.187, overlay reviewed: ears, eyes and nose coincide)"
+          "how": "fit of head_open_smile (r2: 'head_no_jaw', the same cell) over the master head (1.187, overlay reviewed: ears, eyes and nose coincide)"
         }
       },
       "components": 6,
       "specks_ignored": 0,
       "outside_every_cell": [],
       "pieces": {
-        "ear_left": {
-          "file": "art-src/animation/parts/pf_dog/pieces/ear_left.png",
+        "ear_right": {
+          "file": "art-src/animation/parts/pf_dog/pieces/ear_right.png",
           "size": [
             368,
             399
@@ -576,8 +643,8 @@
           "scale_family": "parts",
           "scale_to_canvas": 1.19
         },
-        "ear_right": {
-          "file": "art-src/animation/parts/pf_dog/pieces/ear_right.png",
+        "ear_left": {
+          "file": "art-src/animation/parts/pf_dog/pieces/ear_left.png",
           "size": [
             352,
             375
@@ -654,8 +721,8 @@
           "scale_family": "parts",
           "scale_to_canvas": 1.19
         },
-        "head_no_jaw": {
-          "file": "art-src/animation/parts/pf_dog/pieces/head_no_jaw.png",
+        "head_open_smile": {
+          "file": "art-src/animation/parts/pf_dog/pieces/head_open_smile.png",
           "size": [
             620,
             415
@@ -705,6 +772,127 @@
           "dropped": [],
           "scale_family": "parts",
           "scale_to_canvas": 1.19
+        },
+        "head_no_jaw": {
+          "sheet_origin": [
+            512,
+            520
+          ],
+          "cell": [
+            478,
+            504,
+            1178,
+            1024
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "scale_family": "parts",
+          "scale_to_canvas": 1.19,
+          "file": "art-src/animation/parts/pf_dog/pieces/head_no_jaw.png",
+          "size": [
+            620,
+            415
+          ],
+          "rule": "derived (mask_jaw)",
+          "components_kept": null,
+          "dropped": [],
+          "derived_from": "art-src/animation/parts/pf_dog/pieces/head_open_smile.png",
+          "method": "r2.1 (Ember): the parts sheet's 'jawless head' cell is a whole head with an open smiling mouth (tongue, lower\n    lip, chin), so it is kept as `head_open_smile` and `head_no_jaw` is DERIVED from it (no paid call):\n      1. the mouth cavity = the dark-maroon interior plus the tongue, grown from `cavity_seed` inside `jaw_polygon`\n      2. every pixel inside `jaw_polygon` (read by eye: the lower lip line, the chin and the head outline under it,\n         from the mouth corner to the head's right outline) that is not cavity is removed\n      3. the tongue belongs to the jaw (and to pieces/tongue): inside the kept cavity it is repainted with the\n         cavity's own median colour, so the upper jaw keeps a dark mouth interior behind the lip\n      4. where the cut crosses fur, the new edge is closed with the head's own outline ink (`ink_px` wide).",
+          "params": {
+            "from": "head_open_smile",
+            "method": "mask_jaw",
+            "jaw_polygon": [
+              [
+                324,
+                284
+              ],
+              [
+                336,
+                312
+              ],
+              [
+                380,
+                322
+              ],
+              [
+                430,
+                318
+              ],
+              [
+                458,
+                305
+              ],
+              [
+                470,
+                298
+              ],
+              [
+                490,
+                300
+              ],
+              [
+                520,
+                308
+              ],
+              [
+                560,
+                330
+              ],
+              [
+                560,
+                430
+              ],
+              [
+                330,
+                430
+              ],
+              [
+                348,
+                398
+              ],
+              [
+                360,
+                374
+              ],
+              [
+                352,
+                354
+              ],
+              [
+                342,
+                332
+              ],
+              [
+                332,
+                308
+              ]
+            ],
+            "cavity_seed": [
+              380,
+              320
+            ],
+            "ink_px": 7
+          },
+          "why": "r2.1 (verifier: the sheet's 'head_no_jaw' cell is a whole head with a painted lower jaw, so stacking pieces/jaw gave two jaws and two chins): derived from head_open_smile without a paid call. jaw_polygon (piece pixels, read by eye on a 3x gridded zoom) covers the lower lip line under the mouth, the chin and the head outline under it, from just inside the mouth's left corner (the corner and the lip line beside the cheek stay) to the head's right outline under the nose; the dark mouth interior is kept (tongue repainted with the interior colour) and the cut through the fur is closed with the head's own outline ink",
+          "meta": {
+            "removed_px": 7358,
+            "cavity_px": 6094,
+            "tongue_repainted_px": 1680,
+            "cavity_rgb": [
+              57,
+              9,
+              11
+            ],
+            "ink_rgb": [
+              34,
+              2,
+              2
+            ],
+            "inked_px": 547,
+            "islands_dropped": []
+          }
         }
       },
       "missing": []
@@ -731,9 +919,10 @@
     ],
     "note": "immutable input: verified identical to the integer shift of the raw master, not rewritten"
   },
+  "islands_dropped": {},
   "qa": {
     "reassembly": "qa/art/parts/pf_dog_reassembly.png",
-    "reassembly_iou": 0.9319,
+    "reassembly_iou": 0.9417,
     "pieces_contact": "qa/art/parts/pf_dog_pieces_r2.png",
     "layers_contact": "qa/art/parts/pf_dog_layers_r2.png"
   }

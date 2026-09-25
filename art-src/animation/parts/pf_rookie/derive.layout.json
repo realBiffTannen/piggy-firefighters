@@ -34,5 +34,28 @@
   "q": 2,
   "mode": "colour",
   "why": "r1 registered head_blank at s 0.345 onto the eye (visibly tiny, reviewed); r2 fits it to the registered head_no_helmet instead: s 0.656, overlay reviewed (cranium, snout and neck coincide)"
+ },
+ "edge_to_master": {
+  "layers": [
+   "arm_left",
+   "body_no_head_no_arms"
+  ],
+  "band_px": 12,
+  "min_island_px": 30,
+  "why": "r2.1 (verifier: 'torso 12-16 px wider on the image-right side, rows 560-840, 7862 px outside'): measured per layer, that overhang is the far sleeve arm_left (x 759 vs 743 at y 720), plus the body's collar and shoulders above it; what shows at rest outside the master's silhouette is trimmed and the new edge takes the master's own outline pixels (band_px). Hidden overlap under the layers in front is kept for rotation"
+ },
+ "lower_from_master": {
+  "ink_lum": 75,
+  "cell_major": 0.8,
+  "small_cell_px": 4000,
+  "ink_px": 14,
+  "belt_band": [
+   720,
+   800
+  ],
+  "tail_ink_px": 20,
+  "leg_extend_px": 140,
+  "min_island_px": 30,
+  "why": "r2.1 (verifier): the r2 coat_tails cut from the registered body redraw sat 8 px low (best shift dx +1, dy -8) and 30 px too wide per side at y 920; the legs sat 3 px low with boots 8-13 px narrower than the master. No hand overlaps the coat or the legs, so both are cut from the master's own pixels (cells assigned to the registered slots), the coat from the master's belt middle line down, the legs with their hidden tops extended under the coat"
  }
 }

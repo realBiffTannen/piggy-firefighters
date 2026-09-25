@@ -265,6 +265,23 @@ def extend_top(leg, covered, height):
     return n
 
 
+def drop_islands(arr, min_px=30):
+    """Drop detached islands (alpha > 0, 4-connected: a pixel that touches the layer only diagonally is detached)
+    under `min_px` from a layer; -> (array, [[px, x, y], ...])."""
+    lab, n = ndimage.label(arr[..., 3] > 0)
+    if n < 2:
+        return arr, []
+    sizes = np.bincount(lab.ravel())
+    small = [i for i in range(1, n + 1) if sizes[i] < min_px]
+    if not small:
+        return arr, []
+    objs = ndimage.find_objects(lab)
+    info = [[int(sizes[i]), int(objs[i - 1][1].start), int(objs[i - 1][0].start)] for i in small]
+    out = arr.copy()
+    out[np.isin(lab, small)] = 0
+    return out, info
+
+
 # ---------------------------------------------------------------------------------------------------- helmet_front
 def _palette(pixels, k, seed=0):
     rng = np.random.default_rng(seed)
@@ -352,8 +369,35 @@ def helmet_front_v2(rig, cfg, master, reg=None):
     if ns:
         ssz = np.bincount(sl.ravel())
         out[np.isin(sl, [i for i in range(1, ns + 1) if ssz[i] >= cfg["spur_min_px"]])] = 0
+    meta = {"helmet_px": int(is_helm.sum()), "gap_fill_px": int(fill.sum())}
+    if cfg.get("grow_px"):
+        # r2.1 (Ember): the outer ink ring, the brim tips and the grey shadow the brim casts on the fur are helmet.
+        # 1. ring: grow the kept mask by `grow_px` through the master's outline ink and antialias edge only (not fur,
+        #    not the black spots), so the whole ink ring is kept and the master's partial alpha is copied, not binarised
+        # 2. shadow: grow on through shadow-coloured master pixels (`shadow_rgb` +- `shadow_tol`, at most
+        #    `shadow_reach_px` deep); it stops at the white fur and the head's own outline
+        solid = out[..., 3] > 0
+        mr, mg = master[..., 0].astype(int), master[..., 1].astype(int)
+        edge_ink = mo & ((lum < 90) & (mr > mg + 15) | (master[..., 3] < 255))
+        ring = ndimage.binary_dilation(solid, structure=np.ones((3, 3)), iterations=cfg["grow_px"],
+                                       mask=solid | edge_ink)
+        meta["grow_px"] = cfg["grow_px"]
+        meta["ring_px"] = int((ring & ~solid).sum())
+        solid = ring
+        if cfg.get("shadow_rgb"):
+            sh = mo & (np.sqrt(((master[..., :3].astype(float) - cfg["shadow_rgb"]) ** 2).sum(-1)) <= cfg["shadow_tol"])
+            seed = ndimage.binary_dilation(solid, structure=np.ones((3, 3)), iterations=2) & mo & (sh | edge_ink)
+            seed |= solid
+            shadow = ndimage.binary_dilation(seed, structure=np.ones((3, 3)), iterations=cfg["shadow_reach_px"],
+                                             mask=sh | seed)
+            fringe = ndimage.binary_dilation(shadow & ~solid, structure=np.ones((3, 3)), iterations=2) & mo & \
+                ~solid & (master[..., 3] < 255)
+            meta["shadow_px"] = int((shadow & ~solid).sum())
+            solid = solid | shadow | fringe
+        out = np.where(solid[..., None], master, 0).astype(np.uint8)
+    out, meta["islands_dropped"] = drop_islands(out, cfg.get("min_piece_island_px", 30))
     out[out[..., 3] == 0, :3] = 0
-    return out, {"helmet_px": int(is_helm.sum()), "gap_fill_px": int(fill.sum())}
+    return out, meta
 
 
 # ---------------------------------------------------------------------------------------------------- raised arms
@@ -420,7 +464,7 @@ def raised_arms(rig, cfg, reg=None):
 
 
 # ---------------------------------------------------------------------------------------------------- dog legs
-def dog_legs(rig, cfg, reg=None):
+def dog_legs(rig, cfg, reg=None, master=None, body=None):
     """Cut Ember's four-leg layer into one layer per leg. Separate legs are separate components; where one leg
     overlaps another (the near front leg in front of the far hind leg) a marker watershed on the ink ridge splits
     them from one seed per leg (derive.layout.json), then the FRONT leg takes back the outline it shares with the
@@ -463,11 +507,26 @@ def dog_legs(rig, cfg, reg=None):
             big = int(np.argmax(sizes[1:])) + 1
             lab[m & (cl != big)] = 0
     lab = _nearest_label(lab, al & (lab == 0))
+    # r2.1: a leg top that shows at rest beside the body (outside the master silhouette and not under the body
+    # layer) is clipped above `above_y`: the far front leg's top stood out as a second outlined column by the chest
+    clipped = np.zeros(al.shape, bool)
+    for nm, c in cfg.get("clip_hidden_top", {}).items():
+        k = names.index(nm) + 1
+        cut = (lab == k) & (yy < c["above_y"]) & ~(master[..., 3] > 0) & ~(body[..., 3] > 0)
+        lab[cut] = 0
+        clipped |= cut
+        meta[f"{nm}_clipped_px"] = int(cut.sum())
     for k, nm in enumerate(names, 1):
         out[nm] = np.where((lab == k)[..., None], legs, 0).astype(np.uint8)
-        ys, xs = np.nonzero(lab == k)
-        meta[nm] = {"bbox": [int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1],
-                    "px": int((lab == k).sum())}
+        out[nm], dropped = drop_islands(out[nm], cfg.get("min_island_px", 30))
+        ys, xs = np.nonzero(out[nm][..., 3] > 0)
+        meta[nm] = dict(meta.get(nm, {}), bbox=[int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1],
+                        px=int((out[nm][..., 3] > 0).sum()))
+        if dropped:
+            meta[nm]["islands_dropped"] = dropped
+    if clipped.any():
+        # legs.png (all four legs on one layer) loses the same hidden-top pixels, so it stays the union of the four
+        out["legs"] = np.where(clipped[..., None], 0, legs).astype(np.uint8)
     return out, meta
 
 
@@ -545,19 +604,27 @@ def skin_slots(skin, masks, cfg, overrides=()):
         if o.get("only_from"):  # re-assign only pixels that the rules gave to these slots
             pm &= np.isin(lab, [SLOT_FRONT.index(x) + 1 for x in o["only_from"]])
         lab[pm] = SLOT_FRONT.index(o["slot"]) + 1
-    # ink: the front-most slot among the cells within ink_px, else the nearest
+    # ink: the front-most slot among the cells within ink_px, else the nearest. r2.1: a slot only claims an outline
+    # pixel that lies within `ink_tol_px` of the nearest cell of ANY slot beyond its own distance, so a neighbouring
+    # shape's outline (a torso seam, a strap edge) no longer rides on the arm as a loose stroke
     todo = ink & (lab == 0)
     near = _nearest_label(lab, todo)
+    dist = [ndimage.distance_transform_edt(lab != k) for k in range(1, len(SLOT_FRONT) + 1)]
+    d_min = np.minimum.reduce(dist)
+    tol = cfg.get("ink_tol_px", cfg["ink_px"])
     for k in range(1, len(SLOT_FRONT) + 1):
-        close = todo & (ndimage.distance_transform_edt(lab != k) <= cfg["ink_px"])
-        near[close & (lab == 0)] = k
+        close = todo & (dist[k - 1] <= np.minimum(cfg["ink_px"], d_min + tol))
         lab[close] = k
         todo &= ~close
     lab[todo] = near[todo]
-    # crumbs: a slot's small islands (outline arcs cut off by a boundary) join the neighbouring slot they touch most
-    for _ in range(2):
+    # crumbs: a slot's small islands (outline arcs cut off by a boundary) join the neighbouring slot they touch most.
+    # r2.1: islands are 4-connected (a pixel touching its slot only diagonally is an island too) and the neighbour
+    # is the slot the island shares the most 4-neighbour edges with; what touches no other slot and is under
+    # `min_island_px` is dropped (a detached speck of the source)
+    cross = ndimage.generate_binary_structure(2, 1)
+    for _ in range(3):
         for k in range(1, len(SLOT_FRONT) + 1):
-            cl, n = ndimage.label(lab == k, structure=np.ones((3, 3)))
+            cl, n = ndimage.label(lab == k, structure=cross)
             if n < 2:
                 continue
             sizes = np.bincount(cl.ravel())
@@ -566,12 +633,244 @@ def skin_slots(skin, masks, cfg, overrides=()):
                 if i == main or sizes[i] >= cfg["island_px"]:
                     continue
                 isl = cl == i
-                ring = ndimage.binary_dilation(isl, iterations=2) & ~isl & (lab > 0) & (lab != k)
+                ring = ndimage.binary_dilation(isl, structure=cross, iterations=2) & ~isl & (lab > 0) & (lab != k)
                 if ring.any():
                     lab[isl] = np.bincount(lab[ring]).argmax()
+    # r2.1: thin strays on the arm slots (a neighbouring shape's outline hanging off the sleeve: a torso side line, a
+    # strap edge, a button rim) are thinner than the arm's own outline; what an opening of `arm_spur_px` removes and
+    # does not grow back is handed to the slot it touches most, or dropped when it touches none
+    for nm in ("arm_right", "arm_left"):
+        if not cfg.get("arm_spur_px"):
+            break
+        k = SLOT_FRONT.index(nm) + 1
+        m = lab == k
+        r_ = cfg["arm_spur_px"]
+        op = ndimage.binary_opening(m, structure=cross, iterations=r_)
+        spur = m & ~ndimage.binary_dilation(op, structure=np.ones((3, 3)), iterations=r_ + 1)
+        sl, ns = ndimage.label(spur, structure=np.ones((3, 3)))
+        for i in range(1, ns + 1):
+            isl = sl == i
+            ring = ndimage.binary_dilation(isl, structure=cross, iterations=2) & ~isl & (lab > 0) & (lab != k)
+            lab[isl] = np.bincount(lab[ring]).argmax() if ring.any() else 0
+    # r2.1 "reassign" overrides run last: every pixel (ink included) inside the polygon that the rules gave to one of
+    # `only_from` moves to `slot` (strays read by eye on the slot renders: a torso side line, a strap edge, a button rim)
+    for o in overrides:
+        if o.get("mode") == "reassign":
+            pm = _poly_mask(o["polygon"], al.shape) & np.isin(lab, [SLOT_FRONT.index(x) + 1 for x in o["only_from"]])
+            lab[pm] = SLOT_FRONT.index(o["slot"]) + 1
+    dropped = {}
+    for k, nm in enumerate(SLOT_FRONT, 1):
+        cl, n = ndimage.label(lab == k, structure=cross)
+        if n < 2:
+            continue
+        sizes = np.bincount(cl.ravel())
+        small = [i for i in range(1, n + 1) if sizes[i] < cfg.get("min_island_px", 30)]
+        if small:
+            lab[np.isin(cl, small)] = 0
+            dropped[nm] = int(sizes[small].sum())
     out = {}
     for k, nm in enumerate(SLOT_FRONT, 1):
         out[nm] = np.where((lab == k)[..., None], skin, 0).astype(np.uint8)
     for nm in ("leg_right", "leg_left"):
         extend_top(out[nm], lab == SLOT_FRONT.index("body") + 1, cfg["leg_extend_px"])
+    skin_slots.last_dropped = dropped
     return out, lab
+
+
+# ---------------------------------------------------------------------------------------------------- r2.1 helpers
+def assign_cells(img, masks, cfg):
+    """Cut a drawing into the slots of a registered template (r2.1; the same rules as `skin_slots`, for any slot
+    names). `masks` = [(name, bool mask), ...] front-most first. The drawing is split into CELLS (flat-colour
+    regions between ink lines); a cell goes whole to the slot that holds >= `cell_major` of it (or to its majority
+    slot when it is <= `small_cell_px`), else it is split on the template boundary; ink goes to the front-most slot
+    among the cells within `ink_px`, else the nearest. -> label map (0 = transparent, k = masks[k - 1])."""
+    al = img[..., 3] > 0
+    r, g, b = (img[..., i].astype(int) for i in range(3))
+    ink = al & (np.maximum(np.maximum(r, g), b) < cfg["ink_lum"]) & (r >= b)
+    H, W = al.shape
+    TL = np.zeros((H, W), np.int16)
+    for k in range(len(masks), 0, -1):
+        TL[masks[k - 1][1]] = k
+    TL = _nearest_label(TL, TL == 0)
+    cells, n = ndimage.label(al & ~ink)
+    lab = np.zeros((H, W), np.int16)
+    idx = np.arange(1, n + 1)
+    counts = np.stack([ndimage.sum(TL == k, cells, idx) for k in range(1, len(masks) + 1)], 1)
+    size = counts.sum(1)
+    for j in range(n):
+        if size[j] == 0:
+            continue
+        if counts[j].max() >= cfg["cell_major"] * size[j] or size[j] <= cfg["small_cell_px"]:
+            lab[cells == j + 1] = int(np.argmax(counts[j])) + 1
+    split = (lab == 0) & al & ~ink
+    lab[split] = TL[split]
+    todo = ink & (lab == 0)
+    near = _nearest_label(lab, todo)
+    for k in range(1, len(masks) + 1):
+        close = todo & (ndimage.distance_transform_edt(lab != k) <= cfg["ink_px"])
+        lab[close] = k
+        todo &= ~close
+    lab[todo] = near[todo]
+    return lab
+
+
+def belt_middle(img, band, W=None):
+    """Per-column middle line of the belt (grey rows inside `band`), interpolated across the buckle."""
+    c = colour_classes(img)
+    H, W = img.shape[:2]
+    yy = np.arange(H)[:, None] * np.ones((1, W), int)
+    g = c["grey"] & (yy >= band[0]) & (yy < band[1])
+    top, bot = np.full(W, np.nan), np.full(W, np.nan)
+    for x in range(W):
+        ys = np.nonzero(g[:, x])[0]
+        if len(ys) >= 6:
+            top[x], bot[x] = ys.min(), ys.max()
+    return (_interp_cols(top, W) + _interp_cols(bot, W)) / 2.0
+
+
+def tail_mask(img, allowed, y_from, cfg):
+    """The curly tail: pig-pink regions (>= 200 px) inside `allowed` below `y_from`, plus the outline and curl ink
+    within `tail_ink_px` that is nearer to the pink than to the coat colours (the coat keeps its own outline)."""
+    H, W = img.shape[:2]
+    yy = np.arange(H)[:, None] * np.ones((1, W), int)
+    r, g, b = (img[..., i].astype(int) for i in range(3))
+    pink = (r > 190) & (g > 110) & (b > 90) & (r - g >= 45) & (r - g < 110) & (img[..., 3] > 0)
+    pl, npk = ndimage.label(pink & allowed & (yy >= y_from), structure=np.ones((3, 3)))
+    if not npk:
+        return np.zeros((H, W), bool)
+    psz = np.bincount(pl.ravel())
+    tail = np.isin(pl, [i for i in range(1, npk + 1) if psz[i] >= 200])
+    cc = colour_classes(img)
+    coatcol = (cc["red"] | cc["yellow"] | cc["grey"] | cc["navy"]) & allowed & ~tail
+    kl, nk = ndimage.label(coatcol, structure=np.ones((3, 3)))
+    ksz = np.bincount(kl.ravel())
+    coatcol = np.isin(kl, [i for i in range(1, nk + 1) if ksz[i] >= 2000])  # the coat's own large colour regions
+    d_t = ndimage.distance_transform_edt(~tail)
+    d_c = ndimage.distance_transform_edt(~coatcol)
+    tail = tail | (allowed & ~coatcol & (img[..., 3] > 0) & (d_t <= cfg["tail_ink_px"]) & (d_t < d_c))
+    return ndimage.binary_fill_holes(tail) & allowed & (img[..., 3] > 0)
+
+
+def lower_from_master(rig, cfg, master, layers):
+    """r2.1 (rookie): coat_tails and the two legs are cut from the MASTER's own pixels, so at rest they are the master
+    (the r2 cut from the registered body redraw put the hem 8 px low and 30 px too wide per side, and the legs 3 px
+    low and 8-13 px narrow at the boots). The master is split into the template's slots with `assign_cells`
+    (template = the registered arm_right, arm_left, body, coat_tails, leg_right, leg_left); coat_tails = the master's
+    body/coat pixels from the master's own belt middle line down, without the curly tail (`tail_mask`; the tail goes
+    to the body layer, replacing the redraw's own tail, which sat 10-15 px to the left); the legs = the master's leg
+    pixels, their tops extended `leg_extend_px` straight up where the coat or the body covers them (hidden overlap for
+    rotation, as in r2; never outside the coat/body silhouette). Islands under `min_island_px` are dropped."""
+    names = ["arm_right", "arm_left", "body_no_head_no_arms", "coat_tails", "leg_right", "leg_left"]
+    masks = [(nm, layers[nm][..., 3] > 128) for nm in names]
+    lab = assign_cells(master, masks, cfg)
+    H, W = master.shape[:2]
+    yy = np.arange(H)[:, None] * np.ones((1, W), int)
+    mid = belt_middle(master, cfg["belt_band"])
+    below = yy >= np.floor(mid)[None, :]
+    bc = np.isin(lab, [3, 4])
+    tail = tail_mask(master, bc, cfg["belt_band"][0], cfg)
+    coat = bc & below & ~tail & (master[..., 3] > 0)
+    out, meta = {}, {"belt_middle_y": [int(np.nanmin(mid)), int(np.nanmax(mid))], "tail_px": int(tail.sum())}
+    out["coat_tails"], meta["coat_islands_dropped"] = drop_islands(np.where(coat[..., None], master, 0).astype(np.uint8),
+                                                                   cfg["min_island_px"])
+    out["tail_master"] = np.where(tail[..., None], master, 0).astype(np.uint8)
+    coat_m = out["coat_tails"][..., 3] > 0
+    cover = coat_m | (layers["body_no_head_no_arms"][..., 3] > 0) | tail
+    both = np.zeros_like(master)
+    for k, nm in ((5, "leg_right"), (6, "leg_left")):
+        leg = np.where((lab == k)[..., None], master, 0).astype(np.uint8)
+        leg, meta[f"{nm}_islands_dropped"] = drop_islands(leg, cfg["min_island_px"])
+        own = leg[..., 3] > 0
+        extend_top(leg, cover, cfg["leg_extend_px"])
+        leg[(leg[..., 3] > 0) & ~own & ~cover] = 0  # the hidden extension never leaves the coat/body silhouette
+        leg, _ = drop_islands(leg, cfg["min_island_px"])
+        meta[f"{nm}_extended_px"] = int(((leg[..., 3] > 0) & ~own).sum())
+        out[nm] = leg
+        both = np.where(leg[..., 3:4] > 0, leg, both)
+    out["legs"] = both
+    return out, meta
+
+
+def edge_to_master(layer, master, cover, cfg):
+    """r2.1: a layer drawn wider than the master (the registered redraw's far sleeve / collar) loses the pixels that
+    show at rest OUTSIDE the master's silhouette (hidden overlap under the layers in front of it is kept), and the
+    new edge is closed with the master's own outline: within `band_px` of the cut, the master's ink and antialias
+    pixels are copied (RGBA), so at rest the edge is the master's and in motion the layer still has an inked edge."""
+    la = layer[..., 3] > 0
+    mo = master[..., 3] > 0
+    cut = la & ~mo & ~cover
+    out = layer.copy()
+    out[cut] = 0
+    if not cut.any():
+        return out, {"trimmed_px": 0, "inked_px": 0}
+    d = ndimage.distance_transform_edt(~cut)
+    lum = master[..., :3].max(-1)
+    mr, mg = master[..., 0].astype(int), master[..., 1].astype(int)
+    m_ink = mo & (((lum < 90) & (mr >= master[..., 2].astype(int))) | (master[..., 3] < 255))
+    band = (out[..., 3] > 0) & (d <= cfg["band_px"]) & m_ink & ~cover
+    out[band] = master[band]
+    out, dropped = drop_islands(out, cfg.get("min_island_px", 30))
+    return out, {"trimmed_px": int(cut.sum()), "inked_px": int(band.sum()), "islands_dropped": dropped}
+
+
+def head_no_jaw(piece, cfg):
+    """r2.1 (Ember): the parts sheet's 'jawless head' cell is a whole head with an open smiling mouth (tongue, lower
+    lip, chin), so it is kept as `head_open_smile` and `head_no_jaw` is DERIVED from it (no paid call):
+      1. the mouth cavity = the dark-maroon interior plus the tongue, grown from `cavity_seed` inside `jaw_polygon`
+      2. every pixel inside `jaw_polygon` (read by eye: the lower lip line, the chin and the head outline under it,
+         from the mouth corner to the head's right outline) that is not cavity is removed
+      3. the tongue belongs to the jaw (and to pieces/tongue): inside the kept cavity it is repainted with the
+         cavity's own median colour, so the upper jaw keeps a dark mouth interior behind the lip
+      4. where the cut crosses fur, the new edge is closed with the head's own outline ink (`ink_px` wide)."""
+    a = piece.copy()
+    H, W = a.shape[:2]
+    r, g, b = (a[..., i].astype(int) for i in range(3))
+    al = a[..., 3] > 0
+    jaw = _poly_mask(cfg["jaw_polygon"], (H, W))
+    maroon = al & (r >= 42) & (r <= 115) & (g < 40) & (b < 45)
+    tongue = al & (r > 115) & (g >= 35) & (g <= 120) & (b >= 35) & (b <= 125) & (r - g > 55)
+    cav_c = ndimage.binary_closing(maroon | tongue, iterations=1) & (maroon | tongue)
+    lab, n = ndimage.label(cav_c & ndimage.binary_dilation(jaw, iterations=40), structure=np.ones((3, 3)))
+    sx, sy = cfg["cavity_seed"]
+    if lab[sy, sx] == 0:
+        raise RuntimeError("cavity_seed is not inside the mouth interior")
+    cavity = ndimage.binary_fill_holes(lab == lab[sy, sx])
+    cavity = ndimage.binary_opening(cavity, iterations=2)  # no ragged spurs where the lower lip was
+    cut = jaw & al & ~cavity
+    out = a.copy()
+    out[cut] = 0
+    med = np.median(a[cavity & maroon][:, :3], axis=0).astype(np.uint8)
+    # the tongue and its antialias ring (every cavity pixel far from the interior colour) take the interior colour
+    kept_tongue = cavity & (np.abs(a[..., :3].astype(int) - med.astype(int)).max(-1) > 22)
+    out[kept_tongue, :3] = med
+    out[kept_tongue, 3] = 255
+    # close the cut through fur with the head's own outline colour
+    ink = al & (np.maximum(np.maximum(r, g), b) < 60) & (r > g + 10)
+    ink_rgb = np.median(a[ink][:, :3], axis=0).astype(np.uint8)
+    d = ndimage.distance_transform_edt(~cut)
+    lum = out[..., :3].max(-1)
+    band = (out[..., 3] > 0) & (d <= cfg["ink_px"]) & ~cavity & (lum >= 90)
+    out[band, :3] = ink_rgb
+    out[band, 3] = 255
+    out, dropped = drop_islands(out, 30)
+    out[out[..., 3] == 0, :3] = 0
+    return out, {"removed_px": int(cut.sum()), "cavity_px": int(cavity.sum()), "tongue_repainted_px":
+                 int(kept_tongue.sum()), "cavity_rgb": [int(v) for v in med], "ink_rgb": [int(v) for v in ink_rgb],
+                 "inked_px": int(band.sum()), "islands_dropped": dropped}
+
+
+def slot_joints(slots):
+    """r2.1: joint guidance from slot masks ({"head": bool mask, "arm_right": ..., "arm_left": ...}): neck = the
+    centre of the head slot's lowest 25 rows (the chin/neck end the head bone turns about), shoulder_r / shoulder_l =
+    the centre of the arm slot's top 60 rows (the shoulder cap). Measured identically on the template layers and on
+    every skin's slots, so the offsets say where a skin's joints sit relative to the template's."""
+    def band(m, top, rows):
+        if not m.any():
+            return None
+        ys = np.nonzero(m.any(axis=1))[0]
+        yy = np.arange(m.shape[0])[:, None]
+        b = m & ((yy <= ys.min() + rows) if top else (yy >= ys.max() - rows))
+        y_, x_ = np.nonzero(b)
+        return [round(float(x_.mean()), 1), round(float(y_.mean()), 1)]
+    return {"neck": band(slots["head"], False, 25), "shoulder_r": band(slots["arm_right"], True, 60),
+            "shoulder_l": band(slots["arm_left"], True, 60)}

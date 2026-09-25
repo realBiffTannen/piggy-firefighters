@@ -155,7 +155,7 @@ def reassembly(rig, master, layers, path):
     d.line([(0, FEET_Y // 2), (CANVAS[0], FEET_Y // 2)], fill=(200, 0, 0), width=1)
     f = ImageFont.truetype(FONT, 14)
     d.text((6, 4), f"{rig} master", fill=(255, 255, 0), font=f)
-    d.text((CANVAS[0] // 2 + 6, 4), "r2 layers: " + " > ".join(n for n in ORDER[rig] if n in layers), fill=(255, 255, 0),
+    d.text((CANVAS[0] // 2 + 6, 4), "r2.1 layers: " + " > ".join(n for n in ORDER[rig] if n in layers), fill=(255, 255, 0),
            font=ImageFont.truetype(FONT, 10))
     write_img(side, path)
     m = master[..., 3] > 128
@@ -210,6 +210,28 @@ def contact(tiles, path, title, zoom, max_w=3000):
     return write_img(sheet.convert("RGB"), path)
 
 
+def letter_piece(plate, pieces_dir, c):
+    """Letter a blank shield plate with tools/art/letter_shield.py (the one treatment of ART_HERO.md), via temporary
+    files in the pieces directory; returns the lettered RGBA array (written atomically by the caller)."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("letter_shield", os.path.join(REPO, "tools", "art", "letter_shield.py"))
+    ls = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(ls)
+    fd_in, tmp_in = tempfile.mkstemp(dir=pieces_dir, prefix=".tmp_", suffix=".png")
+    fd_out, tmp_out = tempfile.mkstemp(dir=pieces_dir, prefix=".tmp_", suffix=".png")
+    os.close(fd_in)
+    os.close(fd_out)
+    try:
+        Image.fromarray(plate, "RGBA").save(tmp_in, format="PNG")
+        ls.letter(tmp_in, tmp_out, c["text"], c["fill"], c["dy"])
+        arr = load_png(tmp_out)
+    finally:
+        for t in (tmp_in, tmp_out):
+            if os.path.exists(t):
+                os.remove(t)
+    return arr, {"text": c["text"], "fill": c["fill"], "dy": c["dy"]}
+
+
 # ------------------------------------------------------------------------------------------------ build
 def place_master(rig, raw_dir):
     m_raw = rgba(os.path.join(raw_dir, f"master_{rig}.png"))
@@ -242,8 +264,8 @@ def build(rig, refit=False):
     out_dir = os.path.join(HERE, rig)
     old = json.load(open(os.path.join(out_dir, "registration.json")))
     dcfg = json.load(open(os.path.join(out_dir, "derive.layout.json")))
-    rec = {"rig": rig, "version": "r2", "canvas": list(CANVAS), "feet_y": FEET_Y, "feet_x": FEET_X,
-           "parts": {}, "pieces": {}, "superseded": {}}
+    rec = {"rig": rig, "version": "r2", "revision": "r2.1 (2026-09-25: verifier fixes, local re-processing, no paid call)",
+           "canvas": list(CANVAS), "feet_y": FEET_Y, "feet_x": FEET_X, "parts": {}, "pieces": {}, "superseded": {}}
     m_raw, master, (sx, sy), band = place_master(rig, raw_dir)
     mpath = os.path.join(out_dir, f"master_{rig}.png")
     on_disk = load_png(mpath)
@@ -273,8 +295,21 @@ def build(rig, refit=False):
         shift = (0, 0) if f.get("frame") == "canvas" else (sx, sy)
         placed = place(p, f, shift)
         placed[placed[..., 3] == 0, :3] = 0
+        snap = 0
+        if rawname.startswith("skin_"):
+            # r2.1: every skin stands on the feet line: its lowest alpha>128 row (the contract's feet measure, as for
+            # the master) is moved onto y 1440 by a whole-pixel shift (r2 accepted 'identity: soles within 6 px')
+            snap = FEET_Y - feet(placed)[0]
+            if snap:
+                placed = np.roll(placed, snap, axis=0)
+                if snap > 0:
+                    placed[:snap] = 0
+                else:
+                    placed[snap:] = 0
         L[outname] = placed
         rec["parts"][outname] = {"raw": rel(rawp), "fit": f, "file": rel(os.path.join(out_dir, f"{outname}.png"))}
+        if rawname.startswith("skin_"):
+            rec["parts"][outname]["sole_snap_px"] = int(snap)
         if split:
             rec["parts"][outname]["split"] = {}
             for nm, arr in split_components(placed, split).items():
@@ -307,6 +342,24 @@ def build(rig, refit=False):
         L["head_blank"] = placed
         rec["parts"]["head_blank"] = {"raw": rel(rawp), "fit": f, "why": c["why"],
                                       "file": rel(os.path.join(out_dir, "head_blank.png"))}
+    # 2b. r2.1 (chief, rescued): head_blank re-seated on the registered head (a similarity correction applied on top of
+    # the r1 fit, measured on the nostrils and the jaw/chin outline and read back on an overlay)
+    if "head_blank_adjust" in dcfg:
+        c = dcfg["head_blank_adjust"]
+        rawp = os.path.join(raw_dir, "head_blank.png")
+        prev = old["parts"]["head_blank"]["fit"]
+        base = prev.get("r1_fit", prev)
+        s0, t0 = base["s"], np.array([base["tx"] + sx, base["ty"] + sy])
+        a_, cc_, d_ = c["scale"], np.array(c["about"], float), np.array([c["dx"], c["dy"]], float)
+        t1 = a_ * (t0 - cc_) + cc_ + d_
+        f = {"s": float(a_ * s0), "tx": float(t1[0]), "ty": float(t1[1]), "frame": "canvas",
+             "mode": "r2.1: r1 colour fit + similarity correction (head_blank_adjust in derive.layout.json)",
+             "r1_fit": base}
+        placed = place(rgba(rawp), f, (0, 0))
+        placed[placed[..., 3] == 0, :3] = 0
+        L["head_blank"] = placed
+        rec["parts"]["head_blank"] = {"raw": rel(rawp), "fit": f, "why": c["why"], "adjust": c,
+                                      "file": rel(os.path.join(out_dir, "head_blank.png"))}
     # 3. body split: body without legs (+ coat tails) and single legs at master scale
     if "split_body" in dcfg:
         c = dcfg["split_body"]
@@ -337,6 +390,30 @@ def build(rig, refit=False):
                                           f"{c['leg_extend_px']} px under the hem (hidden overlap for rotation)")
             rec["parts"][nm]["soles_y"] = int(np.nonzero(parts[nm][..., 3] > 128)[0].max())
         rec["parts"]["legs"]["method"] = "leg_right + leg_left on one layer"
+    # 3b. r2.1 (rookie): coat_tails and the legs from the MASTER's own pixels; the master's tail replaces the redraw's
+    if "lower_from_master" in dcfg:
+        c = dcfg["lower_from_master"]
+        parts, meta = D.lower_from_master(rig, c, master, L)
+        tail = parts.pop("tail_master")
+        body = L["body_no_head_no_arms"].copy()
+        btail = D.tail_mask(body, body[..., 3] > 0, c["belt_band"][0], c)
+        body[btail] = 0
+        L["body_no_head_no_arms"] = np.where(tail[..., 3:4] > 0, tail, body).astype(np.uint8)
+        meta["body_tail_removed_px"] = int(btail.sum())
+        rec["parts"]["body_no_head_no_arms"]["r2_1_tail"] = (
+            "the redraw's own curly tail (10-15 px left of the master's) is replaced by the master's tail pixels, so "
+            "at rest one tail shows, where the master has it")
+        L.update(parts)
+        for nm in ("coat_tails", "legs", "leg_right", "leg_left"):
+            ys_, xs_ = np.nonzero(parts[nm][..., 3] > 128)
+            rec["parts"][nm] = {"derived_from": f"master_{rig} (r2.1: the master's own pixels)",
+                                "file": rel(os.path.join(out_dir, f"{nm}.png")),
+                                "bbox": [int(xs_.min()), int(ys_.min()), int(xs_.max()), int(ys_.max())],
+                                "size": [int(np.ptp(xs_)) + 1, int(np.ptp(ys_)) + 1],
+                                "method": D.lower_from_master.__doc__.strip().split("\n\n")[0], "params": c,
+                                "meta": meta, "r2_superseded": c["why"]}
+            if nm.startswith("leg_"):
+                rec["parts"][nm]["soles_y"] = int(ys_.max())
     # 4. helmet_front from the master's own pixels (chief, rookie); the dog keeps r1's
     if "helmet_front" in dcfg:
         hf, meta = D.helmet_front_v2(rig, dcfg["helmet_front"], master, old)
@@ -348,6 +425,21 @@ def build(rig, refit=False):
     elif rig == "pf_dog":
         L["helmet_front"] = load_png(os.path.join(out_dir, "helmet_front.png"))
         rec["parts"]["helmet_front"] = old["parts"]["helmet_front"]
+    # 4b. r2.1: a layer drawn wider than the master (chief/rookie far sleeve, the shoulders behind it, the rookie's
+    # collar) loses what shows at rest outside the master's silhouette; the cut is closed with the master's own outline
+    if "edge_to_master" in dcfg:
+        c = dcfg["edge_to_master"]
+        for nm in c["layers"]:  # front-most first, so each layer's cover is already final
+            order = ORDER[rig]
+            cover = np.zeros(master.shape[:2], bool)
+            for f in order[order.index(nm) + 1:]:
+                cover |= L[f][..., 3] > 128
+            L[nm], meta = D.edge_to_master(L[nm], master, cover, c)
+            key = "arms_down" if nm in ("arm_left", "arm_right") else nm
+            rec["parts"][key].setdefault("r2_1_edge_to_master", {})[nm] = dict(
+                meta, method=D.edge_to_master.__doc__.strip(), params=c)
+        if any(nm in ("arm_left", "arm_right") for nm in c["layers"]):
+            L["arms_down"] = stack([L["arm_left"], L["arm_right"]], master.shape)
     # 5. raised arms
     if rig in ("pf_chief", "pf_rookie"):
         if "raised_arms" in dcfg:
@@ -364,7 +456,11 @@ def build(rig, refit=False):
         L.update(parts)
     # 6. dog legs
     if "dog_legs" in dcfg:
-        parts, meta = D.dog_legs(rig, dcfg["dog_legs"], old)
+        parts, meta = D.dog_legs(rig, dcfg["dog_legs"], old, master, L["body_no_head_no_legs"])
+        if "legs" in parts:
+            L["legs"] = parts.pop("legs")
+            rec["parts"]["legs"]["r2_1"] = ("the far front leg's hidden top that showed beside the chest at rest is "
+                                            "clipped here too (legs.png stays the union of the four leg layers)")
         L.update(parts)
         rec["parts"]["legs"]["split"] = {nm: rel(os.path.join(out_dir, f"{nm}.png")) for nm in parts}
         rec["parts"]["legs"]["split_method"] = D.dog_legs.__doc__.strip()
@@ -387,10 +483,18 @@ def build(rig, refit=False):
         tint = {"head": (255, 0, 255), "body": (0, 220, 255), "arm_right": (255, 255, 0), "arm_left": (255, 140, 0),
                 "leg_right": (0, 255, 0), "leg_left": (60, 90, 255)}
         maps = []
+        tj = D.slot_joints(masks)
+        joints = {"template": tj}
         for sk in ("grandma", "twins", "dad", "baby", "teen"):
             skin = L[f"skin_{sk}"]
             slots, lab = D.skin_slots(skin, masks, c, c["overrides"].get(sk, []))
             ent = rec["parts"][f"skin_{sk}"]
+            ent["specks_dropped_px"] = D.skin_slots.last_dropped
+            sj = D.slot_joints({nm: lab == D.SLOT_FRONT.index(nm) + 1 for nm in ("head", "arm_right", "arm_left")})
+            joints[sk] = {nm: {"canvas": v, "offset_from_template": ([round(v[0] - tj[nm][0], 1), round(v[1] - tj[nm][1], 1)]
+                                                                     if v and tj.get(nm) else None)}
+                          for nm, v in sj.items()}
+            ent["joints"] = joints[sk]
             ent["slots"] = {}
             for slot, arr in slots.items():
                 nm = f"skins/{sk}/{slot_file[slot]}"
@@ -405,6 +509,7 @@ def build(rig, refit=False):
             im.alpha_composite(Image.fromarray(t.astype(np.uint8)))
             maps.append((sk, im.resize((CANVAS[0] // 2, CANVAS[1] // 2), Image.LANCZOS)))
         rec["skin_slots"] = {"method": D.skin_slots.__doc__.strip(), "params": {k: v for k, v in c.items() if k != "overrides"},
+                             "joints": joints, "joints_method": D.slot_joints.__doc__.strip(),
                              "slot_names": list(slot_file.values()),
                              "qa": rel(os.path.join(QA, f"{rig}_skin_slots_r2.png"))}
         sheet = Image.new("RGB", (len(maps) * CANVAS[0] // 2, CANVAS[1] // 2 + 70), (128, 128, 128))
@@ -420,12 +525,20 @@ def build(rig, refit=False):
             x += 60 + int(fnt.getlength(slot_file[slot]))
         write_img(sheet, os.path.join(QA, f"{rig}_skin_slots_r2.png"))
     # 8. write every canvas layer (atomic, only when changed) + overlays of the r2 layers
-    r2_layers = {"body_no_head_no_arms", "coat_tails", "legs", "leg_right", "leg_left", "helmet_front", "head_blank",
-                 "arms_raised", "arm_right_raised", "arm_left_raised", "leg_hind_right", "leg_hind_left",
-                 "leg_front_right", "leg_front_left"}
+    # r2.1: no canvas layer keeps a detached island under 30 px (4-connected: a pixel touching its layer only
+    # diagonally counts as detached); masters and the full-figure skins are reference images and stay as placed
+    rec["islands_dropped"] = {}
+    for nm in list(L):
+        if nm.startswith("skin_"):
+            continue
+        L[nm], dropped = D.drop_islands(L[nm], 30)
+        # a layer re-read from disk (rookie raised arms) had its islands dropped on an earlier run: keep that record
+        dropped = dropped or old.get("islands_dropped", {}).get(nm)
+        if dropped:
+            rec["islands_dropped"][nm] = dropped
     for nm, arr in L.items():
         write_png(arr, os.path.join(out_dir, nm + ".png"))
-        if nm in r2_layers:
+        if not nm.startswith("skins/"):  # r2.1: every canvas layer's overlay is current (skin slots: the slot map)
             overlay(master, arr, os.path.join(QA, f"{rig}_{nm}.png"))
     # 9. sheets: fixed-grid cut
     layout = load_layout(rig)
@@ -454,6 +567,25 @@ def build(rig, refit=False):
                              "sheet_scale_to_canvas": None, "scales": sl["scales"], "components": info["components"],
                              "specks_ignored": info["specks"], "outside_every_cell": info["outside_every_cell"],
                              "pieces": pieces, "missing": []}
+    # 9b. r2.1 derived pieces (derive.layout.json "pieces"): cut from an already cut piece, same sheet origin and scale
+    for nm, c in dcfg.get("pieces", {}).items():
+        src_sheet = next(sh for sh, v in rec["pieces"].items() if c["from"] in v["pieces"])
+        src = rec["pieces"][src_sheet]["pieces"][c["from"]]
+        src_arr = load_png(os.path.join(REPO, src["file"]))
+        if c["method"] == "mask_jaw":
+            arr, meta = D.head_no_jaw(src_arr, c)
+            how = D.head_no_jaw.__doc__.strip()
+        elif c["method"] == "letter_shield":
+            arr, meta = letter_piece(src_arr, os.path.join(out_dir, "pieces"), c)
+            how = ("tools/art/letter_shield.py (ART_HERO.md shield rule: Alfa Slab One, ink #3B2313, one hard brass shadow "
+                   "#B8862B, numerals at `fill` of the plate's opaque-bbox height, centred, offset `dy`), run on this plate")
+        else:
+            raise ValueError(c["method"])
+        rec["pieces"][src_sheet]["pieces"][nm] = dict(
+            {k: src[k] for k in ("sheet_origin", "cell", "grid", "scale_family", "scale_to_canvas")},
+            file=write_png(arr, os.path.join(out_dir, "pieces", f"{nm}.png")), size=[arr.shape[1], arr.shape[0]],
+            rule=f"derived ({c['method']})", components_kept=None, dropped=[], derived_from=src["file"],
+            method=how, params={k: v for k, v in c.items() if k != "why"}, why=c["why"], meta=meta)
     # 10. QA: reassembly, labelled contact sheets
     iou = reassembly(rig, master, L, os.path.join(QA, f"{rig}_reassembly.png"))
     rec["qa"] = {"reassembly": rel(os.path.join(QA, f"{rig}_reassembly.png")), "reassembly_iou": iou,
@@ -463,11 +595,15 @@ def build(rig, refit=False):
     for sh, v in rec["pieces"].items():
         for nm, pv in v["pieces"].items():
             arr = load_png(os.path.join(REPO, pv["file"]))
-            cap = f"{sh} r{pv['grid'][0]}c{pv['grid'][1]} | {pv['rule']} | kept {pv['components_kept']}" + \
-                  (f", dropped {len(pv['dropped'])}" if pv["dropped"] else "") + f" | x{pv['scale_to_canvas']}"
+            if pv.get("derived_from"):
+                cap = f"{sh} r{pv['grid'][0]}c{pv['grid'][1]} | {pv['rule']} from pieces/" + \
+                      f"{os.path.basename(pv['derived_from'])} | x{pv['scale_to_canvas']}"
+            else:
+                cap = f"{sh} r{pv['grid'][0]}c{pv['grid'][1]} | {pv['rule']} | kept {pv['components_kept']}" + \
+                      (f", dropped {len(pv['dropped'])}" if pv["dropped"] else "") + f" | x{pv['scale_to_canvas']}"
             tiles.append((f"pieces/{nm}.png", arr, cap))
     contact(tiles, os.path.join(QA, f"{rig}_pieces_r2.png"),
-            f"{rig} r2 sheet pieces at 2x (piece pixels x2), fixed-grid cut; caption: sheet row/col | rule | kept"
+            f"{rig} r2.1 sheet pieces at 2x (piece pixels x2), fixed-grid cut; caption: sheet row/col | rule | kept"
             f" components | scale_to_canvas", 2.0)
     ltiles = []
     for nm in sorted(L):
@@ -477,9 +613,13 @@ def build(rig, refit=False):
         ys_, xs_ = np.nonzero(arr[..., 3] > 0)
         ltiles.append((nm + ".png", _trim(arr), f"canvas bbox x {xs_.min()}-{xs_.max()} y {ys_.min()}-{ys_.max()}"))
     contact(ltiles, os.path.join(QA, f"{rig}_layers_r2.png"),
-            f"{rig} r2 canvas layers (1024x1536, feet y 1440) trimmed to their alpha box, shown at 0.5x", 0.5,
+            f"{rig} r2.1 canvas layers (1024x1536, feet y 1440) trimmed to their alpha box, shown at 0.5x", 0.5,
             max_w=2600)
     write_json(rec, os.path.join(out_dir, "registration.json"))
+    known = {nm for v in rec["pieces"].values() for nm in v["pieces"]}
+    for f in sorted(os.listdir(os.path.join(out_dir, "pieces"))):
+        if f.endswith(".png") and not f.startswith(".tmp_") and f[:-4] not in known:
+            print(f"WARN {rig}/pieces/{f} is not a registered piece (stale: remove it)")
     return rec
 
 

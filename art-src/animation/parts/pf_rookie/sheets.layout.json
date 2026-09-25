@@ -193,22 +193,24 @@
        "family": "mouth"
       },
       {
-       "label": "ear_left",
+       "label": "ear_right",
        "x": [
         763,
         1152
        ],
        "rule": "single",
-       "family": "ears"
+       "family": "ears",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       },
       {
-       "label": "ear_right",
+       "label": "ear_left",
        "x": [
         1152,
         1536
        ],
        "rule": "single",
-       "family": "ears"
+       "family": "ears",
+       "side_note": "r2.1: ears are named by the CHARACTER's side like every other sided part (REGISTRATION.md 'Sides and naming'): the image-left ear is his right ear. r2 took the labels from the prompt's 'his left ear', which the model drew as the viewer's left, so the two labels are swapped here"
       }
      ]
     }
@@ -228,7 +230,7 @@
     },
     "ears": {
      "scale_to_canvas": 0.45,
-     "how": "fit of ear_left on the master ear (0.47, overlay reviewed; foreshortened)"
+     "how": "fit of ear_right (the image-left, near ear; 'ear_left' in r2) on the master's image-left ear (0.47, overlay reviewed; foreshortened)"
     }
    }
   },
@@ -360,8 +362,8 @@
    ],
    "scales": {
     "hands": {
-     "scale_to_canvas": 0.45,
-     "how": "BY EYE: hand_r_open over arm_right's hand at 0.40/0.50/0.63"
+     "scale_to_canvas": 0.6,
+     "how": "r2.1 (verifier: 0.45 read 25-30 % small): pink-area ratio 0.63 (hand_r_open vs arm_right's hand); side by side at 0.45 / 0.55 / 0.60 / 0.65 / 0.70 the palm, finger length and navy cuff match arm_right's and arm_left's own hands at 0.60 (reviewed by eye; the verifier's cuff-width estimate was 0.58-0.62). r2 used 0.45"
     }
    }
   },
@@ -448,15 +450,16 @@
    ],
    "scales": {
     "cards": {
-     "scale_to_canvas": 0.45,
-     "how": "no counterpart on the master: assumed equal to the hands (the pinch hand holds the card)"
+     "scale_to_canvas": 0.6,
+     "how": "no counterpart on the master: equal to the hands (the pinch hand holds the card); follows the r2.1 hand scale 0.60 (r2: 0.45)"
     },
     "hose": {
-     "scale_to_canvas": 0.237,
-     "how": "so the hose (91 px thick on the sheet) passes the grip hole (48 px on the hands sheet x 0.45): 0.45 x 48 / 91"
+     "scale_to_canvas": 0.316,
+     "how": "so the hose (91 px thick on the sheet) passes the grip tunnel (48 px equivalent diameter on hand_r_grip / hand_l_grip at sheet scale, 29 px on the canvas at the hand scale 0.60): 0.60 x 48 / 91 = 0.316 (r2: 0.237 from the old hand scale 0.45)"
     }
    }
   }
  },
- "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible"
+ "scales_note": "scale_to_canvas per FAMILY of pieces (eyes, brows, mouths, ears, ...): the model drew each row at its own size, so one scale per sheet (r1) was wrong by up to 2x; each family is measured on one reference piece against its counterpart on the master (overlay reviewed) or set by eye where no counterpart is visible",
+ "revision": "r2.1 (2026-09-25): verifier fixes. Ears named by the character's side (labels swapped); rookie/chief hand family scales re-measured; Ember's mouth_* renamed muzzle_* (nose-on-nose, scale 1.05) and the head cell named head_open_smile (head_no_jaw is derived from it, derive.layout.json 'pieces')"
 }

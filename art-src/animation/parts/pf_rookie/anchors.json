@@ -15,8 +15,8 @@
         268,
         236
       ],
-      "piece_scale_to_canvas": 0.45,
-      "note": "fingertip point farthest from the cuff = where the sheet edge sits"
+      "piece_scale_to_canvas": 0.6,
+      "note": "fingertip point farthest from the cuff = where the sheet edge sits (r2.1: hand scale 0.60, was 0.45)"
     },
     "sheet_l": {
       "piece": "pieces/hand_l_catch.png",
@@ -24,8 +24,8 @@
         30,
         255
       ],
-      "piece_scale_to_canvas": 0.45,
-      "note": "fingertip point farthest from the cuff = where the sheet edge sits"
+      "piece_scale_to_canvas": 0.6,
+      "note": "fingertip point farthest from the cuff = where the sheet edge sits (r2.1: hand scale 0.60, was 0.45)"
     }
   }
 }
