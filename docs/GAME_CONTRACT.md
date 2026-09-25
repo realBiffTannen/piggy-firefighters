@@ -167,6 +167,13 @@ Standard SDK events keep their SDK shapes (`reveal`, `winInfo`, `setWin`, `setTo
 Event order when capped: `… winInfo → wincap → setWin → setTotalWin → (rescueEnd) → freeSpinEnd → finalWin`;
 the frontend shows the capped 15,000x on every meter (the family's r6 lesson: never draw an uncapped total).
 
+**Win-tier rule (one table for every round).** The celebration tier is derived CLIENT-SIDE from the booked round
+total in x bet (family ruling 2026-09-24): BIG WIN ≥ 15x, HUGE WIN ≥ 30x, MEGA WIN ≥ 50x, EPIC WIN ≥ 100x, MAX WIN at
+the 15,000x cap — for base rounds and for Rescue/Inferno/Backdraft Spins totals alike. The SDK `winLevel` fields in
+`setWin`/`freeSpinEnd` are informational; the client never reads them for presentation. No celebration when the
+return is at or below the bet (`docs/AUDIO_DESIGN_NOTES.md`). Per-spin wins inside a bonus get the ordinary win
+presentation and count into the running total; rungs play once, on the round total.
+
 ## 9. Measured figures (math lane fills from published books)
 
 | Figure | base | ante | backdraft_spins | alarm_call | rescue | inferno |
