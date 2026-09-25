@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Port agent returned (build OK, smoke 5/5, 0 console errors); reviewers running. Donor LUCKY art purged
+  from static/assets (byte-identical files only, + the donor spine dir); only donor audio remains until the audio
+  build purges it. New symbol tiles landing in sprites/.
 - 2026-09-25 — Audio: subagent draws were refused by the harness permission gate ("Real-World Transactions"), so the
   coordinator session issues the authorized ElevenLabs draws directly (quota 194,478 chars; 11 music plans then 96
   SFX; every call ledgered). Codex audio audit `41a1ed4` merged (`fa1cff8`); `audioManager.ts` + `qa/codex/audio-lifecycle`
