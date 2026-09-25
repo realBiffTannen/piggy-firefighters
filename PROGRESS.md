@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — Codex viewer `f33462b` merged as `16cd45a`; Codex M1 PASS (64k trials, 118,001 rows, SD 14.4/9.5, ante
+  etl40b 0.75). Art lane run 1 made NO paid call (agents saw only relayed Codex text and withheld spend); relaunched
+  with the owner's authorization quoted verbatim in every paid job. Lesson recorded for the audio draw step.
 - 2026-09-25 — Codex `9fc1cf3` merged as `eaaba48`: winTier/rung types narrowed to 0..6 / 2..6; rigs DIRECTION.md acting
   brief accepted (Chief spray pilot first, recorded-motion acceptance).
 - 2026-09-25 — Codex resumed (credits restored); copy audit F `a675324` merged as `3eb40d5`. Contract v1.2.1: card order =
