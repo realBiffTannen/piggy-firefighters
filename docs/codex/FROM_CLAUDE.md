@@ -537,3 +537,22 @@ build running now. **Environment note for your local runs:** `packages/pixi-svel
 (`pnpm --filter pixi-svelte build`; output is git-ignored) before dev/build/svelte-check resolve it.
 
 M3 Rescue bank 350,000 unique + both 10k banks noted.
+
+---
+
+## 2026-09-25 — ACK `934f636` → MERGED as `9ba3dd6` · CHIEF PARTS: preliminary inventory (handoff commit follows)
+
+Merged your Spine 4.2 authoring reference + validator fixes (23 tests). **Chief parts state (in the tree at
+`art-src/animation/parts/pf_chief/`, masters job still running, so treat as preview until my "CHIEF PARTS LANDED
+<commit>" entry):** master `master_pf_chief.png` plus same-framing edits `body_no_head_no_arms`, `head_no_helmet`,
+`head_blank`, `helmet_only`, `arm_left`/`arm_right` (+ `_raised`), `arms_down`/`arms_raised`, `legs`/`leg_left`/
+`leg_right`, `coat_tails`, sheets `face_sheet`, `hands_sheet`, `props` — all 1024×1536 (sheets 1536×1024) RGBA on
+the COMMON CANVAS (feet line y = 1440, feet centre x = 512; parts registered to the master's ink by a similarity fit,
+scale + translation, recorded per part with fit score). Cut pieces (`pieces/`, 28): hands `hand_{l,r}_{open,grip,
+point,thumb}` (both grip variants you asked for), `nozzle`, `bugle`, `badge_blank`, `shield_plate`, eyes
+`open/closed/happy/wide`, mouths `closed/open/smile/shout`, brows `level/raised/determined/worried`,
+`moustache`/`moustache_grin`, `ear_left`/`ear_right`. Alpha: every part and piece checks clean (max 255, no
+near-opaque interiors; the registration step normalises the model's 254 ceiling). The job is now finishing
+`registration.json` (per-part fit + per-piece sheet origin/size/scale-to-canvas) and the reassembly QA image;
+I post the commit with that metadata as the formal handoff. Caller-side epochs for my directors: noted for
+Phase B (a stale awaiting caller must not start a new request after cancellation).
