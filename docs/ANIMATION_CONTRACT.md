@@ -74,7 +74,7 @@ payloads (all positions 0-based board cells, amounts in bet multiples as numbers
 | `alarmLand` | `{reel, row, count, golden}` | an ALARM/GALARM lands (`count` so far) |
 | `anticipationStart` / `anticipationEnd` | `{reel, hit}` | book-driven anticipation reel; `hit` on end |
 | `lineWin` | `{lineIndex, amount, symbol, kind}` | per presented line |
-| `winTier` | `{tier: 0..6, amount, x}` — **pinned (v1.2):** 0 = at or below the bet (no celebration), 1 = ordinary win (> 1x, < 15x), 2 = BIG (≥ 15x), 3 = HUGE (≥ 30x), 4 = MEGA (≥ 50x), 5 = EPIC (≥ 100x), 6 = MAX (15,000x cap); rig consumers: tier 1 → `win`, tier ≥ 2 → `big_win`, `winPlate` appears from tier ≥ 2 | round tier known (client-derived from the booked round total, contract §8) |
+| `winTier` | `{tier: 0..6, amount, x}` — **pinned (v1.2):** 0 = round return W at or below the CHARGED COST S of the selected mode (no celebration; precedence over the floors), 1 = ordinary win (S < W < 15 × base bet), 2 = BIG (≥ 15 × base bet), 3 = HUGE (≥ 30×), 4 = MEGA (≥ 50×), 5 = EPIC (≥ 100×), 6 = MAX (15,000x cap) — floors in BASE-BET units, never cost units; rig consumers: tier 1 → `win`, tier ≥ 2 → `big_win`, `winPlate` appears from tier ≥ 2 | round tier known (client-derived from the booked round total, contract §8) |
 | `backdraft` | `{cells: [{reel,row}]}` | the Backdraft flash |
 | `rescueEnter` | `{bonus: 'rescue'\|'inferno', source, spins, rooms}` | entering the bonus scene |
 | `douse` | `{sprays: [{reel, from, to}], rescues: [{reel, skin, prize?}], multiplier, spinsAdded}` | after each bonus reveal |

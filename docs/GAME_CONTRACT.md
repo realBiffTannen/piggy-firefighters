@@ -1,5 +1,6 @@
-# Piggy Firefighters — game contract (v1.2.1 — DRAFT until the MATH FREEZE commit)
+# Piggy Firefighters — game contract (v1.2.2 — DRAFT until the MATH FREEZE commit)
 
+v1.2.2 (2026-09-25): win-tier precedence — tier 0 whenever W ≤ S (charged cost), then base-bet floors (§8).
 v1.2.1 (2026-09-25, Codex copy audit F): card order = ascending price, Backdraft scope and WILD placement wording made exact (§2–§4).
 v1.2 (2026-09-25, Codex M2): shared canonical bonus banks, simulation trials vs publication rows (§2).
 v1.1 (2026-09-25, after Codex's pre-freeze audit PF-20260925-02): Backdraft Spins carries additive multiplier Blaze
@@ -185,12 +186,21 @@ Standard SDK events keep their SDK shapes (`reveal`, `winInfo`, `setWin`, `setTo
 Event order when capped: `… winInfo → wincap → setWin → setTotalWin → (rescueEnd) → freeSpinEnd → finalWin`;
 the frontend shows the capped 15,000x on every meter (the family's r6 lesson: never draw an uncapped total).
 
-**Win-tier rule (one table for every round).** The celebration tier is derived CLIENT-SIDE from the booked round
-total in x bet (family ruling 2026-09-24): BIG WIN ≥ 15x, HUGE WIN ≥ 30x, MEGA WIN ≥ 50x, EPIC WIN ≥ 100x, MAX WIN at
-the 15,000x cap — for base rounds and for Rescue/Inferno/Backdraft Spins totals alike. The SDK `winLevel` fields in
-`setWin`/`freeSpinEnd` are informational; the client never reads them for presentation. No celebration when the
-return is at or below the bet (`docs/AUDIO_DESIGN_NOTES.md`). Per-spin wins inside a bonus get the ordinary win
-presentation and count into the running total; rungs play once, on the round total.
+**Win-tier rule (one table for every round; denominators and precedence pinned v1.2.2).** With `B` the base bet and
+`S` the charged cost of the selected mode (§1), the celebration tier is derived CLIENT-SIDE from the booked round
+total `W` (family ruling 2026-09-24):
+1. **Precedence — the stake check first:** if `W ≤ S` the round is **tier 0** (neutral: ordinary accounting stays
+   visible — win meter, line highlights, balance — but no celebratory rig clip, audio stinger or plate). This is the
+   "no celebration at or below the stake" rule of `docs/AUDIO_DESIGN_NOTES.md` applied to what the player actually
+   paid: a 1.5x ante spin returning 1.2x, or a 90x Inferno buy returning 50x, is tier 0 even though 50x clears the
+   MEGA floor.
+2. **Then the floors, in BASE-BET units (`W/B`), never in cost units:** ordinary win (tier 1) when `S < W < 15B`;
+   BIG WIN ≥ 15B (tier 2); HUGE WIN ≥ 30B (3); MEGA WIN ≥ 50B (4); EPIC WIN ≥ 100B (5); MAX WIN at the 15,000x cap
+   (6) — for base rounds and for Rescue/Inferno/Backdraft Spins/Alarm Call totals alike.
+The SDK `winLevel` fields in `setWin`/`freeSpinEnd` are informational; the client never reads them for
+presentation. Per-spin wins inside a bonus get the ordinary win presentation and count into the running total;
+rungs play once, on the round total. The numbering 0..6 is the `animBeat winTier` numbering
+(`docs/ANIMATION_CONTRACT.md`).
 
 ## 9. Measured figures (math lane fills from published books)
 

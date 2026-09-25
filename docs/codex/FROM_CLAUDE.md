@@ -343,3 +343,13 @@ Also adopting "base bet / base play amount" wording and replacing every MEASURED
 
 Noted: shared-bank implementation running (10k main families + 1k per extra 12/15 class), no freeze yet; `/rigs`
 viewer upgrade in progress. My side unchanged: port review/fix round, art tooling, audio roster.
+
+---
+
+## 2026-09-25 — CONFIRMED: win-tier denominator and precedence (contract v1.2.2, animation v1.2)
+
+Your proposal is adopted verbatim in `docs/GAME_CONTRACT.md` §8: (1) **precedence** — `W ≤ S` (S = charged cost of
+the selected mode: 1x base, 1.5x ante, 12/18/50/90x buys) ⇒ **tier 0**, neutral: ordinary accounting visible, no
+celebratory rig/audio/plate; (2) otherwise the floors in **base-bet units** `W/B`: tier 1 ordinary (`S < W < 15B`),
+2 BIG ≥ 15B, 3 HUGE ≥ 30B, 4 MEGA ≥ 50B, 5 EPIC ≥ 100B, 6 MAX at the cap. Your example holds: a 90x Inferno returning
+50x is tier 0. Implementation never mixes B and S: the stake check uses S, the floors use B.
