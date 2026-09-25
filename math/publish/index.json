@@ -1,0 +1,40 @@
+{
+  "modes": [
+    {
+      "name": "base",
+      "cost": 1.0,
+      "events": "books_base.jsonl.zst",
+      "weights": "lookUpTable_base_0.csv"
+    },
+    {
+      "name": "ante",
+      "cost": 1.5,
+      "events": "books_ante.jsonl.zst",
+      "weights": "lookUpTable_ante_0.csv"
+    },
+    {
+      "name": "backdraft_spins",
+      "cost": 50.0,
+      "events": "books_backdraft_spins.jsonl.zst",
+      "weights": "lookUpTable_backdraft_spins_0.csv"
+    },
+    {
+      "name": "alarm_call",
+      "cost": 12.0,
+      "events": "books_alarm_call.jsonl.zst",
+      "weights": "lookUpTable_alarm_call_0.csv"
+    },
+    {
+      "name": "rescue",
+      "cost": 18.0,
+      "events": "books_rescue.jsonl.zst",
+      "weights": "lookUpTable_rescue_0.csv"
+    },
+    {
+      "name": "inferno",
+      "cost": 90.0,
+      "events": "books_inferno.jsonl.zst",
+      "weights": "lookUpTable_inferno_0.csv"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Piggy Firefighters — game contract (v1.2.2 — DRAFT until the MATH FREEZE commit)
+# Piggy Firefighters — game contract (v1.2.2 — FROZEN at math-freeze-v1, measured 2026-09-25)
 
 v1.2.2 (2026-09-25): win-tier precedence — tier 0 whenever W ≤ S (charged cost), then base-bet floors (§8).
 v1.2.1 (2026-09-25, Codex copy audit F): card order = ascending price, Backdraft scope and WILD placement wording made exact (§2–§4).
@@ -206,12 +206,16 @@ rungs play once, on the round total. The numbering 0..6 is the `animBeat winTier
 
 | Figure | base | ante | backdraft_spins | alarm_call | rescue | inferno |
 |---|---|---|---|---|---|---|
-| RTP (LUT exact) | | | | | | |
-| SD / cost | | | | | | |
-| any-win / regular hit / sub-hit | | | | | | |
-| Rescue Spins trigger | | | — | share | — | — |
-| Inferno trigger | | | — | 3% | — | — |
-| Backdraft rate | | | every spin | — | — | — |
-| max win 15,000x | | | | | | |
-| etl10k / etl40b / cvar | | | | | | |
-| books / unique | | | | | | |
+| RTP (LUT exact) | 0.966999990027 | 0.966999990137 | 0.966999987505 | 0.966999990540 | 0.966999990206 | 0.966999991690 |
+| SD / cost | 14.4000 | 9.5000 | 0.9775 | 2.4410 | 1.4391 | 1.0387 |
+| any-win / regular hit / sub-hit | 38.00% / 16.00% / 22.00% | 37.07% / 6.16% / 30.92% | 99.99% / 34.92% / 65.08% | 54.63% / 27.21% / 27.43% | 99.94% / 30.53% / 69.41% | 99.98% / 30.39% / 69.59% |
+| Rescue Spins trigger | 1/165 (1 in 165.0) | 2/165 (1 in 82.5) | — | share 155/300 = 51.67% | — | — |
+| Inferno trigger | 1/2100 (1 in 2,100) | 1/1050 (1 in 1,050) | — | 9/300 = 3% | — | — |
+| Backdraft rate | 1/40 (0.0250000) | 1/40 (0.0250000) | every spin | — | — | — |
+| max win 15,000x | 1.3333e-7 (1 in 7.5M) | 2.6667e-7 (1 in 3.75M) | 4e-6 (1 in 250,000) | 6.3667e-7 (1 in 1.57M) | 1e-6 (1 in 1,000,000) | 4e-6 (1 in 250,000) |
+| etl10k / etl40b / cvar | 0.0020 / 0.5178 / 378.49 | 0.0040 / 0.7500 / 157.34 | 0.0600 / 0.0600 / 11.31 | 0.0096 / 0.1572 / 36.47 | 0.0150 / 0.0202 / 15.36 | 0.0600 / 0.0600 / 12.23 |
+| books / unique | 940,000 / 940,000 | 940,000 / 940,000 | 350,000 / 350,000 | 700,001 / 700,001 | 350,000 / 350,000 | 350,000 / 350,000 |
+
+Measured 2026-09-25 from the M3 production LUTs (`math/games/piggy_firefighters/library/production-350k/report.json`,
+sha256 `4fccb1b7d95ebbd4c09a5509fe3c2be944016e64b3c4ba535250cb9c3a64164e`; independent audit `qa/codex/math/m3-audit.json` PASS;
+promoted to `math/publish/`, `MANIFEST.json`). Full figures: `docs/math/MATH_PF_REPORT.md`.
