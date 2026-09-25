@@ -1,8 +1,9 @@
 {
-  "at": "2026-09-25T07:14:34.368Z",
+  "at": "2026-09-25T08:27:07.485Z",
   "browser": "chromium 141.0.7390.37",
   "game": "http://127.0.0.1:3003/",
   "rgs": "127.0.0.1:3036",
+  "note": "merged from three invocations; the first backdraft_spins run was lost to a dev-server HMR reload (audio lane rewrote cueManifest.ts at 07:42:50) and was re-run",
   "results": [
     {
       "fixture": "base_nowin",
@@ -53,6 +54,101 @@
       "errors": [],
       "rungs": [],
       "expected": 0
+    },
+    {
+      "fixture": "rescue_buy",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 14570,
+      "ms": 835187,
+      "errors": [],
+      "rungs": [
+        {
+          "amount": 14570,
+          "level": 9
+        }
+      ],
+      "expected": 14570
+    },
+    {
+      "fixture": "inferno_buy",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 5430,
+      "ms": 260943,
+      "errors": [],
+      "rungs": [],
+      "expected": 5430
+    },
+    {
+      "fixture": "alarm_call_rescue",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 2310,
+      "ms": 293691,
+      "errors": [],
+      "rungs": [
+        {
+          "amount": 2310,
+          "level": 6
+        }
+      ],
+      "expected": 2310
+    },
+    {
+      "fixture": "base_trigger_rescue",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 370,
+      "ms": 281494,
+      "errors": [],
+      "rungs": [],
+      "expected": 370
+    },
+    {
+      "fixture": "base_trigger_inferno",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 11630,
+      "ms": 426287,
+      "errors": [],
+      "rungs": [
+        {
+          "amount": 11630,
+          "level": 9
+        }
+      ],
+      "expected": 11630
+    },
+    {
+      "fixture": "max_win",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 1500000,
+      "ms": 708685,
+      "errors": [],
+      "rungs": [
+        {
+          "amount": 1500000,
+          "level": 10
+        }
+      ],
+      "expected": 1500000
+    },
+    {
+      "fixture": "backdraft_spins",
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 12570,
+      "ms": 513653,
+      "errors": [],
+      "rungs": [
+        {
+          "amount": 12570,
+          "level": 9
+        }
+      ],
+      "expected": 12570
     }
   ]
 }
