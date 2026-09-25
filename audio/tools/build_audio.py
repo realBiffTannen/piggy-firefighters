@@ -196,7 +196,7 @@ def material_end(x, drop_db=15.0, win_s=0.25):
 
 def pitch_bed(x, semis):
     """Whole-mix transposition for a bed drawn in the wrong mode/centre (rubberband, formants kept, length kept)."""
-    r = 2 ** (semis / 12.0); os.makedirs(K.RUN, exist_ok=True); tin, tout = f'{K.RUN}/_pb_in.wav', f'{K.RUN}/_pb_out.wav'; K.enc_wav(x, tin)
+    r = 2 ** (semis / 12.0); tin, tout = K.scratch('pb_in.wav'), K.scratch('pb_out.wav'); K.enc_wav(x, tin)
     K.run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-i', tin, '-af', f'rubberband=pitch={r:.8f}:transients=mixed:formant=preserved:pitchq=quality',
           '-ac', '2', '-c:a', 'pcm_s24le', tout, check=True)
     y = lk.decode(tout); n = min(len(x), len(y)); return y[:n]
@@ -273,7 +273,7 @@ def bed(cid, cfg):
     loop, lift_g = bar_lift(loop, bpm, bars)
     hk = cfg.get('hook')
     if hk: loop = add_hook(loop, bpm, *hk)
-    K.enc_wav(loop, f'{K.RUN}/_m.wav'); I, _ = K.measure(f'{K.RUN}/_m.wav'); base = loop * 10 ** ((target_I - I) / 20)
+    K.enc_wav(loop, K.scratch('m.wav')); I, _ = K.measure(K.scratch('m.wav')); base = loop * 10 ** ((target_I - I) / 20)
     for ceiling in (-2.0, -3.5, -5.0, -6.5):
         out, limited = K.limit_cyclic(base, ceiling_db=ceiling)
         res = K.ship(K.pad_loop(out), cid, tp_target=-1.3)
@@ -458,6 +458,65 @@ def phone_voice(y, note, colour='wood', cap_s=1.05, gap_db=PHONE_GAP_DB, max_rel
                'phoneGap_dB': {'drawn': round(lv0['st'] - lv0['phone'], 2), 'shipped': round(lv['st'] - lv['phone'], 2)}, 'levels': lv, 'ringOut': ro}
 
 
+# r4 (2026-09-25): rung_hit_big as a HYBRID (the blaze_mult_10 recipe). The redraw is a Bb3 stab (SHS 233.1 Hz at t >= 0.1 s;
+# the prompt asked a C major chord) with a strong partial ~45 c under Bb: key-fit -1 st shipped a 110-2500 Hz C-pentatonic
+# share of 0.525 and the fanfare pickup was refused (< 0.6). Now: the drawn stab stays the body and the attack -- SPLIT-BAND,
+# only its part under 2.5 kHz is snapped to C4 by its DOMINANT partial (ping 150-600 Hz: 229.6 Hz, i.e. A3 +0.74 st / Bb3 -0.26 st;
+# the SHS read 233.1 Hz sits between that partial and its -45 c neighbour, and an SHS snap of +2.00 st measured a cleaned-body
+# share of 0.488, the ping snap of +2.26 st 0.664) with rubberband (formants preserved), then cleaned to C4's own harmonic series
+# (kit.harmonic_only: the F#4 partial goes); the snare / bell sizzle above 2.5 kHz stays as drawn -- at -3 dB, plus a synthesised
+# C-E-G chord on its onset: brass (bugle C4 E4 G4, held 0.32 s) under a chime C5 E5 G5 + glock G5, rolled UPWARD 30 ms per
+# voice, the top voice (G) +4 dB, peak = the drawn peak (as blaze_mult_10), ringing out by 1.3 s. Then the whole pickup
+# (G5 C6 E6 G6) rises out of it into rung_bed_big (C major pentatonic, 100 BPM).
+HYBRID_STAB = {
+    'rung_hit_big': dict(tonic=60, shs_from=0.1, snap_band=(150.0, 600.0), split_hz=2500.0, drawn_db=-3.0, brass=(60, 64, 67), chime=(72, 76, 79), top_db=4.0,
+                         spread_ms=30.0, brass_hold_s=0.32, damp_s=0.7, cap_s=1.3),
+}
+
+
+def brass_chime_chord(brass, chime, dur=LAYER_S, top_db=4.0, spread_ms=30.0, brass_hold_s=0.32, damp_s=0.7):
+    """a C-E-G stinger chord: bugle voices (held, then released) + chime voices + glock on the top note, rolled upward by
+    spread_ms per voice, top voice +top_db over the inner voices, exponential damp, level-only stereo, peak 1."""
+    tw = 10 ** (top_db / 20); n = int(dur * SR); br = np.zeros(n)
+    for i, m in enumerate(brass):
+        s = int(i * spread_ms * SR / 1000); tn = HL.tone(HL.hz(m), dur, 'bugle', hold_s=brass_hold_s)
+        br[s:] += (tw if m == max(brass) else 1.0) * tn[:n - s]
+    ch = HL.chord(list(chime), dur, 'chime', spread_ms=spread_ms, weights=[tw if m == max(chime) else 1.0 for m in chime])
+    ch = 0.8 * ch + 0.35 * HL.tone(HL.hz(max(chime)), dur, 'glock')
+    c = 0.8 * br / (np.abs(br).max() + 1e-12) + ch / (np.abs(ch).max() + 1e-12)
+    c = c * np.exp(-np.arange(n) / SR / damp_s)
+    return HL.stereo(c / (np.abs(c).max() + 1e-12))
+
+
+def hybrid_stab(name, y, tonic=60, shs_from=0.1, snap_band=(150.0, 600.0), split_hz=2500.0, drawn_db=-3.0, brass=(60, 64, 67), chime=(72, 76, 79), top_db=4.0,
+                spread_ms=30.0, brass_hold_s=0.32, damp_s=0.7, cap_s=1.3):
+    """drawn stab (split-band: < split_hz snapped by its dominant partial in snap_band to the tonic + harmonic_only; above as drawn) at drawn_db + a synthesised
+    brass / chime C-E-G chord on its onset (peak = the drawn peak). Returns (y, info)."""
+    share0 = M.cpent_share(y); f0, m0 = K.shs_f0(y, t_from=shs_from); fp, prom = ping(y, 0.0, *snap_band); st = snap_semis(fp, tonic % 12)
+    lo = sosfiltfilt(butter(4, split_hz, 'lowpass', fs=SR, output='sos'), y, axis=0); hi_ = y - lo
+    if abs(st) >= 0.12: lo = pad_to(pitch_bed(lo, st), len(y))[:len(y)]
+    ft = fp * 2 ** (st / 12); e0 = float((lo ** 2).sum()); lo = K.harmonic_only(lo, ft)
+    body = lo + hi_; share_body = M.cpent_share(body)
+    on = max(0, onset_peak(body) - int(0.01 * SR))
+    c = brass_chime_chord(brass, chime, top_db=top_db, spread_ms=spread_ms, brass_hold_s=brass_hold_s, damp_s=damp_s) * (np.abs(body).max() + 1e-9)
+    out = pad_to(body * 10 ** (drawn_db / 20), on + len(c)); out[on:on + len(c)] += c
+    z, ro = K.ring_out(out, cap_s=cap_s)
+    f1, m1 = K.shs_f0(z, t_from=shs_from); a = KF.analyse(z)
+    n = int(0.12 * SR)
+    info = {'op': (f'hybrid: drawn stab (< {split_hz / 1000:g} kHz snapped {st:+.2f} st, dominant partial {fp:.1f} Hz -> {HL.name(tonic)}, harmonic_only; '
+                   f'> {split_hz / 1000:g} kHz as drawn) {drawn_db:+.0f} dB + brass {"-".join(HL.name(m) for m in brass)} / chime {"-".join(HL.name(m) for m in chime)} '
+                   f'+ glock {HL.name(max(chime))} (top voice {top_db:+.0f} dB, rolled up {spread_ms:.0f} ms/voice) at {round(on / SR * 1000)} ms, rings out'),
+            'chord': [HL.name(m) for m in brass + chime], 'topVoice': HL.name(max(chime)), 'drawnShsHz': round(f0, 1), 'drawnShs': K.note_name(m0), 'dominantPartialHz': round(fp, 1), 'dominantProminence': round(prom, 1),
+            'snapSemis': round(float(st), 2), 'harmonicOnlyHz': round(ft, 2), 'harmonicOnlyEnergyKept_dB': round(10 * np.log10(float((lo ** 2).sum()) / (e0 + 1e-12)), 2),
+            'splitHz': split_hz, 'drawn_dB': drawn_db, 'onset_ms': round(on / SR * 1000),
+            'cpentShare110_2500': {'drawn': round(share0, 3), 'bodyCleaned': round(share_body, 3), 'hybrid': round(M.cpent_share(z), 3)},
+            'shsHybrid': K.note_name(m1), 'tonality': a['tonality'], 'chromaTop': a['top'],
+            'first120ms_dB': {'drawn': round(HL.rms_db(body[on:on + n] * 10 ** (drawn_db / 20)), 1),
+                              'chord': round(HL.rms_db(c[:n]), 1)},
+            'ringOut': ro}
+    return z, info
+
+
 def keyfit(cid, y):
     pal = PROMPTS.get(cid, {}).get('palette', 'mech'); a = KF.analyse(y); st, why = KF.decide(a, pal)
     info = {'offsetCents': a['offsetCents'], 'tonality': a['tonality'], 'cpentShareDrawn': a['share'][0], 'decision': why, 'semis': st}
@@ -539,6 +598,8 @@ def master_draw(name):
         out = pad_to(y * 10 ** (-3 / 20), len(body)); out[:len(body)] += body * (np.abs(y).max() + 1e-9)
         y, ro = K.ring_out(out)
         extra['tonal'] = {'op': 'hybrid: drawn slam/flare (-3 dB) + chime chord C6 E6 G6 (top voice +4 dB) + glock G6, rings out', 'chord': 'C6 E6 G6', 'ringOut': ro}
+    elif name in HYBRID_STAB:
+        y, extra['tonal'] = hybrid_stab(name, y, **HYBRID_STAB[name])
     elif name not in NO_KEYFIT:
         y, info = keyfit(name, y); extra['key'] = info
     if name in PHONE_VOICE:

@@ -804,7 +804,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/blaze_mult_5.ogg",
 			"assets/audio/piggy_firefighters/blaze_mult_5.m4a"
 		],
-		"gain": 1.063,
+		"gain": 1.094,
 		"durationMs": 1600,
 		"priority": 7,
 		"maxInstances": 2,
@@ -818,7 +818,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/blaze_mult_10.ogg",
 			"assets/audio/piggy_firefighters/blaze_mult_10.m4a"
 		],
-		"gain": 1.272,
+		"gain": 1.309,
 		"durationMs": 1515,
 		"priority": 8,
 		"maxInstances": 1,
@@ -1028,7 +1028,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/win_max.ogg",
 			"assets/audio/piggy_firefighters/win_max.m4a"
 		],
-		"gain": 1.411,
+		"gain": 1.409,
 		"durationMs": 3050.5,
 		"priority": 11,
 		"maxInstances": 1,
@@ -1210,8 +1210,8 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_big.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_big.m4a"
 		],
-		"gain": 1.542,
-		"durationMs": 1203.1,
+		"gain": 1.047,
+		"durationMs": 1500,
 		"priority": 9,
 		"maxInstances": 1,
 		"cooldownMs": 0,
@@ -1238,7 +1238,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_huge.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_huge.m4a"
 		],
-		"gain": 1.276,
+		"gain": 1.275,
 		"durationMs": 1500,
 		"priority": 9,
 		"maxInstances": 1,
@@ -1266,7 +1266,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_mega.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_mega.m4a"
 		],
-		"gain": 1.095,
+		"gain": 1.094,
 		"durationMs": 1600,
 		"priority": 9,
 		"maxInstances": 1,
@@ -1294,7 +1294,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_epic.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_epic.m4a"
 		],
-		"gain": 1.136,
+		"gain": 1.135,
 		"durationMs": 1760,
 		"priority": 9,
 		"maxInstances": 1,
@@ -1322,7 +1322,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_max.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_max.m4a"
 		],
-		"gain": 1.585,
+		"gain": 1.583,
 		"durationMs": 2200,
 		"priority": 9,
 		"maxInstances": 1,
@@ -1350,7 +1350,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_water.ogg",
 			"assets/audio/piggy_firefighters/burst_water.m4a"
 		],
-		"gain": 1.169,
+		"gain": 1.168,
 		"durationMs": 1000,
 		"priority": 7,
 		"maxInstances": 2,
@@ -1364,7 +1364,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_embers.ogg",
 			"assets/audio/piggy_firefighters/burst_embers.m4a"
 		],
-		"gain": 1.658,
+		"gain": 1.616,
 		"durationMs": 972.4,
 		"priority": 7,
 		"maxInstances": 2,
@@ -1462,7 +1462,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rescue_enter.ogg",
 			"assets/audio/piggy_firefighters/rescue_enter.m4a"
 		],
-		"gain": 1.021,
+		"gain": 0.992,
 		"durationMs": 2389,
 		"priority": 9,
 		"maxInstances": 1,
@@ -1476,7 +1476,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/inferno_enter.ogg",
 			"assets/audio/piggy_firefighters/inferno_enter.m4a"
 		],
-		"gain": 1.36,
+		"gain": 1.321,
 		"durationMs": 1661,
 		"priority": 9,
 		"maxInstances": 1,
@@ -1590,7 +1590,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rescue_tada_3.ogg",
 			"assets/audio/piggy_firefighters/rescue_tada_3.m4a"
 		],
-		"gain": 0.728,
+		"gain": 0.729,
 		"durationMs": 992.9,
 		"priority": 8,
 		"maxInstances": 2,
@@ -1604,7 +1604,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rescue_tada_4.ogg",
 			"assets/audio/piggy_firefighters/rescue_tada_4.m4a"
 		],
-		"gain": 0.738,
+		"gain": 0.74,
 		"durationMs": 1000,
 		"priority": 8,
 		"maxInstances": 2,
@@ -2306,7 +2306,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/blaze_mult_5_turbo.ogg",
 			"assets/audio/piggy_firefighters/blaze_mult_5_turbo.m4a"
 		],
-		"gain": 1.722,
+		"gain": 1.772,
 		"durationMs": 692.7,
 		"priority": 7,
 		"maxInstances": 2,
@@ -2320,7 +2320,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/blaze_mult_10_turbo.ogg",
 			"assets/audio/piggy_firefighters/blaze_mult_10_turbo.m4a"
 		],
-		"gain": 1.939,
+		"gain": 1.995,
 		"durationMs": 679.5,
 		"priority": 8,
 		"maxInstances": 1,
@@ -2418,7 +2418,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/sym_win_l3_turbo.ogg",
 			"assets/audio/piggy_firefighters/sym_win_l3_turbo.m4a"
 		],
-		"gain": 1.51,
+		"gain": 1.512,
 		"durationMs": 520.5,
 		"priority": 6,
 		"maxInstances": 2,
@@ -2530,7 +2530,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/win_max_turbo.ogg",
 			"assets/audio/piggy_firefighters/win_max_turbo.m4a"
 		],
-		"gain": 1.533,
+		"gain": 1.531,
 		"durationMs": 700,
 		"priority": 11,
 		"maxInstances": 1,
@@ -2544,8 +2544,8 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_big_turbo.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_big_turbo.m4a"
 		],
-		"gain": 1.426,
-		"durationMs": 673.4,
+		"gain": 1.454,
+		"durationMs": 654,
 		"priority": 9,
 		"maxInstances": 1,
 		"cooldownMs": 0,
@@ -2572,7 +2572,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_huge_turbo.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_huge_turbo.m4a"
 		],
-		"gain": 1.805,
+		"gain": 1.803,
 		"durationMs": 631.2,
 		"priority": 9,
 		"maxInstances": 1,
@@ -2600,7 +2600,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_mega_turbo.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_mega_turbo.m4a"
 		],
-		"gain": 1.576,
+		"gain": 1.574,
 		"durationMs": 687.9,
 		"priority": 9,
 		"maxInstances": 1,
@@ -2628,7 +2628,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_epic_turbo.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_epic_turbo.m4a"
 		],
-		"gain": 1.226,
+		"gain": 1.225,
 		"durationMs": 700,
 		"priority": 9,
 		"maxInstances": 1,
@@ -2656,7 +2656,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_max_turbo.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_max_turbo.m4a"
 		],
-		"gain": 1.766,
+		"gain": 1.764,
 		"durationMs": 700,
 		"priority": 9,
 		"maxInstances": 1,
@@ -2684,7 +2684,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_water_turbo.ogg",
 			"assets/audio/piggy_firefighters/burst_water_turbo.m4a"
 		],
-		"gain": 1.603,
+		"gain": 1.601,
 		"durationMs": 561.4,
 		"priority": 7,
 		"maxInstances": 2,
@@ -2698,7 +2698,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_embers_turbo.ogg",
 			"assets/audio/piggy_firefighters/burst_embers_turbo.m4a"
 		],
-		"gain": 1.529,
+		"gain": 1.583,
 		"durationMs": 542.4,
 		"priority": 7,
 		"maxInstances": 2,
@@ -2796,7 +2796,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rescue_enter_turbo.ogg",
 			"assets/audio/piggy_firefighters/rescue_enter_turbo.m4a"
 		],
-		"gain": 1.136,
+		"gain": 1.104,
 		"durationMs": 700,
 		"priority": 9,
 		"maxInstances": 1,
@@ -2810,7 +2810,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/inferno_enter_turbo.ogg",
 			"assets/audio/piggy_firefighters/inferno_enter_turbo.m4a"
 		],
-		"gain": 1.519,
+		"gain": 1.476,
 		"durationMs": 682.2,
 		"priority": 9,
 		"maxInstances": 1,
@@ -2908,7 +2908,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rescue_tada_3_turbo.ogg",
 			"assets/audio/piggy_firefighters/rescue_tada_3_turbo.m4a"
 		],
-		"gain": 0.994,
+		"gain": 0.997,
 		"durationMs": 546.3,
 		"priority": 8,
 		"maxInstances": 2,
@@ -2922,7 +2922,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rescue_tada_4_turbo.ogg",
 			"assets/audio/piggy_firefighters/rescue_tada_4_turbo.m4a"
 		],
-		"gain": 1.006,
+		"gain": 1.008,
 		"durationMs": 541,
 		"priority": 8,
 		"maxInstances": 2,

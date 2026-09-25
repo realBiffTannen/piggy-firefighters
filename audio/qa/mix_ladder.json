@@ -17,7 +17,7 @@
    "limitedFraction": 0.0,
    "passes": 3,
    "I_LUFS": -22.1,
-   "TP_dBFS": -3.49,
+   "TP_dBFS": -3.48,
    "TP_m4a_dBFS": -3.58,
    "I_m4a_LUFS": -22.0,
    "tpMethod": "8x oversampled, native codec rate",
@@ -31,7 +31,7 @@
    "passes": 2,
    "I_LUFS": -19.8,
    "TP_dBFS": -3.62,
-   "TP_m4a_dBFS": -3.28,
+   "TP_m4a_dBFS": -3.54,
    "I_m4a_LUFS": -19.9,
    "tpMethod": "8x oversampled, native codec rate",
    "samples": 41562
@@ -50,15 +50,15 @@
    "samples": 44100
   },
   "burst_embers": {
-   "raised_dB": 15.38,
+   "raised_dB": 15.74,
    "crest_dB": 27.8,
    "softClip": true,
    "limitedFraction": 0.771,
    "passes": 4,
-   "I_LUFS": -18.3,
-   "TP_dBFS": -3.2,
-   "TP_m4a_dBFS": -1.74,
-   "I_m4a_LUFS": -18.5,
+   "I_LUFS": -18.1,
+   "TP_dBFS": -2.91,
+   "TP_m4a_dBFS": -1.51,
+   "I_m4a_LUFS": -18.2,
    "tpMethod": "8x oversampled, native codec rate",
    "samples": 42882
   },
@@ -101,19 +101,6 @@
    "tpMethod": "8x oversampled, native codec rate",
    "samples": 22953
   },
-  "rung_hit_big_turbo": {
-   "raised_dB": 9.41,
-   "crest_dB": 19.0,
-   "softClip": true,
-   "limitedFraction": 0.0,
-   "passes": 4,
-   "I_LUFS": -16.4,
-   "TP_dBFS": -4.18,
-   "TP_m4a_dBFS": -3.2,
-   "I_m4a_LUFS": -16.5,
-   "tpMethod": "8x oversampled, native codec rate",
-   "samples": 29697
-  },
   "sign_impact_huge_turbo": {
    "raised_dB": 10.3,
    "crest_dB": 24.4,
@@ -141,15 +128,15 @@
    "samples": 29160
   },
   "burst_embers_turbo": {
-   "raised_dB": 13.91,
+   "raised_dB": 14.4,
    "crest_dB": 27.8,
    "softClip": true,
    "limitedFraction": 0.5876,
    "passes": 4,
-   "I_LUFS": -17.7,
-   "TP_dBFS": -2.18,
-   "TP_m4a_dBFS": -1.21,
-   "I_m4a_LUFS": -18.0,
+   "I_LUFS": -18.0,
+   "TP_dBFS": -2.75,
+   "TP_m4a_dBFS": -1.44,
+   "I_m4a_LUFS": -18.3,
    "tpMethod": "8x oversampled, native codec rate",
    "samples": 23919
   },
@@ -239,41 +226,41 @@
   "feasibleTurbo": true
  },
  "chainNudges_dB": {
-  "blaze_mult_5": -0.25,
-  "blaze_mult_10": 0.15,
-  "win_max": 1.93,
+  "blaze_mult_10": 0.4,
+  "win_max": 1.92,
   "rung_hit_big": -1.16,
   "sign_impact_big": -2.55,
-  "rung_hit_huge": -0.35,
+  "rung_hit_huge": -0.36,
   "sign_impact_huge": -2.23,
-  "rung_hit_mega": 0.01,
   "sign_impact_mega": 1.22,
+  "rung_hit_epic": -0.01,
   "sign_impact_epic": 2.26,
-  "rung_hit_max": 2.18,
+  "rung_hit_max": 2.17,
   "sign_impact_max": 2.02,
-  "burst_water": -1.75,
+  "burst_water": -1.76,
   "burst_embers": 0.25,
-  "inferno_enter": 1.4,
-  "rescue_tada_3": -0.02,
+  "rescue_enter": -0.25,
+  "inferno_enter": 1.15,
+  "rescue_tada_4": 0.02,
   "rescue_total_small": -0.94,
   "rescue_total_big": 0.54,
-  "blaze_mult_5_turbo": -0.25,
-  "blaze_mult_10_turbo": 0.15,
-  "win_max_turbo": 1.93,
+  "blaze_mult_10_turbo": 0.4,
+  "win_max_turbo": 1.92,
   "rung_hit_big_turbo": -1.16,
   "sign_impact_big_turbo": -3.5,
-  "rung_hit_huge_turbo": -0.35,
+  "rung_hit_huge_turbo": -0.36,
   "sign_impact_huge_turbo": -3.22,
-  "rung_hit_mega_turbo": -0.03,
+  "rung_hit_mega_turbo": -0.04,
   "sign_impact_mega_turbo": 0.09,
+  "rung_hit_epic_turbo": -0.01,
   "sign_impact_epic_turbo": 1.1,
-  "rung_hit_max_turbo": 2.18,
+  "rung_hit_max_turbo": 2.17,
   "sign_impact_max_turbo": 2.02,
-  "burst_water_turbo": -1.75,
+  "burst_water_turbo": -1.76,
   "burst_embers_turbo": 0.25,
-  "inferno_enter_turbo": 1.54,
-  "rescue_tada_3_turbo": -0.02,
-  "rescue_tada_4_turbo": 0.03,
+  "rescue_enter_turbo": -0.25,
+  "inferno_enter_turbo": 1.29,
+  "rescue_tada_4_turbo": 0.05,
   "rescue_total_small_turbo": -1.61,
   "rescue_total_big_turbo": 0.54
  },
@@ -349,20 +336,20 @@
    "effective_dBFS": [
     -18.0,
     -17.5,
-    -17.25,
-    -15.85
+    -17.0,
+    -15.6
    ],
    "effective_mono_dBFS": [
     -18.02,
     -17.52,
-    -17.27,
-    -16.65
+    -17.02,
+    -16.4
    ],
    "effective_phone_dBFS": [
     -18.29,
     -17.57,
-    -17.29,
-    -17.04
+    -17.04,
+    -16.79
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -433,24 +420,24 @@
    ],
    "effective_dBFS": [
     -17.16,
-    -15.85,
-    -14.99,
-    -14.5,
-    -11.82
+    -15.86,
+    -15.0,
+    -14.51,
+    -11.83
    ],
    "effective_mono_dBFS": [
-    -17.18,
-    -16.93,
-    -15.58,
-    -15.33,
-    -12.75
+    -17.19,
+    -16.94,
+    -15.59,
+    -15.34,
+    -12.76
    ],
    "effective_phone_dBFS": [
-    -21.6,
-    -17.02,
-    -16.77,
-    -15.64,
-    -15.39
+    -17.89,
+    -17.03,
+    -16.78,
+    -15.65,
+    -15.4
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -504,22 +491,22 @@
     "burst_gold"
    ],
    "effective_dBFS": [
-    -20.75,
+    -20.76,
     -18.25,
     -18.0,
     -17.5,
     -17.0
    ],
    "effective_mono_dBFS": [
-    -20.75,
-    -20.48,
+    -20.76,
+    -20.49,
     -18.0,
     -17.5,
     -17.04
    ],
    "effective_phone_dBFS": [
-    -20.76,
-    -20.51,
+    -20.77,
+    -20.52,
     -18.0,
     -17.5,
     -17.15
@@ -545,8 +532,8 @@
    "effective_dBFS": [
     -19.0,
     -18.5,
-    -18.02,
-    -17.5,
+    -18.01,
+    -17.48,
     -17.0,
     -16.5,
     -16.0,
@@ -555,8 +542,8 @@
    "effective_mono_dBFS": [
     -19.01,
     -18.55,
-    -18.11,
-    -17.5,
+    -18.1,
+    -17.48,
     -17.12,
     -16.54,
     -16.06,
@@ -565,8 +552,8 @@
    "effective_phone_dBFS": [
     -19.54,
     -19.17,
-    -18.83,
-    -18.58,
+    -18.82,
+    -18.56,
     -17.85,
     -16.67,
     -16.11,
@@ -667,18 +654,18 @@
    ],
    "effective_dBFS": [
     -15.5,
-    -15.0,
-    -13.1
+    -15.25,
+    -13.35
    ],
    "effective_mono_dBFS": [
     -17.28,
-    -16.0,
-    -14.32
+    -16.25,
+    -14.57
    ],
    "effective_phone_dBFS": [
     -18.39,
-    -16.14,
-    -15.89
+    -16.39,
+    -16.14
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -723,18 +710,18 @@
    ],
    "effective_dBFS": [
     -15.0,
-    -11.82,
-    -11.57
+    -11.83,
+    -11.58
    ],
    "effective_mono_dBFS": [
     -15.71,
-    -12.75,
-    -12.11
+    -12.76,
+    -12.12
    ],
    "effective_phone_dBFS": [
     -16.43,
-    -15.39,
-    -12.31
+    -15.4,
+    -12.32
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -813,20 +800,20 @@
    "effective_dBFS": [
     -18.0,
     -17.5,
-    -17.25,
-    -15.85
+    -17.0,
+    -15.6
    ],
    "effective_mono_dBFS": [
     -18.03,
     -17.53,
-    -17.28,
-    -16.52
+    -17.03,
+    -16.27
    ],
    "effective_phone_dBFS": [
     -18.32,
     -17.59,
-    -17.3,
-    -16.92
+    -17.05,
+    -16.67
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -897,24 +884,24 @@
    ],
    "effective_dBFS": [
     -17.16,
-    -15.85,
-    -15.03,
-    -14.5,
-    -11.82
+    -15.86,
+    -15.04,
+    -14.51,
+    -11.83
    ],
    "effective_mono_dBFS": [
     -17.18,
-    -16.89,
-    -15.56,
-    -15.31,
-    -12.65
+    -16.9,
+    -15.57,
+    -15.32,
+    -12.66
    ],
    "effective_phone_dBFS": [
-    -21.86,
-    -16.97,
-    -16.71,
-    -15.6,
-    -15.25
+    -17.69,
+    -16.98,
+    -16.72,
+    -15.61,
+    -15.26
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -968,22 +955,22 @@
     "burst_gold_turbo"
    ],
    "effective_dBFS": [
-    -20.75,
+    -20.76,
     -18.25,
     -18.0,
     -17.5,
     -17.0
    ],
    "effective_mono_dBFS": [
-    -20.76,
-    -20.18,
+    -20.77,
+    -20.19,
     -18.01,
     -17.51,
     -17.08
    ],
    "effective_phone_dBFS": [
-    -20.76,
-    -20.2,
+    -20.77,
+    -20.21,
     -18.01,
     -17.51,
     -17.26
@@ -1009,8 +996,8 @@
    "effective_dBFS": [
     -19.0,
     -18.5,
-    -18.02,
-    -17.47,
+    -18.0,
+    -17.45,
     -17.0,
     -16.5,
     -16.0,
@@ -1019,8 +1006,8 @@
    "effective_mono_dBFS": [
     -19.0,
     -18.55,
-    -18.1,
-    -17.47,
+    -18.08,
+    -17.45,
     -17.11,
     -16.53,
     -16.06,
@@ -1029,8 +1016,8 @@
    "effective_phone_dBFS": [
     -19.54,
     -19.18,
-    -18.83,
-    -18.58,
+    -18.81,
+    -18.56,
     -17.84,
     -16.67,
     -16.11,
@@ -1131,18 +1118,18 @@
    ],
    "effective_dBFS": [
     -15.5,
-    -15.0,
-    -12.96
+    -15.25,
+    -13.21
    ],
    "effective_mono_dBFS": [
     -16.96,
-    -16.1,
-    -14.28
+    -16.35,
+    -14.53
    ],
    "effective_phone_dBFS": [
     -17.89,
-    -16.27,
-    -16.02
+    -16.52,
+    -16.27
    ],
    "strictlyRising": true,
    "risingBy": {
@@ -1187,18 +1174,18 @@
    ],
    "effective_dBFS": [
     -15.0,
-    -11.82,
-    -11.57
+    -11.83,
+    -11.58
    ],
    "effective_mono_dBFS": [
     -15.63,
-    -12.65,
-    -12.12
+    -12.66,
+    -12.13
    ],
    "effective_phone_dBFS": [
     -16.26,
-    -15.25,
-    -12.26
+    -15.26,
+    -12.27
    ],
    "strictlyRising": true,
    "risingBy": {

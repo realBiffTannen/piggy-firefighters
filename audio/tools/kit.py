@@ -13,7 +13,7 @@ Everything else (measure / enc_wav / enc_runtime / ship with the both-codec true
 tempo_autocorr / limit / first_onset / trim / norm_rms / pitch / loop_cut / stage_for) is the donor's code, so the
 masters and runtime files are produced exactly the way the family's accepted audio was.
 """
-import os, shutil, subprocess, sys
+import atexit, os, shutil, subprocess, sys, tempfile
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import loopkit as lk
@@ -30,6 +30,16 @@ QA = f'{ROOT}/audio/qa'
 SR = 44100
 FFMPEG = os.environ.get('FFMPEG') or shutil.which('ffmpeg') or '/usr/local/bin/ffmpeg'
 DONOR_DIRS = ('lucky', 'piggy', 'piggy_police', 'police')  # donor runtime folders that must not ship
+_SCRATCH = []
+
+
+def scratch(name):
+    """r4 (2026-09-25): path for an intermediate WAV (ffmpeg round trips in pitch / time_scale / pitch_bed, the bed's LUFS probe).
+    These used to be fixed names in audio/runtime (_m, _p_in / _p_out, _pb_in / _pb_out, _ts_in / _ts_out.wav) and were left
+    behind after every build; they now live in ONE per-process temp directory (outside the repo) removed at exit."""
+    if not _SCRATCH:
+        d = tempfile.mkdtemp(prefix='pf_audio_'); _SCRATCH.append(d); atexit.register(shutil.rmtree, d, True)
+    return os.path.join(_SCRATCH[0], name)
 
 
 def write_text(path, text):
@@ -104,13 +114,20 @@ def measure(path):
 
 
 def enc_wav(x, path):
-    pcm = (np.clip(x, -1, 1) * 8388607).astype('<i4'); pcm = (pcm << 8).tobytes()
+    """float (n, 2) -> 24-bit PCM WAV. r4 (2026-09-25): ROUND to the nearest code on the decoder's own scale (x * 2^23, clipped
+    to [-2^23, 2^23 - 1]). It truncated x * (2^23 - 1) toward zero, so every decode -> encode round trip (lk.decode divides by
+    2^23) moved most samples by one LSB: mix.py's restore-from-_premix re-ship and every re-run drifted and no two runs gave the
+    same master bytes. A decoded 24-bit master now re-encodes to the identical PCM (bit-identical re-runs, sha256-checked)."""
+    pcm = np.clip(np.round(np.asarray(x, dtype=np.float64) * 8388608.0), -8388608, 8388607).astype('<i4'); pcm = (pcm << 8).tobytes()
     run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-f', 's32le', '-ar', str(SR), '-ac', '2', '-i', '-', '-c:a', 'pcm_s24le', path, input=pcm, check=True)
 
 
 def enc_runtime(wav, base):
+    """r4 (2026-09-25): the Ogg muxer draws a RANDOM stream serial number per file unless the output is bitexact, so re-encoding
+    the identical master gave a different .ogg every run (the Opus packets were identical; measured: the 16 .ogg files mix.py
+    re-ships differed between two consecutive runs, their masters and .m4a did not). `-fflags +bitexact` fixes the serial."""
     run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-i', wav, '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', f'{base}.m4a', check=True)
-    run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-i', wav, '-c:a', 'libopus', '-b:a', '160k', f'{base}.ogg', check=True)
+    run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-i', wav, '-c:a', 'libopus', '-b:a', '160k', '-fflags', '+bitexact', f'{base}.ogg', check=True)
 
 
 TP_SHIP_MAX = -1.1   # ship() loops until BOTH decoded codecs measure <= this at 8x oversampling (the gate is -1.0 dBTP)
@@ -149,7 +166,7 @@ def atempo_chain(f):
 
 def time_scale(x, factor):
     """factor > 1 = longer (pitch preserved, ffmpeg atempo chain)."""
-    tin, tout = f'{RUN}/_ts_in.wav', f'{RUN}/_ts_out.wav'; os.makedirs(RUN, exist_ok=True)
+    tin, tout = scratch('ts_in.wav'), scratch('ts_out.wav')
     enc_wav(x, tin)
     run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-i', tin, '-af', atempo_chain(1.0 / factor), '-ac', '2', '-c:a', 'pcm_s24le', tout, check=True)
     return lk.decode(tout)
@@ -397,7 +414,7 @@ def norm_rms(y, rms_db, peak_db=-3.0):
 
 
 def pitch(y, semis, preserve_len=True):
-    r = 2 ** (semis / 12.0); tin, tout = f'{RUN}/_p_in.wav', f'{RUN}/_p_out.wav'; os.makedirs(RUN, exist_ok=True); enc_wav(y, tin)
+    r = 2 ** (semis / 12.0); tin, tout = scratch('p_in.wav'), scratch('p_out.wav'); enc_wav(y, tin)
     af = f'asetrate={SR * r:.3f},aresample={SR}' + (',' + atempo_chain(1.0 / r) if preserve_len else '')
     run('ffmpeg', '-v', 'error', '-nostdin', '-y', '-i', tin, '-af', af, '-ac', '2', '-c:a', 'pcm_s24le', tout, check=True)
     return lk.decode(tout)

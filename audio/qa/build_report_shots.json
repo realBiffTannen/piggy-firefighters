@@ -4,12 +4,36 @@
  "derived": {},
  "shots": {
   "rung_hit_big": {
-   "pickup": false,
-   "cpentShare": 0.525,
-   "why": "C-pentatonic share 0.53 < 0.6"
+   "I_LUFS": -19.5,
+   "TP_dBFS": -2.52,
+   "TP_m4a_dBFS": -2.61,
+   "I_m4a_LUFS": -19.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 66151,
+   "cpentShare": 0.979
   }
  },
  "turbo": {},
  "skipped": [],
- "warnings": []
+ "warnings": [],
+ "onlyRuns": [
+  {
+   "at": "2026-09-25T07:33:28",
+   "only": [
+    "rung_hit_big"
+   ]
+  },
+  {
+   "at": "2026-09-25T07:34:38",
+   "only": [
+    "rung_hit_big"
+   ]
+  },
+  {
+   "at": "2026-09-25T07:36:54",
+   "only": [
+    "rung_hit_big"
+   ]
+  }
+ ]
 }

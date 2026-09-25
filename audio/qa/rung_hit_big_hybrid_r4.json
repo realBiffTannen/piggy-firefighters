@@ -1,0 +1,304 @@
+{
+ "_note": "r4 (2026-09-25, offline, no paid call): rung_hit_big rebuilt as a HYBRID (the blaze_mult_10 recipe) + mix repeatability. Every number measured with the code that ships (build_audio.hybrid_stab, measure.cpent_share = 110-2500 Hz C-pentatonic chroma share).",
+ "rung_hit_big": {
+  "drawnTake": "cues_pcm/rung_hit_big.wav (the coordinator redraw; first take kept as rung_hit_big__v1.wav)",
+  "drawn": {
+   "cpentShare110_2500": 0.52,
+   "shsF0Hz": 233.1,
+   "dominantPartialHz_150_600": 229.6,
+   "partials_first150ms": [
+    "226.9 Hz (A#3 -46 c) 0 dB",
+    "367.7 Hz (F#4 -11 c) -9.7 dB",
+    "243.3 Hz (B3 -26 c) -11.3 dB",
+    "395.3 Hz (G4 +15 c) -14.6 dB"
+   ],
+   "envelope_dB_re_peak": {
+    "50ms": -13.5,
+    "100ms": -31.0,
+    "200ms": -43.8,
+    "400ms": -51.0
+   },
+   "note": "a ~100 ms stab + snare: the drawn body is the attack; the chord carries the sustain"
+  },
+  "bodyCandidates_cpentShare110_2500": [
+   {
+    "body": "as drawn",
+    "share": 0.52
+   },
+   {
+    "body": "split-band < 2.5 kHz snapped by SHS (+2.00 st -> C4) + harmonic_only",
+    "share": 0.488,
+    "why_not": "the SHS reading (233.1 Hz) sits between the dominant partial and its -45 c neighbour; after +2 st the dominant partial lands on B3 +45 c"
+   },
+   {
+    "body": "split-band < 2.5 kHz snapped by the dominant partial (+2.26 st -> C4) + harmonic_only",
+    "share": 0.664,
+    "ships": true
+   },
+   {
+    "body": "split-band < 2.5 kHz snapped by the dominant partial (-0.74 st -> A3) + harmonic_only",
+    "share": 0.724,
+    "why_not": "root A under the C-E-G chord (a C6 colour); C4 is the chord root and the prompt asked a C major stab; both clear 0.6"
+   }
+  ],
+  "lowBandShiftScan_cpentShare": {
+   "-0.75": 0.621,
+   "-0.50": 0.701,
+   "0.00": 0.52,
+   "+2.00": 0.454,
+   "+2.25": 0.582,
+   "+2.50": 0.682,
+   "+2.75": 0.715
+  },
+  "recipe": {
+   "op": "hybrid: drawn stab (< 2.5 kHz snapped +2.26 st, dominant partial 229.6 Hz -> C4, harmonic_only; > 2.5 kHz as drawn) -3 dB + brass C4-E4-G4 / chime C5-E5-G5 + glock G5 (top voice +4 dB, rolled up 30 ms/voice) at 11 ms, rings out",
+   "chord": [
+    "C4",
+    "E4",
+    "G4",
+    "C5",
+    "E5",
+    "G5"
+   ],
+   "topVoice": "G5",
+   "drawnShsHz": 233.1,
+   "drawnShs": "A#3",
+   "dominantPartialHz": 229.6,
+   "dominantProminence": 20.8,
+   "snapSemis": 2.26,
+   "harmonicOnlyHz": 261.63,
+   "harmonicOnlyEnergyKept_dB": -0.57,
+   "splitHz": 2500.0,
+   "drawn_dB": -3.0,
+   "onset_ms": 11,
+   "cpentShare110_2500": {
+    "drawn": 0.52,
+    "bodyCleaned": 0.664,
+    "hybrid": 0.979
+   },
+   "shsHybrid": "C4",
+   "tonality": 0.989,
+   "chromaTop": [
+    "G",
+    "E",
+    "C",
+    "D",
+    "B"
+   ],
+   "first120ms_dB": {
+    "drawn": -17.1,
+    "chord": -14.3
+   },
+   "ringOut": {
+    "floor_dB": -50.0,
+    "fade_ms": 60.0,
+    "natural": false,
+    "extraDecay_dB": -14.5,
+    "knee_s": 0.3,
+    "len_s": 1.3
+   }
+  },
+  "shipped": {
+   "durationMs": 1500.0,
+   "stingerPrePickup_s": 1.3,
+   "audibleMs": 1290.1,
+   "pickup": {
+    "pickup": true,
+    "firstBar": "G5 C6 E6 G6 glockenspiel, 132 BPM eighths, -5 dB, whole (rings out)",
+    "cpentShare": 0.979,
+    "pickup_s": 1.18,
+    "extended_ms": 200.0
+   },
+   "gain": 1.047,
+   "mix": {
+    "file_loud400_dBFS": -17.6,
+    "file_mono_dBFS": -17.6,
+    "file_phone400_dBFS": -18.3,
+    "corr": 0.996,
+    "target_dBFS": -16,
+    "chainNudge_dB": -1.16,
+    "effective_dBFS": -17.16,
+    "effective_mono_dBFS": -17.19,
+    "effective_phone_dBFS": -17.89,
+    "pass": "pf_0925r2 (mix.py: st + mono + phone)"
+   },
+   "measured": {
+    "I_LUFS": -19.5,
+    "TP_dBFS": -2.52,
+    "TP_m4a_dBFS": -2.61
+   },
+   "levels_ogg": {
+    "st": -17.56,
+    "mono": -17.59,
+    "phone": -18.29,
+    "corr": 0.996,
+    "monoLoss": 0.03
+   },
+   "tail_ogg": {
+    "endLevel_dB": -240.0,
+    "lastSample": 0.0
+   }
+  },
+  "before_r3": {
+   "cpentShare": 0.525,
+   "pickup": false,
+   "shs": "A3 (key-fit -1 st)",
+   "tonality": 0.553,
+   "effective_st_mono_phone": [
+    -17.16,
+    -17.18,
+    -21.6
+   ],
+   "durationMs": 1203.1
+  },
+  "turbo": {
+   "durationMs": 654.0,
+   "turboCap": {
+    "op": "rescaled",
+    "timeScale": 0.46
+   },
+   "gain": 1.454,
+   "mix": {
+    "file_loud400_dBFS": -20.4,
+    "file_mono_dBFS": -20.4,
+    "file_phone400_dBFS": -20.9,
+    "corr": 0.996,
+    "target_dBFS": -16,
+    "chainNudge_dB": -1.16,
+    "effective_dBFS": -17.16,
+    "effective_mono_dBFS": -17.18,
+    "effective_phone_dBFS": -17.69,
+    "pass": "pf_0925r2 (mix.py: st + mono + phone)"
+   },
+   "audibleMs": 594.0
+  },
+  "rungHitChain": {
+   "chain": [
+    "rung_hit_big",
+    "rung_hit_huge",
+    "rung_hit_mega",
+    "rung_hit_epic",
+    "rung_hit_max"
+   ],
+   "effective_dBFS": [
+    -17.16,
+    -15.86,
+    -15.0,
+    -14.51,
+    -11.83
+   ],
+   "effective_mono_dBFS": [
+    -17.19,
+    -16.94,
+    -15.59,
+    -15.34,
+    -12.76
+   ],
+   "effective_phone_dBFS": [
+    -17.89,
+    -17.03,
+    -16.78,
+    -15.65,
+    -15.4
+   ],
+   "strictlyRising": true,
+   "risingBy": {
+    "st": true,
+    "mono": true,
+    "phone": true
+   }
+  },
+  "rungHitChainTurbo": {
+   "chain": [
+    "rung_hit_big_turbo",
+    "rung_hit_huge_turbo",
+    "rung_hit_mega_turbo",
+    "rung_hit_epic_turbo",
+    "rung_hit_max_turbo"
+   ],
+   "effective_dBFS": [
+    -17.16,
+    -15.86,
+    -15.04,
+    -14.51,
+    -11.83
+   ],
+   "effective_mono_dBFS": [
+    -17.18,
+    -16.9,
+    -15.57,
+    -15.32,
+    -12.66
+   ],
+   "effective_phone_dBFS": [
+    -17.69,
+    -16.98,
+    -16.72,
+    -15.61,
+    -15.26
+   ],
+   "strictlyRising": true,
+   "risingBy": {
+    "st": true,
+    "mono": true,
+    "phone": true
+   }
+  },
+  "intoBed": {
+   "rung_bed_big": {
+    "I_LUFS": -15.2,
+    "key": "C major (pentatonic)",
+    "bpm": 100
+   },
+   "how": "chord voices rolled UPWARD 30 ms per voice (C E G), then the whole G5 C6 E6 G6 pickup rising out of it; the bed opens on the same call (hook bar 0)"
+  },
+  "staleRemoved": [
+   "masters/_src/_premix/rung_hit_big.wav(.json)",
+   "masters/_src/_premix/rung_hit_big_turbo.wav(.json)",
+   "(r1 +4.73 dB soft-clip re-master copies; no longer applied: mix gain 1.047)"
+  ]
+ },
+ "mixRepeatability": {
+  "fix": [
+   "kit.enc_wav: np.round(x * 8388608) clipped to [-8388608, 8388607] (was a truncation of x * 8388607: every decode -> encode round trip moved samples by 1 LSB, so restore-from-_premix + re-master drifted each run)",
+   "kit.enc_runtime: Ogg muxed with -fflags +bitexact (the muxer drew a random stream serial per file: the 16 re-shipped .ogg differed run to run with identical Opus packets and identical masters)"
+  ],
+  "check": "python3 audio/tools/mix.py twice in a row, sha256 of every file compared",
+  "runs": {
+   "after enc_wav fix only (runs 1 -> 2)": {
+    "masters": "IDENTICAL (275 wav incl. _src)",
+    "static": "16 .ogg differ (random Ogg serial), 448 identical"
+   },
+   "after the Ogg bitexact fix (runs 3 -> 4, and 5 -> 6 after the final rung_hit_big rebuild)": {
+    "masters": "IDENTICAL (275)",
+    "static": "IDENTICAL (464)",
+    "runtime": "IDENTICAL (464)",
+    "cues.json + mix_pass.csv + mix_ladder.json": "IDENTICAL"
+   }
+  },
+  "aggregateSha256_run6": {
+   "masters": "679adf7fdf4fd63f3f973b5b4aa4b4bc9f0bb19026885e80ffed618b06e19bff",
+   "static": "745639bcbd3c12a5cdd15330e79969d3967c162ef0d4116bde547d345a57b52b"
+  },
+  "buildDeterminism": "build_audio.py sfx/shots/turbo --only rung_hit_big(_turbo) run twice: master, turbo master and pre-pickup copy sha256 identical",
+  "oneTimeShift": "the first run under the rounding fix re-mastered the 16 cues mix.py raises > +6 dB from their _premix copies with the new rounding: 14 land on the same raise (<= 2 LSB master change); burst_embers 15.38 -> 15.74 dB and burst_embers_turbo 13.91 -> 14.40 dB (their 4-pass loop stops on the measured .ogg level, which moved). Stable from then on; chains still rise."
+ },
+ "scratch": {
+  "removed": [
+   "audio/runtime/_m.wav",
+   "_p_in.wav",
+   "_p_out.wav",
+   "_pb_in.wav",
+   "_pb_out.wav",
+   "_ts_in.wav",
+   "_ts_out.wav"
+  ],
+  "fix": "kit.scratch(): intermediate WAVs of pitch / time_scale / pitch_bed / the bed LUFS probe go to one per-process temp dir outside the repo (removed at exit); audio/runtime holds only the 464 shipped encodes"
+ },
+ "measure": {
+  "PASS": true,
+  "gates": "16 / 16",
+  "failingGates": [],
+  "maxTP_dBFS": -1.23
+ }
+}

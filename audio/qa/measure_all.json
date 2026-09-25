@@ -6,7 +6,7 @@
   "filesExpected": 464,
   "filesPresent": 464,
   "missing": [],
-  "maxTP_dBFS": -1.21,
+  "maxTP_dBFS": -1.23,
   "overMinus1dBTP": [],
   "staticDiffersFromRuntime": [],
   "loops": 14,
@@ -211,20 +211,20 @@
     "st": [
      -18.0,
      -17.5,
-     -17.25,
-     -15.85
+     -17.0,
+     -15.6
     ],
     "mono": [
      -18.02,
      -17.52,
-     -17.27,
-     -16.65
+     -17.02,
+     -16.4
     ],
     "phone": [
      -18.29,
      -17.57,
-     -17.29,
-     -17.04
+     -17.04,
+     -16.79
     ],
     "rising": true
    },
@@ -264,24 +264,24 @@
    "rung_hits": {
     "st": [
      -17.16,
-     -15.85,
-     -14.99,
-     -14.5,
-     -11.82
+     -15.86,
+     -15.0,
+     -14.51,
+     -11.83
     ],
     "mono": [
-     -17.18,
-     -16.93,
-     -15.58,
-     -15.33,
-     -12.75
+     -17.19,
+     -16.94,
+     -15.59,
+     -15.34,
+     -12.76
     ],
     "phone": [
-     -21.6,
-     -17.02,
-     -16.77,
-     -15.64,
-     -15.39
+     -17.89,
+     -17.03,
+     -16.78,
+     -15.65,
+     -15.4
     ],
     "rising": true
    },
@@ -311,22 +311,22 @@
    },
    "bursts": {
     "st": [
-     -20.75,
+     -20.76,
      -18.25,
      -18.0,
      -17.5,
      -17.0
     ],
     "mono": [
-     -20.75,
-     -20.48,
+     -20.76,
+     -20.49,
      -18.0,
      -17.5,
      -17.04
     ],
     "phone": [
-     -20.76,
-     -20.51,
+     -20.77,
+     -20.52,
      -18.0,
      -17.5,
      -17.15
@@ -337,8 +337,8 @@
     "st": [
      -19.0,
      -18.5,
-     -18.02,
-     -17.5,
+     -18.01,
+     -17.48,
      -17.0,
      -16.5,
      -16.0,
@@ -347,8 +347,8 @@
     "mono": [
      -19.01,
      -18.55,
-     -18.11,
-     -17.5,
+     -18.1,
+     -17.48,
      -17.12,
      -16.54,
      -16.06,
@@ -357,8 +357,8 @@
     "phone": [
      -19.54,
      -19.17,
-     -18.83,
-     -18.58,
+     -18.82,
+     -18.56,
      -17.85,
      -16.67,
      -16.11,
@@ -420,18 +420,18 @@
    "entries": {
     "st": [
      -15.5,
-     -15.0,
-     -13.1
+     -15.25,
+     -13.35
     ],
     "mono": [
      -17.28,
-     -16.0,
-     -14.32
+     -16.25,
+     -14.57
     ],
     "phone": [
      -18.39,
-     -16.14,
-     -15.89
+     -16.39,
+     -16.14
     ],
     "rising": true
    },
@@ -456,18 +456,18 @@
    "reward_to_max": {
     "st": [
      -15.0,
-     -11.82,
-     -11.57
+     -11.83,
+     -11.58
     ],
     "mono": [
      -15.71,
-     -12.75,
-     -12.11
+     -12.76,
+     -12.12
     ],
     "phone": [
      -16.43,
-     -15.39,
-     -12.31
+     -15.4,
+     -12.32
     ],
     "rising": true
    }
@@ -1965,7 +1965,7 @@
    "ogg": {
     "present": true,
     "I_LUFS": -22.1,
-    "TP_dBFS": -3.49,
+    "TP_dBFS": -3.48,
     "TP_ebur128_4x": -3.5,
     "sameAsRuntime": true,
     "samples": 21409,
@@ -4399,22 +4399,22 @@
    "m4a": {
     "present": true,
     "I_LUFS": -19.9,
-    "TP_dBFS": -3.28,
-    "TP_ebur128_4x": -3.3,
+    "TP_dBFS": -3.54,
+    "TP_ebur128_4x": -3.5,
     "sameAsRuntime": true,
     "samples": 41984,
     "ms": 952.0,
-    "audibleMs": 939.2,
+    "audibleMs": 938.9,
     "lenDiff": 422,
     "levels": {
-     "st": -22.58,
-     "mono": -22.97,
-     "phone": -23.18,
-     "corr": 0.831,
+     "st": -22.6,
+     "mono": -23.0,
+     "phone": -23.21,
+     "corr": 0.829,
      "monoLoss": 0.39
     },
     "tail": {
-     "endLevel_dB": -70.8,
+     "endLevel_dB": -70.3,
      "lastSample": 0.0
     }
    },
@@ -5549,53 +5549,53 @@
    "loop": false,
    "status": "built",
    "master": true,
-   "masterSamples": 53056,
+   "masterSamples": 66151,
    "ogg": {
     "present": true,
-    "I_LUFS": -17.0,
-    "TP_dBFS": -4.26,
-    "TP_ebur128_4x": -4.3,
+    "I_LUFS": -19.5,
+    "TP_dBFS": -2.52,
+    "TP_ebur128_4x": -2.6,
     "sameAsRuntime": true,
-    "samples": 53057,
-    "ms": 1203.1,
-    "audibleMs": 1203.1,
+    "samples": 66152,
+    "ms": 1500.0,
+    "audibleMs": 1290.1,
     "lenDiff": 1,
     "levels": {
-     "st": -20.92,
-     "mono": -20.94,
-     "phone": -25.36,
-     "corr": 0.992,
-     "monoLoss": 0.02
+     "st": -17.56,
+     "mono": -17.59,
+     "phone": -18.29,
+     "corr": 0.996,
+     "monoLoss": 0.03
     },
     "tail": {
-     "endLevel_dB": -61.8,
-     "lastSample": 0.00022
+     "endLevel_dB": -240.0,
+     "lastSample": 0.0
     }
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -17.2,
-    "TP_dBFS": -3.13,
-    "TP_ebur128_4x": -3.1,
+    "I_LUFS": -19.5,
+    "TP_dBFS": -2.61,
+    "TP_ebur128_4x": -2.6,
     "sameAsRuntime": true,
-    "samples": 53248,
-    "ms": 1207.4,
-    "audibleMs": 1201.6,
-    "lenDiff": 192,
+    "samples": 66560,
+    "ms": 1509.3,
+    "audibleMs": 1290.1,
+    "lenDiff": 409,
     "levels": {
-     "st": -21.06,
-     "mono": -21.2,
-     "phone": -26.04,
-     "corr": 0.939,
-     "monoLoss": 0.13
+     "st": -17.64,
+     "mono": -17.7,
+     "phone": -18.41,
+     "corr": 0.984,
+     "monoLoss": 0.06
     },
     "tail": {
-     "endLevel_dB": -66.4,
-     "lastSample": 1e-05
+     "endLevel_dB": -240.0,
+     "lastSample": 0.0
     }
    },
    "masterTail": {
-    "endLevel_dB": -58.9,
+    "endLevel_dB": -240.0,
     "lastSample": 0.0
    }
   },
@@ -5758,7 +5758,7 @@
      "monoLoss": 0.55
     },
     "tail": {
-     "endLevel_dB": -105.8,
+     "endLevel_dB": -106.4,
      "lastSample": 0.0
     }
    },
@@ -6168,50 +6168,50 @@
    "masterSamples": 42882,
    "ogg": {
     "present": true,
-    "I_LUFS": -18.3,
-    "TP_dBFS": -3.2,
-    "TP_ebur128_4x": -3.2,
+    "I_LUFS": -18.1,
+    "TP_dBFS": -2.91,
+    "TP_ebur128_4x": -2.9,
     "sameAsRuntime": true,
     "samples": 42883,
     "ms": 972.4,
     "audibleMs": 969.1,
     "lenDiff": 1,
     "levels": {
-     "st": -22.64,
-     "mono": -24.87,
-     "phone": -24.9,
-     "corr": 0.264,
-     "monoLoss": 2.23
+     "st": -22.42,
+     "mono": -24.66,
+     "phone": -24.69,
+     "corr": 0.261,
+     "monoLoss": 2.24
     },
     "tail": {
-     "endLevel_dB": -67.3,
-     "lastSample": 0.0
+     "endLevel_dB": -67.1,
+     "lastSample": 1e-05
     }
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -18.5,
-    "TP_dBFS": -1.74,
-    "TP_ebur128_4x": -1.8,
+    "I_LUFS": -18.2,
+    "TP_dBFS": -1.51,
+    "TP_ebur128_4x": -1.5,
     "sameAsRuntime": true,
     "samples": 43008,
     "ms": 975.2,
-    "audibleMs": 970.4,
+    "audibleMs": 969.7,
     "lenDiff": 126,
     "levels": {
-     "st": -22.92,
-     "mono": -24.71,
-     "phone": -24.73,
-     "corr": 0.348,
-     "monoLoss": 1.79
+     "st": -22.63,
+     "mono": -24.56,
+     "phone": -24.59,
+     "corr": 0.323,
+     "monoLoss": 1.93
     },
     "tail": {
-     "endLevel_dB": -66.6,
+     "endLevel_dB": -65.8,
      "lastSample": 0.0
     }
    },
    "masterTail": {
-    "endLevel_dB": -66.8,
+    "endLevel_dB": -66.5,
     "lastSample": 0.0
    }
   },
@@ -9810,7 +9810,7 @@
     "sameAsRuntime": true,
     "samples": 31744,
     "ms": 719.8,
-    "audibleMs": 697.8,
+    "audibleMs": 697.5,
     "lenDiff": 937,
     "levels": {
      "st": -20.81,
@@ -9820,7 +9820,7 @@
      "monoLoss": 1.18
     },
     "tail": {
-     "endLevel_dB": -96.0,
+     "endLevel_dB": -98.4,
      "lastSample": 0.0
     }
    },
@@ -10407,9 +10407,9 @@
     "audibleMs": 520.5,
     "lenDiff": 1,
     "levels": {
-     "st": -22.58,
-     "mono": -22.94,
-     "phone": -23.1,
+     "st": -22.59,
+     "mono": -22.95,
+     "phone": -23.11,
      "corr": 0.863,
      "monoLoss": 0.36
     },
@@ -10899,53 +10899,53 @@
    "loop": false,
    "status": "built",
    "master": true,
-   "masterSamples": 29697,
+   "masterSamples": 28841,
    "ogg": {
     "present": true,
-    "I_LUFS": -16.4,
-    "TP_dBFS": -4.18,
-    "TP_ebur128_4x": -4.2,
+    "I_LUFS": -21.5,
+    "TP_dBFS": -5.31,
+    "TP_ebur128_4x": -5.3,
     "sameAsRuntime": true,
-    "samples": 29698,
-    "ms": 673.4,
-    "audibleMs": 673.4,
+    "samples": 28842,
+    "ms": 654.0,
+    "audibleMs": 594.0,
     "lenDiff": 1,
     "levels": {
-     "st": -20.24,
-     "mono": -20.26,
-     "phone": -24.94,
-     "corr": 0.992,
-     "monoLoss": 0.02
+     "st": -20.41,
+     "mono": -20.43,
+     "phone": -20.94,
+     "corr": 0.996,
+     "monoLoss": 0.03
     },
     "tail": {
-     "endLevel_dB": -59.9,
-     "lastSample": 0.00015
+     "endLevel_dB": -122.8,
+     "lastSample": 0.0
     }
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -16.5,
-    "TP_dBFS": -3.2,
-    "TP_ebur128_4x": -3.2,
+    "I_LUFS": -21.6,
+    "TP_dBFS": -5.74,
+    "TP_ebur128_4x": -5.8,
     "sameAsRuntime": true,
     "samples": 29696,
     "ms": 673.4,
-    "audibleMs": 668.6,
-    "lenDiff": -1,
+    "audibleMs": 594.0,
+    "lenDiff": 855,
     "levels": {
-     "st": -20.29,
-     "mono": -20.36,
-     "phone": -25.32,
-     "corr": 0.965,
-     "monoLoss": 0.08
+     "st": -20.42,
+     "mono": -20.46,
+     "phone": -20.95,
+     "corr": 0.992,
+     "monoLoss": 0.04
     },
     "tail": {
-     "endLevel_dB": -60.3,
+     "endLevel_dB": -240.0,
      "lastSample": 0.0
     }
    },
    "masterTail": {
-    "endLevel_dB": -58.8,
+    "endLevel_dB": -240.0,
     "lastSample": 0.0
    }
   },
@@ -11098,7 +11098,7 @@
     "sameAsRuntime": true,
     "samples": 24576,
     "ms": 557.3,
-    "audibleMs": 542.8,
+    "audibleMs": 543.2,
     "lenDiff": 238,
     "levels": {
      "st": -21.51,
@@ -11412,7 +11412,7 @@
     "sameAsRuntime": true,
     "samples": 29161,
     "ms": 661.2,
-    "audibleMs": 659.5,
+    "audibleMs": 659.4,
     "lenDiff": 1,
     "levels": {
      "st": -19.68,
@@ -11434,7 +11434,7 @@
     "sameAsRuntime": true,
     "samples": 29696,
     "ms": 673.4,
-    "audibleMs": 659.4,
+    "audibleMs": 659.5,
     "lenDiff": 536,
     "levels": {
      "st": -19.68,
@@ -11444,7 +11444,7 @@
      "monoLoss": 0.0
     },
     "tail": {
-     "endLevel_dB": -73.0,
+     "endLevel_dB": -72.9,
      "lastSample": 0.0
     }
    },
@@ -11518,50 +11518,50 @@
    "masterSamples": 23919,
    "ogg": {
     "present": true,
-    "I_LUFS": -17.7,
-    "TP_dBFS": -2.18,
-    "TP_ebur128_4x": -2.2,
+    "I_LUFS": -18.0,
+    "TP_dBFS": -2.75,
+    "TP_ebur128_4x": -2.8,
     "sameAsRuntime": true,
     "samples": 23920,
     "ms": 542.4,
     "audibleMs": 534.7,
     "lenDiff": 1,
     "levels": {
-     "st": -21.94,
-     "mono": -23.87,
-     "phone": -23.89,
-     "corr": 0.347,
+     "st": -22.24,
+     "mono": -24.18,
+     "phone": -24.2,
+     "corr": 0.344,
      "monoLoss": 1.94
     },
     "tail": {
-     "endLevel_dB": -60.8,
+     "endLevel_dB": -60.3,
      "lastSample": 2e-05
     }
    },
    "m4a": {
     "present": true,
-    "I_LUFS": -18.0,
-    "TP_dBFS": -1.21,
-    "TP_ebur128_4x": -1.2,
+    "I_LUFS": -18.3,
+    "TP_dBFS": -1.44,
+    "TP_ebur128_4x": -1.4,
     "sameAsRuntime": true,
     "samples": 24576,
     "ms": 557.3,
-    "audibleMs": 548.7,
+    "audibleMs": 550.3,
     "lenDiff": 657,
     "levels": {
-     "st": -22.23,
-     "mono": -24.25,
-     "phone": -24.27,
-     "corr": 0.322,
-     "monoLoss": 2.02
+     "st": -22.48,
+     "mono": -24.51,
+     "phone": -24.53,
+     "corr": 0.316,
+     "monoLoss": 2.03
     },
     "tail": {
-     "endLevel_dB": -80.0,
+     "endLevel_dB": -76.8,
      "lastSample": 0.0
     }
    },
    "masterTail": {
-    "endLevel_dB": -60.2,
+    "endLevel_dB": -59.7,
     "lastSample": 0.0
    }
   },
@@ -11702,7 +11702,7 @@
      "monoLoss": 0.08
     },
     "tail": {
-     "endLevel_dB": -100.1,
+     "endLevel_dB": -100.0,
      "lastSample": 1e-05
     }
    },
@@ -11714,22 +11714,22 @@
     "sameAsRuntime": true,
     "samples": 31744,
     "ms": 719.8,
-    "audibleMs": 649.6,
+    "audibleMs": 649.7,
     "lenDiff": 875,
     "levels": {
      "st": -20.37,
-     "mono": -20.46,
+     "mono": -20.47,
      "phone": -20.67,
      "corr": 0.956,
      "monoLoss": 0.1
     },
     "tail": {
-     "endLevel_dB": -175.1,
+     "endLevel_dB": -179.1,
      "lastSample": 0.0
     }
    },
    "masterTail": {
-    "endLevel_dB": -133.7,
+    "endLevel_dB": -130.8,
     "lastSample": 0.0
    }
   },
@@ -12732,7 +12732,7 @@
      "monoLoss": 0.03
     },
     "tail": {
-     "endLevel_dB": -84.6,
+     "endLevel_dB": -84.7,
      "lastSample": 0.0
     }
    },
@@ -13506,7 +13506,7 @@
     "sameAsRuntime": true,
     "samples": 19456,
     "ms": 441.2,
-    "audibleMs": 432.1,
+    "audibleMs": 432.2,
     "lenDiff": -12,
     "levels": {
      "st": -24.18,
@@ -13516,7 +13516,7 @@
      "monoLoss": 0.01
     },
     "tail": {
-     "endLevel_dB": -60.4,
+     "endLevel_dB": -60.3,
      "lastSample": 0.0
     }
    },
@@ -13830,7 +13830,7 @@
      "monoLoss": 1.65
     },
     "tail": {
-     "endLevel_dB": -126.0,
+     "endLevel_dB": -125.6,
      "lastSample": 0.0
     }
    },
@@ -13852,12 +13852,12 @@
      "monoLoss": 1.21
     },
     "tail": {
-     "endLevel_dB": -173.8,
+     "endLevel_dB": -174.5,
      "lastSample": 0.0
     }
    },
    "masterTail": {
-    "endLevel_dB": -135.1,
+    "endLevel_dB": -132.0,
     "lastSample": 0.0
    }
   },
@@ -13886,7 +13886,7 @@
      "monoLoss": 0.0
     },
     "tail": {
-     "endLevel_dB": -60.1,
+     "endLevel_dB": -59.9,
      "lastSample": 2e-05
     }
    },
@@ -13908,7 +13908,7 @@
      "monoLoss": 0.02
     },
     "tail": {
-     "endLevel_dB": -70.8,
+     "endLevel_dB": -70.9,
      "lastSample": 0.0
     }
    },

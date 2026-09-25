@@ -103,23 +103,59 @@
    }
   },
   "rung_hit_big": {
-   "I_LUFS": -17.0,
-   "TP_dBFS": -4.26,
-   "TP_m4a_dBFS": -3.13,
-   "I_m4a_LUFS": -17.2,
+   "I_LUFS": -19.4,
+   "TP_dBFS": -2.64,
+   "TP_m4a_dBFS": -2.62,
+   "I_m4a_LUFS": -19.4,
    "tpMethod": "8x oversampled, native codec rate",
-   "samples": 53056,
-   "key": {
-    "offsetCents": -8.2,
-    "tonality": 0.679,
-    "cpentShareDrawn": 0.251,
-    "decision": "transpose -1 st (share 0.25 -> 0.61)",
-    "semis": -1.0,
-    "cpentShare110_2500": [
-     0.52,
-     0.525
+   "samples": 57330,
+   "tonal": {
+    "op": "hybrid: drawn stab (< 2.5 kHz snapped +2.26 st, dominant partial 229.6 Hz -> C4, harmonic_only; > 2.5 kHz as drawn) -3 dB + brass C4-E4-G4 / chime C5-E5-G5 + glock G5 (top voice +4 dB, rolled up 30 ms/voice) at 11 ms, rings out",
+    "chord": [
+     "C4",
+     "E4",
+     "G4",
+     "C5",
+     "E5",
+     "G5"
     ],
-    "cpentShareShipped": 0.525
+    "topVoice": "G5",
+    "drawnShsHz": 233.1,
+    "drawnShs": "A#3",
+    "dominantPartialHz": 229.6,
+    "dominantProminence": 20.8,
+    "snapSemis": 2.26,
+    "harmonicOnlyHz": 261.63,
+    "harmonicOnlyEnergyKept_dB": -0.57,
+    "splitHz": 2500.0,
+    "drawn_dB": -3.0,
+    "onset_ms": 11,
+    "cpentShare110_2500": {
+     "drawn": 0.52,
+     "bodyCleaned": 0.664,
+     "hybrid": 0.979
+    },
+    "shsHybrid": "C4",
+    "tonality": 0.989,
+    "chromaTop": [
+     "G",
+     "E",
+     "C",
+     "D",
+     "B"
+    ],
+    "first120ms_dB": {
+     "drawn": -17.1,
+     "chord": -14.3
+    },
+    "ringOut": {
+     "floor_dB": -50.0,
+     "fade_ms": 60.0,
+     "natural": false,
+     "extraDecay_dB": -14.5,
+     "knee_s": 0.3,
+     "len_s": 1.3
+    }
    }
   }
  },
@@ -140,6 +176,24 @@
    "at": "2026-09-25T07:05:00",
    "only": [
     "sym_win_l4"
+   ]
+  },
+  {
+   "at": "2026-09-25T07:33:27",
+   "only": [
+    "rung_hit_big"
+   ]
+  },
+  {
+   "at": "2026-09-25T07:34:30",
+   "only": [
+    "rung_hit_big"
+   ]
+  },
+  {
+   "at": "2026-09-25T07:36:53",
+   "only": [
+    "rung_hit_big"
    ]
   }
  ]

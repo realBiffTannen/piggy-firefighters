@@ -1,11 +1,12 @@
 # PIGGY FIREFIGHTERS — Sound Bible
 
-Owner: AUDIO lane. Status: **v4, 2026-09-25: BUILT, r2 build fixes applied, r3 redraws folded in by measurement** (this lane
+Owner: AUDIO lane. Status: **v5, 2026-09-25: BUILT, r2 build fixes applied, r3 redraws folded in by measurement, r4 `rung_hit_big` hybrid + bit-identical re-runs** (this lane
 made no paid call; the coordinator drew the 5 redraws, ledgered). 107 + 5 ElevenLabs draws (ledger `audio/source-record.json`)
 -> 232 cue ids x 2 codecs = 464 shipped files in `apps/piggy_firefighters/static/assets/audio/piggy_firefighters/` (30 MB),
 `cueManifest.ts` regenerated (232 cues). `measure.py` **PASS: true, 16 / 16 gates** (§11): `base_loop_a` ships its redraw
-(chug 3.77 -> 1.35); the Inferno and Backdraft redraws measured worse and were rejected; `rung_hit_big` ships its redraw
-(more tonal, still not in key); the `sym_win_l4` redraw was worse, v1 restored and voiced for phones offline (§10, §14).
+(chug 3.77 -> 1.35); the Inferno and Backdraft redraws measured worse and were rejected; `rung_hit_big` ships its redraw,
+since r4 as a hybrid in C (drawn stab + synthesised brass / chime C-E-G chord: C-pent 0.979, pickup accepted; §15); the
+`sym_win_l4` redraw was worse, v1 restored and voiced for phones offline (§10, §14). `mix.py` re-runs are sha256-identical (§15).
 **Human listening NOT RUN (§9).** Theme: `docs/PIGGY_FIREFIGHTERS_THEME.md` §6. Rules: `docs/AUDIO_DESIGN_NOTES.md`, `CLAUDE.md`.
 Per-cue map (contract §8 event -> cues; moment -> cue -> file -> seam -> owner): `docs/AUDIO_MAP.md` (generated). Pipeline:
 `audio/README.md`. Every sound is drawn fresh for this title (ElevenLabs) or synthesised by our own tools; no donor sound
@@ -38,10 +39,10 @@ No voice anywhere in this pass (VO is a later, toggleable option, §8).
   +1 oct -4 dB, Rescue bugle -3.5 dB, Inferno bugle -1 oct -3.5 dB, rung beds glock / bugle / bugle / bell / bell -4 .. -3 dB),
   mixed at the RMS of the bed bars it lands on; since r2 the hook layer is widened by LEVEL only (identical signal, L x 1.08,
   R x 0.92: mono-safe, §13) and every synthesised note ends in a release (no click at note ends). The pickup (G5 C6 E6 G6
-  glock eighths, 132 BPM, -5 dB) is now used WHOLE and rings out (1.18 s + 0.3 s tail): it landed on **14 of 17** fanfares:
+  glock eighths, 132 BPM, -5 dB) is now used WHOLE and rings out (1.18 s + 0.3 s tail): it landed on **15 of 17** fanfares:
   `trigger_fanfare` (C-pent 0.98), both entries, `backdraft_spins_start`, `building_cleared`, the three big totals, rung hits
-  HUGE / MEGA / EPIC, `win_max`, both good Alarm Call outcomes (`rung_hit_huge` +158 ms and `inferno_total_big` +71 ms of
-  silence appended so the pickup rings out). Refused: `rung_hit_big` (C-pent 0.525 after its r3 redraw, a Bb stab key-fitted -1 st), `rung_hit_max` (0.58) — content not in C
+  BIG (r4 hybrid, C-pent 0.979) / HUGE / MEGA / EPIC, `win_max`, both good Alarm Call outcomes (`rung_hit_big` +200 ms,
+  `rung_hit_huge` +158 ms and `inferno_total_big` +71 ms of silence appended so the pickup rings out). Refused: `rung_hit_max` (0.58) — content not in C
   pentatonic — and `spins_added` (1.0 s: too short for the whole pickup; r1 sliced the pickup mid-note there; the cue already
   carries its own glock run C E G C).
 
@@ -200,11 +201,12 @@ roster refuses such words even as negatives (the SFX model keys on the noun).
 | Alarm 1-5 | 70 ms drawn bell strike (HP 700 Hz) + synthesised chime chord, top voice +6 dB, rendered 1.6 s with a natural decay and rung out (< -50 dB re peak, cos^2 60 ms; 1.54 s) | Dm D4 F4 A4 · G G4 B4 D5 · G7 G4 B4 D5 F5 · V9 (no root) B4 D5 F5 A5 · V13 colour D5 F5 A5 B5 — NOT key-fitted; resolved only by `trigger_fanfare` (retuned -24 c, C-pent 0.98, G C E G pickup). Top voice on the mono sum: A4 0.0 / D5 0.0 / F5 -1.1 / A5 0.0 / B5 0.0 dB re the loudest partial (r1: alarm 3's F5 -11 dB) |
 | Blaze ignitions 1-5 | drawn fwoomp + tuned glock/chime ping, -3 dB, rendered 1.6 s (damped, tau ~0.3 s) and rung out | C5 D5 E5 G5 A5; 1.34-1.35 s (r1: 0.62 s ending on a hard cut, ping at -25 dB) |
 | Multipliers | drawn clank + tuned ping, rung out; x10 own draw + chime chord | x2 C5 · x3 E5 · x5 G5 (1.6 s; r1 0.95 s into a 20 ms fade at -18 dB) · x10 C6 E6 G6 + glock G6 (1.52 s) |
+| Rung hit BIG (r4) | the x10 recipe: drawn stab + snare, split at 2.5 kHz — under it snapped +2.26 st to C4 by its dominant partial (229.6 Hz) and cleaned to C4's harmonic series, above it as drawn — at -3 dB, + brass (bugle) C4 E4 G4 held 0.32 s + chime C5 E5 G5 + glock G5, rolled up 30 ms per voice, top voice +4 dB, peak = the drawn peak, rung out 1.30 s | C-pent 0.979 (body alone 0.664; r3 key-fit -1 st 0.525), SHS C4, tonality 0.989; pickup G5 C6 E6 G6 accepted (file 1.50 s) into `rung_bed_big` |
 | Ta-da 1-8 | three brass sources labelled by SHS fundamental: lo **C4** (261.3 Hz), mid **G4** (391.6 Hz), hi **C4** (drawn 349.6 Hz, snapped -5.02 st); each cleaned to its own harmonic series (`kit.harmonic_only`, chord tones -18 dB: mid is a G7sus4 stab whose F / C would become Bb / F at rung 6, C-pent 0.53 -> 0.97) | **C4 D4 E4** from lo (0 / +2 / +4 st), **G4 A4** from mid (0 / +2), **C5 D5 E5** from mid (+5 / +7 / +9), rubberband formant-preserving; shipped SHS 59.99 / 61.99 / 63.99 / 66.99 / 68.98 / 71.95 / 73.95 / 75.98 (gate: strictly rising). hi is retired (same register as lo; `roster.RETIRED_SOURCES`). r1 labelled lo C5 / hi C6 by their loudest partials and built rungs 4-8 from hi: perceived C4 D4 E4 G3 A3 C4 D4 E4 |
 | Count-up 1-12 | hybrid C5 glock/chime blip + 15 ms drawn click (HP 1 kHz, -8 dB), resampled; each tick ends in a release over its last 45 % | C5 D5 E5 G5 A5 C6 D6 E6 G6 A6 C7 D7, 250 -> 56 ms |
 | Riser 2 | `antic_riser` (+2.31 st key-fit) + 2 st | stepped, same length |
 
-Key-fit (13 cues moved; 12 measured in key after — the 13th, `rung_hit_big` -1.0 st (r3 redraw, a Bb stab), ships C-pent 0.525, see §10; r1's `alarm_outcome_false` -2.0 st is gone: its drawn channels
+Key-fit (12 cues moved, all measured in key after — r3's 13th, `rung_hit_big` -1.0 st (a Bb stab, C-pent 0.525), is the r4 hybrid above instead; r1's `alarm_outcome_false` -2.0 st is gone: its drawn channels
 were anti-phase, r2 ships the stronger channel as mono and that measures in key): `ante_on` -0.23, `buy_confirm` -2.21, `antic_riser` +2.31,
 `antic_miss` -0.26, `antic_hit` +2.24, `trigger_fanfare` -0.24, `sym_win_h1` +0.70, `rung_hit_huge` +2.0, `rescue_enter` +1.0,
 `last_spin` -2.0, `alarm_outcome_rescue` +2.0 st; **`sym_win_h2` split-band** (new): its analysis
@@ -236,17 +238,17 @@ C8 -3 c, body unchanged 0.71. A key-fit that would make the body worse is never 
 - **Measured (`audio/qa/mix_ladder.json`, effective = file x gain, dBFS)**: 223 cues levelled, 0 unmatched, 0 clamped off
   target, **16 / 16 chains + 15 / 15 turbo chains strictly rising on all three conditions**. st / mono / phone:
   alarm -20.0 .. -18.0 (0.5 dB steps) / -20.0 .. -18.0 / -21.6 -19.9 -19.6 -18.6 -18.0 · riser -18.0 < -17.5 (mono -18.3 <
-  -17.8, phone -23.3 < -22.6) · multipliers -18.0 -17.5 -17.3 -15.9 / -18.0 -17.5 -17.3 -16.7 / -18.3 -17.6 -17.3 -17.0 ·
+  -17.8, phone -23.3 < -22.6) · multipliers -18.0 -17.5 -17.0 -15.6 / -18.0 -17.5 -17.0 -16.4 / -18.3 -17.6 -17.0 -16.8 ·
   line -19 < -18 · totals -18.0 -16.5 -15.0 / -18.1 -17.1 -15.7 / -18.8 -17.3 -16.4 · Rescue totals -18.9 -16.5 -14.5 /
   -20.1 -16.6 -16.3 / -20.7 -20.5 -17.4 · Inferno totals -17.5 -16.0 -14.5 / -18.6 -17.4 -15.3 / -29.8 -17.6 -16.7 · rung hits
-  -17.2 -15.9 -15.0 -14.5 -11.8 / -17.2 -16.9 -15.6 -15.3 -12.8 / -21.6 -17.0 -16.8 -15.6 -15.4 (r3 `rung_hit_big` redraw) · signs -21.1 -20.2 -16.3 -14.7
+  -17.2 -15.9 -15.0 -14.5 -11.8 / -17.2 -16.9 -15.6 -15.3 -12.8 / -17.9 -17.0 -16.8 -15.7 -15.4 (r4 `rung_hit_big` hybrid; r3 phone -21.6) · signs -21.1 -20.2 -16.3 -14.7
   -14.5 / -21.1 -20.8 -16.6 -14.7 -14.5 / -21.5 -21.2 -20.9 -20.7 -18.1 · bursts -20.8 -18.3 -18.0 -17.5 -17.0 (mono / phone
-  the same order) · ta-da -19.0 .. -15.5 (0.5 dB steps on all three) · prizes -18.0 < -16.5 · entries -15.5 -15.0 -13.1 /
-  -17.3 -16.0 -14.3 / -18.4 -16.1 -15.9 · Alarm Call -20.0 -15.5 -14.5 / -20.0 -17.0 -14.9 / -20.0 -17.0 -15.7 · total big
+  the same order) · ta-da -19.0 .. -15.5 (0.5 dB steps on all three) · prizes -18.0 < -16.5 · entries -15.5 -15.3 -13.4 /
+  -17.3 -16.3 -14.6 / -18.4 -16.4 -16.1 · Alarm Call -20.0 -15.5 -14.5 / -20.0 -17.0 -14.9 / -20.0 -17.0 -15.7 · total big
   -15.0 < rung max -11.8 < **MAX WIN -11.6** (mono -15.7 < -12.8 < -12.1, phone -16.4 < -15.4 < -12.3) · rung beds -15.2 /
   -15.0 / -14.8 / -14.6 / -14.4 LUFS. Chain nudges over the family target (the price of rising on all three): signs -2.6 /
   -2.2 / +1.2 / +2.3 / +2.0 dB (bass-heavy MEGA / EPIC / MAX impacts lose 4-6 dB through the phone proxy), rung hits -1.1 /
-  -0.4 / 0 / 0 / +2.2, `win_max` +1.9, bursts water -1.8, Rescue totals -0.9 / 0 / +0.5, `inferno_enter` +1.4, the rest
+  -0.4 / 0 / 0 / +2.2, `win_max` +1.9, bursts water -1.8, Rescue totals -0.9 / 0 / +0.5, `inferno_enter` +1.2, `blaze_mult_10` +0.4, the rest
   <= 0.25. Alternates level-matched: stops 0.01 dB (phone 0.09), ignitions 0.0 (phone 0.21), hauls 0.0 (phone 0.22); the
   three UI clicks match on st / mono but spread 3.95 dB on the phone proxy (listen, §9).
 - **Mono compatibility (r2, gate)**: every cue in both codecs has inter-channel correlation >= 0 and loses <= 3 dB of its
@@ -258,10 +260,12 @@ C8 -3 c, body unchanged 0.71. A key-fit that would make the body worse is never 
 - **Re-master law (`mix.py`)**: a cue needing > +6 dB of gain is re-mastered from the BUILD's master (kept in
   `audio/masters/_src/_premix/` with the sha of what mix.py wrote, so re-running mix.py never stacks a second raise), with a
   4x-oversampled tanh soft clip at -3 dBFS first when its crest factor exceeds 16 dB (crackle / pops: a look-ahead limiter
-  pumps on every pop), then the -1.5 dBFS limiter, up to 4 passes. 17 cues (4 base, 13 turbo): `burst_embers` +15.4 dB
+  pumps on every pop), then the -1.5 dBFS limiter, up to 4 passes. 16 cues (4 base, 12 turbo): `burst_embers` +15.7 dB
   (crest 27.8 dB: the draw is sparse full-scale pops at -25 dB RMS), `sign_impact_huge` +6.5, `alert_insufficient` +5.7,
-  `sym_win_l3` +3.5, turbo variants +3.4 .. +13.9 (`rung_hit_big_turbo` +9.4). r3: `rung_hit_big` itself no longer needs one
-  (its redraw sits +5.2 dB hotter raw: gain 1.54; r2 needed +4.7 dB). Listen for grit (§9).
+  `sym_win_l3` +3.5, turbo variants +3.4 .. +14.4. r3: `rung_hit_big` itself no longer needs one (its redraw sits +5.2 dB
+  hotter raw; r2 needed +4.7 dB); r4: neither does `rung_hit_big_turbo` (was +9.4; the hybrid's gain is 1.047 / turbo 1.454).
+  r4: the re-masters are reproducible (§15: `enc_wav` rounding; `burst_embers` / `_turbo` moved once, +15.38 -> +15.74 /
+  +13.91 -> +14.40 dB, when the rounding changed). Listen for grit (§9).
 - **No celebration at or below the stake** — contract §8 win-tier rule, client-derived from the booked round total W: W <= S
   (S = the CHARGED cost of the selected mode: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature) is tier 0 (a
   neutral cue or nothing) and takes precedence over every floor; then tier 1 S < W < 15B (`total_win_*`, `rescue_total_*`,
@@ -289,7 +293,11 @@ music `music_v1` composition plans. `audio/tools/gen_audio.mjs` ledgers EVERY ca
 character-cost header, cost estimate, output path, status. Key from the environment only. No redraw without a named,
 measured defect (`--force --reason`), one redraw per defect, the better draw by measurement ships (`bed_overrides.json`).
 Quota guard: stop at 25,000 characters remaining. **Spent**: the whole pass (107 draws, 0 failures) moved the account
-194,478 -> 185,542 characters (8,936; SFX headers 1,566); the ledger holds 117 rows (96 SFX ok, 11 music ok, 10 quota reads).
+194,478 -> 185,542 characters (8,936; SFX headers 1,566); the 5 redraws (§10; issued by the coordinator with `--force --reason`,
+this lane made no call) moved it 185,542 -> **184,277 at the last read**; that read reflects only the first redraw (1,265), the
+counter had not yet moved for the other four: the ledger's `est_chars` for all 5 total **3,104** (1,265 + 1,155 + 660 + 13 + 11),
+so the next read should show about **182,438**. The ledger holds
+**132 rows**: 98 SFX ok (96 + 2 redraws), 14 music ok (11 + 3 redraws), 20 quota reads, 0 failures.
 The build, mix, measure and montage are offline (no call).
 
 ## 8. Deferred
@@ -302,18 +310,20 @@ The build, mix, measure and montage are offline (no call).
 ## 9. Listening pass — NOT RUN
 
 Everything is built and machine-measured, but **nobody has listened yet**; no seat grants the audio rung without it. Render
-`python3 audio/tools/montage.py` -> `audio/qa/review_montage.mp3` (75 s, 93 distinct cues at their registered gains, -16.0 LUFS,
+`python3 audio/tools/montage.py` -> `audio/qa/review_montage.mp3` (75 s, 93 distinct cues at their registered gains, -16.1 LUFS,
 -1.5 dBTP; cue sheet `review_montage.json`) and listen on headphones AND a phone speaker (mono). Must cover:
 - the synthesised hook over each bed (does the glock / vibes / bugle / bell sit, or poke out?); the synth-bugle colour
   (cheesy in a good way, or cheap?); base A vs B (two tunes? — A is now its r3 redraw, from bar 1);
 - **the Inferno bed after its -3 st rubberband transposition** (phasiness / smeared transients?);
 - the lifted quiet bars (base B bars 1-2, Rescue bar 1): natural, or a noisy lift?;
 - every loop point, especially `rung_bed_big` / `rung_bed_mega` (r2 tail fill from bar 7) and the 12-bar Backdraft layer;
-- rung MAX (30 % of samples in limiting) and the soft-clipped re-masters (`burst_embers` +15.4 dB, `rung_hit_big_turbo`,
+- rung MAX (30 % of samples in limiting) and the soft-clipped re-masters (`burst_embers` +15.7 dB, `burst_embers_turbo`,
   `sign_impact_huge`, `alert_insufficient`): squash or grit?;
 - the alarm ladder climbing into the fanfare (does the resolution land?); the riser step-up and the neutral miss;
-- ignition and multiplier pings (too tinkly when five fire at once?); `sym_win_h2` split-band ring; `rung_hit_big` / `rung_hit_max` against the rung beds (their pitch
-  content is not C pentatonic, 0.525 / 0.58; `rung_hit_big` is the r3 redraw, a Bb stab moved -1 st);
+- ignition and multiplier pings (too tinkly when five fire at once?); `sym_win_h2` split-band ring; `rung_hit_max` against the rung beds (its pitch
+  content is not C pentatonic, 0.58); **`rung_hit_big` (r4 hybrid)**: does the synthesised brass / chime chord still read as the
+  drawn stab + snare BIG WIN stinger, or as a synth pad? the stab's low band moved +2.26 st (rubberband): smeared? the pickup into
+  `rung_bed_big`: one gesture, or two?;
 - **r2 changes to hear**: the reel stops' new C5-A5 wood knock over the thunk (x5 per spin: pleasant, or tinkly? audible on the
   phone over the reel loop?); the ta-da ladder now C4 .. E5 with rungs 4-8 from the horn source cleaned to one note (does the
   harmonic mask sound processed? the +5 / +7 / +9 st rubberband rungs?); the alarm chords now ring out 1.54 s with the top
@@ -339,18 +349,18 @@ Evidence: `audio/qa/redraw_foldin_r3.json`; commands and full outcomes: `audio/R
 | `base_loop_a` | chug 3.99 raw / 3.77 shipped; C-pent 0.559; sections 2-3 r 0.906; intro -10.5 dB | `pf_base92a_v2__1`: chug 1.52, C-pent 0.732, max section r 0.756; one defect, a 1-bar intro at -13.2 dB | **the redraw, from bar 1**: chug 1.35, C-pent 0.756, self-sim 0.834 / sliding 0.838, limiter 0.25 % |
 | `inferno_loop` | C minor/dorian, C-pent 0.546 | `pf_inferno100_v2__1`: C-pent 0.598 raw; built loop 0.634 raw / 0.704 at -2 st vs v1 -3 st 0.780; self-sim, sliding and seam all worse (§2.2) | **v1 at -3 st** (redraw rejected) |
 | `backdraft_spins_layer` | 5.3 s near-silent head, 15.0 bars of material | `pf_backdraft92_v2__1`: same head (-25.2 dB), chug 4.06, C-pent 0.547 | **v1, 12 bars** (redraw rejected) |
-| `rung_hit_big` | C-pent 0.525, tonality 0.53, pickup refused, +4.7 dB soft-clip re-master | tonality 0.679, +5.2 dB hotter, C-pent 0.520; a Bb3 stab (SHS 233.1 Hz), not the C asked | **the redraw**, key-fit -1 st: C-pent 0.525, SHS A3, tonality 0.553, no re-master (gain 1.54); pickup still refused |
+| `rung_hit_big` | C-pent 0.525, tonality 0.53, pickup refused, +4.7 dB soft-clip re-master | tonality 0.679, +5.2 dB hotter, C-pent 0.520; a Bb3 stab (SHS 233.1 Hz), not the C asked | **the redraw**, key-fit -1 st: C-pent 0.525, SHS A3, tonality 0.553, no re-master (gain 1.54); pickup still refused; **r4: a hybrid in C** (§15): C-pent 0.979, pickup accepted |
 | `sym_win_l4` | ~100 % of energy under 200 Hz: phone proxy -53.4 dBFS effective | same defect (phone gap 34.0 vs 34.5 dB), 4.9 dB quieter, out of key (F / F#, C-pent 0.217 vs 0.813) | **v1 restored** + a tuned A4 wood knock solved on the phone proxy (§14): -21.5 dBFS effective, within 2.44 dB of every other symbol win; C-pent 0.996 |
 
-No further redraw is requested. Offline options left: `rung_hit_big` as a hybrid (drawn stab + a synthesised C E G chime
-chord, the `blaze_mult_10` recipe) would put it in key and earn the pickup; a 16-bar Backdraft layer needs a third draw.
+No further redraw is requested. The offline option r3 left open — `rung_hit_big` as a hybrid (the `blaze_mult_10` recipe) — is
+built in r4 (§15); a 16-bar Backdraft layer needs a third draw.
 
 ## 11. Acceptance as measured (`python3 audio/tools/measure.py` -> `audio/qa/measure_all.json`, 2026-09-25)
 
 | Check | Result |
 |---|---|
 | ids x codecs present | 232 x 2 = 464 / 464; static == runtime sha256 for all 464 |
-| True peak, decoded Opus AND AAC, **8x oversampled** at the codec's native rate, unrounded (r2) | max **-1.21 dBTP** (r3), 0 over -1.0 (r1 shipped `spins_added.ogg` -0.96, `rung_hit_big.m4a` -0.97, `rescue_total_big.ogg` -0.98: ebur128 prints one decimal; now -3.00 / -1.18 / -1.23) |
+| True peak, decoded Opus AND AAC, **8x oversampled** at the codec's native rate, unrounded (r2) | max **-1.23 dBTP** (r4; r3 -1.21), 0 over -1.0 (r1 shipped `spins_added.ogg` -0.96, `rung_hit_big.m4a` -0.97, `rescue_total_big.ogg` -0.98: ebur128 prints one decimal; now -3.00 / -1.18 / -1.23) |
 | Loops seam-clean (wrap <= body p99.9, both codecs) | 14 / 14 (11 beds, reel spin, hose, ambience) |
 | Whole-bar grid exact (samples) | 11 / 11 beds (92 BPM x 32 = 3,681,392 samples; 100 x 32 = 3,386,880; 92 x 4 = 460,174; 92 x 12 = 1,380,522; 100 x 8 = 846,720) |
 | Codec-guard pads cyclic | 11 / 11 |
@@ -368,7 +378,9 @@ chord, the `blaze_mult_10` recipe) would put it in key and earn the pickup; a 16
 | **Reward chains on st + mono + phone** (r2, also re-checked by measure.py from the shipped files x gains) | 16 / 16 (+ 15 / 15 turbo in mix.py) |
 | **Alarm top voice** within 3 dB of the loudest partial, mono sum (r2) | 5 / 5 (A4 0.0, D5 0.0, F5 -1.1, A5 0.0, B5 0.0 dB) |
 | **Symbol wins on the phone proxy** (r3, measured, not a gate) | 9 / 9 within 2.44 dB: -19.02 .. -21.46 dBFS effective (`sym_win_l4` -53.43 -> -21.46) |
-| **PASS** | **true** — 16 / 16 gates (`measure_all.json` summary.failingGates = [], r3 2026-09-25) |
+| **Rung hit BIG in key** (r4, measured, not a gate) | C-pent 0.979 (r3 0.525), pickup accepted; rung-hit chain rising on st / mono / phone: -17.16 -15.86 -15.00 -14.51 -11.83 / -17.19 -16.94 -15.59 -15.34 -12.76 / -17.89 -17.03 -16.78 -15.65 -15.40 |
+| **Re-runs bit-identical** (r4, checked, not a gate) | `mix.py` twice in a row: 275 / 275 master WAVs incl. `_src` at the check (273 now: two stale `_premix` copies removed), 464 / 464 shipped, 464 / 464 runtime, `cues.json` / `mix_pass.csv` / `mix_ladder.json` sha256-identical |
+| **PASS** | **true** — 16 / 16 gates (`measure_all.json` summary.failingGates = [], r4 2026-09-25) |
 
 ## 12. Rebuild order (idempotent; every step re-runnable)
 
@@ -383,7 +395,9 @@ python3 audio/tools/montage.py                         # -> audio/qa/review_mont
 ```
 A partial rebuild (`build_audio.py music --only <bed>` etc.) must still be followed by mix -> manifest -> measure -> map.
 `shots` always mixes into the pre-pickup copy (`masters/_src/_prepickup`), `mix.py` re-masters from `masters/_src/_premix`,
-and the registry is written atomically (a failed dump can no longer truncate `cues.json`).
+and the registry is written atomically (a failed dump can no longer truncate `cues.json`). r4: every step is also
+REPRODUCIBLE — re-running the build or `mix.py` on the same inputs gives sha256-identical masters and shipped files (§15), and
+no intermediate file is left in `audio/runtime` (`kit.scratch()`).
 
 ## 13. r2 build fixes (2026-09-25; offline, no paid call)
 
@@ -413,3 +427,20 @@ Each defect was measured on the r1 shipped files; each fix is in the build / mix
 | `build_audio.PHONE_VOICE` / `phone_voice()`: drawn sub-heavy one-shot + a tuned knock on its onset, level solved on the 400 Hz proxy to st - phone <= `gap_db` (the reel-stop recipe, per cue) | `sym_win_l4` read -53.4 dBFS on the phone proxy vs -19.0 .. -20.8 for the other symbol wins; A4 wood (the thump's own pitch class, an octave under the reel-stop knocks); gap 2.5 dB, because A4 loses ~1.6 dB through the proxy and a 1.5 dB target buried the stomp 30 dB under the knock | knock +8.5 dB over the stomp's onset; gap 2.46 dB; -21.46 dBFS effective |
 | `build_audio.py` `--only` runs MERGE into `qa/build_report_<mode>.json` | a partial rebuild replaced the whole report with its subset | full report kept, `onlyRuns` appended |
 | Atomic writes: `kit.write_text` / `write_json` for every JSON / CSV / Markdown output of build / mix / measure / map / montage; `gen_manifest.mjs` temp + rename; `ship()` copies into static via temp + rename | a crash mid-write could leave a truncated QA file, map, manifest or shipped file | — |
+
+## 15. r4 (2026-09-25; offline, no paid call): `rung_hit_big` hybrid, bit-identical re-runs
+
+Evidence: `audio/qa/rung_hit_big_hybrid_r4.json`.
+
+| Change | Why (measured) | Now |
+|---|---|---|
+| `build_audio.HYBRID_STAB` / `hybrid_stab()`: `rung_hit_big` = drawn stab (split at 2.5 kHz: under it snapped +2.26 st to C4 by its dominant partial and cleaned to C4's harmonic series with `kit.harmonic_only`; above it — snare, bell sizzle — as drawn) at -3 dB + synthesised brass (bugle C4 E4 G4, held 0.32 s) / chime (C5 E5 G5) / glock (G5) chord on its onset, rolled up 30 ms per voice, top voice +4 dB, peak = the drawn peak, rung out 1.30 s (the `blaze_mult_10` recipe) | the redraw is a ~100 ms Bb-ish stab (dominant partial 229.6 Hz, a -45 c neighbour; SHS 233.1 Hz): key-fit -1 st shipped C-pent 0.525 and the pickup was refused. Body candidates (110-2500 Hz C-pent): as drawn 0.520, SHS snap +2.00 st 0.488, dominant-partial snap +2.26 st **0.664**, A3 snap 0.724 (root A under a C chord: not used) | **C-pent 0.979**, SHS C4, tonality 0.989; **pickup accepted** (+200 ms); stinger 1.30 s, file 1.50 s (audible 1.29 s); file st / mono / phone -17.6 / -17.6 / -18.3 dBFS (phone gap 4.4 -> 0.7 dB); gain 1.047; rung-hit chain (and its turbo chain) rising on all three; `rung_hit_big_turbo` x0.46, 654 ms, no re-master (r3 +9.4 dB) |
+| `kit.enc_wav`: `np.round(x * 8388608)` clipped to [-8388608, 8388607] (was a truncation of `x * 8388607`) | a decode -> encode round trip moved most samples by 1 LSB, so `mix.py`'s restore-from-`_premix` + re-master drifted and no two runs gave the same masters | a decoded 24-bit master re-encodes to identical PCM; masters identical run to run |
+| `kit.enc_runtime`: Ogg muxed with `-fflags +bitexact` | with identical masters, the 16 `.ogg` that `mix.py` re-ships still differed each run: the Ogg muxer draws a random stream serial (decoded audio identical) | `mix.py` x2: 275 masters at the check (273 after the stale `_premix` copies were removed), 464 shipped, 464 runtime, `cues.json`, `mix_pass.csv`, `mix_ladder.json` sha256-identical |
+| `kit.scratch()`: intermediate WAVs in one per-process temp dir outside the repo, removed at exit | `_m`, `_p_in` / `_p_out`, `_pb_in` / `_pb_out`, `_ts_in` / `_ts_out.wav` (22 MB) were left in `audio/runtime` by every build | deleted; `audio/runtime` = the 464 encodes only |
+| stale `masters/_src/_premix/rung_hit_big*.wav(.json)` removed | r1's +4.73 dB soft-clip re-master copies; `mix.py` no longer raises either cue | — |
+
+One-time shift when the rounding changed: `burst_embers` / `burst_embers_turbo` re-master +15.38 -> +15.74 / +13.91 -> +14.40 dB
+(their 4-pass loop stops on the measured `.ogg` level); the other 14 re-masters landed on the same raise (<= 2 LSB). The chain
+solver picked a different optimum for two chains it does not constrain tightly (multipliers x5 / x10 +0.25 dB, entries Rescue /
+Inferno -0.25 dB); every chain still rises by >= 0.25 dB on st / mono / phone. `measure.py` PASS 16 / 16, max TP -1.23 dBTP.
