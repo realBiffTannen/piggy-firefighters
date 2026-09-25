@@ -1,0 +1,96 @@
+import { API_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
+import { rgsFetcher } from 'rgs-fetcher';
+
+export * from './types';
+
+export const requestAuthenticate = async (options: {
+	sessionID: string;
+	rgsUrl: string;
+	language: string;
+}) => {
+	const data = await rgsFetcher.post({
+		rgsUrl: options.rgsUrl,
+		url: '/wallet/authenticate',
+		variables: {
+			sessionID: options.sessionID,
+			language: options.language,
+		},
+	});
+
+	return data;
+};
+
+export const requestEndRound = async (options: {
+	sessionID: string;
+	rgsUrl: string;
+}) => {
+	const data = await rgsFetcher.post({
+		rgsUrl: options.rgsUrl,
+		url: '/wallet/end-round',
+		variables: {
+			sessionID: options.sessionID,
+		},
+	});
+
+	return data;
+};
+
+export const requestEndEvent = async (options: {
+	sessionID: string;
+	eventIndex: number;
+	rgsUrl: string;
+}) => {
+	const data = await rgsFetcher.post({
+		rgsUrl: options.rgsUrl,
+		url: '/bet/event',
+		variables: {
+			sessionID: options.sessionID,
+			event: `${options.eventIndex}`,
+		},
+	});
+
+	return data;
+};
+
+export const requestBet = async (options: {
+	sessionID: string;
+	currency: string;
+	amount: number;
+	mode: string;
+	rgsUrl: string;
+}) => {
+	const data = await rgsFetcher.post({
+		rgsUrl: options.rgsUrl,
+		url: '/wallet/play',
+		variables: {
+			mode: options.mode,
+			currency: options.currency,
+			sessionID: options.sessionID,
+			amount: options.amount * API_AMOUNT_MULTIPLIER,
+		},
+	});
+
+	return data;
+};
+
+export const requestReplay = async (options: {
+	game: string;
+	version: string;
+	mode: string;
+	event: string;
+	rgsUrl: string;
+	/** Approval checklist, Replay Support: a replay is initiated WITH a
+	 *  language, so the replayed round is presented in the same language the
+	 *  player (or the reviewer) asked for. Replay never calls `/authenticate`,
+	 *  so this request is the only place the language can be declared. */
+	lang?: string;
+}) => {
+	const query = options.lang ? `?lang=${encodeURIComponent(options.lang)}` : '';
+	const data = await rgsFetcher.get({
+		rgsUrl: options.rgsUrl,
+		// @ts-ignore TODO: update the schema.ts
+		url: `/bet/replay/${options.game}/${options.version}/${options.mode}/${options.event}${query}`,
+	});
+
+	return data;
+}
