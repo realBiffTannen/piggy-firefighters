@@ -7,7 +7,8 @@
   `docs/codex/INBOX_FOR_CLAUDE.md` (Codex, on its `codex/*` branch).
 - Ownership is per path (spec §Ownership). Never edit another lane's path; report instead.
 - **Math is Codex's** (`math/**` model + production, `docs/math/**`, `docs/submission/**`,
-  `tools/codex/**`, `qa/codex/**`; ALLOCATION PF-20260925-02). The model is frozen at
+  `tools/codex/**`, `qa/codex/**`; ALLOCATION PF-20260925-02) and so is the Spine rig lane incl. its runtime
+  (`src/game/anim/**`, `src/components/rigs/**`, `src/routes/rigs/**`; PF-20260925-03). The model is frozen at
   tag `math-freeze-v1`; do not read `math/games/piggy_firefighters/library` while a generation runs.
 - Player-facing copy says **Engine**, never "Stake Engine". Max win **15,000x** in every mode. Pigs ARE the cast
   (Piggy family); no hard-hat / construction / police / LUCKY (lantern, dragon) wording or imagery, and no donor

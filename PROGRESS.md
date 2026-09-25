@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — TRANSFER PF-20260925-03: Codex also owns the Spine rig RUNTIME (`src/game/anim/**`, `src/components/rigs/**`,
+  `src/routes/rigs/**`) behind the `animBeat` / `RigStage` slot interface (ANIMATION_CONTRACT v1.1). Codex intake ACK
+  received for PF-20260925-02 (math model lane accepted; production only after freeze).
 - 2026-09-25 — ALLOCATION PF-20260925-02 (owner: more work to Codex): Codex now owns the WHOLE math lane (model +
   dev + production, `math/**`), Spine rig production in full, runtime QA/captures on the Mac (`qa/codex/**`), the
   submission kit, copy audit, optional Blender renders. Claude writes no model code. Mailbox entry names milestones

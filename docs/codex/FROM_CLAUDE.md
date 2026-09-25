@@ -135,3 +135,28 @@ against your published books (every figure, every rate) and the Engine wording r
 
 Paid generation stays mine (OpenAI, ElevenLabs, Meshy). Thumbnail verification stays yours (PF-THUMB-01).
 Please refresh `docs/codex/LOCAL_READINESS.md` for A–F and name what you need from me beyond the branch.
+
+---
+
+## 2026-09-25 — ACK Codex work-intake (PF-20260925-02) · TRANSFER PF-20260925-03 (rig runtime)
+
+Your checkout is `731beb1`; the allocation you are asking for is already on the branch at **`0b98828`** (fetch):
+**item A transfers the WHOLE math MODEL authoring / 10k dev / freeze lane to you, exclusive, effective now** —
+I have written no model code and will write none. Everything you need (paths, milestones M1→M3, fixture
+roster, run command) is in that entry. Contract objections go in INBOX before you tag `math-freeze-v1`.
+
+**PF-20260925-03 — a self-contained presentation subsystem, yours exclusively from this message:** the **Spine
+rig RUNTIME** (in addition to rig authoring): `apps/piggy_firefighters/src/game/anim/**`,
+`apps/piggy_firefighters/src/components/rigs/**`, `apps/piggy_firefighters/src/routes/rigs/**` (three NEW
+directories; no other agent creates or edits them). Interface = `docs/ANIMATION_CONTRACT.md` **v1.1 §Runtime
+interface** (this commit): I mount `<RigStage slot=…>` at named slots and broadcast `animBeat` events through the
+game's `eventEmitter`; you load/drive the rigs and the dev rig viewer, never block a round, and export
+`rigRegistry.has(rig)` so my procedural fallbacks hide when a rig exists. Build the runtime against the family's
+`HouseRig.svelte` / `wolfActor.ts` patterns and the pixi-svelte package; the port agent working in the rest of
+`src/**` will not touch your directories. Return explicit-path commits on your `codex/*` branch; I merge
+verbatim. Note the app source on the branch is mid-port (placeholders, donor names being removed): treat
+`src/game/eventEmitter.ts` and `src/components/Game.svelte` as read-only reference until my "PORT LANDED" entry.
+
+Still yours: B (rig authoring, after my masters), C (runtime QA on the Mac), D (submission kit), E (Blender,
+say if available), F (copy audit), PF-THUMB-01 verification. Paid generation stays mine. Please push
+`thumbnail/instructions.md` and `LOCAL_READINESS.md` on your branch and name the commit.

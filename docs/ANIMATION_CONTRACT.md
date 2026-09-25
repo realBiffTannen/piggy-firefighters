@@ -37,3 +37,51 @@ loads via `Spine.from`, sets skins, drives `state.setAnimation(track, name, loop
 `spray_*`, `rescues` → `pf_rescued_<n>.slide` then `land` + `celebrate` on dog/rookie, `alarmCall.falseAlarm` →
 `sad`. Fallbacks: sprite-sheet idles + tween pumps with the same beat hooks. A rig is accepted when
 `python3 art-src/animation/tools/check_contract.py` passes (Claude ports the family checker to this table).
+
+## v1.1 — Runtime interface (2026-09-25, ALLOCATION PF-20260925-03: Codex owns the rig RUNTIME too)
+
+Codex owns, exclusively, three NEW directories nobody else creates or edits:
+`apps/piggy_firefighters/src/game/anim/**` (rig registry, beat subscriber, Spine loading via `@esotericsoftware/spine-pixi-v8`
+already in the workspace), `apps/piggy_firefighters/src/components/rigs/**` (`RigStage.svelte`, one `RigActor.svelte`
+per rig, pixi-svelte components — see `packages/pixi-svelte` and `/home/user/lucky/apps/lucky/src/components/build/HouseRig.svelte`
+for the house style) and `apps/piggy_firefighters/src/routes/rigs/**` (the dev-only rig viewer; `tools/build_dist.sh`
+already moves `src/routes/rigs` out of the build). Claude owns the mounting points and the beats.
+
+**Mounting.** Claude's `components/Game.svelte` and scene components mount `<RigStage slot="…" />` at these named
+slots (board space, pixi-svelte `Container`s; Codex's stage positions rigs inside its slot, Claude positions the slot):
+`mascotLeft` (Chief Hamm, left of the reels), `mascotRight` (Ember, right of the reels), `cardPresenter` (Sprocket at
+the dispatch board on the Alarm Call card), `rescueRoom` ×5 (`index` 0..4, over each burning room), `ladder` (the
+slide path: Codex receives `{fromX,fromY,toX,toY}` per slot in props), `sheet` (Sprocket + Ember holding the jump
+sheet at the ladder foot), `winPlate` (a celebrating chief on BIG WIN and above). Each slot prop set:
+`{slot, index?, width, height, scale, layout: 'desktop'|'portrait', reducedMotion: boolean}`.
+
+**Beats.** Claude broadcasts through the game's existing `eventEmitter` (`src/game/eventEmitter.ts`) ONE emitter
+event type, `animBeat`, `{type: 'animBeat', beat, ...payload}`; Codex subscribes in `game/anim/beatBus.ts`. Beats and
+payloads (all positions 0-based board cells, amounts in bet multiples as numbers):
+
+| beat | payload | fired |
+|---|---|---|
+| `spinStart` | `{mode, speedTier}` | every spin, base or bonus |
+| `reelStop` | `{reel, symbols: string[]}` | each reel lands (row order top→bottom) |
+| `alarmLand` | `{reel, row, count, golden}` | an ALARM/GALARM lands (`count` so far) |
+| `anticipationStart` / `anticipationEnd` | `{reel, hit}` | book-driven anticipation reel; `hit` on end |
+| `lineWin` | `{lineIndex, amount, symbol, kind}` | per presented line |
+| `winTier` | `{tier: 0..5, amount, x}` | round tier known (0 = at/below bet, 1 small … 5 max) |
+| `backdraft` | `{cells: [{reel,row}]}` | the Backdraft flash |
+| `rescueEnter` | `{bonus: 'rescue'\|'inferno', source, spins, rooms}` | entering the bonus scene |
+| `douse` | `{sprays: [{reel, from, to}], rescues: [{reel, skin, prize?}], multiplier, spinsAdded}` | after each bonus reveal |
+| `rescue` | `{reel, skin, prize?, multiplier}` | one per rescued room, right after `douse` |
+| `buildingCleared` | `{building, spinsAdded}` | all five rooms saved |
+| `rescueExit` | `{total, multiplier, rescued, buildings}` | leaving the bonus |
+| `alarmCall` | `{outcome}` | card outcome shown |
+| `bigWinStart` / `bigWinEnd` | `{tier, amount}` | win-rung plate in / out |
+| `maxWin` | `{amount}` | capped round |
+| `idle` | `{seconds}` | every 10 s of idle (ambient loops) |
+| `speedTier` | `{tier: 0..2}` | speed change (2 = Super Turbo: skip long clips) |
+| `reducedMotion` | `{on}` | OS/setting change |
+
+Rules: rigs never block the round (no awaited promises from Codex's side; Claude's directors own timing); Super
+Turbo skips clips longer than 400 ms; every clip returns to its loop; nothing Codex draws may cover the reels
+or the HUD bar; phone layout uses `scale` from the slot. Until a rig's export exists at its path, `RigActor`
+renders nothing and Claude's procedural fallback (in Claude's scene files) shows; the fallback hides when
+`rigRegistry.has(rig)` (Codex exports this from `game/anim/rigRegistry.ts`) is true.
