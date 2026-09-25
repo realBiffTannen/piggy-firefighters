@@ -1,0 +1,182 @@
+{
+  "status": "FULL_RIG_UNREVIEWED",
+  "rig": "pf_rookie",
+  "editor": "4.2.43",
+  "registration_sha256": "5ce067c99c3931458022422194f1d2cee97018c2ca0483595181f90877a6b498",
+  "standing_scale": 0.263705759888966,
+  "source_files": {
+    "arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/arm_left.png",
+      "sha256": "990953cfceb7df7c00543d69ba905cc14dc4b28f224c1214460b49228bcce826"
+    },
+    "arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/arm_right.png",
+      "sha256": "8ef6b5c21d25b2ca419675bdcb317ce4510119c1cced958080de7426c24660c4"
+    },
+    "body_no_head_no_arms": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/body_no_head_no_arms.png",
+      "sha256": "53d4257c96b38d5a88855b5be01711072d1b5560e08c9c2de4cfa4c4800de7eb"
+    },
+    "brows_embarrassed": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/brows_embarrassed.png",
+      "sha256": "4c52f5c38ec5a95b99df42b6e05435d0cc05f741517ec0c6e8d50d506e9d4319"
+    },
+    "brows_neutral": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/brows_neutral.png",
+      "sha256": "330a7c58a3035188ee02dd3a4ecaa54c215e342b838237ff1b483b183253307d"
+    },
+    "brows_raised": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/brows_raised.png",
+      "sha256": "9101347e5ea73e84e3bc88970a6651e1abdad9e66bbfcdd9ab99b42e01651923"
+    },
+    "brows_worried": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/brows_worried.png",
+      "sha256": "42ce8642b1db6dcf5aab2feee77ba5b6720a2f0665b0064ef0ebef94d42309df"
+    },
+    "card_back": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/card_back.png",
+      "sha256": "00a9a2405bf273b9713506e73b8e10aae0d8a72fbb9f47dc2b1f5ad5784f2955"
+    },
+    "card_blank": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/card_blank.png",
+      "sha256": "25957f8758ca8fdef0f803717d5205bcf450801988e82f9bc12ecf0a4652c4f9"
+    },
+    "coat_tails": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/coat_tails.png",
+      "sha256": "4663e622e4b16ac933bcd36a4f045edc2161d4bd65d84eb86487822cbb99ff1a"
+    },
+    "ear_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/ear_left.png",
+      "sha256": "3c86fa3fcf21b984a14af62b94d3915a85d2f0145d1c9ef4810a92c5598a6189"
+    },
+    "ear_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/ear_right.png",
+      "sha256": "75c386f5c46c93515651edea81ef5c9a55364a9e9c21501ce903a4a94658b2b5"
+    },
+    "eyes_closed": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/eyes_closed.png",
+      "sha256": "306b93de60e16f7b076c3d43dc538f2c80c38195f9467276b21f600246f7f330"
+    },
+    "eyes_dart": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/eyes_dart.png",
+      "sha256": "4f304c1c8748fe9525f0da2d796a77242e2f64677920829b5630072f89f4371e"
+    },
+    "eyes_happy": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/eyes_happy.png",
+      "sha256": "e387f5b44191b92a677a09202da0109cb3f72e131f488e83f18da5567583c929"
+    },
+    "eyes_open": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/eyes_open.png",
+      "sha256": "83623112446196b4801e82d2626de1b6acae6020da7fc37a46d065ba92481fb7"
+    },
+    "hand_l_catch": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_l_catch.png",
+      "sha256": "4f507c91998141aeb038d433eac880e110694a5efba787cc1d5112a3ff9076f7"
+    },
+    "hand_l_grip": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_l_grip.png",
+      "sha256": "2632df2e711b3a67090344be9e129a608d2b9462cba4f1d3197199911f75186d"
+    },
+    "hand_l_open": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_l_open.png",
+      "sha256": "2a944a3493a6529a340aa020e94f55951ccbc15798851cbadc7fed7be0351f7c"
+    },
+    "hand_l_pinch": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_l_pinch.png",
+      "sha256": "0c7cd6af09e65b70e683e196e57de677198c6f9ddcab6d0a306e6d5ac1073974"
+    },
+    "hand_r_catch": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_r_catch.png",
+      "sha256": "2cbdaaca55a8942835abfb67c89ac57f99fdfba088d491e6360bef5bc4f94a5f"
+    },
+    "hand_r_grip": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_r_grip.png",
+      "sha256": "772a6dd2441f87b3af233c6b811c749427dc4897b84b65a870284cdd263e6a72"
+    },
+    "hand_r_open": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_r_open.png",
+      "sha256": "53bb99312664b729969d48e3d92102b84103138cee5f218d9c430615811b0e01"
+    },
+    "hand_r_pinch": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hand_r_pinch.png",
+      "sha256": "8f738d242941d0291cf7ba315e50bb7ee610fa5d2555d9f64fa5fa5eb3a2440d"
+    },
+    "head_blank": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/head_blank.png",
+      "sha256": "0841c68c2e7cdf7b5e62bab89b12dd9d0ba3f73a45b11eeeae08b81031d7b1be"
+    },
+    "helmet_front": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/helmet_front.png",
+      "sha256": "79b48a8d18d2da5f15b71152a73a71e559b853fcc38bcfb7954759be18cc8470"
+    },
+    "hose_coil": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hose_coil.png",
+      "sha256": "0107cdd72cc3d548d57deee6ebb124f8224b4af04d80d3f196de20c27015e483"
+    },
+    "hose_flexible": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/hose_flexible.png",
+      "sha256": "0d733ec1e752d82981ed3f325251364d788fb7c4903ef253b333abfe7aea71f9"
+    },
+    "leg_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/leg_left.png",
+      "sha256": "92fb08a72367de749bb74279b459adf02211546970f4064100e08d819f57d3f1"
+    },
+    "leg_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/leg_right.png",
+      "sha256": "edffb53cdd9bb99f72a5d6f7165fd729881d1c561575169cd63ae16b1864a3c7"
+    },
+    "mouth_closed": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/mouth_closed.png",
+      "sha256": "13bbebbdbdf5abfbe56ac98e263fc3be5e4937ff9ccd13f9363b46b8b1805181"
+    },
+    "mouth_oops": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/mouth_oops.png",
+      "sha256": "e95cf5a31a6a44f64cef6540046af39c734b80448fb4bd4c7b2c559eec32c854"
+    },
+    "mouth_open": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/mouth_open.png",
+      "sha256": "44d4a7805c50c829e7eae649af0a180d71cb5e7bfb48b0c105dd4fd3d79ecaf3"
+    },
+    "mouth_sad": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/mouth_sad.png",
+      "sha256": "91de6aacb43a17e4cccfe550ca54db1fe758a30de02dd55f74acf2696025c887"
+    },
+    "mouth_shout": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/mouth_shout.png",
+      "sha256": "e9ce52e51870b938ede4af6eddc8e7e03749ca557ec6d2d34ba7cbdb81e3ca56"
+    },
+    "mouth_smile": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/parts/pf_rookie/pieces/mouth_smile.png",
+      "sha256": "93592a68d81bddd98db44fc53bb6afd28a884620f78c50f6bacca1f52bd2ee2f"
+    }
+  },
+  "derivation": "Region attachments and UV strip meshes over registered r2 parts; source PNG bytes unchanged",
+  "paid_generation": "none",
+  "motion_review": "NOT RUN",
+  "runtime_export": {
+    "status": "FULL_RIG_UNREVIEWED",
+    "nativeExportSha256": "c565bf7d80df73cff507f13612a61a3ae676fd7440bcef678a44acc82ab80bca",
+    "runtime": "spine-core4.2.74",
+    "method": "AtlasAttachmentLoader over the exported atlas; Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds",
+    "bounds": {
+      "x": -88.60320823565222,
+      "y": -0.2601000785827621,
+      "width": 183.911233896464,
+      "height": 380.00169996261576
+    },
+    "pages": [
+      "pf_rookie.png"
+    ],
+    "change": "Only skeleton x/y/width/height header values; original native export preserved"
+  },
+  "installed": {
+    "root": "apps/piggy_firefighters/static/assets/spine/pf_rookie",
+    "sha256": {
+      "pf_rookie.json": "2b98dd2c9680f729070f1e78045d008f58ce99000db21637b904be00306fbcc4",
+      "pf_rookie.atlas": "d842f20ff805792e9973fcbd2c8f86f40dc08d31db5c952af53cc61935595e85",
+      "pf_rookie.png": "ef7c0456bf12ad2287cc9536a944807347befddf76e9c46973a2b3b9fc508255"
+    }
+  },
+  "native_project": "drafts/v001/pf_rookie.spine (Spine 4.2.43 CLI import of the authored pf_rookie.json; authoritative)",
+  "gate": "python3 art-src/animation/tools/check_contract.py --rig pf_rookie -> PASS (2026-09-25)"
+}

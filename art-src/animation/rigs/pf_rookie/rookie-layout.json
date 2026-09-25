@@ -1,0 +1,246 @@
+{
+  "registration_sha256": "5ce067c99c3931458022422194f1d2cee97018c2ca0483595181f90877a6b498",
+  "standing_scale": 0.263705759888966,
+  "master_bounds": [
+    177,
+    0,
+    850,
+    1441
+  ],
+  "coordinate_basis": "1024x1536 registered canvas pixels; y down; feet 512,1440",
+  "fits": {
+    "eyes_open": {
+      "centre": [
+        566.0,
+        279.0
+      ],
+      "scale": 0.6,
+      "score": 197.96,
+      "guess": [
+        560,
+        272
+      ],
+      "measured_by": "colour fit"
+    },
+    "brows_neutral": {
+      "centre": [
+        562,
+        224
+      ],
+      "scale": 0.5,
+      "score": null,
+      "guess": [
+        562,
+        224
+      ],
+      "measured_by": "read on the master"
+    },
+    "mouth_closed": {
+      "centre": [
+        596,
+        364
+      ],
+      "scale": 0.32,
+      "score": null,
+      "guess": [
+        596,
+        364
+      ],
+      "measured_by": "read on the master"
+    },
+    "ear_right": {
+      "centre": [
+        362.0,
+        319.0
+      ],
+      "scale": 0.45,
+      "score": 133.1,
+      "guess": [
+        378,
+        318
+      ],
+      "measured_by": "colour fit"
+    },
+    "ear_left": {
+      "centre": [
+        689.0,
+        252.5
+      ],
+      "scale": 0.45,
+      "score": 120.05,
+      "guess": [
+        680,
+        256
+      ],
+      "measured_by": "colour fit"
+    }
+  },
+  "arms": {
+    "r": {
+      "image": "arm_right",
+      "shoulder": [
+        424.1,
+        548.7
+      ],
+      "cuff": [
+        305.26,
+        832.99
+      ]
+    },
+    "l": {
+      "image": "arm_left",
+      "shoulder": [
+        618.6,
+        548.8
+      ],
+      "cuff": [
+        743.7,
+        845.23
+      ]
+    }
+  },
+  "hands": {
+    "hand_r_open": {
+      "cuff": [
+        98.82,
+        77.73
+      ],
+      "axis_deg": 79.671,
+      "size": [
+        241,
+        324
+      ],
+      "scale": 0.6
+    },
+    "hand_r_grip": {
+      "cuff": [
+        93.4,
+        79.37
+      ],
+      "axis_deg": 69.733,
+      "size": [
+        237,
+        287
+      ],
+      "scale": 0.6
+    },
+    "hand_r_pinch": {
+      "cuff": [
+        80.67,
+        88.84
+      ],
+      "axis_deg": 39.639,
+      "size": [
+        260,
+        219
+      ],
+      "scale": 0.6,
+      "pinch_tip": [
+        246.0,
+        96.0
+      ]
+    },
+    "hand_r_catch": {
+      "cuff": [
+        92.67,
+        75.26
+      ],
+      "axis_deg": 62.797,
+      "size": [
+        294,
+        274
+      ],
+      "scale": 0.6,
+      "sheet_tip": [
+        268,
+        236
+      ]
+    },
+    "hand_l_open": {
+      "cuff": [
+        149.45,
+        73.19
+      ],
+      "axis_deg": 104.369,
+      "size": [
+        242,
+        318
+      ],
+      "scale": 0.6
+    },
+    "hand_l_grip": {
+      "cuff": [
+        143.27,
+        75.08
+      ],
+      "axis_deg": 107.17,
+      "size": [
+        237,
+        276
+      ],
+      "scale": 0.6
+    },
+    "hand_l_pinch": {
+      "cuff": [
+        179.73,
+        87.42
+      ],
+      "axis_deg": 137.305,
+      "size": [
+        260,
+        226
+      ],
+      "scale": 0.6,
+      "pinch_tip": [
+        21.0,
+        143.0
+      ]
+    },
+    "hand_l_catch": {
+      "cuff": [
+        196.75,
+        78.55
+      ],
+      "axis_deg": 117.624,
+      "size": [
+        286,
+        290
+      ],
+      "scale": 0.6,
+      "sheet_tip": [
+        30,
+        255
+      ]
+    }
+  },
+  "scales": {
+    "eyes_open": 0.6,
+    "eyes_closed": 0.6,
+    "eyes_happy": 0.6,
+    "eyes_dart": 0.6,
+    "brows_neutral": 0.5,
+    "brows_raised": 0.5,
+    "brows_worried": 0.5,
+    "brows_embarrassed": 0.5,
+    "mouth_closed": 0.32,
+    "mouth_open": 0.32,
+    "mouth_smile": 0.32,
+    "mouth_oops": 0.32,
+    "mouth_sad": 0.32,
+    "mouth_shout": 0.32,
+    "ear_right": 0.45,
+    "ear_left": 0.45,
+    "hand_r_open": 0.6,
+    "hand_r_grip": 0.6,
+    "hand_r_pinch": 0.6,
+    "hand_r_catch": 0.6,
+    "hand_l_open": 0.6,
+    "hand_l_grip": 0.6,
+    "hand_l_pinch": 0.6,
+    "hand_l_catch": 0.6,
+    "card_blank": 0.6,
+    "card_back": 0.6,
+    "hose_coil": 0.316,
+    "hose_flexible": 0.316
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "status": "FULL_RIG_UNREVIEWED",
+  "nativeExportSha256": "c565bf7d80df73cff507f13612a61a3ae676fd7440bcef678a44acc82ab80bca",
+  "runtime": "spine-core4.2.74",
+  "method": "AtlasAttachmentLoader over the exported atlas; Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds",
+  "bounds": {
+    "x": -88.60320823565222,
+    "y": -0.2601000785827621,
+    "width": 183.911233896464,
+    "height": 380.00169996261576
+  },
+  "pages": [
+    "pf_rookie.png"
+  ],
+  "change": "Only skeleton x/y/width/height header values; original native export preserved"
+}

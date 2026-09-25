@@ -1,0 +1,39 @@
+{
+  "rig": "pf_rookie",
+  "scope": "VISUAL SANITY ONLY (rest pose + one or two mid-clip frames per clip); not the recorded motion review",
+  "viewer": "http://127.0.0.1:3044/rigs (pnpm dev, lane port), muted headless Chromium via capture.mjs, desktop frame 920x600 at 1x, quarter speed for frame grabs",
+  "sourceCommit": "75b148a43f2ca4203afb11d9731c1f08d64adc1d",
+  "installed_sha256": {
+    "pf_rookie.json": "2b98dd2c9680f729070f1e78045d008f58ce99000db21637b904be00306fbcc4",
+    "pf_rookie.atlas": "d842f20ff805792e9973fcbd2c8f86f40dc08d31db5c952af53cc61935595e85",
+    "pf_rookie.png": "ef7c0456bf12ad2287cc9536a944807347befddf76e9c46973a2b3b9fc508255"
+  },
+  "frames": [
+    "mid-card_flip-0.78.png",
+    "mid-card_flip.png",
+    "mid-catch.png",
+    "mid-celebrate.png",
+    "mid-fumble-0.15.png",
+    "mid-fumble-0.72.png",
+    "mid-fumble.png",
+    "mid-hold_sheet.png",
+    "mid-idle.png",
+    "mid-sad.png",
+    "rest-card_flip.png",
+    "rest-fumble.png"
+  ],
+  "pageErrors": [],
+  "observations": [
+    "380 px standing height matches the gold contract ruler",
+    "all seven clips load; events flip/catch and anchors sheet_l/sheet_r present (gate PASS)",
+    "hold_sheet/catch: arms out, catch hands on the wrists, body drop on catch",
+    "card_flip: pinch hand raises the card to chest height, edge-on at .45 s (flip), blank face revealed after",
+    "fumble: coil in both grip hands, slips below the open hands, hose trails behind the legs, recovered grip",
+    "celebrate: both sleeves raise 138 deg with the shoulder cap covering the pivot; no gap at cuff or shoulder",
+    "sad: head/ears droop, restrained recovery"
+  ],
+  "unresolved": [
+    "helmet_front cut edge shows a soft jaggy seam against head_blank at 4x zoom (invisible at game scale)",
+    "hose_coil reads small (0.316 registered scale); arm_*_raised, hand_*_point and helmet_only pieces are unused in v001"
+  ]
+}
