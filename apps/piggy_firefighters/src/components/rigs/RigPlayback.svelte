@@ -4,7 +4,7 @@
   import { subscribeToBeats } from '../../game/anim/beatBus';
   import { registerMountedRig } from '../../game/anim/rigRegistry';
   import { createPlaybackEpoch, defaultLoop, motionTimeScale, planBeat, planLanding, RIG_DEFINITIONS, resolveSkin, type BeatPlan, type EmitterEventAnim, type MotionSettings, type LadderPath } from '../../game/anim/rigLogic';
-  import { createFrameQueue, createRescueQueue, snapshotRigRequest, transitionRigClip, landingBus } from '../../game/anim/playbackControl';
+  import { canEmitRigEvent, createFrameQueue, createRescueQueue, snapshotRigRequest, transitionRigClip, landingBus } from '../../game/anim/playbackControl';
   import type { RigActorProps, RigHandle } from '../../game/anim/rigTypes';
 
   const props: RigActorProps = $props();
@@ -36,7 +36,10 @@
     if (arrived && epoch.isCurrent(updatedEpoch)) landingBus.publish();
   }
 
-  function emitRigEvent(name: string) {
+  function emitRigEvent(name: string, cancellation = false) {
+    // A hidden actor (plate slot down, no gutter on this layout, faded parent) starts no presentation; the
+    // cancellation of a spray that DID start always reaches the scene, so its water shuts off.
+    if (!canEmitRigEvent(name, spine, cancellation || (name === 'spray_off' && spraying))) return;
     if (name === 'spray_on') spraying = true;
     if (name === 'spray_off') spraying = false;
     const anchors: Record<string, { x: number; y: number }> = {};
@@ -80,7 +83,7 @@
   }
   function play(plan: BeatPlan, path?: LadderPath) {
     if (!live || spine.destroyed) return;
-    if (spraying) emitRigEvent('spray_off');
+    if (spraying) emitRigEvent('spray_off', true);
     activeEpoch = epoch.begin();
     frameQueue.clear();
     arrivalPending = false;
@@ -186,7 +189,7 @@
     try { props.onready?.(handle); }
     catch (error) { console.warn('Rig ready callback failed', error); }
     return () => {
-      if (spraying) emitRigEvent('spray_off');
+      if (spraying) emitRigEvent('spray_off', true);
       live = false;
       pendingRescues.clear();
       frameQueue.clear();

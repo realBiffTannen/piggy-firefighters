@@ -59,8 +59,18 @@ export function planBeat(rig: RigName, slot: RigSlot, event: EmitterEventAnim, s
     ...extra,
     travel: Boolean(extra.travel) && !settings.reducedMotion && settings.speedTier !== 2,
   });
+  if (slot === 'winPlate') {
+    // The plate chief has ONLY his own lifecycle: in with the win-rung sign, out with it. Mascot beats (douse, idle,
+    // alarms, tiers) never start a hidden performance here, so no spray_on / sign_hit can fire from a plate nobody sees.
+    switch (event.beat) {
+      case 'bigWinStart': return event.tier >= 2 ? finish([once('big_win')], { visible: true }) : null;
+      case 'bigWinEnd': case 'spinStart': case 'rescueExit': return { steps: [loop(rest)], visible: false };
+      case 'speedTier': case 'reducedMotion': return { steps: [loop(rest)] };
+      default: return null;
+    }
+  }
   switch (event.beat) {
-    case 'spinStart': return { steps: [loop(rest)], ...(slot === 'rescueRoom' ? {} : { visible: slot !== 'ladder' && slot !== 'winPlate' }) };
+    case 'spinStart': return { steps: [loop(rest)], ...(slot === 'rescueRoom' ? {} : { visible: slot !== 'ladder' }) };
     case 'speedTier': case 'reducedMotion': return { steps: [loop(rest)] };
     case 'alarmLand': return rig === 'pf_chief' ? finish([once('point_reels')]) : null;
     case 'anticipationStart': return rig === 'pf_dog' ? finish([once('bark')]) : null;
@@ -77,13 +87,12 @@ export function planBeat(rig: RigName, slot: RigSlot, event: EmitterEventAnim, s
     case 'buildingCleared':
       if (rig === 'pf_rescued') return { steps: [loop(rest)], skin: rescuedSkin(index, event.building), visible: slot !== 'ladder' };
       return finish([once('celebrate')]);
-    case 'rescueExit': return { steps: [loop(rest)], visible: slot !== 'ladder' && slot !== 'winPlate' };
+    case 'rescueExit': return { steps: [loop(rest)], visible: slot !== 'ladder' };
     case 'alarmCall': {
       const falseAlarm = typeof event.outcome === 'string' ? /^(falseAlarm|false_alarm|false-alarm)$/.test(event.outcome) : event.outcome.falseAlarm === true || event.outcome.type === 'falseAlarm';
       return rig === 'pf_rookie' ? finish([once(falseAlarm ? 'sad' : 'card_flip')]) : rig === 'pf_chief' && falseAlarm ? finish([once('sad')]) : null;
     }
-    case 'bigWinStart': return slot === 'winPlate' && event.tier >= 2 ? finish([once('big_win')], { visible: true }) : null;
-    case 'bigWinEnd': return slot === 'winPlate' ? { steps: [loop(rest)], visible: false } : null;
+    case 'bigWinStart': case 'bigWinEnd': return null; // the plate chief's own lifecycle (above); mascots keep acting
     case 'maxWin': return rig === 'pf_chief' ? finish([once('celebrate')]) : null;
     case 'idle': return rig === 'pf_chief' ? finish([{ ...loop('idle_alt'), holdSeconds: 5 }]) : rig === 'pf_rookie' && slot !== 'sheet' ? finish([once('fumble')]) : null;
     default: return null;
@@ -96,6 +105,25 @@ export function planLanding(rig: RigName, settings: MotionSettings): BeatPlan | 
   const rest = loop('hold_sheet');
   return { steps: settings.reducedMotion || settings.speedTier === 2
     ? [rest] : [once(rig === 'pf_rookie' ? 'catch' : 'celebrate'), rest] };
+}
+
+export type RigBounds = { x: number; y: number; width: number; height: number };
+export type SlotFit = { x: number; y: number; scale: number };
+/**
+ * Bounds-aware slot layout. Authored roots sit at the feet and the export's setup bounds may begin left of / below the
+ * root (a negative origin: the Chief's raised arm and hose reach 171 px left of his feet), so fitting the bounds' width
+ * alone left his arm under the slot mask. The feet stay centred horizontally; the WHOLE bounds box keeps a motion
+ * gutter (8 px, less on a tiny slot) inside the slot; the scene's layout scale only ever shrinks the fitted actor
+ * (a layout scale above 1 cannot crop him). Spine y is up: the bounds' bottom edge rests on the lower gutter.
+ */
+export function fitRigInSlot(bounds: RigBounds, slotW: number, slotH: number, layoutScale = 1, gutter = 8): SlotFit {
+  const g = Math.max(0, Math.min(gutter, slotW * 0.1, slotH * 0.1));
+  const left = Math.max(0, -bounds.x);
+  const right = Math.max(0, bounds.x + bounds.width);
+  const reach = Math.max(left, right, 1e-6);
+  const fitted = Math.max(0, Math.min((slotW / 2 - g) / reach, (slotH - 2 * g) / Math.max(bounds.height, 1e-6)));
+  const scale = fitted * Math.min(1, Math.max(0, Number.isFinite(layoutScale) ? layoutScale : 1));
+  return { x: slotW / 2, y: slotH - g + bounds.y * scale, scale };
 }
 
 /** Completion callbacks from an interrupted clip cannot advance its replacement. */

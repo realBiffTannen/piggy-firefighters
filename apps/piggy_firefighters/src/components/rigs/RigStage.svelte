@@ -3,7 +3,7 @@
   import RigActor from './RigActor.svelte';
   import SlotClip from './SlotClip.svelte';
   import type { RigActorProps } from '../../game/anim/rigTypes';
-  import type { RigName, RigSlot, LadderPath } from '../../game/anim/rigLogic';
+  import { fitRigInSlot, type RigName, type RigSlot, type LadderPath } from '../../game/anim/rigLogic';
 
   type Props = Pick<RigActorProps, 'onready' | 'ondispose' | 'onrigEvent' | 'speedTier' | 'skin'> & {
     slot: RigSlot;
@@ -27,21 +27,26 @@
   } satisfies Record<RigSlot, RigName[]>)[props.slot]);
   const path = $derived(props.path ?? (props.fromX !== undefined && props.fromY !== undefined && props.toX !== undefined && props.toY !== undefined
     ? { fromX: props.fromX, fromY: props.fromY, toX: props.toX, toY: props.toY } : undefined));
-  function fit(rig: RigName) {
+  // Each actor owns an equal share of the slot's width. The export's setup bounds (finish_export.mjs derives them;
+  // a negative origin is normal: the Chief's hose arm reaches left of his feet) are fitted whole, feet centred, with
+  // the motion gutter, so no pose is clipped by the slot mask. The slot scale comes from the scene's desktop /
+  // portrait layout, never device detection, and can only shrink the fitted actor.
+  const share = $derived(props.width / Math.max(1, rigs.length));
+  function place(rig: RigName, actorIndex: number) {
     const data = app.stateApp.loadedAssets?.[rig] as LoadedSpine | undefined;
-    if (!data?.width || !data.height) return 0;
-    // All authored roots are at the feet; preserve aspect ratio. The slot scale
-    // comes from the scene's desktop/portrait layout, never device detection.
-    return Math.min(props.width / rigs.length / data.width, props.height / data.height) * Math.max(0, props.scale);
+    if (!data?.width || !data.height) return { x: share * (actorIndex + 0.5), y: props.height, scale: 0 };
+    const fit = fitRigInSlot({ x: data.x ?? 0, y: data.y ?? 0, width: data.width, height: data.height }, share, props.height, props.scale);
+    return { x: share * actorIndex + fit.x, y: fit.y, scale: fit.scale };
   }
 </script>
 
 <Container eventMode="none">
   <SlotClip width={props.width} height={props.height} />
   {#each rigs as rig, actorIndex (rig)}
+    {@const at = place(rig, actorIndex)}
     <RigActor {rig} slot={props.slot} index={props.index ?? 0}
-      x={props.width * (actorIndex + 0.5) / rigs.length} y={props.height}
-      scale={fit(rig)} reducedMotion={props.reducedMotion} speedTier={props.speedTier}
+      x={at.x} y={at.y}
+      scale={at.scale} reducedMotion={props.reducedMotion} speedTier={props.speedTier}
       skin={props.skin} {path} onready={props.onready} ondispose={props.ondispose} onrigEvent={props.onrigEvent} />
   {/each}
 </Container>

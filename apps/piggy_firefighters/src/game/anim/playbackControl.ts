@@ -52,6 +52,21 @@ export function createLandingBus() {
 }
 export const landingBus = createLandingBus();
 
+export type RenderNode = { visible?: boolean; renderable?: boolean; alpha?: number; destroyed?: boolean; parent?: RenderNode | null };
+/**
+ * Presentation starts (spray_on, sign_hit, step, ...) from an actor nobody can see — a plate slot that is not up, a
+ * stacked layout without gutters, a container faded to alpha 0, a destroyed node — never reach the scene FX; the
+ * check walks the actor and every ancestor. The cancellation of an ACTIVE spray always passes, so the scene's water
+ * never stays on a nozzle that vanished.
+ */
+export function canEmitRigEvent(event: string, actor: RenderNode | null | undefined, isCancellation: boolean): boolean {
+  if (isCancellation && event === 'spray_off') return true;
+  for (let node = actor; node; node = node.parent) {
+    if (node.destroyed || node.visible === false || node.renderable === false || (node.alpha ?? 1) <= 0) return false;
+  }
+  return true;
+}
+
 /** Current SvelteKit configuration is inline (_app/immutable/bundle.js). */
 export function resolveRigAssetUrl(path: string, moduleUrl: string, development: boolean) {
   return new URL((development ? '../../../assets/' : '../../assets/') + path, moduleUrl).href;
