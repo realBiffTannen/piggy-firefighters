@@ -25,6 +25,8 @@ export const RUNG_SKINS = ['big', 'huge', 'mega', 'epic', 'max'] as const;
 
 /** Tumbling pieces the rungs shed (8 x 3 sheets of 128 px cells, 24 frames; winrungs/pieces/<name>.json). */
 export const RUNG_PIECES = ['coin', 'silver_coin', 'ember', 'spark', 'droplet', 'badge', 'helmet', 'boot', 'nozzle', 'hydrant_cap'] as const;
+/** Pieces with a 3D turntable sheet under 3d/winrungs/pieces (static/assets/3d, art-src/3d/renders/source-record.json). */
+export const RUNG_PIECES_3D: ReadonlySet<string> = new Set(['coin', 'silver_coin', 'badge', 'helmet', 'boot', 'nozzle', 'hydrant_cap']);
 
 /** Rescue room states (features/rescue/rooms.meta.json `files`), one file per room and state. */
 export const ROOM_STATES = ['roaring', 'smouldering', 'safe', 'inferno_roaring', 'inferno_smouldering', 'inferno_safe'] as const;
@@ -51,7 +53,10 @@ entries.rung_fx_ring_shockwave = sprite('winrungs/fx/ring_shockwave.webp');
 entries.rung_fx_glint_4point = sprite('winrungs/fx/glint_4point.webp');
 entries.rung_fx_dust_puff = sprite('winrungs/fx/dust_puff.webp');
 entries.rung_fx_light_ray_wedge = sprite('winrungs/fx/light_ray_wedge.webp');
-for (const k of RUNG_PIECES) entries[`rung_piece_${k}`] = sprite(`winrungs/pieces/${k}_sheet.webp`);
+// the seven solid pieces are Blender toon turntables of this title's Meshy models (lane E, art-src/3d/render_turntables.py;
+// same 8 x 3 / 128 px / 24-frame geometry, true 3D tumble); droplet, ember and spark are FX and stay on the 2D sheets.
+for (const k of RUNG_PIECES)
+	entries[`rung_piece_${k}`] = sprite(RUNG_PIECES_3D.has(k) ? `3d/winrungs/pieces/${k}_sheet.webp` : `winrungs/pieces/${k}_sheet.webp`);
 entries.maxwin_card_landscape = sprite('maxwin/max_win_card_16x9.webp');
 entries.maxwin_card_portrait = sprite('maxwin/max_win_card_portrait.webp');
 // the reel frame (components/BoardFrame.svelte): the truck panel plate (cut into corners + tiled rails per

@@ -49,8 +49,9 @@ export default {
 	...symbolEntries,
 	coins: {
 		type: 'spriteSheet',
-		// tumbling coin for the win fountain (components/WinCoins.svelte), 32 frames of 128 px (animation `coin`)
-		src: u('winrungs/coins/coin_sheet.json'),
+		// tumbling coin for the win fountain (components/WinCoins.svelte), 32 frames of 128 px (animation `coin`): the Blender
+		// turntable of this title's Meshy coin (lane E); the 2D flip sheet stays at winrungs/coins as the fallback.
+		src: u('3d/winrungs/coins/coin_sheet.json'),
 	},
 	// All audio is the single Web Audio manager in src/game/audio (audio lane); it is not registered here.
 	// Background plates, shutter, mode cards, win rungs, FX, the reel frame and the Rescue block: game/assetsScene.ts.
