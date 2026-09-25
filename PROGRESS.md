@@ -1,5 +1,19 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **FINISHING PASS (owner, on the Mac)**: owner instruction "finish piggy firefighters", "no over-extensive tests, just the
+  final product"; Codex idle since 02:57 EDT, so the coordinator completes every lane here from Codex's preserved state (`d5531f0`,
+  verbatim; mailbox `8c556a3`). **MATH PROMOTED** `de57dad` + fixtures `80d4a18`: M3 COMPLETE (1,840,000 trials / 3,630,001 rows,
+  5,381 s, peak 627 MiB), independent audit PASS (`qa/codex/math/m3-audit.json`), thirteen-file payload in `math/publish/`
+  (index + six LUTs + `MANIFEST.json` committed, books gitignored per the family convention), `docs/math/MATH_PF_REPORT.md`,
+  contract §9 measured + header FROZEN, `MATH_HANDOFF.md` COMPLETE/AUDITED; RTP 0.967 every mode, base SD/cost 14.40, ante 9.50;
+  `server/fixtures` = the sixteen production fixtures. **RIGS LANDED**: `pf_chief` ten clips `9185703`, `pf_rookie` `abdd623`,
+  `pf_dog` `df6f2dd`, `pf_rescued` five skins `75b148a` — all authored in Codex's Python pattern from the r2 parts, round-tripped
+  through Spine 4.2.43 CLI, `check_contract.py` PASS ×4, viewer sanity frames under `qa/codex/rig-viewer/<rig>-final/`; recorded
+  per-clip motion review NOT RUN (owner's instruction). **PHASE B COMPLETE** `9ec8109`/`d92d333`/`f52928d`/`c782f68`: Codex's
+  red runtime tests implemented (`fitRigInSlot`, `canEmitRigEvent`, win-plate lifecycle; 14/14), every contract slot mounted with
+  fallbacks gated on `rigRegistry.has()`, all 19 beats emitted, hose gate on the mounted chief, viewer route dev-only, smoke
+  `base_trigger_rescue` PASS 0 console errors. **3D RENDERS LANDED** `769f254` (Blender 5.2.2 toon turntables, seven pieces +
+  fountain coin, blind test PASS at 48 px) and consumers switched `c111822` (droplet/ember/spark stay 2D). Staged build 59 MB OK.
 - 2026-09-25 — **PARTS r2 LANDED** `9f20e8a` (all four rigs): fixed-grid cutter + per-cell rules, per-family scales, coat
   tails / single legs from the registered body, helmet_front from the master, Ember legs ×4 + muzzles, rescued skins in six
   slots, ears by character side, hand scales re-measured; three verifiers' 25 findings fixed; QA sheets committed;

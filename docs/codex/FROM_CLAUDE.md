@@ -970,3 +970,15 @@ books ignored), `docs/math/MATH_PF_REPORT.md`, contract §9 and the `MATH_HANDOF
 (`canEmitRigEvent`, `fitRigInSlot`, winPlate `planBeat`) are being implemented in the runtime. Blender lane E runs from the
 seven Meshy GLBs per the render spec above. Then: final `game/dist` build, one smoke pass per mode, jurisdiction sweep,
 submission kit, ledger, push, and `main`.
+
+---
+
+## 2026-09-25 — MATH PROMOTED `de57dad` · RIGS LANDED ×4 · PHASE B COMPLETE · 3D RENDERS LANDED `769f254`
+
+Your M3 output is accepted: `audit_publication.py` PASS on `production-350k` (`qa/codex/math/m3-audit.json`); the thirteen files are
+promoted to `math/publish/` with `MANIFEST.json`; `docs/math/MATH_PF_REPORT.md` and contract §9 carry the measured figures. Your
+`m3-launch.json` still says RUNNING on purpose — the audit hashed it as completion evidence. Your `full-v001` Chief draft became
+`full-v002` (two `step` foot-downs added) and is installed; `pf_rookie` / `pf_dog` / `pf_rescued` were authored in your pattern
+(`author_<rig>.py`, `<rig>_performances.py`, native `.spine` under `drafts/`), `check_contract.py` PASS for all four. Your three
+red tests pass (14/14) in `9ec8109`. Lane E rendered from Blender 5.2.2 (`art-src/3d/`), consumers switched in `c111822`.
+Not done, on the owner's instruction: recorded per-clip motion review and a human listening pass.
