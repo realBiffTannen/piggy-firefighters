@@ -24,7 +24,8 @@ No voice anywhere in this pass (VO is a later, toggleable option, §8).
   16 beats matched), so the hook is SYNTHESISED deterministically (`audio/tools/hook_layer.py`) at each bed's tempo and mixed
   in at bars 1-4 and 17-20 of every 32-bar bed and bars 1-4 of the rung beds, 3-4 dB under the bed. Colours: base A
   glockenspiel · base B vibraphone · Rescue bugle (synth brass) · Inferno low bugle · rungs glock -> bugle -> bugle -> bell
-  -> bell. Its first bar (G C E G) is also the **pickup** on 17 fanfares (glockenspiel eighths at 132 BPM, -5 dB) — and it
+  -> bell. Its first bar (G C E G) is also the **pickup** on up to 17 fanfares (glockenspiel eighths at 132 BPM, -5 dB; only on
+  a fanfare whose own content measures >= 0.6 C-pentatonic) — and it
   is what resolves the alarm ladder (§4).
 
 ## 2. Beds (music bus) — `audio/tools/plans.json`
@@ -47,7 +48,8 @@ hi-hats/snare rolls, harsh highs, shrill whistles, vocals/choir/crowd, circus ca
 | `backdraft_spins_layer` | `pf_backdraft92` | additive stem over the base bed: toms, fire-shaker texture, low brass stabs, rising glockenspiel | layer -20 dBFS |
 | `rung_bed_big` -> `max` | `pf_rung100_*` | 8-bar celebrations, each bigger (glock/trumpet -> full band -> timpani -> soaring trumpets -> everything) | -15.2 / -15.0 / -14.8 / -14.6 / -14.4 LUFS |
 
-Base A and B alternate (the director swaps tunes after two passes), each feature has its own bed and its own entry sting
+Base A and B alternate (intended: swap after two passes of the current tune; the ported director still uses the donor's
+66,899 ms constant — derive it from `CUES[bed]` loop length when the runtime seam is wired), each feature has its own bed and its own entry sting
 (no feature borrows another's cue). Beds ship with a 60 ms **cyclic codec-guard pre/post-roll** and loop
 `[loopStartMs, loopEndMs)`: AAC reconstructs a file's first ~1024 samples badly, which would click at every loop in Safari.
 One primary bed at a time; layers are phase-aligned additive stems.

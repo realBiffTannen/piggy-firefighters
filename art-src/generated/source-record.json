@@ -1,0 +1,166 @@
+[
+  {
+    "asset": "hero_a",
+    "batch": "hero",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Image 1 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills. Same ink and cel-shading style, a completely different character: do NOT copy its face, pose, proportions or outfit; there is no hard hat, no hi-vis vest, no rolled plan and no work boots anywhere.\n\nDraw our hero, a stout pig fire chief, as one clean character reference pose: one full-body cartoon pig, three-quarter view, standing, feet and boots fully visible, the whole figure centred with generous margin on all sides, on a plain flat very light warm-grey background (one flat colour, no floor texture, no scenery, no vignette, no gradient). Costume (all versions): white fire helmet with a brass shield badge on the front (the badge is a BLANK smooth brass plate, no numbers or letters), red turnout coat (a deep fire-engine red) with bright yellow reflective bands (hydrant yellow) on the sleeves and hem, dark trousers with yellow bands, black fire boots, a broad belt carrying a polished brass bugle (warm polished brass gold), pink pig skin, curly tail, a proud moustache. Personality: brave, capable, warm, slightly mischievous; the face, eyes and expression are the most important part of the drawing: clear readable eyes with round black pupils and a white catch-light, expressive brows, a confident smile. The silhouette must read instantly at 40 pixels tall: bold simple outer shape, big head, chunky limbs, no thin fussy details.\n\nVARIATION A (the veteran): late fifties, very stout barrel-chested build, broad round snout, small warm eyes with laugh lines, big bushy walrus moustache in grey-white, helmet sitting level and square. Pose: planted wide stance, one fist on the hip, the other hand giving a thumbs-up, a steady fatherly grin, calm heroic energy.\n\nPalette limited to engine red, brass gold, hydrant yellow, hose cream, pig pink, dark-brown ink, dusk navy accents. No fire, no flames, no smoke, no props other than the bugle. Absolutely no text, letters, numbers, logos or watermarks anywhere in the image. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism.",
+    "prompt_files": [
+      "art-src/generated/prompts/hero_a.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "hero identity candidate a (Chief Hamm), style-ref edits call",
+    "attempt": 1,
+    "ts": "2026-09-25T04:25:59",
+    "status": "OK",
+    "output": "art-src/generated/hero/hero_a.png",
+    "sha256": "64f78d87c3df095c8d9df5940e796440dc8fd40c3c59bbd8b6c0dcdd7f9c320c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2051,
+      "input_tokens_details": {
+        "image_tokens": 1521,
+        "text_tokens": 530
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3423
+    },
+    "seconds": 28.8
+  },
+  {
+    "asset": "hero_b",
+    "batch": "hero",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Image 1 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills. Same ink and cel-shading style, a completely different character: do NOT copy its face, pose, proportions or outfit; there is no hard hat, no hi-vis vest, no rolled plan and no work boots anywhere.\n\nDraw our hero, a stout pig fire chief, as one clean character reference pose: one full-body cartoon pig, three-quarter view, standing, feet and boots fully visible, the whole figure centred with generous margin on all sides, on a plain flat very light warm-grey background (one flat colour, no floor texture, no scenery, no vignette, no gradient). Costume (all versions): white fire helmet with a brass shield badge on the front (the badge is a BLANK smooth brass plate, no numbers or letters), red turnout coat (a deep fire-engine red) with bright yellow reflective bands (hydrant yellow) on the sleeves and hem, dark trousers with yellow bands, black fire boots, a broad belt carrying a polished brass bugle (warm polished brass gold), pink pig skin, curly tail, a proud moustache. Personality: brave, capable, warm, slightly mischievous; the face, eyes and expression are the most important part of the drawing: clear readable eyes with round black pupils and a white catch-light, expressive brows, a confident smile. The silhouette must read instantly at 40 pixels tall: bold simple outer shape, big head, chunky limbs, no thin fussy details.\n\nVARIATION B (the showman): mid-forties, stout pear-shaped build with a round belly, oval upturned snout, large bright round eyes, one eyebrow cocked, handlebar moustache with curled tips, helmet tipped jauntily back and to one side. Pose: mid-stride forward, one hand lifting the brass bugle off the belt as if about to sound the alarm, a sly mischievous grin, lively bouncy energy.\n\nPalette limited to engine red, brass gold, hydrant yellow, hose cream, pig pink, dark-brown ink, dusk navy accents. No fire, no flames, no smoke, no props other than the bugle. Absolutely no text, letters, numbers, logos or watermarks anywhere in the image. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism.",
+    "prompt_files": [
+      "art-src/generated/prompts/hero_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "hero identity candidate b (Chief Hamm), style-ref edits call",
+    "attempt": 1,
+    "ts": "2026-09-25T04:25:59",
+    "status": "OK",
+    "output": "art-src/generated/hero/hero_b.png",
+    "sha256": "81c66a9369e6bb7b91affe337fd02fb9583293e780c18029e1d5cb43253fd556",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2067,
+      "input_tokens_details": {
+        "image_tokens": 1521,
+        "text_tokens": 546
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3439
+    },
+    "seconds": 29.1
+  },
+  {
+    "asset": "hero_c",
+    "batch": "hero",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Image 1 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills. Same ink and cel-shading style, a completely different character: do NOT copy its face, pose, proportions or outfit; there is no hard hat, no hi-vis vest, no rolled plan and no work boots anywhere.\n\nDraw our hero, a stout pig fire chief, as one clean character reference pose: one full-body cartoon pig, three-quarter view, standing, feet and boots fully visible, the whole figure centred with generous margin on all sides, on a plain flat very light warm-grey background (one flat colour, no floor texture, no scenery, no vignette, no gradient). Costume (all versions): white fire helmet with a brass shield badge on the front (the badge is a BLANK smooth brass plate, no numbers or letters), red turnout coat (a deep fire-engine red) with bright yellow reflective bands (hydrant yellow) on the sleeves and hem, dark trousers with yellow bands, black fire boots, a broad belt carrying a polished brass bugle (warm polished brass gold), pink pig skin, curly tail, a proud moustache. Personality: brave, capable, warm, slightly mischievous; the face, eyes and expression are the most important part of the drawing: clear readable eyes with round black pupils and a white catch-light, expressive brows, a confident smile. The silhouette must read instantly at 40 pixels tall: bold simple outer shape, big head, chunky limbs, no thin fussy details.\n\nVARIATION C (the commander): early fifties, stout and square-shouldered like a fire hydrant, short flat wide snout, determined almond-shaped eyes under heavy brows, thick straight chevron moustache, helmet pulled low and forward. Pose: chest out, one arm pointing ahead and slightly up as if directing the crew, the other hand on the belt beside the bugle, a brave confident half-smile, strong forward energy.\n\nPalette limited to engine red, brass gold, hydrant yellow, hose cream, pig pink, dark-brown ink, dusk navy accents. No fire, no flames, no smoke, no props other than the bugle. Absolutely no text, letters, numbers, logos or watermarks anywhere in the image. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism.",
+    "prompt_files": [
+      "art-src/generated/prompts/hero_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "hero identity candidate c (Chief Hamm), style-ref edits call",
+    "attempt": 1,
+    "ts": "2026-09-25T04:25:59",
+    "status": "OK",
+    "output": "art-src/generated/hero/hero_c.png",
+    "sha256": "20167e791364efdcf995813b33734f19053f43e82341c191009e4a72926951c9",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2064,
+      "input_tokens_details": {
+        "image_tokens": 1521,
+        "text_tokens": 543
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3436
+    },
+    "seconds": 29.7
+  },
+  {
+    "asset": "hero_d",
+    "batch": "hero",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Image 1 is our studio pig, used ONLY as a STYLE reference: match its thick dark-brown ink outlines, chunky rounded shapes, flat cel shading with exactly one hard-edged shadow tone, and clean saturated fills. Same ink and cel-shading style, a completely different character: do NOT copy its face, pose, proportions or outfit; there is no hard hat, no hi-vis vest, no rolled plan and no work boots anywhere.\n\nDraw our hero, a stout pig fire chief, as one clean character reference pose: one full-body cartoon pig, three-quarter view, standing, feet and boots fully visible, the whole figure centred with generous margin on all sides, on a plain flat very light warm-grey background (one flat colour, no floor texture, no scenery, no vignette, no gradient). Costume (all versions): white fire helmet with a brass shield badge on the front (the badge is a BLANK smooth brass plate, no numbers or letters), red turnout coat (a deep fire-engine red) with bright yellow reflective bands (hydrant yellow) on the sleeves and hem, dark trousers with yellow bands, black fire boots, a broad belt carrying a polished brass bugle (warm polished brass gold), pink pig skin, curly tail, a proud moustache. Personality: brave, capable, warm, slightly mischievous; the face, eyes and expression are the most important part of the drawing: clear readable eyes with round black pupils and a white catch-light, expressive brows, a confident smile. The silhouette must read instantly at 40 pixels tall: bold simple outer shape, big head, chunky limbs, no thin fussy details.\n\nVARIATION D (the friendly chief): forties, stout soft rounded build, big round snout, big glossy friendly eyes with a playful wink (one eye closed), rosy cheeks, neat rounded brush moustache, helmet tilted slightly to the side. Pose: relaxed three-quarter stance, one hand raised in a cheerful salute at the helmet brim, the other resting on the bugle, weight on one leg, a warm open smile, welcoming energy.\n\nPalette limited to engine red, brass gold, hydrant yellow, hose cream, pig pink, dark-brown ink, dusk navy accents. No fire, no flames, no smoke, no props other than the bugle. Absolutely no text, letters, numbers, logos or watermarks anywhere in the image. No hard hat, no construction, no police, no lantern, no dragon imagery. No painterly texture, no airbrush gradients, no 3D render look, no photo realism.",
+    "prompt_files": [
+      "art-src/generated/prompts/hero_d.txt"
+    ],
+    "reference_paths": [
+      "art-src/reference/cartoon/pig.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "hero identity candidate d (Chief Hamm), style-ref edits call",
+    "attempt": 1,
+    "ts": "2026-09-25T04:25:59",
+    "status": "OK",
+    "output": "art-src/generated/hero/hero_d.png",
+    "sha256": "c95a9e2ab84fa00dc463b6e3d7d4d6e915b5ea6066b8ef7238102bd258935fd7",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2063,
+      "input_tokens_details": {
+        "image_tokens": 1521,
+        "text_tokens": 542
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3435
+    },
+    "seconds": 30.9
+  }
+]
