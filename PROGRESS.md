@@ -1,5 +1,9 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **AUDIO r3 `c347069` + r4 `e1b4244`**: five redraws folded in by measurement (base A v2 ships, inferno /
+  backdraft v1 kept, rung_hit_big now an in-key hybrid C-pent 0.979 with pickup, sym_win_l4 v1 + tuned knock); `measure.py`
+  PASS 16/16; mix re-runs sha256-identical; no scratch files in the repo. Spend: 107 + 5 draws, ≈3,104 chars for the
+  redraws (next quota read ≈182,438). Human listening pass NOT RUN. Port fix round + Chief r2 re-cut still running.
 - 2026-09-25 — **AUDIO BUILD LANDED** `55e615e`: 232 cues in both codecs (464 runtime files), masters, measured gates all
   passing except base_loop_a chug (draw defect); five coordinator-issued redraws in flight (base A, inferno bed,
   backdraft layer, rung_hit_big, sym_win_l4). Human listening pass NOT RUN.
