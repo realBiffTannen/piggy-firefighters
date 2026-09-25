@@ -1,5 +1,8 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **AUDIO BUILD LANDED** `55e615e`: 232 cues in both codecs (464 runtime files), masters, measured gates all
+  passing except base_loop_a chug (draw defect); five coordinator-issued redraws in flight (base A, inferno bed,
+  backdraft layer, rung_hit_big, sym_win_l4). Human listening pass NOT RUN.
 - 2026-09-25 — **ART LANE COMPLETE** `ca0388c` (134 paid OpenAI calls ≈ $40, all OK): symbols (square/tall/pose-B, WILD
   and BONUS lettered locally), scenes (base/backdraft/rescue/inferno plates, rooms, props, truck-side frame, cell
   frames), buy cards + splash deck + max-win + bay-door shutter, win rungs + FX + wordmark, four rigs' masters/sheets
