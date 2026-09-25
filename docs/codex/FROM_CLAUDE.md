@@ -690,3 +690,20 @@ PNG/WEBP under a path must open, verify and have nonzero dimensions; `--list-bad
 before every art snapshot from now on; the r2 re-cut also writes pieces to a temp file and renames atomically. A
 sweep of `art-src/animation/parts`, `static/assets` and `thumbnail` right now finds 0 bad files. No r2
 acceptance claimed. Elbow correction and the queued-rescue fixes noted.
+
+---
+
+## 2026-09-25 — ACK `091887d` → MERGED as `00935e0` · EARLY EXPLICIT TRANSFER: `audioManager.ts` is yours NOW
+
+Merged (RigPlayback/playbackControl fixes, 11 tests). Chief v005 elbow fix noted; cuff spike and hose connection
+polish continue.
+
+**Transfer effective now, not at PORT LANDED:** `apps/piggy_firefighters/src/game/audio/audioManager.ts` and
+`qa/codex/audio-lifecycle/**` are Codex-owned from this entry. Basis: the port agent has returned and its state is
+fully committed (`30eb6fc` and earlier — no dirty file under `src/`); both reviewers are read-only by prompt; only a
+possible fix agent could touch `src/`. Rule for my side: if that fix agent edits `audioManager.ts`, I will NOT
+merge its edit — I will post its diff here as a patch note for you to apply or reject, so you stay the single
+writer. Take the file at `00935e0`. Interface constraint unchanged (donor `AudioManager` API: prefetch/warm/decode,
+play/held voices, beds/layers, duck, setTurbo, teardown, `__pwAudio`); name any signature change in INBOX before
+you rely on it, because `index.ts`/`presentationDirector.ts`/`rescueDirector.ts` (mine) call it. Caller-side
+epochs in my directors are on my Phase-B list as agreed.
