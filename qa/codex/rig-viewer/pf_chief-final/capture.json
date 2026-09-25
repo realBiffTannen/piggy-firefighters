@@ -1,0 +1,122 @@
+{
+  "url": "http://127.0.0.1:3041/rigs",
+  "browser": "153.0.8010.12",
+  "loadedRow": "002PLAY idle \u00b7 default \u00b7 loop",
+  "pilotWarning": 0,
+  "clips": [
+    "big_win",
+    "celebrate",
+    "idle",
+    "idle_alt",
+    "point_reels",
+    "sad",
+    "spray_end",
+    "spray_loop",
+    "spray_start",
+    "win"
+  ],
+  "servedSha256": {
+    "pf_chief.atlas": "384195947042f16944676c492e0b6737d7e08c01abce7a1a11dbd94712535c67",
+    "pf_chief.json": "d29954bee3a95c5b86d1ee7612e7aaf00ccde4fb76d3c56b2582d44f77630751",
+    "pf_chief_2.png": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pf_chief.png": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "diskSha256": {
+    "pf_chief.json": "d29954bee3a95c5b86d1ee7612e7aaf00ccde4fb76d3c56b2582d44f77630751",
+    "pf_chief.atlas": "384195947042f16944676c492e0b6737d7e08c01abce7a1a11dbd94712535c67",
+    "pf_chief.png": "c42957ec4378ce0858ccecafef9956a1483da7b71b37b5dd9acc6f6f391aa86f",
+    "pf_chief_2.png": "4fac06be57a501a082cf75afaec29cf867ba239bf4536d2b036fc138c7122509"
+  },
+  "shots": {
+    "rest-idle-t0": {
+      "clip": "idle",
+      "waitMs": 0,
+      "events": [
+        "003PLAY idle \u00b7 default \u00b7 loop",
+        "002PLAY idle \u00b7 default \u00b7 loop",
+        "001LOADED pf_chief \u00b7 Spine 4.2.43 \u00b7 bounds 287.93999934052664 \u00d7 423.8300040054319"
+      ]
+    },
+    "big_win-peak": {
+      "clip": "big_win",
+      "waitMs": 480,
+      "events": [
+        "007EVENT step \u00b7 big_win @ 0.480s",
+        "006EVENT sign_hit \u00b7 big_win @ 0.480s",
+        "005PLAY big_win \u00b7 default \u00b7 once",
+        "004PLAY big_win \u00b7 default \u00b7 once",
+        "003PLAY idle \u00b7 default \u00b7 loop",
+        "002PLAY idle \u00b7 default \u00b7 loop"
+      ]
+    },
+    "point_reels-extension": {
+      "clip": "point_reels",
+      "waitMs": 300,
+      "events": [
+        "009PLAY point_reels \u00b7 default \u00b7 once",
+        "008PLAY point_reels \u00b7 default \u00b7 once",
+        "007EVENT step \u00b7 big_win @ 0.480s",
+        "006EVENT sign_hit \u00b7 big_win @ 0.480s",
+        "005PLAY big_win \u00b7 default \u00b7 once",
+        "004PLAY big_win \u00b7 default \u00b7 once"
+      ]
+    },
+    "idle_alt-bugle": {
+      "clip": "idle_alt",
+      "waitMs": 1750,
+      "events": [
+        "012EVENT step \u00b7 idle_alt @ 0.440s",
+        "011PLAY idle_alt \u00b7 default \u00b7 loop",
+        "010PLAY idle_alt \u00b7 default \u00b7 loop",
+        "009PLAY point_reels \u00b7 default \u00b7 once",
+        "008PLAY point_reels \u00b7 default \u00b7 once",
+        "007EVENT step \u00b7 big_win @ 0.480s"
+      ]
+    },
+    "celebrate-mid": {
+      "clip": "celebrate",
+      "waitMs": 700,
+      "events": [
+        "015EVENT step \u00b7 celebrate @ 0.500s",
+        "014PLAY celebrate \u00b7 default \u00b7 once",
+        "013PLAY celebrate \u00b7 default \u00b7 once",
+        "012EVENT step \u00b7 idle_alt @ 0.440s",
+        "011PLAY idle_alt \u00b7 default \u00b7 loop",
+        "010PLAY idle_alt \u00b7 default \u00b7 loop"
+      ]
+    },
+    "spray_loop-mid": {
+      "clip": "spray_loop",
+      "waitMs": 600,
+      "events": [
+        "017PLAY spray_loop \u00b7 default \u00b7 loop",
+        "016PLAY spray_loop \u00b7 default \u00b7 loop",
+        "015EVENT step \u00b7 celebrate @ 0.500s",
+        "014PLAY celebrate \u00b7 default \u00b7 once",
+        "013PLAY celebrate \u00b7 default \u00b7 once",
+        "012EVENT step \u00b7 idle_alt @ 0.440s"
+      ]
+    },
+    "rest-idle-phone": {
+      "clip": "idle",
+      "waitMs": 0,
+      "events": [
+        "019PLAY idle \u00b7 default \u00b7 loop",
+        "018PLAY idle \u00b7 default \u00b7 loop",
+        "017PLAY spray_loop \u00b7 default \u00b7 loop",
+        "016PLAY spray_loop \u00b7 default \u00b7 loop",
+        "015EVENT step \u00b7 celebrate @ 0.500s",
+        "014PLAY celebrate \u00b7 default \u00b7 once"
+      ]
+    }
+  },
+  "errors": [],
+  "note": "Visual sanity capture of the full-v002 export: rest pose + a few paused mid-clip frames. Timing is wall-clock approximate. Not a motion acceptance.",
+  "servedMatchesDisk": {
+    "pf_chief.json": true,
+    "pf_chief.atlas": true,
+    "pf_chief.png": false,
+    "pf_chief_2.png": false
+  },
+  "hashNote": "servedSha256 hashes the Playwright response body; PNG bodies fetched by Chromium's image worker are not reliably exposed to response.body() (see rig-viewer README), so only JSON/atlas equality is meaningful here. diskSha256 are the installed runtime files at capture time."
+}

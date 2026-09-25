@@ -69,6 +69,10 @@ def make_clips(spray, timeline):
     a("bugle_hand", [(0, None), (.61, "bugle_hand"), (3.04, None), (4, None)])
     a("eyes", [(1.05, "eyes_closed"), (1.17, "eyes")])
     a("brows", [(1.2, "brows_raised"), (2.42, "brows")])
+    # Weight shifts onto the near foot as the bugle is retrieved; `step` at the foot-down.
+    m("boot_r", [(.12, (0, 0)), (.28, (0, 2.2)), (.44, (0, 0))])
+    r("boot_r", [(.12, 0), (.28, 1.8), (.44, 0)])
+    c["events"] = [{"time": .44, "name": "step"}]
 
     # One compact fist pump: anticipate, punch, settle, visibly regain the nozzle.
     c, r, m, w, a = clip("win", 1.2)
@@ -124,6 +128,10 @@ def make_clips(spray, timeline):
     a("hand_r", [(.12, "hand_r_open"), (1.84, "hand_r")])
     a("mouth", [(.22, "mouth_smile"), (1.67, "mouth")])
     a("eyes", [(.85, "eyes_happy"), (1.2, "eyes")])
+    # One stamp on the rise; `step` at the foot-down (the far foot, unlike big_win).
+    m("boot_l", [(.18, (0, 0)), (.34, (0, 3)), (.5, (0, 0))])
+    r("boot_l", [(.18, 0), (.34, -2.5), (.5, 0)])
+    c["events"] = [{"time": .5, "name": "step"}]
 
     # Recognition, exhale and sympathetic recovery; no celebratory lift or stamp.
     c, r, m, w, a = clip("sad", 1.5)

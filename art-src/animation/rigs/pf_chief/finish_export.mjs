@@ -32,13 +32,13 @@ const atlasLines = atlasText.split(/\r?\n/);
 const pages = atlasLines.filter((line, index) => line.endsWith('.png') && /^size\s*:/.test(atlasLines[index + 1] ?? ''));
 if (!pages.length || pages.some(name => path.basename(name) !== name)) throw new Error('Unexpected native atlas page paths');
 for (const name of ['pf_chief.atlas', ...pages]) await fs.copyFile(path.join(source, name), path.join(target, name));
+const sourceRecord = JSON.parse(await fs.readFile(path.join(source, '..', 'source-record.json'), 'utf8'));
 const derivation = {
-  status: 'PILOT_UNREVIEWED', nativeExportSha256: createHash('sha256').update(rawBytes).digest('hex'),
+  status: sourceRecord.status ?? 'UNREVIEWED', nativeExportSha256: createHash('sha256').update(rawBytes).digest('hex'),
   runtime: 'spine-core4.2.74', method: 'Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds',
   bounds, change: 'Only skeleton x/y/width/height header values; original native export preserved',
 };
 await fs.writeFile(path.join(target, 'bounds-provenance.json'), JSON.stringify(derivation, null, 2) + '\n');
-const sourceRecord = JSON.parse(await fs.readFile(path.join(source, '..', 'source-record.json'), 'utf8'));
 sourceRecord.runtime_export = derivation;
 await fs.writeFile(path.join(target, 'source-record.json'), JSON.stringify(sourceRecord, null, 2) + '\n');
 console.log(JSON.stringify({ target, bounds }));

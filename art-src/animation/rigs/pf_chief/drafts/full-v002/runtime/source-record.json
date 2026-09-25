@@ -1,0 +1,122 @@
+{
+  "status": "FULL_RIG_EXPORTED_STATIC_PASS_MOTION_REVIEW_PENDING",
+  "rig": "pf_chief",
+  "editor": "4.2.43",
+  "registration_sha256": "6c180d004168e9ed1be9d7b6973d46d3295bfdc610917a38d696bb1c5696ce8e",
+  "standing_scale": 0.2951510892480675,
+  "source_files": {
+    "arm_left": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/arm_left.png",
+      "sha256": "79a8ca3a39e744c5db1b2010005dd49f74e479716632765f926418de091192a3"
+    },
+    "arm_right": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/arm_right.png",
+      "sha256": "64af08fe925a767b5a6a20d2a4fc58a8b6b11455839abd2bdeeb8e2fad8ce559"
+    },
+    "body_no_head_no_arms": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/body_no_head_no_arms.png",
+      "sha256": "5484b06f70bce6871888f73e0fa59d7c1cb7e9e4e4d43793b3f3f1117fa2a1f1"
+    },
+    "bugle": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/bugle.png",
+      "sha256": "31577919a684f8ce0f3dea681b18503f5ae74a5357f1d3c16884a985dcfe3d3f"
+    },
+    "face_sheet": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/face_sheet.png",
+      "sha256": "26e51b85c8579822337b2369299bc74a3d3fe62257dbea6360998e211e4f234a"
+    },
+    "hand_l_grip": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/hand_l_grip.png",
+      "sha256": "02eb7f49e64280af5b679d4b69b6b0525cddb7a0c329ecaab2156d87f20486a4"
+    },
+    "hand_r_grip": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/hand_r_grip.png",
+      "sha256": "471faef741ec5995cf1ca22422d1db2fba278ea48d92c79492d528a7d9913b97"
+    },
+    "hand_r_open": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/hand_r_open.png",
+      "sha256": "1f8ca9fe19f29c0178918b580ea944e8a20e6060c704b6d551407823e048134b"
+    },
+    "hand_r_point": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/hand_r_point.png",
+      "sha256": "4af850d15d0914a9a2cb67a009a94ca5178a8e9992983e4a4f3b5c107ae85433"
+    },
+    "hand_r_thumb": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/hand_r_thumb.png",
+      "sha256": "ead60cbc5911faeac86fb869b774e7fc6297bf86b634e5f588e1abdea1495141"
+    },
+    "head_blank": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/head_blank.png",
+      "sha256": "73270c901bc641e025e35a2c716b02d45b254ecb05b387835ce4a10c68fe5d45"
+    },
+    "helmet_only": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/helmet_only.png",
+      "sha256": "eb53e42e35e32ed1f64bb5cbb95fd4a96210de0c768306c598558b95329d2ef5"
+    },
+    "hose_original": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_rookie/pieces/hose_flexible.png",
+      "sha256": "5903ebd801fdf96d8a5fe1e9ede22d7757b908065fc20ac38452511d66a742b8"
+    },
+    "nozzle": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/nozzle.png",
+      "sha256": "dce2fc692424452d638b958593a0683473b91a5c4d960a361a24e0cb5531c542"
+    },
+    "shield_13": {
+      "path": "/Users/jbull/code/piggy-firefighters/art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief/pieces/shield_13.png",
+      "sha256": "845dba39356b0444d742ba1c1042c019c2ae187fc1c6dedbf6bd08f845856711"
+    }
+  },
+  "derivation": "Spine UV submeshes and bone weights; source PNG bytes unchanged",
+  "motion_review": "NOT RUN \u2014 per-clip recorded review and mounted-gameplay review remain pending",
+  "remaining_clips": "none; all ten contract clips authored (full-v002 adds step foot-downs in idle_alt/celebrate)",
+  "layout": "full-layout.json (registration 6c180d00 snapshot registered-source/422c2b5; pilot-v008 accepted anatomy)",
+  "parts_note": "Draft pixels are the frozen 422c2b5 snapshot, byte-identical to the accepted pilot-v008 inputs. The current art-src/animation/parts/pf_chief r2.1 delivery (registration 9b38c201) re-cut several pieces and has NOT been re-measured into the layout; reusing it needs a new layout pass.",
+  "native_project": {
+    "path": "pf_chief.spine",
+    "sha256": "19f28828abf130b2f34e40a52bd781a8d049fbabae2f68ca4d4dd31a2cf2e13f",
+    "cli": "Spine 4.2.43 Professional via launcher --update 4.2.43 --disable-audio; import -r into a NEW project, then export with pilot.export.json"
+  },
+  "native_export": {
+    "pf_chief.json": "3d70409b4cf7f101c4e22294d1d21799fc0080be4d4c24f340e54a44871d0a87",
+    "pf_chief.atlas": "384195947042f16944676c492e0b6737d7e08c01abce7a1a11dbd94712535c67",
+    "pf_chief.png": "c42957ec4378ce0858ccecafef9956a1483da7b71b37b5dd9acc6f6f391aa86f",
+    "pf_chief_2.png": "4fac06be57a501a082cf75afaec29cf867ba239bf4536d2b036fc138c7122509"
+  },
+  "runtime_installed": {
+    "path": "apps/piggy_firefighters/static/assets/spine/pf_chief",
+    "files": {
+      "pf_chief.json": "d29954bee3a95c5b86d1ee7612e7aaf00ccde4fb76d3c56b2582d44f77630751",
+      "pf_chief.atlas": "384195947042f16944676c492e0b6737d7e08c01abce7a1a11dbd94712535c67",
+      "pf_chief.png": "c42957ec4378ce0858ccecafef9956a1483da7b71b37b5dd9acc6f6f391aa86f",
+      "pf_chief_2.png": "4fac06be57a501a082cf75afaec29cf867ba239bf4536d2b036fc138c7122509"
+    }
+  },
+  "static_gate": "python3 art-src/animation/tools/check_contract.py --rig pf_chief \u2192 PASS (10 clips, 4 events keyed, 4 anchors, \u22655 moving bones per clip, root unkeyed)",
+  "visual_sanity": {
+    "evidence": "qa/codex/rig-viewer/pf_chief-final/",
+    "viewer": "/rigs (complete contract, no pilot warning), muted headless Chromium",
+    "frames": [
+      "rest-idle-t0",
+      "big_win-peak",
+      "point_reels-extension",
+      "idle_alt-bugle",
+      "celebrate-mid",
+      "spray_loop-mid",
+      "rest-idle-phone"
+    ],
+    "result": "no detached parts, 420px standing scale on the ruler, feet on baseline in every frame, all attachment variants resolve; not a motion acceptance"
+  },
+  "runtime_export": {
+    "status": "FULL_RIG_UNREVIEWED",
+    "nativeExportSha256": "3d70409b4cf7f101c4e22294d1d21799fc0080be4d4c24f340e54a44871d0a87",
+    "runtime": "spine-core4.2.74",
+    "method": "Skeleton.setToSetupPose; updateWorldTransform(Physics.update); getBounds",
+    "bounds": {
+      "x": -171.0599975701963,
+      "y": -1.4700003433227504,
+      "width": 287.93999934052664,
+      "height": 423.8300040054319
+    },
+    "change": "Only skeleton x/y/width/height header values; original native export preserved"
+  }
+}

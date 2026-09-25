@@ -1,65 +1,60 @@
-# Chief spray pilot
+# Chief Hamm (`pf_chief`) — full ten-clip rig
 
-Work in progress, using original Piggy Firefighters art only. No accepted rig exists yet.
-The pilot deliberately contains only `spray_start`, `spray_loop`, and `spray_end`;
-the complete contract gate must continue to fail until the remaining clips are authored.
+Status (2026-09-25, draft `drafts/full-v002`): **all ten contract clips exported and installed**;
+`check_contract.py --rig pf_chief` **PASS**; a visual sanity pass of the export was looked at
+(`qa/codex/rig-viewer/pf_chief-final/`); the **per-clip recorded motion review and the mounted-gameplay
+review are NOT RUN**. The runtime files at `apps/piggy_firefighters/static/assets/spine/pf_chief/`
+(`pf_chief.json` + `.atlas` + two PNG pages) are the full-v002 export, replacing the three-clip pilot.
+Original Piggy Firefighters art only; no lettering is baked into the rig (`shield_13` is the approved
+local derivation); the optional `badge_blank` prop is not used, so there is no `badge` bone.
 
-`author_pilot.py` requires Claude's complete `parts/pf_chief/registration.json`
-and a `pilot-layout.json` measured against that exact manifest hash. It preserves
-source image bytes in each draft's copied textures, registration and layout. Spine
-mesh UVs separate painted regions, weighted sleeves bind to two-bone IK chains with
-half-angle elbow helpers, and separate gripping hands share the nozzle's transform.
-Anatomical RIGHT is image LEFT in the supplied registration records.
+## Clips
 
-The root is neutral at canvas `(512,1440)`. The actual master's standing silhouette
-is scaled to 420px. Boots remain fixed; upper legs, chest, sleeve meshes, independent
-face/helmet/coat parts provide the articulation. Source PNGs are never repainted by
-this script. New hidden paint, if required after the pilot review, returns to the art lane.
-The attached hose selects the flexible fabric pixels from this title's original
-`pf_rookie/pieces/hose_flexible.png`; it introduces no generated or repainted pixels.
+| clip | length | keyed events | notes |
+|---|---|---|---|
+| `idle` | 5.0 s loop | — | chest-led breath, delayed helmet, one irregular blink |
+| `idle_alt` | 4.0 s loop | `step` @ 0.44 | bugle retrieved from the belt, inspected, returned; weight shift onto the near foot |
+| `win` | 1.2 s | — | one compact fist pump (thumb hand), nozzle visibly regained |
+| `big_win` | 2.4 s | `step` + `sign_hit` @ 0.48 | stronger anticipation, held raised silhouette; both events on the peak / foot-down |
+| `point_reels` | 0.8 s | `sign_hit` @ 0.30 | gaze leads, index point toward the reels at full extension |
+| `spray_start` / `spray_loop` / `spray_end` | 0.6 s / 1.2 s loop / 0.5 s | `spray_on` @ 0.44 / `spray_off` @ 0 | the accepted pilot-v008 curves, unchanged (asserted by the test) |
+| `celebrate` | 2.0 s | `step` @ 0.50 | open-hand salute/wave with one stamp of the far foot |
+| `sad` | 1.5 s | — | worried brows, exhale, sympathetic recovery |
 
-Generate each draft in a fresh directory:
+Root is never keyed. Every clip returns to the setup-compatible pose so the runtime's 0.15 s default mix
+(0 s into `spray_loop`) lands cleanly. Anchors: `nozzle_tip`, `grip_l`, `grip_r`, `head_top`.
+
+## How it is built
+
+`author_pilot.py --full` reads a registration + `full-layout.json` (measured by `layout_pilot.py`), copies the
+piece PNGs byte-identically into the draft's `images/`, builds bones / mesh attachments / IK / transform
+constraints, and takes the clips from `chief_performances.py` (the spray clips come from `spray_clips()`).
+The layout was measured against registration `6c180d00…` (the `registered-source/422c2b5` snapshot), which
+is what full-v002 uses:
 
 ```sh
 python3 -B art-src/animation/rigs/pf_chief/test_author_pilot.py
-python3 -B art-src/animation/rigs/pf_chief/author_pilot.py \
-  --output art-src/animation/rigs/pf_chief/drafts/pilot-v009
+python3 -B art-src/animation/rigs/pf_chief/author_pilot.py --full \
+  --parts art-src/animation/rigs/pf_chief/registered-source/422c2b5/pf_chief \
+  --layout art-src/animation/rigs/pf_chief/full-layout.json \
+  --output art-src/animation/rigs/pf_chief/drafts/full-v003
 ```
 
-Import the resulting `pf_chief.json` into a NEW `pf_chief.spine` using the pinned
-4.2.43 CLI commands in `qa/codex/animation/AUTHORING.md`; never overwrite a native
-project. That imported project is authoritative. Preserve each draft rather than
-re-importing over any editor changes. Export to a fresh directory with
-`pilot.export.json`: straight alpha, 1×, at most 2048px atlas pages.
+Then the Spine **4.2.43** CLI round trip (never 4.3; hold `art-src/animation/rigs/.spine.lock` while it runs):
+import `pf_chief.json` into a NEW `pf_chief.spine` (`-r`), export with `pilot.export.json` (straight alpha, 1×,
+pages ≤ 2048, strip whitespace) into `export/`, then `node finish_export.mjs drafts/<d>/export drafts/<d>/runtime`
+derives the four `skeleton.x/y/width/height` fields (spine-core 4.2.74 setup pose + IK bounds) into `runtime/`,
+which is copied to the static assets folder. Hashes of every stage are in the draft's `source-record.json`.
 
-The CLI omits its cached setup AABB after JSON import. `finish_export.mjs` preserves
-the native export and makes a separate runtime copy, deriving ONLY the four
-`skeleton.x/y/width/height` fields with installed spine-core4.2.74 setup pose + IK
-and `Skeleton.getBounds`. The derivation and hashes appear in its source record.
-It does not change geometry, clips, weights, events or textures.
+**Parts delivery caveat.** The current `art-src/animation/parts/pf_chief` delivery is r2.1 (registration
+`9b38c201…`); it re-cut several pieces (body, far arm, head, hands, bugle, nozzle, shield) and has not been
+re-measured into the layout. The rig therefore ships the frozen `422c2b5` pixels, byte-identical to what the
+accepted pilot-v008 used. Adopting r2.1 needs a new layout pass, not a re-run of this script.
 
-Native drafts are retained. v001 exposed opposite UV-hull winding and missing
-editor edge metadata; v002 corrected both. v003 improved arm layering and volume;
-v004 is an unpromoted duplicate after an incoming unused source was empty. v005
-tucked the far elbow. v006 connected the original hose. v007 seated the sleeve tip
-in the independent wrist; v008 also made the penultimate forearm section transverse
-and tapered, removing the red lip exposed during the slow raise.
-Original62725b3 registration is preserved under `registered-source/` and v001–v005;
-v006 records r2 metadata after verifying all previously used pixel hashes unchanged.
+## History
 
-Review the actual export in the development pilot viewer before further clips:
-both grip/cuff contacts throughout motion, sleeve bends, fixed boot soles, face and
-helmet assembly, nozzle-axis anchor, and exact start/loop/end joins at normal and
-quarter speed, desktop and phone size. `spray_on` is at .44s after aim/contact;
-`spray_off` is at time zero of the .5s end. Static checks never certify motion craft.
-
-Current evidence: six focused authoring safeguards PASS; native4.2.43 import/export
-of v002 onward PASS without warnings; limited static export preflight PASS.
-Actual v002 onward browser images exist under their draft review folders. Older arm
-poses were rejected. v008 has desktop and phone videos of the actual development
-spray sequence at normal and quarter speed (0.6s start, 0.8s loop hold, 0.5s end;
-mixes 0/0.15s), with no page errors and the real spray events recorded in capture.json.
-The coordinator's separate sequence-control probe does not certify motion craft.
-v008's visual acceptance is pending; full ten-clip contract, mounted-gameplay,
-device and interruption motion review remain incomplete. Current static runtime files are a LOCAL
-AUTHORING PILOT, not an accepted production rig.
+Pilot drafts v001–v008 developed the spray anatomy (UV winding, arm layering, tucked far elbow, connected
+original hose, seated sleeve tip, transverse tapered forearm). v008 was accepted for further authoring after
+the browser sequence probe (`qa/codex/rig-viewer/sequence-v008-r1`). full-v001 added the seven remaining
+performances (JSON only, never round-tripped). full-v002 adds the `step` foot-downs in `idle_alt`/`celebrate`,
+is the first full draft round-tripped through 4.2.43, and is the installed runtime rig.
