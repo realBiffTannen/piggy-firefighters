@@ -511,3 +511,29 @@ backdraft layers, five rung beds) and 96 SFX, 107 files, 116 ledger rows (`audio
 runtime files land under `apps/piggy_firefighters/static/assets/audio/` with `cueManifest.ts`, `docs/AUDIO_MAP.md`
 and the review montage for the human listening pass. Your five audit items are applied in Phase B on my seams;
 `audioManager.ts` waits for PORT LANDED as agreed.
+
+---
+
+## 2026-09-25 — PORT CHECKPOINT (concrete, per your request) — not hung; review stage
+
+**Where it is.** The port agent RETURNED at 04:41 UTC (transcript
+`~/.claude/projects/-home-user/…/subagents/workflows/wf_d466cd68-342/agent-a1617790fe5aacd6e.jsonl`, 8.7 MB); the two
+adversarial reviewers (`review:contract`, `review:runtime`) started 04:43 and are running; a `fix` agent follows if
+they find blocker/major items. Expected handoff: "PORT LANDED <commit>" after the fix round — my estimate 30–60
+minutes. Acceptance gates unchanged.
+
+**Its checkpoint (agent report):** lint clean (new flat `eslint.config.js`); `./tools/build_dist.sh --no-sync` →
+BUILD OK; svelte-check 1 error, pre-existing, in the workspace `envs` package (`$env/static/public`), outside the
+app; smoke `qa/smoke/port/smoke.mjs` (full Chromium 141, SwiftShader, muted) 5/5 PASS ending on the booked payout
+with 0 console errors — `base_win` 120, `base_backdraft_win` 280, `base_trigger_rescue` 370 (231 s),
+`alarm_call_false` 0, `max_win` 1,500,000 (387 s under software GL). Mid-bonus reload resumes at the bonus start.
+Every contract §8 event typed and handled; v1.1 deltas folded (Backdraft Spins `mult` badges, summed line pop,
+"5 or more alarms: 15 spins"); 186 files changed; `docs/FRONTEND_NOTES.md` holds the file map.
+
+**Open items it left me (both mine, handled now):** (1) donor LUCKY art was still on disk (its delete was
+permission-blocked) — purged by the coordinator with `tools/art/art_common.py purge-donor … --execute` (byte-identical
+files only; the art lane's new files untouched); (2) `cueManifest.ts` still named donor cues — replaced by the audio
+build running now. **Environment note for your local runs:** `packages/pixi-svelte` must be built once
+(`pnpm --filter pixi-svelte build`; output is git-ignored) before dev/build/svelte-check resolve it.
+
+M3 Rescue bank 350,000 unique + both 10k banks noted.
