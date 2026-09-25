@@ -930,8 +930,8 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/sym_win_l4.ogg",
 			"assets/audio/piggy_firefighters/sym_win_l4.m4a"
 		],
-		"gain": 0.723,
-		"durationMs": 1000,
+		"gain": 0.751,
+		"durationMs": 905.4,
 		"priority": 6,
 		"maxInstances": 2,
 		"cooldownMs": 90,
@@ -1210,8 +1210,8 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_big.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_big.m4a"
 		],
-		"gain": 1.278,
-		"durationMs": 1200,
+		"gain": 1.542,
+		"durationMs": 1203.1,
 		"priority": 9,
 		"maxInstances": 1,
 		"cooldownMs": 0,
@@ -1364,7 +1364,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_embers.ogg",
 			"assets/audio/piggy_firefighters/burst_embers.m4a"
 		],
-		"gain": 1.639,
+		"gain": 1.658,
 		"durationMs": 972.4,
 		"priority": 7,
 		"maxInstances": 2,
@@ -2418,7 +2418,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/sym_win_l3_turbo.ogg",
 			"assets/audio/piggy_firefighters/sym_win_l3_turbo.m4a"
 		],
-		"gain": 1.512,
+		"gain": 1.51,
 		"durationMs": 520.5,
 		"priority": 6,
 		"maxInstances": 2,
@@ -2432,8 +2432,8 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/sym_win_l4_turbo.ogg",
 			"assets/audio/piggy_firefighters/sym_win_l4_turbo.m4a"
 		],
-		"gain": 0.951,
-		"durationMs": 557.2,
+		"gain": 0.992,
+		"durationMs": 506,
 		"priority": 6,
 		"maxInstances": 2,
 		"cooldownMs": 90,
@@ -2544,8 +2544,8 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/rung_hit_big_turbo.ogg",
 			"assets/audio/piggy_firefighters/rung_hit_big_turbo.m4a"
 		],
-		"gain": 1.312,
-		"durationMs": 667.1,
+		"gain": 1.426,
+		"durationMs": 673.4,
 		"priority": 9,
 		"maxInstances": 1,
 		"cooldownMs": 0,
@@ -2698,7 +2698,7 @@ export const CUES: Record<string, CueDef> = {
 			"assets/audio/piggy_firefighters/burst_embers_turbo.ogg",
 			"assets/audio/piggy_firefighters/burst_embers_turbo.m4a"
 		],
-		"gain": 1.578,
+		"gain": 1.529,
 		"durationMs": 542.4,
 		"priority": 7,
 		"maxInstances": 2,

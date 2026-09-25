@@ -1,12 +1,12 @@
 # PIGGY FIREFIGHTERS — Sound Bible
 
-Owner: AUDIO lane. Status: **v3, 2026-09-25: BUILT, r2 build fixes applied** (no paid call in r2). 107 ElevenLabs draws
-(11 music, 96 SFX; ledger `audio/source-record.json`) -> 232 cue ids x 2 codecs = 464 shipped files in
-`apps/piggy_firefighters/static/assets/audio/piggy_firefighters/` (30 MB), `cueManifest.ts` regenerated (232 cues).
-`measure.py` **PASS: false on ONE named draw defect** (`base_loop_a` chug 3.77 > 3; its redraw is requested, §10); every
-other gate passes, including the r2 gates (§11, §13: ta-da fundamentals rising, mono sum, phone proxy, tails, turbo length,
-8x true peak, alarm top voice, sliding self-similarity, bed tail dip, reward chains on stereo + mono + phone). **Human
-listening NOT RUN (§9).** Theme: `docs/PIGGY_FIREFIGHTERS_THEME.md` §6. Rules: `docs/AUDIO_DESIGN_NOTES.md`, `CLAUDE.md`.
+Owner: AUDIO lane. Status: **v4, 2026-09-25: BUILT, r2 build fixes applied, r3 redraws folded in by measurement** (this lane
+made no paid call; the coordinator drew the 5 redraws, ledgered). 107 + 5 ElevenLabs draws (ledger `audio/source-record.json`)
+-> 232 cue ids x 2 codecs = 464 shipped files in `apps/piggy_firefighters/static/assets/audio/piggy_firefighters/` (30 MB),
+`cueManifest.ts` regenerated (232 cues). `measure.py` **PASS: true, 16 / 16 gates** (§11): `base_loop_a` ships its redraw
+(chug 3.77 -> 1.35); the Inferno and Backdraft redraws measured worse and were rejected; `rung_hit_big` ships its redraw
+(more tonal, still not in key); the `sym_win_l4` redraw was worse, v1 restored and voiced for phones offline (§10, §14).
+**Human listening NOT RUN (§9).** Theme: `docs/PIGGY_FIREFIGHTERS_THEME.md` §6. Rules: `docs/AUDIO_DESIGN_NOTES.md`, `CLAUDE.md`.
 Per-cue map (contract §8 event -> cues; moment -> cue -> file -> seam -> owner): `docs/AUDIO_MAP.md` (generated). Pipeline:
 `audio/README.md`. Every sound is drawn fresh for this title (ElevenLabs) or synthesised by our own tools; no donor sound
 file is used (the donor's untracked `static/assets/audio/lucky/` — 388 files — was purged by `build_audio.py --purge-donor`
@@ -41,7 +41,7 @@ No voice anywhere in this pass (VO is a later, toggleable option, §8).
   glock eighths, 132 BPM, -5 dB) is now used WHOLE and rings out (1.18 s + 0.3 s tail): it landed on **14 of 17** fanfares:
   `trigger_fanfare` (C-pent 0.98), both entries, `backdraft_spins_start`, `building_cleared`, the three big totals, rung hits
   HUGE / MEGA / EPIC, `win_max`, both good Alarm Call outcomes (`rung_hit_huge` +158 ms and `inferno_total_big` +71 ms of
-  silence appended so the pickup rings out). Refused: `rung_hit_big` (C-pent 0.52), `rung_hit_max` (0.58) — content not in C
+  silence appended so the pickup rings out). Refused: `rung_hit_big` (C-pent 0.525 after its r3 redraw, a Bb stab key-fitted -1 st), `rung_hit_max` (0.58) — content not in C
   pentatonic — and `spins_added` (1.0 s: too short for the whole pickup; r1 sliced the pickup mid-note there; the cue already
   carries its own glock run C E G C).
 
@@ -57,7 +57,7 @@ hi-hats/snare rolls, harsh highs, shrill whistles, vocals/choir/crowd, circus ca
 
 | Cue | Plan | Arrangement | Target |
 |---|---|---|---|
-| `base_loop_a` | `pf_base92a` | bright oom-pah march: muted trumpet + glockenspiel hook, clarinet answer, trumpets return, French horn turnaround | -15.5 LUFS |
+| `base_loop_a` | `pf_base92a` (ships `pf_base92a_v2__1`, r3) | bright oom-pah march: muted trumpet + glockenspiel hook, clarinet answer, trumpets return, French horn turnaround | -15.5 LUFS |
 | `base_loop_b` | `pf_base92b` | a different tune for long sessions: vibraphone + flugelhorn hook, brushes + walking tuba, trombone chorale | -15.5 LUFS |
 | `rescue_loop` | `pf_rescue100` | driving heroic march; a **two-tone horn figure (high C / low G, half notes)** as the crew's call — the "siren" is musical, never a real siren | -15.5 LUFS |
 | `inferno_loop` | `pf_inferno100` | hotter and darker: low brass, taiko-like toms, timpani, string ostinato, tubular bells, A-centred with C-major lifts | -15.2 LUFS |
@@ -76,11 +76,14 @@ One primary bed at a time; layers are phase-aligned additive stems.
 | Draw | s | intro vs body dB | dropout s | fine BPM | C-pent | chug | 8-bar self-sim max | Grade |
 |---|---|---|---|---|---|---|---|---|
 | `pf_base92a__1` | 91.95 | **-10.5** | 89 (closing decay) | 92.000 | **0.559** | **3.99** | **0.906** | **REDRAW**: quiet intro, chug, out of key (C#/G# smear), near-copy sections 2-3 |
+| `pf_base92a_v2__1` (r3) | 91.95 | **-13.2** | — | 92.000 | 0.732 | 1.52 | 0.756 | **SHIPS** (base A): one defect, a quiet 1-bar intro, skipped (start bar 1) |
 | `pf_base92b__1` | 91.95 | -6.9 | 89 (closing decay) | 91.996 | 0.868 | 1.25 | 0.738 | good |
 | `pf_rescue100__1` | 83.96 | -5.9 | 81 (closing decay) | 100.000 | 0.656 | 0.93 | 0.634 | good (2-bar softer intro, handled) |
-| `pf_inferno100__1` | 83.96 | -3.3 | 81 (closing decay) | 100.000 | **0.546** | 1.15 | 0.742 | **REDRAW**: came back in C minor/dorian, not A-minor pentatonic; interim -3 st |
+| `pf_inferno100__1` | 83.96 | -3.3 | 81 (closing decay) | 100.000 | **0.546** | 1.15 | 0.742 | out of key (C minor/dorian): **ships at -3 st** (beat its redraw on the built loop, §2.2) |
+| `pf_inferno100_v2__1` (r3) | 83.96 | -3.0 | 78-81 (closing decay from 77.5 s) | 100.000 | **0.598** | 0.46 | 0.775 | A-centred but B-heavy (A .22 B .17); **rejected by measurement** on the built loop (§2.2) |
 | `pf_antic92__1` | 16.02 | -2.3 | 13-14 (closing decay) | 93.75 (ambiguous) | 0.821 | 0.93 | — | good (tempo unmeasurable on a roll: plan's 92 used) |
-| `pf_backdraft92__1` | 48.02 | **-25.4** | 2-4 + 45-46 | 91.996 | 0.715 | 0.79 | 0.179 | **REDRAW**: 5.3 s near-silent head, only 15 bars of material; interim 12 bars |
+| `pf_backdraft92__1` | 48.02 | **-25.4** | 2-4 + 45-46 | 91.996 | 0.715 | 0.79 | 0.179 | 5.3 s near-silent head, only 15 bars of material: **ships 12 bars** |
+| `pf_backdraft92_v2__1` (r3) | 48.02 | **-25.2** | 46 | 91.996 | **0.547** | **4.06** | 0.431 | **rejected by measurement** (worse: chug, out of key, same silent head); not built |
 | `pf_rung100_big__1` .. `max__1` | 24.01 | -1.9 .. +0.6 | — | 100.0 (huge 100.05) | 0.73-0.95 | 0.25-0.95 | — | good |
 
 "Dropout" at the very end of every draw is the model's closing decay; `build_audio.material_end()` now finds it (last 250 ms
@@ -88,17 +91,27 @@ window within 15 dB of the body median) and the loop is never cut into it.
 
 ### 2.2 Build decisions per bed (`audio/tools/bed_overrides.json`, each with its measured `why`)
 
-- `base_loop_a`: start at draw bar 1 (the draw's 2-bar intro sits 10 dB low and its closing decay starts at 88.25 s, so bar 1
-  is the latest 32-bar start); the one quiet bar left is raised +5.8 dB by `bar_lift` (§ below). Interim until `pf_base92a_v2`.
+- `base_loop_a` (r3): **`pf_base92a_v2__1` from draw bar 1.** Built from bar 0 / 1 / 2 in a scratch root with the shipping
+  `bed()`: bar 0 needed `bar_lift` +5.6 dB on the intro bar and still left the loop head 4.7 dB under its tail at 1000 ms
+  (every pass would restart on the intro), grid / sliding self-sim 0.757 / 0.840; **bar 1 ships**: no lift needed (quietest
+  bar 2.0 dB under the median), head-tail 1.1 / 0.3 / -1.1 dB at 50 / 250 / 1000 ms, self-sim 0.834 / 0.838, chug 1.35,
+  C-pent 0.756, limiter 0.25 %; bar 2 self-sim 0.859 / 0.871. The loop ends at 86.1 s, before the draw's decay (90.5 s).
+  (r1/r2 shipped `pf_base92a__1` from bar 1 + a +5.8 dB lift: chug 3.77, C-pent 0.59, limiter 37.6 %.)
 - `rescue_loop`: start at draw bar 1; bar 0 of the loop lifted +2.5 dB.
 - `inferno_loop`: `semis: -3` — whole-mix rubberband transposition (formants kept, length kept) from C minor/dorian onto A
   (A dorian: key-fit share 0.47 -> 0.76, C-pent 0.55 -> 0.78). +2 st (D dorian) measured 0.68 / 0.70 and moves the centre
-  off A, so -3 it is. Interim until `pf_inferno100_v2`.
+  off A, so -3 it is. **r3: kept over `pf_inferno100_v2__1` by measurement** — three candidates built with the shipping
+  `bed()`, v1 -3 st / v2 raw / v2 -2 st (the best key-fit within +-2 st; every other rotation moves the centre off A):
+  C/A-minor-pent 0.780 / 0.634 / 0.704, chug 1.55 / 0.97 / 0.95 (all << 3), grid self-sim 0.650 / 0.689 / 0.681, sliding
+  0.652 / 0.765 / 0.697, limiter load 2.94 / 0.0 / 0.0 %, head-tail at 250 ms 4.4 / 8.2 / 8.6 dB (v2's material ends at
+  77.5 s, 0.7 s after the 32-bar loop, so its closing decay sits at the seam). v1 wins key, both self-similarities and the
+  seam; v2 wins only chug (a defect in neither) and limiter load.
 - `anticipation_layer`: entry at 0.778 s (first sample within 12 dB of the draw's peak after a 0.65 s pre-roll);
   `bpmOverride: 92` — a continuous roll gives the onset comb nothing to lock to (93.75 / 81.1 / 89-90 from three methods).
 - `backdraft_spins_layer`: entry at 5.286 s (after a 5.2 s near-silent head; a lone crackle pop at 4.64 s is skipped) and
   **12 bars** (31.304 s) instead of 16: the draw holds 15.0 bars; 12 = three 4-bar phrases, even, so the two-bar brass stabs
-  stay on the base bed's grid (the runtime phase-aligns a layer modulo its own loop). Interim until `pf_backdraft92_v2`.
+  stay on the base bed's grid (the runtime phase-aligns a layer modulo its own loop). **r3: `pf_backdraft92_v2__1` rejected
+  by measurement** (graded worse: chug 4.06, C-pent 0.547, the same -25 dB head), so this stays; a 16-bar layer is open.
 - Every bed: the start is nudged by at most +-2 ms (measured nudges -1.43 .. +1.75 ms; a 16th note at 92 BPM is 163 ms) to
   the smallest raw adjacent-sample step at the seam, so the head-blend seam is continuous AND measures clean on a loud noisy
   downbeat (the Backdraft layer's shaker + tom had measured 0.243 against a body p99.9 of 0.118 before the nudge).
@@ -113,13 +126,13 @@ window within 15 dB of the body median) and the loop is never cut into it.
   reject turned a faded-to-zero `line_win_small` into a slow -48 dBFS step tail).
 - `bar_lift` (new): a bar more than 4 dB under the loop's median bar level is raised toward median - 2.5 dB (max +8 dB),
   ramping up over its first half beat (the seam stays at unity gain) and down over its last beat (the next downbeat is never
-  boosted). Lifted: base A bar 1 +5.8, base B bars 1-2 +2.8 / +4.3, Rescue bar 1 +2.5.
+  boosted). Lifted: base B bars 1-2 +2.8 / +4.3, Rescue bar 1 +2.5 (r3: base A needs none from bar 1 of its redraw).
 
 ### 2.3 Beds as shipped (`audio/qa/beds_table.md`, decoded .ogg / .m4a)
 
 | bed | grid BPM | bars | loop s | samples exact | shipped BPM ogg / m4a | I LUFS ogg | TP ogg / m4a | wrap ogg / m4a (body p99.9) | head-tail dB 250 / 1000 ms | chug | section self-sim max | C-pent | source |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| base_loop_a | 92 | 32 | 83.4783 | True | 91.95 / 91.95 | -15.5 | -1.82 / -1.38 | 0.02961 / 0.02027 (0.1215) | -3.91 / -2.91 | 3.769 | 0.836 | 0.592 | pf_base92a__1 |
+| base_loop_a | 92 | 32 | 83.4783 | True | 91.95 / 91.95 | -15.5 | -2.05 / -1.72 | 0.03389 / 0.03748 (0.06948) | 0.33 / -1.11 | 1.347 | 0.834 | 0.756 | pf_base92a_v2__1 |
 | base_loop_b | 92 | 32 | 83.4783 | True | 91.95 / 91.95 | -15.5 | -2.05 / -2.0 | 0.00501 / 0.01041 (0.0681) | 7.19 / -1.45 | 1.074 | 0.741 | 0.874 | pf_base92b__1 |
 | rescue_loop | 100 | 32 | 76.8 | True | 100.0 / 100.0 | -15.5 | -2.16 / -2.2 | 0.00592 / 0.01953 (0.14817) | 1.38 / 0.84 | 1.077 | 0.663 | 0.688 | pf_rescue100__1 |
 | inferno_loop | 100 | 32 | 76.8 | True | 100.0 / 100.0 | -15.2 | -1.9 / -1.76 | 0.00918 / 0.01059 (0.10014) | 4.41 / 0.78 | 1.547 | 0.65 | 0.78 | pf_inferno100__1 |
@@ -131,12 +144,10 @@ window within 15 dB of the body median) and the loop is never cut into it.
 | rung_bed_epic | 100 | 8 | 19.2 | True | 100.0 / 100.0 | -14.6 | -4.3 / -4.42 | 0.01355 / 0.00806 (0.08817) | -0.69 / -0.81 | 0.887 | None | 0.784 | pf_rung100_epic__1 |
 | rung_bed_max | 100 | 8 | 19.2 | True | 100.0 / 100.0 | -14.4 | -1.74 / -1.38 | 0.00172 / 0.01766 (0.08901) | 25.59 / 4.22 | 0.527 | None | 0.954 | pf_rung100_max__1 |
 
-Limiter (cyclic, ceiling -2.0 dBFS on every bed): fraction of samples under gain reduction base A 0.376 (r1 0.118: the ship
-loop now lands every bed <= -1.1 dBTP at 8x oversampling, and the +-0.1 LU landing then pushes the interim base A draw harder;
-mean reduction 0.17 dB, up to ~2 dB in its hook bars 1-4 / 17-20), rung MAX 0.299, rung BIG 0.207, Inferno 0.029, the rest
-<= 0.016 (listen for squash on base A's hook bars and rung MAX, §9). Head-tail at 50-250 ms on the rung beds is beat phase (a
+Limiter (cyclic, ceiling -2.0 dBFS on every bed): fraction of samples under gain reduction rung MAX 0.299, rung BIG 0.207,
+Inferno 0.029, base A 0.0025 (r3 redraw; the r2 interim draw ran 0.376), the rest <= 0.016 (listen for squash on rung MAX, §9). Head-tail at 50-250 ms on the rung beds is beat phase (a
 downbeat hit vs the gap before the next downbeat; rung MAX's +25.6 dB at 250 ms is its stab-and-gap rhythm); at 1000 ms every
-bed is <= 6 dB (gate, §11). Sliding 8-bar self-similarity (r2, §11): base A 0.81 band / 0.88 chroma, base B 0.74 / 0.56,
+bed is <= 6 dB (gate, §11). Sliding 8-bar self-similarity (r2, §11): base A 0.84 band / 0.77 chroma (r3; r2 interim 0.81 / 0.88), base B 0.74 / 0.56,
 Rescue **0.86 / 0.88 at a 12-bar lag** (bars 9-16 vs 21-28: under the 0.90 bar, but a real repeat — listen, §9), Inferno
 0.65 / 0.58.
 
@@ -193,7 +204,7 @@ roster refuses such words even as negatives (the SFX model keys on the noun).
 | Count-up 1-12 | hybrid C5 glock/chime blip + 15 ms drawn click (HP 1 kHz, -8 dB), resampled; each tick ends in a release over its last 45 % | C5 D5 E5 G5 A5 C6 D6 E6 G6 A6 C7 D7, 250 -> 56 ms |
 | Riser 2 | `antic_riser` (+2.31 st key-fit) + 2 st | stepped, same length |
 
-Key-fit (12 cues moved, every one measured in key after; r1's `alarm_outcome_false` -2.0 st is gone: its drawn channels
+Key-fit (13 cues moved; 12 measured in key after — the 13th, `rung_hit_big` -1.0 st (r3 redraw, a Bb stab), ships C-pent 0.525, see §10; r1's `alarm_outcome_false` -2.0 st is gone: its drawn channels
 were anti-phase, r2 ships the stronger channel as mono and that measures in key): `ante_on` -0.23, `buy_confirm` -2.21, `antic_riser` +2.31,
 `antic_miss` -0.26, `antic_hit` +2.24, `trigger_fanfare` -0.24, `sym_win_h1` +0.70, `rung_hit_huge` +2.0, `rescue_enter` +1.0,
 `last_spin` -2.0, `alarm_outcome_rescue` +2.0 st; **`sym_win_h2` split-band** (new): its analysis
@@ -228,7 +239,7 @@ C8 -3 c, body unchanged 0.71. A key-fit that would make the body worse is never 
   -17.8, phone -23.3 < -22.6) · multipliers -18.0 -17.5 -17.3 -15.9 / -18.0 -17.5 -17.3 -16.7 / -18.3 -17.6 -17.3 -17.0 ·
   line -19 < -18 · totals -18.0 -16.5 -15.0 / -18.1 -17.1 -15.7 / -18.8 -17.3 -16.4 · Rescue totals -18.9 -16.5 -14.5 /
   -20.1 -16.6 -16.3 / -20.7 -20.5 -17.4 · Inferno totals -17.5 -16.0 -14.5 / -18.6 -17.4 -15.3 / -29.8 -17.6 -16.7 · rung hits
-  -17.1 -15.9 -15.0 -14.5 -11.8 / -17.2 -16.9 -15.6 -15.3 -12.8 / -21.5 -17.0 -16.8 -15.6 -15.4 · signs -21.1 -20.2 -16.3 -14.7
+  -17.2 -15.9 -15.0 -14.5 -11.8 / -17.2 -16.9 -15.6 -15.3 -12.8 / -21.6 -17.0 -16.8 -15.6 -15.4 (r3 `rung_hit_big` redraw) · signs -21.1 -20.2 -16.3 -14.7
   -14.5 / -21.1 -20.8 -16.6 -14.7 -14.5 / -21.5 -21.2 -20.9 -20.7 -18.1 · bursts -20.8 -18.3 -18.0 -17.5 -17.0 (mono / phone
   the same order) · ta-da -19.0 .. -15.5 (0.5 dB steps on all three) · prizes -18.0 < -16.5 · entries -15.5 -15.0 -13.1 /
   -17.3 -16.0 -14.3 / -18.4 -16.1 -15.9 · Alarm Call -20.0 -15.5 -14.5 / -20.0 -17.0 -14.9 / -20.0 -17.0 -15.7 · total big
@@ -247,9 +258,10 @@ C8 -3 c, body unchanged 0.71. A key-fit that would make the body worse is never 
 - **Re-master law (`mix.py`)**: a cue needing > +6 dB of gain is re-mastered from the BUILD's master (kept in
   `audio/masters/_src/_premix/` with the sha of what mix.py wrote, so re-running mix.py never stacks a second raise), with a
   4x-oversampled tanh soft clip at -3 dBFS first when its crest factor exceeds 16 dB (crackle / pops: a look-ahead limiter
-  pumps on every pop), then the -1.5 dBFS limiter, up to 4 passes. 18 cues (5 base, 13 turbo): `burst_embers` +15.4 dB
+  pumps on every pop), then the -1.5 dBFS limiter, up to 4 passes. 17 cues (4 base, 13 turbo): `burst_embers` +15.4 dB
   (crest 27.8 dB: the draw is sparse full-scale pops at -25 dB RMS), `sign_impact_huge` +6.5, `alert_insufficient` +5.7,
-  `rung_hit_big` +4.7, `sym_win_l3` +3.5, turbo variants +3.4 .. +14.4. Listen for grit (§9).
+  `sym_win_l3` +3.5, turbo variants +3.4 .. +13.9 (`rung_hit_big_turbo` +9.4). r3: `rung_hit_big` itself no longer needs one
+  (its redraw sits +5.2 dB hotter raw: gain 1.54; r2 needed +4.7 dB). Listen for grit (§9).
 - **No celebration at or below the stake** — contract §8 win-tier rule, client-derived from the booked round total W: W <= S
   (S = the CHARGED cost of the selected mode: 1x base, 1.5x ALARM BOOST, the buy price for a bought feature) is tier 0 (a
   neutral cue or nothing) and takes precedence over every floor; then tier 1 S < W < 15B (`total_win_*`, `rescue_total_*`,
@@ -293,55 +305,58 @@ Everything is built and machine-measured, but **nobody has listened yet**; no se
 `python3 audio/tools/montage.py` -> `audio/qa/review_montage.mp3` (75 s, 93 distinct cues at their registered gains, -16.0 LUFS,
 -1.5 dBTP; cue sheet `review_montage.json`) and listen on headphones AND a phone speaker (mono). Must cover:
 - the synthesised hook over each bed (does the glock / vibes / bugle / bell sit, or poke out?); the synth-bugle colour
-  (cheesy in a good way, or cheap?); base A vs B (two tunes? — A is an interim draw with a chug, §10);
+  (cheesy in a good way, or cheap?); base A vs B (two tunes? — A is now its r3 redraw, from bar 1);
 - **the Inferno bed after its -3 st rubberband transposition** (phasiness / smeared transients?);
-- the lifted quiet bars (base A bar 1 +5.8 dB, base B bars 1-2, Rescue bar 1): natural, or a noisy lift?;
+- the lifted quiet bars (base B bars 1-2, Rescue bar 1): natural, or a noisy lift?;
 - every loop point, especially `rung_bed_big` / `rung_bed_mega` (r2 tail fill from bar 7) and the 12-bar Backdraft layer;
-- rung MAX (30 % of samples in limiting) and the soft-clipped re-masters (`burst_embers` +15.4 dB, `rung_hit_big(_turbo)`,
+- rung MAX (30 % of samples in limiting) and the soft-clipped re-masters (`burst_embers` +15.4 dB, `rung_hit_big_turbo`,
   `sign_impact_huge`, `alert_insufficient`): squash or grit?;
 - the alarm ladder climbing into the fanfare (does the resolution land?); the riser step-up and the neutral miss;
 - ignition and multiplier pings (too tinkly when five fire at once?); `sym_win_h2` split-band ring; `rung_hit_big` / `rung_hit_max` against the rung beds (their pitch
-  content is not C pentatonic, 0.52 / 0.58);
+  content is not C pentatonic, 0.525 / 0.58; `rung_hit_big` is the r3 redraw, a Bb stab moved -1 st);
 - **r2 changes to hear**: the reel stops' new C5-A5 wood knock over the thunk (x5 per spin: pleasant, or tinkly? audible on the
   phone over the reel loop?); the ta-da ladder now C4 .. E5 with rungs 4-8 from the horn source cleaned to one note (does the
   harmonic mask sound processed? the +5 / +7 / +9 st rubberband rungs?); the alarm chords now ring out 1.54 s with the top
   voice leading (muddy when 3-5 overlap?); ignition / multiplier pings now ring 1.3-1.6 s (a pentatonic cluster when five
   ignite?); the rung BIG / MEGA loop points (the last half-bar now comes from bar 7: a natural lead into the downbeat?);
-  base A's limiter on its hook bars (up to ~2 dB); **`rescue_loop`'s 12-bar repeat** (bars 9-16 vs 21-28, band r 0.86,
+  **`rescue_loop`'s 12-bar repeat** (bars 9-16 vs 21-28, band r 0.86,
   beat-chroma r 0.88: under the 0.90 near-copy bar, but is it heard as a repeat?); `inferno_total_small` on a phone (-29.8
   dBFS through the 400 Hz proxy, 12 dB under its stereo level: a flame whoosh under low brass); the three UI clicks on a phone
   (3.95 dB apart there); the turbo fanfares cut to 0.58 s + release (abrupt?);
 - the two-tone horn call (musical, not a real siren?); Ember's bark (cute after 50 false alarms?); turbo (time-scaled)
-  fanfares for WSOLA smear; `sym_win_l4` on a phone (all of its energy is under 200 Hz); fatigue over a 30-minute session.
+  fanfares for WSOLA smear; **`sym_win_l4`** (r3: the drawn sub stomp + a synthesised A4 wood knock for phones — a boot stomp,
+  or a knock? too close to the reel stops' C5-A5 knocks?); fatigue over a 30-minute session.
 
-## 10. Redraws requested (measured defects; the coordinator issues them — this lane made no paid call)
+## 10. Redraws — drawn by the coordinator, folded in by measurement (r3, 2026-09-25)
 
 Music redraws are NEW plans (`<plan>_v2`, `redrawOf` + `defect` in `audio/tools/plans.json`, preserved by `roster.py`, never
-swept by `--all`); each changes only the plan text that the defect names. When a v2 draw exists: `measure.py draws`, then point
-`bed_overrides.json` at `<plan>_v2__1` (drop the interim keys) only if it measures better, and rebuild (§12).
+swept by `--all`); each changes only the plan text that the defect names. SFX redraws overwrite `<name>.wav` (the first take
+kept as `<name>__v1.wav`). Each was measured against the take it would replace with the shipping code; the better one ships.
+Evidence: `audio/qa/redraw_foldin_r3.json`; commands and full outcomes: `audio/README.md` §Redraws.
 
-| Cue | Defect (measured) | Interim shipping now | ~chars |
+| Cue | Defect (measured, r2) | Redraw measured | Ships |
 |---|---|---|---|
-| `base_loop_a` | chug 3.99 raw / 3.77 shipped (r2; 4.14 in r1); C-pent 0.559 (C#/G#); sections 2-3 r 0.906; intro -10.5 dB | draw bar 1 on, bar 1 lifted; **fails measure** (chug) | 1,265 |
-| `inferno_loop` | C minor/dorian, C-pent 0.546 | -3 st rubberband -> A (share 0.78) | 1,155 |
-| `backdraft_spins_layer` | 5.3 s near-silent head, 15.0 bars of material | 12-bar layer from the entry | 660 |
-| `rung_hit_big` | "C major brass stab" measures C-pent 0.525, top A G# A# E G, tonality 0.53; pickup refused; +4.7 dB soft-clip re-master | as drawn | 13 |
-| `sym_win_l4` | 99.5 % of energy under 200 Hz (200-500 Hz -26 dB, > 500 Hz < -39 dB): inaudible on phones | as drawn | 11 |
+| `base_loop_a` | chug 3.99 raw / 3.77 shipped; C-pent 0.559; sections 2-3 r 0.906; intro -10.5 dB | `pf_base92a_v2__1`: chug 1.52, C-pent 0.732, max section r 0.756; one defect, a 1-bar intro at -13.2 dB | **the redraw, from bar 1**: chug 1.35, C-pent 0.756, self-sim 0.834 / sliding 0.838, limiter 0.25 % |
+| `inferno_loop` | C minor/dorian, C-pent 0.546 | `pf_inferno100_v2__1`: C-pent 0.598 raw; built loop 0.634 raw / 0.704 at -2 st vs v1 -3 st 0.780; self-sim, sliding and seam all worse (§2.2) | **v1 at -3 st** (redraw rejected) |
+| `backdraft_spins_layer` | 5.3 s near-silent head, 15.0 bars of material | `pf_backdraft92_v2__1`: same head (-25.2 dB), chug 4.06, C-pent 0.547 | **v1, 12 bars** (redraw rejected) |
+| `rung_hit_big` | C-pent 0.525, tonality 0.53, pickup refused, +4.7 dB soft-clip re-master | tonality 0.679, +5.2 dB hotter, C-pent 0.520; a Bb3 stab (SHS 233.1 Hz), not the C asked | **the redraw**, key-fit -1 st: C-pent 0.525, SHS A3, tonality 0.553, no re-master (gain 1.54); pickup still refused |
+| `sym_win_l4` | ~100 % of energy under 200 Hz: phone proxy -53.4 dBFS effective | same defect (phone gap 34.0 vs 34.5 dB), 4.9 dB quieter, out of key (F / F#, C-pent 0.217 vs 0.813) | **v1 restored** + a tuned A4 wood knock solved on the phone proxy (§14): -21.5 dBFS effective, within 2.44 dB of every other symbol win; C-pent 0.996 |
 
-Commands (exact) are in `audio/README.md` §Redraws. Estimated total ~3,100 characters against 185,542 remaining.
+No further redraw is requested. Offline options left: `rung_hit_big` as a hybrid (drawn stab + a synthesised C E G chime
+chord, the `blaze_mult_10` recipe) would put it in key and earn the pickup; a 16-bar Backdraft layer needs a third draw.
 
 ## 11. Acceptance as measured (`python3 audio/tools/measure.py` -> `audio/qa/measure_all.json`, 2026-09-25)
 
 | Check | Result |
 |---|---|
 | ids x codecs present | 232 x 2 = 464 / 464; static == runtime sha256 for all 464 |
-| True peak, decoded Opus AND AAC, **8x oversampled** at the codec's native rate, unrounded (r2) | max **-1.18 dBTP**, 0 over -1.0 (r1 shipped `spins_added.ogg` -0.96, `rung_hit_big.m4a` -0.97, `rescue_total_big.ogg` -0.98: ebur128 prints one decimal; now -3.00 / -1.18 / -1.23) |
+| True peak, decoded Opus AND AAC, **8x oversampled** at the codec's native rate, unrounded (r2) | max **-1.21 dBTP** (r3), 0 over -1.0 (r1 shipped `spins_added.ogg` -0.96, `rung_hit_big.m4a` -0.97, `rescue_total_big.ogg` -0.98: ebur128 prints one decimal; now -3.00 / -1.18 / -1.23) |
 | Loops seam-clean (wrap <= body p99.9, both codecs) | 14 / 14 (11 beds, reel spin, hose, ambience) |
 | Whole-bar grid exact (samples) | 11 / 11 beds (92 BPM x 32 = 3,681,392 samples; 100 x 32 = 3,386,880; 92 x 4 = 460,174; 92 x 12 = 1,380,522; 100 x 8 = 846,720) |
 | Codec-guard pads cyclic | 11 / 11 |
-| Chug (8th/quarter, 300-1200 Hz) <= 3 | 10 / 11 — **`base_loop_a` 3.77** (redraw) |
-| Self-similarity, 8-bar grid sections < 0.90 | 4 / 4 32-bar beds (max 0.836 base A) |
-| **Self-similarity, sliding** 8-bar windows at every half beat, cyclic, band spectrogram AND beat chroma (z-scored per pitch class) < 0.90 (r2) | 4 / 4: base A 0.81 / 0.88, base B 0.74 / 0.56, **Rescue 0.86 / 0.88 (12-bar lag, bars 9-16 vs 21-28; listen)**, Inferno 0.65 / 0.58 |
+| Chug (8th/quarter, 300-1200 Hz) <= 3 | **11 / 11** (r3: `base_loop_a` 3.77 -> 1.35 on its redraw; max now Inferno 1.55) |
+| Self-similarity, 8-bar grid sections < 0.90 | 4 / 4 32-bar beds (max 0.834 base A) |
+| **Self-similarity, sliding** 8-bar windows at every half beat, cyclic, band spectrogram AND beat chroma (z-scored per pitch class) < 0.90 (r2) | 4 / 4: base A 0.84 / 0.77 (r3), base B 0.74 / 0.56, **Rescue 0.86 / 0.88 (12-bar lag, bars 9-16 vs 21-28; listen)**, Inferno 0.65 / 0.58 |
 | Bed tail dip: head-tail at 1000 ms <= 6 dB (r2: a gate) | 11 / 11 (rung BIG 6.8 -> 4.5, rung MEGA 2.4 after the tail fills) |
 | Bed LUFS vs target (+-1) | 11 / 11: base A -15.5, B -15.5, Rescue -15.5, Inferno -15.2, layers -16.0 / -16.0 |
 | Rung beds strictly rising | -15.2 < -15.0 < -14.8 < -14.6 < -14.4 LUFS |
@@ -352,7 +367,8 @@ Commands (exact) are in `audio/README.md` §Redraws. Estimated total ~3,100 char
 | **Reel stops on the phone proxy** (r2): each >= `reel_spin_loop` + 6 dB, within 1 dB | -23.4 .. -23.5 dBFS vs -30.0 (+6.5 dB), spread 0.09 dB (r1 -40.3 .. -28.2) |
 | **Reward chains on st + mono + phone** (r2, also re-checked by measure.py from the shipped files x gains) | 16 / 16 (+ 15 / 15 turbo in mix.py) |
 | **Alarm top voice** within 3 dB of the loudest partial, mono sum (r2) | 5 / 5 (A4 0.0, D5 0.0, F5 -1.1, A5 0.0, B5 0.0 dB) |
-| **PASS** | **false** — only `base_loop_a` chug (`measure_all.json` summary.failingGates = ['chug']) |
+| **Symbol wins on the phone proxy** (r3, measured, not a gate) | 9 / 9 within 2.44 dB: -19.02 .. -21.46 dBFS effective (`sym_win_l4` -53.43 -> -21.46) |
+| **PASS** | **true** — 16 / 16 gates (`measure_all.json` summary.failingGates = [], r3 2026-09-25) |
 
 ## 12. Rebuild order (idempotent; every step re-runnable)
 
@@ -387,3 +403,13 @@ Each defect was measured on the r1 shipped files; each fix is in the build / mix
 | `rung_bed_big` / `rung_bed_mega` loop tail in the phrase-end breath (+25.0 / +20.6 dB head-tail at 250 ms) | `tailFill` from the end of bar 7 (bar 4 carries the same breath) | +10.7 / +6.4 dB at 250 ms, 4.5 / 2.4 at 1000 ms |
 | Self-similarity gate compared only grid-aligned 8-bar sections | `measure.selfsim_sliding` (half-beat hop, cyclic, band + beat chroma) | Rescue's 12-bar repeat found (0.86 / 0.88, < 0.90): listening item |
 
+## 14. r3 redraw fold-in (2026-09-25; offline, no paid call)
+
+| Change | Why (measured) | Now |
+|---|---|---|
+| `bed_overrides.json` `base_loop_a` -> `pf_base92a_v2__1`, start bar 1 | the only failing gate (chug 3.77) and four more named defects of v1; bar 1 chosen over bar 0 / 2 by head-tail and self-similarity (§2.2) | chug 1.35, C-pent 0.756, PASS 16 / 16 |
+| Inferno and Backdraft redraws rejected | both measured worse on the built loop / the draw grade (§2.2, §10) | v1 ships for both (`why` recorded) |
+| `cues_pcm/sym_win_l4.wav` = the `__v1` take (the redraw kept as `__v2`) | the redraw kept the named defect and was out of key | v1 body |
+| `build_audio.PHONE_VOICE` / `phone_voice()`: drawn sub-heavy one-shot + a tuned knock on its onset, level solved on the 400 Hz proxy to st - phone <= `gap_db` (the reel-stop recipe, per cue) | `sym_win_l4` read -53.4 dBFS on the phone proxy vs -19.0 .. -20.8 for the other symbol wins; A4 wood (the thump's own pitch class, an octave under the reel-stop knocks); gap 2.5 dB, because A4 loses ~1.6 dB through the proxy and a 1.5 dB target buried the stomp 30 dB under the knock | knock +8.5 dB over the stomp's onset; gap 2.46 dB; -21.46 dBFS effective |
+| `build_audio.py` `--only` runs MERGE into `qa/build_report_<mode>.json` | a partial rebuild replaced the whole report with its subset | full report kept, `onlyRuns` appended |
+| Atomic writes: `kit.write_text` / `write_json` for every JSON / CSV / Markdown output of build / mix / measure / map / montage; `gen_manifest.mjs` temp + rename; `ship()` copies into static via temp + rename | a crash mid-write could leave a truncated QA file, map, manifest or shipped file | — |

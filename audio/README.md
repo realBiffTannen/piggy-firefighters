@@ -1,11 +1,11 @@
 # PIGGY FIREFIGHTERS — audio lane
 
-Owner: AUDIO lane (Claude). Status 2026-09-25: **BUILT, r2 build fixes applied (offline, no paid call).** 107 draws (11 music,
-96 SFX, 0 failures; account 194,478 -> 185,542 characters) -> 232 ids x 2 codecs shipped, manifest regenerated, measured.
-`measure.py` PASS **false** on one named draw defect (`base_loop_a` chug 3.77); every other gate passes, including the r2
-gates (ta-da fundamentals rising, mono sum, 400 Hz phone proxy, tails, turbo <= 700 ms, 8x true peak, alarm top voice, sliding
-self-similarity, bed tail dip, reward chains on stereo + mono + phone). Redraws requested below (§Redraws); **human listening
-NOT RUN**.
+Owner: AUDIO lane (Claude). Status 2026-09-25: **BUILT, r2 build fixes applied, r3 redraws folded in by measurement (this lane
+made no paid call; the coordinator drew the 5 redraws).** 107 + 5 draws -> 232 ids x 2 codecs shipped, manifest regenerated,
+measured. `measure.py` **PASS: true, 16 / 16 gates** (files, 8x true peak, seams, grid, pads, chug, sliding self-similarity,
+bed tail dip, mono sum, tails, turbo <= 700 ms, ta-da ladder, reel stops on the phone proxy, reward chains on stereo + mono +
+phone, alarm top voice, rung beds rising). `base_loop_a` now ships its redraw (chug 1.35); outcomes per redraw in §Redraws;
+evidence `audio/qa/redraw_foldin_r3.json`. **Human listening NOT RUN**.
 Direction and measured tables: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO_MAP.md` (generated). Design rules:
 `docs/AUDIO_DESIGN_NOTES.md`, theme §6, `docs/GAME_CONTRACT.md`.
 
@@ -21,7 +21,7 @@ Direction and measured tables: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO
 | `audio/runtime/` | Encoded working copies, git-ignored (sha-identical to static). |
 | `apps/piggy_firefighters/static/assets/audio/piggy_firefighters/` | What ships: `<id>.ogg` (Opus 160k, 48 kHz) + `<id>.m4a` (AAC-LC 160k, 44.1 kHz). |
 | `apps/piggy_firefighters/src/game/audio/cueManifest.ts` | Generated runtime projection (`Bus`, `CueDef`, `GRID`, `MIX`, `CUES`, `CueId`), same shape as the donor's. |
-| `audio/qa/` | Evidence: `music_draws_measured.json`, `build_report_*.json`, `mix_pass.csv`, `mix_ladder.json`, `measure_all.json`, `cues_table.csv`, `beds_table.md`, `review_montage.mp3`. |
+| `audio/qa/` | Evidence: `music_draws_measured.json`, `build_report_*.json` (a `--only` run merges into the last report, r3), `mix_pass.csv`, `mix_ladder.json`, `measure_all.json`, `cues_table.csv`, `beds_table.md`, `review_montage.mp3`, `redraw_foldin_r3.json` (every redraw candidate as built / measured). r3: every JSON / CSV / Markdown / TS output of the build / mix / manifest / measure / map / montage steps is written atomically (temp + rename; `kit.write_text` / `write_json`), and `ship()` copies each shipped file into static atomically (masters and runtime encodes are still written in place by ffmpeg and re-made by any rerun; `roster.py` and the `gen_audio.mjs` ledger were not touched). |
 
 ## Tools (`audio/tools/`)
 
@@ -36,7 +36,7 @@ Direction and measured tables: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO
 | `audio_map.py` | Generates `docs/AUDIO_MAP.md` (works before and after the build). |
 | `montage.py` | 75 s review montage at registered gains (a listening aid for the human pass). |
 | `kit.py`, `loopkit.py`, `beat_tools.py`, `keyfit.py`, `hook_layer.py`, `limit_loop.py` | DSP / codec kit (family code; `kit.py` adds the RIFF-chunk loader, the static-folder guard, the cyclic limiter and the codec guard; r2: `true_peak` (8x), `levels` (st / mono / phone), `narrow` (M/S), `release`, `ring_out`, `tail_metrics`, `shs_f0` (subharmonic summation), `harmonic_only`), loop DSP, onset envelope, 10-cent key-fit, the Firefighters hook + timbres, cyclic ffmpeg limiter. |
-| `bed_overrides.json` | Which draw ships per bed and how it is cut (measured decisions only, each with its `why`): 7 beds (base A / Rescue start bar, Inferno -3 st, anticipation entry + tempo, Backdraft entry + 12 bars, r2: rung BIG / MEGA `tailFill` from bar 7). |
+| `bed_overrides.json` | Which draw ships per bed and how it is cut (measured decisions only, each with its `why`): 7 beds (r3: base A = `pf_base92a_v2__1` from bar 1; Rescue start bar; Inferno v1 -3 st, kept over its v2 by measurement; anticipation entry + tempo; Backdraft v1 entry + 12 bars, v2 rejected; r2: rung BIG / MEGA `tailFill` from bar 7). |
 
 ## Order of work
 
@@ -134,9 +134,23 @@ different account). The live quota is read by the tool before the first draw; th
 - **Alarm** top voice +6 dB; **true peak** 8x in `ship()` (target -1.3, ceiling -1.1); **rung BIG / MEGA** tail fill;
   **AUDIO_MAP** contract §8 event table with the W vs S tier rule.
 
-## Redraws (measured defects; NOT drawn — the coordinator issues them)
+## Redraws (measured defects; drawn by the coordinator 2026-09-25, ledgered; folded in by MEASUREMENT, r3)
+
+The five `--force --reason "<measured defect>"` calls below were issued by the coordinator (rows in `audio/source-record.json`;
+this lane made no paid call). Each redraw was then measured against the take it would replace with the same code the build
+ships; the better one ships. Evidence: `audio/qa/redraw_foldin_r3.json` (every candidate), `music_draws_measured.json`
+(draw grades), `bed_overrides.json` (each bed's `why`).
+
+| Cue | Redraw | Outcome (measured) |
+|---|---|---|
+| `base_loop_a` | `pf_base92a_v2__1` | **SHIPS** (v1 retired). Draw grade: one defect left (quiet 1-bar intro -13.2 dB) vs v1's five. Built from bar 0 / 1 / 2: bar 1 ships (no bar lift needed, head-tail 1.1 / 0.3 / -1.1 dB at 50 / 250 / 1000 ms; bar 0 needed +5.6 dB lift and left a -4.7 dB head dip at 1 s; bar 2 self-sim 0.859 / 0.871). Shipped: **chug 1.35** (v1 3.77: the failing gate), C-pent 0.756 (0.592), grid self-sim 0.834, sliding 0.838 band / 0.773 chroma (v1 0.81 / 0.88), -15.5 LUFS, TP -2.05 / -1.72 dBTP, seam 0.034 / 0.037 vs body 0.069 (both codecs clean), grid exact 3,681,392 samples, pads cyclic, limiter 0.25 % of samples (v1 37.6 %). |
+| `inferno_loop` | `pf_inferno100_v2__1` | **REJECTED by measurement; v1 -3 st keeps shipping.** Built three candidates: v1 -3 st / v2 raw / v2 -2 st (best key-fit within +-2 st; every other rotation moves the centre off A): C/A-minor-pent share **0.780** / 0.634 / 0.704; chug 1.55 / 0.97 / 0.95 (all << 3); grid self-sim **0.650** / 0.689 / 0.681; sliding **0.652** / 0.765 / 0.697; limiter load 2.94 % / 0.0 % / 0.0 %; head-tail at 250 ms **4.4** / 8.2 / 8.6 dB (v2's material ends 0.7 s after the loop: its closing decay sits at the seam). v1 wins key share, both self-similarities and the seam; v2 only chug (not a defect in either) and limiter load. |
+| `backdraft_spins_layer` | `pf_backdraft92_v2__1` | **REJECTED by measurement (not built); v1 12 bars keeps shipping.** v2 graded worse: quiet intro -25.2 dB, **chug 4.06**, C-pent 0.547 (out of key), dropout at 46 s (v1 chug 0.79, C-pent 0.715). The 16-bar layer stays an open item. |
+| `rung_hit_big` | SFX redraw (first take kept as `cues_pcm/rung_hit_big__v1.wav`) | **SHIPS (better, not in key).** Tonality 0.679 vs 0.525 (now key-fittable), +5.2 dB hotter raw (mix gain 1.54, no soft-clip re-master; v1 needed +4.73 dB), C-pent 0.520 vs 0.525 (equal). Still NOT in key: a Bb3 fundamental (SHS 233.1 Hz; the prompt asked a C chord) with a strong partial ~45 c under Bb. Key-fit (standing rule) -1 st -> shipped C-pent 0.525, SHS fundamental A3 (220.0 Hz), tonality 0.553 after rubberband; an SHS snap to C4 (+2 st) measured key-fit share 0.604 but 110-2500 Hz share 0.462, so not used. **Fanfare pickup refused** (0.525 < 0.6). Rung-hit chain still rises on st / mono / phone (-17.2 / -17.2 / -21.6 dBFS effective). |
+| `sym_win_l4` | SFX redraw (kept as `cues_pcm/sym_win_l4__v2.wav`) | **REDRAW WORSE -> v1 RESTORED** (`sym_win_l4.wav` = the `__v1` take). The redraw did not fix the named defect (phone gap 34.0 dB vs v1 34.5: ~100 % of energy under 200 Hz in both), is 4.9 dB quieter raw and out of key (F / F#, C-pent 0.217 vs v1 0.813). Offline fix (no paid call): `build_audio.PHONE_VOICE` = the drawn stomp + a tuned wood knock A4 on its onset (+8.5 dB), level solved on the 400 Hz phone proxy (st - phone 2.46 dB, target <= 2.5; a 1.5 dB target buried the stomp 30 dB under the knock); shipped C-pent 0.996. Effective on the phone proxy **-21.46 dBFS (was -53.43)** vs the other symbol wins -19.02 .. -20.76: within 2.44 dB of all of them. |
 
 ```bash
+# as issued by the coordinator (for the record)
 node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_base92a_v2__1 --force --reason "pf_base92a__1 (base_loop_a): chug 3.99 raw / 3.77 shipped (8th/quarter > 3), C-pent 0.559 (C#/G# smear), near-copy sections 2-3 r 0.906, quiet intro -10.5 dB; measure.py draws 2026-09-25"
 node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_inferno100_v2__1 --force --reason "pf_inferno100__1 (inferno_loop): out of key, C minor/dorian (C .24 Bb .17 G .13 Eb .09), C-pent 0.546 < 0.6 instead of A-minor pentatonic; interim ships -3 st rubberband; measure.py draws 2026-09-25"
 node audio/tools/gen_audio.mjs music audio/tools/plans.json pf_backdraft92_v2__1 --force --reason "pf_backdraft92__1 (backdraft_spins_layer): quiet intro -25.4 dB (5.3 s near-silent head) and decay from 44.5 s = 15.0 bars of material for a 16-bar layer; interim ships 12 bars; measure.py draws 2026-09-25"
@@ -144,10 +158,16 @@ cp audio/cues_pcm/rung_hit_big.wav audio/cues_pcm/rung_hit_big__v1.wav   # keep 
 node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json rung_hit_big --force --reason "rung_hit_big: prompt asks a C major brass stab; measured C-pent 0.525, top pitch classes A G# A# E G, tonality 0.53 (too noisy to key-fit), fanfare pickup refused, needed a +4.7 dB soft-clip re-master"
 cp audio/cues_pcm/sym_win_l4.wav audio/cues_pcm/sym_win_l4__v1.wav
 node audio/tools/gen_audio.mjs sfx audio/tools/jobs.json sym_win_l4 --force --reason "sym_win_l4: 99.5% of energy under 200 Hz (200-500 Hz -26 dB, >500 Hz below -39 dB): inaudible on a phone speaker"
+# r3 fold-in (offline): v1 restored for sym_win_l4, then
+python3 audio/tools/build_audio.py music --only base_loop_a
+python3 audio/tools/build_audio.py sfx --only rung_hit_big,sym_win_l4
+python3 audio/tools/build_audio.py shots --only rung_hit_big
+python3 audio/tools/build_audio.py turbo --only rung_hit_big_turbo,sym_win_l4_turbo
+python3 audio/tools/mix.py && node audio/tools/gen_manifest.mjs && python3 audio/tools/measure.py && python3 audio/tools/audio_map.py && python3 audio/tools/montage.py
 ```
-~3,100 characters in all (dry-run estimates 1,265 + 1,155 + 660 + 13 + 11). After any redraw: `measure.py draws` (music),
-set `bed_overrides.json` to the v2 draw ONLY if it measures better (drop the interim `start` / `semis` / `onsetAfter` / `bars`
-keys it no longer needs), keep the better SFX take, then the full rebuild order above.
+No further redraw is requested by this lane. Offline options if the listening pass wants them: `rung_hit_big` as a hybrid
+(drawn stab + synthesised C E G chime chord, the `blaze_mult_10` recipe) to put it in key and earn the pickup; a 16-bar
+Backdraft layer would need a third draw (no v2 improvement to build on).
 
 ## Not done / known limits
 
@@ -157,4 +177,6 @@ keys it no longer needs), keep the better SFX take, then the full rebuild order 
   `ambient_site_loop`, `reveal_bed`, `*_build_loop`, `tension_hit`, `sym_land_*` ...), which are no longer in the manifest, so
   those moments are SILENT until each is wired to its new id (`cues.json` `seam` + `replaces`, `docs/AUDIO_MAP.md`). The
   runtime skips unknown ids without throwing. The director's 66,899 ms base-bed swap constant should come from `CUES[bed]`.
-- `base_loop_a` fails the chug gate until its redraw lands; `inferno_loop` and `backdraft_spins_layer` ship measured interims.
+- `inferno_loop` ships v1 -3 st (rubberband: listen for phasiness) and `backdraft_spins_layer` 12 bars of v1: both redraws
+  measured worse. `rung_hit_big` is more tonal but still not in C pentatonic (pickup refused); `sym_win_l4` carries a
+  synthesised A4 wood knock over the drawn stomp so it reads on a phone (listen: stomp or knock?).

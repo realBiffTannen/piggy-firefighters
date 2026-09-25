@@ -66,5 +66,5 @@ export const CUES: Record<string, CueDef> = ${JSON.stringify(cues, null, '\t')};
 export type CueId = keyof typeof CUES;
 `;
 fs.mkdirSync(dirname(OUT), { recursive: true });
-fs.writeFileSync(OUT, out);
+const TMP = `${OUT}.tmp${process.pid}`; fs.writeFileSync(TMP, out); fs.renameSync(TMP, OUT); // r3: atomic (a failed write never truncates the manifest)
 console.log(`wrote ${OUT.replace(`${ROOT}/`, '')} with ${Object.keys(cues).length} cues${skipped.length ? ` (${skipped.length} roster ids not built yet, left out)` : ''}`);

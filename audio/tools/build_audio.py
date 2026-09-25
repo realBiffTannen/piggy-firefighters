@@ -427,6 +427,37 @@ def reel_stop_voice(thunk, note, cap_s=0.6):
     return y, {'knock': HL.name(note), 'knockRel_dB': float(rel), 'onset_ms': round(on / SR * 1000), 'levels': lv, 'ringOut': ro}
 
 
+# r3 (2026-09-25, redraw fold-in): a SYMBOL WIN drawn as a sub-bass thump. sym_win_l4 ("Boots win") measured 99.5 % of its
+# energy under 200 Hz in BOTH takes (v1 and the --force redraw: loudest-400 ms st -41.6 / -46.5 dBFS, 400 Hz phone proxy
+# -76.1 / -80.4 dBFS, i.e. a 34 dB phone gap either way), so after mix.py's family gain it read -19.0 dBFS on headphones
+# and -53.4 dBFS on a phone while every other symbol win reads -19.0 .. -20.8 on the phone proxy. The redraw did not fix
+# the named defect, so the fix is the reel-stop one (offline, no paid call): the drawn stomp stays as the low body and a
+# tuned wood knock on its onset carries it on a phone, level solved on the 400 Hz proxy (st - phone <= gap_db).
+# Note A4 = the pitch class of the drawn thump (measured chroma A 0.70), inside C pentatonic, inside a phone's band and an
+# octave under the reel-stop knocks (C5-A5), so it never reads as a reel stop. gap_db 2.5, not the reel stops' 1.5: A4's own
+# loss through the 400 Hz high-pass is ~1.6 dB, so 1.5 was only reachable by burying the drawn stomp 30 dB under the knock
+# (first solve, measured); at 2.5 the knock sits +8.5 dB over the stomp's onset and the stomp stays audible as the body, and
+# the cue lands within 2.5 dB of every other symbol win on the phone proxy (-19.0 .. -20.8 dBFS effective).
+PHONE_VOICE = {
+    'sym_win_l4': dict(note=69, colour='wood', cap_s=1.05, gap_db=2.5, max_rel=24.0),
+}
+
+
+def phone_voice(y, note, colour='wood', cap_s=1.05, gap_db=PHONE_GAP_DB, max_rel=24.0):
+    """drawn sub-heavy one-shot (kept as the body) + a tuned knock at `note` on its onset, level solved on the phone proxy."""
+    lv0 = K.levels(y)
+    for rel in np.arange(0.0, max_rel + 0.01, 0.5):
+        z, on = hybrid_ping(y, note, rel_db=float(rel), dur=cap_s, colours=((colour, 1.0),), damp_s=None)
+        lv = K.levels(z)
+        if lv['st'] - lv['phone'] <= gap_db: break
+    z, ro = K.ring_out(z, cap_s=cap_s, fade_ms=60.0, knee_s=0.3)
+    lv = K.levels(z)
+    return z, {'op': f'hybrid: drawn body + tuned {colour} knock {HL.name(note)} at {round(on / SR * 1000)} ms ({rel:+.1f} dB re the drawn onset), '
+                     f'level solved on the 400 Hz phone proxy (st - phone <= {gap_db} dB)',
+               'note': HL.name(note), 'knockRel_dB': float(rel), 'onset_ms': round(on / SR * 1000),
+               'phoneGap_dB': {'drawn': round(lv0['st'] - lv0['phone'], 2), 'shipped': round(lv['st'] - lv['phone'], 2)}, 'levels': lv, 'ringOut': ro}
+
+
 def keyfit(cid, y):
     pal = PROMPTS.get(cid, {}).get('palette', 'mech'); a = KF.analyse(y); st, why = KF.decide(a, pal)
     info = {'offsetCents': a['offsetCents'], 'tonality': a['tonality'], 'cpentShareDrawn': a['share'][0], 'decision': why, 'semis': st}
@@ -510,6 +541,8 @@ def master_draw(name):
         extra['tonal'] = {'op': 'hybrid: drawn slam/flare (-3 dB) + chime chord C6 E6 G6 (top voice +4 dB) + glock G6, rings out', 'chord': 'C6 E6 G6', 'ringOut': ro}
     elif name not in NO_KEYFIT:
         y, info = keyfit(name, y); extra['key'] = info
+    if name in PHONE_VOICE:
+        y, extra['tonal'] = phone_voice(y, **PHONE_VOICE[name])
     y = K.norm_rms(y, pre_rms(name), peak_db=-3.0)
     res = ship(y, name)
     set_cue(name, y, extra)
@@ -750,5 +783,13 @@ if __name__ == '__main__':
         elif st == 'turbo': report['turbo'] = turbo(only)
         else: raise SystemExit(__doc__)
         save()
-    json.dump(report, open(f'{QA}/build_report_{mode}.json', 'w'), indent=1, default=str)
+    rp = f'{QA}/build_report_{mode}.json'
+    if only and os.path.exists(rp):  # r3: a --only rebuild MERGES into the last full report (it used to replace it with the subset)
+        prev = json.load(open(rp))
+        for k, v in report.items():
+            if isinstance(v, dict) and isinstance(prev.get(k), dict): prev[k].update(v)
+            elif isinstance(v, list): prev[k] = [e for e in prev.get(k, []) if not any(str(e).startswith(f'{o}:') or f' {o}:' in str(e) for o in only)] + v
+            else: prev[k] = v
+        prev.setdefault('onlyRuns', []).append({'at': time.strftime('%Y-%m-%dT%H:%M:%S'), 'only': sorted(only)}); report = prev
+    K.write_json(rp, report)
     print('skipped:', report['skipped']); print('warnings:', report['warnings'])

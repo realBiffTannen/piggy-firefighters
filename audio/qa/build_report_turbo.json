@@ -43,8 +43,39 @@
    "I_m4a_LUFS": -22.5,
    "tpMethod": "8x oversampled, native codec rate",
    "samples": 30496
+  },
+  "sym_win_l4_turbo": {
+   "I_LUFS": -19.4,
+   "TP_dBFS": -3.98,
+   "TP_m4a_dBFS": -3.86,
+   "I_m4a_LUFS": -19.5,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 22315
+  },
+  "rung_hit_big_turbo": {
+   "I_LUFS": -20.1,
+   "TP_dBFS": -4.09,
+   "TP_m4a_dBFS": -4.74,
+   "I_m4a_LUFS": -20.4,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 29697
   }
  },
  "skipped": [],
- "warnings": []
+ "warnings": [],
+ "onlyRuns": [
+  {
+   "at": "2026-09-25T07:04:22",
+   "only": [
+    "rung_hit_big_turbo",
+    "sym_win_l4_turbo"
+   ]
+  },
+  {
+   "at": "2026-09-25T07:05:01",
+   "only": [
+    "sym_win_l4_turbo"
+   ]
+  }
+ ]
 }

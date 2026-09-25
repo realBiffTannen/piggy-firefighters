@@ -1,0 +1,15 @@
+{
+ "music": {},
+ "sfx": {},
+ "derived": {},
+ "shots": {
+  "rung_hit_big": {
+   "pickup": false,
+   "cpentShare": 0.525,
+   "why": "C-pentatonic share 0.53 < 0.6"
+  }
+ },
+ "turbo": {},
+ "skipped": [],
+ "warnings": []
+}

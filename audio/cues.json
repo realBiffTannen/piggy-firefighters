@@ -111,39 +111,37 @@
    "key": "C major (pentatonic)",
    "measured": {
     "I_LUFS": -15.5,
-    "TP_dBFS": -1.82,
-    "TP_m4a_dBFS": -1.38
+    "TP_dBFS": -2.05,
+    "TP_m4a_dBFS": -1.72
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T06:39:54",
-    "source": "pf_base92a__1",
+    "at": "2026-09-25T07:04:18",
+    "source": "pf_base92a_v2__1",
     "measuredBpm": 92.0,
     "bpmOverride": false,
     "gridBpm": 92,
     "bars": 32,
     "startSeconds": 2.609,
-    "materialEnd_s": 88.25,
+    "materialEnd_s": 90.5,
     "transposeSemis": null,
-    "barLift_dB": {
-     "0": 5.8
-    },
+    "barLift_dB": null,
     "samples": 3681392,
     "padSamples": 2646,
     "barSamples": 115043.5,
-    "blend": "head; start nudged +0.84 ms to the smallest seam step",
+    "blend": "head; start nudged -0.16 ms to the smallest seam step",
     "wrap": 0.0046,
-    "bodyP999": 0.1215,
+    "bodyP999": 0.0695,
     "headTail_dB": {
-     "50": 3.45,
-     "250": -3.91,
-     "1000": -2.91
+     "50": 1.1,
+     "250": 0.33,
+     "1000": -1.11
     },
     "sectionRMS_raw": [
-     -20.0,
-     -17.6,
-     -17.4,
-     -16.5
+     -15.6,
+     -15.0,
+     -13.5,
+     -14.2
     ],
     "sectionRide_dB": [
      0.0,
@@ -152,31 +150,31 @@
      0.0
     ],
     "limiterCeiling_dB": -2.0,
-    "limitedFraction": 0.3756,
+    "limitedFraction": 0.0025,
     "shippedBpmEst": 91.95,
-    "cpentShare": 0.592,
-    "chug": 3.77,
+    "cpentShare": 0.756,
+    "chug": 1.35,
     "selfSim": {
      "sections": 4,
      "pairs": {
-      "1-2": 0.517,
-      "1-3": 0.575,
-      "1-4": 0.482,
-      "2-3": 0.836,
-      "2-4": 0.796,
-      "3-4": 0.751
+      "1-2": 0.736,
+      "1-3": 0.458,
+      "1-4": 0.708,
+      "2-3": 0.447,
+      "2-4": 0.834,
+      "3-4": 0.38
      },
-     "maxPair": 0.836,
+     "maxPair": 0.834,
      "nearCopy": false
     },
     "tailFill": null,
     "stereo": null,
     "levels": {
-     "st": -15.26,
-     "mono": -15.41,
-     "phone": -17.0,
-     "corr": 0.757,
-     "monoLoss": 0.16
+     "st": -14.5,
+     "mono": -14.97,
+     "phone": -16.48,
+     "corr": 0.683,
+     "monoLoss": 0.47
     },
     "hook": {
      "colour": "glock",
@@ -4121,7 +4119,7 @@
    "measured": {
     "I_LUFS": -19.8,
     "TP_dBFS": -3.62,
-    "TP_m4a_dBFS": -3.54
+    "TP_m4a_dBFS": -3.28
    },
    "mix": {
     "file_loud400_dBFS": -22.5,
@@ -4155,7 +4153,7 @@
      "passes": 2,
      "I_LUFS": -19.8,
      "TP_dBFS": -3.62,
-     "TP_m4a_dBFS": -3.54,
+     "TP_m4a_dBFS": -3.28,
      "I_m4a_LUFS": -19.9,
      "tpMethod": "8x oversampled, native codec rate",
      "samples": 41562
@@ -4171,8 +4169,8 @@
     "assets/audio/piggy_firefighters/sym_win_l4.ogg",
     "assets/audio/piggy_firefighters/sym_win_l4.m4a"
    ],
-   "gain": 0.723,
-   "durationMs": 1000.0,
+   "gain": 0.751,
+   "durationMs": 905.4,
    "priority": 6,
    "maxInstances": 2,
    "cooldownMs": 90,
@@ -4184,25 +4182,25 @@
    "gate": "contract \u00a78 win-tier rule: only when the booked round total W is ABOVE the charged cost S of the selected mode (1x base bet B, 1.5x ALARM BOOST, the buy price for a bought feature); W <= S is tier 0 (no celebration: a neutral cue or nothing), and that stake check takes precedence over every floor",
    "turboVariant": "sym_win_l4_turbo",
    "measured": {
-    "I_LUFS": -23.3,
-    "TP_dBFS": -6.01,
-    "TP_m4a_dBFS": -5.25
+    "I_LUFS": -18.7,
+    "TP_dBFS": -3.85,
+    "TP_m4a_dBFS": -3.73
    },
    "mix": {
-    "file_loud400_dBFS": -16.2,
-    "file_mono_dBFS": -16.2,
-    "file_phone400_dBFS": -50.6,
-    "corr": 0.999,
+    "file_loud400_dBFS": -16.5,
+    "file_mono_dBFS": -16.5,
+    "file_phone400_dBFS": -19.0,
+    "corr": 0.998,
     "target_dBFS": -19,
     "chainNudge_dB": 0.0,
     "effective_dBFS": -19.0,
-    "effective_mono_dBFS": -19.0,
-    "effective_phone_dBFS": -53.43,
+    "effective_mono_dBFS": -19.03,
+    "effective_phone_dBFS": -21.46,
     "pass": "pf_0925r2 (mix.py: st + mono + phone)"
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T06:41:46",
+    "at": "2026-09-25T07:05:00",
     "source": "sym_win_l4.wav",
     "trimCap_s": 1.05,
     "tail": {
@@ -4215,6 +4213,29 @@
      "cpentShareDrawn": 0.511,
      "decision": "not tonal enough to judge (tonality 0.58 < 0.75)",
      "semis": 0.0
+    },
+    "tonal": {
+     "op": "hybrid: drawn body + tuned wood knock A4 at 32 ms (+8.5 dB re the drawn onset), level solved on the 400 Hz phone proxy (st - phone <= 2.5 dB)",
+     "note": "A4",
+     "knockRel_dB": 8.5,
+     "onset_ms": 32,
+     "phoneGap_dB": {
+      "drawn": 34.45,
+      "shipped": 2.46
+     },
+     "levels": {
+      "st": -36.06,
+      "mono": -36.08,
+      "phone": -38.52,
+      "corr": 0.998,
+      "monoLoss": 0.02
+     },
+     "ringOut": {
+      "floor_dB": -50.0,
+      "fade_ms": 60.0,
+      "natural": true,
+      "len_s": 0.905
+     }
     }
    },
    "status": "built"
@@ -5239,8 +5260,8 @@
     "assets/audio/piggy_firefighters/rung_hit_big.ogg",
     "assets/audio/piggy_firefighters/rung_hit_big.m4a"
    ],
-   "gain": 1.278,
-   "durationMs": 1200.0,
+   "gain": 1.542,
+   "durationMs": 1203.1,
    "priority": 9,
    "maxInstances": 1,
    "cooldownMs": 0,
@@ -5251,55 +5272,43 @@
    "seam": "WinRungs.svelte",
    "turboVariant": "rung_hit_big_turbo",
    "measured": {
-    "I_LUFS": -15.6,
-    "TP_dBFS": -3.06,
-    "TP_m4a_dBFS": -1.18
+    "I_LUFS": -17.0,
+    "TP_dBFS": -4.26,
+    "TP_m4a_dBFS": -3.13
    },
    "mix": {
-    "file_loud400_dBFS": -19.3,
-    "file_mono_dBFS": -19.3,
-    "file_phone400_dBFS": -23.6,
-    "corr": 0.984,
+    "file_loud400_dBFS": -20.9,
+    "file_mono_dBFS": -20.9,
+    "file_phone400_dBFS": -25.4,
+    "corr": 0.992,
     "target_dBFS": -16,
-    "chainNudge_dB": -1.14,
-    "effective_dBFS": -17.14,
+    "chainNudge_dB": -1.16,
+    "effective_dBFS": -17.16,
     "effective_mono_dBFS": -17.18,
-    "effective_phone_dBFS": -21.5,
+    "effective_phone_dBFS": -21.6,
     "pass": "pf_0925r2 (mix.py: st + mono + phone)"
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T06:42:39",
+    "at": "2026-09-25T07:04:21",
     "source": "rung_hit_big.wav",
     "trimCap_s": 1.25,
-    "tail": {
-     "tailRelease_ms": 200.0,
-     "preFade_dB": -39.9
-    },
     "key": {
-     "offsetCents": 43.9,
-     "tonality": 0.525,
-     "cpentShareDrawn": 0.58,
-     "decision": "not tonal enough to judge (tonality 0.53 < 0.6)",
-     "semis": 0.0
+     "offsetCents": -8.2,
+     "tonality": 0.679,
+     "cpentShareDrawn": 0.251,
+     "decision": "transpose -1 st (share 0.25 -> 0.61)",
+     "semis": -1.0,
+     "cpentShare110_2500": [
+      0.52,
+      0.525
+     ],
+     "cpentShareShipped": 0.525
     },
     "hook": {
      "pickup": false,
      "cpentShare": 0.525,
-     "why": "C-pentatonic share 0.52 < 0.6"
-    },
-    "remaster": {
-     "raised_dB": 4.73,
-     "crest_dB": 19.4,
-     "softClip": true,
-     "limitedFraction": 0.0,
-     "passes": 3,
-     "I_LUFS": -15.6,
-     "TP_dBFS": -3.06,
-     "TP_m4a_dBFS": -1.18,
-     "I_m4a_LUFS": -15.7,
-     "tpMethod": "8x oversampled, native codec rate",
-     "samples": 52920
+     "why": "C-pentatonic share 0.53 < 0.6"
     }
    },
    "status": "built"
@@ -5877,7 +5886,7 @@
     "assets/audio/piggy_firefighters/burst_embers.ogg",
     "assets/audio/piggy_firefighters/burst_embers.m4a"
    ],
-   "gain": 1.639,
+   "gain": 1.658,
    "durationMs": 972.4,
    "priority": 7,
    "maxInstances": 2,
@@ -5889,15 +5898,15 @@
    "seam": "WinRungs.svelte RUNGS[].burstCue",
    "turboVariant": "burst_embers_turbo",
    "measured": {
-    "I_LUFS": -18.2,
-    "TP_dBFS": -3.16,
-    "TP_m4a_dBFS": -1.4
+    "I_LUFS": -18.3,
+    "TP_dBFS": -3.2,
+    "TP_m4a_dBFS": -1.74
    },
    "mix": {
-    "file_loud400_dBFS": -22.5,
-    "file_mono_dBFS": -24.8,
-    "file_phone400_dBFS": -24.8,
-    "corr": 0.263,
+    "file_loud400_dBFS": -22.6,
+    "file_mono_dBFS": -24.9,
+    "file_phone400_dBFS": -24.9,
+    "corr": 0.264,
     "target_dBFS": -18.5,
     "chainNudge_dB": 0.25,
     "effective_dBFS": -18.25,
@@ -5918,15 +5927,15 @@
      "semis": 0.0
     },
     "remaster": {
-     "raised_dB": 15.4,
+     "raised_dB": 15.38,
      "crest_dB": 27.8,
      "softClip": true,
      "limitedFraction": 0.771,
      "passes": 4,
-     "I_LUFS": -18.2,
-     "TP_dBFS": -3.16,
-     "TP_m4a_dBFS": -1.4,
-     "I_m4a_LUFS": -18.4,
+     "I_LUFS": -18.3,
+     "TP_dBFS": -3.2,
+     "TP_m4a_dBFS": -1.74,
+     "I_m4a_LUFS": -18.5,
      "tpMethod": "8x oversampled, native codec rate",
      "samples": 42882
     }
@@ -9952,7 +9961,7 @@
    "measured": {
     "I_LUFS": -21.1,
     "TP_dBFS": -4.85,
-    "TP_m4a_dBFS": -5.03
+    "TP_m4a_dBFS": -4.98
    },
    "mix": {
     "file_loud400_dBFS": -22.6,
@@ -9981,7 +9990,7 @@
      "passes": 2,
      "I_LUFS": -21.1,
      "TP_dBFS": -4.85,
-     "TP_m4a_dBFS": -5.03,
+     "TP_m4a_dBFS": -4.98,
      "I_m4a_LUFS": -21.2,
      "tpMethod": "8x oversampled, native codec rate",
      "samples": 22225
@@ -9997,7 +10006,7 @@
     "assets/audio/piggy_firefighters/sym_win_l3_turbo.ogg",
     "assets/audio/piggy_firefighters/sym_win_l3_turbo.m4a"
    ],
-   "gain": 1.512,
+   "gain": 1.51,
    "durationMs": 520.5,
    "priority": 6,
    "maxInstances": 2,
@@ -10060,8 +10069,8 @@
     "assets/audio/piggy_firefighters/sym_win_l4_turbo.ogg",
     "assets/audio/piggy_firefighters/sym_win_l4_turbo.m4a"
    ],
-   "gain": 0.951,
-   "durationMs": 557.2,
+   "gain": 0.992,
+   "durationMs": 506.0,
    "priority": 6,
    "maxInstances": 2,
    "cooldownMs": 90,
@@ -10076,25 +10085,25 @@
    "seam": "gameSound.symbolWin(symbol) when isTurbo()",
    "gate": "contract \u00a78 win-tier rule: only when the booked round total W is ABOVE the charged cost S of the selected mode (1x base bet B, 1.5x ALARM BOOST, the buy price for a bought feature); W <= S is tier 0 (no celebration: a neutral cue or nothing), and that stake check takes precedence over every floor",
    "measured": {
-    "I_LUFS": -23.1,
-    "TP_dBFS": -6.87,
-    "TP_m4a_dBFS": -6.94
+    "I_LUFS": -19.4,
+    "TP_dBFS": -3.98,
+    "TP_m4a_dBFS": -3.86
    },
    "mix": {
-    "file_loud400_dBFS": -18.6,
-    "file_mono_dBFS": -18.6,
-    "file_phone400_dBFS": -53.1,
-    "corr": 0.999,
+    "file_loud400_dBFS": -18.9,
+    "file_mono_dBFS": -18.9,
+    "file_phone400_dBFS": -21.4,
+    "corr": 0.998,
     "target_dBFS": -19,
     "chainNudge_dB": 0.0,
     "effective_dBFS": -19.0,
-    "effective_mono_dBFS": -19.0,
-    "effective_phone_dBFS": -53.52,
+    "effective_mono_dBFS": -19.02,
+    "effective_phone_dBFS": -21.47,
     "pass": "pf_0925r2 (mix.py: st + mono + phone)"
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T06:42:54",
+    "at": "2026-09-25T07:05:01",
     "from": "sym_win_l4",
     "timeScale": 0.55,
     "op": "turbo variant (atempo x0.55, pitch kept)",
@@ -10495,8 +10504,8 @@
     "assets/audio/piggy_firefighters/rung_hit_big_turbo.ogg",
     "assets/audio/piggy_firefighters/rung_hit_big_turbo.m4a"
    ],
-   "gain": 1.312,
-   "durationMs": 667.1,
+   "gain": 1.426,
+   "durationMs": 673.4,
    "priority": 9,
    "maxInstances": 1,
    "cooldownMs": 0,
@@ -10510,41 +10519,41 @@
    },
    "seam": "WinRungs.svelte when isTurbo()",
    "measured": {
-    "I_LUFS": -16.0,
-    "TP_dBFS": -3.45,
-    "TP_m4a_dBFS": -1.6
+    "I_LUFS": -16.4,
+    "TP_dBFS": -4.18,
+    "TP_m4a_dBFS": -3.2
    },
    "mix": {
-    "file_loud400_dBFS": -19.5,
-    "file_mono_dBFS": -19.5,
-    "file_phone400_dBFS": -24.3,
-    "corr": 0.982,
+    "file_loud400_dBFS": -20.2,
+    "file_mono_dBFS": -20.3,
+    "file_phone400_dBFS": -24.9,
+    "corr": 0.992,
     "target_dBFS": -16,
-    "chainNudge_dB": -1.14,
-    "effective_dBFS": -17.14,
+    "chainNudge_dB": -1.16,
+    "effective_dBFS": -17.16,
     "effective_mono_dBFS": -17.18,
-    "effective_phone_dBFS": -21.9,
+    "effective_phone_dBFS": -21.86,
     "pass": "pf_0925r2 (mix.py: st + mono + phone)"
    },
    "build": {
     "pass": "pf_0925",
-    "at": "2026-09-25T06:42:56",
+    "at": "2026-09-25T07:04:22",
     "from": "rung_hit_big",
     "timeScale": 0.55,
     "op": "turbo variant (atempo x0.55, pitch kept)",
     "turboCap": null,
     "remaster": {
-     "raised_dB": 10.95,
-     "crest_dB": 21.8,
+     "raised_dB": 9.41,
+     "crest_dB": 19.0,
      "softClip": true,
      "limitedFraction": 0.0,
      "passes": 4,
-     "I_LUFS": -16.0,
-     "TP_dBFS": -3.45,
-     "TP_m4a_dBFS": -1.6,
-     "I_m4a_LUFS": -16.1,
+     "I_LUFS": -16.4,
+     "TP_dBFS": -4.18,
+     "TP_m4a_dBFS": -3.2,
+     "I_m4a_LUFS": -16.5,
      "tpMethod": "8x oversampled, native codec rate",
-     "samples": 29420
+     "samples": 29697
     }
    },
    "status": "built"
@@ -11087,7 +11096,7 @@
     "assets/audio/piggy_firefighters/burst_embers_turbo.ogg",
     "assets/audio/piggy_firefighters/burst_embers_turbo.m4a"
    ],
-   "gain": 1.578,
+   "gain": 1.529,
    "durationMs": 542.4,
    "priority": 7,
    "maxInstances": 2,
@@ -11102,20 +11111,20 @@
    },
    "seam": "WinRungs.svelte RUNGS[].burstCue when isTurbo()",
    "measured": {
-    "I_LUFS": -18.0,
-    "TP_dBFS": -2.72,
-    "TP_m4a_dBFS": -1.45
+    "I_LUFS": -17.7,
+    "TP_dBFS": -2.18,
+    "TP_m4a_dBFS": -1.21
    },
    "mix": {
-    "file_loud400_dBFS": -22.2,
-    "file_mono_dBFS": -24.2,
-    "file_phone400_dBFS": -24.2,
-    "corr": 0.343,
+    "file_loud400_dBFS": -21.9,
+    "file_mono_dBFS": -23.9,
+    "file_phone400_dBFS": -23.9,
+    "corr": 0.347,
     "target_dBFS": -18.5,
     "chainNudge_dB": 0.25,
     "effective_dBFS": -18.25,
-    "effective_mono_dBFS": -20.2,
-    "effective_phone_dBFS": -20.21,
+    "effective_mono_dBFS": -20.18,
+    "effective_phone_dBFS": -20.2,
     "pass": "pf_0925r2 (mix.py: st + mono + phone)"
    },
    "build": {
@@ -11126,15 +11135,15 @@
     "op": "turbo variant (atempo x0.55, pitch kept)",
     "turboCap": null,
     "remaster": {
-     "raised_dB": 14.4,
+     "raised_dB": 13.91,
      "crest_dB": 27.8,
      "softClip": true,
      "limitedFraction": 0.5876,
      "passes": 4,
-     "I_LUFS": -18.0,
-     "TP_dBFS": -2.72,
-     "TP_m4a_dBFS": -1.45,
-     "I_m4a_LUFS": -18.2,
+     "I_LUFS": -17.7,
+     "TP_dBFS": -2.18,
+     "TP_m4a_dBFS": -1.21,
+     "I_m4a_LUFS": -18.0,
      "tpMethod": "8x oversampled, native codec rate",
      "samples": 23919
     }

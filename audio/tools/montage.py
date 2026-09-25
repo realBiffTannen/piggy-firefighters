@@ -109,6 +109,6 @@ for _ in range(4):  # the mp3 encoder overshoots the loudnorm ceiling: re-render
     if TP is not None and TP <= -1.1: break
     trim_db -= (TP + 1.3) if TP is not None else 0.5
 d = len(K.lk.decode(out)) / SR if hasattr(K, 'lk') else TOT / SR
-json.dump({'file': os.path.relpath(out, ROOT), 'duration_s': round(d, 2), 'I_LUFS': I, 'TP_dBFS': TP, 'cues_used': len({n for _, n in sheet}),
-           'missingMasters': sorted(missing), 'sheet': sheet}, open(f'{QA}/review_montage.json', 'w'), indent=1)
+K.write_json(f'{QA}/review_montage.json', {'file': os.path.relpath(out, ROOT), 'duration_s': round(d, 2), 'I_LUFS': I, 'TP_dBFS': TP, 'cues_used': len({n for _, n in sheet}),
+           'missingMasters': sorted(missing), 'sheet': sheet}, indent=1)
 print(f'{out}  dur={d:.1f}s  I={I} LUFS  TP={TP} dBFS  distinct cues={len({n for _, n in sheet})}  missing masters={len(missing)}')

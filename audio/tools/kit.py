@@ -32,6 +32,18 @@ FFMPEG = os.environ.get('FFMPEG') or shutil.which('ffmpeg') or '/usr/local/bin/f
 DONOR_DIRS = ('lucky', 'piggy', 'piggy_police', 'police')  # donor runtime folders that must not ship
 
 
+def write_text(path, text):
+    """Atomic text write (r3): write a sibling temp file, then os.replace, so a crash never leaves a truncated QA / registry file."""
+    d = os.path.dirname(path) or '.'; os.makedirs(d, exist_ok=True); tmp = f'{path}.tmp{os.getpid()}'
+    with open(tmp, 'w', newline='') as f: f.write(text)
+    os.replace(tmp, path)
+
+
+def write_json(path, obj, indent=1, **kw):
+    import json
+    write_text(path, json.dumps(obj, indent=indent, **kw))
+
+
 def stage_for(bpm, bars=8):
     """`bars` whole bars at `bpm`, in samples (sample-exact loop length)."""
     return int(round(bars * 4 * 60.0 / bpm * SR))
@@ -116,7 +128,8 @@ def ship(x, name, tp_target=-1.3):
         tps = [true_peak(f'{RUN}/{name}.m4a'), true_peak(f'{RUN}/{name}.ogg')]
         if max(tps) <= TP_SHIP_MAX: break
         x = x * 10 ** ((tp_target - max(tps)) / 20)
-    for ext in ('m4a', 'ogg'): shutil.copy(f'{RUN}/{name}.{ext}', f'{STATIC}/{name}.{ext}')
+    for ext in ('m4a', 'ogg'):  # r3: atomic into static (a partial copy must never be what ships)
+        tmp = f'{STATIC}/.{name}.{ext}.tmp'; shutil.copy(f'{RUN}/{name}.{ext}', tmp); os.replace(tmp, f'{STATIC}/{name}.{ext}')
     I, _ = measure(f'{RUN}/{name}.ogg')
     I4, _ = measure(f'{RUN}/{name}.m4a')
     return dict(I_LUFS=I, TP_dBFS=round(tps[1], 2), TP_m4a_dBFS=round(tps[0], 2), I_m4a_LUFS=I4, tpMethod='8x oversampled, native codec rate', samples=len(x))

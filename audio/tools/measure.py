@@ -169,7 +169,7 @@ def draws():
         if r['selfSim'] and r['selfSim']['nearCopy']: defects.append(f'near-copy sections (max r {r["selfSim"]["maxPair"]})')
         r['defects'] = defects; rows.append(r); print(name, 'OK' if not defects else defects)
     os.makedirs(QA, exist_ok=True)
-    json.dump(rows, open(f'{QA}/music_draws_measured.json', 'w'), indent=1)
+    K.write_json(f'{QA}/music_draws_measured.json', rows, indent=1)
     print('wrote', os.path.relpath(f'{QA}/music_draws_measured.json', ROOT), len(rows), 'draws')
 
 
@@ -307,15 +307,17 @@ def shipped():
     summary['gates'] = gates; summary['failingGates'] = [k for k, v in gates.items() if not v]
     summary['PASS'] = bool(built) and all(gates.values())
     os.makedirs(QA, exist_ok=True)
-    json.dump({'summary': summary, 'rows': rows}, open(f'{QA}/measure_all.json', 'w'), indent=1, default=str)
-    with open(f'{QA}/cues_table.csv', 'w', newline='') as f:
+    K.write_json(f'{QA}/measure_all.json', {'summary': summary, 'rows': rows}, indent=1, default=str)
+    import io
+    with io.StringIO(newline='') as f:
         w = csv.writer(f); w.writerow(['id', 'bus', 'loop', 'status', 'durationMs', 'gain', 'ogg_I', 'ogg_TP', 'm4a_I', 'm4a_TP', 'ogg_wrap', 'ogg_bodyP999', 'm4a_wrap', 'm4a_bodyP999', 'lenDiff_ogg', 'lenDiff_m4a'])
         for r in rows:
             o, a = r.get('ogg', {}), r.get('m4a', {})
             w.writerow([r['id'], r['bus'], r['loop'], r['status'], by[r['id']].get('durationMs'), by[r['id']].get('gain'), o.get('I_LUFS'), o.get('TP_dBFS'), a.get('I_LUFS'), a.get('TP_dBFS'),
                         o.get('wrap', ''), o.get('bodyP999', ''), a.get('wrap', ''), a.get('bodyP999', ''), o.get('lenDiff'), a.get('lenDiff')])
+        K.write_text(f'{QA}/cues_table.csv', f.getvalue())
     beds = [r for r in rows if 'grid' in r]
-    with open(f'{QA}/beds_table.md', 'w') as f:
+    with io.StringIO() as f:
         f.write('| bed | grid BPM | bars | loop s | samples exact | shipped BPM ogg / m4a | I LUFS ogg | TP ogg / m4a | wrap ogg / m4a (body p99.9) | '
                 'head-tail dB 250 / 1000 ms | chug | section self-sim max | C-pent | source |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n')
         for r in beds:
@@ -323,6 +325,7 @@ def shipped():
             f.write(f"| {r['id']} | {g['bpm']} | {g['bars']} | {g['loopSeconds']} | {g['exact']} | {o.get('bpmEst')} / {a.get('bpmEst')} | {o.get('I_LUFS')} | "
                     f"{o.get('TP_dBFS')} / {a.get('TP_dBFS')} | {o.get('wrap')} / {a.get('wrap')} ({o.get('bodyP999')}) | {r['headTail_dB'].get(250)} / {r['headTail_dB'].get(1000)} | "
                     f"{r.get('chug')} | {r['selfSim'].get('maxPair')} | {r.get('cpentShare')} | {B.get('source')} |\n")
+        K.write_text(f'{QA}/beds_table.md', f.getvalue())
     print(json.dumps(summary, indent=1, default=str))
 
 

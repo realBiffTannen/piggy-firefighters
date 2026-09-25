@@ -139,7 +139,7 @@ def remaster(cid, target):
         y = x * 10 ** (up / 20)
         if clip: y = softclip(y)
         y, frac = K.limit(y, ceiling_db=-1.5); res = K.ship(y, cid)
-    json.dump({'after': _sha(m), 'raised_dB': round(up, 2)}, open(p + '.json', 'w'))
+    K.write_json(p + '.json', {'after': _sha(m), 'raised_dB': round(up, 2)}, indent=None)
     return {'raised_dB': round(up, 2), 'crest_dB': round(float(crest), 1), 'softClip': clip, 'limitedFraction': round(frac, 4), 'passes': k + 1, **res}
 
 
@@ -259,14 +259,13 @@ def main():
     failing = [k for k, v in checks.items() if v.get('strictlyRising') is False]
     nudged = {cid: cues[cid]['mix']['chainNudge_dB'] for cid in lv if abs(cues[cid]['mix']['chainNudge_dB']) >= 0.01}
     os.makedirs(QA, exist_ok=True)
-    with open(f'{QA}/mix_pass.csv', 'w') as f:
-        f.write('cue,file_loud400_dBFS,file_mono_dBFS,file_phone400_dBFS,corr,target_dBFS,old_gain,new_gain,effective_dBFS,effective_mono_dBFS,effective_phone_dBFS\n')
-        for r in rows: f.write(','.join(map(str, r)) + '\n')
-    json.dump({'pass': 'pf_0925r2', 'metrics': {'st': 'loudest 400 ms, per-channel stereo power', 'mono': 'loudest 400 ms of (L+R)/2',
+    K.write_text(f'{QA}/mix_pass.csv', 'cue,file_loud400_dBFS,file_mono_dBFS,file_phone400_dBFS,corr,target_dBFS,old_gain,new_gain,effective_dBFS,effective_mono_dBFS,effective_phone_dBFS\n'
+                 + ''.join(','.join(map(str, r)) + '\n' for r in rows))
+    K.write_json(f'{QA}/mix_ladder.json', {'pass': 'pf_0925r2', 'metrics': {'st': 'loudest 400 ms, per-channel stereo power', 'mono': 'loudest 400 ms of (L+R)/2',
                                                  'phone': 'loudest 400 ms of (L+R)/2 through a 4th-order 400 Hz high-pass'},
                'chainMargin_dB': CHAIN_MARGIN_DB, 'levelled': len(rows), 'unmatched': unmatched, 'notBuilt': len(unbuilt), 'remastered': remastered,
                'clampedOffTarget': clamped, 'chainSolver': {'method': 'linear programme (scipy HiGHS): min 10 x max|nudge| + sum|nudge|', 'feasible': lp_ok, 'feasibleTurbo': lp_ok_t},
-               'chainNudges_dB': nudged, 'chainsNotRising': failing, 'checks': checks}, open(f'{QA}/mix_ladder.json', 'w'), indent=1, default=str)
+               'chainNudges_dB': nudged, 'chainsNotRising': failing, 'checks': checks}, indent=1, default=str)
     print(len(rows), 'cues levelled;', len(unbuilt), 'not built;', len(unmatched), 'unmatched:', unmatched)
     print('remastered (> +6 dB):', {k: v['raised_dB'] for k, v in remastered.items()})
     print('chain nudges (dB over the family target):', nudged)

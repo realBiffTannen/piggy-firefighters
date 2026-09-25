@@ -63,11 +63,84 @@
      "cpentShare": 0.979
     }
    }
+  },
+  "sym_win_l4": {
+   "I_LUFS": -18.7,
+   "TP_dBFS": -3.85,
+   "TP_m4a_dBFS": -3.73,
+   "I_m4a_LUFS": -18.7,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 39927,
+   "key": {
+    "offsetCents": 32.8,
+    "tonality": 0.581,
+    "cpentShareDrawn": 0.511,
+    "decision": "not tonal enough to judge (tonality 0.58 < 0.75)",
+    "semis": 0.0
+   },
+   "tonal": {
+    "op": "hybrid: drawn body + tuned wood knock A4 at 32 ms (+8.5 dB re the drawn onset), level solved on the 400 Hz phone proxy (st - phone <= 2.5 dB)",
+    "note": "A4",
+    "knockRel_dB": 8.5,
+    "onset_ms": 32,
+    "phoneGap_dB": {
+     "drawn": 34.45,
+     "shipped": 2.46
+    },
+    "levels": {
+     "st": -36.06,
+     "mono": -36.08,
+     "phone": -38.52,
+     "corr": 0.998,
+     "monoLoss": 0.02
+    },
+    "ringOut": {
+     "floor_dB": -50.0,
+     "fade_ms": 60.0,
+     "natural": true,
+     "len_s": 0.905
+    }
+   }
+  },
+  "rung_hit_big": {
+   "I_LUFS": -17.0,
+   "TP_dBFS": -4.26,
+   "TP_m4a_dBFS": -3.13,
+   "I_m4a_LUFS": -17.2,
+   "tpMethod": "8x oversampled, native codec rate",
+   "samples": 53056,
+   "key": {
+    "offsetCents": -8.2,
+    "tonality": 0.679,
+    "cpentShareDrawn": 0.251,
+    "decision": "transpose -1 st (share 0.25 -> 0.61)",
+    "semis": -1.0,
+    "cpentShare110_2500": [
+     0.52,
+     0.525
+    ],
+    "cpentShareShipped": 0.525
+   }
   }
  },
  "derived": {},
  "shots": {},
  "turbo": {},
  "skipped": [],
- "warnings": []
+ "warnings": [],
+ "onlyRuns": [
+  {
+   "at": "2026-09-25T07:04:20",
+   "only": [
+    "rung_hit_big",
+    "sym_win_l4"
+   ]
+  },
+  {
+   "at": "2026-09-25T07:05:00",
+   "only": [
+    "sym_win_l4"
+   ]
+  }
+ ]
 }
