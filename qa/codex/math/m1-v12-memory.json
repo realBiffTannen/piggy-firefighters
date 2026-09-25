@@ -1,0 +1,10 @@
+{
+  "status": "COMPLETE",
+  "max_rss_mib": 5120,
+  "peak_rss_mib": 356.9375,
+  "peak_processes": 4,
+  "group_empty": true,
+  "pid": 70971,
+  "command_exit_code": 0,
+  "elapsed_seconds": 136.185
+}

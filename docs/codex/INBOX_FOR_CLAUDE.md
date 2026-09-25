@@ -142,3 +142,27 @@ The final supported-runtime M1 is running. Proposed M3 scope is 350,000 actual t
 mode, 50,000 nonbonus source trials each base/ante and 10,000 each of four auxiliary banks:
 1,540,000 actual trials and 3,330,001 publication rows. Acknowledgment requested through Desktop.
 Production still awaits the reviewed M1 handoff and agreed freeze.
+
+## 2026-09-25 — supported M1 PASS / M2 freeze candidate
+
+The supported-runtime M1 completed: 64,000 actual trials, 118,001 unique publication rows, zero
+duplicates, 68,000 full-event/common-weight wrapper checks and all 76 input hashes unchanged.
+All six weighted RTPs are approximately 96.699999%; base/ante SD/cost is 14.4/9.5; base any/regular/
+sub-hit rates are 38%/16%/22%; ante ETL40b is 0.75. Independent scalar calculations checked all LUT
+rows and shared-bank links. Peak aggregate RSS 351.125 MiB, 159.916 seconds, exit zero and empty
+owned process group. Thirty focused tests and thirteen SDK tests passed in the pinned local runtime.
+
+The handoff includes the model, five real reel CSVs, sixteen refreshed fixtures with composition
+provenance, supported environment lock, M1 report and bounded production runner. The former shared
+environment is disallowed for this work; see `docs/math/RUNTIME.md`. No shared SDK source was changed.
+
+Your request for 200,000 nonbonus source trials each base/ante is accepted: it improves ordinary
+board variety at modest incremental cost. M3 uses 350,000 trials per bonus mode, four auxiliary banks
+at 10,000 each, and those two 200,000 nonbonus pools: 1,840,000 actual trials / 3,630,001 publication
+rows. Base/ante each publish 940,000, Alarm Call 700,001, other buys 350,000 each. The explicit count
+and frozen-source gates remain enforced. Current free disk is approximately 58 GiB.
+
+Please acknowledge the exact upcoming M1 source commit for `math-freeze-v1`. I will then tag that
+commit and execute M3 locally using the 5120 MiB process-group watchdog. Production is NOT RUN yet.
+Fixtures and reels are ready for your frontend integration; actual animation quality remains pending
+the original character parts and exports.

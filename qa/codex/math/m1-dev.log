@@ -1,0 +1,126 @@
+base: 1000/10000 books
+base: 2000/10000 books
+base: 3000/10000 books
+base: 4000/10000 books
+base: 5000/10000 books
+base: 6000/10000 books
+base: 7000/10000 books
+base: 8000/10000 books
+base: 9000/10000 books
+base: 10000/10000 books
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:35: RuntimeWarning: divide by zero encountered in matmul
+  logits = log_prior + centered @ theta
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:35: RuntimeWarning: overflow encountered in matmul
+  logits = log_prior + centered @ theta
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:35: RuntimeWarning: invalid value encountered in matmul
+  logits = log_prior + centered @ theta
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:42: RuntimeWarning: divide by zero encountered in matmul
+  logits = log_prior + centered @ fit.x
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:42: RuntimeWarning: overflow encountered in matmul
+  logits = log_prior + centered @ fit.x
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:42: RuntimeWarning: invalid value encountered in matmul
+  logits = log_prior + centered @ fit.x
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:142: RuntimeWarning: divide by zero encountered in matmul
+  mean = float(normalized @ (payouts / cost))
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:142: RuntimeWarning: overflow encountered in matmul
+  mean = float(normalized @ (payouts / cost))
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:142: RuntimeWarning: invalid value encountered in matmul
+  mean = float(normalized @ (payouts / cost))
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:143: RuntimeWarning: divide by zero encountered in matmul
+  variance = float(normalized @ (payouts / cost)**2 - mean**2)
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:143: RuntimeWarning: overflow encountered in matmul
+  variance = float(normalized @ (payouts / cost)**2 - mean**2)
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:143: RuntimeWarning: invalid value encountered in matmul
+  variance = float(normalized @ (payouts / cost)**2 - mean**2)
+{"mode": "base", "books": 10000, "unique_events": 10000, "duplicate_events": 0, "generation_seconds": 1.681, "book_sha256": "6da0427fca70b67a65093f4270d22938396c0b4fe7a4d641a07ca03c227ac0af", "cost": 1.0, "rtp": 0.9669999899217999, "sd_over_cost": 14.399999998730193, "any_win": 0.3800000000013476, "regular_hit": 0.16000000001034667, "sub_hit": 0.2199999999910009, "rescue_probability": 0.006060606060091341, "inferno_probability": 0.000476190476151339, "backdraft_probability": 0.025000000000576186, "cap_probability": 1.33333333335e-07, "fit": {"iterations": 57, "max_relative_error": 2.081552747077525e-10}, "notes": [], "prob5k": 1.33333333335e-07, "prob10k": 1.33333333335e-07, "etl10k": 0.002000000000025, "etl40b": 0.505762663266904, "cvar": 335.1959082246148, "platform_violations": {}, "weights_status": "PASS", "lut_sha256": "cece40c0107a889eda73722640e41349b5c6adbd6c14b78df3ddb9626d2966af"}
+ante: 1000/10000 books
+ante: 2000/10000 books
+ante: 3000/10000 books
+ante: 4000/10000 books
+ante: 5000/10000 books
+ante: 6000/10000 books
+ante: 7000/10000 books
+ante: 8000/10000 books
+ante: 9000/10000 books
+ante: 10000/10000 books
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:35: RuntimeWarning: divide by zero encountered in matmul
+  logits = log_prior + centered @ theta
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:35: RuntimeWarning: overflow encountered in matmul
+  logits = log_prior + centered @ theta
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:35: RuntimeWarning: invalid value encountered in matmul
+  logits = log_prior + centered @ theta
+{"mode": "ante", "books": 10000, "unique_events": 10000, "duplicate_events": 0, "generation_seconds": 1.887, "book_sha256": "4c8f609bbcb05b8b372e912c8e42fb294f506075bb9d1ad307405ea350c6ad71", "cost": 1.5, "rtp": 0.9669999897808722, "sd_over_cost": 9.4999999990532, "any_win": 0.357934043513912, "regular_hit": 0.0493101560517733, "sub_hit": 0.30862388746213876, "rescue_probability": 0.012121212118962048, "inferno_probability": 0.000952380951758035, "backdraft_probability": 0.025000000001338285, "cap_probability": 2.66666666668e-07, "fit": {"iterations": 59, "max_relative_error": 6.237771800823855e-10}, "notes": [], "prob5k": 2.66666666668e-07, "prob10k": 2.66666666668e-07, "etl10k": 0.00400000000002, "etl40b": 1.00943900858213, "cvar": 127.53899782829347, "platform_violations": {"etl40b": 1.00943900858213}, "weights_status": "PASS", "lut_sha256": "9ed571f27bd19eb0fc6f6c5a7cf58c931a2b2718f78859aa16625f97e5911135"}
+backdraft_spins: 1000/10000 books
+backdraft_spins: 2000/10000 books
+backdraft_spins: 3000/10000 books
+backdraft_spins: 4000/10000 books
+backdraft_spins: 5000/10000 books
+backdraft_spins: 6000/10000 books
+backdraft_spins: 7000/10000 books
+backdraft_spins: 8000/10000 books
+backdraft_spins: 9000/10000 books
+backdraft_spins: 10000/10000 books
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:38: RuntimeWarning: divide by zero encountered in matmul
+  return partition, probabilities @ centered
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:38: RuntimeWarning: overflow encountered in matmul
+  return partition, probabilities @ centered
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:38: RuntimeWarning: invalid value encountered in matmul
+  return partition, probabilities @ centered
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:44: RuntimeWarning: divide by zero encountered in matmul
+  error = probabilities @ matrix - target
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:44: RuntimeWarning: overflow encountered in matmul
+  error = probabilities @ matrix - target
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:44: RuntimeWarning: invalid value encountered in matmul
+  error = probabilities @ matrix - target
+{"mode": "backdraft_spins", "books": 10000, "unique_events": 10000, "duplicate_events": 0, "generation_seconds": 3.067, "book_sha256": "ff27c861ab66f3a4833c50fbe66d4c524623562dd817aa96101a821acb2d67a0", "ordinary_unweighted_mean_x": 109.08302830283027, "derived_cost_proposal": 113, "cost": 25.0, "rtp": 0.966999990000035, "sd_over_cost": 1.3183605883602505, "any_win": 1.0, "regular_hit": 0.4132264551295273, "sub_hit": 0.5867735448704727, "rescue_probability": 0.0, "inferno_probability": 0.0, "backdraft_probability": 1.0, "cap_probability": 4.000000000001e-06, "fit": {"iterations": 11, "max_relative_error": 2.9464644451806684e-16}, "notes": [], "prob5k": 4.000000000001e-06, "prob10k": 4.000000000001e-06, "etl10k": 0.060000000000015, "etl40b": 0.06000000000001951, "cvar": 6.225346914015891, "platform_violations": {}, "weights_status": "PASS", "lut_sha256": "2b5b2c377dce95e3dfd86806cce9b5c189ae0e9adb5825fc9ef4af39edae9afd"}
+alarm_call: 1000/10000 books
+alarm_call: 2000/10000 books
+alarm_call: 3000/10000 books
+alarm_call: 4000/10000 books
+alarm_call: 5000/10000 books
+alarm_call: 6000/10000 books
+alarm_call: 7000/10000 books
+alarm_call: 8000/10000 books
+alarm_call: 9000/10000 books
+alarm_call: 10000/10000 books
+{"mode": "alarm_call", "books": 10000, "unique_events": 10000, "duplicate_events": 0, "generation_seconds": 4.755, "book_sha256": "5481f059021bd39bf69501283d81bb667e091efaa2d0cb7cf8866bb08b9f2d2e", "cost": 40.0, "rtp": 0.9669999899990472, "sd_over_cost": 2.9409018668122675, "any_win": 0.5464547309945914, "regular_hit": 0.1640086611301334, "sub_hit": 0.38244606986445806, "rescue_probability": 0.5166666666666666, "inferno_probability": 0.030000000000004752, "backdraft_probability": 0.0, "cap_probability": 6.366666666689999e-07, "fit": {"rescue": {"iterations": 7, "max_relative_error": 1.275313007681538e-12}, "inferno": {"iterations": 8, "max_relative_error": 8.035342970205708e-15}}, "notes": [], "prob5k": 6.36666666669e-07, "prob10k": 6.36666666669e-07, "etl10k": 0.009550000000035001, "etl40b": 0.009550000000035001, "cvar": 34.82972656071305, "platform_violations": {}, "weights_status": "PASS", "lut_sha256": "64255031e187eb08a346eded8ff2d6ba16ef3801d2805b56b6d7b1974acd6b90"}
+rescue: 1000/10000 books
+rescue: 2000/10000 books
+rescue: 3000/10000 books
+rescue: 4000/10000 books
+rescue: 5000/10000 books
+rescue: 6000/10000 books
+rescue: 7000/10000 books
+rescue: 8000/10000 books
+rescue: 9000/10000 books
+rescue: 10000/10000 books
+{"mode": "rescue", "books": 10000, "unique_events": 10000, "duplicate_events": 0, "generation_seconds": 4.583, "book_sha256": "968dbf1755012eba7b49a5be2dcfe1d885ee5b42e1aa68ed088fb508fff1d433", "ordinary_unweighted_mean_x": 17.57811781178118, "derived_cost_proposal": 18, "cost": 60.0, "rtp": 0.9669999899998664, "sd_over_cost": 2.15905866508227, "any_win": 0.9994177851482731, "regular_hit": 0.16417310503564037, "sub_hit": 0.8352446801126328, "rescue_probability": 1.0, "inferno_probability": 0.0, "backdraft_probability": 0.0, "cap_probability": 1.000000000001e-06, "fit": {"iterations": 4, "max_relative_error": 1.3143894508138414e-13}, "notes": [], "prob5k": 1.000000000001e-06, "prob10k": 1.000000000001e-06, "etl10k": 0.015000000000015001, "etl40b": 0.015000000000015001, "cvar": 9.249191256581058, "platform_violations": {}, "weights_status": "PASS", "lut_sha256": "39180dd97bacb41916cf1553cc8554963957a49b669543f2019943ff6ddef980"}
+inferno: 1000/10000 books
+inferno: 2000/10000 books
+inferno: 3000/10000 books
+inferno: 4000/10000 books
+inferno: 5000/10000 books
+inferno: 6000/10000 books
+inferno: 7000/10000 books
+inferno: 8000/10000 books
+inferno: 9000/10000 books
+inferno: 10000/10000 books
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:44: RuntimeWarning: divide by zero encountered in matmul
+  error = probabilities @ matrix - target
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:44: RuntimeWarning: overflow encountered in matmul
+  error = probabilities @ matrix - target
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:44: RuntimeWarning: invalid value encountered in matmul
+  error = probabilities @ matrix - target
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:142: RuntimeWarning: divide by zero encountered in matmul
+  mean = float(normalized @ (payouts / cost))
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:142: RuntimeWarning: overflow encountered in matmul
+  mean = float(normalized @ (payouts / cost))
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:142: RuntimeWarning: invalid value encountered in matmul
+  mean = float(normalized @ (payouts / cost))
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:143: RuntimeWarning: divide by zero encountered in matmul
+  variance = float(normalized @ (payouts / cost)**2 - mean**2)
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:143: RuntimeWarning: overflow encountered in matmul
+  variance = float(normalized @ (payouts / cost)**2 - mean**2)
+/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/game_weights.py:143: RuntimeWarning: invalid value encountered in matmul
+  variance = float(normalized @ (payouts / cost)**2 - mean**2)
+{"mode": "inferno", "books": 10000, "unique_events": 10000, "duplicate_events": 0, "generation_seconds": 5.056, "book_sha256": "767a872e4c8f73bd8bd7f894985d4e9d3de6ed1e0454a10b8e1bdd22a1db6f7b", "ordinary_unweighted_mean_x": 87.09456945694569, "derived_cost_proposal": 90, "cost": 300.0, "rtp": 0.9669999917972641, "sd_over_cost": 0.9769533483076974, "any_win": 0.9998143197547551, "regular_hit": 0.3390405167397704, "sub_hit": 0.6607738030149847, "rescue_probability": 0.0, "inferno_probability": 1.0, "backdraft_probability": 0.0, "cap_probability": 4.000000000001e-06, "fit": {"iterations": 9, "max_relative_error": 1.8589893351154583e-09}, "notes": [], "prob5k": 3.2000000000008003e-06, "prob10k": 3.2000000000008003e-06, "etl10k": 0.060000000000015, "etl40b": 0.060000000000015, "cvar": 3.335416730121902, "platform_violations": {}, "weights_status": "PASS", "lut_sha256": "a2d58cbede32e70493444ffb23790c96aa817c0b3ec6edf88bff21fa23fde7e8"}

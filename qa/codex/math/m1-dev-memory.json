@@ -1,0 +1,10 @@
+{
+  "status": "FAILED",
+  "pid": 61589,
+  "max_rss_mib": 5120,
+  "peak_rss_mib": 341.375,
+  "peak_processes": 4,
+  "group_empty": true,
+  "command_exit_code": 1,
+  "elapsed_seconds": 21.54
+}

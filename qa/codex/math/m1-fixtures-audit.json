@@ -1,0 +1,209 @@
+{
+  "status": "PASS",
+  "fixture_count": 16,
+  "source_unchanged_after_run": true,
+  "fixtures": {
+    "alarm_call_false": {
+      "sha256": "1fcbe6f42bbc79c64a1b72b9fad1c3dccaad20f15b5c1878c4de3f29b3ab60c3",
+      "publication_id": 0,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "payout_x100": 0
+    },
+    "alarm_call_inferno": {
+      "sha256": "9d35a8dc20b6c54c8fda6529edddeb488d9035320da68c39572ebc4ec235a77b",
+      "publication_id": 10002,
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "inferno_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab"
+      },
+      "payout_x100": 4600
+    },
+    "alarm_call_rescue": {
+      "sha256": "4cf5c92571247bb5663e40b8ee3963c750565752537c1ff45e7049afdb987e3e",
+      "publication_id": 2,
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "rescue_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "c0e914da83478bab57db1d2fbe7e32ddfac60958b568e47a14dbefb81c5339b8"
+      },
+      "payout_x100": 760
+    },
+    "backdraft_max_win": {
+      "sha256": "932a4aa1ac227caafbdde73d13bb9a4070599052150fcd3eb29f6c3285d5b68a",
+      "publication_id": 0,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "payout_x100": 1500000
+    },
+    "backdraft_spins": {
+      "sha256": "d7d706ee8df1074e1e4d13a9139d856b5d83ec2f84d022965ed59f848d901711",
+      "publication_id": 1,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "payout_x100": 5580
+    },
+    "base_anticipation_miss": {
+      "sha256": "d7e114ec51e136f3ec70e9082fa173aca9bbc7cfe69725942ceab8644f78d979",
+      "publication_id": 30,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 30
+      },
+      "payout_x100": 0
+    },
+    "base_backdraft_win": {
+      "sha256": "88f28932467938cd57d8c01bf3e8d03b92e50c47fcf032f8017fb1e12c59293e",
+      "publication_id": 22,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 22
+      },
+      "payout_x100": 240
+    },
+    "base_nowin": {
+      "sha256": "e757fa4af4d671598328e42c0938ac14c1f00977c388cb2ae437b84c574b9326",
+      "publication_id": 21,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 21
+      },
+      "payout_x100": 0
+    },
+    "base_trigger_inferno": {
+      "sha256": "bc7829e346a4ea827d3f689421e32bb5780e40c3141bc69daa17dde0e3b7dfe8",
+      "publication_id": 22001,
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "inferno_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "base",
+          "reel_set": "BR0",
+          "actual_stops": [
+            321,
+            361,
+            193,
+            177,
+            262
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "payout_x100": 4600
+    },
+    "base_trigger_rescue": {
+      "sha256": "169a859b769497f41d22252907b51b74a04e710d386deb6926a083ed15104116",
+      "publication_id": 10001,
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "rescue_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "c0e914da83478bab57db1d2fbe7e32ddfac60958b568e47a14dbefb81c5339b8",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "base",
+          "reel_set": "BR0",
+          "actual_stops": [
+            330,
+            85,
+            438,
+            158,
+            403
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "payout_x100": 760
+    },
+    "base_win": {
+      "sha256": "a5ad71a6dc4245fbbfe1e083c7d6b5092fe5fbc37c036fa17fbd25a28f524672",
+      "publication_id": 0,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "payout_x100": 50000
+    },
+    "inferno_buy": {
+      "sha256": "e71dff226a88c1227cac4b95bba605432fe5c76a5d62856c60b725cc4cd0e018",
+      "publication_id": 1,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "payout_x100": 4600
+    },
+    "inferno_prizes": {
+      "sha256": "e71dff226a88c1227cac4b95bba605432fe5c76a5d62856c60b725cc4cd0e018",
+      "publication_id": 1,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "payout_x100": 4600
+    },
+    "max_win": {
+      "sha256": "a3e127119fedc191e36b10c7d194fada20dcd834e877d8cc6b2b900ba6a97f5f",
+      "publication_id": 0,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "payout_x100": 1500000
+    },
+    "rescue_building_cleared": {
+      "sha256": "5109c053d3c8a3e3b90417782e2464c6e0f511e58a1fb4fa48805275aa11687c",
+      "publication_id": 25,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 25
+      },
+      "payout_x100": 2140
+    },
+    "rescue_buy": {
+      "sha256": "68f89d63a59f0a00882fd470b848ce3608d6e01c2af188e9131c11bb0e9c519c",
+      "publication_id": 1,
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 1
+      },
+      "payout_x100": 760
+    }
+  },
+  "backdraft_cap_setWins": [
+    987500,
+    512500
+  ],
+  "backdraft_cap_stops": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ]
+}

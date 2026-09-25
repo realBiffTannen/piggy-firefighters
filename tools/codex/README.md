@@ -10,7 +10,7 @@ Example from the repository root (the model still enforces its own freeze gate):
 
 ```sh
 python3 tools/codex/run_guard.py --report qa/codex/math/run-guard.json -- \
-  /Users/jbull/code/math-sdk/env/bin/python math/games/piggy_firefighters/run.py
+  /Users/jbull/code/piggy-firefighters/math/env/bin/python math/games/piggy_firefighters/run.py
 ```
 
 The guard fails before starting the command if process enumeration is unavailable.
