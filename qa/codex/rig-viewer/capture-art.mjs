@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { execFileSync } from 'node:child_process';
-import { RIGS, FRAMES, inspectRig, planCases, verifyServed, playbackEvidence, captureStatus, sha256 } from './capture-plan.mjs';
+import { RIGS, FRAMES, inspectRig, planCases, verifyServed, playbackEvidence, captureStatus, sha256, captureRigResponses } from './capture-plan.mjs';
 
 const qa = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(qa, '../../..');
@@ -73,9 +73,11 @@ try {
       const context = await browser.newContext({ viewport: FRAMES[frame].viewport, deviceScaleFactor: 1,
         reducedMotion: 'no-preference', serviceWorkers: 'block', recordVideo: { dir: directory, size: FRAMES[frame].viewport } });
       const session = { id: sessionId, rig: info.rig, frame, speed, ...FRAMES[frame],
+        assetCapture: 'Server response bytes hashed and forwarded unchanged through a read-only Playwright route',
         status: 'RUNNING', servedExports: [], networkErrors: [], consoleErrors: [], pageErrors: [] };
       report.sessions.push(session);
-      const responseJobs = [];
+      const responseJobs = await captureRigResponses(context, info.rig,
+        row => session.servedExports.push(row), error => addError('responseHash', error, sessionId));
       const page = await context.newPage();
       const recordingStarted = performance.now();
       const video = page.video();
@@ -89,15 +91,7 @@ try {
         session.networkErrors.push(failure); addError('requestfailed', JSON.stringify(failure), sessionId);
       });
       page.on('response', response => {
-        const pathname = decodeURIComponent(new URL(response.url()).pathname);
-        const marker = `/assets/spine/${info.rig}/`;
         if (response.status() >= 400) addError('http', `${response.status()} ${response.url()}`, sessionId);
-        if (!pathname.includes(marker)) return;
-        responseJobs.push((async () => {
-          const bytes = await response.body();
-          session.servedExports.push({ path: `${info.rig}/${pathname.split(marker)[1]}`,
-            url: response.url(), status: response.status(), bytes: bytes.length, sha256: sha256(bytes) });
-        })().catch(error => addError('responseHash', error, sessionId)));
       });
       try {
         await page.goto(url.href, { waitUntil: 'networkidle', timeout: 30000 });

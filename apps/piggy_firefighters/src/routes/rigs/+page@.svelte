@@ -15,12 +15,14 @@
   let paused = $state(false);
   let anchors = $state(false);
   let replay = $state(0);
+  let spraySequence = $state(false);
   let logs = $state<ViewerLog[]>([]);
   let sequence = 0;
   const frame = $derived(previewFrame(mode));
   const activeClip = $derived(info?.clips.find(value => value.name === clip));
   function log(text: string) { logs = appendLog(logs, { id: ++sequence, text }); }
-  function selectRig() { info = null; clip = ''; skin = ''; logs = []; paused = false; }
+  const canSpray = $derived(rig === 'pf_chief' && ['spray_start', 'spray_loop', 'spray_end'].every(name => info?.clips.some(value => value.name === name)));
+  function selectRig() { info = null; clip = ''; skin = ''; logs = []; paused = false; spraySequence = false; }
   function loaded(value: RigInfo) {
     info = value;
     const preferred = rig ? RIG_DEFINITIONS[rig].loop : '';
@@ -53,13 +55,14 @@
           {#if !info?.skins.length}<option value="">No skin loaded</option>{/if}
           {#each info?.skins ?? [] as name}<option value={name}>{name}</option>{/each}
         </select></div>
-        <div class="field"><label for="clip">Animation</label><select id="clip" bind:value={clip} disabled={!info}>
+        <div class="field"><label for="clip">Animation</label><select id="clip" bind:value={clip} onchange={() => spraySequence = false} disabled={!info}>
           {#if !info}<option value="">No clip loaded</option>{/if}
           {#each info?.clips ?? [] as value}<option value={value.name}>{value.name} · {value.duration.toFixed(2)}s</option>{/each}
         </select></div>
-        <p class="clip-note">{activeClip ? `${activeClip.duration.toFixed(3)}s · ${isLoopClip(clip) ? 'authored loop' : 'once, holds final pose'}` : 'Real clips appear after a valid export loads.'}</p>
+        <p class="clip-note">{spraySequence ? 'Chief sequence · start → 0.8s loop → end. Runtime mixes: 0ms into loop, 150ms into end.' : activeClip ? `${activeClip.duration.toFixed(3)}s · ${isLoopClip(clip) ? 'authored loop' : 'once, holds final pose'}` : 'Real clips appear after a valid export loads.'}</p>
         <div class="field"><label for="speed">Playback speed</label><select id="speed" bind:value={speed} disabled={!info}><option value={1}>Normal · 1×</option><option value={0.25}>Quarter · 0.25×</option></select></div>
         <div class="buttons"><button disabled={!info} onclick={() => paused = !paused}>{paused ? 'Resume' : 'Pause'}</button><button disabled={!info} onclick={() => { replay++; paused = false; }}>Replay</button></div>
+        {#if rig === 'pf_chief'}<div class="buttons"><button id="spray-sequence" disabled={!canSpray} onclick={() => { spraySequence = true; replay++; paused = false; }}>Chief spray sequence</button></div>{/if}
         <div class="field"><label for="frame">Preview frame</label><select id="frame" bind:value={mode}><option value="desktop">Desktop · 920 × 600</option><option value="mobile">Phone · 360 × 480</option></select></div>
         <label class="toggle"><input type="checkbox" bind:checked={anchors} disabled={!info} /> Show contract anchors</label>
         <p class="small">{rig ? RIG_DEFINITIONS[rig].anchors.join(' · ') : 'Anchor points appear with the original rig.'}</p>
@@ -70,7 +73,7 @@
         <div class="preview-toolbar"><span>{mode === 'mobile' ? 'PHONE SIZE STUDY' : 'DESKTOP SIZE STUDY'}</span><span>{frame.scale}× rig scale · {paused ? 'paused' : `${speed}× playback`}</span></div>
         <div class="frame-surround"><div class="preview-frame" class:phone={mode === 'mobile'} style:aspect-ratio={`${frame.width} / ${frame.height}`} style:max-width={`${frame.width}px`}>
           {#if rig}
-            {#key rig}<ViewerCanvas {rig} {clip} {skin} {speed} {paused} {replay} {anchors} {mode} onready={loaded} onlog={log} />{/key}
+            {#key rig}<ViewerCanvas {rig} {clip} {skin} {speed} {paused} {replay} {spraySequence} {anchors} {mode} onready={loaded} onlog={log} />{/key}
           {:else}
             <div class="empty" role="status"><span class="empty-mark" aria-hidden="true">—</span><h2>Original rigs are on their way</h2><p>BLOCKED: no original character exports are present.</p><p>There is no substitute animation to review. Add the agreed Spine 4.2 JSON, atlas and PNG pages, then reload this page.</p></div>
           {/if}

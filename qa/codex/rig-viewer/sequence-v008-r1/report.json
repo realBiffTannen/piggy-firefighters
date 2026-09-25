@@ -1,0 +1,240 @@
+{
+  "status": "PASS",
+  "browser": "151.0.7922.34",
+  "assetCapture": "Server response bytes hashed and forwarded unchanged through a read-only Playwright route",
+  "sourceSha256": {
+    "apps/piggy_firefighters/src/routes/rigs/+page@.svelte": "07777c5690132a3a1bcbd853eda8ea831e4ccf9cd6682707801987c97cdcbba9",
+    "apps/piggy_firefighters/src/routes/rigs/ViewerCanvas.svelte": "49e410e6e3ef6f6b086684072a5c5729bbee013e4bf687ce6979eee0dc4170b6",
+    "apps/piggy_firefighters/src/routes/rigs/ViewerScene.svelte": "841970d9719e9b7dbe528d92283b1f78efdb336b06ff79eca3b5bb8f25cd5910",
+    "apps/piggy_firefighters/src/routes/rigs/ViewerPlayback.svelte": "1ca845a4d734263251ad656bda74e4018ee05f7c8df6733691884fe69530a129",
+    "apps/piggy_firefighters/src/routes/rigs/viewerLogic.ts": "2dce8edafbe77b4a2f875f268b5270438c2efd106e92195a2fd487d48b120ef8",
+    "apps/piggy_firefighters/src/game/anim/rigLogic.ts": "1d165193d1bbcb6de0f37b111638c005aea23d257e0de9055a6a5172777593cc",
+    "apps/piggy_firefighters/src/game/anim/rigRegistry.ts": "fe57a1fca8434dda73e9311eb4b3502354b0686336e52b950e20b80be84e4d1d",
+    "apps/piggy_firefighters/src/game/anim/playbackControl.ts": "e978951c36b5f7725681e04417e23efd6ba0ca8da3921adddcbe9dcaa08e8592",
+    "qa/codex/rig-viewer/browser-sequence.mjs": "2f5906e96c74d880fe6cc67ac7f08b0e7d937de2ad43cae07bbe8b7cbfc128b7",
+    "qa/codex/rig-viewer/capture-plan.mjs": "baab97b7f41b0fd2dc9540ee85eb679f02b3658ccf87839e4598831b412a1212"
+  },
+  "scope": "Dev-only real-Chief sequence controls, keyed events, pause/resume and replacement; not mounted gameplay or artistic acceptance",
+  "motionAcceptance": "NOT RUN",
+  "export": {
+    "rig": "pf_chief",
+    "spineVersion": "4.2.43",
+    "clips": [
+      "spray_end",
+      "spray_loop",
+      "spray_start"
+    ],
+    "skins": [
+      "default"
+    ],
+    "contractCoverage": {
+      "requiredClips": [
+        "idle",
+        "idle_alt",
+        "win",
+        "big_win",
+        "point_reels",
+        "spray_start",
+        "spray_loop",
+        "spray_end",
+        "celebrate",
+        "sad"
+      ],
+      "missingClips": [
+        "idle",
+        "idle_alt",
+        "win",
+        "big_win",
+        "point_reels",
+        "celebrate",
+        "sad"
+      ],
+      "requiredAnchors": [
+        "nozzle_tip",
+        "grip_l",
+        "grip_r",
+        "head_top"
+      ],
+      "missingAnchors": [],
+      "requiredEvents": [
+        "step",
+        "spray_on",
+        "spray_off",
+        "sign_hit"
+      ],
+      "missingEvents": [],
+      "requiredSkins": [],
+      "missingSkins": [],
+      "note": "Declaration coverage only; timelines, contacts and authored motion require separate review"
+    },
+    "files": [
+      {
+        "path": "pf_chief/pf_chief.json",
+        "bytes": 85506,
+        "sha256": "214986a9f74755ff4e5185e2e4d2b886c09609b7b130e52d41e5b874563be468"
+      },
+      {
+        "path": "pf_chief/pf_chief.atlas",
+        "bytes": 611,
+        "sha256": "c7dbeeb7dc787b42709829950f190ec9ecfdc9326b3a22b2a51d28ed6411e5e8"
+      },
+      {
+        "path": "pf_chief/pf_chief.png",
+        "bytes": 2908914,
+        "sha256": "6821bf8e8656db1e2ec51891fc6cbacd460fcb2ab0048edaec9ffc15c03a484d"
+      }
+    ]
+  },
+  "responses": [
+    {
+      "path": "pf_chief/pf_chief.json",
+      "url": "http://127.0.0.1:3008/assets/spine/pf_chief/pf_chief.json",
+      "status": 200,
+      "bytes": 85506,
+      "sha256": "214986a9f74755ff4e5185e2e4d2b886c09609b7b130e52d41e5b874563be468"
+    },
+    {
+      "path": "pf_chief/pf_chief.atlas",
+      "url": "http://127.0.0.1:3008/assets/spine/pf_chief/pf_chief.atlas",
+      "status": 200,
+      "bytes": 611,
+      "sha256": "c7dbeeb7dc787b42709829950f190ec9ecfdc9326b3a22b2a51d28ed6411e5e8"
+    },
+    {
+      "path": "pf_chief/pf_chief.png",
+      "url": "http://127.0.0.1:3008/assets/spine/pf_chief/pf_chief.png",
+      "status": 200,
+      "bytes": 2908914,
+      "sha256": "6821bf8e8656db1e2ec51891fc6cbacd460fcb2ab0048edaec9ffc15c03a484d"
+    }
+  ],
+  "cases": [
+    {
+      "speed": 1,
+      "pausedAndResumed": false,
+      "loopTrackSeconds": 0.801,
+      "rows": [
+        {
+          "id": 5,
+          "text": "SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+        },
+        {
+          "id": 6,
+          "text": "PLAY spray_start · default · once"
+        },
+        {
+          "id": 7,
+          "text": "EVENT spray_on · spray_start @ 0.440s"
+        },
+        {
+          "id": 8,
+          "text": "COMPLETE spray_start"
+        },
+        {
+          "id": 9,
+          "text": "PLAY spray_loop · default · loop"
+        },
+        {
+          "id": 10,
+          "text": "SEQUENCE HOLD spray_loop @ 0.801s"
+        },
+        {
+          "id": 11,
+          "text": "PLAY spray_end · default · once"
+        },
+        {
+          "id": 12,
+          "text": "EVENT spray_off · spray_end @ 0.000s"
+        },
+        {
+          "id": 13,
+          "text": "COMPLETE spray_end"
+        },
+        {
+          "id": 14,
+          "text": "SEQUENCE COMPLETE chief_spray"
+        }
+      ],
+      "screenshot": "sequence-1-final.png"
+    },
+    {
+      "speed": 0.25,
+      "pausedAndResumed": true,
+      "pausedFrameSha256": "7d6fb7c5ed2ca04df9cbcf0c30ca63616315b704ef443d456dd3dd004b5e5e82",
+      "loopTrackSeconds": 0.8,
+      "rows": [
+        {
+          "id": 15,
+          "text": "SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+        },
+        {
+          "id": 16,
+          "text": "PLAY spray_start · default · once"
+        },
+        {
+          "id": 17,
+          "text": "EVENT spray_on · spray_start @ 0.440s"
+        },
+        {
+          "id": 18,
+          "text": "COMPLETE spray_start"
+        },
+        {
+          "id": 19,
+          "text": "PLAY spray_loop · default · loop"
+        },
+        {
+          "id": 20,
+          "text": "SEQUENCE HOLD spray_loop @ 0.800s"
+        },
+        {
+          "id": 21,
+          "text": "PLAY spray_end · default · once"
+        },
+        {
+          "id": 22,
+          "text": "EVENT spray_off · spray_end @ 0.000s"
+        },
+        {
+          "id": 23,
+          "text": "COMPLETE spray_end"
+        },
+        {
+          "id": 24,
+          "text": "SEQUENCE COMPLETE chief_spray"
+        }
+      ],
+      "screenshot": "sequence-0.25-final.png"
+    },
+    {
+      "manualClipCancelsSequence": true,
+      "replacementPlayId": 27,
+      "observedReplacementLoops": 2,
+      "rows": [
+        {
+          "id": 25,
+          "text": "SEQUENCE START chief_spray · loop hold 0.8 animation seconds · mixes 0/0.15s"
+        },
+        {
+          "id": 26,
+          "text": "PLAY spray_start · default · once"
+        },
+        {
+          "id": 27,
+          "text": "PLAY spray_loop · default · loop"
+        },
+        {
+          "id": 28,
+          "text": "LOOP spray_loop"
+        },
+        {
+          "id": 29,
+          "text": "LOOP spray_loop"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "video": "page@34ac6e93a4826205613df032193d570f.webm",
+  "videoSha256": "4da35bcf2a4a70db89d48607633fee37107d67ce40503cfdd45cd6395c2af2c1"
+}

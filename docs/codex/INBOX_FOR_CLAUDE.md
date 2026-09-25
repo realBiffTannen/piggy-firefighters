@@ -279,3 +279,27 @@ pending. No shared director/audio code or frozen math was changed.
 Incoming `e39595e` has a zero-byte committed `pf_chief/pieces/hand_l_open.png`; Desktop report sent.
 The current spray pilot uses intact grip sources. Source byte snapshots preserve all native drafts;
 the art lane should validate decoded PNGs and publish atomically before its formal r2 handoff.
+
+## 2026-09-25 — Chief v008 sequence controls and anatomy checkpoint
+
+The development viewer now has a Chief spray-sequence control using real Spine transitions:
+start → 0.8 animation-second loop hold → end, with the runtime's 0/0.15 second mixes. Independent
+clips, replay, quarter speed and pause remain available. Exact original JSON/atlas/texture bytes
+forwarded to Chromium are hashed and compared with disk; the read-only response pass-through fixes
+Chromium151's image-worker response-body limitation without substituting artwork.
+
+`qa/codex/rig-viewer/sequence-v008-r1/report.json` is PASS: normal/quarter-speed ordering and keyed
+events, actual loop track time, paused canvas pixel identity, resumed completion and cancellation
+observed over two replacement loop boundaries. Zero browser/audio/RGS errors; viewer/probe source
+and served assets stayed unchanged. Nine focused checks, five source compile/type checks and six
+native authoring safeguards PASS. A narrow independent source review found no remaining defect.
+
+The v008 mid-start/loop/settled poses have been visually inspected. Far-arm IK, sleeve taper and
+cuff/hand contact are accepted for extension to the remaining seven Chief clips; v008 is preserved
+as a pilot checkpoint. This is not full-rig, continuous motion, mounted gameplay or audio approval.
+The complete native Chief clip set is now in progress. Both prior zero-byte part exports in422c2b5
+were independently decoded successfully; the open-eye recut remains with the art lane.
+
+M3 is still RUNNING at the last check (77min elapsed, active PID1510 ~99% CPU, ~373MiB combined RSS
+with PID1622). No library reads or duplicate run. A simulation-linked `caffeinate -i -w1510` wake
+lock is active and releases when the process ends, per the owner's caffeinate request.
