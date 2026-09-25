@@ -48,8 +48,9 @@ Targets (base and ante measured against their own cost):
   books, payouts multiples of 0.1x, no cost multiplier above 1000x, **max win genuinely reachable in every mode by
   the rules below — no scripted book may pay the cap through an outcome the rules cannot produce.** Reachability:
   base/ante via a natural Rescue/Inferno (unbounded multiplier, buildings reset), `rescue`/`inferno` likewise,
-  `alarm_call` through its bonus routes, `backdraft_spins` through multiplier Blaze Wilds (§7: a full screen of
-  x10 Blaze Wilds pays 20 lines × 25 × 50 = 25,000x before the cap).
+  `alarm_call` through its bonus routes, `backdraft_spins` through multiplier Blaze Wilds (§7; Codex's proof on
+  the real line table: a full-H1 `BRB` window with all five middle-row cells ignited at x10 pays 9,875x in one
+  spin, so two such spins in five reach the cap — the model keeps genuine strip stops for the capped fixture).
 - Natural trigger rates *(tuned targets)*: Rescue Spins 1 in 150–180 base spins; Inferno Rescue 1 in 1,800–2,500;
   Backdraft 1 in 35–50; ante exactly 2x for both bonuses. Max win: base ≈ 1 in 5–10 million; bought Inferno
   1 in 250,000; bought Rescue 1 in 1,000,000; Alarm Call = its route mix.
@@ -116,6 +117,9 @@ Rescue Spins with: reel set `FRI` *(tuned, fewer wilds than the level-1 rooms wo
 rooms at **fire level 1** (one W rescues a room), **+2 multiplier** per rescue, **+1 spin** per rescue, **+5 spins**
 per building cleared, and every rescued pig also carries an **instant prize** drawn from `{5: 50, 10: 30, 20: 14,
 50: 5, 100: 1}` x *(tuned)*, paid immediately and NOT multiplied. Same events with `bonus: "inferno"`.
+**Cap clipping.** Every amount written into a book (`douse.rescues[].prize`, line wins, `setWin`, `setTotalWin`) is
+already clipped to the remaining headroom under 15,000x, so the frontend adds what the book says and never draws
+an uncapped figure; raw pre-cap totals, if the math lane records them, are optional metadata the client ignores.
 
 ## 7. Alarm Call and Backdraft Spins
 
@@ -129,7 +133,12 @@ per building cleared, and every rescued pig also carries an **instant prize** dr
 then `backdraftSpinsEnd {amount}` → `finalWin`. No alarms, no Rescue. **Multiplier rule:** a line's win is
 multiplied by the SUM of the `mult` values of the Blaze Wilds it uses (a line using no Blaze Wild pays x1; reel W
 carry no multiplier); `winInfo.meta.lineMultiplier` carries the applied sum and `winWithoutMult` the raw pay.
-Base/ante Backdrafts (§4) stay plain (x1) so the base game keeps its low volatility.
+Base/ante Backdrafts (§4) stay plain (x1) so the base game keeps its low volatility. (A "full screen of x10 Blaze
+Wilds" is impossible with 3–5 ignitions; the reachability proof is the one in §2.)
+
+**Alarm Call uniqueness.** The False Alarm route has exactly one distinct event sequence, so the published
+`alarm_call` books carry ONE false-alarm book holding that route's whole LUT probability mass; every other book
+id is a distinct real bonus outcome. The frontend treats a false alarm as a normal 0-return round.
 
 ## 8. Book events (runtime contract)
 
