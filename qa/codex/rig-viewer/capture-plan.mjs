@@ -11,6 +11,31 @@ export const FRAMES = {
 };
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 
+/** Hash the exact server bytes forwarded to Chromium, including worker-loaded PNGs.
+ * Chromium151 may refuse response.body() for image worker targets. The pass-through
+ * route forwards the fetched response and identical body without transforming it.
+ */
+export async function captureRigResponses(context, rig, onCapture, onError) {
+  const jobs = [];
+  await context.route('**/assets/spine/**', route => {
+    const url = route.request().url();
+    const pathname = decodeURIComponent(new URL(url).pathname);
+    const marker = `/assets/spine/${rig}/`;
+    if (!pathname.includes(marker)) return route.continue();
+    const job = (async () => {
+      const response = await route.fetch();
+      assert.equal(response.status(), 200, url);
+      const bytes = await response.body();
+      await route.fulfill({ response, body: bytes });
+      onCapture({ path: `${rig}/${pathname.split(marker)[1]}`, url,
+        status: response.status(), bytes: bytes.length, sha256: sha256(bytes) });
+    })().catch(async error => { onError(error); await route.abort().catch(() => {}); });
+    jobs.push(job);
+    return job;
+  });
+  return jobs;
+}
+
 /** Inspect only the named runtime export and the texture pages its atlas declares. */
 export async function inspectRig(root, rig) {
   assert(RIGS.includes(rig), `Unknown rig: ${rig}`);

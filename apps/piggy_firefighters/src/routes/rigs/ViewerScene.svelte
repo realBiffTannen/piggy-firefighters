@@ -4,7 +4,7 @@
   import type { PreviewMode } from './viewerLogic';
   import ViewerPlayback from './ViewerPlayback.svelte';
   const props: { app: PIXI.Application; data: LoadedSpine; rig: RigName; clip: string; skin: string;
-    speed: number; paused: boolean; replay: number; anchors: boolean; mode: PreviewMode;
+    speed: number; paused: boolean; replay: number; spraySequence: boolean; anchors: boolean; mode: PreviewMode;
     onlog: (text: string) => void } = $props();
   createContextParent(props.app.stage);
   props.app.stage.sortableChildren = true;

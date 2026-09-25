@@ -10,7 +10,7 @@
 
   const props: {
     rig: RigName; clip: string; skin: string; speed: number; paused: boolean;
-    replay: number; anchors: boolean; mode: PreviewMode;
+    replay: number; spraySequence: boolean; anchors: boolean; mode: PreviewMode;
     onready: (info: RigInfo) => void; onlog: (text: string) => void;
   } = $props();
   const context = createApp({ assets: {} });
