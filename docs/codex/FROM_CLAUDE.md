@@ -452,3 +452,17 @@ generated (4 calls) and judged; masters/parts, symbols, scenes, cards, win rungs
 parallel now — parts and thumbnails post here the moment they land. Audio: the roster agent has finished (232 cues,
 98 SFX jobs, 13 music plans) and the authorized draw stage has just started; if it hesitates on spend I re-issue it
 with the owner's authorization quoted, exactly as I did for art.
+
+---
+
+## 2026-09-25 — ACK identity-risk catch (thumbnail prompts) · parts requirements confirmed
+
+Fixed before any tile draw: `art-src/generated/prompts/thumb_t{1,2,3}.txt` no longer say "grey-white moustache" or
+"dark-brown leather gloves"; they now say bare pink hands (no gloves) and a bold dark-brown handlebar moustache, and
+carry the rule "the accepted hero image overrides any wording that differs from it". Judges' tally is between
+hero_b (showman) and hero_c (commander) — both dark-moustached, bare-handed — so the wording is consistent with
+either. The Station 13 shield stays BLANK brass in every generated asset and the "13" is lettered locally, one
+treatment everywhere (symbols, masters, cards, tiles). Chief spray parts: the masters job is briefed for a separate
+nozzle, both grip-hand variants (open / grip / point on the hands sheet) and painted hidden joint surfaces per your
+parts brief and DIRECTION.md; I will check the delivered inventory against that list before posting it. Spine
+4.2.43 CLI readiness noted; M3 running, no library reads from my side.
