@@ -1,0 +1,279 @@
+[
+ {
+  "draw": "pf_antic92__1",
+  "plan": "pf_antic92",
+  "cue": "anticipation_layer",
+  "seconds": 16.02,
+  "planned_s": 16.0,
+  "needed_s": 13.04,
+  "firstOnset_s": 0.17,
+  "introVsBody_dB": -2.3,
+  "dropoutSeconds": [
+   13,
+   14
+  ],
+  "fineBpm": 93.748,
+  "autoBpm": 81.1,
+  "cpentShare": 0.821,
+  "chug": 0.93,
+  "selfSim": null,
+  "defects": [
+   "dropout at [13, 14] s"
+  ]
+ },
+ {
+  "draw": "pf_backdraft92__1",
+  "plan": "pf_backdraft92",
+  "cue": "backdraft_spins_layer",
+  "seconds": 48.02,
+  "planned_s": 48.0,
+  "needed_s": 44.35,
+  "firstOnset_s": 0.058,
+  "introVsBody_dB": -25.4,
+  "dropoutSeconds": [
+   2,
+   3,
+   4,
+   45,
+   46
+  ],
+  "fineBpm": 91.996,
+  "autoBpm": 91.95,
+  "cpentShare": 0.715,
+  "chug": 0.793,
+  "selfSim": {
+   "sections": 2,
+   "pairs": {
+    "1-2": 0.179
+   },
+   "maxPair": 0.179,
+   "nearCopy": false
+  },
+  "defects": [
+   "quiet intro (-25.4 dB under the body)",
+   "dropout at [2, 3, 4, 45, 46] s"
+  ]
+ },
+ {
+  "draw": "pf_base92a__1",
+  "plan": "pf_base92a",
+  "cue": "base_loop_a",
+  "seconds": 91.95,
+  "planned_s": 92.0,
+  "needed_s": 86.09,
+  "firstOnset_s": 0.0,
+  "introVsBody_dB": -10.5,
+  "dropoutSeconds": [
+   89
+  ],
+  "fineBpm": 92.0,
+  "autoBpm": 91.95,
+  "cpentShare": 0.559,
+  "chug": 3.988,
+  "selfSim": {
+   "sections": 4,
+   "pairs": {
+    "1-2": 0.421,
+    "1-3": 0.415,
+    "1-4": 0.396,
+    "2-3": 0.906,
+    "2-4": 0.823,
+    "3-4": 0.823
+   },
+   "maxPair": 0.906,
+   "nearCopy": true
+  },
+  "defects": [
+   "quiet intro (-10.5 dB under the body)",
+   "dropout at [89] s",
+   "chug 3.988 (8th/quarter > 3)",
+   "out of key (C-pent share 0.559)",
+   "near-copy sections (max r 0.906)"
+  ]
+ },
+ {
+  "draw": "pf_base92b__1",
+  "plan": "pf_base92b",
+  "cue": "base_loop_b",
+  "seconds": 91.95,
+  "planned_s": 92.0,
+  "needed_s": 86.09,
+  "firstOnset_s": 0.002,
+  "introVsBody_dB": -6.9,
+  "dropoutSeconds": [
+   89
+  ],
+  "fineBpm": 91.996,
+  "autoBpm": 91.95,
+  "cpentShare": 0.868,
+  "chug": 1.248,
+  "selfSim": {
+   "sections": 4,
+   "pairs": {
+    "1-2": 0.587,
+    "1-3": 0.411,
+    "1-4": 0.585,
+    "2-3": 0.478,
+    "2-4": 0.738,
+    "3-4": 0.444
+   },
+   "maxPair": 0.738,
+   "nearCopy": false
+  },
+  "defects": [
+   "dropout at [89] s"
+  ]
+ },
+ {
+  "draw": "pf_inferno100__1",
+  "plan": "pf_inferno100",
+  "cue": "inferno_loop",
+  "seconds": 83.96,
+  "planned_s": 84.0,
+  "needed_s": 79.2,
+  "firstOnset_s": 0.0,
+  "introVsBody_dB": -3.3,
+  "dropoutSeconds": [
+   81
+  ],
+  "fineBpm": 100.0,
+  "autoBpm": 100.0,
+  "cpentShare": 0.546,
+  "chug": 1.151,
+  "selfSim": {
+   "sections": 4,
+   "pairs": {
+    "1-2": 0.647,
+    "1-3": 0.568,
+    "1-4": 0.742,
+    "2-3": 0.719,
+    "2-4": 0.58,
+    "3-4": 0.593
+   },
+   "maxPair": 0.742,
+   "nearCopy": false
+  },
+  "defects": [
+   "dropout at [81] s",
+   "out of key (C-pent share 0.546)"
+  ]
+ },
+ {
+  "draw": "pf_rescue100__1",
+  "plan": "pf_rescue100",
+  "cue": "rescue_loop",
+  "seconds": 83.96,
+  "planned_s": 84.0,
+  "needed_s": 79.2,
+  "firstOnset_s": 0.0,
+  "introVsBody_dB": -5.9,
+  "dropoutSeconds": [
+   81
+  ],
+  "fineBpm": 100.0,
+  "autoBpm": 100.0,
+  "cpentShare": 0.656,
+  "chug": 0.927,
+  "selfSim": {
+   "sections": 4,
+   "pairs": {
+    "1-2": 0.487,
+    "1-3": 0.579,
+    "1-4": 0.606,
+    "2-3": 0.518,
+    "2-4": 0.541,
+    "3-4": 0.634
+   },
+   "maxPair": 0.634,
+   "nearCopy": false
+  },
+  "defects": [
+   "dropout at [81] s"
+  ]
+ },
+ {
+  "draw": "pf_rung100_big__1",
+  "plan": "pf_rung100_big",
+  "cue": "rung_bed_big",
+  "seconds": 24.01,
+  "planned_s": 24.0,
+  "needed_s": 21.6,
+  "firstOnset_s": 0.01,
+  "introVsBody_dB": 0.2,
+  "dropoutSeconds": [],
+  "fineBpm": 100.0,
+  "autoBpm": 100.0,
+  "cpentShare": 0.824,
+  "chug": 0.952,
+  "selfSim": null,
+  "defects": []
+ },
+ {
+  "draw": "pf_rung100_epic__1",
+  "plan": "pf_rung100_epic",
+  "cue": "rung_bed_epic",
+  "seconds": 24.01,
+  "planned_s": 24.0,
+  "needed_s": 21.6,
+  "firstOnset_s": 0.004,
+  "introVsBody_dB": -1.9,
+  "dropoutSeconds": [],
+  "fineBpm": 100.0,
+  "autoBpm": 100.0,
+  "cpentShare": 0.725,
+  "chug": 0.947,
+  "selfSim": null,
+  "defects": []
+ },
+ {
+  "draw": "pf_rung100_huge__1",
+  "plan": "pf_rung100_huge",
+  "cue": "rung_bed_huge",
+  "seconds": 24.01,
+  "planned_s": 24.0,
+  "needed_s": 21.6,
+  "firstOnset_s": 0.015,
+  "introVsBody_dB": -1.5,
+  "dropoutSeconds": [],
+  "fineBpm": 100.052,
+  "autoBpm": 100.0,
+  "cpentShare": 0.828,
+  "chug": 0.941,
+  "selfSim": null,
+  "defects": []
+ },
+ {
+  "draw": "pf_rung100_max__1",
+  "plan": "pf_rung100_max",
+  "cue": "rung_bed_max",
+  "seconds": 24.01,
+  "planned_s": 24.0,
+  "needed_s": 21.6,
+  "firstOnset_s": 0.003,
+  "introVsBody_dB": 0.6,
+  "dropoutSeconds": [],
+  "fineBpm": 100.0,
+  "autoBpm": 100.0,
+  "cpentShare": 0.946,
+  "chug": 0.497,
+  "selfSim": null,
+  "defects": []
+ },
+ {
+  "draw": "pf_rung100_mega__1",
+  "plan": "pf_rung100_mega",
+  "cue": "rung_bed_mega",
+  "seconds": 24.01,
+  "planned_s": 24.0,
+  "needed_s": 21.6,
+  "firstOnset_s": 0.004,
+  "introVsBody_dB": 0.2,
+  "dropoutSeconds": [],
+  "fineBpm": 100.0,
+  "autoBpm": 100.0,
+  "cpentShare": 0.823,
+  "chug": 0.251,
+  "selfSim": null,
+  "defects": []
+ }
+]

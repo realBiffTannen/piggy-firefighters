@@ -1,0 +1,153 @@
+{
+ "root": "apps/piggy_firefighters/static/assets",
+ "families": [
+  "sprites"
+ ],
+ "summary": "FAIL 0 \u00b7 PENDING 0 \u00b7 WARN 0 \u00b7 ok 36",
+ "results": [
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_ALARM.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_GALARM.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H1.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H1_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H2.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H2_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H3.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H3_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H4.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_H4_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L1.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L2.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L3.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_L4.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_W.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_W_b.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/sym_W_blaze.webp 384x384 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_ALARM.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_GALARM.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H1.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H1_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H2.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H2_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H3.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H3_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H4.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_H4_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L1.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L2.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L3.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_L4.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_W.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_W_b.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/symT_W_blaze.webp 384x500 RGBA"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoon/manifest.json: names 17 files; missing []; orphans []"
+  },
+  {
+   "status": "ok",
+   "msg": "sprites/symbolsCartoonTall/manifest.json: names 17 files; missing []; orphans []"
+  }
+ ]
+}
