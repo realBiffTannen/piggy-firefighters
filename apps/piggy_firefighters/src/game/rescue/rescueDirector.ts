@@ -263,6 +263,9 @@ export const douse = async (e: Ev<'douse'>) => {
 			if (rescue.prize) room.prize = rescue.prize;
 		}
 		stateRescue.rescued += 1;
+		// the badge climbs WITH the rescue it pays for (never past the book's figure for this douse, assigned below)
+		const step = stateRescue.bonus === 'inferno' ? CONTRACT.infernoStep : CONTRACT.rescueStep;
+		stateRescue.multiplier = Math.min(e.multiplier, stateRescue.multiplier + step);
 		// one beat per rescued room, as the room is marked (a skipped round's later rescues are dropped by the epoch)
 		animBeats.emit({ beat: 'rescue', reel: rescue.reel, skin: skinOf(rescue.reel), ...(rescue.prize ? { prize: rescue.prize / 100 } : {}), multiplier: e.multiplier }, epoch);
 		if (rescue.prize) {

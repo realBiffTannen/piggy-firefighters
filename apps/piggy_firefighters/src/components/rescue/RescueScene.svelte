@@ -21,6 +21,7 @@
 	// Laid out in BOARD-LOCAL units (SYMBOL_SIZE per cell, reel 0 at x = REEL_PADDING cells), inside the band the scene
 	// layout reserves above the frame while the scene is up (stateGame BUILDING_BAND_CELLS).
 	import { onMount, untrack } from 'svelte';
+	import { Spring } from 'svelte/motion';
 	import { Container, Graphics, Text, BaseSprite, PIXI, getContextApp } from 'pixi-svelte';
 
 	import Grab from '../scene/Grab.svelte';
@@ -56,6 +57,19 @@
 	const stacked = $derived(sl.stacked);
 	const speedTier = $derived((stateSpeed.tier === 'super' ? 2 : stateSpeed.tier === 'turbo' ? 1 : 0) as 0 | 1 | 2);
 	const reduced = prefersReducedMotion();
+	// the multiplier badge swells on every change (a rescue landed its +1x / +2x); reduced motion: no pulse
+	const badgePulse = new Spring(1, { stiffness: 0.18, damping: 0.32 });
+	let lastMult = stateRescue.multiplier;
+	$effect(() => {
+		const m = stateRescue.multiplier;
+		if (m === lastMult) return;
+		lastMult = m;
+		if (reduced) return;
+		untrack(() => {
+			void badgePulse.set(1.45, { instant: true });
+			badgePulse.target = 1;
+		});
+	});
 
 	// ---- geometry (board-local units) ----------------------------------------------------------------------------------
 	const m = $derived(sl.innerMargin * S);
@@ -456,7 +470,7 @@
 		{/if}
 		<Text anchor={0.5} x={buildingPlateAt.x} y={buildingPlateAt.y} text={`${BUILDING} ${stateRescue.building}`} style={STYLE.building} />
 		<Text anchor={0.5} x={totalPlateAt.x} y={totalPlateAt.y} text={`TOTAL ${formatBookAmount(stateRescue.total)}`} style={STYLE.total} />
-		<Container x={badgeAt.x} y={badgeAt.y}>
+		<Container x={badgeAt.x} y={badgeAt.y} scale={badgePulse.current}>
 			{#if tex('rescue_badge_blank')}
 				<BaseSprite texture={tex('rescue_badge_blank')} width={S * 0.8} height={(S * 0.8 * badgeProp.h) / badgeProp.w} anchor={0.5} />
 			{:else}
