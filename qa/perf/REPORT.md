@@ -229,6 +229,10 @@ pages 0.97 MB for chief + dog, LOD plates) were measured on the dev server and a
    finalWin 50000 / 5580, 0 console errors (`qa/perf/smoke/results.json`, screenshots alongside).
 5. The shipped bundle driven once at `?quality=low` through the QA seam (phone profile): boot, a completed 500x round,
    30 fps idle cap engaged.
+6. `game/dist` synced with `./tools/build_dist.sh` at the clean HEAD 968e8e8: `check_provenance.mjs --dir game/dist`
+   PASS; its input digest `98e8a0b5…` is the digest of the measured tree (only SvelteKit's per-build version stamp
+   differs, which renames the bundle file). `game/BUILD_INFO.md` describes it; the `docs/submission/` record and
+   checklist are still bound to ecec27c and need their owner's rebind.
 
 ## Notes for the coordinator
 
