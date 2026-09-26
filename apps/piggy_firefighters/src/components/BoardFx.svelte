@@ -417,7 +417,11 @@
 			// a WILD cell in a paying way performs as the WILD, whatever symbol the way pays
 			const wilds = positions.filter((pos) => isWildAt(pos.reel, pos.row));
 			const others = wilds.length ? positions.filter((pos) => !isWildAt(pos.reel, pos.row)) : positions;
-			wilds.forEach((pos) => startWildAct(pos.reel, pos.row));
+			// the W performs its own key frames once they are resident (symbolMotion keySequence): the banner crop of
+			// pose A would flash where the badge no longer is, so the act runs only until then
+			const la = app.stateApp.loadedAssets as Record<string, unknown> | undefined;
+			const wildPosed = !!la && (!!la['sym_W_b'] || !!la['symT_W_b']);
+			if (!wildPosed) wilds.forEach((pos) => startWildAct(pos.reel, pos.row));
 			const burst = symbol in BURSTS ? BURSTS[symbol] : undefined;
 			// the win motion peaks about a third of the way in; fire the burst on that beat
 			fxLog?.push({ symbol, others: burst ? others.length : 0, wilds: wilds.length });

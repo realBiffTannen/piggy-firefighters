@@ -29,7 +29,7 @@
 	import {
 		symbolMotion,
 		idleMotion,
-		poseBKey,
+		poseKey,
 		restTransform,
 		resetTransform,
 		IDLE_KINDS,
@@ -40,7 +40,7 @@
 	import { boardTicker } from '../game/reels/boardTicker';
 	import { boardLife } from '../game/reels/boardLife';
 	import { qv } from '../game/quality.svelte';
-	import { ensureSymbolSet } from '../game/lazyAssets';
+	import { ensureSymbolSet, ensureSymbolPoses } from '../game/lazyAssets';
 
 	type Props = {
 		x?: number;
@@ -87,7 +87,10 @@
 
 	let texA: PIXI.Texture | undefined;
 	let texB: PIXI.Texture | undefined;
-	let shownPose: 0 | 1 = 0;
+	let texC: PIXI.Texture | undefined;
+	/** the key of the tile on show (`sym_H1`, `symT_W_BLAZE` …): its key frames are this plus `_b` / `_c` */
+	let tileKey = '';
+	let shownPose: 0 | 1 | 2 = 0;
 	let baseW = SYMBOL_SIZE;
 	let baseH = SYMBOL_SIZE;
 
@@ -128,9 +131,9 @@
 		s.scale.set(w / tw, h / th);
 	};
 
-	const showPose = (pose: 0 | 1) => {
+	const showPose = (pose: 0 | 1 | 2) => {
 		if (!sprite || pose === shownPose) return;
-		const next = pose === 1 ? texB : texA;
+		const next = pose === 2 ? texC : pose === 1 ? texB : texA;
 		if (!next) return;
 		shownPose = pose;
 		sprite.texture = next;
@@ -242,7 +245,7 @@
 			}
 		}
 		if (ring) {
-			// GOLDEN ALARM landing: a gold shock ring and eight glint rays burst from under the hat
+			// GOLDEN ALARM landing: a gold shock ring and eight glint rays burst from under the bell
 			const live = mode === 'land' && isGolden && p > 0 && p < 1;
 			ring.visible = live;
 			if (live) {
@@ -347,8 +350,12 @@
 				else baseW = Math.min(w, h / Math.max(0.01, aspect));
 			}
 			texA = chosen;
-			// the pose-B key frame from the SAME sheet as pose A (both tiles share one size, so the cut never resizes)
-			texB = tex(poseBKey(name, chosenTall));
+			// the key frames come from the SAME sheet as the tile on show (one size, so a cut never resizes); resolved
+			// at win time, since they arrive after boot (ensureSymbolPoses)
+			tileKey = chosen ? (primary ? primaryKey : otherKey) : '';
+			texB = undefined;
+			texC = undefined;
+			void ensureSymbolPoses(chosenTall ? 'symT' : 'sym');
 			isGolden = name === 'GALARM';
 			shownPose = 0;
 			sprite.texture = texA ?? PIXI.Texture.EMPTY;
@@ -389,7 +396,11 @@
 			}
 			if (state === 'win') ensureWinDressing(name === 'W');
 			if (state === 'land' && name === 'GALARM') ensureRing();
-			const m = symbolMotion(name, state, { emphasis, keyPose: !!texB });
+			if (state === 'win' && tileKey) {
+				texB = tex(poseKey(tileKey, 1));
+				texC = tex(poseKey(tileKey, 2));
+			}
+			const m = symbolMotion(name, state, { emphasis, poses: texB ? (texC ? 2 : 1) : 0 });
 			toRest();
 			play(state, m, m.durationMs * (isTurbo() ? speedFactor() : 1), complete);
 		});

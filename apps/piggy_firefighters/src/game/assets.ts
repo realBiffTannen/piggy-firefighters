@@ -15,9 +15,9 @@ const u = (path: string) => new URL('../../assets/' + path, HERE).href;
  *
  * Every picture is the art lane's DELIVERED file (docs/FRONTEND_NOTES.md §4 "delivered asset map"). Symbols come in
  * two sheets (tools/art/derive_symbols*.py): square 384x384 tiles (`sym_*`, wide layouts) and 384x500 portrait tiles
- * (`symT_*`, stacked layouts), each with a pose-B key frame for the four high symbols and the WILD (`*_b`) and the
- * Blaze Wild (`*_W_BLAZE`). SymbolSprite picks the tall tile on stacked layouts and cuts to pose B inside the
- * high-symbol win motion (game/symbolMotion.ts).
+ * (`symT_*`, stacked layouts), each with the Blaze Wild (`*_W_BLAZE`). Every symbol also has two win key frames,
+ * B (`*_b`, the action) and C (`*_c`, the follow-through), fetched after boot (symbolPoseEntries, lazyAssets
+ * ensureSymbolPoses). SymbolSprite picks the tall tile on stacked layouts and plays its key frames (symbolMotion.ts).
  *
  * BOOT vs LAZY (perf sweep, 2026-09-25): this manifest is what the splash waits for. It carries the base game only:
  * the symbol set(s) the layout needs, the coin sheet, the boot scene set (assetsScene.ts bootSceneAssets) and the two
@@ -29,19 +29,28 @@ const sym = (file: string) => ({ type: 'sprite' as const, preload: true, src: u(
 const symT = (file: string) => ({ type: 'sprite' as const, preload: true, src: u(`${SYMT_DIR}/${file}.webp`) });
 
 const SYMBOL_IDS = ['H1', 'H2', 'H3', 'H4', 'L1', 'L2', 'L3', 'L4', 'W', 'ALARM', 'GALARM'] as const;
-/** pose-B (win key pose) tiles: the four high symbols and the WILD (the WILD's win is a punch, symbolMotion, so its
- *  pose B is registered for the art lane's inventory but only the high symbols cut to theirs) */
-const POSE_B_IDS = ['H1', 'H2', 'H3', 'H4', 'W'] as const;
+/** the win key frames (B = action, C = follow-through) of every symbol, the Blaze Wild included; fetched after boot by
+ *  lazyAssets.ensureSymbolPoses (a win before they land plays the single-pose flourish, symbolMotion.ts) */
+const POSES = ['b', 'c'] as const;
 
 export type SymbolSet = 'sym' | 'symT';
-/** Every entry of one symbol sheet, keyed `sym_*` / `symT_*` (the keys components/SymbolSprite.svelte reads). */
+/** Every resting tile of one symbol sheet, keyed `sym_*` / `symT_*` (the keys components/SymbolSprite.svelte reads). */
 export const symbolSetEntries = (set: SymbolSet): Record<string, ReturnType<typeof sym>> => {
 	const make = set === 'sym' ? sym : symT;
 	const out: Record<string, ReturnType<typeof sym>> = {};
 	for (const id of SYMBOL_IDS) out[`${set}_${id}`] = make(`${set}_${id}`);
-	for (const id of POSE_B_IDS) out[`${set}_${id}_b`] = make(`${set}_${id}_b`);
 	/** a W ignited by a Backdraft (contract §4: an ordinary W in the evaluated board, drawn on fire) */
 	out[`${set}_W_BLAZE`] = make(`${set}_W_blaze`);
+	return out;
+};
+/** The key frames of one sheet: `sym_H1_b`, `sym_H1_c`, … `sym_W_BLAZE_b` (files `sym_W_blaze_b.webp`). */
+export const symbolPoseEntries = (set: SymbolSet): Record<string, ReturnType<typeof sym>> => {
+	const make = set === 'sym' ? sym : symT;
+	const out: Record<string, ReturnType<typeof sym>> = {};
+	for (const p of POSES) {
+		for (const id of SYMBOL_IDS) out[`${set}_${id}_${p}`] = make(`${set}_${id}_${p}`);
+		out[`${set}_W_BLAZE_${p}`] = make(`${set}_W_blaze_${p}`);
+	}
 	return out;
 };
 

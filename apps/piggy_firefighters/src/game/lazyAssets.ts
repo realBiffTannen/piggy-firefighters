@@ -12,6 +12,7 @@
  *                               free, and only ever adds what is still missing (an orientation change).
  *   loadRig(name)               the same for a Spine rig (pf_rookie rides with 'alarm', pf_rescued with 'rescue').
  *   ensureSymbolSet(set)        the other layout's symbol sheet, on the first layout flip (SymbolSprite).
+ *   ensureSymbolPoses(set)      the win key frames (B, C) of a sheet, after boot (SymbolSprite; symbolMotion.ts).
  *   uploadTextureSources        the ONE budgeted uploader (<= 4 ms per animation frame, one shared queue); prewarm.ts
  *                               reuses it for the boot set.
  *
@@ -22,7 +23,7 @@
 import { PIXI, enableMipmaps, getProcessed } from 'pixi-svelte';
 
 import sceneAssets, { LAZY_SETS, currentOrientation, type LazyKind, type SceneEntry } from './assetsScene';
-import { symbolSetEntries, rigSrc, type SymbolSet } from './assets';
+import { symbolSetEntries, symbolPoseEntries, rigSrc, type SymbolSet } from './assets';
 import type { RigName } from './anim/rigLogic';
 import { stateApp } from './stateApp';
 import { stateScene } from './fx/stateScene.svelte';
@@ -248,6 +249,18 @@ export const ensureFeatureAssets = async (kind: LazyKind, { upload = true }: { u
 /** The other layout's symbol sheet (`sym_*` square / `symT_*` tall), on the first layout flip. */
 export const ensureSymbolSet = async (set: SymbolSet): Promise<void> => {
 	const entries = symbolSetEntries(set);
+	const keys = Object.keys(entries);
+	await ensureKeys(keys, entries);
+	await uploadTextureSources(sourcesOfKeys(keys));
+};
+
+/** The win key frames of one sheet (SymbolSprite asks on mount; one request per sheet per session). Queued behind
+ *  whatever the budgeted uploader already holds. */
+const posesAsked = new Set<SymbolSet>();
+export const ensureSymbolPoses = async (set: SymbolSet): Promise<void> => {
+	if (posesAsked.has(set)) return;
+	posesAsked.add(set);
+	const entries = symbolPoseEntries(set);
 	const keys = Object.keys(entries);
 	await ensureKeys(keys, entries);
 	await uploadTextureSources(sourcesOfKeys(keys));

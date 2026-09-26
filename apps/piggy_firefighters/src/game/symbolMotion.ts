@@ -8,20 +8,19 @@
  *         carries the drop, the overshoot and the settle spring (game/reels/spinReels.svelte.ts), so a
  *         landing here starts AT REST and is what the object does when the column hits: it squashes
  *         on its base, then the object speaks in its own way — a heavy piece barely gives, a light
- *         one rebounds, a hanging one swings and follows through. (The per-symbol tables below were
- *         authored for the donor's symbol set; the motions carry over to the Firefighters art in the
- *         same slots and are re-tuned by the animation lane.)
- *   WIN   (0.66–1.0 s)  the pay flourish. The four HIGH symbols cut to a second KEY POSE (`pose: 1`,
- *         art `sym_H1_b` ...) THROUGH a squash, so the cut is never seen:
- *             A squashes (anticipation) -> cut at the bottom of the squash -> B springs out with its
- *             own overshoot and is HELD while the material motion plays (the BoardFx burst lands on
- *             this beat, ~200 ms in) -> B squashes -> cut -> A springs back and settles.
- *         If the pose-B art is missing the symbol keeps its single-pose flourish.
- *         The WILD (Chief Hamm holding the red WILD badge) sinks, PUNCHES out and springs
- *         back to rest. Its banner performance — two gold flashes of the banner (one in turbo) and a
- *         glint along it — is drawn by components/BoardFx.svelte over the same cell, sampled from
- *         the same transform (`WILD_BANNER`, `wildBannerFlash`, `wildBannerGlint` below): the "I
- *         substituted" tell, since the wild pays nothing itself and whenever it wins it stood in.
+ *         one rebounds, a hanging one swings and follows through.
+ *   WIN   (0.86–1.0 s)  the pay performance. Every symbol plays three authored key frames, A -> B (the action,
+ *         `pose: 1`, art `sym_H1_b` ...) -> C (the follow-through, `pose: 2`, `sym_H1_c` ...) -> A, each cut
+ *         at the bottom of a squash so the cut is never seen (`keySequence`): A squashes (anticipation) -> cut
+ *         -> B springs out with its own overshoot and is HELD while the material motion plays (the BoardFx
+ *         burst lands on this beat, ~200 ms in) -> B squashes -> cut -> C springs out and holds -> C squashes
+ *         -> cut -> A springs back and settles. With only B resident it plays A -> B -> A (`keyPose`); with
+ *         neither, the single-pose flourish (`WIN_PLAIN`). The key frames load after boot
+ *         (lazyAssets.ensureSymbolPoses), so an early win still plays in full.
+ *         The WILD without its frames (Chief Hamm holding the red WILD badge) sinks, PUNCHES out and springs
+ *         back to rest, with its banner performance — two gold flashes of the banner (one in turbo) and a
+ *         glint along it — drawn by components/BoardFx.svelte over the same cell, sampled from the same
+ *         transform (`WILD_BANNER`, `wildBannerFlash`, `wildBannerGlint` below).
  *   IDLE  (0.6–1.1 s, 2–4 %)  a micro-reaction — hop, tilt or breathe — so a resting board is alive.
  *
  * Every sampler returns to the resting transform at p = 1 and (land, idle) starts from it at p = 0:
@@ -36,9 +35,9 @@ export type Transform = {
 	sx: number;
 	sy: number;
 	alpha: number;
-	/** 0 = resting art, 1 = key pose B */
-	pose: 0 | 1;
-	/** 0..1 additive flash on SymbolSprite's legacy sign crop; `W` keeps it 0 (the banner flash is BoardFx's) */
+	/** 0 = resting art (A), 1 = key frame B (the action), 2 = key frame C (the follow-through) */
+	pose: 0 | 1 | 2;
+	/** 0..1 additive flash (unused by the Firefighters set; kept for the transform's shape) */
 	flash: number;
 };
 
@@ -97,11 +96,11 @@ const LAND: Record<string, Motion> = {
 		},
 	},
 	H3: {
-		durationMs: 340,
+		durationMs: 320,
 		sample: (p, o) => {
-			// paper: it ripples sideways rather than squashing
-			squash(o, hit(p, 0.05), 1.6);
-			o.rot = 2.4 * osc(p, 4) * decay(p);
+			// axe & halligan: steel lands hard, a short stiff squash and a ringing shiver along the blade
+			squash(o, hit(p, 0.06), 0.5);
+			o.rot = 1.6 * osc(p, 9) * decay2(p);
 		},
 	},
 	H4: {
@@ -230,6 +229,15 @@ export const wildBannerGlint = (p: number): number => (p > 0.56 && p < 0.9 ? (p 
 /** The WILD's win motion (for an overlay that must follow the symbol exactly). */
 export const wildWinMotion = (): Motion => WIN_PLAIN.W;
 
+/** The alarms' single-pose flourish: a lift, a ringing sway and a swell. */
+const WIN_PLAIN_ALARM: Sampler = (p, o) => {
+	const s = Math.sin(Math.PI * p);
+	o.oy = -8 * s * decay(p);
+	o.rot = 6 * osc(p, 2) * decay(p);
+	o.sx = 1 + 0.06 * s;
+	o.sy = 1 + 0.06 * s;
+};
+
 const WIN_PLAIN: Record<string, Motion> = {
 	H1: { durationMs: 800, sample: (p, o) => ((o.ox = 16 * osc(p, 3) * decay2(p)), (o.rot = 8 * osc(p, 3, 0.3) * decay2(p) * clamp01(p * 10))) },
 	H2: {
@@ -286,20 +294,13 @@ const WIN_PLAIN: Record<string, Motion> = {
 			squash(o, 0.06 * (1 - clamp01(stomp * 4)) * decay(p) * clamp01(p * 6), 0.8);
 		},
 	},
-	ALARM: {
-		durationMs: 680,
-		sample: (p, o) => {
-			const s = Math.sin(Math.PI * p);
-			o.oy = -8 * s * decay(p);
-			o.rot = 6 * osc(p, 2) * decay(p);
-			o.sx = 1 + 0.06 * s;
-			o.sy = 1 + 0.06 * s;
-		},
-	},
+	ALARM: { durationMs: 680, sample: (p, o) => WIN_PLAIN_ALARM(p, o) },
+	// the golden alarm's own flourish when its key frames are not resident (it used to fall back to the bucket's)
+	GALARM: { durationMs: 760, sample: (p, o) => WIN_PLAIN_ALARM(p, o) },
 	// WILD: Chief Hamm sinks onto his base (anticipation), PUNCHES out of it — a quick swell past full
 	// size, grown from the base so his feet stay planted — then a damped spring settles him back to rest
 	// with a small tilt. `flash` stays 0: the banner flash is drawn over the cell by components/BoardFx
-	// (see WILD_BANNER), so the retired pig-sign crop in SymbolSprite never lights up the wrong region.
+	// (see WILD_BANNER), so nothing on the tile itself flashes.
 	W: {
 		durationMs: 900,
 		sample: (p, o) => {
@@ -318,7 +319,7 @@ const WIN_PLAIN: Record<string, Motion> = {
 	},
 };
 
-// ---- WIN: key-pose flourishes for the four high symbols --------------------------------------------
+// ---- WIN: the two-frame cut (A -> B -> A), used while only key frame B is resident ---------------------
 const A_IN = 0.18; // A squashes; the cut to B is at the bottom of it
 const B_OUT0 = 0.76; // B starts to squash
 const B_OUT1 = 0.86; // cut back to A
@@ -360,45 +361,191 @@ const keyPose =
 		o.oy = (1 - o.sy) * HALF;
 	};
 
-const WIN_KEYPOSE: Record<string, Motion> = {
-	// fire truck: pose B revs — a fast vertical pump that dies away
+// ---- WIN: the three-frame performance (A -> B -> C -> A), every cut at the bottom of a squash ----------------------
+const S_A = 0.14; // A sinks; cut to B
+const S_B0 = 0.44; // B squashes ...
+const S_B1 = 0.52; // ... cut to C
+const S_C0 = 0.78; // C squashes ...
+const S_C1 = 0.86; // ... cut back to A, which springs and settles
+const C_SCALE = 1.04; // C is held a touch larger than rest, a touch smaller than B
+const springOut = (q: number, o: Transform, k: number) => {
+	const spring = Math.exp(-7 * q) * Math.cos(TAU * 2.2 * q);
+	o.sy = k * (1 - 0.3 * spring);
+	o.sx = k * (1 + 0.2 * spring);
+	o.oy = (1 - o.sy) * HALF;
+};
+const squashDown = (q: number, o: Transform, k: number) => {
+	const e = easeInCubic(q);
+	o.sy = k * (1 - 0.24 * e);
+	o.sx = k * (1 + 0.16 * e);
+	o.oy = (1 - o.sy) * HALF;
+};
+const keySequence =
+	(holdB: Hold, holdC: Hold): Sampler =>
+	(p, o) => {
+		if (p < S_A) return squash(o, 0.26 * easeOutCubic(p / S_A), 0.7);
+		if (p < S_B0) {
+			o.pose = 1;
+			const q = (p - S_A) / (S_B0 - S_A);
+			springOut(q, o, B_SCALE);
+			holdB(q, o);
+			return;
+		}
+		if (p < S_B1) {
+			o.pose = 1;
+			squashDown((p - S_B0) / (S_B1 - S_B0), o, B_SCALE);
+			return;
+		}
+		if (p < S_C0) {
+			o.pose = 2;
+			const q = (p - S_B1) / (S_C0 - S_B1);
+			springOut(q, o, C_SCALE);
+			holdC(q, o);
+			return;
+		}
+		if (p < S_C1) {
+			o.pose = 2;
+			squashDown((p - S_C0) / (S_C1 - S_C0), o, C_SCALE);
+			return;
+		}
+		const q = (p - S_C1) / (1 - S_C1);
+		const spring = Math.exp(-5 * q) * Math.cos(TAU * 1.4 * q) * (1 - q);
+		o.sy = 1 - 0.17 * spring;
+		o.sx = 1 + 0.16 * spring;
+		o.oy = (1 - o.sy) * HALF;
+	};
+
+/** Per symbol: B's material motion (the action) and C's (the follow-through), and the performance's length. */
+type Holds = { ms: number; b: Hold; c: Hold };
+const HOLDS: Record<string, Holds> = {
+	// fire truck: B revs — a fast vertical pump that dies away; C settles on its springs with a slow rock
 	H1: {
-		durationMs: 1000,
-		sample: keyPose((q, o) => {
+		ms: 1000,
+		b: (q, o) => {
 			const env = decay2(q) * clamp01(q * 7);
 			o.oy += 5 * Math.abs(Math.sin(TAU * 7 * q)) * env;
 			o.ox += 2.5 * Math.sin(TAU * 14 * q) * env;
 			o.rot = 2 * Math.sin(TAU * 7 * q + 0.4) * env;
-		}),
+		},
+		c: (q, o) => {
+			o.rot = -2.5 * Math.sin(TAU * 1.5 * q) * decay(q) * clamp01(q * 6);
+		},
 	},
-	// helmet: a hard, fast judder that dies away
+	// helmet: B a hard, fast judder; C tips back in the salute
 	H2: {
-		durationMs: 960,
-		sample: keyPose((q, o) => {
+		ms: 960,
+		b: (q, o) => {
 			const env = decay(q) * clamp01(q * 9);
 			o.oy += 4.5 * Math.sin(TAU * 10 * q) * env;
 			o.ox += 1.6 * Math.sin(TAU * 13 * q) * env;
-		}),
+		},
+		c: (q, o) => {
+			o.rot = -6 * easeOutCubic(clamp01(q * 3)) * decay(q);
+		},
 	},
-	// axe & halligan: a gleaming flutter
+	// axe & halligan: B a gleaming flutter as they clash; C springs apart with a shiver
 	H3: {
-		durationMs: 1000,
-		sample: keyPose((q, o) => {
+		ms: 1000,
+		b: (q, o) => {
 			const env = decay(q) * clamp01(q * 6);
 			o.rot = 5 * Math.sin(TAU * 2 * q) * env;
 			o.sx *= 1 + 0.04 * Math.sin(TAU * 3 * q) * env;
 			o.oy += -4 * Math.sin(Math.PI * q) * env;
-		}),
+		},
+		c: (q, o) => {
+			o.sx *= 1 + 0.03 * Math.sin(TAU * 6 * q) * decay2(q) * clamp01(q * 6);
+		},
 	},
-	// extinguisher: it rings on its base
+	// extinguisher: B rings on its base; C recoils from the spray
 	H4: {
-		durationMs: 960,
-		sample: keyPose((q, o) => {
+		ms: 960,
+		b: (q, o) => {
 			const env = decay2(q) * clamp01(q * 8);
 			o.rot = 13 * Math.sin(TAU * 2.75 * q) * env;
-		}),
+		},
+		c: (q, o) => {
+			o.ox += -4 * Math.sin(Math.PI * clamp01(q * 2)) * decay(q);
+			o.rot = -4 * decay2(q) * clamp01(q * 6);
+		},
+	},
+	// nozzle: B kicks with the jet; C whips
+	L1: {
+		ms: 900,
+		b: (q, o) => {
+			o.ox += -3 * Math.sin(TAU * 4 * q) * decay2(q);
+		},
+		c: (q, o) => {
+			o.rot = 7 * Math.sin(TAU * 2 * q) * decay(q);
+		},
+	},
+	// bucket: B tips and sloshes; C rocks back upright
+	L2: {
+		ms: 880,
+		b: (q, o) => {
+			o.rot = 8 * easeOutCubic(clamp01(q * 2)) * decay(q);
+		},
+		c: (q, o) => {
+			o.rot = -5 * Math.sin(TAU * 1.5 * q) * decay2(q);
+		},
+	},
+	// ladder: B extends (a rising stretch); C locks with a small bounce
+	L3: {
+		ms: 900,
+		b: (q, o) => {
+			o.oy += -5 * easeOutCubic(clamp01(q * 2)) * decay(q);
+		},
+		c: (q, o) => {
+			o.oy += 3 * Math.abs(Math.sin(TAU * 2 * q)) * decay2(q);
+		},
+	},
+	// boots: B lifts; C stamps (the heaviest impact of the set)
+	L4: {
+		ms: 860,
+		b: (q, o) => {
+			o.oy += -4 * Math.sin(Math.PI * q);
+		},
+		c: (q, o) => {
+			o.oy += 2.5 * Math.abs(Math.sin(TAU * 3 * q)) * decay2(q);
+		},
+	},
+	// Chief Hamm: B raises the badge in a cheer; C winks with the thumbs-up
+	W: {
+		ms: 1000,
+		b: (q, o) => {
+			o.oy += -5 * Math.sin(Math.PI * q) * decay(q);
+		},
+		c: (q, o) => {
+			o.rot = 3 * Math.sin(TAU * 1.5 * q) * decay2(q);
+		},
+	},
+	// alarm bell: B strikes left, C strikes right (the swing IS the ring)
+	ALARM: {
+		ms: 900,
+		b: (q, o) => {
+			o.rot = 9 * Math.sin(TAU * 3 * q) * decay(q);
+		},
+		c: (q, o) => {
+			o.rot = -9 * Math.sin(TAU * 3 * q) * decay(q);
+		},
+	},
+	GALARM: {
+		ms: 1000,
+		b: (q, o) => {
+			o.rot = 9 * Math.sin(TAU * 3 * q) * decay(q);
+		},
+		c: (q, o) => {
+			o.rot = -9 * Math.sin(TAU * 3 * q) * decay(q);
+		},
 	},
 };
+/** The symbols whose win is an authored key-frame performance (the frames: game/assets.ts symbolPoseEntries). */
+export const SYMBOL_POSE_NAMES: readonly string[] = Object.keys(HOLDS);
+const WIN_KEYPOSE: Record<string, Motion> = Object.fromEntries(
+	Object.entries(HOLDS).map(([k, h]) => [k, { durationMs: h.ms, sample: keyPose(h.b) }]),
+);
+const WIN_SEQUENCE: Record<string, Motion> = Object.fromEntries(
+	Object.entries(HOLDS).map(([k, h]) => [k, { durationMs: h.ms, sample: keySequence(h.b, h.c) }]),
+);
 
 // ---- IDLE -----------------------------------------------------------------------------------------
 export type IdleKind = 'hop' | 'tilt' | 'breathe';
@@ -448,24 +595,25 @@ const FALLBACK_LAND = LAND.L2;
 const FALLBACK_WIN = WIN_PLAIN.L2;
 
 /**
- * Pick the motion for one symbol + state. `emphasis` upgrades an ALARM landing to the trigger pop;
- * `keyPose` (the pose-B art is loaded) selects the two-pose win for the high symbols.
+ * Pick the motion for one symbol + state. `emphasis` upgrades an ALARM landing to the trigger pop. `poses` = how many
+ * key frames of this tile are resident (game/lazyAssets.ts ensureSymbolPoses): 2 plays the A-B-C-A performance,
+ * 1 the A-B-A cut, 0 the single-pose flourish, so a win that beats its art to the GPU still plays in full.
  */
 export const symbolMotion = (
 	symbolName: string,
 	state: 'land' | 'win',
-	opts: { emphasis?: boolean; keyPose?: boolean } = {},
+	opts: { emphasis?: boolean; poses?: 0 | 1 | 2 } = {},
 ): Motion => {
 	if (state === 'land') {
 		if (symbolName === 'ALARM' && opts.emphasis) return ALARM_TRIGGER;
 		// the golden alarm always plays its own landing (it is already the biggest on the board)
 		return LAND[symbolName] ?? FALLBACK_LAND;
 	}
-	if (opts.keyPose && WIN_KEYPOSE[symbolName]) return WIN_KEYPOSE[symbolName];
+	const poses = opts.poses ?? 0;
+	if (poses >= 2 && WIN_SEQUENCE[symbolName]) return WIN_SEQUENCE[symbolName];
+	if (poses >= 1 && WIN_KEYPOSE[symbolName]) return WIN_KEYPOSE[symbolName];
 	return WIN_PLAIN[symbolName] ?? FALLBACK_WIN;
 };
 
-/** Pose-B asset key for a symbol whose win cuts to a key pose (see game/assets.ts): `sym_H1_b` … on the square sheet,
- *  `symT_H1_b` … on the portrait sheet (`tall`). The WILD ships a pose B too but its win is the punch above. */
-export const poseBKey = (symbolName: string, tall = false): string | undefined =>
-	WIN_KEYPOSE[symbolName] ? `${tall ? 'symT' : 'sym'}_${symbolName}_b` : undefined;
+/** A key frame's asset key: the tile on show plus `_b` (B) or `_c` (C): `sym_H1_b`, `symT_L2_c`, `sym_W_BLAZE_b`. */
+export const poseKey = (assetKey: string, pose: 1 | 2): string => `${assetKey}_${pose === 1 ? 'b' : 'c'}`;

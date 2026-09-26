@@ -52,7 +52,7 @@ used as composition references only), every paid call recorded in the lane's `so
 | ALARM | Fire Alarm | brass alarm bell on a red box, glowing when it lands; the bonus symbol |
 | GALARM | Golden Alarm | gold bell, gold box, warm rim light — rare, routes to Inferno Rescue |
 
-Two symbol sheets (square 88×88 and portrait 86×92) as the family uses, plus tall alarm tiles for the
+Two symbol sheets (square 384×384 and portrait 384×500 tiles, the ink filling the family's 88 % / 86 × 92 % box; each symbol with pose A plus win key frames B and C) as the family uses, plus tall alarm tiles for the
 anticipation reel. Every symbol sits in the same fit-box as the donor's.
 
 ## 4. Scenes
