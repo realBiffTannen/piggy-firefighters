@@ -1,6 +1,6 @@
 # PIGGY FIREFIGHTERS — pre-upload checklist
 
-**DRAFT / NOT READY TO UPLOAD — written 2026-09-25 at HEAD `c111822` by lane S (submission kit); frontend rows rebound to the final staged tree at `968e8e8` by the coordinator.** No upload or publication was performed for this kit. The math payload is promoted, audited and hash-bound; the frontend candidate is a staged build only (`game/dist` is not synced — the coordinator makes the final build); the human gates (listening pass, real-phone pass, recorded rig motion review, art acceptance) are open. Every "pending" below is pending today; nothing here is a claim of Engine approval.
+**DRAFT / NOT READY TO UPLOAD — written 2026-09-25 at HEAD `c111822` by lane S (submission kit); frontend rows rebound to the final staged tree at `968e8e8` by the coordinator.** No upload or publication was performed for this kit. The math payload is promoted, audited and hash-bound; the frontend candidate is a staged build only (`game/dist` is not synced — the coordinator makes the final build); the owner's listening pass is done (2026-09-26); the other human gates (real-phone pass, recorded rig motion review, art acceptance) are open. Every "pending" below is pending today; nothing here is a claim of Engine approval.
 
 ## Upload candidates and exact paths
 
@@ -59,7 +59,7 @@ Game `piggy_firefighters`, 5×3, 20 fixed lines, six modes, RTP 96.70% (LUT-exac
 - [x] Tile files prepared and size-checked (`thumbnail/submission/README.md`); thumbnail validator PASS 8/8 and 14/14 agent checks (`thumbnail/source-record.json`).
 - [x] Final tree built, stamped and hash-bound (`docs/submission/BUILD_RECORD.md`, sumsSha256 `caaefb83…`); subpath-serving probe PASS on that tree. - [ ] Owner syncs it into `game/dist` (`./tools/build_dist.sh`) and re-derives the same hash there.
 - [ ] Confirm the audited disclaimer, the six mode prices, 96.70% and 15,000× render in the final artifact's rules sheet; recheck the live template if it changes before submission.
-- [ ] Human listening pass (audio) — NOT RUN.
+- [x] Human listening pass (audio): done by the owner, 2026-09-26.
 - [ ] Real-phone motion/usability pass (390×844 class device: layout, input, normal/turbo/super-turbo, audio, resume/replay) — NOT RUN; local mock evidence is not device evidence.
 - [ ] Recorded per-clip motion review of the four rigs (the acceptance rule in `docs/ANIMATION_CONTRACT.md`) — NOT RUN by owner's instruction; the owner records the outcome or waives it explicitly.
 - [ ] Owner's art/animation acceptance (faces, costume consistency, tile appearance in the real editor) — pending.

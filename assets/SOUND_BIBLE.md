@@ -66,8 +66,8 @@ hi-hats/snare rolls, harsh highs, shrill whistles, vocals/choir/crowd, circus ca
 | `backdraft_spins_layer` | `pf_backdraft92` | additive stem over the base bed: toms, fire-shaker texture, low brass stabs, rising glockenspiel | layer -20 dBFS |
 | `rung_bed_big` -> `max` | `pf_rung100_*` | 8-bar celebrations, each bigger (glock/trumpet -> full band -> timpani -> soaring trumpets -> everything) | -15.2 / -15.0 / -14.8 / -14.6 / -14.4 LUFS |
 
-Base A and B alternate (intended: swap after two passes of the current tune; the ported director still uses the donor's
-66,899 ms constant — derive it from `CUES[bed]` loop length when the runtime seam is wired), each feature has its own bed and its own entry sting
+Base A and B alternate (swap after two passes of the current tune; the director reads each bed's authored length from
+the manifest — `cueMs`, presentationDirector.ts), each feature has its own bed and its own entry sting
 (no feature borrows another's cue). Beds ship with a 60 ms **cyclic codec-guard pre/post-roll** and loop
 `[loopStartMs, loopEndMs)`: AAC reconstructs a file's first ~1024 samples badly, which would click at every loop in Safari.
 One primary bed at a time; layers are phase-aligned additive stems.

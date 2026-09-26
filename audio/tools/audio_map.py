@@ -126,8 +126,8 @@ with io.StringIO() as f:
             f"**{len(rows)} cue ids; {built} built, {len(rows) - built} planned.** Files live in `apps/{K.GAME}/static/assets/audio/{K.GAME}/`. Grid: base {g['tempoBpm']} BPM, bonus/rungs "
             f"{sorted(set(v for k, v in g['bonusBpm'].items() if v != g['tempoBpm']))} BPM, key {g['key']}, hook {g['hook']['notes']}. "
             'Gain = pre-duck cue trim from `audio/tools/mix.py` (1.0 until measured). `seam` = where the new id should be played; '
-            '`replaces` = the donor id the ported runtime still plays there (the runtime seam is a later frontend task). '
-            + ('**Nobody has listened to any of this yet.**' if built else '**Roster only: no sound has been drawn yet.**') + '\n\n')
+            '`replaces` = the donor id this cue superseded (history only; the runtime plays the new id). '
+            + ('**Owner listening pass: done (2026-09-26).**' if built else '**Roster only: no sound has been drawn yet.**') + '\n\n')
     f.write('## Owner rules\n\n'
             '- **Audio lane** owns every file this map points at: `audio/**` (registry, tools, masters, QA), '
             f"`apps/{K.GAME}/static/assets/audio/**` (what ships: `<id>.ogg` Opus 160k 48 kHz + `<id>.m4a` AAC-LC 160k 44.1 kHz, "
@@ -135,9 +135,7 @@ with io.StringIO() as f:
             're-running the build (`build_audio.py` -> `mix.py` -> `gen_manifest.mjs` -> `measure.py` -> `audio_map.py`), never by hand, '
             'and never by copying a donor file (the donor LUCKY folder was purged from static; no donor sound ships).\n'
             '- **Frontend lane** owns WHEN a cue plays: the `seam` column names the call site (`audioManager.ts`, `presentationDirector.ts`, '
-            '`fx/audioDirector.ts`, `audio/index.ts`, `WinRungs.svelte`, the HUD). Where `replaces` names a donor id, the ported runtime '
-            'still asks for that donor id, which is no longer in the manifest (the runtime skips unknown ids silently): wiring the new id '
-            'at its seam is a frontend task.\n'
+            '`fx/audioDirector.ts`, `audio/index.ts`, `WinRungs.svelte`, the HUD). Where `replaces` names a donor id, that id is history: the runtime asks for the new id at its seam.\n'
             '- **Ids are the contract**: once wired, an id never changes; a better sound ships under the same id.\n'
             '- **Gains come only from measurement** (`mix.py`: loudest 400 ms of the shipped .ogg vs the family target; every reward chain '
             'strictly rising on the stereo power, the (L+R)/2 mono sum AND a 400 Hz high-pass phone proxy of that sum). Beds keep gain 1.0 '

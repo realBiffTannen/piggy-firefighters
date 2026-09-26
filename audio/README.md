@@ -7,7 +7,7 @@ measured. `measure.py` **PASS: true, 16 / 16 gates** (files, 8x true peak, seams
 bed tail dip, mono sum, tails, turbo <= 700 ms, ta-da ladder, reel stops on the phone proxy, reward chains on stereo + mono +
 phone, alarm top voice, rung beds rising). `base_loop_a` now ships its redraw (chug 1.35); outcomes per redraw in §Redraws;
 evidence `audio/qa/redraw_foldin_r3.json`. r4 (§r4): `rung_hit_big` is a hybrid in C (C-pent 0.979, fanfare pickup accepted),
-`mix.py` re-runs are sha256-identical; evidence `audio/qa/rung_hit_big_hybrid_r4.json`. **Human listening NOT RUN**.
+`mix.py` re-runs are sha256-identical; evidence `audio/qa/rung_hit_big_hybrid_r4.json`. **Owner listening pass done 2026-09-26.**
 Direction and measured tables: `assets/SOUND_BIBLE.md`. Per-cue map: `docs/AUDIO_MAP.md` (generated). Design rules:
 `docs/AUDIO_DESIGN_NOTES.md`, theme §6, `docs/GAME_CONTRACT.md`.
 
@@ -205,7 +205,7 @@ python3 audio/tools/mix.py && node audio/tools/gen_manifest.mjs && python3 audio
 
 ## Not done / known limits
 
-- Human listening: NOT RUN (SOUND_BIBLE §9 lists what the first listen must cover).
+- Human listening: done by the owner, 2026-09-26 (SOUND_BIBLE §9 lists what the listen covers).
 - The runtime seam is a frontend task: the ported `audioManager.ts` / `presentationDirector.ts` / `fx/audioDirector.ts` /
   `audio/index.ts` / `WinRungs.svelte` still ask for donor ids (`base_loop`, `hat_land_*`, `way_win_*`, `ui_click`,
   `ambient_site_loop`, `reveal_bed`, `*_build_loop`, `tension_hit`, `sym_land_*` ...), which are no longer in the manifest, so
