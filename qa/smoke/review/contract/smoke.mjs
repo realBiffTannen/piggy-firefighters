@@ -20,10 +20,11 @@ import { createRequire } from 'node:module';
 import { mkdirSync, writeFileSync, readdirSync, existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { executablePath as precheckExecutablePath } from '../../../precheck/lib/pw.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
-process.env.PLAYWRIGHT_BROWSERS_PATH ??= '/opt/pw-browsers';
+process.env.PLAYWRIGHT_BROWSERS_PATH ??= existsSync('/opt/pw-browsers') ? '/opt/pw-browsers' : join(process.env.HOME ?? '', 'Library', 'Caches', 'ms-playwright');
 const resolvePlaywright = () => {
 	for (const candidate of [process.env.PLAYWRIGHT_MODULE, 'playwright', '/opt/node22/lib/node_modules/playwright']) {
 		if (!candidate) continue;
@@ -41,14 +42,16 @@ const GAME = process.env.GAME_URL ?? 'http://127.0.0.1:3005/';
 const RGS = process.env.RGS_HOST ?? '127.0.0.1:3047';
 const RESUME_RUN = process.env.RESUME_RUN === '1';
 const CAPTURE_EVERY_MS = Number(process.env.CAPTURE_EVERY_MS || 0);
+// VIEWPORT=390x844 runs the phone class (device=mobile, touch, dsf 2); the default stays the 1440x900 desktop run.
+const [VW, VH] = (process.env.VIEWPORT ?? '1440x900').split('x').map(Number);
+const PHONE = VW < 800;
+const DEVICE = PHONE ? 'mobile' : 'desktop';
+const VTAG = `@${VW}x${VH}`;
 const FIXTURES_DIR = process.env.FIXTURES_DIR ?? join(HERE, '..', '..', '..', '..', 'server', 'fixtures');
 const RUNS = process.argv.slice(2).length ? process.argv.slice(2) : ['base_trigger_rescue@turbo'];
 
-const executablePath = () => {
-	const root = process.env.PLAYWRIGHT_BROWSERS_PATH;
-	const dir = existsSync(root) ? readdirSync(root).find((d) => /^chromium-\d+$/.test(d)) : undefined;
-	return dir ? join(root, dir, 'chrome-linux', 'chrome') : undefined;
-};
+// the newest full Chromium in the cache, Linux or macOS layout (the precheck launcher's rule)
+const executablePath = () => precheckExecutablePath();
 
 const ARGS = ['--mute-audio', '--autoplay-policy=no-user-gesture-required', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'];
 const launch = async () => {
@@ -130,8 +133,8 @@ const readouts = (page) =>
 
 const runOne = async (browser, spec) => {
 	const [fixture, speed = 'off'] = spec.split('@');
-	const name = `${RESUME_RUN ? 'resume_' : ''}${fixture}@${speed}`;
-	const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
+	const name = `${RESUME_RUN ? 'resume_' : ''}${fixture}@${speed}${VTAG}`;
+	const context = await browser.newContext({ viewport: { width: VW, height: VH }, deviceScaleFactor: PHONE ? 2 : 1, isMobile: PHONE, hasTouch: PHONE });
 	await context.addInitScript(() => {
 		globalThis.__PFF_QA = true;
 	});
@@ -150,8 +153,8 @@ const runOne = async (browser, spec) => {
 	});
 	page.on('requestfailed', (r) => failed.push(`FAILED ${r.url().replace(/^https?:\/\/[^/]+/, '')} ${r.failure()?.errorText ?? ''}`));
 	const url = RESUME_RUN
-		? `${GAME}?sessionID=resume-${fixture}-${Date.now()}&rgs_url=${RGS}&device=desktop`
-		: `${GAME}?sessionID=rv-${fixture}-${Date.now()}&rgs_url=${RGS}&device=desktop&fixture=${fixture}`;
+		? `${GAME}?sessionID=resume-${fixture}-${Date.now()}&rgs_url=${RGS}&device=${DEVICE}`
+		: `${GAME}?sessionID=rv-${fixture}-${Date.now()}&rgs_url=${RGS}&device=${DEVICE}&fixture=${fixture}`;
 	const t0 = Date.now();
 	const result = { name, fixture, speed, resume: RESUME_RUN, passed: false, console_errors: 0, finalWin: null, ms: 0, errors, failed };
 	let capTimer = null;
@@ -160,7 +163,7 @@ const runOne = async (browser, spec) => {
 		await page.waitForSelector('.splash .press', { timeout: 120000 });
 		await page.evaluate(INSTRUMENT);
 		await sleep(400);
-		await page.mouse.click(720, 450);
+		await page.mouse.click(VW / 2, VH / 2);
 		await page.waitForFunction(() => document.documentElement.dataset.splashShutter === 'done', null, { timeout: 30000 });
 		if (speed === 'turbo') await page.evaluate(() => window.__qaSetSpeedForTest?.('turbo'));
 		if (speed === 'super') await page.evaluate(() => window.__qaSetSpeedForTest?.('super'));
@@ -208,10 +211,10 @@ mkdirSync(HERE, { recursive: true });
 const browser = await launch();
 const version = browser.version();
 {
-	const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+	const context = await browser.newContext({ viewport: { width: VW, height: VH } });
 	const page = await context.newPage();
 	try {
-		await page.goto(`${GAME}?sessionID=warmup-${Date.now()}&rgs_url=${RGS}&device=desktop`, { waitUntil: 'domcontentloaded', timeout: 60000 });
+		await page.goto(`${GAME}?sessionID=warmup-${Date.now()}&rgs_url=${RGS}&device=${DEVICE}`, { waitUntil: 'domcontentloaded', timeout: 60000 });
 		await page.waitForSelector('.splash .press', { timeout: 120000 });
 		await sleep(3000);
 	} catch {
