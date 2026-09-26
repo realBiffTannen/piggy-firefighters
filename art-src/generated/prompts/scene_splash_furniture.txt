@@ -1,0 +1,7 @@
+A sprite sheet on a genuinely transparent background, five separate items with wide empty space between them, none touching, arranged in two rows (three items in the top row, two in the bottom row), all in the same flat cel cartoon style with thick dark-brown ink:
+1. A wide BLANK wooden notice board made of four horizontal planks, warm brown wood (#9A6631) with one hard darker shadow tone, a brass bolt in each corner, a thin darker seam between planks, no text, no marks, face on, about 3:2.
+2. A short straight vertical run of chunky steel chain, five links, smoke blue-grey (#7C8AA0) with a darker shadow tone, drawn so the top and bottom link ends could repeat.
+3. One round steel nail head seen face on, smoke blue-grey with a cream highlight dot.
+4. A long straight horizontal brass beam segment (#E9B23B) with a hydrant-yellow top edge and red tick stripes (#D7262B) evenly spaced, drawn so its left and right ends could repeat.
+5. One soft cartoon dust puff made of three overlapping round clouds, pale tan (#E9D6AE) with a darker tan shadow tone.
+No text, no letters, no numbers, no logos, no gradients, no airbrush, no glow, no scenery.

@@ -51,6 +51,14 @@ RULES = [
     ("splash/card_*.webp", (768, 768), "RGB", set()),
     ("splash/shutter_slats_tile.webp", (1024, 512), "RGB", set()),
     ("splash/shutter_bottom_bar.webp", (1024, 115), "RGB", set()),
+    # painted splash furniture + the bay-door sign plates (tools/art/derive_furniture.py)
+    ("splash/board.webp", None, "RGBA", set()),
+    ("splash/chain.webp", None, "RGBA", set()),
+    ("splash/nail.webp", None, "RGBA", set()),
+    ("splash/beam.webp", None, "RGBA", set()),
+    ("splash/dust.webp", None, "RGBA", set()),
+    ("splash/hazard.webp", (28, 28), "ANY", set()),
+    ("ui_scene/plates/*.webp", None, "RGBA", set()),
     ("maxwin/max_win_card_16x9.webp", (1600, 900), "RGB", set()),
     ("maxwin/max_win_card_portrait.webp", (900, 1400), "RGB", set()),
     ("winrungs/signs/*.webp", (1200, 728), "RGBA", set()),
@@ -220,6 +228,7 @@ def main():
             orphans = sorted(present - named) if not mp.endswith(("frame.meta.json", "rooms.meta.json", "props.meta.json")) else []
             if mp == "splash/manifest.json":  # shutter tiles are named in its "shutter" block
                 sm = json.load(open(full)).get("shutter", {})
+                sm = {**sm, **json.load(open(full)).get("furniture", {})}  # and the furniture in its "furniture" block
                 orphans = [o for o in orphans if o not in sm.values()]
             if mp.startswith("winrungs/") or mp.startswith("environment/"):
                 orphans = []  # dirs shared by several manifests / expectation rules

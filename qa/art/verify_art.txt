@@ -1,39 +1,77 @@
 [ok] sprites/symbolsCartoon/sym_ALARM.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_ALARM_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_ALARM_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_GALARM.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_GALARM_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_GALARM_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H1.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H1_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H1_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H2.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H2_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H2_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H3.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H3_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H3_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H4.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_H4_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_H4_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_L1.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L1_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L1_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_L2.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L2_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L2_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_L3.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L3_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L3_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_L4.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L4_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_L4_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_W.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_W_b.webp 384x384 RGBA
 [ok] sprites/symbolsCartoon/sym_W_blaze.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_W_blaze_b.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_W_blaze_c.webp 384x384 RGBA
+[ok] sprites/symbolsCartoon/sym_W_c.webp 384x384 RGBA
 [ok] sprites/symbolsCartoonTall/symT_ALARM.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_ALARM_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_ALARM_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_GALARM.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_GALARM_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_GALARM_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H1.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H1_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H1_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H2.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H2_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H2_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H3.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H3_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H3_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H4.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_H4_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_H4_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_L1.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L1_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L1_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_L2.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L2_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L2_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_L3.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L3_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L3_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_L4.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L4_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_L4_c.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_W.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_W_b.webp 384x500 RGBA
 [ok] sprites/symbolsCartoonTall/symT_W_blaze.webp 384x500 RGBA
-[ok] sprites/symbolsCartoon/manifest.json: names 17 files; missing []; orphans []
-[ok] sprites/symbolsCartoonTall/manifest.json: names 17 files; missing []; orphans []
+[ok] sprites/symbolsCartoonTall/symT_W_blaze_b.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_W_blaze_c.webp 384x500 RGBA
+[ok] sprites/symbolsCartoonTall/symT_W_c.webp 384x500 RGBA
+[ok] sprites/symbolsCartoon/manifest.json: names 36 files; missing []; orphans []
+[ok] sprites/symbolsCartoonTall/manifest.json: names 36 files; missing []; orphans []
 [ok] environment/backdraft_landscape.webp 2039x1000 RGB
 [ok] environment/backdraft_portrait.webp 1242x2208 RGB
 [ok] environment/base_landscape.webp 2039x1000 RGB
@@ -47,16 +85,22 @@
 [ok] buycards/backdraft-spins.webp 768x512 RGB
 [ok] buycards/inferno.webp 768x512 RGB
 [ok] buycards/rescue.webp 768x512 RGB
+[ok] splash/beam.webp 424x152 RGBA
+[ok] splash/board.webp 564x424 RGBA
 [ok] splash/card_alarm.webp 768x768 RGB
 [ok] splash/card_backdraft.webp 768x768 RGB
 [ok] splash/card_chief.webp 768x768 RGB
 [ok] splash/card_lines.webp 768x768 RGB
 [ok] splash/card_maxwin.webp 768x768 RGB
 [ok] splash/card_rescue.webp 768x768 RGB
+[ok] splash/chain.webp 44x200 RGBA
+[ok] splash/dust.webp 256x232 RGBA
+[ok] splash/hazard.webp 28x28 RGB
+[ok] splash/nail.webp 94x96 RGBA
 [ok] splash/shutter_bottom_bar.webp 1024x115 RGB
 [ok] splash/shutter_slats_tile.webp 1024x512 RGB
 [ok] splash/manifest.json: names 6 files; missing []; orphans []
-[ok] splash/ payload 0.79 MB (budget 1.2 MB)
+[ok] splash/ payload 0.84 MB (budget 1.2 MB)
 [ok] winrungs/coins/coin_sheet.webp 1024x512 RGBA
 [ok] winrungs/fx/dust_puff.webp 256x256 RGBA
 [ok] winrungs/fx/flare_horizontal.webp 1024x128 RGBA
@@ -99,6 +143,11 @@
 [ok] ui_scene/cell_frame_plain.webp 384x384 RGBA
 [ok] ui_scene/cell_frame_win.webp 384x384 RGBA
 [ok] ui_scene/line_plate.webp 307x291 RGBA
+[ok] ui_scene/plates/chain.webp 43x200 RGBA
+[ok] ui_scene/plates/gold.webp 480x264 RGBA
+[ok] ui_scene/plates/hazard.webp 480x250 RGBA
+[ok] ui_scene/plates/station.webp 480x288 RGBA
+[ok] ui_scene/plates/win.webp 480x254 RGBA
 [ok] ui_scene/frame.meta.json: names 1 files; missing []; orphans []
 [ok] branding/wordmark.png 1366x654 RGBA
 [ok] branding/wordmark_small.webp 683x327 RGBA
@@ -147,5 +196,5 @@
 [ok] features/rescue/rooms.meta.json: names 32 files; missing []; orphans []
 [ok] features/rescue/props.meta.json: names 10 files; missing []; orphans []
 
-FAIL 0 · PENDING 0 · WARN 0 · ok 148
+FAIL 0 · PENDING 0 · WARN 0 · ok 197
 (agent checks only - not human sign-off)

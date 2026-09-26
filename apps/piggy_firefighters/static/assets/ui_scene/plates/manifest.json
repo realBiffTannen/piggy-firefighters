@@ -1,0 +1,30 @@
+{
+ "generated_by": "tools/art/derive_furniture.py",
+ "plates": {
+  "station": {
+   "w": 480,
+   "h": 288,
+   "corner": 58
+  },
+  "gold": {
+   "w": 480,
+   "h": 264,
+   "corner": 53
+  },
+  "hazard": {
+   "w": 480,
+   "h": 250,
+   "corner": 50
+  },
+  "win": {
+   "w": 480,
+   "h": 254,
+   "corner": 51
+  },
+  "chain": {
+   "w": 43,
+   "h": 200,
+   "corner": 9
+  }
+ }
+}
