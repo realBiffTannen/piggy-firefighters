@@ -27,6 +27,7 @@ import { audioDirector } from '../fx/audioDirector';
 import { stateScene, moodForBonus } from '../fx/stateScene.svelte';
 import { formatBookAmount, formatBookMultiple } from '../money';
 import { MODE_TITLE, MECHANIC, FEATURE } from '../names';
+import { CONTRACT } from '../rulesContent';
 import { rungLevelOfTier, MAX_WIN_LEVEL, type WinTier } from '../roundTier';
 import { roundStakeOf } from '../roundStake';
 import { gameSound } from '../audio';
@@ -394,7 +395,24 @@ export const alarmCall = async (e: Ev<'alarmCall'>) => {
 
 // ---- Backdraft Spins ---------------------------------------------------------------------------------------------------
 export const backdraftSpinsStart = async (e: Ev<'backdraftSpinsStart'>) => {
-	// the bay-door-blown-open plate for this orientation, before the mood flips and the background cross-fades to it
+	const [lo, hi] = CONTRACT.backdraftSpinsBlaze;
+	cardExpected = true;
+	pendingDismiss = false;
+	// the card's painting (splash/card_backdraft via scene_card_backdraft) and the plates ride on the door
+	await assetsReady('alarm');
+	await shutter({
+		type: 'shutterClose',
+		card: {
+			kind: 'intro',
+			premium: false,
+			art: 'scene_card_backdraft',
+			variant: 'hazard',
+			title: MODE_TITLE.backdraft_spins,
+			subtitle: `${spinsWord(e.spins)} · ${lo}–${hi} Blaze Wilds every spin · ${CONTRACT.backdraftSpinsMultText}, added along a line`,
+			hint: 'TAP OR PRESS SPACE',
+		},
+	});
+	// ---- under cover: the bay door is blown open ---------------------------------------------------------------------
 	await assetsReady('backdraft');
 	stateBackdraftSpins.spins = e.spins;
 	stateBackdraftSpins.spinsLeft = e.spins;
@@ -403,10 +421,11 @@ export const backdraftSpinsStart = async (e: Ev<'backdraftSpinsStart'>) => {
 	stateRescue.skip = false;
 	claimWin('backdraftSpins');
 	setFeatureSpins(e.spins);
-	stateScene.mood = 'backdraft'; // the bay door blown open (theme §4), cross-faded in place by the background
+	stateScene.mood = 'backdraft'; // swapped behind the door (theme §4), not cross-faded in view
 	audioDirector.backdraftSpinsStart();
-	showBanner(`${MODE_TITLE.backdraft_spins} · ${spinsWord(e.spins)}`);
-	await beat(700);
+	await waitForCard();
+	await shutter({ type: 'shutterOpen' });
+	await beat(300);
 };
 
 export const backdraftSpinsEnd = async (e: Ev<'backdraftSpinsEnd'>, bookEvents: BookEvent[]) => {
@@ -418,12 +437,33 @@ export const backdraftSpinsEnd = async (e: Ev<'backdraftSpinsEnd'>, bookEvents: 
 	await celebrateRound(round.tier, total);
 	audioDirector.total(round.tier, 'backdraftSpins');
 	stateBackdraftSpins.total = total;
-	await beat(600);
+	// the book's own figures for the card: how many Blaze Wilds lit, and the biggest multiplier among them
+	const blazes = bookEvents.filter((ev): ev is Ev<'backdraft'> => ev.type === 'backdraft');
+	const lit = blazes.reduce((n, ev) => n + ev.count, 0);
+	const best = blazes.reduce((m, ev) => Math.max(m, ...ev.cells.map((c) => c.mult ?? 0)), 0);
+	cardExpected = true;
+	pendingDismiss = false;
+	await shutter({
+		type: 'shutterClose',
+		card: {
+			kind: 'outro',
+			premium: false,
+			variant: 'win',
+			title: `${MODE_TITLE.backdraft_spins} COMPLETE`,
+			subtitle: `${lit} Blaze Wilds${best > 0 ? ` · best ×${best}` : ''}`,
+			// framed cards show the MULTIPLE, never a currency figure (money.ts formatBookMultiple)
+			value: formatBookMultiple(total),
+			hint: 'TAP OR PRESS SPACE',
+		},
+	});
+	await waitForCard();
+	// ---- under cover: back to Station 13 ----------------------------------------------------------------------------
 	stateBackdraftSpins.active = false;
 	stateScene.mood = 'base';
 	stateGame.gameType = 'basegame';
 	releaseWin('backdraftSpins');
 	setFeatureSpins(null);
+	await shutter({ type: 'shutterOpen' });
 };
 
 // ---- cap / teardown ----------------------------------------------------------------------------------------------------
