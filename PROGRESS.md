@@ -1,5 +1,21 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-25 — **LOW-END PERFORMANCE PASS** `968e8e8` + `game/dist` `d1db6bd` (owner: "optimize for devices without the latest hardware").
+  Measured with a new throttled harness (`qa/perf/measure.mjs`: phone 390×844@3 at 6× CPU throttle, old laptop 1366×768 at 4×;
+  `qa/perf/REPORT.md`). Boot on the phone profile: requests 383 → 140, transfer 31.7 → 11.7 MB, splash −22 %, shutter −11 %,
+  GPU resident after boot 294 → 220–258 MB, main-thread script per round −13…−27 %, idle script −29 %; 0 console errors in all
+  ten cells before and after; round wall times unchanged (presentation identical, cheaper). What changed: a quality tier
+  (`src/game/quality.svelte.ts`: deviceMemory / cores / WebGL2 + a one-time frame-time measurement; DPR cap 2 / 1.5 / 1.25),
+  boot manifest split into boot vs lazy feature sets (rungs, max-win, rescue, mode cards, the second symbol sheet, the other
+  orientation's plates), rigs loaded per slot on first show with a `spine-lod` variant (lossless WebP pages, half-size atlas
+  below 'high'), 0.625× LOD plates/signs below 'high' (`static/assets/lod`, derived, originals untouched), Inter font subset,
+  gold bitmap-font page to WebP, lodash removed from the bundle (−134 KB), memoised scene layout, particle caps and cached
+  Graphics/text styles in the FX, hidden mascots unmounted, audio: 47-cue hot set decoded first, cold cues paced after the
+  splash gate, beds per bonus pre-decoded behind the shutter, context suspended while muted/hidden, memoised codec choice.
+  Found and fixed in verify: a Rollup tree-shake of `Array.from` that hung every round on the STATIC build only. Not done
+  (reported): Codex-lane rig runtime skips (`updatePose` for invisible actors), rig re-export at 0.5×, audio re-encode,
+  lodash still declared in package.json files (housekeeping). `game/dist`: 712 files, 72,516 KiB, `bundle.BCHNHVOb.js`, sumsSha256
+  `caaefb837a55…`, provenance PASS (`game/BUILD_INFO.md`).
 - 2026-09-25 — **OWNER FIXES + game/dist SYNCED** `ecec27c`: Backdraft Spins plate now has its own reserved band above the frame
   (`BACKDRAFT_BAND_CELLS`; it was cut off at the top on desktop and rode the frame on phones); outro card title sized to its
   slate ("INFERNO RESCUE COMPLETE" overflowed on a phone); ALARM BOOST chip hidden while a bonus plays unless ON
