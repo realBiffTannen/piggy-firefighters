@@ -66,6 +66,12 @@ entries.wordmark_small = sprite('branding/wordmark_small.webp');
 entries.scene_card_rescue = sprite('splash/card_rescue.webp');
 entries.scene_card_inferno = sprite('buycards/inferno.webp');
 entries.scene_card_backdraft = sprite('splash/card_backdraft.webp');
+// the bay-door cards' painted plates + chain (tools/art/derive_furniture.py; SceneShutter nine-slices them)
+entries.scene_plate_station = sprite('ui_scene/plates/station.webp');
+entries.scene_plate_gold = sprite('ui_scene/plates/gold.webp');
+entries.scene_plate_hazard = sprite('ui_scene/plates/hazard.webp');
+entries.scene_plate_win = sprite('ui_scene/plates/win.webp');
+entries.scene_plate_chain = sprite('ui_scene/plates/chain.webp');
 entries.scene_card_alarm = sprite('splash/card_alarm.webp');
 // win rungs: sign per rung (1200x728, winrungs/signs/flat_manifest.json), fx, piece sheets, max-win card art
 for (const k of RUNG_SKINS) entries[`rung_sign_${k}`] = sprite(`winrungs/signs/${k}.webp`);
@@ -147,7 +153,7 @@ export type LazyContext = { orientation: Orientation; mood: (typeof SCENE_MOODS)
 export const LAZY_SETS: Record<LazyKind, (ctx: LazyContext) => string[]> = {
 	winrungs: () => [...RUNG_SKINS.map((k) => `rung_sign_${k}`), ...RUNG_PIECES.map((k) => `rung_piece_${k}`)],
 	maxwin: () => ['maxwin_card_landscape', 'maxwin_card_portrait'],
-	alarm: () => ['scene_card_alarm', 'scene_card_rescue', 'scene_card_inferno', 'scene_card_backdraft'],
+	alarm: () => ['scene_card_alarm', 'scene_card_rescue', 'scene_card_inferno', 'scene_card_backdraft', 'scene_plate_station', 'scene_plate_gold', 'scene_plate_hazard', 'scene_plate_win', 'scene_plate_chain'],
 	rescue: ({ orientation }) => [...Object.keys(entries).filter((k) => k.startsWith('rescue_')), `bg_rescue_${orientation}`, `bg_inferno_${orientation}`],
 	backdraft: ({ orientation }) => [`bg_backdraft_${orientation}`],
 	bg: ({ orientation, mood }) => [`bg_${mood}_${orientation}`],

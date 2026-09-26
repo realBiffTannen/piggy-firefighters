@@ -1,7 +1,7 @@
 /**
  * PIGGY FIREFIGHTERS — the station signboard look for the feature cards (intro / outro on the bay door).
  *
- * PLACEHOLDER styling (the art lane may replace it with painted plates): an engine-red panel with plate seams and
+ * FALLBACK drawing, used only while the painted plate (ui_scene/plates, SceneShutter's plate effect) is not resident: an engine-red panel with plate seams and
  * a thick dark-brown outline, a header band (chrome rail with brass studs for the station card, a gold band for
  * Inferno / celebration), cream lettering in the sign font (Alfa Slab One declared CSP-safe in app.html as
  * `StationSign`) with a gold side-shadow and a dark outline.

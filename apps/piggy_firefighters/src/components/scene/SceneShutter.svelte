@@ -8,6 +8,10 @@
 		/** big figure under the title (outro: the booked feature total) */
 		value?: string;
 		hint: string;
+		/** the intro painting's scene key (default: Inferno if premium, else Rescue) */
+		art?: string;
+		/** the plate (default: premium gold, outro win, else station) */
+		variant?: import('../../game/fx/signPanel').SignVariant;
 	};
 
 	export type EmitterEventShutter =
@@ -46,9 +50,9 @@
 	//     and the "Tap or press Space" hint pulses. All of it is written from the SAME
 	//     ticker callback as the door (`step`), none of it touches the door timeline,
 	//     the press gate or any duration, and none of it runs under reduced motion.
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
 
-	import { BaseSprite, Container, Graphics, SpineProvider, Text, getContextApp } from 'pixi-svelte';
+	import { BaseSprite, Container, Graphics, SpineProvider, Text, getContextApp, PIXI } from 'pixi-svelte';
 	import { OnHotkey } from 'components-shared';
 	import { OnPressFullScreen } from 'components-layout';
 	import { holdPressGate } from '@crashgalaxy/hud';
@@ -60,7 +64,7 @@
 	import { dismissFeatureCard, skipFeature } from '../../game/rescue/rescueDirector';
 	import { audioDirector } from '../../game/fx/audioDirector';
 	import { prefersReducedMotion, isTurbo } from '../../game/fx/timing';
-	import { drawSignPanel, signTitleStyle, signSubStyle, signHintStyle, signValueStyle, ensureSignFont } from '../../game/fx/signPanel';
+	import { drawSignPanel, signTitleStyle, signSubStyle, signHintStyle, signValueStyle, ensureSignFont, type SignVariant } from '../../game/fx/signPanel';
 	import Grab from './Grab.svelte';
 	import TransitionFx, { type TransitionFxHandle } from './TransitionFx.svelte';
 	import RigStage from '../rigs/RigStage.svelte';
@@ -163,12 +167,66 @@
 	// a cached group by itself when a child redraws. Density: the renderer's own resolution (the page's exact pixels) on
 	// 'high'; the pooled texture is power-of-two, so mid / low cap its longer side at 2048 px.
 	const STATIC_GROUPS = ['staticBack', 'staticFrame'] as const;
+	// ---- the card's painted plate + chains (ui_scene/plates, tools/art/derive_furniture.py) ----------------------------
+	const cardArtKey = (c: ShutterCard | null | undefined) => c?.art ?? (c?.premium ? 'scene_card_inferno' : 'scene_card_rescue');
+	const cardVariant = (c: ShutterCard | null | undefined): SignVariant => c?.variant ?? (c?.premium ? 'gold' : c?.kind === 'outro' ? 'win' : 'station');
+	const PLATE_KEY: Record<SignVariant, string> = {
+		station: 'scene_plate_station',
+		gold: 'scene_plate_gold',
+		hazard: 'scene_plate_hazard',
+		win: 'scene_plate_win',
+		muted: 'scene_plate_station',
+	};
+	/** the plate's nine-slice border: 20 % of its shorter side (the art keeps every decoration inside it) */
+	const PLATE_CORNER = 0.2;
+	let plateRoot: any = $state(null);
+	let plateSeq = $state(0); // bumped when the painted plate is (re)built, so the static cache refreshes after it
+	const platePainted = $derived(!!card && !!sceneTex(PLATE_KEY[cardVariant(card)]));
 	const cacheStatic = (n: (typeof STATIC_GROUPS)[number]) => (node: any) => {
 		R[n] = node;
 		node.cacheAsTexture(true);
 	};
+	// The painted plate (nine-sliced: its border keeps its drawn proportion, the flat centre stretches) and the two chains
+	// it hangs from, built imperatively into the static group; the vector panel (signPanel.ts) stands in until they load.
 	$effect(() => {
-		// the same signals the static draw callbacks read
+		const root = plateRoot;
+		const c = card;
+		const L = lay;
+		const plateTex = c ? sceneTex(PLATE_KEY[cardVariant(c)]) : null;
+		const chainTex = sceneTex('scene_plate_chain');
+		if (!alive(root) || !c || !plateTex) return;
+		const made: any[] = [];
+		const w = L.W * L.s;
+		const h = L.H * L.s;
+		if (chainTex) {
+			const cw_ = L.s * 0.18;
+			const top = -L.cy - 40;
+			const bottom = -h / 2 + L.s * 0.1;
+			for (const sx of [-1, 1]) {
+				const t = new PIXI.TilingSprite({ texture: chainTex, width: cw_, height: Math.max(1, bottom - top) });
+				t.tileScale.set(cw_ / Math.max(1, chainTex.width));
+				t.position.set(sx * w * 0.36 - cw_ / 2, top);
+				root.addChild(t);
+				made.push(t);
+			}
+		}
+		// the border scales with the card's SHORTER side (a tall phone intro card must not blow the bolts up)
+		const k = Math.max(0.5, Math.min(1.6, (Math.min(w, h) / Math.max(1, plateTex.height)) * 0.8));
+		const corner = Math.round(Math.min(plateTex.width, plateTex.height) * PLATE_CORNER);
+		const plate = new PIXI.NineSliceSprite({ texture: plateTex, leftWidth: corner, topHeight: corner, rightWidth: corner, bottomHeight: corner });
+		plate.width = w / k;
+		plate.height = h / k;
+		plate.scale.set(k);
+		plate.position.set(-w / 2, -h / 2);
+		root.addChild(plate);
+		made.push(plate);
+		// written untracked: this effect must not re-run on its own bump (the cache effect below reads it)
+		untrack(() => (plateSeq += 1));
+		return () => made.forEach((m) => m.destroy());
+	});
+	$effect(() => {
+		// the same signals the static draw callbacks read (and the painted plate's rebuilds)
+		void plateSeq;
 		const s = lay.s;
 		const w = lay.W * s;
 		const h = lay.cy + 40 + (lay.H * s) / 2 + s * 0.2;
@@ -349,7 +407,7 @@
 		mounted = true;
 		ensureSignFont();
 		openGate();
-		await loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', c?.kind === 'intro' ? (c.premium ? 'scene_card_inferno' : 'scene_card_rescue') : 'scene_shutter_bar']);
+		await loadSceneTexMany(['scene_shutter_slats', 'scene_shutter_bar', 'scene_plate_chain', PLATE_KEY[cardVariant(c)], c?.kind === 'intro' ? cardArtKey(c) : 'scene_shutter_bar']);
 		if (my !== runSeq) return;
 		if (prefersReducedMotion()) {
 			pos = 0;
@@ -513,7 +571,7 @@
 	});
 
 	// ---- card layout ------------------------------------------------------------------------
-	const cardArt = $derived(card?.kind === 'intro' ? sceneTex(card.premium ? 'scene_card_inferno' : 'scene_card_rescue') : null);
+	const cardArt = $derived(card?.kind === 'intro' ? sceneTex(cardArtKey(card)) : null);
 	/** the painting cover-fits its square frame (the Inferno plate is 3:2, the Rescue card square); the frame masks it */
 	const coverFit = (t: any, box: number) => {
 		const k = Math.max(box / Math.max(1, t?.width ?? box), box / Math.max(1, t?.height ?? box));
@@ -651,19 +709,25 @@
 					<!-- STATIC, cached as one texture: chains, panel and (outro) the slate -->
 					<Container>
 						<Grab ongrab={cacheStatic('staticBack')} />
-						<!-- chains: the sign hangs off the shutter -->
-						<Graphics
-							draw={(g) => {
-								const s = lay.s;
-								for (const sx of [-1, 1]) {
-									const x = sx * lay.W * s * 0.36;
-									for (let y = -lay.cy - 40; y < (-lay.H * s) / 2 + s * 0.1; y += s * 0.17) {
-										g.roundRect(x - s * 0.035, y, s * 0.07, s * 0.13, s * 0.03).stroke({ width: s * 0.03, color: 0x2a1a0d });
+						<!-- the painted chains and plate (built into this container by the plate effect above) -->
+						<Container>
+							<Grab ongrab={(node) => (plateRoot = node)} />
+						</Container>
+						{#if !platePainted}
+							<!-- fallback while the painted plate is not resident: vector chains + signPanel.ts -->
+							<Graphics
+								draw={(g) => {
+									const s = lay.s;
+									for (const sx of [-1, 1]) {
+										const x = sx * lay.W * s * 0.36;
+										for (let y = -lay.cy - 40; y < (-lay.H * s) / 2 + s * 0.1; y += s * 0.17) {
+											g.roundRect(x - s * 0.035, y, s * 0.07, s * 0.13, s * 0.03).stroke({ width: s * 0.03, color: 0x2a1a0d });
+										}
 									}
-								}
-							}}
-						/>
-						<Graphics draw={(g) => drawSignPanel(g as any, { w: lay.W * lay.s, h: lay.H * lay.s, s: lay.s, variant: card?.premium ? 'gold' : card?.kind === 'outro' ? 'win' : 'station' })} />
+								}}
+							/>
+							<Graphics draw={(g) => drawSignPanel(g as any, { w: lay.W * lay.s, h: lay.H * lay.s, s: lay.s, variant: cardVariant(card) })} />
+						{/if}
 						{#if !lay.intro}
 							<!-- readability slate: dark knockout behind the text so the light fills clear AAA -->
 							<Graphics draw={(g) => drawSlate(g, 0, lay.s * 0.11, lay.W * lay.s * 0.9, lay.s * 3.02, lay.s)} />
