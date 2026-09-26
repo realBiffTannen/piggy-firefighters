@@ -26,7 +26,9 @@
 	//
 	// Imperative PIXI on the live container, ONE ticker callback, pooled pieces (<= 60 live on 'high'; 30 / 16 on the
 	// mid / low quality tiers, game/quality.svelte).
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
+	import { Tween } from 'svelte/motion';
+	import { backOut } from 'svelte/easing';
 	import { Container, PIXI, getContextApp } from 'pixi-svelte';
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
@@ -93,12 +95,26 @@
 	// the celebrating chief (rig slot `winPlate`, docs/ANIMATION_CONTRACT.md) stands under the landed sign; the slot is
 	// mounted for the whole session and shows nothing until a rig export exists and a BIG+ climb is up
 	let plateTier = $state<WinRungTier | 0>(0);
+	// the plate chief rises into place with the sign (reduced motion: instant); the gutter chief has stepped out (rigLogic)
+	const plateIn = new Tween(0, { duration: 320, easing: backOut });
+	$effect(() => {
+		const on = plateTier >= 2;
+		// untracked: the tween's own state must not become a dependency of this effect
+		untrack(() => void plateIn.set(on ? 1 : 0, { duration: on && !prefersReducedMotion() ? 320 : 0 }));
+	});
 	const plateSlot = $derived.by(() => {
 		const bl = context.stateGameDerived.boardLayout();
 		const main = context.stateLayoutDerived.mainLayout();
-		const portrait = context.stateGameDerived.sceneLayout().stacked;
+		const sl = context.stateGameDerived.sceneLayout();
+		const portrait = sl.stacked;
 		const w = Math.min(bl.width * bl.scale * 0.5, main.width * 0.4);
 		const h = Math.min(w * 1.3, main.height * 0.42);
+		if (!portrait) {
+			// wide layouts: centred under the sign his helmet covered the win figure, so he stands at the right of the
+			// amount plaque presenting it, feet on the HUD bar's measured top (hudBar.ts)
+			const barY = sl.toMainY(sl.hudBarTop);
+			return { x: bl.x + bl.width * bl.scale * 0.5 - w / 2, y: Math.max(0, barY - h), w, h, scale: 1, layout: 'desktop' as const };
+		}
 		return { x: bl.x - w / 2, y: Math.min(main.height - h, bl.y + bl.height * bl.scale * (portrait ? 0.35 : 0.45)), w, h, scale: portrait ? 0.7 : 1, layout: portrait ? ('portrait' as const) : ('desktop' as const) };
 	});
 
@@ -633,7 +649,7 @@
 			<Grab ongrab={(node) => (root = node)} />
 		</Container>
 		<!-- the celebrating chief under the sign (rig slot `winPlate`; nothing draws until a rig export exists) -->
-		<Container x={plateSlot.x} y={plateSlot.y} visible={plateTier >= 2}>
+		<Container x={plateSlot.x} y={plateSlot.y + (1 - plateIn.current) * plateSlot.h * 0.3} alpha={Math.min(1, plateIn.current)} visible={plateTier >= 2}>
 			<RigStage {...{ slot: 'winPlate' as const }} width={plateSlot.w} height={plateSlot.h} scale={plateSlot.scale} layout={plateSlot.layout} reducedMotion={prefersReducedMotion()} />
 		</Container>
 	</MainContainer>

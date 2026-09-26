@@ -74,7 +74,8 @@ export function planBeat(rig: RigName, slot: RigSlot, event: EmitterEventAnim, s
     case 'speedTier': case 'reducedMotion': return { steps: [loop(rest)] };
     case 'alarmLand': return rig === 'pf_chief' ? finish([once('point_reels')]) : null;
     case 'anticipationStart': return rig === 'pf_dog' ? finish([once('bark')]) : null;
-    case 'winTier': return rig === 'pf_chief' && event.tier > 0 ? finish([once(event.tier > 1 ? 'big_win' : 'win')]) : null;
+    // tier 1 is the gutter chief's own cheer; BIG+ belongs to the plate chief under the rung sign (one Chief on stage)
+    case 'winTier': return rig === 'pf_chief' && event.tier === 1 ? finish([once('win')]) : null;
     case 'douse': return rig === 'pf_chief' && event.sprays.length > 0 ? finish([once('spray_start'), { ...loop('spray_loop'), holdSeconds: 0.8 }, once('spray_end')]) : null;
     case 'rescue':
       if (rig === 'pf_rescued' && (slot === 'ladder' || index === event.reel)) {
@@ -92,7 +93,9 @@ export function planBeat(rig: RigName, slot: RigSlot, event: EmitterEventAnim, s
       const falseAlarm = typeof event.outcome === 'string' ? /^(falseAlarm|false_alarm|false-alarm)$/.test(event.outcome) : event.outcome.falseAlarm === true || event.outcome.type === 'falseAlarm';
       return rig === 'pf_rookie' ? finish([once(falseAlarm ? 'sad' : 'card_flip')]) : rig === 'pf_chief' && falseAlarm ? finish([once('sad')]) : null;
     }
-    case 'bigWinStart': case 'bigWinEnd': return null; // the plate chief's own lifecycle (above); mascots keep acting
+    // the gutter chief steps out while the plate chief holds the stage, and back when the sign leaves; Ember keeps acting
+    case 'bigWinStart': return slot === 'mascotLeft' && event.tier >= 2 ? { steps: [loop(rest)], visible: false } : null;
+    case 'bigWinEnd': return slot === 'mascotLeft' ? { steps: [loop(rest)], visible: true } : null;
     case 'maxWin': return rig === 'pf_chief' ? finish([once('celebrate')]) : null;
     case 'idle': return rig === 'pf_chief' ? finish([{ ...loop('idle_alt'), holdSeconds: 5 }]) : rig === 'pf_rookie' && slot !== 'sheet' ? finish([once('fumble')]) : null;
     default: return null;
