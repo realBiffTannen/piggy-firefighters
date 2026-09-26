@@ -58,7 +58,7 @@
 	import { unlockAudio as engageAudio, subscribeGameAudio } from '../game/audio';
 	import { audioDirector } from '../game/fx/audioDirector';
 	import SplashDeck from './splash/SplashDeck.svelte';
-	import { SPLASH_SHUTTER, splashAssetUrl, splashText } from './splash/copy';
+	import { SPLASH_SHUTTER, assetUrl, splashAssetUrl, splashText } from './splash/copy';
 	import { isReplayLaunch } from '../game/replayLaunch';
 	import { GAME_TITLE } from '../game/names';
 
@@ -131,7 +131,7 @@
 	const progress = $derived(Math.max(0, Math.min(100, context.stateApp.loadingProgress)));
 	const ready = $derived(context.stateApp.loaded || graceElapsed);
 
-	// Warm the shutter art (41 KB) so the first frame of the drop is already the
+	// Warm the shutter art and its dust (~30 KB) so the first frame of the drop is already the
 	// real slats. It is not drawn until the press, so it must never share the
 	// wire with the first card: it is requested once card 1 has landed, or when
 	// the gate comes up, whichever is first. If the press still beats it, the
@@ -140,7 +140,7 @@
 	const warmShutter = () => {
 		if (shutterWarmed || typeof Image === 'undefined') return;
 		shutterWarmed = true;
-		for (const url of [slatsUrl, barUrl]) {
+		for (const url of [slatsUrl, barUrl, splashAssetUrl('beam.webp'), splashAssetUrl('dust.webp')]) {
 			if (!url) continue;
 			const img = new Image();
 			img.decoding = 'async';
@@ -353,6 +353,11 @@
 {#if !dismissed && !replayLaunch}
 	<div
 		class="splash"
+		style:--img-stage-l={`url(${assetUrl('environment/base_landscape.webp')})`}
+		style:--img-stage-p={`url(${assetUrl('environment/base_portrait.webp')})`}
+		style:--img-beam={`url(${splashAssetUrl('beam.webp')})`}
+		style:--img-hazard={`url(${splashAssetUrl('hazard.webp')})`}
+		style:--img-dust={`url(${splashAssetUrl('dust.webp')})`}
 		class:is-ready={ready}
 		class:reduced={prefersReducedMotion}
 		role="button"
@@ -444,13 +449,24 @@
 		-webkit-user-select: none;
 		-webkit-touch-callout: none;
 		touch-action: manipulation;
-		background:
-			/* dusk over Station 13: a faint brick course over a navy-to-engine-red sky */
-			repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0 2px, transparent 2px 34px),
-			repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0 2px, transparent 2px 68px),
-			radial-gradient(120% 90% at 50% 18%, #2c3c66 0%, #1e2a4a 46%, #5a1216 100%);
+		/* Station 13 at dusk: the base plate the game boots with (environment/base_*; a cache hit), dimmed in ::before */
+		background: #1e2a4a;
 		color: var(--pw-cream);
 		font-family: 'Inter', system-ui, sans-serif;
+	}
+	.splash::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: var(--img-stage-l) center / cover no-repeat;
+		filter: brightness(0.5) saturate(0.85);
+		pointer-events: none;
+	}
+	@media (max-aspect-ratio: 13/10) {
+		.splash::before {
+			background-image: var(--img-stage-p);
+		}
 	}
 	.splash.is-ready {
 		cursor: pointer;
@@ -491,7 +507,7 @@
 		padding: var(--stripe) var(--side);
 	}
 
-	/* brass beam top & bottom with a reflective band */
+	/* the painted brass beam, top & bottom (splash/beam.webp, repeatable) */
 	.frame::before,
 	.frame::after {
 		content: '';
@@ -499,9 +515,7 @@
 		left: 0;
 		right: 0;
 		height: var(--stripe);
-		background:
-			repeating-linear-gradient(90deg, transparent 0 26px, rgba(140, 20, 26, 0.55) 26px 30px),
-			linear-gradient(180deg, #f5d23c 0%, var(--pw-yellow) 45%, #a87a1c 100%);
+		background: var(--pw-yellow) var(--img-beam) left center / auto 100% repeat-x;
 		opacity: 0.95;
 	}
 	.frame::before { top: 0; }
@@ -591,11 +605,8 @@
 	}
 	.bar__fill {
 		height: 100%;
-		background: repeating-linear-gradient(
-			-45deg,
-			var(--pw-orange) 0 14px,
-			var(--pw-yellow) 14px 28px
-		);
+		/* hazard stripes: a 28 px painted tile (splash/hazard.webp) */
+		background: var(--pw-orange) var(--img-hazard) left center / auto 100% repeat-x;
 		transition: width 0.25s ease-out;
 	}
 	.band__label {
@@ -737,7 +748,7 @@
 		flex: 0 0 auto;
 		height: min(11.23cqw, 9cqh); /* 1024 x 115 art, capped like SceneShutter's */
 		/* the door's steel bar under the art, for the same never-a-void reason */
-		background: linear-gradient(180deg, #c9d2dc 0%, #7c8aa0 45%, #3c3c44 100%);
+		background: #7c8aa0;
 		box-shadow: 0 0.8cqh 1.6cqh rgba(0, 0, 0, 0.45);
 	}
 	.shutter__bar i {
@@ -754,7 +765,7 @@
 		right: 0;
 		top: 0;
 		height: 10cqh;
-		background: linear-gradient(180deg, rgba(42, 18, 0, 0.34), rgba(42, 18, 0, 0));
+		background: rgba(42, 18, 0, 0.18);
 		pointer-events: none;
 		opacity: 0;
 	}
@@ -783,7 +794,7 @@
 		height: calc(var(--size) * clamp(26px, 7cqh, 74px));
 		margin-left: calc(var(--size) * clamp(26px, 7cqh, 74px) / -2);
 		border-radius: 50%;
-		background: radial-gradient(circle closest-side, rgba(233, 214, 174, 0.78) 0 35%, rgba(233, 214, 174, 0) 100%);
+		background: var(--img-dust) center / contain no-repeat; /* painted dust puff (splash/dust.webp) */
 		opacity: 0;
 		will-change: transform, opacity;
 	}

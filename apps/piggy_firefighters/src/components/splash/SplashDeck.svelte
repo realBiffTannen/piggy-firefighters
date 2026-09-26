@@ -182,6 +182,9 @@
 	class:reduced={props.reducedMotion}
 	class:is-first={!moved}
 	style="--dir: {dir}"
+	style:--img-board={`url(${splashAssetUrl('board.webp')})`}
+	style:--img-chain={`url(${splashAssetUrl('chain.webp')})`}
+	style:--img-nail={`url(${splashAssetUrl('nail.webp')})`}
 	data-splash-deck
 	data-card={cards[index].id}
 	onpointerdown={onDown}
@@ -282,17 +285,17 @@
 		inset: 0;
 		border-radius: 4.2cqw;
 		border: max(2px, 1.3cqw) solid var(--outline);
-		background:
-			repeating-linear-gradient(180deg, transparent 0 24.2%, rgba(42, 26, 13, 0.4) 24.2% 25%),
-			linear-gradient(180deg, #7d5126, #6a431e);
+		/* the painted notice board (splash/board.webp), dimmed: it is the board behind */
+		background: #6a431e var(--img-board) center / 100% 100% no-repeat;
 		box-shadow: 0 2cqw 4cqw rgba(0, 0, 0, 0.3);
+		filter: brightness(0.78);
 	}
 	.deck__peek--a {
 		transform: translate(2.4cqw, 0.4cqw) rotate(3deg);
 	}
 	.deck__peek--b {
 		transform: translate(-2.2cqw, 0.8cqw) rotate(-4deg);
-		filter: brightness(0.82);
+		filter: brightness(0.66);
 	}
 
 	/* ---- nails + chains ------------------------------------------------------------ */
@@ -305,7 +308,7 @@
 		min-width: 7px;
 		min-height: 7px;
 		border-radius: 50%;
-		background: radial-gradient(circle at 36% 34%, #e8edf3 0 16%, #9aa6b4 18% 56%, #4a5462 58% 100%);
+		background: #9aa6b4 var(--img-nail) center / contain no-repeat; /* painted steel nail head */
 		box-shadow:
 			0 0 0 max(1.5px, 0.7cqw) var(--outline),
 			0 1cqw 1.6cqw rgba(0, 0, 0, 0.4);
@@ -319,16 +322,8 @@
 		height: calc(var(--chain-h, 24px) + 1.4cqw);
 		width: 2.4cqw;
 		min-width: 5px;
-		background:
-			radial-gradient(
-				ellipse 50% 50% at 50% 50%,
-				transparent 0 22%,
-				var(--outline) 25% 40%,
-				#aeb6c2 43% 68%,
-				var(--outline) 71% 96%,
-				transparent 100%
-			)
-			center bottom / 100% max(6px, 2.9cqw) repeat-y;
+		/* the painted steel chain (splash/chain.webp), tiled down from the nail */
+		background: var(--img-chain) center bottom / 100% auto repeat-y;
 	}
 	.card__chain--l { left: 18.8cqw; }
 	.card__chain--r { right: 18.8cqw; }
@@ -374,24 +369,10 @@
 		padding: 3.4cqw;
 		border-radius: 4.2cqw;
 		border: max(3px, 1.5cqw) solid var(--outline);
-		background:
-			/* corner bolts */
-			radial-gradient(circle closest-side, #cbb896 0 24%, #6a4f2f 27% 62%, var(--beam) 65% 94%, transparent 100%)
-				left 0.5cqw top 0.5cqw / 2.5cqw 2.5cqw no-repeat,
-			radial-gradient(circle closest-side, #cbb896 0 24%, #6a4f2f 27% 62%, var(--beam) 65% 94%, transparent 100%)
-				right 0.5cqw top 0.5cqw / 2.5cqw 2.5cqw no-repeat,
-			radial-gradient(circle closest-side, #cbb896 0 24%, #6a4f2f 27% 62%, var(--beam) 65% 94%, transparent 100%)
-				left 0.5cqw bottom 0.5cqw / 2.5cqw 2.5cqw no-repeat,
-			radial-gradient(circle closest-side, #cbb896 0 24%, #6a4f2f 27% 62%, var(--beam) 65% 94%, transparent 100%)
-				right 0.5cqw bottom 0.5cqw / 2.5cqw 2.5cqw no-repeat,
-			/* plank seams: a dark line with a light lip under it */
-			repeating-linear-gradient(
-				180deg,
-				transparent 0 24%,
-				rgba(111, 69, 31, 0.7) 24% 24.7%,
-				rgba(185, 133, 72, 0.45) 24.7% 25%
-			),
-			linear-gradient(180deg, #a57038 0%, var(--wood) 45%, #8c5a2a 100%);
+		/* the painted notice board (splash/board.webp: planks, seams, corner bolts), nine-sliced so the bolts keep
+		   their size and only the planks stretch; flat wood stands in while it loads */
+		background: var(--wood);
+		border-image: var(--img-board) 22% fill / 6cqw stretch;
 		box-shadow:
 			inset 0 0.7cqw 0 rgba(215, 165, 100, 0.55),
 			inset 0 -0.9cqw 0 rgba(60, 34, 12, 0.35),
@@ -415,8 +396,8 @@
 		overflow: hidden;
 		border-radius: 2.4cqw;
 		border: max(2px, 1.1cqw) solid var(--outline);
-		/* painted ground: a board whose art is still on the wire is never an empty hole */
-		background: linear-gradient(180deg, #58b4ea 0%, #a9dcf5 46%, #c99355 47%, #a8713a 100%);
+		/* flat painted ground: a board whose art is still on the wire is never an empty hole */
+		background: #a8713a;
 	}
 	.card__art::after {
 		content: '';

@@ -7,6 +7,7 @@ const steps = [
 	['node', ['qa/gate/check_round_tier.mjs']],
 	['node', ['qa/gate/check_hud_bar.mjs']],
 	['node', ['qa/gate/check_symbol_motion.mjs']],
+	['node', ['qa/gate/check_splash_no_gradients.mjs']],
 	['node', ['qa/gate/check_cue_ids.mjs']],
 	['python3', ['tools/reels/make_padding.py', '--check']],
 	['node', ['tools/art/gen_art_meta.mjs', '--check']],

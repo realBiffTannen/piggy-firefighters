@@ -54,6 +54,9 @@ export const SPLASH_SHUTTER = {
  */
 export const splashAssetUrl = (file: string): string =>
 	typeof document === 'undefined' ? '' : new URL(`./assets/splash/${file}`, document.baseURI).href;
+/** Any shipped asset by its path under ./assets (resolved the same way; the splash reuses the boot base plate). */
+export const assetUrl = (path: string): string =>
+	typeof document === 'undefined' ? '' : new URL(`./assets/${path}`, document.baseURI).href;
 
 /** The rule figures the cards quote — each typed exactly once (contract §3-§6 via rulesContent CONTRACT, config). */
 const RULES = {
