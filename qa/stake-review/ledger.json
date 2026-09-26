@@ -1,0 +1,78 @@
+{
+ "game": "piggy-firefighters",
+ "target": {
+  "sum": 7.5,
+  "reachable_band": ">= 7.33",
+  "iterations_budgeted": 3
+ },
+ "real_reviews": [],
+ "iterations": [
+  {
+   "n": 1,
+   "recorded_on": "2026-09-26",
+   "ran_on": "2026-09-26",
+   "commit": "9eac10c",
+   "artifact": "game/dist built at 968e8e8 (provenance PASS at 9eac10c), sumsSha256 caaefb837a5582e4490148ab4f642ae4c6acc1eb800124cb1d078f29eeeff1fe",
+   "owner_instruction": "no hard cap on any seat; 3/3 awardable absent evidenced reason; seats must name what makes 3/3 reachable",
+   "seats": {
+    "A": 2.33,
+    "B": 2.0,
+    "C": 2.0
+   },
+   "seats_anchored": {
+    "A": 2.0,
+    "B": 2.0,
+    "C": 2.0
+   },
+   "sum": 6.33,
+   "sum_anchored": 6.0,
+   "floor_used": "no dashboard for this game; reported at 6.0 (live default) and 4.5",
+   "verdict": "published (anchored 6.00: 6.0 floor margin 0.00; 4.5 floor clears)",
+   "stars": 2,
+   "tags_predicted": {
+    "A": [],
+    "B": [],
+    "C": []
+   },
+   "majors_deducted": {
+    "A": [],
+    "B": [
+     "phone-portrait mascots occluded by HUD info row (hudReservedHeight one-row reserve vs two-row phone bar)"
+    ],
+    "C": []
+   },
+   "ceilings": {
+    "A": 2.33,
+    "B": 2.33,
+    "C": 2.0
+   },
+   "ceiling_raisers_outstanding": [
+    "craft +0.67 (seat C only): splash CSS-gradient furniture (SplashDeck.svelte, Splash.svelte) -> raster art",
+    "craft +1.00: motion RICH - authored win clips for L1-L4, W, ALARM, GALARM; re-tune donor LAND/WIN tables; Backdraft Spins entry/exit transition; painted feature signs (signPanel.ts PLACEHOLDER); staged big win; recorded motion review 1440x900 + 390x844",
+    "craft +1.33: judged audio - documented listening pass (loop seams, -14 LUFS, ducking), longer/varied 14 s ambience, own Backdraft Spins bed",
+    "top-of-catalog signature moment (candidate: rescue ladder-slide into the sheet with climbing multiplier)"
+   ],
+   "delta_from_prev": null,
+   "fixes_applied": {
+    "recorded_on": "2026-09-26",
+    "commits": "b81fd18..HEAD on claude/bold-bell-aoscdj (plan docs/superpowers/plans/2026-09-26-panel-ceiling-raisers.md)",
+    "items": [
+     "1 phone mascots stand on the HUD's measured bar top (hudBar.ts); Ember sits on the ante chip only while the HUD shows it, and steps off when the gap is too thin",
+     "2 splash: every CSS gradient replaced by painted furniture (board/chains/nails/beam/dust/hazard) over the dimmed boot station plate",
+     "3 motion: authored pose B + C key frames for all 12 symbols (three-frame win cut through squashes), donor land table re-tuned, painted bay-door plates + chains (signPanel is fallback only), Backdraft Spins bay-door intro/outro cards, one Chief on stage for BIG+ (plate chief right of the amount plaque on wide layouts; steps off at the MAX card), Ember steps off during Rescue (its sheet Ember performs), recorded motion review",
+     "4 owner listening pass recorded (audio map generator, README, checklist, BUILD_INFO); 11b ambience/Backdraft bed not done (owner did not opt in)",
+     "5 rescue set piece: the multiplier badge climbs per rescue and swells (book figure stays the truth)",
+     "owner request: the HUD bonus tile is set in the owner-supplied Lilita One (PF Bonus Lilita)"
+    ],
+    "open_from_motion_review": [
+     "UNREPRODUCED: pageerror 'Cannot read properties of undefined (reading \"indices\")' -> black canvas, Rescue round hangs; seen 5 times only under SwiftShader at load average 100-300 during the review harness; 0/9 targeted repros at HEAD (3 CPU-throttled, 6 concurrent screenshotting at load ~120), 0/6 on Metal GPU, forced WebGL context loss/restore clean. Needs a real-device pass.",
+     "pre-existing: Rescue count-ups are frame-paced (a $3,000 count-up took 46-271 s by machine load) \u2014 long max-win rounds on slow devices",
+     "pre-existing: Rescue win count-up has no plaque; the coin shower crosses the digits",
+     "pre-existing: RESCUE SPINS COMPLETE card prints 15000x where the MAX WIN card prints 15,000x",
+     "pre-existing: the Trotter grows ~1.8x when it leaves its window for the ladder actor; the dropping Trotter overlaps the TOTAL / BUILDING plates on phone",
+     "pre-existing: phone building-cleared jets cross the NEXT BUILDING plaque; Alarm Call card presenter overlaps the card copy; '+1 SPIN' plaque clips a line-pop figure on desktop"
+    ]
+   }
+  }
+ ]
+}

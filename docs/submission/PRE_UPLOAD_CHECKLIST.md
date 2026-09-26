@@ -62,6 +62,7 @@ Game `piggy_firefighters`, 5×3, 20 fixed lines, six modes, RTP 96.70% (LUT-exac
 - [x] Human listening pass (audio): done by the owner, 2026-09-26.
 - [ ] Real-phone motion/usability pass (390×844 class device: layout, input, normal/turbo/super-turbo, audio, resume/replay) — NOT RUN; local mock evidence is not device evidence.
 - [ ] Recorded per-clip motion review of the four rigs (the acceptance rule in `docs/ANIMATION_CONTRACT.md`) — NOT RUN by owner's instruction; the owner records the outcome or waives it explicitly.
+- [x] Recorded gameplay motion review (1440×900 + 390×844, the moments the 2026-09-26 panel named): `qa/smoke/review/contract/MOTION_REVIEW_2026-09-26.md` — 41 moments judged from frames; defects and their dispositions in `qa/stake-review/LEDGER.md`.
 - [ ] Owner's art/animation acceptance (faces, costume consistency, tile appearance in the real editor) — pending.
 - [ ] Jurisdiction/social copy: the social variants in `rulesContent.ts` and the HUD floor were swept in Codex copy audit F (`3eb40d5`) and the port fix round; a final read of the built artifact against the stake.us prohibited-term table (win feature, play amount, coins, balance, respin, get bonus, token…) is owed on the final bytes.
 - [ ] `STAKE_REVIEW_INTRODUCTION_COMMENT.md` reflects completed evidence at posting time and never claims a prior rating or rejection is cleared by machine checks.
