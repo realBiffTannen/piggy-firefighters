@@ -69,6 +69,9 @@ RULES = [
 EXPECTED = (
     [f"sprites/symbolsCartoon/sym_{s}.webp" for s in SYM]
     + [f"sprites/symbolsCartoonTall/symT_{s}.webp" for s in SYM]
+    # the win key frames B (action) and C (follow-through) of every symbol (symbolMotion.ts keySequence)
+    + [f"sprites/symbolsCartoon/sym_{s}_{p}.webp" for s in SYM for p in ("b", "c")]
+    + [f"sprites/symbolsCartoonTall/symT_{s}_{p}.webp" for s in SYM for p in ("b", "c")]
     + [f"environment/{m}_{o}.webp" for m in MOODS for o in ("landscape", "portrait")]
     + ["ui_scene/board_frame.webp", "ui_scene/frame.meta.json", "ui_scene/cell_backplate.webp"]
     + [f"ui_scene/cell_frame_{k}.webp" for k in ("plain", "win", "locked")] + ["ui_scene/line_plate.webp"]

@@ -11,11 +11,14 @@ ids (docs/GAME_CONTRACT.md section 3, theme bible section 3):
   L1 Brass Nozzle  L2 Water Bucket  L3 Ladder  L4 Fire Boots
   W Chief Hamm WILD (badge lettered locally)   W_blaze the Blaze Wild (same framing as W, W's scale)
   ALARM Fire Alarm   GALARM Golden Alarm       (optional BONUS tag: --bonus-tag or make_symbol_labels.py --bonus)
-  pose B (win cut) = "<ID>_b" for H1..H4 (and W_b if drawn), tiled with pose A's scale so it never changes size.
+  key frames = "<ID>_b" (B, the action) and "<ID>_c" (C, the follow-through) for EVERY symbol, the Blaze Wild included,
+  tiled with pose A's scale so a win cut never changes size (the Blaze poses at W's scale, like W_blaze itself);
+  the alarm poses carry the BONUS tag like their bases (--bonus-tag).
 
 Box rule (the family's "88 x 88"): trim to the INK box (alpha > 24), the larger side = tile / (1 + 2 * pad)
 = 384 / 1.136 = 338 px (88 %), centred. Default --pad IS 0.068 (the donor defaulted to 0.06 - a known footgun).
-Runtime keys (game/assets.ts): sym_H1 ... sym_L4, sym_W, sym_W_BLAZE, sym_ALARM, sym_GALARM, sym_H1_b ...
+Runtime keys (game/assets.ts): sym_H1 ... sym_L4, sym_W, sym_W_BLAZE, sym_ALARM, sym_GALARM, sym_H1_b, sym_H1_c ...
+sym_W_BLAZE_b (files keep the id: sym_W_blaze_b.webp).
 
 Source map (id -> source): built-in defaults "symbols/sym_sq_<id>", overridden by
 art-src/generated/symbols.sources.json when present, then --map <json>, then --src ID=<path> (repeatable).
@@ -36,17 +39,23 @@ from art_common import (GEN, QA, STATIC, contact_sheet, exists_src, fill_ratio, 
                         write_json)
 
 BASE_IDS = ["H1", "H2", "H3", "H4", "L1", "L2", "L3", "L4", "W", "ALARM", "GALARM"]
-MATCHED = {"W_blaze": "W", "H1_b": "H1", "H2_b": "H2", "H3_b": "H3", "H4_b": "H4", "W_b": "W"}
-ALL_IDS = BASE_IDS[:9] + ["W_blaze"] + BASE_IDS[9:] + ["H1_b", "H2_b", "H3_b", "H4_b", "W_b"]
-WILD_IDS = {"W", "W_blaze", "W_b"}
-OPTIONAL = {"W_b"}  # drawn only if the W gets its own win pose
+POSES = ("b", "c")  # b = the action key frame, c = the follow-through (symbolMotion.ts keySequence)
+POSED = BASE_IDS + ["W_blaze"]
+# every key frame is tiled at its base's scale; the Blaze Wild (and so its poses) at W's
+MATCHED = {"W_blaze": "W", **{f"{sid}_{p}": ("W" if sid == "W_blaze" else sid) for sid in POSED for p in POSES}}
+ALL_IDS = BASE_IDS[:9] + ["W_blaze"] + BASE_IDS[9:] + [f"{sid}_{p}" for sid in POSED for p in POSES]
+WILD_IDS = {"W", "W_blaze"} | {f"{w}_{p}" for w in ("W", "W_blaze") for p in POSES}
+# the alarm key frames carry their base's BONUS tag (make_symbol_labels bonus_square / bonus_tall)
+BONUS_BASE = {f"{b}_{p}": b for b in ("ALARM", "GALARM") for p in POSES}
+OPTIONAL = set()
 SQUARE_MAP_FILE = os.path.join(GEN, "symbols.sources.json")
 
 
 def runtime_key(sid, prefix="sym_"):
-    """H1 -> sym_H1, W_blaze -> sym_W_BLAZE, H1_b -> sym_H1_b (pose suffix stays lower case)."""
-    if sid.endswith("_b"):
-        return f"{prefix}{sid[:-2].upper()}_b"
+    """H1 -> sym_H1, W_blaze -> sym_W_BLAZE, H1_b -> sym_H1_b, W_blaze_c -> sym_W_BLAZE_c (pose suffix stays lower case)."""
+    for p in POSES:
+        if sid.endswith(f"_{p}"):
+            return f"{prefix}{sid[:-2].upper()}_{p}"
     return f"{prefix}{sid.upper()}"
 
 
@@ -160,7 +169,13 @@ def main():
     for sid in ids:
         if sid not in ims:
             continue
-        if sid in MATCHED:
+        if sid in BONUS_BASE and a.bonus_tag:
+            from make_symbol_labels import bonus_square
+
+            k = None
+            tile = bonus_square(ims[sid], BONUS_BASE[sid], T, fill)
+            man["labels"][runtime_key(sid)] = "bonus_tag"
+        elif sid in MATCHED:
             base = MATCHED[sid]
             if base not in ims:
                 pending.append(f"{sid} (needs {base})")

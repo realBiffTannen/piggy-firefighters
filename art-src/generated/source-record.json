@@ -5672,5 +5672,1813 @@
       "total_tokens": 2524
     },
     "seconds": 24.4
+  },
+  {
+    "asset": "sym_sq_l1_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same brass nozzle spraying, a short flat cream-and-blue water arc bursting from the tip, the coiled cream hose tightened and lifted by the kick.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l1_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l1.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win key frame) for L1: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-26T16:03:21",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l1_b.png",
+    "sha256": "03eddd8c8ed5df33aff2460644f62aa7355166f90794e279a7f5dc1694f79789",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1232,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 208
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2988
+    },
+    "seconds": 35.1
+  },
+  {
+    "asset": "sym_sq_l2_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same wooden bucket tipped forward, a flat blue wave of water sloshing over the rim, two drops flying.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l2_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l2.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win key frame) for L2: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-26T16:03:56",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l2_b.png",
+    "sha256": "266c64c9c8382e3aaf48091a69a021d174eb42a0ce42b424169111874fb64f53",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1225,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 201
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2981
+    },
+    "seconds": 34.4
+  },
+  {
+    "asset": "sym_sq_l3_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same ladder section with its upper fly section sliding out half-way, the brass fittings glinting, still inside the same canvas bounds.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l3_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l3.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win key frame) for L3: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-26T16:04:30",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l3_b.png",
+    "sha256": "e97fee5d44e9a0d48c9a07ef0efa835b7cb7bf63f6e07ec9dee5d47cab9091e4",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1229,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 205
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2985
+    },
+    "seconds": 33.9
+  },
+  {
+    "asset": "sym_sq_l4_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same pair of boots, one boot lifted high mid-stomp, the other planted, the yellow trim bright.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l4_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l4.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win key frame) for L4: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-26T16:05:04",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l4_b.png",
+    "sha256": "8e0c30c68e5edb55a65fc22f1854fa0d4aaad5c064a9dbe130567664f2e62a4e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1224,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 200
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2980
+    },
+    "seconds": 33.8
+  },
+  {
+    "asset": "sym_sq_alarm_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same brass alarm bell on its red box, the clapper striking the left rim, the bell tipped right, two short curved ringing strokes each side, the box's lamp glowing bright cream.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_alarm_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win key frame) for ALARM: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-26T16:05:38",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_alarm_b.png",
+    "sha256": "f38b47d6223765492f516985e1b1e6cf685573c0a7be361df961ef3d4a33f20d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1240,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 216
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2996
+    },
+    "seconds": 33.8
+  },
+  {
+    "asset": "sym_sq_galarm_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nWin pose: the same golden alarm bell on its gold box, the clapper striking the left rim, the bell tipped right, two short curved ringing strokes each side, a warm rim light.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_galarm_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_galarm.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B (win key frame) for GALARM: same-framing edit of accepted pose A",
+    "attempt": 1,
+    "ts": "2026-09-26T16:06:12",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_galarm_b.png",
+    "sha256": "67a2c7e0f97df822dd275d46d5fd62fe7ab501efe8f8ff99d3f09ac09bb17007",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1237,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 213
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 2993
+    },
+    "seconds": 34.9
+  },
+  {
+    "asset": "sym_sq_w_blaze_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 2 shows this win pose drawn on the plain WILD; apply the same pose to Image 1's flaming plate, keeping Image 1's size, position and framing EXACTLY. Win pose: the same flaming WILD plate with Chief Hamm lifting the blank red badge high in a big cheer, the orange flames around the plate flaring up taller, embers flying.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_sq_w_blaze_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_w_blaze.png",
+      "art-src/generated/symbols/sym_sq_w_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose B for W_blaze: edit of accepted Blaze pose A with W pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:06:47",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_w_blaze_b.png",
+    "sha256": "f335aac4c7e4d3832e4fe62ad4836e5cd9905ef59dd11f5f3c20f656cafd6edd",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2517,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 469
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4273
+    },
+    "seconds": 38.5
+  },
+  {
+    "asset": "sym_sq_h1_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same fire engine landing back down after its bounce, squashed low on its springs, the ladder raised to its highest, both headlights flashing with small flat four-point cream stars, one short flat grey puff behind the rear wheel.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h1_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h1.png",
+      "art-src/generated/symbols/sym_sq_h1_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for H1: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:07:43",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h1_c.png",
+    "sha256": "1e6edfd028ca0d88b71c219e776aca957c57f68ecd32c9e1bd6f4e7817f9656e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2316,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 268
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4072
+    },
+    "seconds": 36.0
+  },
+  {
+    "asset": "sym_sq_h2_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same helmet tipped far back as if doffed in a salute, the brim flipped up, the brass front shield catching one big flat four-point cream sparkle.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h2_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h2.png",
+      "art-src/generated/symbols/sym_sq_h2_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for H2: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:08:19",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h2_c.png",
+    "sha256": "0bd211efc3b48910035dbb5b1bdc8dd285be504be0aca6b3db7604d3899a88b6",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2303,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 255
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4059
+    },
+    "seconds": 34.2
+  },
+  {
+    "asset": "sym_sq_h3_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same axe and halligan swung apart into a wide open V, a flat cream glint streak along the axe blade, two small flat orange sparks where they parted.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h3_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h3.png",
+      "art-src/generated/symbols/sym_sq_h3_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for H3: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:08:53",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h3_c.png",
+    "sha256": "bd00f8b1275430dd559c7128f71807d05f14230a90e1bf620fe705d8f20eabff",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2304,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 256
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4060
+    },
+    "seconds": 32.9
+  },
+  {
+    "asset": "sym_sq_h4_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same extinguisher mid-spray, leaning back from the recoil, a short flat white foam burst from the black hose nozzle, the gauge needle kicked hard into the red.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_h4_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h4.png",
+      "art-src/generated/symbols/sym_sq_h4_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for H4: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:09:26",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_h4_c.png",
+    "sha256": "870bf7bd4afab3db880380c2e999d93d45f10cca5a124b4b32f0553f68988aa0",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2306,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 258
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4062
+    },
+    "seconds": 34.8
+  },
+  {
+    "asset": "sym_sq_l1_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same hose whipping into an S curve, the brass nozzle tipped up, a small fan of flat blue water drops scattering from it.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l1_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l1.png",
+      "art-src/generated/symbols/sym_sq_l1_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for L1: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:10:01",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l1_c.png",
+    "sha256": "c4f913043e8105ff5c846db57e33dddc9a1917c9b4115528d6da78dddef60173",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2297,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 249
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4053
+    },
+    "seconds": 35.0
+  },
+  {
+    "asset": "sym_sq_l2_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same bucket rocked back upright, a crown splash of flat blue water rising out of it, small droplets arcing out.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l2_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l2.png",
+      "art-src/generated/symbols/sym_sq_l2_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for L2: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:10:36",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l2_c.png",
+    "sha256": "9b81bed5cff98d4a31d6872840bd954fbe6f86b1e6ad4543bccdf5f10de0a897",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2295,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 247
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4051
+    },
+    "seconds": 35.6
+  },
+  {
+    "asset": "sym_sq_l3_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same ladder with the fly section fully out and locked, leaning a little, one flat four-point cream sparkle on the top rung, still inside the same canvas bounds.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l3_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l3.png",
+      "art-src/generated/symbols/sym_sq_l3_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for L3: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:11:12",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l3_c.png",
+    "sha256": "8384c6fd9c2cb67d5862901e5c26878c7e613599557122e0f4c20831bffbcd18",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2304,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 256
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4060
+    },
+    "seconds": 32.1
+  },
+  {
+    "asset": "sym_sq_l4_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same boots both stamped down together, a flat tan dust puff bursting out at their soles.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_l4_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l4.png",
+      "art-src/generated/symbols/sym_sq_l4_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for L4: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:11:44",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_l4_c.png",
+    "sha256": "4d4707e5e64caf96df926a065e5c7982cf2b551a3cc9aa6835d5c6df08b0e323",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2289,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 241
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4045
+    },
+    "seconds": 33.6
+  },
+  {
+    "asset": "sym_sq_alarm_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same alarm, the clapper striking the right rim, the bell tipped left, two short curved ringing strokes each side, the lamp glowing bright cream.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_alarm_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_alarm.png",
+      "art-src/generated/symbols/sym_sq_alarm_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for ALARM: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:12:18",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_alarm_c.png",
+    "sha256": "441f448affb5e161dcedcb8dd623930ac70c3084290b5544465d956caab47393",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2301,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 253
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4057
+    },
+    "seconds": 33.4
+  },
+  {
+    "asset": "sym_sq_galarm_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same golden alarm, the clapper striking the right rim, the bell tipped left, two short curved ringing strokes each side, a warm rim light.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_sq_galarm_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_galarm.png",
+      "art-src/generated/symbols/sym_sq_galarm_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for GALARM: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:12:52",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_galarm_c.png",
+    "sha256": "7d162dd3fdef5c7dc2946eb798bc963a6e75eaf5eef43cc099d21388dccd8001",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2301,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 253
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4057
+    },
+    "seconds": 32.8
+  },
+  {
+    "asset": "sym_sq_w_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same Chief Hamm winking with a big grin, giving a thumbs-up with one hand and holding the same blank red badge level at chest height with the other.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_sq_w_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_w.png",
+      "art-src/generated/symbols/sym_sq_w_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for W: edit of pose A with pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:13:24",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_w_c.png",
+    "sha256": "666ad7d76fe099cf77aabf21e4de265f465e158f15ca58954bec9c1e5f376429",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2511,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 463
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4267
+    },
+    "seconds": 36.3
+  },
+  {
+    "asset": "sym_sq_w_blaze_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 2 shows the first win pose of the same performance; draw the NEXT moment of that performance, keeping Image 1's size, position and framing EXACTLY. Follow-through pose: the same flaming WILD plate with Chief Hamm winking and giving a thumbs-up, the blank badge held level, the flames settling lower with a few embers.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_sq_w_blaze_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_w_blaze.png",
+      "art-src/generated/symbols/sym_sq_w_blaze_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "pose C (follow-through) for W_blaze: edit of Blaze pose A with Blaze pose B as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:14:01",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_w_blaze_c.png",
+    "sha256": "d099a4eabe7f2a1fd7bd494f454f925af9b62506f7cef32a7a2b555e32c1135b",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2511,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 463
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4267
+    },
+    "seconds": 36.9
+  },
+  {
+    "asset": "sym_sq_w_blaze_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 2 shows this win pose drawn on the plain WILD; apply the same pose to Image 1's flaming plate, keeping Image 1's size, position and framing EXACTLY. Win pose: the same flaming WILD plate, Chief Hamm staying in the upper half EXACTLY where he is in Image 1, cheering with a big open grin and lifting the same blank badge only a little, to chest height, the badge staying in the lower half where it is in Image 1; the orange flames around the plate flaring up taller with a few embers flying.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_sq_w_blaze_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_w_blaze.png",
+      "art-src/generated/symbols/sym_sq_w_b.png"
+    ],
+    "cost_estimate_usd": 0.21,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "redraw: first draw moved the Chief below the raised badge (framing drift vs pose A; the cut would jump)",
+    "attempt": 1,
+    "ts": "2026-09-26T16:15:04",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_sq_w_blaze_b.png",
+    "sha256": "19f4abf4b881f91456834891b112453a1855a4665a457054cfd1b6a18f4f8c00",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2558,
+      "input_tokens_details": {
+        "image_tokens": 2048,
+        "text_tokens": 510
+      },
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "image_tokens": 1756,
+        "text_tokens": 0
+      },
+      "total_tokens": 4314
+    },
+    "seconds": 36.8,
+    "superseded": "art-src/generated/symbols/superseded/sym_sq_w_blaze_b.20260926T161541.png"
+  },
+  {
+    "asset": "sym_tall_h1_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same fire engine landing back down after its bounce, squashed low on its springs, the ladder raised to its highest, both headlights flashing with small flat four-point cream stars, one short flat grey puff behind the rear wheel.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h1_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h1.png",
+      "art-src/generated/symbols/sym_sq_h1_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for h1: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:15:50",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h1_c.png",
+    "sha256": "d980a3c2445688e97c549c60ed7712095bc381ce1bd1ebca3e03ac162c673e8c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2856,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 296
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4228
+    },
+    "seconds": 28.8
+  },
+  {
+    "asset": "sym_tall_h2_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same helmet tipped far back as if doffed in a salute, the brim flipped up, the brass front shield catching one big flat four-point cream sparkle.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h2_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h2.png",
+      "art-src/generated/symbols/sym_sq_h2_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for h2: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:16:19",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h2_c.png",
+    "sha256": "cb216fbb540eacac5f18b79caf4c671f9f9861446409d87cac331397051e052a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2843,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 283
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4215
+    },
+    "seconds": 26.0
+  },
+  {
+    "asset": "sym_tall_h3_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same axe and halligan swung apart into a wide open V, a flat cream glint streak along the axe blade, two small flat orange sparks where they parted.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h3_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h3.png",
+      "art-src/generated/symbols/sym_sq_h3_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for h3: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:16:45",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h3_c.png",
+    "sha256": "2af2bc7094dc64cbd95b7902f7d3064e2e43ae74ae3048d6de0ed6ca3bddd5ff",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2844,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 284
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4216
+    },
+    "seconds": 26.6
+  },
+  {
+    "asset": "sym_tall_h4_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same extinguisher mid-spray, leaning back from the recoil, a short flat white foam burst from the black hose nozzle, the gauge needle kicked hard into the red.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_h4_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_h4.png",
+      "art-src/generated/symbols/sym_sq_h4_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for h4: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:17:12",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_h4_c.png",
+    "sha256": "62d4aa04ae315f1efcd03047450e4b8ade21df083ccd8062b7840f940c9ea00e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2846,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 286
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4218
+    },
+    "seconds": 28.2
+  },
+  {
+    "asset": "sym_tall_l1_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same brass nozzle spraying, a short flat cream-and-blue water arc bursting from the tip, the coiled cream hose tightened and lifted by the kick.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l1_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l1.png",
+      "art-src/generated/symbols/sym_sq_l1_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose b for l1: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:17:40",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l1_b.png",
+    "sha256": "339d30edca175fc6d3b6c8c9a9e060e074a104fb6c546dcc0a1ac3acddf2b9c3",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2840,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 280
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4212
+    },
+    "seconds": 27.4
+  },
+  {
+    "asset": "sym_tall_l1_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same hose whipping into an S curve, the brass nozzle tipped up, a small fan of flat blue water drops scattering from it.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l1_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l1.png",
+      "art-src/generated/symbols/sym_sq_l1_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for l1: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:18:08",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l1_c.png",
+    "sha256": "7a2303995ebed0d039546a7e6deb4e40ea3ab18f22504013af3f537a0f9a0f02",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2837,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 277
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4209
+    },
+    "seconds": 28.6
+  },
+  {
+    "asset": "sym_tall_l2_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same wooden bucket tipped forward, a flat blue wave of water sloshing over the rim, two drops flying.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l2_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l2.png",
+      "art-src/generated/symbols/sym_sq_l2_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose b for l2: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:18:37",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l2_b.png",
+    "sha256": "db0f2a945065bdcd0960fe19034a68d15d114c7eb808d7f05b45f2f0470058c0",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2833,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 273
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4205
+    },
+    "seconds": 29.7
+  },
+  {
+    "asset": "sym_tall_l2_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same bucket rocked back upright, a crown splash of flat blue water rising out of it, small droplets arcing out.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l2_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l2.png",
+      "art-src/generated/symbols/sym_sq_l2_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for l2: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:19:06",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l2_c.png",
+    "sha256": "bc69d8871fa1466a2651985f6c89d552ffad69a24c45377068a2e33861322163",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2835,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 275
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4207
+    },
+    "seconds": 30.3
+  },
+  {
+    "asset": "sym_tall_l3_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same ladder section with its upper fly section sliding out half-way, the brass fittings glinting, still inside the same canvas bounds.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l3_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l3.png",
+      "art-src/generated/symbols/sym_sq_l3_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose b for l3: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:19:37",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l3_b.png",
+    "sha256": "d32b0ef1ca02a7a6e21cae232c391bff09d4dfb01e347a2970bc94c2c9d1b45c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2837,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 277
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4209
+    },
+    "seconds": 30.0
+  },
+  {
+    "asset": "sym_tall_l3_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same ladder with the fly section fully out and locked, leaning a little, one flat four-point cream sparkle on the top rung, still inside the same canvas bounds.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l3_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l3.png",
+      "art-src/generated/symbols/sym_sq_l3_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for l3: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:20:07",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l3_c.png",
+    "sha256": "f155692a6bd638c0bec7079593aa97a0627b0828799a4fc404cdc102f23d832e",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2844,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 284
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4216
+    },
+    "seconds": 25.9
+  },
+  {
+    "asset": "sym_tall_l4_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same pair of boots, one boot lifted high mid-stomp, the other planted, the yellow trim bright.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l4_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l4.png",
+      "art-src/generated/symbols/sym_sq_l4_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose b for l4: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:20:33",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l4_b.png",
+    "sha256": "f37da8d54ad2f7e3fa9c070d4564d10b3c8cc1b07d77cdc6419b7cda9d63d9a7",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2832,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 272
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4204
+    },
+    "seconds": 26.2
+  },
+  {
+    "asset": "sym_tall_l4_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same boots both stamped down together, a flat tan dust puff bursting out at their soles.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_l4_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_l4.png",
+      "art-src/generated/symbols/sym_sq_l4_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for l4: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:20:59",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_l4_c.png",
+    "sha256": "f86b900c4da1a20189809babfeac54a9e99cbc8032adccba4e0153f3009bc01b",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2829,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 269
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4201
+    },
+    "seconds": 28.0
+  },
+  {
+    "asset": "sym_tall_alarm_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same brass alarm bell on its red box, the clapper striking the left rim, the bell tipped right, two short curved ringing strokes each side, the box's lamp glowing bright cream.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_alarm_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_alarm.png",
+      "art-src/generated/symbols/sym_sq_alarm_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose b for alarm: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:21:27",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_alarm_b.png",
+    "sha256": "b72c9bf9c7f36b9f98eea13a79df2859038d9e28dc0a7350ea7c890248cac756",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2848,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 288
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4220
+    },
+    "seconds": 25.1
+  },
+  {
+    "asset": "splash_furniture",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are reel-symbol icons from our 2D cartoon slot game; they define the STYLE and MATERIAL RENDERING ONLY. Do not copy their objects. Draw NEW items in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight per surface; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is clean, hand-inked game art: not glossy, not a 3D render, no gradients, no airbrush glow, no bloom, no bevel-and-emboss filter look, no drop shadows. Genuinely transparent background with no ground shadow, no frame around the sheet and no background scenery. Every item is a separate island of pixels with wide empty transparent gaps around it so no two items touch or overlap. No text, no letters, no numbers, no symbols that look like writing, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nA sprite sheet on a genuinely transparent background, five separate items with wide empty space between them, none touching, arranged in two rows (three items in the top row, two in the bottom row), all in the same flat cel cartoon style with thick dark-brown ink:\n1. A wide BLANK wooden notice board made of four horizontal planks, warm brown wood (#9A6631) with one hard darker shadow tone, a brass bolt in each corner, a thin darker seam between planks, no text, no marks, face on, about 3:2.\n2. A short straight vertical run of chunky steel chain, five links, smoke blue-grey (#7C8AA0) with a darker shadow tone, drawn so the top and bottom link ends could repeat.\n3. One round steel nail head seen face on, smoke blue-grey with a cream highlight dot.\n4. A long straight horizontal brass beam segment (#E9B23B) with a hydrant-yellow top edge and red tick stripes (#D7262B) evenly spaced, drawn so its left and right ends could repeat.\n5. One soft cartoon dust puff made of three overlapping round clouds, pale tan (#E9D6AE) with a darker tan shadow tone.\nNo text, no letters, no numbers, no logos, no gradients, no airbrush, no glow, no scenery.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sheet.txt",
+      "art-src/generated/prompts/scene_splash_furniture.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_l3.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "splash furniture (replaces SplashDeck/Splash CSS-gradient planks, chains, nails, beam, dust)",
+    "attempt": 1,
+    "ts": "2026-09-26T16:21:36",
+    "status": "OK",
+    "output": "art-src/generated/scene/splash_furniture.png",
+    "sha256": "9a26c9e1e25326d0a15e3d82446d22ebd0c7863eeefa7c2768ade484aefa9369",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1612,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 588
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2984
+    },
+    "seconds": 31.4
+  },
+  {
+    "asset": "sym_tall_alarm_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same alarm, the clapper striking the right rim, the bell tipped left, two short curved ringing strokes each side, the lamp glowing bright cream.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_alarm_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_alarm.png",
+      "art-src/generated/symbols/sym_sq_alarm_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for alarm: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:21:52",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_alarm_c.png",
+    "sha256": "a4695f7ad0abfb00d88099af753166268b4214f60d1ea741cf3393ffcba512b4",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2841,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 281
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4213
+    },
+    "seconds": 30.5
+  },
+  {
+    "asset": "sign_plates",
+    "batch": "scene",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "The reference images are reel-symbol icons from our 2D cartoon slot game; they define the STYLE and MATERIAL RENDERING ONLY. Do not copy their objects. Draw NEW items in exactly that style: a bold, thick, dark-brown ink outline around every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone and one small cream highlight per surface; light from the top left; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire). The look is clean, hand-inked game art: not glossy, not a 3D render, no gradients, no airbrush glow, no bloom, no bevel-and-emboss filter look, no drop shadows. Genuinely transparent background with no ground shadow, no frame around the sheet and no background scenery. Every item is a separate island of pixels with wide empty transparent gaps around it so no two items touch or overlap. No text, no letters, no numbers, no symbols that look like writing, no logos, no emoji. No hard hats, no construction machinery or tools, no police imagery, no lanterns, no dragons.\n\nA sprite sheet on a genuinely transparent background, four separate BLANK hanging sign plates and one chain run, wide empty space between them, none touching, arranged in three rows (two plates, two plates, then the chain), in the same flat cel cartoon style with thick dark-brown ink, each plate face on, wide 2:1, with a plain flat centre area free of any detail so text can be placed on it later, and all decoration kept to a border no deeper than one fifth of the plate's height:\n1. An engine-red (#D7262B) riveted steel plate with a chrome top rail and four brass corner bolts.\n2. A brass-gold (#E9B23B) premium plate with a raised gold rim and four brass corner bolts.\n3. A hazard plate: a dusk-navy (#1E2A4A) centre with a border of flame-orange (#FF7A1A) and hydrant-yellow reflective diagonal bands, four steel corner bolts.\n4. A win plate: a hose-cream (#F4E9D2) centre with a thick brass rim and small flat four-point stars at the corners.\n5. A short straight vertical run of chunky brass chain, five links, whose ends could repeat.\nNo text, no letters, no numbers, no logos, no gradients, no airbrush, no glow, no scenery.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sheet.txt",
+      "art-src/generated/prompts/scene_sign_plates.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_sq_h2.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "bay-door card plates (replaces signPanel.ts vector PLACEHOLDER)",
+    "attempt": 1,
+    "ts": "2026-09-26T16:22:07",
+    "status": "OK",
+    "output": "art-src/generated/scene/sign_plates.png",
+    "sha256": "05c4ae48d75bf6ff37355bf5d1118a9091b0c7aed8cb1c160fa1f348a48f61e6",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1615,
+      "input_tokens_details": {
+        "image_tokens": 1024,
+        "text_tokens": 591
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 2987
+    },
+    "seconds": 26.3
+  },
+  {
+    "asset": "sym_tall_galarm_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same golden alarm bell on its gold box, the clapper striking the left rim, the bell tipped right, two short curved ringing strokes each side, a warm rim light.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_galarm_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_galarm.png",
+      "art-src/generated/symbols/sym_sq_galarm_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose b for galarm: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:22:23",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_galarm_b.png",
+    "sha256": "59b6c518b8f224b6f9e119e3e4c37128689c3f17d5c9ecab031ab6b688af855f",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2845,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 285
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4217
+    },
+    "seconds": 29.4
+  },
+  {
+    "asset": "sym_tall_galarm_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same golden alarm, the clapper striking the right rim, the bell tipped left, two short curved ringing strokes each side, a warm rim light.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/symbols_sym_tall_galarm_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_galarm.png",
+      "art-src/generated/symbols/sym_sq_galarm_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for galarm: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:22:52",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_galarm_c.png",
+    "sha256": "d0233503f56e3c8443bea6e11d86c25e619ed2c5152bfe2bfbe258dfa8673070",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 2841,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 281
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4213
+    },
+    "seconds": 26.3
+  },
+  {
+    "asset": "sym_tall_w_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same Chief Hamm winking with a big grin, giving a thumbs-up with one hand and holding the same blank red badge level at chest height with the other.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_tall_w_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_w.png",
+      "art-src/generated/symbols/sym_sq_w_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for w: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:23:19",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_w_c.png",
+    "sha256": "9490b513fb4d7926430050d2cf43c8295a49714c0c6ed1585ee370dd12e7f43c",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3051,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 491
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4423
+    },
+    "seconds": 29.1
+  },
+  {
+    "asset": "sym_tall_w_blaze_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same flaming WILD plate with Chief Hamm lifting the blank red badge high in a big cheer, the orange flames around the plate flaring up taller, embers flying.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_tall_w_blaze_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_w_blaze.png",
+      "art-src/generated/symbols/sym_sq_w_blaze_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose b for w_blaze: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:23:48",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_w_blaze_b.png",
+    "sha256": "b41fa8659fe2c5720e72c69011023fd3e892f889af3436149fddb45c380370ba",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3052,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 492
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4424
+    },
+    "seconds": 30.3
+  },
+  {
+    "asset": "sym_tall_w_blaze_c",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nFollow-through pose: the same flaming WILD plate with Chief Hamm winking and giving a thumbs-up, the blank badge held level, the flames settling lower with a few embers.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_tall_w_blaze_c.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_w_blaze.png",
+      "art-src/generated/symbols/sym_sq_w_blaze_c.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "tall pose c for w_blaze: edit of tall pose A with the accepted square pose as the pose ref",
+    "attempt": 1,
+    "ts": "2026-09-26T16:24:18",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_w_blaze_c.png",
+    "sha256": "18923d551d23be7cd9fe02db214b35624ef4e3ed281685e066c28e811f283fbd",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3051,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 491
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4423
+    },
+    "seconds": 31.1
+  },
+  {
+    "asset": "sym_tall_w_blaze_b",
+    "batch": "symbols",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": true,
+    "prompt": "Image 1 is a FINISHED reel symbol from our 2D cartoon slot game (its resting pose). Draw its WIN pose: the SAME object, the SAME design, colours, ink weight and flat cel shading, at EXACTLY the same size, position and framing on the canvas (the object's outer bounds stay where they are; do not zoom, shrink, move or recentre it), but with a punchier, livelier pose as described below. Genuinely transparent background, no ground shadow, no frame, no background scenery. No text, no letters, no numbers, no logos, no emoji, no gradients, no airbrush glow, no 3D render look, no soft bloom. Any sparkle is a small flat four-point cream star with an ink outline.\n\nRules for this WILD symbol: Chief Hamm stays EXACTLY the same character as in Image 1 (face, snout, moustache, confident near-level brows, big clear eyes each with one hard white catch-light, white helmet with a blank brass shield plate, red turnout coat with yellow bands, proper hands with thumbs and separated fingers). The big badge keeps its red rim with the brass-gold edge, and its central panel stays a large, completely BLANK, perfectly flat, plain near-white panel facing the viewer straight on, not tilted, never covered, never shaded or tinted, with nothing written or drawn on it. Thick dark-brown ink outline, flat cel shading with one hard shadow tone, no gradients, no airbrush glow, no soft bloom, no 3D render look. Genuinely transparent background, no ground shadow, no frame, no scenery. Absolutely no text, letters, numbers, logos or emoji anywhere. No hard hat, no construction, no police, no lantern, no dragon imagery.\n\nImage 1 is the finished TALL version of this reel symbol (resting pose). Image 2 shows this pose drawn for the square version of the same symbol: apply the same pose changes to the TALL version, keeping Image 1's tall framing, size and position EXACTLY. The pose:\nWin pose: the same flaming WILD plate, Chief Hamm staying in the upper half EXACTLY where he is in Image 1, cheering with a big open grin and lifting the same blank badge only a little, to chest height, the badge staying in the lower half where it is in Image 1; the orange flames around the plate flaring up taller with a few embers flying.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_sprite_poseb.txt",
+      "art-src/generated/prompts/_wild_rules.txt",
+      "art-src/generated/prompts/symbols_sym_tall_w_blaze_b.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/symbols/sym_tall_w_blaze.png",
+      "art-src/generated/symbols/sym_sq_w_blaze_b.png"
+    ],
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "redraw: first draw moved the Chief below the raised badge (prompt still carried the square redraw-1 wording)",
+    "attempt": 1,
+    "ts": "2026-09-26T16:26:19",
+    "status": "OK",
+    "output": "art-src/generated/symbols/sym_tall_w_blaze_b.png",
+    "sha256": "fd7fa361632feee6c19e75c10c21e341cc8aac3d992233a612372c33878d434a",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 3093,
+      "input_tokens_details": {
+        "image_tokens": 2560,
+        "text_tokens": 533
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 4465
+    },
+    "seconds": 30.4,
+    "superseded": "art-src/generated/symbols/superseded/sym_tall_w_blaze_b.20260926T162650.png"
   }
 ]

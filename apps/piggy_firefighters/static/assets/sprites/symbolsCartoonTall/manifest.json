@@ -24,7 +24,26 @@
     "symT_H2_b": "symT_H2_b.webp",
     "symT_H3_b": "symT_H3_b.webp",
     "symT_H4_b": "symT_H4_b.webp",
-    "symT_W_b": "symT_W_b.webp"
+    "symT_W_b": "symT_W_b.webp",
+    "symT_H1_c": "symT_H1_c.webp",
+    "symT_H2_c": "symT_H2_c.webp",
+    "symT_H3_c": "symT_H3_c.webp",
+    "symT_H4_c": "symT_H4_c.webp",
+    "symT_L1_b": "symT_L1_b.webp",
+    "symT_L1_c": "symT_L1_c.webp",
+    "symT_L2_b": "symT_L2_b.webp",
+    "symT_L2_c": "symT_L2_c.webp",
+    "symT_L3_b": "symT_L3_b.webp",
+    "symT_L3_c": "symT_L3_c.webp",
+    "symT_L4_b": "symT_L4_b.webp",
+    "symT_L4_c": "symT_L4_c.webp",
+    "symT_W_c": "symT_W_c.webp",
+    "symT_ALARM_b": "symT_ALARM_b.webp",
+    "symT_ALARM_c": "symT_ALARM_c.webp",
+    "symT_GALARM_b": "symT_GALARM_b.webp",
+    "symT_GALARM_c": "symT_GALARM_c.webp",
+    "symT_W_BLAZE_b": "symT_W_blaze_b.webp",
+    "symT_W_BLAZE_c": "symT_W_blaze_c.webp"
   },
   "sources": {
     "symT_H1": "art-src/generated/symbols/sym_tall_h1.png",
@@ -43,7 +62,26 @@
     "symT_H2_b": "art-src/generated/symbols/sym_tall_h2_b.png",
     "symT_H3_b": "art-src/generated/symbols/sym_tall_h3_b.png",
     "symT_H4_b": "art-src/generated/symbols/sym_tall_h4_b.png",
-    "symT_W_b": "art-src/generated/symbols/sym_tall_w_b.png"
+    "symT_W_b": "art-src/generated/symbols/sym_tall_w_b.png",
+    "symT_H1_c": "art-src/generated/symbols/sym_tall_h1_c.png",
+    "symT_H2_c": "art-src/generated/symbols/sym_tall_h2_c.png",
+    "symT_H3_c": "art-src/generated/symbols/sym_tall_h3_c.png",
+    "symT_H4_c": "art-src/generated/symbols/sym_tall_h4_c.png",
+    "symT_L1_b": "art-src/generated/symbols/sym_tall_l1_b.png",
+    "symT_L1_c": "art-src/generated/symbols/sym_tall_l1_c.png",
+    "symT_L2_b": "art-src/generated/symbols/sym_tall_l2_b.png",
+    "symT_L2_c": "art-src/generated/symbols/sym_tall_l2_c.png",
+    "symT_L3_b": "art-src/generated/symbols/sym_tall_l3_b.png",
+    "symT_L3_c": "art-src/generated/symbols/sym_tall_l3_c.png",
+    "symT_L4_b": "art-src/generated/symbols/sym_tall_l4_b.png",
+    "symT_L4_c": "art-src/generated/symbols/sym_tall_l4_c.png",
+    "symT_W_c": "art-src/generated/symbols/sym_tall_w_c.png",
+    "symT_ALARM_b": "art-src/generated/symbols/sym_tall_alarm_b.png",
+    "symT_ALARM_c": "art-src/generated/symbols/sym_tall_alarm_c.png",
+    "symT_GALARM_b": "art-src/generated/symbols/sym_tall_galarm_b.png",
+    "symT_GALARM_c": "art-src/generated/symbols/sym_tall_galarm_c.png",
+    "symT_W_BLAZE_b": "art-src/generated/symbols/sym_tall_w_blaze_b.png",
+    "symT_W_BLAZE_c": "art-src/generated/symbols/sym_tall_w_blaze_c.png"
   },
   "route": {
     "symT_H1": "tall",
@@ -62,7 +100,26 @@
     "symT_H2_b": "tall",
     "symT_H3_b": "tall",
     "symT_H4_b": "tall",
-    "symT_W_b": "tall"
+    "symT_W_b": "tall",
+    "symT_H1_c": "tall",
+    "symT_H2_c": "tall",
+    "symT_H3_c": "tall",
+    "symT_H4_c": "tall",
+    "symT_L1_b": "tall",
+    "symT_L1_c": "tall",
+    "symT_L2_b": "tall",
+    "symT_L2_c": "tall",
+    "symT_L3_b": "tall",
+    "symT_L3_c": "tall",
+    "symT_L4_b": "tall",
+    "symT_L4_c": "tall",
+    "symT_W_c": "tall",
+    "symT_ALARM_b": "tall",
+    "symT_ALARM_c": "tall",
+    "symT_GALARM_b": "tall",
+    "symT_GALARM_c": "tall",
+    "symT_W_BLAZE_b": "tall",
+    "symT_W_BLAZE_c": "tall"
   },
   "ink": {
     "symT_H1": [
@@ -132,11 +189,91 @@
     "symT_W_b": [
       0.776,
       0.904
+    ],
+    "symT_H1_c": [
+      0.818,
+      0.904
+    ],
+    "symT_H2_c": [
+      0.865,
+      0.78
+    ],
+    "symT_H3_c": [
+      0.823,
+      0.808
+    ],
+    "symT_H4_c": [
+      0.802,
+      0.908
+    ],
+    "symT_L1_b": [
+      0.76,
+      0.98
+    ],
+    "symT_L1_c": [
+      0.747,
+      0.986
+    ],
+    "symT_L2_b": [
+      0.781,
+      0.746
+    ],
+    "symT_L2_c": [
+      0.805,
+      0.83
+    ],
+    "symT_L3_b": [
+      0.594,
+      0.916
+    ],
+    "symT_L3_c": [
+      0.672,
+      0.91
+    ],
+    "symT_L4_b": [
+      0.844,
+      0.868
+    ],
+    "symT_L4_c": [
+      0.852,
+      0.93
+    ],
+    "symT_W_c": [
+      0.812,
+      0.92
+    ],
+    "symT_ALARM_b": [
+      0.815,
+      0.92
+    ],
+    "symT_ALARM_c": [
+      0.815,
+      0.92
+    ],
+    "symT_GALARM_b": [
+      0.815,
+      0.92
+    ],
+    "symT_GALARM_c": [
+      0.815,
+      0.92
+    ],
+    "symT_W_BLAZE_b": [
+      0.82,
+      0.942
+    ],
+    "symT_W_BLAZE_c": [
+      0.794,
+      0.92
     ]
   },
   "labels": {
     "symT_ALARM": "bonus_tag",
-    "symT_GALARM": "bonus_tag"
+    "symT_GALARM": "bonus_tag",
+    "symT_ALARM_b": "bonus_tag",
+    "symT_ALARM_c": "bonus_tag",
+    "symT_GALARM_b": "bonus_tag",
+    "symT_GALARM_c": "bonus_tag"
   },
   "wild_badge": {
     "symT_W": {
@@ -156,6 +293,24 @@
       "y": 234,
       "w": 132,
       "h": 139
+    },
+    "symT_W_c": {
+      "x": 126,
+      "y": 242,
+      "w": 137,
+      "h": 142
+    },
+    "symT_W_BLAZE_b": {
+      "x": 123,
+      "y": 261,
+      "w": 137,
+      "h": 136
+    },
+    "symT_W_BLAZE_c": {
+      "x": 124,
+      "y": 238,
+      "w": 137,
+      "h": 142
     }
   }
 }

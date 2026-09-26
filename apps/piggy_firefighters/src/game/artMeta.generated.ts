@@ -471,6 +471,24 @@ export const symbolsMeta = {
 			"y": 200,
 			"w": 135,
 			"h": 133
+		},
+		"sym_W_c": {
+			"x": 126,
+			"y": 208,
+			"w": 136,
+			"h": 128
+		},
+		"sym_W_BLAZE_b": {
+			"x": 125,
+			"y": 209,
+			"w": 128,
+			"h": 125
+		},
+		"sym_W_BLAZE_c": {
+			"x": 119,
+			"y": 208,
+			"w": 140,
+			"h": 127
 		}
 	}
 } as const;
@@ -499,6 +517,24 @@ export const symbolsTallMeta = {
 			"y": 234,
 			"w": 132,
 			"h": 139
+		},
+		"symT_W_c": {
+			"x": 126,
+			"y": 242,
+			"w": 137,
+			"h": 142
+		},
+		"symT_W_BLAZE_b": {
+			"x": 123,
+			"y": 261,
+			"w": 137,
+			"h": 136
+		},
+		"symT_W_BLAZE_c": {
+			"x": 124,
+			"y": 238,
+			"w": 137,
+			"h": 142
 		}
 	}
 } as const;

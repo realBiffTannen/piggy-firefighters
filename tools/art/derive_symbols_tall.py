@@ -10,7 +10,8 @@ set is always complete.
 
 Per symbol: clean specks, trim to the INK box, fit so the object touches 86 % of the width or 92 % of the height,
 whichever limits first, centre on 384x500, lossless WEBP -> sprites/symbolsCartoonTall/symT_<ID>.webp + manifest.
-W / W_blaze are lettered exactly as the square set; W_blaze and pose B are tiled at their base symbol's scale.
+W / W_blaze and their key frames are lettered exactly as the square set; W_blaze and every key frame (B, C) are
+tiled at their base symbol's scale; the alarm key frames carry the BONUS tag like their bases.
 ALARM / GALARM with --bonus-tag: alarm above, BONUS tag at the foot, composed at the box aspect.
 Runtime keys: symT_H1 ... symT_W_BLAZE, symT_ALARM (ReelStrips swaps sym_ -> symT_ in stacked layouts).
 
@@ -26,7 +27,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from art_common import (GEN, QA, contact_sheet, exists_src, fill_ratio, fit_to_box, matched_scale,  # noqa: E402
                         out_root, prepare_out, rel, src_path, save_webp, write_json)
-from derive_symbols import (ALL_IDS, MATCHED, OPTIONAL, file_name, load_map, place_box, prepare_sources,  # noqa: E402
+from derive_symbols import (ALL_IDS, BONUS_BASE, MATCHED, OPTIONAL, file_name, load_map, place_box, prepare_sources,  # noqa: E402
                             runtime_key)
 
 TALL_MAP_FILE = os.path.join(GEN, "symbols_tall.sources.json")
@@ -76,7 +77,12 @@ def main():
         if sid not in ims:
             continue
         k = None
-        if sid in MATCHED:
+        if sid in BONUS_BASE and a.bonus_tag:
+            from make_symbol_labels import bonus_tall
+
+            tile = bonus_tall(ims[sid], BONUS_BASE[sid], TW, TH, FW, FH)
+            man["labels"][runtime_key(sid, "symT_")] = "bonus_tag"
+        elif sid in MATCHED:
             base = MATCHED[sid]
             if base not in ims:
                 pending.append(f"{sid} (needs {base})")
