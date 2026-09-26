@@ -5,6 +5,7 @@ const ROOT = new URL('../..', import.meta.url).pathname;
 const steps = [
 	['node', ['qa/gate/check_mode_costs.mjs']],
 	['node', ['qa/gate/check_round_tier.mjs']],
+	['node', ['qa/gate/check_hud_bar.mjs']],
 	['node', ['qa/gate/check_cue_ids.mjs']],
 	['python3', ['tools/reels/make_padding.py', '--check']],
 	['node', ['tools/art/gen_art_meta.mjs', '--check']],

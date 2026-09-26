@@ -87,7 +87,7 @@
 	const tileH = $derived(TILE.h * tileScale);
 	const tileW = $derived(TILE.w * tileScale);
 	const barH = $derived(Math.min(BAR.h * (cw / BAR.w), ch * 0.09));
-	const landY = $derived(sl.hudTop + 2); // the bar lands on the HUD's top edge
+	const landY = $derived(sl.hudBarTop + 2); // the bar lands on the HUD bar's measured top edge (hudBar.ts)
 	const tiles = $derived(Array.from({ length: Math.ceil((landY - barH) / Math.max(1, tileH)) + 1 }, (_, i) => i));
 	const travel = $derived(ch + 40);
 

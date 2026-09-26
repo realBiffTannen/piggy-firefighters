@@ -1,11 +1,12 @@
 import type { Tween } from 'svelte/motion';
 
-import { hudReservedHeight } from '@crashgalaxy/hud';
+import { hudReservedHeight, hudReserve } from '@crashgalaxy/hud';
 import { createGetWinLevelDataByWinLevelAlias } from 'utils-shared/winLevel';
 
 import type { GameType, RawSymbol, SymbolState } from './types';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
+import { hudBarTop as measureHudBarTop } from './hudBar';
 import { gameSound } from './audio';
 import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMBOL_STATE, TRIGGER_ALARMS } from './constants';
 import { createSpinReel, createSpinBoard, setPaddingSource, type SpinReel } from './reels/spinReels.svelte';
@@ -187,6 +188,10 @@ const computeSceneLayout = () => {
 	const ch = Math.max(1, cs.height);
 	const reserve = hudReservedHeight(cw, ch);
 	const hudTop = ch - reserve;
+	// the bar's REAL top (the HUD's own measurement; hudBar.ts): what the mascots and the shutter stand on. The board
+	// keeps `hudTop` (its verified band + ante-chip clearance); reading hudReserve.css here makes the memo re-run when
+	// the HUD re-measures (mount, resize, the two-row phone bar).
+	const barTop = measureHudBarTop(ch, hudReserve.css, reserve);
 
 	const f = stacked ? FRAME_POST_STACKED : FRAME_POST_WIDE;
 	const m = FRAME_INNER_MARGIN;
@@ -254,6 +259,11 @@ const computeSceneLayout = () => {
 		mainScale: ms,
 		canvas: { width: cw, height: ch },
 		hudTop,
+		/** the HUD bar's measured top (screen px): mascots and the shutter stand here, the board keeps `hudTop` */
+		hudBarTop: barTop,
+		/** the HUD ante chip (screen px) whenever it is measured standing above the bar (on a narrow phone it reaches
+		 *  left of centre, which the board's own `measured` rule does not count), else null: Ember sits on it */
+		chip: chipBox.width > 0 && chipBox.top < barTop ? { left: chipBox.left, top: chipBox.top, width: chipBox.width } : null,
 		reel: { x: reelX, y: reelY, width: reelW, height: reelH },
 		frame: { x: (cw - frameW) / 2, y: frameTop, width: frameW, height: frameH },
 		/** the Rescue building band above the frame (screen px); height 0 outside the scene */
@@ -267,8 +277,8 @@ const computeSceneLayout = () => {
 	};
 };
 
-// Memoised once per dependency change (viewport / layout type — the HUD reserve is a pure function of the canvas
-// size —, the measured ante chip, the feature bands). ~43 call sites and the 50 SymbolSprite deriveds read it; before
+// Memoised once per dependency change (viewport / layout type — the HUD reserve mirror is a pure function of the canvas
+// size —, the HUD's own bar measurement, the measured ante chip, the feature bands). ~43 call sites and the 50 SymbolSprite deriveds read it; before
 // the memo every read recomputed the whole tree. The accessor keeps the API of the plain function it replaces.
 const sceneLayoutMemo = $derived.by(computeSceneLayout);
 const sceneLayout = () => sceneLayoutMemo;
