@@ -7,6 +7,8 @@
 		     with the document instead of after the bundle has parsed and mounted the splash -->
 		<link rel="preload" as="font" type="font/woff2" crossorigin href="%sveltekit.assets%/assets/fonts/InterVariable.woff2" />
 		<link rel="preload" as="font" type="font/woff2" crossorigin href="%sveltekit.assets%/assets/fonts/AlfaSlabOne-Regular.woff2" />
+		<!-- the HUD bonus tile's face (owner-supplied Lilita One, 2026-09-26): loaded before the bar mounts -->
+		<link rel="preload" as="font" type="font/ttf" crossorigin href="%sveltekit.assets%/assets/fonts/LilitaOne/LilitaOne-Regular.ttf" />
 		<link rel="preload" as="image" href="%sveltekit.assets%/assets/branding/wordmark.png" />
 		<meta
 			name="viewport"
@@ -89,6 +91,19 @@
 				font-weight: 400;
 				font-display: swap;
 				src: url('%sveltekit.assets%/assets/fonts/LilitaOne/LilitaOne-Regular.ttf') format('truetype');
+			}
+			/* The HUD bonus tile (GET BONUS / PLAY FEATURE) in the owner-supplied Lilita One (2026-09-26). Its own family
+			   name, because the HUD package bundles a different build of 'Lilita One' whose @font-face is declared after
+			   this one and would win the cascade; the selector outranks the package's `.hud-bonus__copy`. */
+			@font-face {
+				font-family: 'PF Bonus Lilita';
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url('%sveltekit.assets%/assets/fonts/LilitaOne/LilitaOne-Regular.ttf') format('truetype');
+			}
+			html body .hud-bonus__copy {
+				font-family: 'PF Bonus Lilita', 'Lilita One', Inter, ui-sans-serif, system-ui, sans-serif;
 			}
 			html[data-replay-error] .replay-preroll {
 				display: none !important;
