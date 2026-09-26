@@ -21,7 +21,8 @@
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
 	import { stateRig, setChiefHandle } from '../game/fx/stateRig.svelte';
 	import { stateSpeed } from '../game/stateSpeed.svelte';
-	import { emberGround } from '../game/hudBar';
+	import { emberGround, emberFits } from '../game/hudBar';
+	import { stateRescue } from '../game/rescue/stateRescue.svelte';
 	import { winLevelMap } from '../game/winLevelMap';
 	import { rungLevelOfTier, type WinTier } from '../game/roundTier';
 	import { rescueProp } from '../game/artMeta';
@@ -49,6 +50,7 @@
 			const h = Math.min(cell * 2.7, (sl.frame.height / ms) * 0.95);
 			return {
 				visible: true,
+				rightVisible: true,
 				layout: 'desktop' as const,
 				scale: 1,
 				left: { x: frameX - w, y: frameB - h, w, h },
@@ -67,6 +69,8 @@
 		const hR = Math.min(h * 0.85, (emberTop - groundTop) * 0.92);
 		return {
 			visible: h > cell * 0.7,
+			// Ember stands only when her slot is a real figure: over a chip hugging the frame she would be a sliver (hudBar.ts)
+			rightVisible: emberFits(hR, cell),
 			layout: 'portrait' as const,
 			scale: 0.8,
 			left: { x: sl.toMainX(sl.canvas.width * 0.04), y: groundBottom - h, w, h },
@@ -184,8 +188,9 @@
 			<RigStage {...{ slot: 'mascotLeft' as const }} width={slots.left.w} height={slots.left.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} onrigEvent={onRigEvent} onready={onReady} ondispose={onDispose} />
 		{/if}
 	</Container>
-	<Container x={slots.right.x} y={slots.right.y} visible={slots.visible}>
-		{#if slots.visible}
+	<!-- Ember steps off while the Rescue scene is up: its own Ember holds the jump sheet (never two at once) -->
+	<Container x={slots.right.x} y={slots.right.y} visible={slots.visible && slots.rightVisible && !stateRescue.active}>
+		{#if slots.visible && slots.rightVisible && !stateRescue.active}
 			<RigStage {...{ slot: 'mascotRight' as const }} width={slots.right.w} height={slots.right.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} />
 		{/if}
 	</Container>

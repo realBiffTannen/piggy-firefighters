@@ -6,7 +6,7 @@ import { createGetWinLevelDataByWinLevelAlias } from 'utils-shared/winLevel';
 import type { GameType, RawSymbol, SymbolState } from './types';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
-import { hudBarTop as measureHudBarTop } from './hudBar';
+import { hudBarTop as measureHudBarTop, visibleChip } from './hudBar';
 import { gameSound } from './audio';
 import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMBOL_STATE, TRIGGER_ALARMS } from './constants';
 import { createSpinReel, createSpinBoard, setPaddingSource, type SpinReel } from './reels/spinReels.svelte';
@@ -127,6 +127,9 @@ const STACKED_BAND_BIAS = 0.34;
 // instead; until the HUD has mounted it the fallbacks above apply. `visibility` (not `display`) hides
 // a stood-down chip, so its rect stays readable and the decision cannot oscillate.
 const chipBox = $state({ left: 0, top: 0, width: 0, height: 0 });
+/** Whether the HUD SHOWS the chip (it hides it with `visibility`, keeping the box): `html[data-ante-chip]` and the splash
+ *  hand-off, mirrored here so the mascots' layout re-runs when they flip (hudBar.ts visibleChip). */
+const chipShown = $state({ mode: undefined as string | undefined, handoff: false });
 export const watchAnteChip = () => {
 	if (typeof window === 'undefined') return () => {};
 	let raf = 0;
@@ -157,11 +160,20 @@ export const watchAnteChip = () => {
 		if (!measure()) raf = requestAnimationFrame(poll);
 	};
 	poll();
+	const root = document.documentElement;
+	const readShown = () => {
+		chipShown.mode = root.dataset.anteChip;
+		chipShown.handoff = root.dataset.splashHandoff === 'true';
+	};
+	readShown();
+	const attrs = typeof MutationObserver !== 'undefined' ? new MutationObserver(readShown) : undefined;
+	attrs?.observe(root, { attributes: true, attributeFilter: ['data-ante-chip', 'data-splash-handoff'] });
 	const onResize = () => requestAnimationFrame(measure);
 	window.addEventListener('resize', onResize);
 	return () => {
 		cancelAnimationFrame(raf);
 		observer?.disconnect();
+		attrs?.disconnect();
 		window.removeEventListener('resize', onResize);
 	};
 };
@@ -263,7 +275,7 @@ const computeSceneLayout = () => {
 		hudBarTop: barTop,
 		/** the HUD ante chip (screen px) whenever it is measured standing above the bar (on a narrow phone it reaches
 		 *  left of centre, which the board's own `measured` rule does not count), else null: Ember sits on it */
-		chip: chipBox.width > 0 && chipBox.top < barTop ? { left: chipBox.left, top: chipBox.top, width: chipBox.width } : null,
+		chip: visibleChip(chipBox, barTop, chipShown.mode, chipShown.handoff),
 		reel: { x: reelX, y: reelY, width: reelW, height: reelH },
 		frame: { x: (cw - frameW) / 2, y: frameTop, width: frameW, height: frameH },
 		/** the Rescue building band above the frame (screen px); height 0 outside the scene */

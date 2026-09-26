@@ -20,3 +20,21 @@ export const emberGround = (barTop: number, chip: ChipBox | null, emberLeft: num
 	const overlaps = emberRight > chip.left && emberLeft < chip.left + chip.width;
 	return overlaps ? chip.top : barTop;
 };
+
+/**
+ * The ante chip Ember may sit on (screen px), or null. The HUD hides the chip with `visibility` (its box stays
+ * measurable) when it stands down into the menu (`html[data-ante-chip='menu']`, e.g. while the Rescue band makes the
+ * board taller) and before the splash hand-off, so a measured box alone is not a visible chip.
+ */
+export const visibleChip = (
+	box: { left: number; top: number; width: number },
+	barTop: number,
+	anteChipMode: string | undefined,
+	splashHandedOff: boolean,
+): ChipBox | null => {
+	if (anteChipMode === 'menu' || !splashHandedOff || box.width <= 0 || box.top >= barTop) return null;
+	return { left: box.left, top: box.top, width: box.width };
+};
+
+/** Ember stands only when her slot is at least the Chief's minimum (70 % of a cell); a sliver of her is worse than none. */
+export const emberFits = (height: number, cell: number): boolean => height >= cell * 0.7;

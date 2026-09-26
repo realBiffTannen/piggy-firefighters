@@ -400,6 +400,8 @@
 			const showCard = () => {
 				phase = 'card';
 				phaseT = 0;
+				// the card's own painting carries the Chief: the plate rig steps off so there is never a second one
+				plateTier = 0;
 				const texture = tex(portrait ? 'maxwin_card_portrait' : 'maxwin_card_landscape');
 				card.texture = texture;
 				const cs = context.stateLayoutDerived.canvasSizes();
