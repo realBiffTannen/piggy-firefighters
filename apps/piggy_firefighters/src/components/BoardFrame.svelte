@@ -27,6 +27,7 @@
 	import { stateScene } from '../game/fx/stateScene.svelte';
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
 	import { BOARD_FRAME, cellFrame } from '../game/artMeta';
+	import { qv } from '../game/quality.svelte';
 
 	const context = getContext();
 	const app = getContextApp();
@@ -246,14 +247,26 @@
 </script>
 
 <Container x={bl().x} y={bl().y} scale={bl().zoomScale} pivot={{ x: W / 2, y: H / 2 }}>
-	<!-- soft contact shadow so the board sits IN the world instead of on top of it -->
+	<!-- soft contact shadow so the board sits IN the world instead of on top of it. Drawn ONCE into a texture (SHD-06,
+	     Pixi 8 cacheAsTexture): five stacked translucent quads were ~2.5 Mpx of blended overdraw on every frame of the
+	     session for a still picture. The draw only re-runs on a layout change, where the cache is rebuilt; 'low' keeps a
+	     single layer. The shadow is soft, so mid / low cache it at half density. -->
 	<Graphics
 		draw={(g) => {
 			const p = sl.post * S;
-			for (let i = 0; i < 5; i += 1) {
-				const grow = p * (0.5 + i * 0.22);
-				g.roundRect(-grow, -grow * 0.6 + p * 0.5, W + 2 * grow, H + 2 * grow * 0.8, p * 1.2).fill({ color: 0x0e0806, alpha: 0.06 });
+			if (g.isCachedAsTexture) g.cacheAsTexture(false);
+			const layers = qv({ high: 5, mid: 5, low: 1 });
+			if (layers === 1) {
+				const grow = p * 0.94;
+				g.roundRect(-grow, -grow * 0.6 + p * 0.5, W + 2 * grow, H + 2 * grow * 0.8, p * 1.2).fill({ color: 0x0e0806, alpha: 0.18 });
+			} else {
+				for (let i = 0; i < layers; i += 1) {
+					const grow = p * (0.5 + i * 0.22);
+					g.roundRect(-grow, -grow * 0.6 + p * 0.5, W + 2 * grow, H + 2 * grow * 0.8, p * 1.2).fill({ color: 0x0e0806, alpha: 0.06 });
+				}
 			}
+			const res = app.stateApp.pixiApplication?.renderer.resolution ?? 1;
+			g.cacheAsTexture({ resolution: Math.max(0.25, res * qv({ high: 1, mid: 0.5, low: 0.5 })) });
 		}}
 	/>
 

@@ -11,10 +11,12 @@ import { CUES } from '../audio/cueManifest';
 import type { BonusKind } from '../typesBookEvent';
 
 const firstCue = (...ids: string[]): string | null => ids.find((id) => id in CUES) ?? null;
-/** The `_turbo` variant while a turbo speed is on, when the audio lane shipped one (docs/AUDIO_MAP.md). */
+/** The `_turbo` variant while a turbo speed is on, when the audio lane shipped one (docs/AUDIO_MAP.md) AND it is
+ *  decoded (the variants decode on the first turbo; the base cue plays until then, never a dropped one). */
 const turbo = (id: string): string => {
 	try {
-		return audioManager.turboLevel >= 1 && `${id}_turbo` in CUES ? `${id}_turbo` : id;
+		const t = `${id}_turbo`;
+		return audioManager.turboLevel >= 1 && t in CUES && audioManager.isDecoded(t) ? t : id;
 	} catch {
 		return id;
 	}
@@ -33,6 +35,9 @@ export type AudioDirector = {
 	shutterSlam: () => void;
 	/** One of the three hauls as the door rattles back up (1..3). */
 	shutterHaul: (n: number) => void;
+	/** The bonus is KNOWN (the book event that names it, a buy, an Alarm Call outcome): decode its bed + flourish now,
+	 *  ahead of the shutter, so `bonusIntro` finds them ready. Idempotent; the intro still awaits them as a fallback. */
+	prepareBonus?: (bonus: BonusKind) => void;
 	/** Covered transition into Rescue Spins / Inferno Rescue (bed + entry flourish). */
 	bonusIntro: (bonus: BonusKind) => void;
 	/** Back to Station 13. */
@@ -82,6 +87,13 @@ export const audioDirector: AudioDirector = {
 		play(undefined, turbo('shutter_slam'));
 	},
 	shutterHaul: (n) => play({ family: 'shutter', coalesceMs: 60 }, turbo(`shutter_haul_${Math.min(3, Math.max(1, n))}`)),
+	prepareBonus: (bonus) => {
+		try {
+			presentationDirector.prepareBonus(bonus);
+		} catch {
+			/* no audio */
+		}
+	},
 	bonusIntro: (bonus) => {
 		try {
 			void presentationDirector.bonusIntro(bonus);
@@ -133,6 +145,8 @@ export const audioDirector: AudioDirector = {
 		play(undefined, turbo('alarm_card_flip'));
 		const id = outcome === 'falseAlarm' ? 'alarm_outcome_false' : outcome === 'inferno' ? 'alarm_outcome_inferno' : 'alarm_outcome_rescue';
 		setTimeout(() => play(undefined, turbo(id)), 160);
+		// the card names the bonus well before its shutter: its bed + flourish decode now
+		if (outcome === 'inferno' || outcome === 'rescue') audioDirector.prepareBonus?.(outcome);
 	},
 	blastStart: () => play({ family: 'blast', coalesceMs: 400 }, turbo('backdraft_whoosh')),
 	blastImpact: () => play({ family: 'blast', coalesceMs: 120 }, turbo('shutter_slam')),

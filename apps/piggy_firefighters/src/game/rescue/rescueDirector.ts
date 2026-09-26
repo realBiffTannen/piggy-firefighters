@@ -32,6 +32,7 @@ import { roundStakeOf } from '../roundStake';
 import { gameSound } from '../audio';
 import { animBeats } from '../fx/animBeats';
 import { rescuedSkin } from '../anim/rigLogic';
+import { ensureFeatureAssets } from '../lazyAssets';
 import type { BookEvent, BookEventOfType, Cell } from '../typesBookEvent';
 import type { Position } from '../types';
 import type { EmitterEventShutter } from '../../components/scene/SceneShutter.svelte';
@@ -45,6 +46,10 @@ const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve,
 const beat = (ms: number) => sleep(hold(ms) * (stateRescue.skip ? 0.25 : 1));
 /** Autoplay / turbo rounds never wait long on a card. */
 const cardWaitMs = () => (stateXstateDerived.isAutoBetting() || stateBet.isTurbo ? 1400 : 6000);
+/** Feature art and rigs arrive lazily (game/lazyAssets.ts, usually warmed long before a feature books). A director
+ *  waits on them at most this long: a stalled network degrades the picture to its fallbacks, never hangs the round. */
+const ASSET_BOUND_MS = 20000;
+const assetsReady = (kind: Parameters<typeof ensureFeatureAssets>[0]) => Promise.race([ensureFeatureAssets(kind), sleep(ASSET_BOUND_MS)]);
 
 // ---- cards (shown on the shutter, dismissed by a press or by time) ---------------------------------------------------
 let cardResolve: (() => void) | null = null;
@@ -194,8 +199,13 @@ export const rescueStart = async (e: Ev<'rescueStart'>) => {
 	cardExpected = true;
 	pendingDismiss = false;
 	endStats = null;
+	// the intro card's painting and its presenter (pf_rookie) ride on the door: resident before it drops
+	await assetsReady('alarm');
 	await shutter({ type: 'shutterClose', card: intro });
 	// ---- under cover: the block rolls in -----------------------------------------------------------------------------
+	// the Rescue block, the Trotters' rig (pf_rescued) and this orientation's rescue / inferno plate, uploaded while the
+	// door is shut, so the reveal draws nothing that is not already on the GPU
+	await assetsReady('rescue');
 	stateRescue.bonus = e.bonus;
 	stateRescue.source = e.source;
 	stateRescue.rooms = e.rooms.map((room) => ({ reel: room.reel, fire: room.fire, start: room.fire, rescued: room.fire <= 0, sprayed: 0 }));
@@ -367,6 +377,8 @@ const leaveRescue = () => {
 // ---- Alarm Call ------------------------------------------------------------------------------------------------------
 export const alarmCall = async (e: Ev<'alarmCall'>) => {
 	parkReels();
+	// the dispatch card's painting and Sprocket's rig, before the card rings (game/lazyAssets.ts 'alarm')
+	await assetsReady('alarm');
 	stateAlarmCall.outcome = e.outcome;
 	stateAlarmCall.phase = 'ringing';
 	stateAlarmCall.active = true;
@@ -382,6 +394,8 @@ export const alarmCall = async (e: Ev<'alarmCall'>) => {
 
 // ---- Backdraft Spins ---------------------------------------------------------------------------------------------------
 export const backdraftSpinsStart = async (e: Ev<'backdraftSpinsStart'>) => {
+	// the bay-door-blown-open plate for this orientation, before the mood flips and the background cross-fades to it
+	await assetsReady('backdraft');
 	stateBackdraftSpins.spins = e.spins;
 	stateBackdraftSpins.spinsLeft = e.spins;
 	stateBackdraftSpins.total = 0;

@@ -17,15 +17,28 @@
  * Every literal cue id in this file exists in `cueManifest.ts` CUES (checked by
  * qa/gate/check_cue_ids.mjs). `game/fx/audioDirector.ts` is the feature seam.
  */
-import { audioManager } from './audioManager';
+import { audioManager, HOT_SET } from './audioManager';
 import { presentationDirector } from './presentationDirector';
 import { CUES } from './cueManifest';
 import type { Sfx } from '@crashgalaxy/hud';
 import type { WinTier } from '../roundTier';
 
-export { audioManager } from './audioManager';
+export { audioManager, HOT_SET } from './audioManager';
 export { presentationDirector } from './presentationDirector';
 export type { PresentationState } from './presentationDirector';
+
+/**
+ * Cues the manifest carries that NO src file references (2026-09-25 grep of src/, excluding the manifest: no literal,
+ * no `${...}` template can produce them). They are never fetched and never decoded (336 KB of m4a, ~6.3 MB of PCM a
+ * session paid for at every boot). Re-grep before editing this list; the manager asserts every id exists in DEV.
+ */
+const UNREFERENCED_CUES: readonly string[] = [
+	'buy_confirm', 'room_down', 'prize_coins_big', 'block_slide', 'dog_bark',
+	'blaze_mult_2', 'blaze_mult_3', 'blaze_mult_5', 'blaze_mult_10',
+	'room_down_turbo', 'prize_coins_big_turbo', 'block_slide_turbo', 'dog_bark_turbo',
+	'blaze_mult_2_turbo', 'blaze_mult_3_turbo', 'blaze_mult_5_turbo', 'blaze_mult_10_turbo',
+];
+audioManager.neverLoad(UNREFERENCED_CUES);
 
 /** The HUD's `Sfx` port — the burger sliders + mute talk to the manager. */
 export const gameAudioSfx: Sfx = audioManager;
@@ -40,16 +53,45 @@ export function unlockAudio(): void {
 	presentationDirector.watchBase();
 }
 
-/** Start downloading every short cue while the splash is still up (no gesture needed to FETCH), so
- *  the unlock gesture only has decoding left to do. Idempotent. */
+/**
+ * Start downloading the audio a session needs, in two stages, so the unlock gesture only has decoding left to do:
+ *   1. at mount (the splash is up; no gesture is needed to FETCH): the base bed + the hot set — 48 requests, ~3.2 MB
+ *      of m4a — everything a first spin can ask for. It used to be all 223 short cues (6.4 MB, 58% of the boot
+ *      requests) competing with the textures the splash was waiting for.
+ *   2. once the splash shutter is DONE (`html[data-splash-shutter="done"]`, watched here with a MutationObserver so
+ *      no component has to call back): the cold set in chains of 8 requests with idle gaps, and the manager's
+ *      background decode is released at the same moment. Turbo variants are fetched on the first turbo, unreferenced
+ *      cues never.
+ * Idempotent: the manager's decode simply awaits whatever fetch is already in flight.
+ */
+let stage2Armed = false;
 export function prefetchGameAudio(): void {
-	audioManager.prefetch(['base_loop_a', ...audioManager.shortCueIds()]);
+	audioManager.prefetch(['base_loop_a', ...HOT_SET]);
+	if (stage2Armed || typeof document === 'undefined') return;
+	stage2Armed = true;
+	const html = document.documentElement;
+	let observer: MutationObserver | undefined;
+	let started = false;
+	const start = () => {
+		if (started) return;
+		started = true;
+		observer?.disconnect();
+		void audioManager.prefetchPaced(audioManager.coldCueIds(), 8);
+		audioManager.openColdGate();
+	};
+	if (html.dataset.splashShutter === 'done') return start();
+	if (typeof MutationObserver === 'undefined') return;
+	observer = new MutationObserver(() => {
+		if (html.dataset.splashShutter === 'done') start();
+	});
+	observer.observe(html, { attributes: true, attributeFilter: ['data-splash-shutter'] });
 }
 
-/** The `_turbo` variant of a cue while a turbo speed is on (docs/AUDIO_MAP.md), when the audio lane shipped one. */
+/** The `_turbo` variant of a cue while a turbo speed is on (docs/AUDIO_MAP.md), when the audio lane shipped one AND
+ *  it is decoded (the variants are decoded on the first turbo; until then the base cue plays, never a dropped one). */
 const turboCue = (id: string): string => {
 	const t = `${id}_turbo`;
-	return audioManager.turboLevel >= 1 && audioManager.hasCue(t) ? t : id;
+	return audioManager.turboLevel >= 1 && audioManager.hasCue(t) && audioManager.isDecoded(t) ? t : id;
 };
 
 /**
@@ -87,6 +129,9 @@ const alarmLane = (fire: () => void, gapMs = ALARM_STAGGER_MS): void => {
 /** The trigger fanfare plays ONCE per round: at the landing of the alarm that reaches the trigger, or (a resumed
  *  round, which replays from `freeSpinTrigger` without its reveal) at the trigger ring. Re-armed by reelsStart(). */
 let fanfarePlayed = false;
+/** A GOLDEN ALARM landed this spin: the trigger routes to Inferno Rescue (contract §4), so the fanfare prepares that
+ *  bed. Reset by reelsStart(). */
+let galarmSeen = false;
 
 export const gameSound = {
 	/** Spin button / spacebar. (The HUD also routes its own press through the
@@ -106,12 +151,10 @@ export const gameSound = {
 	/** Reel-stop ladder: reel 0..4 → reel_stop_1..5 (rising); one short stop in turbo. */
 	reelStop(reelIndex: number): void {
 		const rung = Math.min(5, Math.max(1, Math.round(reelIndex) + 1));
-		if (audioManager.turboLevel >= 2) {
-			audioManager.playCue('reel_stop_turbo', { family: 'reel', coalesceMs: 260 });
-			return;
-		}
 		if (audioManager.turboLevel >= 1) {
-			audioManager.playCue('reel_stop_turbo', { family: 'reel', coalesceMs: 15 });
+			// the short stop is decoded on the first turbo; the rung plays until it is (never a dropped first stop)
+			const fast = audioManager.isDecoded('reel_stop_turbo') ? 'reel_stop_turbo' : `reel_stop_${rung}`;
+			audioManager.playCue(fast, { family: 'reel', coalesceMs: audioManager.turboLevel >= 2 ? 260 : 15 });
 			return;
 		}
 		audioManager.playCue(`reel_stop_${rung}`, { family: 'reel', coalesceMs: 15 });
@@ -127,6 +170,9 @@ export const gameSound = {
 	/** A GOLDEN ALARM lands: it is an alarm in every way (its ladder rung, in the same lane so a mixed group climbs in
 	 *  order), plus the gold glint on its shine. */
 	galarmLand(count = 1): void {
+		galarmSeen = true;
+		// a golden alarm after the trigger was already in flips the destination to Inferno: prepare that bed now
+		if (fanfarePlayed) presentationDirector.prepareBonus('inferno');
 		this.alarmLand(count);
 		setTimeout(() => {
 			try {
@@ -141,6 +187,9 @@ export const gameSound = {
 	triggerFanfare(): void {
 		if (fanfarePlayed) return;
 		fanfarePlayed = true;
+		// the earliest honest signal of the bonus (>= 2.5 s before its shutter): decode its bed + flourish now, so
+		// bonusIntro's own await finds them ready instead of landing the entry late on a slow phone
+		presentationDirector.prepareBonus(galarmSeen ? 'inferno' : 'rescue');
 		alarmLane(() => {
 			// the bed ducks for the fanfare's authored length (cueManifest durationMs, never a typed number)
 			const id = turboCue('trigger_fanfare');
@@ -152,6 +201,7 @@ export const gameSound = {
 	 *  round is shorter than the loop's fade. */
 	reelsStart(superTurbo = false): void {
 		fanfarePlayed = false;
+		galarmSeen = false;
 		// The HUD only sounds the press for a button click; a Space / autoplay round starts here. Both
 		// paths may fire — the cues' 300 ms cooldown keeps it to one lever pull.
 		audioManager.playCue(turboCue('spin_start'));

@@ -169,11 +169,19 @@
 </script>
 
 <MainContainer>
+	<!-- SP-6: the mascot skeletons exist only while there is a gutter or ground band to stand in. A stacked layout whose
+	     band is too short (slots.visible false) used to keep both rigs mounted and ticking inside a hidden container; now
+	     nothing is instantiated for it. RigStage's ondispose clears the chief handle / nozzle tip on the way out and the
+	     Rescue scene keeps its own hose while chiefOnStage is false (the effect above already tracks slots.visible). -->
 	<Container x={slots.left.x} y={slots.left.y} visible={slots.visible}>
-		<RigStage {...{ slot: 'mascotLeft' as const }} width={slots.left.w} height={slots.left.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} onrigEvent={onRigEvent} onready={onReady} ondispose={onDispose} />
+		{#if slots.visible}
+			<RigStage {...{ slot: 'mascotLeft' as const }} width={slots.left.w} height={slots.left.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} onrigEvent={onRigEvent} onready={onReady} ondispose={onDispose} />
+		{/if}
 	</Container>
 	<Container x={slots.right.x} y={slots.right.y} visible={slots.visible}>
-		<RigStage {...{ slot: 'mascotRight' as const }} width={slots.right.w} height={slots.right.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} />
+		{#if slots.visible}
+			<RigStage {...{ slot: 'mascotRight' as const }} width={slots.right.w} height={slots.right.h} scale={slots.scale} layout={slots.layout} reducedMotion={reduced} {speedTier} />
+		{/if}
 	</Container>
 	<!-- the runtime-owned sign_hit plate, over both slots -->
 	<Container>

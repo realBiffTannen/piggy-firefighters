@@ -4,6 +4,7 @@
 	import { fountain as baseConfig } from 'constants-shared/particleConfig';
 
 	import { getContext } from '../game/context';
+	import { qv } from '../game/quality.svelte';
 
 	type Props = {
 		emit?: boolean;
@@ -18,7 +19,8 @@
 		...baseConfig,
 		scale: { start: 0.85, end: 1.05, minimumScaleMultiplier: 0.8 },
 		frequency: 0.11,
-		maxParticles: 60,
+		// 60 on 'high' (unchanged); the mid / low quality tiers carry fewer coins (game/quality.svelte)
+		maxParticles: qv({ high: 60, mid: 30, low: 16 }),
 		lifetime: { min: 3.2, max: 3.8 },
 	};
 </script>

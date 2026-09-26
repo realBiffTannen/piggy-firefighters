@@ -39,6 +39,8 @@
 	import { speedFactor } from '../game/stateSpeed.svelte';
 	import { boardTicker } from '../game/reels/boardTicker';
 	import { boardLife } from '../game/reels/boardLife';
+	import { qv } from '../game/quality.svelte';
+	import { ensureSymbolSet } from '../game/lazyAssets';
 
 	type Props = {
 		x?: number;
@@ -67,7 +69,7 @@
 	const IDLE_FIRST_MS = [700, 4200]; // the board comes alive soon after it settles ...
 	const IDLE_EVERY_MS = [3000, 7000]; // ... then each symbol reacts every 3–7 s
 	const IDLE_MIN_GAP_MS = 240; // no two reactions start together
-	const IDLE_MAX_ACTIVE = 3; // of 15 symbols: alive, not fidgeting
+	const idleMaxActive = () => qv({ high: 3, mid: 2, low: 1 }); // of 15 symbols: alive, not fidgeting (fewer on a weak device)
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const tex = (key: string | undefined): PIXI.Texture | undefined =>
@@ -93,7 +95,9 @@
 	// wide (stateGame ROW_PITCH_STACKED); this sprite's own container counter-scales by 1/pitch
 	// so the art is never distorted, and the win frame is drawn `pitch` tall to cover the cell.
 	const context = getContext();
-	const pitch = $derived(context.stateGameDerived.sceneLayout().rowPitch);
+	// one layout read for the whole component (rowPitch here, stacked in the art effect)
+	const sl = $derived(context.stateGameDerived.sceneLayout());
+	const pitch = $derived(sl.rowPitch);
 	let pitchNow = 1;
 	$effect(() => {
 		pitchNow = pitch;
@@ -284,7 +288,7 @@
 				return;
 			}
 			if (now < nextIdleAt) return;
-			if (now - boardLife.lastIdleStart < IDLE_MIN_GAP_MS || boardLife.idleActive >= IDLE_MAX_ACTIVE) {
+			if (now - boardLife.lastIdleStart < IDLE_MIN_GAP_MS || boardLife.idleActive >= idleMaxActive()) {
 				nextIdleAt = now + IDLE_MIN_GAP_MS + Math.random() * 500;
 				return;
 			}
@@ -317,23 +321,39 @@
 		const w = SYMBOL_SIZE * props.symbolInfo.sizeRatios.width;
 		const h = SYMBOL_SIZE * props.symbolInfo.sizeRatios.height;
 		const name = props.symbolName ?? '';
-		// stacked layouts show the 1:1.3 portrait tile (`symT_*`, the art lane's tall sheet; game/assets.ts)
-		const tallKey = context.stateGameDerived.sceneLayout().stacked ? key.replace(/^sym_/, 'symT_') : '';
+		// stacked layouts show the 1:1.3 portrait tile (`symT_*`, the art lane's tall sheet; game/assets.ts). Only the
+		// boot layout's sheet is guaranteed resident: the other one is fetched on the first layout flip
+		// (game/lazyAssets.ts ensureSymbolSet) and, until it lands, the sheet that IS here stands in — symmetric, so a
+		// cell is never left without a texture. The primary key is read TRACKED: the effect re-runs when its sheet lands.
+		const stacked = sl.stacked;
+		const tallKey = key.replace(/^sym_/, 'symT_');
+		const primaryKey = stacked ? tallKey : key;
+		const otherKey = stacked ? key : tallKey;
+		const primary = (app.stateApp.loadedAssets as any)?.[primaryKey] as PIXI.Texture | undefined;
+		if (!primary) void ensureSymbolSet(stacked ? 'symT' : 'sym');
 		const rowPitch = pitch;
 		untrack(() => {
 			if (!sprite) return;
-			const tall = tallKey ? tex(tallKey) : undefined;
+			const chosen = primary ?? tex(otherKey);
+			// the tile on show is the tall one: the layout's own on stacked, the stand-in on a wide layout
+			const chosenTall = chosen ? (primary ? stacked : !stacked) : false;
 			baseW = w;
-			texA = tall ?? tex(key);
-			// a tall tile keeps its own aspect, never taller than the cell it stands in
-			baseH = tall ? h * Math.min(rowPitch, tall.height / Math.max(1, tall.width)) : h;
+			baseH = h;
+			if (chosen && chosenTall) {
+				const aspect = chosen.height / Math.max(1, chosen.width);
+				// a tall tile keeps its own aspect, never taller than the cell it stands in ...
+				if (stacked) baseH = h * Math.min(rowPitch, aspect);
+				// ... and in a square cell (the transient stand-in) it is fitted, never squashed
+				else baseW = Math.min(w, h / Math.max(0.01, aspect));
+			}
+			texA = chosen;
 			// the pose-B key frame from the SAME sheet as pose A (both tiles share one size, so the cut never resizes)
-			texB = tex(poseBKey(name, !!tall));
+			texB = tex(poseBKey(name, chosenTall));
 			isGolden = name === 'GALARM';
 			shownPose = 0;
 			sprite.texture = texA ?? PIXI.Texture.EMPTY;
 			fit(sprite, baseW, baseH);
-			if (flash && (name !== 'W' || tall)) {
+			if (flash && (name !== 'W' || chosenTall)) {
 				const signTex = flash.texture;
 				flash.destroy();
 				signTex.destroy(false); // the sub-frame only; the symbol art it points into stays

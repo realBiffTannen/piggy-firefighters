@@ -1,11 +1,9 @@
-import _ from 'lodash';
-
 import { stateBet } from 'state-shared';
 import { createPrimaryMachines, createIntermediateMachines, createGameActor } from 'utils-xstate';
 
 import type { Bet } from './typesBookEvent';
 import { stateXstateDerived } from './stateXstate';
-import { playBet, convertTorResumableBet, isFeatureRound } from './utils';
+import { playBet, convertTorResumableBet, isFeatureRound, findLast } from './utils';
 import { stateGameDerived } from './stateGame.svelte';
 import { teardownFeature } from './rescue/rescueDirector';
 import { gameSound } from './audio';
@@ -14,7 +12,7 @@ import { isSuperTurbo } from './stateSpeed.svelte';
 const primaryMachines = createPrimaryMachines<Bet>({
 	onResumeGameActive: (betToResume) => convertTorResumableBet(betToResume),
 	onResumeGameInactive: (betToResume) => {
-		const lastRevealEvent = _.findLast(
+		const lastRevealEvent = findLast(
 			betToResume.state,
 			(emitterEvent) => emitterEvent?.type === 'reveal',
 		);

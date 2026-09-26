@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import type { Tween } from 'svelte/motion';
 
 import { hudReservedHeight } from '@crashgalaxy/hud';
@@ -9,7 +8,7 @@ import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
 import { gameSound } from './audio';
 import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMBOL_STATE, TRIGGER_ALARMS } from './constants';
-import { createSpinReel, createSpinBoard, setPaddingSource } from './reels/spinReels.svelte';
+import { createSpinReel, createSpinBoard, setPaddingSource, type SpinReel } from './reels/spinReels.svelte';
 import { stateRescue, stateBackdraftSpins } from './rescue/stateRescue.svelte';
 import { anticipationCamera } from './reels/anticipationCamera.svelte';
 import { animBeats } from './fx/animBeats';
@@ -36,21 +35,27 @@ const onSymbolLand = ({ rawSymbol, reelIndex, row }: { rawSymbol: RawSymbol; ree
 // TRUE SPINNING REELS (game/reels/spinReels.svelte.ts): each column is a continuous strip with baked
 // motion blur; the window is never empty. Speed tiers, slam-stop, anticipation and reduced motion all
 // live in the reel model; this file only wires the callbacks and their sounds.
-const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) =>
-	createSpinReel({
-		reelIndex,
-		initialSymbols: INITIAL_BOARD[reelIndex],
-		initialSymbolState: INITIAL_SYMBOL_STATE,
-		onReelStopping: () => {
-			// 5-rung reel-stop ladder: each reel stops on its own rising rung (reel 0 -> reel_stop_1 ...); alarms and the
-			// WILD announce themselves on their own (onSymbolLand)
-			gameSound.reelStop(reelIndex);
-			// rig beat: the reel lands (the book's symbols are already in the column, top -> bottom)
-			animBeats.emit({ beat: 'reelStop', reel: reelIndex, symbols: board[reelIndex].reelState.symbols.slice(1, 1 + BOARD_DIMENSIONS.y).map((s) => s.rawSymbol.name) });
-		},
-		onSymbolLand,
-	}),
-);
+// A plain loop, NOT `Array.from({ length }, cb)`: Rollup models Array.from as a pure builtin and does not treat the
+// callback's return values as escaping, so it constant-folded the reels' `rt.resolved` / `rt.planned` literals into
+// dead branches (`finish()` compiled to `() => {}` and no round could end) in the production build only.
+const board: SpinReel[] = [];
+for (let reelIndex = 0; reelIndex < BOARD_DIMENSIONS.x; reelIndex += 1) {
+	board.push(
+		createSpinReel({
+			reelIndex,
+			initialSymbols: INITIAL_BOARD[reelIndex],
+			initialSymbolState: INITIAL_SYMBOL_STATE,
+			onReelStopping: () => {
+				// 5-rung reel-stop ladder: each reel stops on its own rising rung (reel 0 -> reel_stop_1 ...); alarms and the
+				// WILD announce themselves on their own (onSymbolLand)
+				gameSound.reelStop(reelIndex);
+				// rig beat: the reel lands (the book's symbols are already in the column, top -> bottom)
+				animBeats.emit({ beat: 'reelStop', reel: reelIndex, symbols: board[reelIndex].reelState.symbols.slice(1, 1 + BOARD_DIMENSIONS.y).map((s) => s.rawSymbol.name) });
+			},
+			onSymbolLand,
+		}),
+	);
+}
 
 /** The raw (non-proxied) reels: what per-frame code reads (components/reels/ReelStrips.svelte). */
 export const spinReels = board;
@@ -172,7 +177,7 @@ export const BUILDING_BAND_CELLS = Math.round(((RESCUE_ART.facade.h - RESCUE_ART
 
 export type SceneLayout = ReturnType<typeof sceneLayout>;
 
-const sceneLayout = () => {
+const computeSceneLayout = () => {
 	const main = stateLayoutDerived.mainLayout();
 	const cs = stateLayoutDerived.canvasSizes();
 	const type = stateLayoutDerived.layoutType();
@@ -262,30 +267,46 @@ const sceneLayout = () => {
 	};
 };
 
-const boardLayout = () => {
+// Memoised once per dependency change (viewport / layout type — the HUD reserve is a pure function of the canvas
+// size —, the measured ante chip, the feature bands). ~43 call sites and the 50 SymbolSprite deriveds read it; before
+// the memo every read recomputed the whole tree. The accessor keeps the API of the plain function it replaces.
+const sceneLayoutMemo = $derived.by(computeSceneLayout);
+const sceneLayout = () => sceneLayoutMemo;
+
+// The zoom-free board transform: invalidated with the scene layout only.
+const boardLayoutBase = $derived.by(() => {
 	const main = stateLayoutDerived.mainLayout();
-	const sl = sceneLayout();
+	const sl = sceneLayoutMemo;
 	const scale = sl.cell / (SYMBOL_SIZE * sl.mainScale);
 	return {
 		x: main.width / 2,
 		y: sl.toMainY(sl.reel.y + sl.reel.height / 2),
 		// uniform: what overlays laid out in SCREEN terms (win signs, the bonus scene) use
 		scale,
-		// The SAME transforms with the anticipation camera push applied. Everything that DRAWS the
-		// board reads these; `scale` / `scaleXY` above stay the layout truth so the HUD chip
-		// collision and the bonus scene never breathe with the push.
-		zoomScale: scale * anticipationCamera.zoom,
 		// the board's own transform: rows are `rowPitch` taller than they are wide (see
 		// ROW_PITCH_STACKED). Everything laid out in square SYMBOL_SIZE units inside
 		// BoardContainer / the board-unit overlays lands on the right cell through this.
 		scaleXY: { x: scale, y: scale * sl.rowPitch },
-		zoomScaleXY: { x: scale * anticipationCamera.zoom, y: scale * sl.rowPitch * anticipationCamera.zoom },
 		rowPitch: sl.rowPitch,
 		anchor: { x: 0.5, y: 0.5 },
 		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
 		...BOARD_SIZES,
 	};
-};
+});
+
+// The SAME transforms with the anticipation camera push applied. Everything that DRAWS the board reads these;
+// `scale` / `scaleXY` above stay the layout truth so the HUD chip collision and the bonus scene never breathe with
+// the push. The push writes `anticipationCamera.zoom` at 60 Hz during a hold: only these three numbers recompute.
+const boardLayoutMemo = $derived.by(() => {
+	const base = boardLayoutBase;
+	const zoom = anticipationCamera.zoom;
+	return {
+		...base,
+		zoomScale: base.scale * zoom,
+		zoomScaleXY: { x: base.scale * zoom, y: base.scaleXY.y * zoom },
+	};
+});
+const boardLayout = () => boardLayoutMemo;
 
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));

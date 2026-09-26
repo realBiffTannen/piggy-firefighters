@@ -3,6 +3,11 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<!-- resource hints: the two web fonts the splash and the HUD set in, and the splash wordmark, start downloading
+		     with the document instead of after the bundle has parsed and mounted the splash -->
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="%sveltekit.assets%/assets/fonts/InterVariable.woff2" />
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="%sveltekit.assets%/assets/fonts/AlfaSlabOne-Regular.woff2" />
+		<link rel="preload" as="image" href="%sveltekit.assets%/assets/branding/wordmark.png" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"

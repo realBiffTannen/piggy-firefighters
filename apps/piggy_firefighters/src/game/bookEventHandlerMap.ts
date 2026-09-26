@@ -1,11 +1,9 @@
-import _ from 'lodash';
-
 import { recordBookEvent, checkIsMultipleRevealEvents, type BookEventHandlerMap } from 'utils-book';
 import { stateBet } from 'state-shared';
 import { sequence } from 'utils-shared/sequence';
 
 import { eventEmitter } from './eventEmitter';
-import { playBookEvent } from './utils';
+import { playBookEvent, findLast } from './utils';
 import { winLevelMap } from './winLevelMap';
 import { stateGame, stateGameDerived } from './stateGame.svelte';
 import { gameSound } from './audio';
@@ -208,7 +206,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const { bookEvents } = bookEvent;
 
 		function findLastBookEvent<T>(type: T) {
-			return _.findLast(bookEvents, (bookEvent) => bookEvent.type === type) as BookEventOfType<T> | undefined;
+			return findLast(bookEvents, (bookEvent) => bookEvent.type === type) as BookEventOfType<T> | undefined;
 		}
 
 		// A resume inside a bonus is rewound to its start event (game/utils.ts). Restored ahead of the remaining events:
@@ -220,7 +218,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			try {
 				stateGameDerived.enhancedBoard.settle(lastReveal.board);
 				stateGame.gameType = lastReveal.gameType;
-				const backdraft = _.findLast(bookEvents, (e) => e.type === 'backdraft' && e.index > lastReveal.index) as BookEventOfType<'backdraft'> | undefined;
+				const backdraft = findLast(bookEvents, (e) => e.type === 'backdraft' && e.index > lastReveal.index) as BookEventOfType<'backdraft'> | undefined;
 				backdraft?.cells.forEach(rescueDirector.igniteCell);
 			} catch {
 				/* the board is presentation only */

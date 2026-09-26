@@ -1,77 +1,22 @@
-<script lang="ts">
-	// REEL ANTICIPATION — "the alarm is ringing" (contract §4: after 2 alarms have landed with reels still
-	// to stop, the remaining reels slow with the tension cue; never on a spin that cannot trigger).
-	//
-	// When a reel is held for a possible 3rd alarm the whole column is framed in the SAME gold frame a
-	// winning symbol wears (`win_cell_frame` = static/assets/ui_scene/cell_frame_win.webp, geometry from
-	// cells.meta.json through game/artMeta.ts; see components/SymbolSprite.svelte `ensureWinDressing`): one border
-	// language for "this matters".
-	// The frame is a nine-slice so the corners keep the size they have on a single cell while the bars
-	// stretch over three rows. Under it: a warm alarm-light wash over the symbols and embers rising up
-	// the column (procedural dressing over the delivered frame). The longer the reel holds, the hotter the frame and the brighter the wash, and the
-	// board itself pushes in (game/reels/anticipationCamera.svelte.ts). When the reel stops it resolves
-	// honestly: a gold flash if the bonus was actually reached, a quick neutral fade if not — nothing
-	// here ever hints at an outcome the book does not contain.
-	//
-	// Built imperatively on the live PIXI container (see scene/Grab.svelte) and driven from ONE ticker
-	// callback, so there are no 60 Hz reactive props. Reduced motion: a still frame, no sparks.
-	import { onMount } from 'svelte';
-	import { Container, PIXI, getContextApp } from 'pixi-svelte';
-
-	import Grab from './scene/Grab.svelte';
-	import { getContext } from '../game/context';
-	import { gameSound } from '../game/audio';
-	import type { Reel } from '../game/stateGame.svelte';
-	import { BOARD_SIZES, REEL_PADDING, SYMBOL_SIZE, TRIGGER_ALARMS } from '../game/constants';
-	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
-	import { sceneTex } from '../game/fx/sceneTextures.svelte';
-	import { cellFrame } from '../game/artMeta';
-	import { animBeats } from '../game/fx/animBeats';
-
-	type Props = {
-		reel: Reel;
-		oncomplete: () => void;
-	};
-
-	const props: Props = $props();
-	const context = getContext();
-	const app = getContextApp();
-
-	const AMBER = 0xffb81c;
-	const GOLD = 0xffd75a;
-	/** the frame at rest — white leaves the gold art its own colour; it heats toward AMBER on tension */
-	const FRAME_COOL = 0xffffff;
+<script lang="ts" module>
+	// SESSION-WIDE TEXTURES (FLT-05). The spark disc, the alarm-light wash and (mid / low tiers) the baked frame glow are
+	// canvases drawn ONCE for the whole session, on first use, and never destroyed: an anticipating reel used to bake
+	// and upload its own spark + wash pair on every mount (9-10 canvas uploads per spin with three held reels).
+	import { PIXI } from 'pixi-svelte';
+	import { SYMBOL_SIZE } from '../game/constants';
 
 	const COL_W = SYMBOL_SIZE;
 	const COL_H = SYMBOL_SIZE * 3;
 	const BORDER = SYMBOL_SIZE * 0.075;
 	const RADIUS = SYMBOL_SIZE * 0.1;
+	/** the glow ring grows past the frame by this much (the Graphics ring and the baked ring share it) */
+	const GLOW_GROW = SYMBOL_SIZE * 0.05;
 
-	/** cell_frame_win.webp: 384 square; the nine-slice corner block holds the bolt (cells.meta.json hole rect). */
-	const WIN_FRAME = cellFrame('win');
-	const FRAME_SRC = WIN_FRAME.w;
-	const FRAME_CORNER = WIN_FRAME.corner;
+	let sparkTex: PIXI.Texture | undefined;
+	let washTex: PIXI.Texture | undefined;
+	let glowTex: PIXI.Texture | undefined;
 
-	let root: PIXI.Container | undefined;
-	let stopped = false;
-	const alarmsAtStart = context.stateGame.scatterCounter;
-	// Snapshotted the instant THIS reel stops: the reveal handler zeroes the live counter moments later.
-	let alarmsAtStop = alarmsAtStart;
-	let laterReelAlive = false;
-
-	$effect(() => {
-		if (props.reel.reelState.motion === 'stopped' && !stopped) {
-			alarmsAtStop = context.stateGame.scatterCounter;
-			// is the chance still alive on a later reel? (still moving, or itself held). Also keeps a slam-stop,
-			// where several held reels stop together, from resolving once per reel.
-			laterReelAlive = context.stateGame.board.some(
-				(r) => r.reelIndex > props.reel.reelIndex && (r.reelState.motion !== 'stopped' || r.reelState.anticipating),
-			);
-			stopped = true;
-		}
-	});
-
-	// Soft round spark, also generated once.
+	// Soft round spark, generated once.
 	const makeSparkTexture = () => {
 		const size = 32;
 		const canvas = document.createElement('canvas');
@@ -102,6 +47,117 @@
 		return PIXI.Texture.from(canvas);
 	};
 
+	/** the baked glow is drawn at half scale (a blur needs no more) with this much room around the ring for the halo */
+	const GLOW_PAD = 40;
+	const GLOW_SCALE = 0.5;
+	const roundedRect = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) => {
+		ctx.moveTo(x + r, y);
+		ctx.arcTo(x + w, y, x + w, y + h, r);
+		ctx.arcTo(x + w, y + h, x, y + h, r);
+		ctx.arcTo(x, y + h, x, y, r);
+		ctx.arcTo(x, y, x + w, y, r);
+		ctx.closePath();
+	};
+	// The glow ring (the frame's outline, grown a little, with the inside cut out) pre-blurred: three shadow passes of
+	// decreasing radius stand in for the BlurFilter the 'high' tier keeps. Only the SHADOWS land on the canvas (the ring
+	// itself is drawn far off to the left and offset back), so the peak stays soft like a blurred ring, never a hard edge.
+	const makeGlowTexture = () => {
+		const canvas = document.createElement('canvas');
+		canvas.width = Math.ceil((COL_W + GLOW_PAD * 2) * GLOW_SCALE);
+		canvas.height = Math.ceil((COL_H + GLOW_PAD * 2) * GLOW_SCALE);
+		const ctx = canvas.getContext('2d')!;
+		const OFF = 4096; // user units; shadow offsets are in device px (unaffected by the transform)
+		ctx.scale(GLOW_SCALE, GLOW_SCALE);
+		ctx.translate(COL_W / 2 + GLOW_PAD, COL_H / 2 + GLOW_PAD);
+		ctx.fillStyle = '#ffffff';
+		ctx.shadowOffsetX = OFF * GLOW_SCALE;
+		for (const [blur, alpha] of [
+			[16, 0.42],
+			[8, 0.42],
+			[3, 0.5],
+		] as const) {
+			ctx.shadowBlur = blur;
+			ctx.shadowColor = `rgba(255,255,255,${alpha})`;
+			ctx.beginPath();
+			roundedRect(ctx, -OFF - COL_W / 2 - GLOW_GROW, -COL_H / 2 - GLOW_GROW, COL_W + GLOW_GROW * 2, COL_H + GLOW_GROW * 2, RADIUS + GLOW_GROW);
+			roundedRect(ctx, -OFF - COL_W / 2 + BORDER, -COL_H / 2 + BORDER, COL_W - BORDER * 2, COL_H - BORDER * 2, RADIUS * 0.6);
+			ctx.fill('evenodd');
+		}
+		return PIXI.Texture.from(canvas);
+	};
+</script>
+
+<script lang="ts">
+	// REEL ANTICIPATION — "the alarm is ringing" (contract §4: after 2 alarms have landed with reels still
+	// to stop, the remaining reels slow with the tension cue; never on a spin that cannot trigger).
+	//
+	// When a reel is held for a possible 3rd alarm the whole column is framed in the SAME gold frame a
+	// winning symbol wears (`win_cell_frame` = static/assets/ui_scene/cell_frame_win.webp, geometry from
+	// cells.meta.json through game/artMeta.ts; see components/SymbolSprite.svelte `ensureWinDressing`): one border
+	// language for "this matters".
+	// The frame is a nine-slice so the corners keep the size they have on a single cell while the bars
+	// stretch over three rows. Under it: a warm alarm-light wash over the symbols and embers rising up
+	// the column (procedural dressing over the delivered frame). The longer the reel holds, the hotter the frame and the brighter the wash, and the
+	// board itself pushes in (game/reels/anticipationCamera.svelte.ts). When the reel stops it resolves
+	// honestly: a gold flash if the bonus was actually reached, a quick neutral fade if not — nothing
+	// here ever hints at an outcome the book does not contain.
+	//
+	// Built imperatively on the live PIXI container (see scene/Grab.svelte) and driven from ONE ticker
+	// callback, so there are no 60 Hz reactive props. Reduced motion: a still frame, no sparks.
+	// Quality tiers (game/quality.svelte): 'high' is exactly the original; mid / low swap the blurred ring for the baked
+	// glow above and carry fewer sparks.
+	import { onMount } from 'svelte';
+	import { Container, getContextApp } from 'pixi-svelte';
+
+	import Grab from './scene/Grab.svelte';
+	import { getContext } from '../game/context';
+	import { gameSound } from '../game/audio';
+	import type { Reel } from '../game/stateGame.svelte';
+	import { BOARD_SIZES, REEL_PADDING, TRIGGER_ALARMS } from '../game/constants';
+	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
+	import { quality, qv } from '../game/quality.svelte';
+	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { cellFrame } from '../game/artMeta';
+	import { animBeats } from '../game/fx/animBeats';
+
+	type Props = {
+		reel: Reel;
+		oncomplete: () => void;
+	};
+
+	const props: Props = $props();
+	const context = getContext();
+	const app = getContextApp();
+
+	const AMBER = 0xffb81c;
+	const GOLD = 0xffd75a;
+	/** the frame at rest — white leaves the gold art its own colour; it heats toward AMBER on tension */
+	const FRAME_COOL = 0xffffff;
+
+	/** cell_frame_win.webp: 384 square; the nine-slice corner block holds the bolt (cells.meta.json hole rect). */
+	const WIN_FRAME = cellFrame('win');
+	const FRAME_SRC = WIN_FRAME.w;
+	const FRAME_CORNER = WIN_FRAME.corner;
+
+	let root: PIXI.Container | undefined;
+	let stopped = false;
+	const alarmsAtStart = context.stateGame.scatterCounter;
+	// Snapshotted the instant THIS reel stops: the reveal handler zeroes the live counter moments later.
+	let alarmsAtStop = alarmsAtStart;
+	let laterReelAlive = false;
+
+	$effect(() => {
+		if (props.reel.reelState.motion === 'stopped' && !stopped) {
+			alarmsAtStop = context.stateGame.scatterCounter;
+			// is the chance still alive on a later reel? (still moving, or itself held). Also keeps a slam-stop,
+			// where several held reels stop together, from resolving once per reel.
+			laterReelAlive = context.stateGame.board.some(
+				(r) => r.reelIndex > props.reel.reelIndex && (r.reelState.motion !== 'stopped' || r.reelState.anticipating),
+			);
+			stopped = true;
+		}
+	});
+
 	/** channel-wise blend of two packed RGB colours, `k` of `b` over `a`. */
 	const mixTint = (a: number, b: number, k: number) => {
 		const t = k < 0 ? 0 : k > 1 ? 1 : k;
@@ -121,12 +177,11 @@
 	onMount(() => {
 		if (!root) return;
 		const reduced = prefersReducedMotion();
-		const sparkTexture = makeSparkTexture();
+		const sparkTexture = (sparkTex ??= makeSparkTexture());
 
 		// alarm-light wash over the symbols: a warm light pooled at the foot of the column, fading up
 		// (a flat additive fill reads as grey fog on the navy cells)
-		const washTexture = makeWashTexture();
-		const wash = new PIXI.Sprite(washTexture);
+		const wash = new PIXI.Sprite((washTex ??= makeWashTexture()));
 		wash.anchor.set(0.5);
 		wash.width = COL_W - BORDER * 2;
 		wash.height = COL_H - BORDER * 2;
@@ -156,12 +211,25 @@
 			plate.tint = FRAME_COOL;
 		}
 
-		// outer glow that breathes with the wash
-		const glow = ringPath(new PIXI.Graphics(), SYMBOL_SIZE * 0.05);
+		// outer glow that breathes with the wash. 'high': the ring under a BlurFilter, exactly as before. mid / low: the
+		// same ring pre-blurred once into a session texture (FLT-05) — an additive sprite instead of four blur passes and
+		// a render-target round trip per held reel per frame, the costliest thing a base-game frame did on a tile GPU.
+		const bakedGlow = quality.tier !== 'high';
+		let glow: PIXI.Container;
+		if (bakedGlow) {
+			const sprite = new PIXI.Sprite((glowTex ??= makeGlowTexture()));
+			sprite.anchor.set(0.5);
+			glow = sprite;
+		} else {
+			const ring = ringPath(new PIXI.Graphics(), GLOW_GROW);
+			ring.filters = [new PIXI.BlurFilter({ strength: 10, quality: 2 })];
+			glow = ring;
+		}
+		const glowK = bakedGlow ? 1 / GLOW_SCALE : 1;
 		glow.tint = AMBER;
 		glow.blendMode = 'add';
 		glow.alpha = 0;
-		glow.filters = [new PIXI.BlurFilter({ strength: 10, quality: 2 })];
+		glow.scale.set(glowK);
 
 		// resolve flash
 		const flash = new PIXI.Graphics().roundRect(-COL_W / 2, -COL_H / 2, COL_W, COL_H, RADIUS).fill(GOLD);
@@ -175,7 +243,7 @@
 		type Spark = { sprite: PIXI.Sprite; vx: number; vy: number; life: number; max: number };
 		const pool: Spark[] = [];
 		if (!reduced) {
-			for (let i = 0; i < 16; i += 1) {
+			for (let i = 0, n = qv({ high: 16, mid: 8, low: 4 }); i < n; i += 1) {
 				const sprite = new PIXI.Sprite(sparkTexture);
 				sprite.anchor.set(0.5);
 				sprite.blendMode = 'add';
@@ -263,7 +331,7 @@
 			// the frame heats toward amber as the hold runs on, and breathes with the pulse
 			if (plate) plate.tint = mixTint(FRAME_COOL, AMBER, (0.25 + 0.4 * tension) * (0.55 + 0.45 * pulse));
 			glow.alpha = alpha * (0.35 + 0.35 * pulse + 0.2 * tension);
-			glow.scale.set(scale);
+			glow.scale.set(scale * glowK);
 			wash.alpha = alpha * (0.22 + 0.16 * pulse + 0.2 * tension);
 
 			if (!reduced) {
@@ -291,9 +359,8 @@
 
 		return () => {
 			ticker?.remove(tick);
+			// the sprites go; the shared spark / wash / glow textures stay for the next held reel
 			root?.removeChildren().forEach((child: PIXI.ContainerChild) => child.destroy({ children: true }));
-			washTexture.destroy(true);
-			sparkTexture.destroy(true);
 		};
 	});
 </script>

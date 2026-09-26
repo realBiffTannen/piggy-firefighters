@@ -11,16 +11,24 @@
 
 	import { getContext } from '../game/context';
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
+	import { ensureFeatureAssets } from '../game/lazyAssets';
 	import { stateScene } from '../game/fx/stateScene.svelte';
 	import { prefersReducedMotion } from '../game/fx/timing';
 
 	const context = getContext();
 	const cs = $derived(context.stateLayoutDerived.canvasSizes());
 	const portrait = $derived(cs.height > cs.width * 1.05);
-	const key = $derived(`bg_${stateScene.mood}_${portrait ? 'portrait' : 'landscape'}`);
+	/** the plate the scene asks for (mood x orientation; game/assetsScene.ts currentOrientation uses the same rule) */
+	const wanted = $derived(`bg_${stateScene.mood}_${portrait ? 'portrait' : 'landscape'}`);
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const texOf = (k: string) => ((context.stateApp.loadedAssets as any)?.[k] ?? sceneTex(k)) as any;
-	const tex = $derived(texOf(key));
+	const wantedTex = $derived(texOf(wanted));
+	// The plate on screen: the wanted one once it is resident, else the last one that was. Only the boot orientation's
+	// base plate ships with the boot manifest; every other plate is lazy (game/lazyAssets.ts 'bg' / 'rescue' /
+	// 'backdraft'), so a key whose texture is not here yet keeps the previous plate up (no fade, no colour gap) until
+	// it lands. The rescue director awaits its plates before it flips the mood, so a covered swap is still immediate.
+	let key = $state<string | null>(null);
+	const tex = $derived(key ? texOf(key) : undefined);
 	const cover = (t: any) => {
 		if (!t) return null;
 		const k = Math.max(cs.width / Math.max(1, t.width), cs.height / Math.max(1, t.height));
@@ -36,13 +44,20 @@
 	let shownKey: string | null = null;
 	const fade = new Tween(0, { duration: 700, easing: cubicOut });
 	$effect(() => {
-		const next = key;
+		const next = wanted;
+		if (!wantedTex) {
+			// not resident yet: fetch it (memoised) once the boot pass is over, and keep drawing what is up
+			if (context.stateApp.loaded) void ensureFeatureAssets('bg');
+			return;
+		}
 		if (shownKey === null || next === shownKey) {
 			shownKey = next;
+			key = next;
 			return;
 		}
 		const previous = shownKey;
 		shownKey = next;
+		key = next;
 		if (stateScene.covered || prefersReducedMotion()) {
 			oldKey = null;
 			return;
@@ -58,7 +73,11 @@
 	const fallback = $derived(stateScene.mood === 'inferno' ? 0x3a0a0c : stateScene.mood === 'rescue' ? 0x0d1226 : 0x1e2a4a);
 </script>
 
-<Rectangle width={cs.width} height={cs.height} backgroundColor={fallback} zIndex={-3} />
+<!-- the mood colour stands in only until a plate is resident; under a cover-fitted plate it would be a wasted
+     full-canvas fill every frame -->
+{#if !tex || !fit}
+	<Rectangle width={cs.width} height={cs.height} backgroundColor={fallback} zIndex={-3} />
+{/if}
 {#if tex && fit}
 	<BaseSprite texture={tex} x={fit.x} y={fit.y} width={fit.w} height={fit.h} zIndex={-2} />
 {/if}

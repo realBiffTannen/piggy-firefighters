@@ -66,9 +66,31 @@ class PresentationDirector {
 		}, 4000);
 	}
 
+	// The bonus prepared for the current round (its bed + flourish decoded ahead of the shutter), so a round that
+	// changes its mind (a golden alarm after the trigger) releases the bed it will not play.
+	private prepared: BonusKind | null = null;
+	/**
+	 * Decode a bonus's bed + entry flourish on the EARLIEST honest signal (the trigger fanfare, the Alarm Call outcome,
+	 * the book event that names the bonus) — 165 ms here, ~0.7-1.3 s on a low-end phone, which used to run inside
+	 * bonusIntro itself, so the flourish and the bed landed after the shutter had opened on the feature scene. Idempotent.
+	 */
+	prepareBonus(bonus: BonusKind | string): void {
+		const kind = normBonus(bonus);
+		if (this.prepared && this.prepared !== kind) audioManager.release([BONUS_BED[this.prepared]]);
+		this.prepared = kind;
+		void audioManager.ensureDecoded([BONUS_BED[kind], ENTRY_FLOURISH[kind]]);
+	}
+	private dropPrepared(): void {
+		if (!this.prepared) return;
+		const bed = BONUS_BED[this.prepared];
+		this.prepared = null;
+		if (audioManager.currentBed !== bed) audioManager.release([bed]);
+	}
+
 	/** Base groove. Started by unlock(); this only ensures we are on it. */
 	toBase(fadeMs = 800): void {
 		this.watchBase();
+		this.dropPrepared();
 		if (this._state === 'base' && this.isBaseBed(audioManager.currentBed)) return;
 		audioManager.removeLayer('anticipation_layer');
 		if (!this.isBaseBed(audioManager.currentBed)) {
@@ -110,7 +132,11 @@ class PresentationDirector {
 			return;
 		}
 		this.set('bonusIntro');
+		// normally already resident (prepareBonus ran at the trigger / the card); this await is the fallback
 		await audioManager.ensureDecoded([bed, ENTRY_FLOURISH[kind]]);
+		// a bed prepared for the other kind (a hint the book overruled) is not played: release it
+		if (this.prepared && this.prepared !== kind) audioManager.release([BONUS_BED[this.prepared]]);
+		this.prepared = null;
 		audioManager.removeLayer('anticipation_layer');
 		// duck the outgoing base under the flourish (entry cue → duck 3–6 dB) for the flourish's own opening beat
 		audioManager.duck({ holdMs: Math.round(cueMs(ENTRY_FLOURISH[kind]) * 0.15) || 350 });
@@ -118,6 +144,12 @@ class PresentationDirector {
 		// start the bonus bed on the downbeat with a 600 ms equal-power crossfade
 		audioManager.crossfadeToBed(bed, 600);
 		this.set(bonusState);
+		// The return trip lands on the OTHER base tune (toBase alternates): decode it behind the entry, once the
+		// crossfade is over and the outgoing base has been evicted, so returnToBase finds it ready.
+		const other = this.baseBeds[(this.baseIdx + 1) % this.baseBeds.length];
+		setTimeout(() => {
+			if (this._state === bonusState) void audioManager.ensureDecoded([other]);
+		}, 2000);
 	}
 
 	/**
@@ -133,6 +165,7 @@ class PresentationDirector {
 	teardown(): void {
 		audioManager.teardownToBase();
 		this.set('base');
+		this.dropPrepared();
 	}
 }
 

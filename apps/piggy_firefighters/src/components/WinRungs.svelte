@@ -24,7 +24,8 @@
 	// pieces tumbles out with gravity. The amount is always the clearest thing on screen. MAX ends on
 	// the max win card. One press skips to the landed total, a second press leaves.
 	//
-	// Imperative PIXI on the live container, ONE ticker callback, pooled pieces (<= 60 live).
+	// Imperative PIXI on the live container, ONE ticker callback, pooled pieces (<= 60 live on 'high'; 30 / 16 on the
+	// mid / low quality tiers, game/quality.svelte).
 	import { onMount } from 'svelte';
 	import { Container, PIXI, getContextApp } from 'pixi-svelte';
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
@@ -44,6 +45,8 @@
 	import { rungSign, MAXWIN_CARD } from '../game/artMeta';
 	import { animBeats } from '../game/fx/animBeats';
 	import type { WinRungTier } from '../game/anim/rigLogic';
+	import { qv } from '../game/quality.svelte';
+	import { ensureFeatureAssets } from '../game/lazyAssets';
 	import RigStage from './rigs/RigStage.svelte';
 
 	const context = getContext();
@@ -138,12 +141,24 @@
 	};
 
 	// one run at a time; everything the ticker needs lives here
-	type Piece = { s: PIXI.Sprite; frames: PIXI.Texture[]; f: number; fps: number; vx: number; vy: number; vr: number; life: number };
+	type Piece = { s: PIXI.Sprite; frames: PIXI.Texture[]; f: number; fi: number; fps: number; vx: number; vy: number; vr: number; life: number };
 	type Run = { step: (dt: number) => void };
 	let run: Run | undefined;
+	let presenting = false;
 
-	const present = (amount: number, level: number, tier: WinRungTier) =>
-		new Promise<void>((resolve) => {
+	const present = async (amount: number, level: number, tier: WinRungTier) => {
+		const finalIdx = Math.max(0, Math.min(4, level - 6));
+		// The signs, plates, pieces and (MAX) the card are lazy (game/lazyAssets: memoised, instant once warm), and so is
+		// the BIG bed: both are resident BEFORE the first drop, so a 500x on the first spin after the gate never shows
+		// Texture.EMPTY or a silent sign. Only the FIRST rung's bed is waited on (AUD-5b); the higher rungs decode one
+		// after another in the background below, so BIG never queues behind MAX. Nothing here can hold the round.
+		const firstBed = `rung_bed_${RUNGS[0].key}`;
+		try {
+			await Promise.all([ensureFeatureAssets('winrungs'), finalIdx === 4 ? ensureFeatureAssets('maxwin') : undefined, audioManager.ensureDecoded([firstBed])]);
+		} catch {
+			/* a missing asset or decode never holds the round: the sign shows whatever is resident */
+		}
+		return new Promise<void>((resolve) => {
 			if (!root) return resolve();
 			const stage = root;
 			// rig beat: the win-rung plate is in (docs/ANIMATION_CONTRACT.md bigWinStart, tier 2..6)
@@ -151,8 +166,10 @@
 			plateTier = tier;
 			const reduced = prefersReducedMotion();
 			const fast = isTurbo() ? 2 : 1;
-			const finalIdx = Math.max(0, Math.min(4, level - 6));
 			const thresholds = THRESHOLDS;
+			const pieceCap = qv({ high: 60, mid: 30, low: 16 });
+			// 'low' tumbles its pieces at ~15 fps (each frame index change is a texture swap on a batched sprite)
+			const pieceFpsK = qv({ high: 1, mid: 1, low: 0.5 });
 
 			const main = context.stateLayoutDerived.mainLayout();
 			const bl = context.stateGameDerived.boardLayout();
@@ -164,7 +181,16 @@
 			const startY = -SIGN.h * k - main.height * 0.35;
 
 			// ---- display tree ----
-			const wash = new PIXI.Graphics().rect(-6000, -6000, 12000, 12000).fill(0xffffff);
+			// the wash covers the canvas (its corners in this stage's units, with room for a resize mid-climb) rather than a
+			// 12000-unit quad whose bounds swamp every ancestor's measure
+			const cs = context.stateLayoutDerived.canvasSizes();
+			const c0 = stage.toLocal(new PIXI.Point(0, 0));
+			const c1 = stage.toLocal(new PIXI.Point(cs.width, cs.height));
+			const padX = Math.abs(c1.x - c0.x) * 0.5;
+			const padY = Math.abs(c1.y - c0.y) * 0.5;
+			const wash = new PIXI.Graphics()
+				.rect(Math.min(c0.x, c1.x) - padX, Math.min(c0.y, c1.y) - padY, Math.abs(c1.x - c0.x) + padX * 2, Math.abs(c1.y - c0.y) + padY * 2)
+				.fill(0xffffff);
 			wash.tint = RUNGS[0].wash;
 			wash.alpha = 0;
 			const pieceLayer = new PIXI.Container();
@@ -216,7 +242,7 @@
 			const pieces: Piece[] = [];
 			const spawn = (rung: Rung, count: number, power: number) => {
 				if (reduced) return;
-				for (let i = 0; i < count && pieces.length < 60; i += 1) {
+				for (let i = 0; i < count && pieces.length < pieceCap; i += 1) {
 					const name = rung.pieces[Math.floor(Math.random() * rung.pieces.length)];
 					const frames = pieceFrames(name);
 					if (!frames.length) continue;
@@ -231,7 +257,8 @@
 						s,
 						frames,
 						f: Math.random() * frames.length,
-						fps: 18 + Math.random() * 16,
+						fi: 0,
+						fps: (18 + Math.random() * 16) * pieceFpsK,
 						vx: Math.cos(ang) * v,
 						vy: Math.sin(ang) * v,
 						vr: (Math.random() - 0.5) * 3,
@@ -259,7 +286,10 @@
 			// ONE bed at a time: the rung bed replaces whatever the scene was playing (grid-aligned
 			// crossfade) and the scene's own bed comes back at the end — never two beds stacked.
 			const sceneBed = audioManager.currentBed;
-			void audioManager.ensureDecoded(RUNGS.slice(0, finalIdx + 1).map((r) => `rung_bed_${r.key}`));
+			// the higher rung beds, sequentially, so each lands before its flip without contending with the first
+			void (async () => {
+				for (const r of RUNGS.slice(1, finalIdx + 1)) await audioManager.ensureDecoded([`rung_bed_${r.key}`]);
+			})().catch(() => {});
 			const setBed = (next: string | undefined) => {
 				if (bed === next) return;
 				try {
@@ -549,7 +579,11 @@
 						pc.s.y += (pc.vy * dt) / 1000;
 						pc.s.rotation += (pc.vr * dt) / 1000;
 						pc.f = (pc.f + (pc.fps * dt) / 1000) % pc.frames.length;
-						pc.s.texture = pc.frames[Math.floor(pc.f)];
+						const fi = Math.floor(pc.f);
+						if (fi !== pc.fi) {
+							pc.fi = fi;
+							pc.s.texture = pc.frames[fi];
+						}
 						if (pc.life < 400) pc.s.alpha = Math.max(0, pc.life / 400);
 						if (pc.life <= 0 || pc.s.y > main.height + 300) {
 							pc.s.destroy();
@@ -559,16 +593,23 @@
 				},
 			};
 		});
+	};
 
 	context.eventEmitter.subscribeOnMount({
 		winRungs: async ({ amount, level, tier }) => {
 			// DEV ONLY (stripped from production builds): the smoke driver (qa/smoke/port/smoke.mjs) records every climb
 			if (import.meta.env.DEV && typeof window !== 'undefined') ((window as unknown as { __pffRungs?: unknown[] }).__pffRungs ??= []).push({ amount, level });
-			if (!root || run) return;
+			if (!root || run || presenting) return;
 			active = true;
+			presenting = true;
 			// the rung tier for the rig beats: 2 BIG … 6 MAX (rungLevelOfTier: level = tier + 4)
 			const rungTier = Math.max(2, Math.min(6, tier ?? level - 4)) as WinRungTier;
-			await present(amount, level, rungTier);
+			try {
+				await present(amount, level, rungTier);
+			} finally {
+				presenting = false;
+				active = false;
+			}
 		},
 	});
 

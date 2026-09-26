@@ -31,8 +31,24 @@ export type RawAsset = RawSpine | RawSprite | RawSprites | RawSpriteSheet | RawA
 export type RawType = 'spine' | 'sprite' | 'sprites' | 'spriteSheet' | 'font' | 'audio';
 
 export type SpineSrc = { skeleton: string; atlas: string; scale?: number };
-export type Asset = { type: RawType; src: string | SpineSrc; preload?: boolean };
+export type Asset = {
+	type: RawType;
+	src: string | SpineSrc;
+	preload?: boolean;
+	/**
+	 * The file is a scaled-down variant of its logical picture (a 0.625x LOD plate): Pixi's texture resolution, so
+	 * `texture.width / height` keep reporting the ORIGINAL size and every consumer draws it unchanged.
+	 */
+	resolution?: number;
+};
 export type Assets = PIXI.Dict<Asset>;
+
+/**
+ * App-level overrides for `Application.init` (resolution cap, antialias), spread over pixi-svelte's fixed init
+ * options by InitialiseApplication. The renderer backend (`preference`), the depth-stencil guard and `resizeTo` are
+ * not overridable.
+ */
+export type RendererOptions = Partial<Pick<PIXI.ApplicationOptions, 'resolution' | 'antialias' | 'powerPreference'>>;
 
 export type ParticleSpawnOption =
 	| { type: 'rect'; spawnRect: { x: number; y: number; w: number; h: number } }

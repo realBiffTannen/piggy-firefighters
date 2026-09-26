@@ -16,6 +16,9 @@
 	import { watchAnteChip } from '../game/stateGame.svelte';
 	import { prefetchGameAudio } from '../game/audio';
 	import { prewarmTextures } from '../game/prewarm';
+	import { ensureFeatureAssets } from '../game/lazyAssets';
+	import { quality, measureOnce } from '../game/quality.svelte';
+	import { ensureBlurAtlas } from '../game/reels/blurAtlas';
 	import { startBeatClock } from '../game/fx/beatClock';
 	import { stateApp } from '../game/stateApp';
 	import { stateRescue, stateBackdraftSpins, stateAlarmCall } from '../game/rescue/stateRescue.svelte';
@@ -75,6 +78,8 @@
 				get mood() { return stateScene.mood; },
 				get blaze() { return context.stateGame.board.reduce((n, reel) => n + reel.reelState.symbols.filter((s) => s.rawSymbol.blaze).length, 0); },
 				get spinning() { return context.stateGame.board.some((reel) => reel.reelState.motion !== 'stopped'); },
+				// the 'low' tier's idle frame cap (the $effect below): what it decided and from what
+				get idleCap() { return { ...idleCap, maxFPS: stateApp.pixiApplication?.ticker?.maxFPS ?? null }; },
 			};
 		}
 		return () => {
@@ -95,12 +100,83 @@
 		stateHud.betLocked = !stateReplay.active && Boolean(stateBet.betToResume?.active);
 	});
 
-	// Upload every texture to the GPU while the splash is still up (see game/prewarm.ts).
+	/** One chunk of background work per idle period (requestIdleCallback where it exists, a macrotask elsewhere). */
+	const idle = (): Promise<void> =>
+		new Promise((resolve) => {
+			const ric = (globalThis as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+			if (typeof ric === 'function') ric(() => resolve(), { timeout: 1500 });
+			else setTimeout(resolve, 0);
+		});
+
+	// Upload every boot texture to the GPU while the splash is still up (game/prewarm.ts), then bake the reel
+	// motion-blur atlas in an idle slot (game/reels/blurAtlas.ts is idempotent), so ReelStrips' mount behind the
+	// shutter finds it built instead of paying 880 canvas draws on its own frame.
 	let prewarmed = false;
 	$effect(() => {
 		if (prewarmed || !stateApp.loaded || !stateApp.pixiApplication) return;
 		prewarmed = true;
-		void prewarmTextures(stateApp.pixiApplication, stateApp.loadedAssets as Record<string, unknown>);
+		const app = stateApp.pixiApplication;
+		void prewarmTextures(app, stateApp.loadedAssets as Record<string, unknown>).then(() =>
+			idle().then(() => {
+				ensureBlurAtlas(app, stateApp.loadedAssets as Record<string, unknown>);
+			}),
+		);
+	});
+
+	// AFTER THE GATE: the feature art the boot manifest no longer carries (game/lazyAssets.ts) is warmed in idle
+	// chunks, in the order a session is likeliest to need it: the win-rung kit, the alarm / mode cards + Sprocket's
+	// rig, the max-win cards, the Backdraft plate; then, unless the device is 'low', the Rescue block (decoded only:
+	// its upload happens behind the bay door at rescueStart). On 'low' the Rescue set is fetched at rescueStart.
+	// The quality tier's one frame-time measurement runs 2 s after the same flip (game/quality.svelte.ts).
+	const warmAfterGate = async () => {
+		// let the door finish lifting (Splash.svelte LIFT_MS + its margin) before any fetch competes with the first frames
+		await new Promise((resolve) => setTimeout(resolve, 1200));
+		for (const kind of ['winrungs', 'alarm', 'maxwin', 'backdraft'] as const) {
+			await idle();
+			await ensureFeatureAssets(kind);
+		}
+		if (quality.tier !== 'low') {
+			await idle();
+			await ensureFeatureAssets('rescue', { upload: false });
+		}
+	};
+	let gated = false;
+	$effect(() => {
+		// `loaded` (reactive) rather than the Application object: init() has certainly run by then, so the ticker exists
+		if (gated || context.stateLayout.showLoadingScreen || !stateApp.loaded || !stateApp.pixiApplication) return;
+		gated = true;
+		const app = stateApp.pixiApplication;
+		setTimeout(() => measureOnce(app), 2000);
+		void warmAfterGate();
+	});
+
+	let idleCap = { restful: false, tier: quality.tier, busy: false, covered: false, machineIdle: false, reelsStopped: false };
+	// 'low' TIER ONLY: while nothing at all is happening (board idle: the round machine idle, every reel at rest — the
+	// same facts components/Board.svelte mirrors into boardLife.idle — no feature, no reveal beat, no shutter) the
+	// renderer runs at 30 fps; any change restores the uncapped rate through this same effect, i.e. on the spin press
+	// before a reel lets go. The rate is never touched while a reel or a director beat is active.
+	$effect(() => {
+		// pixi-svelte assigns the Application before init() installs its ticker, and the ticker itself is not reactive:
+		// `loaded` (assets load only after init) is the dependency that brings this effect back once the ticker exists
+		const ticker = stateApp.loaded ? stateApp.pixiApplication?.ticker : undefined;
+		if (!ticker) return;
+		const machineIdle = context.stateXstateDerived.isIdle();
+		const reelsStopped = context.stateGame.board.every((reel) => reel.reelState.motion === 'stopped');
+		const restful =
+			quality.tier === 'low' &&
+			!context.stateLayout.showLoadingScreen &&
+			!stateScene.busy &&
+			!stateScene.covered &&
+			!stateRescue.active &&
+			!stateBackdraftSpins.active &&
+			!stateAlarmCall.active &&
+			machineIdle &&
+			reelsStopped;
+		idleCap = { restful, tier: quality.tier, busy: stateScene.busy, covered: stateScene.covered, machineIdle, reelsStopped };
+		ticker.maxFPS = restful ? 30 : 0;
+		return () => {
+			ticker.maxFPS = 0;
+		};
 	});
 
 	// The stock pixi <UI> bet bar and the SDK buy/autoplay/rules modals are gone:

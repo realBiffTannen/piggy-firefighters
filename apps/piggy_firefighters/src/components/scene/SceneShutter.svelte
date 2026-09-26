@@ -65,6 +65,7 @@
 	import TransitionFx, { type TransitionFxHandle } from './TransitionFx.svelte';
 	import RigStage from '../rigs/RigStage.svelte';
 	import { stateSpeed } from '../../game/stateSpeed.svelte';
+	import { qv } from '../../game/quality.svelte';
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const context = getContext();
@@ -72,7 +73,9 @@
 	const FAILSAFE_MS = 12000;
 	const TILE = { w: 1024, h: 512 };
 	const BAR = { w: 1024, h: 115 };
-	const PUFFS = Array.from({ length: 14 }, (_, i) => i);
+	// dust puffs: 14 on 'high' (unchanged), fewer on the mid / low quality tiers (game/quality.svelte)
+	const PUFFS_MAX = 14;
+	const PUFFS = $derived(Array.from({ length: Math.min(PUFFS_MAX, qv({ high: 14, mid: 7, low: 4 })) }, (_, i) => i));
 
 	const sl = $derived(context.stateGameDerived.sceneLayout());
 	const cw = $derived(sl.canvas.width);
@@ -128,12 +131,14 @@
 	// the same clock. `closedAt` is the frame time the door FINISHED closing.
 	let frameNow = 0;
 	let closedAt = 0;
-	const puffs = PUFFS.map(() => ({ life: 1, x: 0, vx: 0, vy: 0, s: 1 }));
+	const puffs = Array.from({ length: PUFFS_MAX }, () => ({ life: 1, x: 0, vx: 0, vy: 0, s: 1 }));
 
 	// ---- living card (see the header) -----------------------------------------------------
-	const MOTES = Array.from({ length: 9 }, (_, i) => i);
+	// motes and glints: 9 on 'high' (unchanged), 5 on mid, none on low
+	const MOTES_MAX = 9;
+	const MOTES = $derived(Array.from({ length: Math.min(MOTES_MAX, qv({ high: 9, mid: 5, low: 0 })) }, (_, i) => i));
 	// fixed per-mote character (fractions of the card box, rates in 1/s): nothing is rolled per frame
-	const motes = MOTES.map((i) => ({
+	const motes = Array.from({ length: MOTES_MAX }, (_, i) => ({
 		x: ((i * 0.377 + 0.11) % 1) - 0.5,
 		y: ((i * 0.593 + 0.27) % 1) - 0.5,
 		rate: 0.16 + ((i * 0.31) % 1) * 0.14,
@@ -147,6 +152,38 @@
 	let swing = 0; // the sign's pendulum angle (rad) and its velocity
 	let swingV = 0;
 	const alive = (n: any) => n && !n.destroyed;
+
+	// ---- the card's static art, cached as textures (CARD-08) --------------------------------------------------------------
+	// The chains (~30 stroked rounded rects), the sign panel (drawSignPanel), the readability slate and the painting's frame
+	// are Graphics too large for Pixi's batcher, and they sat interleaved with batched Text / Sprite children: a card frame
+	// measured 61 draw calls / 42 program switches (idle: 13 / 2) for the 2-4 s every card is up. Each static group is now
+	// drawn ONCE into a texture (Pixi 8 cacheAsTexture) and composited as one sprite; everything stepCard moves (the art
+	// push-in, the sweep, the motes, the value and the hint) and every Text stay outside the cached groups. The cache is
+	// refreshed whenever the groups' draw callbacks re-run (layout / font swap / another card) — Pixi 8.8 does not refresh
+	// a cached group by itself when a child redraws. Density: the renderer's own resolution (the page's exact pixels) on
+	// 'high'; the pooled texture is power-of-two, so mid / low cap its longer side at 2048 px.
+	const STATIC_GROUPS = ['staticBack', 'staticFrame'] as const;
+	const cacheStatic = (n: (typeof STATIC_GROUPS)[number]) => (node: any) => {
+		R[n] = node;
+		node.cacheAsTexture(true);
+	};
+	$effect(() => {
+		// the same signals the static draw callbacks read
+		const s = lay.s;
+		const w = lay.W * s;
+		const h = lay.cy + 40 + (lay.H * s) / 2 + s * 0.2;
+		void fontReady;
+		void card;
+		const res = app.stateApp.pixiApplication?.renderer?.resolution ?? 1;
+		const side = qv({ high: Infinity, mid: 2048, low: 2048 });
+		const resolution = Math.max(0.5, Math.min(res, side / Math.max(1, w), side / Math.max(1, h)));
+		for (const n of STATIC_GROUPS) {
+			const node = R[n];
+			if (!alive(node)) continue;
+			node.cacheAsTexture(false);
+			node.cacheAsTexture({ resolution });
+		}
+	});
 
 	const factor = () => (stateRescue.skip ? 0.3 : isTurbo() ? 0.55 : 1);
 
@@ -611,19 +648,27 @@
 					<!-- the sign and its chains swing as one about the top of the chains (stepCard) -->
 					<Container>
 					<Grab ongrab={grab('card')} />
-					<!-- chains: the sign hangs off the shutter -->
-					<Graphics
-						draw={(g) => {
-							const s = lay.s;
-							for (const sx of [-1, 1]) {
-								const x = sx * lay.W * s * 0.36;
-								for (let y = -lay.cy - 40; y < (-lay.H * s) / 2 + s * 0.1; y += s * 0.17) {
-									g.roundRect(x - s * 0.035, y, s * 0.07, s * 0.13, s * 0.03).stroke({ width: s * 0.03, color: 0x2a1a0d });
+					<!-- STATIC, cached as one texture: chains, panel and (outro) the slate -->
+					<Container>
+						<Grab ongrab={cacheStatic('staticBack')} />
+						<!-- chains: the sign hangs off the shutter -->
+						<Graphics
+							draw={(g) => {
+								const s = lay.s;
+								for (const sx of [-1, 1]) {
+									const x = sx * lay.W * s * 0.36;
+									for (let y = -lay.cy - 40; y < (-lay.H * s) / 2 + s * 0.1; y += s * 0.17) {
+										g.roundRect(x - s * 0.035, y, s * 0.07, s * 0.13, s * 0.03).stroke({ width: s * 0.03, color: 0x2a1a0d });
+									}
 								}
-							}
-						}}
-					/>
-					<Graphics draw={(g) => drawSignPanel(g as any, { w: lay.W * lay.s, h: lay.H * lay.s, s: lay.s, variant: card?.premium ? 'gold' : card?.kind === 'outro' ? 'win' : 'station' })} />
+							}}
+						/>
+						<Graphics draw={(g) => drawSignPanel(g as any, { w: lay.W * lay.s, h: lay.H * lay.s, s: lay.s, variant: card?.premium ? 'gold' : card?.kind === 'outro' ? 'win' : 'station' })} />
+						{#if !lay.intro}
+							<!-- readability slate: dark knockout behind the text so the light fills clear AAA -->
+							<Graphics draw={(g) => drawSlate(g, 0, lay.s * 0.11, lay.W * lay.s * 0.9, lay.s * 3.02, lay.s)} />
+						{/if}
+					</Container>
 					{#key fontReady}
 					{#if lay.intro}
 						{@const s = lay.s}
@@ -647,18 +692,22 @@
 								</Container>
 							</Container>
 						{/if}
-						<Graphics
-							draw={(g) => {
-								g.roundRect(ax - art / 2, ay - art / 2, art, art, s * 0.12).stroke({ width: s * 0.09, color: 0x2a1a0d });
-								g.roundRect(ax - art / 2 + s * 0.06, ay - art / 2 + s * 0.06, art - s * 0.12, art - s * 0.12, s * 0.09).stroke({ width: s * 0.03, color: card?.premium ? 0xffd34d : 0xf3d9a4, alpha: 0.9 });
-							}}
-						/>
+						<!-- STATIC, cached as one texture: the painting's frame and the readability slate (dark knockout behind the
+						     text column so the light fills clear AAA) -->
+						<Container>
+							<Grab ongrab={cacheStatic('staticFrame')} />
+							<Graphics
+								draw={(g) => {
+									g.roundRect(ax - art / 2, ay - art / 2, art, art, s * 0.12).stroke({ width: s * 0.09, color: 0x2a1a0d });
+									g.roundRect(ax - art / 2 + s * 0.06, ay - art / 2 + s * 0.06, art - s * 0.12, art - s * 0.12, s * 0.09).stroke({ width: s * 0.03, color: card?.premium ? 0xffd34d : 0xf3d9a4, alpha: 0.9 });
+								}}
+							/>
+							<Graphics draw={(g) => drawSlate(g, tx, ty + s * 0.6, s * 5.0, s * 2.76, s)} />
+						</Container>
 						<!-- Sprocket presents the card from the bottom-left corner of the painting's frame -->
 						<Container x={ax - art / 2 - s * 0.35} y={ay + art / 2 - s * 2.2}>
 							<RigStage {...{ slot: 'cardPresenter' as const }} width={s * 1.5} height={s * 2.2} scale={1} layout={lay.stackedCard ? 'portrait' : 'desktop'} reducedMotion={prefersReducedMotion()} {speedTier} />
 						</Container>
-						<!-- readability slate: dark knockout behind the text column so the light fills clear AAA -->
-						<Graphics draw={(g) => drawSlate(g, tx, ty + s * 0.6, s * 5.0, s * 2.76, s)} />
 						{@const tt = fitTitle(card.title, s * 4.8, s * 0.6)}
 						<Text anchor={0.5} x={tx} y={ty} text={tt.text} style={{ ...signTitleStyle(s, { gold: card.premium }), ...titleFix(s, !!card.premium), fontSize: tt.size, lineHeight: tt.size * 1.03 }} />
 						<Text anchor={0.5} x={tx} y={ty + s * 0.98} text={card.subtitle} style={{ ...signSubStyle(s), ...subFix(s), fontSize: s * 0.23, wordWrap: true, wordWrapWidth: s * 4.5, lineHeight: s * 0.3 }} />
@@ -668,8 +717,7 @@
 						</Container>
 					{:else}
 						{@const s = lay.s}
-						<!-- readability slate: dark knockout behind the text so the light fills clear AAA -->
-						<Graphics draw={(g) => drawSlate(g, 0, s * 0.11, lay.W * s * 0.9, s * 3.02, s)} />
+						<!-- (the readability slate is in the cached back group above) -->
 						<!-- one line, sized to the slate (owner, 2026-09-25: "INFERNO RESCUE COMPLETE" ran off both edges on a phone) -->
 						{@const ts = Math.min(s * 0.5, (lay.W * s * 0.84) / (Math.max(1, card.title.length) * TITLE_EM))}
 						<Text anchor={0.5} y={-s * 0.95} text={card.title} style={{ ...signTitleStyle(s, { gold: true }), ...titleFix(s, true), fontSize: ts }} />

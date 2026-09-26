@@ -1,0 +1,47 @@
+  phone-lowend / boot: ok (7 s)
+  phone-lowend / base_win: ok (42 s)
+  phone-lowend / base_backdraft_win: ok (20 s)
+  phone-lowend / backdraft_spins: ok (72 s)
+  phone-lowend / inferno_buy: ok (92 s)
+  laptop-old / boot: ok (6 s)
+  laptop-old / base_win: ok (41 s)
+  laptop-old / base_backdraft_win: ok (19 s)
+  laptop-old / backdraft_spins: ok (71 s)
+  laptop-old / inferno_buy: ok (91 s)
+
+baseline @ 2026-09-25T22:53:21.073Z  head 1dcbc21  153.0.8010.12
+
+== phone-lowend  390x844@3  cpu x6  device=mobile
+scenario            window          ms    p50    p95     max  >33 >100  LT#   LTms  LTmax  heap0   peak    end  texMB err
+boot                boot          3484   16.7   66.7   733.2   17    4    4   1232    672    1.7   19.1   19.1  293.9   0
+boot                +3s           3003   16.7   16.8    16.8    0    0    0      0      0   15.6   18.9   18.9      -   0
+base_win            round        35230   16.7   16.8    33.3    1    0    0      0      0   19.2   34.8   29.1  315.7   0
+                    round wall 33.2 s via Space; end-round 41 ms after press; fetched 4 req / 1.5 MB; GL uploads 22 calls / 16.5 MB; script 4828 ms, layout 25x/11 ms, style 57x, nodes 1737
+base_backdraft_win  round        12998   16.7   16.7    16.8    0    0    0      0      0   19.4   24.5   19.9  293.9   0
+                    round wall 11.0 s via Space; end-round 63 ms after press; fetched 0 req / 0 MB; GL uploads 6 calls / 0.1 MB; script 1961 ms, layout 23x/15 ms, style 53x, nodes 1585
+backdraft_spins     round        65005   16.7   16.7    66.7    2    0    0      0      0   16.1   35.9   24.1  160.1   0
+                    round wall 63.0 s via Space; end-round 62892 ms after press; fetched 4 req / 1.74 MB; GL uploads 31 calls / 21.5 MB; script 9568 ms, layout 16x/15 ms, style 126x, nodes 1680
+inferno_buy         round        73482   16.7   16.7   116.7    6    1    3    200     83   14.1   35.9   20.3  209.2   0
+inferno_buy         idle         10003   16.7   16.8    16.8    0    0    0      0      0   21.2   21.2   19.9  209.2   0
+                    round wall 71.5 s via Space; end-round 71462 ms after press; fetched 2 req / 3.14 MB; GL uploads 46 calls / 84.1 MB; script 11354 ms, layout 39x/31 ms, style 264x, nodes 1930
+                    idle: script 802 ms, layout 0x, style 0x, GL uploads 0 calls / 0.0 MB
+boot: press 1752 ms, shutter 3484 ms, 383 req / 31.72 MB  [image 147/24.65MB  audio 223/6.11MB  json 5/0.55MB  font 3/0.40MB  text 5/0.02MB]  bundle.js requests: 0
+textures after boot: 125 x 293.9 MB (webgl2, peak 293.9 MB, created 125, deleted 0); <img> estimate 132 x 294 MB
+
+== laptop-old  1366x768@1  cpu x4  device=desktop
+scenario            window          ms    p50    p95     max  >33 >100  LT#   LTms  LTmax  heap0   peak    end  texMB err
+boot                boot          2807   16.7   33.4     400   12    3    3    697    364    1.7   15.5   14.1  293.9   0
+boot                +3s           3009   16.7   16.7    16.8    0    0    0      0      0   15.4   18.8   18.8      -   0
+base_win            round        35202   16.7   16.8    16.8    0    0    0      0      0   20.1   34.9   20.2  315.3   0
+                    round wall 33.2 s via Space; end-round 31 ms after press; fetched 4 req / 1.5 MB; GL uploads 22 calls / 16.1 MB; script 3198 ms, layout 25x/9 ms, style 55x, nodes 1733
+base_backdraft_win  round        13001   16.7   16.8    16.8    0    0    0      0      0   20.3   22.4   21.3  293.9   0
+                    round wall 11.0 s via Space; end-round 28 ms after press; fetched 0 req / 0 MB; GL uploads 6 calls / 0.0 MB; script 1242 ms, layout 23x/7 ms, style 52x, nodes 1712
+backdraft_spins     round        64800   16.7   16.7    33.4    2    0    0      0      0   19.9   34.1   25.2  318.4   0
+                    round wall 62.8 s via Space; end-round 62748 ms after press; fetched 4 req / 1.74 MB; GL uploads 31 calls / 18.9 MB; script 6739 ms, layout 15x/9 ms, style 123x, nodes 1807
+inferno_buy         round        73509   16.7   16.7    66.6    3    0    1     52     52   19.9   34.6   26.2  199.6   0
+inferno_buy         idle         10002   16.7   16.8    16.8    0    0    0      0      0   20.7   21.5   20.5  199.6   0
+                    round wall 71.5 s via Space; end-round 71477 ms after press; fetched 2 req / 3.14 MB; GL uploads 46 calls / 78.0 MB; script 6582 ms, layout 38x/17 ms, style 263x, nodes 2440
+                    idle: script 339 ms, layout 0x, style 0x, GL uploads 0 calls / 0.0 MB
+boot: press 1129 ms, shutter 2807 ms, 383 req / 31.72 MB  [image 147/24.65MB  audio 223/6.11MB  json 5/0.55MB  font 3/0.40MB  text 5/0.02MB]  bundle.js requests: 0
+textures after boot: 125 x 293.9 MB (webgl2, peak 293.9 MB, created 125, deleted 0); <img> estimate 132 x 294 MB
+PERF DONE -> /Users/jbull/code/piggy-firefighters/qa/perf/baseline.json

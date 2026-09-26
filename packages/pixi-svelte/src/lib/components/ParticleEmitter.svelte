@@ -35,17 +35,19 @@
 		if (props.emit) emitter.init(updatedConfig);
 	});
 
-	if (context.stateApp.pixiApplication) {
-		context.stateApp.pixiApplication.ticker.add(() => {
-			if (context.stateApp.pixiApplication) {
-				const deltaUpdate =
-					context.stateApp.pixiApplication.ticker.deltaMS * (props.emitSpeed || 0.00234);
-				emitter.update(deltaUpdate);
-			}
-		});
-	}
+	// ONE named ticker callback, removed with the emitter: an anonymous add() outlived every unmount (each coin
+	// show left a zombie callback holding its destroyed Emitter and config). An idle emitter — not asked to emit
+	// and with no particle alive — is not updated at all.
+	const tick = () => {
+		const app = context.stateApp.pixiApplication;
+		if (!app) return;
+		if (!props.emit && emitter.particleCount === 0) return;
+		emitter.update(app.ticker.deltaMS * (props.emitSpeed || 0.00234));
+	};
+	context.stateApp.pixiApplication?.ticker.add(tick);
 
 	onDestroy(() => {
+		context.stateApp.pixiApplication?.ticker.remove(tick);
 		emitter.emit = false;
 		emitter.destroy();
 	});

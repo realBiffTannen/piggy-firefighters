@@ -382,6 +382,19 @@
 		fill: INK,
 		align: 'center' as const,
 	});
+	// TXT-14: one PIXI.TextStyle per role, built once. pixi-svelte re-assigns `text.style` whenever ANY prop of a Text
+	// changes, and a fresh options object per template run made every TOTAL / building / prize / spins-left update
+	// rebuild the style (and re-key the raster) alongside the text; a stable TextStyle instance makes that assignment
+	// a no-op, so only a real text change rasterises. Same faces, same sizes.
+	const STYLE = {
+		building: new PIXI.TextStyle(plateStyle(S * 0.17)),
+		total: new PIXI.TextStyle(plateStyle(S * 0.19)),
+		badge: new PIXI.TextStyle(plateStyle(S * 0.3)),
+		prize: new PIXI.TextStyle(titleStyle(S * 0.16, 0xf5d23c)),
+		backdraftTitle: new PIXI.TextStyle(plateStyle(S * 0.24)),
+		backdraftLine: new PIXI.TextStyle(plateStyle(S * 0.2)),
+		banner: new PIXI.TextStyle({ ...plateStyle(S * 0.3), wordWrap: true, wordWrapWidth: S * 3.9 }),
+	};
 	const badgeProp = rescueProp('badge_blank');
 	const plateProp = rescueProp('spins_plate_blank');
 	const plateH = (w: number) => (w * plateProp.h) / plateProp.w;
@@ -441,22 +454,22 @@
 			<BaseSprite texture={tex('rescue_spins_plate')} x={buildingPlateAt.x} y={buildingPlateAt.y} width={buildingPlateAt.w} height={plateH(buildingPlateAt.w)} anchor={0.5} />
 			<BaseSprite texture={tex('rescue_spins_plate')} x={totalPlateAt.x} y={totalPlateAt.y} width={totalPlateAt.w} height={plateH(totalPlateAt.w)} anchor={0.5} />
 		{/if}
-		<Text anchor={0.5} x={buildingPlateAt.x} y={buildingPlateAt.y} text={`${BUILDING} ${stateRescue.building}`} style={plateStyle(S * 0.17)} />
-		<Text anchor={0.5} x={totalPlateAt.x} y={totalPlateAt.y} text={`TOTAL ${formatBookAmount(stateRescue.total)}`} style={plateStyle(S * 0.19)} />
+		<Text anchor={0.5} x={buildingPlateAt.x} y={buildingPlateAt.y} text={`${BUILDING} ${stateRescue.building}`} style={STYLE.building} />
+		<Text anchor={0.5} x={totalPlateAt.x} y={totalPlateAt.y} text={`TOTAL ${formatBookAmount(stateRescue.total)}`} style={STYLE.total} />
 		<Container x={badgeAt.x} y={badgeAt.y}>
 			{#if tex('rescue_badge_blank')}
 				<BaseSprite texture={tex('rescue_badge_blank')} width={S * 0.8} height={(S * 0.8 * badgeProp.h) / badgeProp.w} anchor={0.5} />
 			{:else}
 				<Graphics draw={(g) => g.circle(0, 0, S * 0.34).fill(inferno ? 0xe9b23b : 0xd7262b).stroke({ width: 4, color: INK })} />
 			{/if}
-			<Text anchor={0.5} text={`x${stateRescue.multiplier}`} style={plateStyle(S * 0.3)} />
+			<Text anchor={0.5} text={`x${stateRescue.multiplier}`} style={STYLE.badge} />
 		</Container>
 
 		<!-- Inferno: the rescued pig's instant prize on the sill -->
 		{#each stateRescue.rooms as room (room.reel)}
 			{#if room.rescued && room.prize}
 				{@const s = sill(room.reel)}
-				<Text anchor={0.5} x={s.x} y={s.y - S * 0.14} text={`+${formatBookAmount(room.prize)}`} style={titleStyle(S * 0.16, 0xf5d23c)} />
+				<Text anchor={0.5} x={s.x} y={s.y - S * 0.14} text={`+${formatBookAmount(room.prize)}`} style={STYLE.prize} />
 			{/if}
 		{/each}
 
@@ -498,8 +511,8 @@
 			{:else}
 				<Graphics draw={(g) => g.roundRect(-S * 1.55, -S * 0.55, S * 3.1, S * 1.1, S * 0.1).fill(0xe9b23b).stroke({ width: 4, color: INK })} />
 			{/if}
-			<Text anchor={0.5} y={-S * 0.2} text={MODE_TITLE.backdraft_spins} style={plateStyle(S * 0.24)} />
-			<Text anchor={0.5} y={S * 0.16} text={`${stateBackdraftSpins.spinsLeft} LEFT · ${formatBookAmount(stateBackdraftSpins.total)}`} style={plateStyle(S * 0.2)} />
+			<Text anchor={0.5} y={-S * 0.2} text={MODE_TITLE.backdraft_spins} style={STYLE.backdraftTitle} />
+			<Text anchor={0.5} y={S * 0.16} text={`${stateBackdraftSpins.spinsLeft} LEFT · ${formatBookAmount(stateBackdraftSpins.total)}`} style={STYLE.backdraftLine} />
 		</Container>
 	{/if}
 
@@ -512,7 +525,7 @@
 			{:else}
 				<Graphics draw={(g) => g.roundRect(-S * 2.3, -S * 0.36, S * 4.6, S * 0.72, S * 0.18).fill({ color: 0x1e2a4a, alpha: 0.88 }).stroke({ width: 5, color: 0xff7a1a })} />
 			{/if}
-			<Text anchor={0.5} text={stateRescue.banner} style={{ ...plateStyle(S * 0.3), wordWrap: true, wordWrapWidth: S * 3.9 }} />
+			<Text anchor={0.5} text={stateRescue.banner} style={STYLE.banner} />
 		{/if}
 	</Container>
 </Container>

@@ -124,9 +124,14 @@
 			//     gate fleet actually measures (headless Chromium exposes no
 			//     WebGPU adapter). Asking for `'webgpu'` shipped players a
 			//     backend nothing here had ever verified.
-			preference: 'webgl',
+			//  (`preference: 'webgl'` is set below the app overrides so it can never be overridden.)
 			powerPreference: 'high-performance',
 			resolution: clampResolution(devicePixelRatio.current),
+			// App-level overrides (the game's quality tier: a lower resolution cap, MSAA off on low-end devices; see
+			// createApp rendererOptions). Spread AFTER the defaults above and BEFORE the keys below, so the renderer
+			// backend and resizeTo can never be overridden and the depth-stencil guard stays in force.
+			...context.stateApp.rendererOptions,
+			preference: 'webgl',
 			resizeTo: window,
 		});
 

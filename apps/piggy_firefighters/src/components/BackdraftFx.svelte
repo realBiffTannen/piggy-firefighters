@@ -28,6 +28,7 @@
 	import { audioDirector } from '../game/fx/audioDirector';
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
 	import { rescueProp } from '../game/artMeta';
+	import { qv } from '../game/quality.svelte';
 
 	const context = getContext();
 	const S = SYMBOL_SIZE;
@@ -67,10 +68,19 @@
 	const clearBadges = () => badges.splice(0).forEach((b) => b.destroy({ children: true }));
 
 	type P = { g: PIXI.Graphics; on: boolean; x: number; y: number; vx: number; vy: number; life: number; max: number; s: number };
-	const MAX = 120;
+	// BDF-10: the flame pool is capped per quality tier (game/quality.svelte) and grows on demand — 120 additive display
+	// objects no longer sit in the board layer from boot — and every flame shares ONE teardrop GraphicsContext (tint /
+	// scale / alpha stay per flame, so the look is untouched). `liveCount` lets the ticker skip the pool entirely
+	// between backdrafts.
+	const MAX = () => qv({ high: 120, mid: 60, low: 32 });
+	const SWEEP_SPAWN_MS = () => qv({ high: 14, mid: 20, low: 28 });
+	const BURST_N = () => qv({ high: 12, mid: 8, low: 5 });
 	let root: PIXI.Container | undefined;
 	let flash: PIXI.Graphics | undefined;
+	let flameLayer: PIXI.Container | undefined;
+	let flameCtx: PIXI.GraphicsContext | undefined;
 	const parts: P[] = [];
+	let liveCount = 0;
 
 	type Run = {
 		t: number;
@@ -82,12 +92,29 @@
 	};
 	let run: Run | undefined;
 
-	const take = (): P | undefined => parts.find((p) => !p.on);
+	const take = (): P | undefined => {
+		const free = parts.find((p) => !p.on);
+		if (free || !flameLayer || parts.length >= MAX()) return free;
+		// a flame lick: a teardrop pointing up (one geometry for the whole pool)
+		flameCtx ??= new PIXI.GraphicsContext()
+			.moveTo(0, -S * 0.16)
+			.bezierCurveTo(S * 0.1, -S * 0.02, S * 0.09, S * 0.08, 0, S * 0.09)
+			.bezierCurveTo(-S * 0.09, S * 0.08, -S * 0.1, -S * 0.02, 0, -S * 0.16)
+			.fill(0xffffff);
+		const g = new PIXI.Graphics({ context: flameCtx });
+		g.visible = false;
+		g.blendMode = 'add';
+		flameLayer.addChild(g);
+		const p: P = { g, on: false, x: 0, y: 0, vx: 0, vy: 0, life: 0, max: 1, s: 1 };
+		parts.push(p);
+		return p;
+	};
 
 	const spawn = (x: number, y: number, vx: number, vy: number, max: number, s: number) => {
 		const p = take();
 		if (!p) return;
 		p.on = true;
+		liveCount += 1;
 		p.x = x;
 		p.y = y;
 		p.vx = vx;
@@ -100,8 +127,8 @@
 	};
 
 	const burst = (x: number, y: number) => {
-		for (let i = 0; i < 12; i += 1) {
-			const a = (i / 12) * Math.PI * 2;
+		for (let i = 0, n = BURST_N(); i < n; i += 1) {
+			const a = (i / n) * Math.PI * 2;
 			spawn(x, y, Math.cos(a) * S * 1.4, Math.sin(a) * S * 1.4 - S * 0.6, 520, 0.7 + Math.random() * 0.5);
 		}
 	};
@@ -120,22 +147,25 @@
 	};
 
 	const tick = (dt: number) => {
-		// particles
-		for (const p of parts) {
-			if (!p.on) continue;
-			p.life += dt;
-			const k = p.life / p.max;
-			if (k >= 1) {
-				p.on = false;
-				p.g.visible = false;
-				continue;
+		// particles (nothing to move between backdrafts: the pool is skipped)
+		if (liveCount > 0) {
+			for (const p of parts) {
+				if (!p.on) continue;
+				p.life += dt;
+				const k = p.life / p.max;
+				if (k >= 1) {
+					p.on = false;
+					liveCount -= 1;
+					p.g.visible = false;
+					continue;
+				}
+				p.vy -= S * 1.6 * (dt / 1000); // flames and embers rise
+				p.x += p.vx * (dt / 1000);
+				p.y += p.vy * (dt / 1000);
+				p.g.position.set(p.x, p.y);
+				p.g.scale.set(p.s * (1 - 0.6 * k));
+				p.g.alpha = k < 0.2 ? k / 0.2 : 1 - (k - 0.2) / 0.8;
 			}
-			p.vy -= S * 1.6 * (dt / 1000); // flames and embers rise
-			p.x += p.vx * (dt / 1000);
-			p.y += p.vy * (dt / 1000);
-			p.g.position.set(p.x, p.y);
-			p.g.scale.set(p.s * (1 - 0.6 * k));
-			p.g.alpha = k < 0.2 ? k / 0.2 : 1 - (k - 0.2) / 0.8;
 		}
 		const r = run;
 		if (!r) return;
@@ -146,8 +176,9 @@
 		const front = -S * 0.5 + ((W + S) * Math.min(1, r.t / r.sweepMs));
 		if (r.t < r.sweepMs) {
 			r.spawnClock += dt;
-			while (r.spawnClock > 14) {
-				r.spawnClock -= 14;
+			const every = SWEEP_SPAWN_MS();
+			while (r.spawnClock > every) {
+				r.spawnClock -= every;
 				spawn(front + (Math.random() - 0.5) * S * 0.4, Math.random() * H, S * 0.9, -S * (0.2 + Math.random() * 0.6), 420 + Math.random() * 260, 0.8 + Math.random() * 0.9);
 			}
 		}
@@ -186,16 +217,9 @@
 			flash = new PIXI.Graphics().roundRect(-S * 0.2, -S * 0.2, W + S * 0.4, H + S * 0.4, S * 0.15).fill(0xfff1c9);
 			flash.alpha = 0;
 			flash.blendMode = 'add';
-			root.addChild(flash);
-			for (let i = 0; i < MAX; i += 1) {
-				const g = new PIXI.Graphics();
-				// a flame lick: a teardrop pointing up
-				g.moveTo(0, -S * 0.16).bezierCurveTo(S * 0.1, -S * 0.02, S * 0.09, S * 0.08, 0, S * 0.09).bezierCurveTo(-S * 0.09, S * 0.08, -S * 0.1, -S * 0.02, 0, -S * 0.16).fill(0xffffff);
-				g.visible = false;
-				g.blendMode = 'add';
-				root.addChild(g);
-				parts.push({ g, on: false, x: 0, y: 0, vx: 0, vy: 0, life: 0, max: 1, s: 1 });
-			}
+			// flames live in their own layer under the badges (the pool fills lazily, so a late flame never lands on top)
+			flameLayer = new PIXI.Container();
+			root.addChild(flash, flameLayer);
 		}
 		boardTicker.add(tick);
 		return () => {
@@ -203,6 +227,11 @@
 			finish();
 			clearBadges();
 			parts.splice(0).forEach((p) => p.g.destroy());
+			liveCount = 0;
+			flameLayer?.destroy();
+			flameLayer = undefined;
+			flameCtx?.destroy();
+			flameCtx = undefined;
 			flash?.destroy();
 			flash = undefined;
 		};

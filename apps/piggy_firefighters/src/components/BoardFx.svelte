@@ -24,7 +24,8 @@
 	//    flashes gold on the punch and again on the settle (once in turbo), then a gold glint runs along
 	//    it. Reduced motion: none of it (the symbol itself only fades).
 	//
-	// Imperative PIXI on the live container, ONE ticker callback, pooled Graphics (<= 90 live).
+	// Imperative PIXI on the live container, ONE ticker callback, pooled Graphics (<= 90 live on 'high'; 50 / 25 on the
+	// mid / low quality tiers, game/quality.svelte).
 	import { onMount } from 'svelte';
 	import { Container, PIXI, getContextApp } from 'pixi-svelte';
 
@@ -35,6 +36,7 @@
 	import { featureOwnsInput } from '../game/rescue/stateRescue.svelte';
 	import { prefersReducedMotion, isTurbo } from '../game/fx/timing';
 	import { speedFactor } from '../game/stateSpeed.svelte';
+	import { quality, qv } from '../game/quality.svelte';
 	import { boardTicker } from '../game/reels/boardTicker';
 	import {
 		WILD_BANNER,
@@ -54,14 +56,18 @@
 	const cellY = (row: number) => (row + 0.5) * S;
 
 	type Shape = 'dust' | 'spark' | 'chip' | 'drop' | 'mark' | 'star' | 'ring';
-	type P = { g: PIXI.Graphics; vx: number; vy: number; vr: number; grav: number; drag: number; life: number; max: number; grow: number; shape: Shape };
+	type P = { g: PIXI.Graphics; key: string; vx: number; vy: number; vr: number; grav: number; drag: number; life: number; max: number; grow: number };
 	const live: P[] = [];
-	const pool = new Map<Shape, PIXI.Graphics[]>();
+	// PRT-09: one tessellated GraphicsContext per shape + colour (the palette is a handful of colours), shared by every
+	// Graphics of that look, and the Graphics pooled under the same key. Nothing is ever cleared or re-tessellated on a
+	// win beat any more: an emit is a pop from the pool, or one `new Graphics({ context })` with no geometry work — the
+	// old draw() rebuilt up to 90 shapes on the very frame the win landed. Output is identical (same shapes, same inks).
+	const contexts = new Map<string, PIXI.GraphicsContext>();
+	const pool = new Map<string, PIXI.Graphics[]>();
 	let layer: PIXI.Container;
+	let emitCount = 0;
 
-	const draw = (shape: Shape, color: number): PIXI.Graphics => {
-		const g = pool.get(shape)?.pop() ?? new PIXI.Graphics();
-		g.clear();
+	const buildShape = (g: PIXI.GraphicsContext, shape: Shape, color: number) => {
 		if (shape === 'dust') g.circle(0, 0, S * 0.07).fill({ color, alpha: 0.85 }).circle(0, 0, S * 0.07).stroke({ color: 0x5a3d22, width: 1.5, alpha: 0.35 });
 		else if (shape === 'spark') g.roundRect(-S * 0.05, -1.6, S * 0.1, 3.2, 1.6).fill(color);
 		else if (shape === 'chip') g.roundRect(-S * 0.035, -S * 0.022, S * 0.07, S * 0.044, 2).fill(color).stroke({ color: 0x2a1a10, width: 1.5 });
@@ -71,20 +77,35 @@
 			const r = S * 0.06;
 			g.moveTo(0, -r).lineTo(r * 0.28, -r * 0.28).lineTo(r, 0).lineTo(r * 0.28, r * 0.28).lineTo(0, r).lineTo(-r * 0.28, r * 0.28).lineTo(-r, 0).lineTo(-r * 0.28, -r * 0.28).closePath().fill(color);
 		} else g.circle(0, 0, S * 0.2).stroke({ color, width: 4 });
+	};
+	const shapeContext = (key: string, shape: Shape, color: number): PIXI.GraphicsContext => {
+		let c = contexts.get(key);
+		if (!c) {
+			c = new PIXI.GraphicsContext();
+			buildShape(c, shape, color);
+			contexts.set(key, c);
+		}
+		return c;
+	};
+	const draw = (shape: Shape, color: number): { g: PIXI.Graphics; key: string } => {
+		const key = `${shape}:${color}`;
+		const g = pool.get(key)?.pop() ?? new PIXI.Graphics({ context: shapeContext(key, shape, color) });
 		g.alpha = 1;
 		g.scale.set(1);
 		g.rotation = 0;
-		return g;
+		return { g, key };
 	};
 	const emit = (shape: Shape, color: number, x: number, y: number, o: Partial<P> & { speed?: number; angle?: number; spread?: number }) => {
-		if (live.length >= 90) return;
+		if (live.length >= qv({ high: 90, mid: 50, low: 25 })) return;
+		// turbo on mid / low: every other particle (the burst still reads, at half the fill)
+		if (quality.tier !== 'high' && isTurbo() && (emitCount++ & 1) === 1) return;
 		const a = (o.angle ?? -Math.PI / 2) + ((Math.random() - 0.5) * (o.spread ?? Math.PI));
 		const v = (o.speed ?? 1) * S * (0.6 + Math.random() * 0.8);
-		const g = draw(shape, color);
+		const { g, key } = draw(shape, color);
 		g.position.set(x, y);
 		layer.addChild(g);
 		const max = o.max ?? 620;
-		live.push({ g, shape, vx: Math.cos(a) * v, vy: Math.sin(a) * v, vr: o.vr ?? (Math.random() - 0.5) * 9, grav: o.grav ?? S * 4.5, drag: o.drag ?? 0.9, life: max, max, grow: o.grow ?? 0 });
+		live.push({ g, key, vx: Math.cos(a) * v, vy: Math.sin(a) * v, vr: o.vr ?? (Math.random() - 0.5) * 9, grav: o.grav ?? S * 4.5, drag: o.drag ?? 0.9, life: max, max, grow: o.grow ?? 0 });
 	};
 
 	const BURSTS: Record<string, (x: number, y: number) => void> = {
@@ -174,7 +195,7 @@
 			p.g.alpha = t < 0.6 ? 1 : Math.max(0, 1 - (t - 0.6) / 0.4);
 			if (p.life <= 0) {
 				layer.removeChild(p.g);
-				(pool.get(p.shape) ?? pool.set(p.shape, []).get(p.shape)!).push(p.g);
+				(pool.get(p.key) ?? pool.set(p.key, []).get(p.key)!).push(p.g);
 				live.splice(i, 1);
 			}
 		}
@@ -433,6 +454,8 @@
 			root?.removeChildren().forEach((child: PIXI.ContainerChild) => child.destroy({ children: true }));
 			pool.forEach((list) => list.forEach((g) => g.destroy()));
 			pool.clear();
+			contexts.forEach((c) => c.destroy());
+			contexts.clear();
 			live.length = 0;
 		};
 	});

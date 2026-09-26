@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { stateBet } from 'state-shared';
 import { createPlayBookUtils, checkIsMultipleRevealEvents } from 'utils-book';
 import { createGetEmptyPaddedBoard } from 'utils-slots';
@@ -8,6 +7,16 @@ import { eventEmitter } from './eventEmitter';
 import type { Bet, BookEvent, BookEventOfType } from './typesBookEvent';
 import { bookEventHandlerMap } from './bookEventHandlerMap';
 import type { RawSymbol, SymbolState } from './types';
+
+// array helpers (reverse loops; ES2023 Array.prototype.findLast is not assumed by the browser floor)
+export function findLast<T>(items: readonly T[], predicate: (item: T, index: number) => boolean): T | undefined {
+	for (let i = items.length - 1; i >= 0; i--) if (predicate(items[i], i)) return items[i];
+	return undefined;
+}
+export function findLastIndex<T>(items: readonly T[], predicate: (item: T, index: number) => boolean): number {
+	for (let i = items.length - 1; i >= 0; i--) if (predicate(items[i], i)) return i;
+	return -1;
+}
 
 // general utils
 export const { getEmptyBoard } = createGetEmptyPaddedBoard({ reelsDimensions: BOARD_DIMENSIONS });
@@ -58,7 +67,7 @@ export const convertTorResumableBet = (betToResume: Bet) => {
 	// spins counter are built up event by event, so there is no honest mid-bonus state to jump into. A NATURAL trigger
 	// rewinds one step further, to its `freeSpinTrigger`, so the trigger celebration and the covered transition play
 	// again. The book is fixed, so the replayed bonus pays exactly what it was always going to pay.
-	const lastStart = _.findLastIndex(
+	const lastStart = findLastIndex(
 		betToResume.state,
 		(bookEvent, eventIndex) => eventIndex < resumingIndex && BONUS_START_TYPES.has(bookEvent.type),
 	);
@@ -70,7 +79,7 @@ export const convertTorResumableBet = (betToResume: Bet) => {
 			const previous = betToResume.state[lastStart - 1];
 			resumingIndex = previous?.type === 'freeSpinTrigger' ? lastStart - 1 : lastStart;
 			// an Alarm Call round is replayed from its card, so the award is shown before the bonus it opens
-			const call = _.findLastIndex(betToResume.state, (bookEvent, eventIndex) => eventIndex < resumingIndex && bookEvent.type === 'alarmCall');
+			const call = findLastIndex(betToResume.state, (bookEvent, eventIndex) => eventIndex < resumingIndex && bookEvent.type === 'alarmCall');
 			if (call >= 0) resumingIndex = call;
 		}
 	}

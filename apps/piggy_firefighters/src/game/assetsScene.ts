@@ -2,8 +2,11 @@
  * SCENE asset entries (background plates, bay-door shutter, mode-card art, win rungs, FX sprites, the reel frame and
  * the Rescue block art).
  *
- * `game/assets.ts` spreads this object into its default export so the AssetsLoader preloads every entry behind the
- * splash; `game/fx/sceneTextures.svelte.ts` lazily loads any key that is still missing from the same URL.
+ * `game/assets.ts` spreads ONLY the boot set (`bootSceneAssets`: what the base game draws from the first frame) into
+ * its default export, so the AssetsLoader preloads just that behind the splash; every other entry belongs to a lazy
+ * set (`LAZY_SETS`) that `game/lazyAssets.ts` fetches when its feature is booked or warms after the gate, and
+ * `game/fx/sceneTextures.svelte.ts` lazily loads any single key through the same path. The full `sceneAssets` map is
+ * still the default export: its KEYS are the contract with the components.
  *
  * Every file is the art lane's DELIVERED art under static/assets/** (key -> file -> consumer: docs/FRONTEND_NOTES.md
  * §4). Keys are the contract with the components; geometry that the components need comes from the meta JSON beside
@@ -12,9 +15,27 @@
 // Same served location as game/assets.ts (`../../assets/*` from this module's URL). The base is held in a variable
 // on purpose: Vite rewrites the literal `new URL('<template>', import.meta.url)` form into a build-time glob, which
 // cannot see the static/ tree and yields `undefined`.
+import { LOD_FILES, LOD_SCALE } from './lod.generated';
+import { staticTier } from './quality.svelte';
+
 const HERE = import.meta.url;
 const u = (path: string) => new URL('../../assets/' + path, HERE).href;
-const sprite = (path: string, preload = true) => ({ type: 'sprite' as const, preload, src: u(path) });
+/**
+ * Below the 'high' tier the big pictures (environment plates, win-rung signs, max-win and mode cards) come from the
+ * 0.625x derivatives under static/assets/lod/ (tools/perf/derive_lod_textures.py, game/lod.generated.ts). The
+ * derivative carries LOD_SCALE as its Pixi texture resolution, so `texture.width / height` still report the ORIGINAL
+ * size and every consumer (cover fits, signW scaling, explicit sizes) draws exactly as before.
+ */
+const lodSrc = (path: string) => (staticTier !== 'high' && LOD_FILES.has(path) ? { src: u('lod/' + path), resolution: LOD_SCALE } : { src: u(path) });
+export type SceneEntry = { type: 'sprite'; preload: boolean; src: string; resolution?: number };
+const sprite = (path: string, preload = true): SceneEntry => ({ type: 'sprite' as const, preload, ...lodSrc(path) });
+
+export type Orientation = 'landscape' | 'portrait';
+/** The plate orientation the background draws: components/Background.svelte's rule (canvas height > width x 1.05). */
+export const currentOrientation = (): Orientation =>
+	typeof window !== 'undefined' && window.innerHeight > window.innerWidth * 1.05 ? 'portrait' : 'landscape';
+/** The orientation at import: the boot manifest carries the base plate for this one only. */
+export const BOOT_ORIENTATION: Orientation = currentOrientation();
 
 /** Scene moods: base = Station 13 at dusk, backdraft = the bay door blown open (Backdraft Spins), rescue = the
  *  apartment block at night, inferno = the same block under a red sky (theme §4). */
@@ -31,7 +52,7 @@ export const RUNG_PIECES_3D: ReadonlySet<string> = new Set(['coin', 'silver_coin
 /** Rescue room states (features/rescue/rooms.meta.json `files`), one file per room and state. */
 export const ROOM_STATES = ['roaring', 'smouldering', 'safe', 'inferno_roaring', 'inferno_smouldering', 'inferno_safe'] as const;
 
-const entries: Record<string, ReturnType<typeof sprite>> = {};
+const entries: Record<string, SceneEntry> = {};
 // the world behind the reels (components/Background.svelte): environment/<mood>_{landscape 2039x1000, portrait 1242x2208}
 for (const mood of SCENE_MOODS)
 	for (const orient of ['landscape', 'portrait'] as const) entries[`bg_${mood}_${orient}`] = sprite(`environment/${mood}_${orient}.webp`);
@@ -87,3 +108,47 @@ entries.rescue_jump_sheet = sprite('features/rescue/jump_sheet.webp');
 
 export type SceneAssetKey = keyof typeof entries;
 export default entries;
+
+// ---- boot set vs lazy sets (perf sweep A1 / H-01 / F3 / TEX-03 / A10) ------------------------------------------------
+/** What the base game draws from its first frame: preloaded behind the splash and GPU-warmed before the press. */
+export const BOOT_SCENE_KEYS: readonly string[] = [
+	`bg_base_${BOOT_ORIENTATION}`,
+	'scene_shutter_slats',
+	'scene_shutter_bar',
+	'wordmark_small',
+	'board_frame',
+	'cell_backplate',
+	'cell_frame_plain',
+	'cell_frame_locked',
+	'win_cell_frame',
+	'line_plate',
+	// 5 small FX sprites: the glint plays on any GALARM land (components/BoardFx.svelte) and in every symbol win
+	'rung_fx_flare_horizontal',
+	'rung_fx_ring_shockwave',
+	'rung_fx_glint_4point',
+	'rung_fx_dust_puff',
+	'rung_fx_light_ray_wedge',
+];
+export const bootSceneAssets: Record<string, SceneEntry> = Object.fromEntries(BOOT_SCENE_KEYS.map((k) => [k, entries[k]]));
+
+export type LazyKind = 'winrungs' | 'maxwin' | 'alarm' | 'rescue' | 'backdraft' | 'bg';
+export type LazyContext = { orientation: Orientation; mood: (typeof SCENE_MOODS)[number] };
+/**
+ * The scene keys of each lazy set, resolved for the CURRENT orientation / mood at call time (game/lazyAssets.ts
+ * ensureFeatureAssets). Rigs that ride with a set (pf_rookie with 'alarm', pf_rescued with 'rescue') are added there.
+ *
+ *   winrungs   the five signs + the ten piece sheets: warmed right after the gate, awaited before the first sign drop
+ *   maxwin     the two max-win cards
+ *   alarm      the mode cards on the door and on the Alarm Call card
+ *   rescue     the Rescue block (42) + the rescue / inferno plate for this orientation
+ *   backdraft  the Backdraft Spins plate for this orientation
+ *   bg         the plate for the current mood and orientation (an orientation change, a mood set without its plate)
+ */
+export const LAZY_SETS: Record<LazyKind, (ctx: LazyContext) => string[]> = {
+	winrungs: () => [...RUNG_SKINS.map((k) => `rung_sign_${k}`), ...RUNG_PIECES.map((k) => `rung_piece_${k}`)],
+	maxwin: () => ['maxwin_card_landscape', 'maxwin_card_portrait'],
+	alarm: () => ['scene_card_alarm', 'scene_card_rescue', 'scene_card_inferno', 'scene_card_backdraft'],
+	rescue: ({ orientation }) => [...Object.keys(entries).filter((k) => k.startsWith('rescue_')), `bg_rescue_${orientation}`, `bg_inferno_${orientation}`],
+	backdraft: ({ orientation }) => [`bg_backdraft_${orientation}`],
+	bg: ({ orientation, mood }) => [`bg_${mood}_${orientation}`],
+};

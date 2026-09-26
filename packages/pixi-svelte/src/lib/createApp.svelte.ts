@@ -1,8 +1,8 @@
 import * as PIXI from 'pixi.js';
 
-import type { LoadedAssets, Assets } from './types';
+import type { LoadedAssets, Assets, RendererOptions } from './types';
 
-export function createApp({ assets }: { assets: Assets }) {
+export function createApp({ assets, rendererOptions }: { assets: Assets; rendererOptions?: RendererOptions }) {
 	const reset = () => {
 		stateApp.loaded = false;
 		stateApp.loadingProgress = 0;
@@ -13,6 +13,8 @@ export function createApp({ assets }: { assets: Assets }) {
 	const stateApp = $state({
 		reset,
 		assets,
+		/** Application.init overrides the game chose before init (quality tier): see InitialiseApplication. */
+		rendererOptions: rendererOptions ?? ({} as RendererOptions),
 		loaded: false,
 		loadingProgress: 0,
 		loadedAssets: {} as LoadedAssets,

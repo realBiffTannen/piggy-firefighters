@@ -1,0 +1,3712 @@
+{
+ "label": "after",
+ "at": "2026-09-26T00:47:48.791Z",
+ "build": {
+  "dir": "/Users/jbull/code/piggy-firefighters/apps/piggy_firefighters/build",
+  "schema": 1,
+  "game": "piggy_firefighters",
+  "builtAt": "2026-09-26T00:47:48.743Z",
+  "gitHead": "1dcbc2188cc1eec91c8a5a0ec3c0bb21ebc632ec",
+  "gitDirty": true,
+  "inputDigest": "98e8a0b592248338cafc6b62f6217f1a24b577a31a6470239c68144fa44a5585",
+  "inputFileCount": 1052,
+  "indexHtmlSha": "5d2999bb2652a23ba9b0c37197a34059699514d5b32d327d3a59feeedaf96553"
+ },
+ "served": "http://127.0.0.1:3070/v70/",
+ "rgs": "127.0.0.1:3071",
+ "profiles": {
+  "phone-lowend": {
+   "viewport": {
+    "width": 390,
+    "height": 844
+   },
+   "deviceScaleFactor": 3,
+   "isMobile": true,
+   "hasTouch": true,
+   "cpuThrottle": 6,
+   "device": "mobile"
+  },
+  "laptop-old": {
+   "viewport": {
+    "width": 1366,
+    "height": 768
+   },
+   "deviceScaleFactor": 1,
+   "isMobile": false,
+   "hasTouch": false,
+   "cpuThrottle": 4,
+   "device": "desktop"
+  }
+ },
+ "results": {
+  "phone-lowend": {
+   "boot": {
+    "profile": "phone-lowend",
+    "scenario": "boot",
+    "fixture": null,
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 3108,
+     "durationMs": 3108,
+     "frames": {
+      "n": 106,
+      "p50": 16.7,
+      "p95": 50,
+      "max": 666.7,
+      "over33": 14,
+      "over100": 3,
+      "meanFps": 34.1
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 971,
+      "longestMs": 629
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 14.9,
+      "endMB": 14.9
+     },
+     "pressAtMs": 1358,
+     "shutterDoneAtMs": 3108,
+     "glUploads": {
+      "calls": 60,
+      "bytes": 131982692
+     },
+     "wallMs": 3117,
+     "requests": {
+      "count": 140,
+      "bytes": 12275105,
+      "MB": 11.71,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 75,
+        "bytes": 8362466
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/sprites/symbolsCartoonTall/symT_W_blaze.webp",
+        156664
+       ],
+       [
+        "assets/environment/base_portrait.webp",
+        141384
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 3127,
+     "toMs": 6130,
+     "durationMs": 3003,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 59.9
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 13.7,
+      "peakMB": 17,
+      "endMB": 17
+     }
+    },
+    "glAfterBoot": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 81,
+      "bytes": 270226903,
+      "MB": 257.7,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 16777220
+       },
+       "bitmap": {
+        "count": 77,
+        "bytes": 247113679
+       },
+       "canvas": {
+        "count": 1,
+        "bytes": 6336000
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        16777216,
+        "null"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 257.7,
+     "created": 81,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 81,
+      "bytes": 208448484
+     }
+    },
+    "imageEstimate": {
+     "count": 128,
+     "bytes": 275681708,
+     "largest": [
+      [
+       "interGold/interGold.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_chief/pf_chief.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_dog/pf_dog.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_rookie/pf_rookie.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_rescued/pf_rescued_2.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_rescued/pf_rescued.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "environment/base_portrait.webp",
+       1242,
+       2208,
+       10969344
+      ],
+      [
+       "environment/backdraft_portrait.webp",
+       1242,
+       2208,
+       10969344
+      ],
+      [
+       "environment/inferno_portrait.webp",
+       1242,
+       2208,
+       10969344
+      ],
+      [
+       "environment/rescue_portrait.webp",
+       1242,
+       2208,
+       10969344
+      ],
+      [
+       "maxwin/max_win_card_16x9.webp",
+       1600,
+       900,
+       5760000
+      ],
+      [
+       "ui_scene/board_frame.webp",
+       1497,
+       946,
+       5664648
+      ],
+      [
+       "maxwin/max_win_card_portrait.webp",
+       900,
+       1400,
+       5040000
+      ],
+      [
+       "branding/wordmark.png",
+       1366,
+       654,
+       3573456
+      ],
+      [
+       "signs/huge.webp",
+       1200,
+       728,
+       3494400
+      ]
+     ],
+     "MB": 262.9
+    },
+    "resources": {
+     "woff2": {
+      "count": 2,
+      "transfer": 169128,
+      "decoded": 168528
+     },
+     "png": {
+      "count": 2,
+      "transfer": 280786,
+      "decoded": 280186
+     },
+     "other": {
+      "count": 1,
+      "transfer": 0,
+      "decoded": 0
+     },
+     "webp": {
+      "count": 129,
+      "transfer": 16521360,
+      "decoded": 16482660
+     },
+     "ttf": {
+      "count": 1,
+      "transfer": 28392,
+      "decoded": 28092
+     },
+     "m4a": {
+      "count": 120,
+      "transfer": 4975393,
+      "decoded": 4939393
+     },
+     "svg": {
+      "count": 7,
+      "transfer": 12697,
+      "decoded": 10597
+     },
+     "xml": {
+      "count": 1,
+      "transfer": 15824,
+      "decoded": 15524
+     },
+     "json": {
+      "count": 5,
+      "transfer": 572159,
+      "decoded": 570659
+     },
+     "atlas": {
+      "count": 4,
+      "transfer": 7018,
+      "decoded": 5818
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 110,
+     "Nodes": 1846,
+     "LayoutCount": 66,
+     "RecalcStyleCount": 146,
+     "LayoutDuration": 0.064737,
+     "RecalcStyleDuration": 0.163619,
+     "ScriptDuration": 1.190498,
+     "TaskDuration": 2.840738,
+     "JSHeapUsedSize": 11690708,
+     "JSHeapTotalSize": 19529728
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 6835
+   },
+   "base_win": {
+    "profile": "phone-lowend",
+    "scenario": "base_win",
+    "fixture": "base_win",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2839,
+     "durationMs": 2839,
+     "frames": {
+      "n": 99,
+      "p50": 16.7,
+      "p95": 50.1,
+      "max": 516.5,
+      "over33": 15,
+      "over100": 3,
+      "meanFps": 34.9
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 802,
+      "longestMs": 476
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 12.3,
+      "endMB": 12.3
+     },
+     "pressAtMs": 1169,
+     "shutterDoneAtMs": 2839,
+     "glUploads": {
+      "calls": 60,
+      "bytes": 131982692
+     },
+     "wallMs": 2846,
+     "requests": {
+      "count": 140,
+      "bytes": 12275105,
+      "MB": 11.71,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 75,
+        "bytes": 8362466
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/sprites/symbolsCartoonTall/symT_W_blaze.webp",
+        156664
+       ],
+       [
+        "assets/environment/base_portrait.webp",
+        141384
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2857,
+     "toMs": 5860,
+     "durationMs": 3003,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 15.5,
+      "peakMB": 16.5,
+      "endMB": 16.5
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 33300,
+    "endRoundAfterPressMs": 35,
+    "round": {
+     "fromMs": 5863,
+     "toMs": 41165,
+     "durationMs": 35303,
+     "frames": {
+      "n": 2118,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.3,
+      "peakMB": 33.6,
+      "endMB": 22.1
+     },
+     "glUploads": {
+      "calls": 22,
+      "bytes": 960748
+     },
+     "cdp": {
+      "ScriptDurationMs": 3657,
+      "LayoutDurationMs": 10,
+      "RecalcStyleDurationMs": 17,
+      "TaskDurationMs": 4885,
+      "LayoutCount": 25,
+      "RecalcStyleCount": 56,
+      "Nodes": 1745,
+      "JSEventListeners": 112
+     },
+     "requests": {
+      "count": 140,
+      "bytes": 12168957,
+      "MB": 11.61,
+      "byType": {
+       "audio": {
+        "count": 68,
+        "bytes": 3155729
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8749636
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 0
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 103,
+      "bytes": 271339964,
+      "MB": 258.8,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 16777220
+       },
+       "bitmap": {
+        "count": 78,
+        "bytes": 247722932
+       },
+       "canvas": {
+        "count": 22,
+        "bytes": 6839808
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        16777216,
+        "null"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 258.8,
+     "created": 103,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 103,
+      "bytes": 209409232
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 112,
+     "Nodes": 1745,
+     "LayoutCount": 86,
+     "RecalcStyleCount": 190,
+     "LayoutDuration": 0.063294,
+     "RecalcStyleDuration": 0.159139,
+     "ScriptDuration": 4.809467,
+     "TaskDuration": 7.409639,
+     "JSHeapUsedSize": 14723508,
+     "JSHeapTotalSize": 18743296
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 41285
+   },
+   "base_backdraft_win": {
+    "profile": "phone-lowend",
+    "scenario": "base_backdraft_win",
+    "fixture": "base_backdraft_win",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2919,
+     "durationMs": 2919,
+     "frames": {
+      "n": 109,
+      "p50": 16.7,
+      "p95": 50,
+      "max": 516.6,
+      "over33": 10,
+      "over100": 3,
+      "meanFps": 37.3
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 815,
+      "longestMs": 473
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 12.5,
+      "endMB": 11.1
+     },
+     "pressAtMs": 1219,
+     "shutterDoneAtMs": 2919,
+     "glUploads": {
+      "calls": 60,
+      "bytes": 131982692
+     },
+     "wallMs": 2926,
+     "requests": {
+      "count": 140,
+      "bytes": 12275105,
+      "MB": 11.71,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 75,
+        "bytes": 8362466
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/sprites/symbolsCartoonTall/symT_W_blaze.webp",
+        156664
+       ],
+       [
+        "assets/environment/base_portrait.webp",
+        141384
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2943,
+     "toMs": 5945,
+     "durationMs": 3002,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 16,
+      "peakMB": 16.4,
+      "endMB": 16.4
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 10949,
+    "endRoundAfterPressMs": 34,
+    "round": {
+     "fromMs": 5949,
+     "toMs": 18901,
+     "durationMs": 12951,
+     "frames": {
+      "n": 777,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.5,
+      "peakMB": 23.4,
+      "endMB": 23.4
+     },
+     "glUploads": {
+      "calls": 6,
+      "bytes": 61440
+     },
+     "cdp": {
+      "ScriptDurationMs": 1469,
+      "LayoutDurationMs": 13,
+      "RecalcStyleDurationMs": 16,
+      "TaskDurationMs": 1991,
+      "LayoutCount": 23,
+      "RecalcStyleCount": 53,
+      "Nodes": 1724,
+      "JSEventListeners": 130
+     },
+     "requests": {
+      "count": 136,
+      "bytes": 10592799,
+      "MB": 10.1,
+      "byType": {
+       "audio": {
+        "count": 64,
+        "bytes": 1579571
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8749636
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 0
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 87,
+      "bytes": 270288343,
+      "MB": 257.8,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 16777220
+       },
+       "bitmap": {
+        "count": 77,
+        "bytes": 247113679
+       },
+       "canvas": {
+        "count": 7,
+        "bytes": 6397440
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        16777216,
+        "null"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 257.8,
+     "created": 87,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 87,
+      "bytes": 208509924
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 130,
+     "Nodes": 1724,
+     "LayoutCount": 93,
+     "RecalcStyleCount": 200,
+     "LayoutDuration": 0.07363,
+     "RecalcStyleDuration": 0.185796,
+     "ScriptDuration": 2.593971,
+     "TaskDuration": 4.536198,
+     "JSHeapUsedSize": 19955352,
+     "JSHeapTotalSize": 30801920
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 19068
+   },
+   "backdraft_spins": {
+    "profile": "phone-lowend",
+    "scenario": "backdraft_spins",
+    "fixture": "backdraft_spins",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2827,
+     "durationMs": 2827,
+     "frames": {
+      "n": 100,
+      "p50": 16.7,
+      "p95": 49.9,
+      "max": 516.6,
+      "over33": 15,
+      "over100": 3,
+      "meanFps": 35.4
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 782,
+      "longestMs": 475
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 12.3,
+      "endMB": 12.3
+     },
+     "pressAtMs": 1167,
+     "shutterDoneAtMs": 2827,
+     "glUploads": {
+      "calls": 60,
+      "bytes": 131982692
+     },
+     "wallMs": 2834,
+     "requests": {
+      "count": 140,
+      "bytes": 12275105,
+      "MB": 11.71,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 75,
+        "bytes": 8362466
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/sprites/symbolsCartoonTall/symT_W_blaze.webp",
+        156664
+       ],
+       [
+        "assets/environment/base_portrait.webp",
+        141384
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2843,
+     "toMs": 5846,
+     "durationMs": 3003,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 15.6,
+      "peakMB": 16.2,
+      "endMB": 16.2
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 62949,
+    "endRoundAfterPressMs": 62839,
+    "round": {
+     "fromMs": 5849,
+     "toMs": 70798,
+     "durationMs": 64950,
+     "frames": {
+      "n": 3896,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 33.3,
+      "over33": 1,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.4,
+      "peakMB": 32.8,
+      "endMB": 22.7
+     },
+     "glUploads": {
+      "calls": 31,
+      "bytes": 4625036
+     },
+     "cdp": {
+      "ScriptDurationMs": 6999,
+      "LayoutDurationMs": 9,
+      "RecalcStyleDurationMs": 37,
+      "TaskDurationMs": 9493,
+      "LayoutCount": 16,
+      "RecalcStyleCount": 126,
+      "Nodes": 1813,
+      "JSEventListeners": 179
+     },
+     "requests": {
+      "count": 140,
+      "bytes": 12417056,
+      "MB": 11.84,
+      "byType": {
+       "audio": {
+        "count": 68,
+        "bytes": 3403828
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8749636
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 5
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 103,
+      "bytes": 273791292,
+      "MB": 261.1,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 16777220
+       },
+       "bitmap": {
+        "count": 79,
+        "bytes": 248376116
+       },
+       "canvas": {
+        "count": 21,
+        "bytes": 8637952
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        16777216,
+        "null"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 261.1,
+     "created": 103,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 112,
+      "bytes": 213073520
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 179,
+     "Nodes": 1813,
+     "LayoutCount": 78,
+     "RecalcStyleCount": 262,
+     "LayoutDuration": 0.058068,
+     "RecalcStyleDuration": 0.178104,
+     "ScriptDuration": 7.910243,
+     "TaskDuration": 11.640925,
+     "JSHeapUsedSize": 17433060,
+     "JSHeapTotalSize": 21889024
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 70969
+   },
+   "inferno_buy": {
+    "profile": "phone-lowend",
+    "scenario": "inferno_buy",
+    "fixture": "inferno_buy",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2848,
+     "durationMs": 2848,
+     "frames": {
+      "n": 105,
+      "p50": 16.7,
+      "p95": 49.9,
+      "max": 516.7,
+      "over33": 12,
+      "over100": 3,
+      "meanFps": 36.9
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 778,
+      "longestMs": 470
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 11.2,
+      "endMB": 11.1
+     },
+     "pressAtMs": 1147,
+     "shutterDoneAtMs": 2848,
+     "glUploads": {
+      "calls": 60,
+      "bytes": 131982692
+     },
+     "wallMs": 2855,
+     "requests": {
+      "count": 140,
+      "bytes": 12275105,
+      "MB": 11.71,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 75,
+        "bytes": 8362466
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/sprites/symbolsCartoonTall/symT_W_blaze.webp",
+        156664
+       ],
+       [
+        "assets/environment/base_portrait.webp",
+        141384
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2864,
+     "toMs": 5867,
+     "durationMs": 3002,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.7,
+      "peakMB": 16,
+      "endMB": 16
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 71728,
+    "endRoundAfterPressMs": 71651,
+    "round": {
+     "fromMs": 5870,
+     "toMs": 79599,
+     "durationMs": 73729,
+     "frames": {
+      "n": 4417,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 83.3,
+      "over33": 4,
+      "over100": 0,
+      "meanFps": 59.9
+     },
+     "longTasks": {
+      "count": 1,
+      "totalMs": 64,
+      "longestMs": 64
+     },
+     "heap": {
+      "startMB": 14.1,
+      "peakMB": 36.2,
+      "endMB": 22.8
+     },
+     "glUploads": {
+      "calls": 90,
+      "bytes": 111263232
+     },
+     "cdp": {
+      "ScriptDurationMs": 9566,
+      "LayoutDurationMs": 21,
+      "RecalcStyleDurationMs": 80,
+      "TaskDurationMs": 12390,
+      "LayoutCount": 39,
+      "RecalcStyleCount": 267,
+      "Nodes": 1954,
+      "JSEventListeners": 110
+     },
+     "requests": {
+      "count": 138,
+      "bytes": 13884681,
+      "MB": 13.24,
+      "byType": {
+       "audio": {
+        "count": 66,
+        "bytes": 4871453
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8749636
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 13
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 71,
+      "bytes": 248728998,
+      "MB": 237.2,
+      "byKind": {
+       "null": {
+        "count": 4,
+        "bytes": 29360132
+       },
+       "bitmap": {
+        "count": 43,
+        "bytes": 209538974
+       },
+       "canvas": {
+        "count": 23,
+        "bytes": 9829888
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        16777216,
+        "null"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1242,
+        2208,
+        14625792,
+        "bitmap"
+       ],
+       [
+        1024,
+        2048,
+        8388608,
+        "null"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1024,
+        1024,
+        4194304,
+        "null"
+       ],
+       [
+        963,
+        645,
+        3312720,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 374.4,
+     "created": 153,
+     "deleted": 82,
+     "uploadsAllTime": {
+      "calls": 171,
+      "bytes": 319711716
+     }
+    },
+    "idle": {
+     "fromMs": 81612,
+     "toMs": 91614,
+     "durationMs": 10002,
+     "frames": {
+      "n": 600,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 23,
+      "peakMB": 24.2,
+      "endMB": 23
+     },
+     "glUploads": {
+      "calls": 0,
+      "bytes": 0
+     },
+     "cdp": {
+      "ScriptDurationMs": 567,
+      "LayoutDurationMs": 0,
+      "RecalcStyleDurationMs": 0,
+      "TaskDurationMs": 861,
+      "LayoutCount": 0,
+      "RecalcStyleCount": 0,
+      "Nodes": 1954,
+      "JSEventListeners": 110
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 110,
+     "Nodes": 1954,
+     "LayoutCount": 103,
+     "RecalcStyleCount": 407,
+     "LayoutDuration": 0.074397,
+     "RecalcStyleDuration": 0.231832,
+     "ScriptDuration": 11.274782,
+     "TaskDuration": 15.803774,
+     "JSHeapUsedSize": 15754740,
+     "JSHeapTotalSize": 17432576
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 91716
+   }
+  },
+  "laptop-old": {
+   "boot": {
+    "profile": "laptop-old",
+    "scenario": "boot",
+    "fixture": null,
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2517,
+     "durationMs": 2517,
+     "frames": {
+      "n": 111,
+      "p50": 16.7,
+      "p95": 33.3,
+      "max": 133.4,
+      "over33": 8,
+      "over100": 1,
+      "meanFps": 44.1
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 538,
+      "longestMs": 327
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 13.5,
+      "endMB": 13.5
+     },
+     "pressAtMs": 820,
+     "shutterDoneAtMs": 2517,
+     "glUploads": {
+      "calls": 43,
+      "bytes": 101433284
+     },
+     "wallMs": 2522,
+     "requests": {
+      "count": 123,
+      "bytes": 10501301,
+      "MB": 10.01,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 58,
+        "bytes": 6588662
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/environment/base_landscape.webp",
+        171080
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ],
+       [
+        "assets/buycards/inferno.webp",
+        138198
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2528,
+     "toMs": 5531,
+     "durationMs": 3002,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.3,
+      "peakMB": 16.6,
+      "endMB": 16.6
+     }
+    },
+    "glAfterBoot": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 64,
+      "bytes": 230636589,
+      "MB": 220,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 2097156
+       },
+       "bitmap": {
+        "count": 60,
+        "bytes": 222203429
+       },
+       "canvas": {
+        "count": 1,
+        "bytes": 6336000
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 220,
+     "created": 64,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 64,
+      "bytes": 175085732
+     }
+    },
+    "imageEstimate": {
+     "count": 111,
+     "bytes": 251372332,
+     "largest": [
+      [
+       "interGold/interGold.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_dog/pf_dog.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_chief/pf_chief.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_rookie/pf_rookie.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_rescued/pf_rescued.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "pf_rescued/pf_rescued_2.webp",
+       2048,
+       2048,
+       16777216
+      ],
+      [
+       "environment/base_landscape.webp",
+       2039,
+       1000,
+       8156000
+      ],
+      [
+       "environment/backdraft_landscape.webp",
+       2039,
+       1000,
+       8156000
+      ],
+      [
+       "environment/rescue_landscape.webp",
+       2039,
+       1000,
+       8156000
+      ],
+      [
+       "environment/inferno_landscape.webp",
+       2039,
+       1000,
+       8156000
+      ],
+      [
+       "maxwin/max_win_card_16x9.webp",
+       1600,
+       900,
+       5760000
+      ],
+      [
+       "ui_scene/board_frame.webp",
+       1497,
+       946,
+       5664648
+      ],
+      [
+       "maxwin/max_win_card_portrait.webp",
+       900,
+       1400,
+       5040000
+      ],
+      [
+       "branding/wordmark.png",
+       1366,
+       654,
+       3573456
+      ],
+      [
+       "signs/max.webp",
+       1200,
+       728,
+       3494400
+      ]
+     ],
+     "MB": 239.7
+    },
+    "resources": {
+     "woff2": {
+      "count": 2,
+      "transfer": 169128,
+      "decoded": 168528
+     },
+     "png": {
+      "count": 2,
+      "transfer": 280786,
+      "decoded": 280186
+     },
+     "other": {
+      "count": 1,
+      "transfer": 0,
+      "decoded": 0
+     },
+     "webp": {
+      "count": 112,
+      "transfer": 14747214,
+      "decoded": 14713614
+     },
+     "ttf": {
+      "count": 1,
+      "transfer": 28392,
+      "decoded": 28092
+     },
+     "m4a": {
+      "count": 120,
+      "transfer": 4975393,
+      "decoded": 4939393
+     },
+     "svg": {
+      "count": 7,
+      "transfer": 12697,
+      "decoded": 10597
+     },
+     "xml": {
+      "count": 1,
+      "transfer": 15824,
+      "decoded": 15524
+     },
+     "json": {
+      "count": 5,
+      "transfer": 572159,
+      "decoded": 570659
+     },
+     "atlas": {
+      "count": 4,
+      "transfer": 7018,
+      "decoded": 5818
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 110,
+     "Nodes": 1829,
+     "LayoutCount": 69,
+     "RecalcStyleCount": 142,
+     "LayoutDuration": 0.036817,
+     "RecalcStyleDuration": 0.113087,
+     "ScriptDuration": 0.799046,
+     "TaskDuration": 1.837331,
+     "JSHeapUsedSize": 11910052,
+     "JSHeapTotalSize": 19529728
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 6154
+   },
+   "base_win": {
+    "profile": "laptop-old",
+    "scenario": "base_win",
+    "fixture": "base_win",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2408,
+     "durationMs": 2408,
+     "frames": {
+      "n": 104,
+      "p50": 16.7,
+      "p95": 33.3,
+      "max": 366.8,
+      "over33": 7,
+      "over100": 2,
+      "meanFps": 43.2
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 545,
+      "longestMs": 324
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 13.9,
+      "endMB": 13.9
+     },
+     "pressAtMs": 790,
+     "shutterDoneAtMs": 2408,
+     "glUploads": {
+      "calls": 43,
+      "bytes": 101433284
+     },
+     "wallMs": 2415,
+     "requests": {
+      "count": 123,
+      "bytes": 10501301,
+      "MB": 10.01,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 58,
+        "bytes": 6588662
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/environment/base_landscape.webp",
+        171080
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ],
+       [
+        "assets/buycards/inferno.webp",
+        138198
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2429,
+     "toMs": 5436,
+     "durationMs": 3007,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 59.9
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 13.1,
+      "peakMB": 16.7,
+      "endMB": 16.7
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 33302,
+    "endRoundAfterPressMs": 23,
+    "round": {
+     "fromMs": 5442,
+     "toMs": 40750,
+     "durationMs": 35308,
+     "frames": {
+      "n": 2118,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.2,
+      "peakMB": 35,
+      "endMB": 21.6
+     },
+     "glUploads": {
+      "calls": 22,
+      "bytes": 582892
+     },
+     "cdp": {
+      "ScriptDurationMs": 2621,
+      "LayoutDurationMs": 7,
+      "RecalcStyleDurationMs": 12,
+      "TaskDurationMs": 3526,
+      "LayoutCount": 25,
+      "RecalcStyleCount": 56,
+      "Nodes": 1745,
+      "JSEventListeners": 111
+     },
+     "requests": {
+      "count": 140,
+      "bytes": 12170383,
+      "MB": 11.61,
+      "byType": {
+       "audio": {
+        "count": 68,
+        "bytes": 3155729
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8751062
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 0
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 86,
+      "bytes": 231371794,
+      "MB": 220.7,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 2097156
+       },
+       "bitmap": {
+        "count": 61,
+        "bytes": 222812682
+       },
+       "canvas": {
+        "count": 22,
+        "bytes": 6461952
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 220.7,
+     "created": 86,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 86,
+      "bytes": 175668624
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 111,
+     "Nodes": 1745,
+     "LayoutCount": 88,
+     "RecalcStyleCount": 191,
+     "LayoutDuration": 0.043294,
+     "RecalcStyleDuration": 0.124154,
+     "ScriptDuration": 3.3472,
+     "TaskDuration": 5.197776,
+     "JSHeapUsedSize": 15843572,
+     "JSHeapTotalSize": 18743296
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 40935
+   },
+   "base_backdraft_win": {
+    "profile": "laptop-old",
+    "scenario": "base_backdraft_win",
+    "fixture": "base_backdraft_win",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2401,
+     "durationMs": 2401,
+     "frames": {
+      "n": 105,
+      "p50": 16.7,
+      "p95": 33.4,
+      "max": 333.4,
+      "over33": 9,
+      "over100": 2,
+      "meanFps": 43.7
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 512,
+      "longestMs": 306
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 14.1,
+      "endMB": 14.1
+     },
+     "pressAtMs": 742,
+     "shutterDoneAtMs": 2401,
+     "glUploads": {
+      "calls": 43,
+      "bytes": 101433284
+     },
+     "wallMs": 2407,
+     "requests": {
+      "count": 123,
+      "bytes": 10501301,
+      "MB": 10.01,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 58,
+        "bytes": 6588662
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/environment/base_landscape.webp",
+        171080
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ],
+       [
+        "assets/buycards/inferno.webp",
+        138198
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2411,
+     "toMs": 5414,
+     "durationMs": 3003,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 59.9
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 13.1,
+      "peakMB": 17,
+      "endMB": 17
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 10984,
+    "endRoundAfterPressMs": 25,
+    "round": {
+     "fromMs": 5417,
+     "toMs": 18404,
+     "durationMs": 12988,
+     "frames": {
+      "n": 779,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.5,
+      "peakMB": 22.9,
+      "endMB": 22.9
+     },
+     "glUploads": {
+      "calls": 6,
+      "bytes": 15360
+     },
+     "cdp": {
+      "ScriptDurationMs": 1086,
+      "LayoutDurationMs": 6,
+      "RecalcStyleDurationMs": 8,
+      "TaskDurationMs": 1431,
+      "LayoutCount": 23,
+      "RecalcStyleCount": 53,
+      "Nodes": 1724,
+      "JSEventListeners": 121
+     },
+     "requests": {
+      "count": 136,
+      "bytes": 10594225,
+      "MB": 10.1,
+      "byType": {
+       "audio": {
+        "count": 64,
+        "bytes": 1579571
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8751062
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 0
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 70,
+      "bytes": 230651949,
+      "MB": 220,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 2097156
+       },
+       "bitmap": {
+        "count": 60,
+        "bytes": 222203429
+       },
+       "canvas": {
+        "count": 7,
+        "bytes": 6351360
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 220,
+     "created": 70,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 70,
+      "bytes": 175101092
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 121,
+     "Nodes": 1724,
+     "LayoutCount": 86,
+     "RecalcStyleCount": 191,
+     "LayoutDuration": 0.043343,
+     "RecalcStyleDuration": 0.114129,
+     "ScriptDuration": 1.8171,
+     "TaskDuration": 3.046356,
+     "JSHeapUsedSize": 19449556,
+     "JSHeapTotalSize": 30015488
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 18582
+   },
+   "backdraft_spins": {
+    "profile": "laptop-old",
+    "scenario": "backdraft_spins",
+    "fixture": "backdraft_spins",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2354,
+     "durationMs": 2354,
+     "frames": {
+      "n": 102,
+      "p50": 16.7,
+      "p95": 33.4,
+      "max": 316.7,
+      "over33": 9,
+      "over100": 2,
+      "meanFps": 43.3
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 499,
+      "longestMs": 306
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 14.3,
+      "endMB": 14.3
+     },
+     "pressAtMs": 731,
+     "shutterDoneAtMs": 2354,
+     "glUploads": {
+      "calls": 43,
+      "bytes": 101433284
+     },
+     "wallMs": 2367,
+     "requests": {
+      "count": 123,
+      "bytes": 10501301,
+      "MB": 10.01,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 58,
+        "bytes": 6588662
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/environment/base_landscape.webp",
+        171080
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ],
+       [
+        "assets/buycards/inferno.webp",
+        138198
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2375,
+     "toMs": 5378,
+     "durationMs": 3003,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 59.9
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 13.2,
+      "peakMB": 15.2,
+      "endMB": 13.7
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 62841,
+    "endRoundAfterPressMs": 62775,
+    "round": {
+     "fromMs": 5387,
+     "toMs": 70231,
+     "durationMs": 64844,
+     "frames": {
+      "n": 3890,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.2,
+      "peakMB": 33,
+      "endMB": 23.3
+     },
+     "glUploads": {
+      "calls": 31,
+      "bytes": 1866380
+     },
+     "cdp": {
+      "ScriptDurationMs": 5156,
+      "LayoutDurationMs": 6,
+      "RecalcStyleDurationMs": 24,
+      "TaskDurationMs": 6821,
+      "LayoutCount": 14,
+      "RecalcStyleCount": 122,
+      "Nodes": 1813,
+      "JSEventListeners": 180
+     },
+     "requests": {
+      "count": 140,
+      "bytes": 12418482,
+      "MB": 11.84,
+      "byType": {
+       "audio": {
+        "count": 68,
+        "bytes": 3403828
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8751062
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 5
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 86,
+      "bytes": 232474514,
+      "MB": 221.7,
+      "byKind": {
+       "null": {
+        "count": 2,
+        "bytes": 2097156
+       },
+       "bitmap": {
+        "count": 62,
+        "bytes": 223465866
+       },
+       "canvas": {
+        "count": 21,
+        "bytes": 6911488
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        1600,
+        900,
+        7680000,
+        "bitmap"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        900,
+        1400,
+        6720000,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ],
+       [
+        1200,
+        728,
+        4659200,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 221.7,
+     "created": 86,
+     "deleted": 0,
+     "uploadsAllTime": {
+      "calls": 95,
+      "bytes": 176952112
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 180,
+     "Nodes": 1813,
+     "LayoutCount": 72,
+     "RecalcStyleCount": 252,
+     "LayoutDuration": 0.04088,
+     "RecalcStyleDuration": 0.12626,
+     "ScriptDuration": 5.86621,
+     "TaskDuration": 8.428089,
+     "JSHeapUsedSize": 16434468,
+     "JSHeapTotalSize": 21102592
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 70370
+   },
+   "inferno_buy": {
+    "profile": "laptop-old",
+    "scenario": "inferno_buy",
+    "fixture": "inferno_buy",
+    "ok": true,
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "boot": {
+     "fromMs": 0,
+     "toMs": 2413,
+     "durationMs": 2413,
+     "frames": {
+      "n": 108,
+      "p50": 16.7,
+      "p95": 33.3,
+      "max": 333.3,
+      "over33": 7,
+      "over100": 2,
+      "meanFps": 44.8
+     },
+     "longTasks": {
+      "count": 3,
+      "totalMs": 503,
+      "longestMs": 302
+     },
+     "heap": {
+      "startMB": 1.7,
+      "peakMB": 14,
+      "endMB": 14
+     },
+     "pressAtMs": 731,
+     "shutterDoneAtMs": 2413,
+     "glUploads": {
+      "calls": 43,
+      "bytes": 101433284
+     },
+     "wallMs": 2421,
+     "requests": {
+      "count": 123,
+      "bytes": 10501301,
+      "MB": 10.01,
+      "byType": {
+       "font": {
+        "count": 3,
+        "bytes": 197204
+       },
+       "image": {
+        "count": 58,
+        "bytes": 6588662
+       },
+       "audio": {
+        "count": 56,
+        "bytes": 3384897
+       },
+       "text": {
+        "count": 3,
+        "bytes": 17731
+       },
+       "json": {
+        "count": 3,
+        "bytes": 312807
+       }
+      },
+      "bundleJsRequests": 0,
+      "notOk": [],
+      "largest": [
+       [
+        "assets/audio/piggy_firefighters/base_loop_a.m4a",
+        1709697
+       ],
+       [
+        "assets/spine-lod/pf_chief/pf_chief.webp",
+        1692729
+       ],
+       [
+        "assets/spine-lod/pf_dog/pf_dog.webp",
+        1090049
+       ],
+       [
+        "assets/audio/piggy_firefighters/ambient_station_loop.m4a",
+        300450
+       ],
+       [
+        "assets/audio/piggy_firefighters/anticipation_layer.m4a",
+        214093
+       ],
+       [
+        "assets/splash/card_maxwin.webp",
+        189288
+       ],
+       [
+        "assets/fonts/interGold/interGold.webp",
+        184714
+       ],
+       [
+        "assets/environment/base_landscape.webp",
+        171080
+       ],
+       [
+        "assets/spine/pf_chief/pf_chief.json",
+        163690
+       ],
+       [
+        "assets/branding/wordmark.png",
+        140288
+       ],
+       [
+        "assets/splash/card_backdraft.webp",
+        138484
+       ],
+       [
+        "assets/buycards/inferno.webp",
+        138198
+       ]
+      ]
+     },
+     "rgsRequests": 2
+    },
+    "afterShutter3s": {
+     "fromMs": 2437,
+     "toMs": 5443,
+     "durationMs": 3006,
+     "frames": {
+      "n": 180,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 59.9
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14.8,
+      "peakMB": 16.6,
+      "endMB": 16.6
+     }
+    },
+    "spinVia": "Space",
+    "roundWallMs": 71607,
+    "endRoundAfterPressMs": 71560,
+    "round": {
+     "fromMs": 5445,
+     "toMs": 79053,
+     "durationMs": 73608,
+     "frames": {
+      "n": 4414,
+      "p50": 16.7,
+      "p95": 16.8,
+      "max": 50,
+      "over33": 1,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 14,
+      "peakMB": 36,
+      "endMB": 22.7
+     },
+     "glUploads": {
+      "calls": 91,
+      "bytes": 103471392
+     },
+     "cdp": {
+      "ScriptDurationMs": 6179,
+      "LayoutDurationMs": 17,
+      "RecalcStyleDurationMs": 43,
+      "TaskDurationMs": 7999,
+      "LayoutCount": 38,
+      "RecalcStyleCount": 267,
+      "Nodes": 1960,
+      "JSEventListeners": 110
+     },
+     "requests": {
+      "count": 138,
+      "bytes": 13886107,
+      "MB": 13.24,
+      "byType": {
+       "audio": {
+        "count": 66,
+        "bytes": 4871453
+       },
+       "image": {
+        "count": 68,
+        "bytes": 8751062
+       },
+       "json": {
+        "count": 2,
+        "bytes": 258936
+       },
+       "text": {
+        "count": 2,
+        "bytes": 4656
+       }
+      }
+     },
+     "betEvents": 13
+    },
+    "glAfterRound": {
+     "contexts": 5,
+     "kind": "webgl2",
+     "textures": {
+      "count": 74,
+      "bytes": 228146065,
+      "MB": 217.6,
+      "byKind": {
+       "null": {
+        "count": 5,
+        "bytes": 18874372
+       },
+       "bitmap": {
+        "count": 45,
+        "bytes": 201087369
+       },
+       "canvas": {
+        "count": 23,
+        "bytes": 8184320
+       },
+       "buffer": {
+        "count": 1,
+        "bytes": 4
+       }
+      },
+      "largest": [
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2048,
+        2048,
+        22369621,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        2039,
+        1000,
+        10874667,
+        "bitmap"
+       ],
+       [
+        2048,
+        1024,
+        8388608,
+        "null"
+       ],
+       [
+        1497,
+        946,
+        7552864,
+        "bitmap"
+       ],
+       [
+        960,
+        1650,
+        6336000,
+        "canvas"
+       ],
+       [
+        2048,
+        512,
+        4194304,
+        "null"
+       ],
+       [
+        1024,
+        1024,
+        4194304,
+        "null"
+       ],
+       [
+        963,
+        645,
+        3312720,
+        "bitmap"
+       ]
+      ]
+     },
+     "peakMB": 331.9,
+     "created": 137,
+     "deleted": 63,
+     "uploadsAllTime": {
+      "calls": 155,
+      "bytes": 278557124
+     }
+    },
+    "idle": {
+     "fromMs": 81070,
+     "toMs": 91072,
+     "durationMs": 10003,
+     "frames": {
+      "n": 600,
+      "p50": 16.7,
+      "p95": 16.7,
+      "max": 16.8,
+      "over33": 0,
+      "over100": 0,
+      "meanFps": 60
+     },
+     "longTasks": {
+      "count": 0,
+      "totalMs": 0,
+      "longestMs": 0
+     },
+     "heap": {
+      "startMB": 23,
+      "peakMB": 23.1,
+      "endMB": 23.1
+     },
+     "glUploads": {
+      "calls": 0,
+      "bytes": 0
+     },
+     "cdp": {
+      "ScriptDurationMs": 370,
+      "LayoutDurationMs": 0,
+      "RecalcStyleDurationMs": 0,
+      "TaskDurationMs": 564,
+      "LayoutCount": 0,
+      "RecalcStyleCount": 0,
+      "Nodes": 1960,
+      "JSEventListeners": 110
+     }
+    },
+    "finalMetrics": {
+     "JSEventListeners": 110,
+     "Nodes": 1960,
+     "LayoutCount": 106,
+     "RecalcStyleCount": 409,
+     "LayoutDuration": 0.048973,
+     "RecalcStyleDuration": 0.149296,
+     "ScriptDuration": 7.315975,
+     "TaskDuration": 10.273186,
+     "JSHeapUsedSize": 15066648,
+     "JSHeapTotalSize": 18219008
+    },
+    "consoleErrorCount": 0,
+    "scenarioWallMs": 91212
+   }
+  }
+ },
+ "chromium": "153.0.8010.12"
+}

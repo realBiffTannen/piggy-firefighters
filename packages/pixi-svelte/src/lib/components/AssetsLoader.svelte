@@ -4,6 +4,7 @@
 
 	import { getContextApp } from '../context.svelte';
 	import { getProcessed } from '../assetLoad';
+	import { enableMipmaps } from '../mipmaps';
 	import type { LoadedAssets, RawAsset } from '../types';
 
 	type Props = { children: Snippet };
@@ -45,65 +46,20 @@
 		context.stateApp.loadingProgress = Math.min(100, (counter / totalAssetCount) * 100);
 	};
 
-	// Mipmaps: reel symbols, sprite sheets and Spine atlas pages are authored larger than they are drawn
-	// (a 384 px symbol lands in a ~150 px cell, smaller still on phones). Without mipmaps the GPU
-	// point/bilinear-samples a big texture into few pixels, which shimmers and looks jagged in motion.
-	// Trilinear mipmapping fixes that. Non-power-of-two mipmaps need WebGL2 or WebGPU, so on a WebGL1
-	// context only power-of-two textures are mipmapped (anything else would render black there).
-	const isPowerOfTwo = (n: number) => n > 0 && (n & (n - 1)) === 0;
-	const canMipmapNpot = () => {
-		const renderer = context.stateApp.pixiApplication?.renderer as { gl?: unknown } | undefined;
-		if (!renderer) return false;
-		if (!('gl' in renderer) || !renderer.gl) return true; // WebGPU
-		return typeof WebGL2RenderingContext !== 'undefined' && renderer.gl instanceof WebGL2RenderingContext;
-	};
-	const mipmapSource = (source: PIXI.TextureSource | undefined, seen: Set<unknown>) => {
-		if (!source || seen.has(source)) return;
-		seen.add(source);
-		const npot = !isPowerOfTwo(source.pixelWidth) || !isPowerOfTwo(source.pixelHeight);
-		if (npot && !canMipmapNpot()) return;
-		source.autoGenerateMipmaps = true;
-		source.scaleMode = 'linear';
-		source.mipmapFilter = 'linear';
-		source.updateMipmaps();
-	};
-	const enableMipmaps = (rawAsset: unknown) => {
-		try {
-			const seen = new Set<unknown>();
-			const visit = (value: unknown, depth: number) => {
-				if (!value || typeof value !== 'object' || depth > 3) return;
-				if (value instanceof PIXI.Texture) return mipmapSource(value.source, seen);
-				if (value instanceof PIXI.TextureSource) return mipmapSource(value, seen);
-				const record = value as Record<string, unknown>;
-				// Spritesheet -> textures; Spine TextureAtlas -> pages[].texture.texture; plain dict of assets.
-				for (const k of ['textures', 'pages', 'texture', 'textureSource']) {
-					const child = record[k];
-					if (Array.isArray(child)) child.forEach((c) => visit(c, depth + 1));
-					else if (child && typeof child === 'object') {
-						if (child instanceof PIXI.Texture || child instanceof PIXI.TextureSource) visit(child, depth + 1);
-						else Object.values(child as Record<string, unknown>).forEach((c) => visit(c, depth + 1));
-						visit(child, depth + 1);
-					}
-				}
-				if (Array.isArray(value)) value.forEach((c) => visit(c, depth + 1));
-				else if (!(['textures', 'pages', 'texture'] as string[]).some((k) => k in record))
-					Object.values(record).forEach((c) => visit(c, depth + 1));
-			};
-			visit(rawAsset, 0);
-		} catch (error) {
-			console.warn('mipmaps not enabled for an asset', error);
-		}
-	};
-
 	const loadAssets = async (nameList: string[]) => {
 		const loadedAssetsArray = await Promise.all(
 			nameList.map(async (key) => {
 				try {
-					const { type, src } = context.stateApp.assets![key];
+					const { type, src, resolution } = context.stateApp.assets![key];
+					// a scaled-down variant (LOD) carries its logical size as the texture resolution (types.ts Asset)
 					const loadSrc =
-						type === 'spine' ? Object.values(src).filter((item) => typeof item === 'string') : src;
+						type === 'spine'
+							? Object.values(src).filter((item) => typeof item === 'string')
+							: resolution && typeof src === 'string'
+								? { src, data: { resolution } }
+								: src;
 					const rawAsset = await PIXI.Assets.load<RawAsset>(loadSrc, onProgress);
-					enableMipmaps(rawAsset);
+					enableMipmaps(rawAsset, context.stateApp.pixiApplication?.renderer);
 					const processed = getProcessed({ key, rawAsset, type, src });
 					return processed;
 				} catch (error) {
@@ -126,7 +82,12 @@
 			(async () => {
 				if (preAssetNameList.length > 0) {
 					const preLoadedAssets = await loadAssets(preAssetNameList);
-					if (preLoadedAssets) context.stateApp.loadedAssets = preLoadedAssets;
+					// merge, never replace: an app-level lazy loader (the game's lazyAssets) may already have put keys here
+					if (preLoadedAssets)
+						context.stateApp.loadedAssets = {
+							...context.stateApp.loadedAssets,
+							...preLoadedAssets,
+						};
 				}
 				preLoaded = true;
 			})();
