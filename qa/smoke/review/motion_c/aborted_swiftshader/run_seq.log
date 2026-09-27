@@ -1,0 +1,9 @@
+START rescue_building_cleared@off 1440x900 18:05:51
+FAIL rescue_building_cleared@off@1440x900 finalWin=null expected=undefined win=undefined console_errors=0 967471 ms
+   driver: page.waitForFunction: Timeout 900000ms exceeded.
+EXIT 1
+DONE rescue_building_cleared@off 1440x900 18:22:52
+START rescue_building_cleared@off 390x844 18:22:52
+/Users/jbull/code/piggy-firefighters/qa/smoke/review/motion_c/run_seq.sh: line 5: 68398 Killed: 9               bash "$D/run_vp.sh" "$vp" "$RN" "$CAP" "$spec"
+DONE rescue_building_cleared@off 390x844 18:24:36
+START inferno_buy@off 1440x900 18:24:36

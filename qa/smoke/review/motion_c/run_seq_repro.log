@@ -1,0 +1,5 @@
+START rescue_building_cleared@off 1440x900 18:31:14
+PASS rescue_building_cleared@off@1440x900 finalWin=2140 expected=2140 win=$21.40 console_errors=0 607417 ms
+EXIT 0
+DONE rescue_building_cleared@off 1440x900 18:41:47
+ALLDONE

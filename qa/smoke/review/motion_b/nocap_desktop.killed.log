@@ -1,0 +1,58 @@
+FAIL base_backdraft_win@off@1440x900 finalWin=null expected=undefined win=undefined console_errors=0 158937 ms
+   driver: page.waitForFunction: Target page, context or browser has been closed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+browserContext.newPage: Target page, context or browser has been closed
+Browser logs:
+
+<launching> /Users/jbull/Library/Caches/ms-playwright/chromium-1243/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --mute-audio --autoplay-policy=no-user-gesture-required --use-angle=swiftshader --enable-unsafe-swiftshader --user-data-dir=/var/folders/65/m4jvqkzs11qb5k0ks_mwrsq40000gn/T/playwright_chromiumdev_profile-ozr0ei --remote-debugging-pipe --no-startup-window
+<launched> pid=61270
+[pid=61270][err] [61287:27031111:0926/181430.176246:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181430.176521:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181430.177542:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181430.177575:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181430.178735:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181430.178784:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181430.179410:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181430.179441:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181430.179533:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181430.179573:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61270:27031097:0926/181433.176024:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[pid=61270][err] [61287:27031111:0926/181449.648254:ERROR:gpu/command_buffer/service/gl_utils.cc:427] [.WebGL-0x10c000e4000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[pid=61270][err] [61287:27031111:0926/181449.802520:ERROR:gpu/command_buffer/service/gl_utils.cc:427] [.WebGL-0x10c000e4000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[pid=61270][err] [61692:27033350:0926/181450.249721:ERROR:sandbox/mac/system_services.cc:31] SetApplicationIsDaemon: Error Domain=NSOSStatusErrorDomain Code=-50 "paramErr: error in user parameter list" (-50)
+[pid=61270][err] [61270:27031097:0926/181501.815398:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[pid=61270][err] [61287:27031111:0926/181527.403247:ERROR:gpu/command_buffer/service/gl_utils.cc:427] [.WebGL-0x10c000e3400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[pid=61270][err] [61287:27031111:0926/181532.086365:ERROR:gpu/command_buffer/service/gl_utils.cc:427] [.WebGL-0x10c000e3400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[pid=61270][err] [61287:27031111:0926/181551.673372:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181551.673490:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181551.707718:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:370] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181551.707740:ERROR:components/viz/service/display_embedder/skia_output_device_buffer_queue.cc:258] Invalid mailbox.
+[pid=61270][err] [61287:27031111:0926/181551.710880:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181551.711090:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181551.711149:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181551.714297:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181552.574212:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181552.574258:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181552.585254:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181552.585292:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181552.586350:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181552.596965:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181552.597140:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181552.597196:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031111:0926/181552.597293:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61287:27031157:0926/181552.597326:ERROR:ui/display/mac/cv_display_link_mac.mm:195] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=61270][err] [61270:27031097:0926/181555.613430:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[pid=61270][err] [61270:27031097:0926/181735.836046:ERROR:google_apis/gcm/engine/registration_request.cc:291] Registration response error message: DEPRECATED_ENDPOINT
+[pid=61270] <gracefully close start>
+[pid=61270][err] [61287:27031111:0926/181832.417809:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181832.615229:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+[pid=61270][err] [61287:27031111:0926/181832.830176:ERROR:gpu/command_buffer/service/shared_image/shared_image_manager.cc:254] SharedImageManager::ProduceSkia: Trying to Produce a Skia representation from a non-existent mailbox.
+    at runOne (/Users/jbull/code/piggy-firefighters/qa/smoke/review/motion_b/smoke.mjs:144:29)
+    at async file:///Users/jbull/code/piggy-firefighters/qa/smoke/review/motion_b/smoke.mjs:227:12 {
+  log: []
+}
+
+Node.js v24.18.0

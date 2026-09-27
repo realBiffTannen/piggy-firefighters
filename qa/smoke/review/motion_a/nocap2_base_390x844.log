@@ -1,0 +1,2 @@
+PASS base_win@off@390x844           finalWin=50000 expected=50000 win=$500.00 console_errors=0 288799 ms
+EXIT 0

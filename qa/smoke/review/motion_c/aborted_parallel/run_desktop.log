@@ -1,0 +1,5 @@
+FAIL rescue_building_cleared@off@1440x900 finalWin=null expected=undefined win=undefined console_errors=1 933440 ms
+   pageerror: Cannot read properties of undefined (reading 'indices')
+   driver: page.waitForFunction: Timeout 900000ms exceeded.
+/Users/jbull/code/piggy-firefighters/qa/smoke/review/motion_c/run_vp.sh: line 11: 22921 Killed: 9               node qa/smoke/review/motion_c/smoke.mjs "$@"
+EXIT 137

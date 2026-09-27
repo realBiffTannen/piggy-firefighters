@@ -1,0 +1,3 @@
+FAIL base_win@off@390x844           finalWin=null expected=undefined win=undefined console_errors=0 931866 ms
+   driver: page.waitForFunction: Timeout 900000ms exceeded.
+EXIT 1

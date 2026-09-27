@@ -1,0 +1,7 @@
+FAIL base_backdraft_win@off@1440x900 finalWin=240 expected=240 win=$2.40 console_errors=0 346761 ms
+   driver: page.screenshot: Timeout 30000ms exceeded.
+FAIL base_trigger_rescue@off@1440x900 finalWin=null expected=undefined win=undefined console_errors=0 959070 ms
+   driver: page.waitForFunction: Timeout 900000ms exceeded.
+FAIL alarm_call_false@off@1440x900  finalWin=760 expected=0 win=$7.60 console_errors=0 933627 ms
+   driver: finalWin 760 != booked 0
+   driver: page.screenshot: Timeout 30000ms exceeded.

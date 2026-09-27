@@ -1,0 +1,2 @@
+PASS max_win@off@1440x900           finalWin=1500000 expected=1500000 win=$15,000.00 console_errors=0 871190 ms
+EXIT 0

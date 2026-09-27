@@ -1,0 +1,5 @@
+PASS base_win@off@1440x900          finalWin=50000 expected=50000 win=$500.00 console_errors=0 756430 ms
+PASS base_win@turbo@1440x900        finalWin=50000 expected=50000 win=$500.00 console_errors=0 326812 ms
+FAIL max_win@off@1440x900           finalWin=null expected=undefined win=undefined console_errors=0 948733 ms
+   driver: page.waitForFunction: Timeout 900000ms exceeded.
+EXIT 1

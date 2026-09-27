@@ -1,0 +1,10 @@
+mock-rgs: books (none: fixtures only) · fixtures /Users/jbull/code/piggy-firefighters/server/fixtures (16)
+mock-rgs: FIXTURES-ONLY (no published books): every play is a DEV fixture from /Users/jbull/code/piggy-firefighters/server/fixtures
+  mode 'base': cost 1x, fixtures only (6: base_anticipation_miss, base_backdraft_win, base_nowin, base_trigger_inferno, base_trigger_rescue, base_win)
+  mode 'ante': cost 1.5x, fixtures only (0: none)
+  mode 'alarm_call': cost 12x, fixtures only (3: alarm_call_false, alarm_call_inferno, alarm_call_rescue)
+  mode 'rescue': cost 18x, fixtures only (3: max_win, rescue_building_cleared, rescue_buy)
+  mode 'backdraft_spins': cost 50x, fixtures only (2: backdraft_max_win, backdraft_spins)
+  mode 'inferno': cost 90x, fixtures only (2: inferno_buy, inferno_prizes)
+mock-rgs: http://127.0.0.1:3041 — plain http, no TLS
+launch: ?sessionID=local&rgs_url=127.0.0.1:3041&device=desktop

@@ -1,0 +1,1 @@
+PASS base_trigger_rescue@off@1440x900 finalWin=760 expected=760 win=$7.60 console_errors=0 299771 ms

@@ -1,0 +1,1073 @@
+{
+  "at": "2026-09-26T22:30:51.344Z",
+  "browser": "chromium 153.0.8010.12 (full Chromium, SwiftShader GL, muted)",
+  "game": "http://127.0.0.1:3003/",
+  "rgs": "127.0.0.1:3043",
+  "results": [
+    {
+      "name": "rescue_building_cleared@off@1440x900",
+      "fixture": "rescue_building_cleared",
+      "speed": "off",
+      "resume": false,
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 2140,
+      "ms": 131294,
+      "errors": [],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$21.40",
+        "balance": "$10,003.40",
+        "featureSpins": null,
+        "rescueTotal": 2140,
+        "rescueActive": false
+      },
+      "expected": 2140,
+      "afterSettle": {
+        "win": "$21.40",
+        "balance": "$10,003.40",
+        "featureSpins": null,
+        "rescueTotal": 2140,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 3238,
+          "type": "shutterClose",
+          "card": {
+            "kind": "intro",
+            "title": "RESCUE SPINS",
+            "subtitle": "10 SPINS · five rooms · every rescue +1x and +1 spin"
+          }
+        },
+        {
+          "t": 11822,
+          "type": "shutterOpen"
+        },
+        {
+          "t": 21660,
+          "type": "paylineShow",
+          "lineIndex": 3
+        },
+        {
+          "t": 21660,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 3
+        },
+        {
+          "t": 22671,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 22671,
+          "type": "linePop",
+          "amount": 10,
+          "lineIndex": 9
+        },
+        {
+          "t": 23688,
+          "type": "paylineShow",
+          "lineIndex": 18
+        },
+        {
+          "t": 23689,
+          "type": "linePop",
+          "amount": 20,
+          "lineIndex": 18
+        },
+        {
+          "t": 24704,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 28121,
+          "type": "paylineShow",
+          "lineIndex": 15
+        },
+        {
+          "t": 28122,
+          "type": "linePop",
+          "amount": 20,
+          "lineIndex": 15
+        },
+        {
+          "t": 34869,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 34870,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 16,
+          "multiplier": 2
+        },
+        {
+          "t": 45253,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 45253,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 1,
+          "multiplier": 4
+        },
+        {
+          "t": 46135,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 46135,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 16,
+          "multiplier": 4
+        },
+        {
+          "t": 47019,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 56298,
+          "type": "paylineShow",
+          "lineIndex": 2
+        },
+        {
+          "t": 56298,
+          "type": "linePop",
+          "amount": 120,
+          "lineIndex": 2,
+          "multiplier": 6
+        },
+        {
+          "t": 57286,
+          "type": "paylineShow",
+          "lineIndex": 18
+        },
+        {
+          "t": 57286,
+          "type": "linePop",
+          "amount": 120,
+          "lineIndex": 18,
+          "multiplier": 6
+        },
+        {
+          "t": 58302,
+          "type": "paylineShow",
+          "lineIndex": 20
+        },
+        {
+          "t": 58302,
+          "type": "linePop",
+          "amount": 120,
+          "lineIndex": 20,
+          "multiplier": 6
+        },
+        {
+          "t": 59318,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 72840,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 72840,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 1,
+          "multiplier": 8
+        },
+        {
+          "t": 73835,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 73835,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 10,
+          "multiplier": 8
+        },
+        {
+          "t": 74852,
+          "type": "paylineShow",
+          "lineIndex": 13
+        },
+        {
+          "t": 74852,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 13,
+          "multiplier": 8
+        },
+        {
+          "t": 75852,
+          "type": "paylineShow",
+          "lineIndex": 14
+        },
+        {
+          "t": 75852,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 14,
+          "multiplier": 8
+        },
+        {
+          "t": 76852,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 76852,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 16,
+          "multiplier": 8
+        },
+        {
+          "t": 77868,
+          "type": "paylineShow",
+          "lineIndex": 17
+        },
+        {
+          "t": 77868,
+          "type": "linePop",
+          "amount": 160,
+          "lineIndex": 17,
+          "multiplier": 8
+        },
+        {
+          "t": 78884,
+          "type": "paylineShow",
+          "lineIndex": 20
+        },
+        {
+          "t": 78884,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 20,
+          "multiplier": 8
+        },
+        {
+          "t": 79752,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 90417,
+          "type": "paylineShow",
+          "lineIndex": 4
+        },
+        {
+          "t": 90417,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 4,
+          "multiplier": 8
+        },
+        {
+          "t": 91285,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 91285,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 10,
+          "multiplier": 8
+        },
+        {
+          "t": 92151,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 95829,
+          "type": "paylineShow",
+          "lineIndex": 3
+        },
+        {
+          "t": 95829,
+          "type": "linePop",
+          "amount": 160,
+          "lineIndex": 3,
+          "multiplier": 8
+        },
+        {
+          "t": 96833,
+          "type": "paylineShow",
+          "lineIndex": 11
+        },
+        {
+          "t": 96834,
+          "type": "linePop",
+          "amount": 160,
+          "lineIndex": 11,
+          "multiplier": 8
+        },
+        {
+          "t": 97850,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 102312,
+          "type": "paylineShow",
+          "lineIndex": 2
+        },
+        {
+          "t": 102312,
+          "type": "linePop",
+          "amount": 180,
+          "lineIndex": 2,
+          "multiplier": 9
+        },
+        {
+          "t": 108396,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 108396,
+          "type": "linePop",
+          "amount": 180,
+          "lineIndex": 1,
+          "multiplier": 9
+        },
+        {
+          "t": 110102,
+          "type": "winRungs",
+          "level": 6,
+          "amount": 2140
+        },
+        {
+          "t": 115750,
+          "type": "shutterClose",
+          "card": {
+            "kind": "outro",
+            "title": "RESCUE SPINS COMPLETE",
+            "value": "21.40×",
+            "subtitle": "8 rescued · 1 building cleared · x9"
+          }
+        },
+        {
+          "t": 122518,
+          "type": "shutterOpen"
+        }
+      ]
+    },
+    {
+      "name": "inferno_buy@off@1440x900",
+      "fixture": "inferno_buy",
+      "speed": "off",
+      "resume": false,
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 4600,
+      "ms": 81989,
+      "errors": [],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$46.00",
+        "balance": "$9,956.00",
+        "featureSpins": null,
+        "rescueTotal": 4600,
+        "rescueActive": false
+      },
+      "expected": 4600,
+      "afterSettle": {
+        "win": "$46.00",
+        "balance": "$9,956.00",
+        "featureSpins": null,
+        "rescueTotal": 4600,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 3711,
+          "type": "shutterClose",
+          "card": {
+            "kind": "intro",
+            "title": "INFERNO RESCUE",
+            "subtitle": "10 SPINS · rooms fall in one spray · every rescue +2x, +1 spin and a prize"
+          }
+        },
+        {
+          "t": 10562,
+          "type": "shutterOpen"
+        },
+        {
+          "t": 18688,
+          "type": "paylineShow",
+          "lineIndex": 14
+        },
+        {
+          "t": 18689,
+          "type": "linePop",
+          "amount": 100,
+          "lineIndex": 14,
+          "multiplier": 5
+        },
+        {
+          "t": 22355,
+          "type": "paylineShow",
+          "lineIndex": 8
+        },
+        {
+          "t": 22355,
+          "type": "linePop",
+          "amount": 100,
+          "lineIndex": 8,
+          "multiplier": 5
+        },
+        {
+          "t": 23360,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 23360,
+          "type": "linePop",
+          "amount": 100,
+          "lineIndex": 16,
+          "multiplier": 5
+        },
+        {
+          "t": 24377,
+          "type": "paylineShow",
+          "lineIndex": 17
+        },
+        {
+          "t": 24377,
+          "type": "linePop",
+          "amount": 100,
+          "lineIndex": 17,
+          "multiplier": 5
+        },
+        {
+          "t": 25377,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 31210,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 31210,
+          "type": "linePop",
+          "amount": 300,
+          "lineIndex": 10,
+          "multiplier": 5
+        },
+        {
+          "t": 32210,
+          "type": "paylineShow",
+          "lineIndex": 11
+        },
+        {
+          "t": 32211,
+          "type": "linePop",
+          "amount": 300,
+          "lineIndex": 11,
+          "multiplier": 5
+        },
+        {
+          "t": 33226,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 36644,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 36644,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 1,
+          "multiplier": 5
+        },
+        {
+          "t": 37509,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 37509,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 16,
+          "multiplier": 5
+        },
+        {
+          "t": 38377,
+          "type": "paylineShow",
+          "lineIndex": 17
+        },
+        {
+          "t": 38377,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 17,
+          "multiplier": 5
+        },
+        {
+          "t": 39242,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 45076,
+          "type": "paylineShow",
+          "lineIndex": 7
+        },
+        {
+          "t": 45076,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 7,
+          "multiplier": 5
+        },
+        {
+          "t": 49404,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 49404,
+          "type": "linePop",
+          "amount": 210,
+          "lineIndex": 9,
+          "multiplier": 7
+        },
+        {
+          "t": 50409,
+          "type": "paylineShow",
+          "lineIndex": 13
+        },
+        {
+          "t": 50409,
+          "type": "linePop",
+          "amount": 210,
+          "lineIndex": 13,
+          "multiplier": 7
+        },
+        {
+          "t": 51409,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 55087,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 55087,
+          "type": "linePop",
+          "amount": 140,
+          "lineIndex": 9,
+          "multiplier": 7
+        },
+        {
+          "t": 55959,
+          "type": "paylineShow",
+          "lineIndex": 11
+        },
+        {
+          "t": 55959,
+          "type": "linePop",
+          "amount": 560,
+          "lineIndex": 11,
+          "multiplier": 7
+        },
+        {
+          "t": 56958,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 62792,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 62792,
+          "type": "linePop",
+          "amount": 140,
+          "lineIndex": 10,
+          "multiplier": 7
+        },
+        {
+          "t": 63693,
+          "type": "paylineShow",
+          "lineIndex": 14
+        },
+        {
+          "t": 63693,
+          "type": "linePop",
+          "amount": 140,
+          "lineIndex": 14,
+          "multiplier": 7
+        },
+        {
+          "t": 64608,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 68726,
+          "type": "shutterClose",
+          "card": {
+            "kind": "outro",
+            "title": "INFERNO RESCUE COMPLETE",
+            "value": "46×",
+            "subtitle": "3 rescued · 0 buildings cleared · x7"
+          }
+        },
+        {
+          "t": 75494,
+          "type": "shutterOpen"
+        }
+      ]
+    },
+    {
+      "name": "backdraft_spins@off@1440x900",
+      "fixture": "backdraft_spins",
+      "speed": "off",
+      "resume": false,
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 5580,
+      "ms": 90991,
+      "errors": [],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$55.80",
+        "balance": "$10,005.80",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 5580,
+      "afterSettle": {
+        "win": "$55.80",
+        "balance": "$10,005.80",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 3731,
+          "type": "shutterClose",
+          "card": {
+            "kind": "intro",
+            "title": "BACKDRAFT SPINS",
+            "subtitle": "5 SPINS · 3–5 Blaze Wilds every spin · ×2 to ×10, added along a line"
+          }
+        },
+        {
+          "t": 10490,
+          "type": "shutterOpen"
+        },
+        {
+          "t": 13441,
+          "type": "backdraftFx"
+        },
+        {
+          "t": 14807,
+          "type": "paylineShow",
+          "lineIndex": 2
+        },
+        {
+          "t": 14808,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 2,
+          "multiplier": 2
+        },
+        {
+          "t": 15820,
+          "type": "paylineShow",
+          "lineIndex": 4
+        },
+        {
+          "t": 15820,
+          "type": "linePop",
+          "amount": 800,
+          "lineIndex": 4,
+          "multiplier": 4
+        },
+        {
+          "t": 16820,
+          "type": "paylineShow",
+          "lineIndex": 8
+        },
+        {
+          "t": 16821,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 8,
+          "multiplier": 2
+        },
+        {
+          "t": 17837,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 17837,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 9,
+          "multiplier": 4
+        },
+        {
+          "t": 18836,
+          "type": "paylineShow",
+          "lineIndex": 17
+        },
+        {
+          "t": 18837,
+          "type": "linePop",
+          "amount": 240,
+          "lineIndex": 17,
+          "multiplier": 4
+        },
+        {
+          "t": 19837,
+          "type": "paylineShow",
+          "lineIndex": 18
+        },
+        {
+          "t": 19837,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 18,
+          "multiplier": 4
+        },
+        {
+          "t": 20836,
+          "type": "paylineShow",
+          "lineIndex": 20
+        },
+        {
+          "t": 20836,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 20,
+          "multiplier": 2
+        },
+        {
+          "t": 21853,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 25269,
+          "type": "backdraftFx"
+        },
+        {
+          "t": 26640,
+          "type": "paylineShow",
+          "lineIndex": 3
+        },
+        {
+          "t": 26640,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 3,
+          "multiplier": 2
+        },
+        {
+          "t": 27637,
+          "type": "paylineShow",
+          "lineIndex": 4
+        },
+        {
+          "t": 27637,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 4,
+          "multiplier": 4
+        },
+        {
+          "t": 28653,
+          "type": "paylineShow",
+          "lineIndex": 5
+        },
+        {
+          "t": 28653,
+          "type": "linePop",
+          "amount": 20,
+          "lineIndex": 5,
+          "multiplier": 2
+        },
+        {
+          "t": 29652,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 29652,
+          "type": "linePop",
+          "amount": 480,
+          "lineIndex": 9,
+          "multiplier": 4
+        },
+        {
+          "t": 30669,
+          "type": "paylineShow",
+          "lineIndex": 15
+        },
+        {
+          "t": 30669,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 15,
+          "multiplier": 4
+        },
+        {
+          "t": 31669,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 31669,
+          "type": "linePop",
+          "amount": 20,
+          "lineIndex": 16,
+          "multiplier": 2
+        },
+        {
+          "t": 32685,
+          "type": "paylineShow",
+          "lineIndex": 17
+        },
+        {
+          "t": 32685,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 17,
+          "multiplier": 4
+        },
+        {
+          "t": 33702,
+          "type": "paylineShow",
+          "lineIndex": 18
+        },
+        {
+          "t": 33702,
+          "type": "linePop",
+          "amount": 100,
+          "lineIndex": 18,
+          "multiplier": 2
+        },
+        {
+          "t": 34702,
+          "type": "paylineShow",
+          "lineIndex": 19
+        },
+        {
+          "t": 34702,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 19
+        },
+        {
+          "t": 35569,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 38986,
+          "type": "backdraftFx"
+        },
+        {
+          "t": 40357,
+          "type": "paylineShow",
+          "lineIndex": 3
+        },
+        {
+          "t": 40357,
+          "type": "linePop",
+          "amount": 20,
+          "lineIndex": 3,
+          "multiplier": 2
+        },
+        {
+          "t": 41369,
+          "type": "paylineShow",
+          "lineIndex": 8
+        },
+        {
+          "t": 41369,
+          "type": "linePop",
+          "amount": 240,
+          "lineIndex": 8,
+          "multiplier": 4
+        },
+        {
+          "t": 42369,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 42369,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 9,
+          "multiplier": 4
+        },
+        {
+          "t": 43385,
+          "type": "paylineShow",
+          "lineIndex": 13
+        },
+        {
+          "t": 43385,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 13,
+          "multiplier": 4
+        },
+        {
+          "t": 44385,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 44385,
+          "type": "linePop",
+          "amount": 80,
+          "lineIndex": 16,
+          "multiplier": 4
+        },
+        {
+          "t": 45403,
+          "type": "paylineShow",
+          "lineIndex": 19
+        },
+        {
+          "t": 45403,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 19,
+          "multiplier": 4
+        },
+        {
+          "t": 46419,
+          "type": "paylineShow",
+          "lineIndex": 20
+        },
+        {
+          "t": 46419,
+          "type": "linePop",
+          "amount": 40,
+          "lineIndex": 20,
+          "multiplier": 4
+        },
+        {
+          "t": 47418,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 50835,
+          "type": "backdraftFx"
+        },
+        {
+          "t": 52206,
+          "type": "paylineShow",
+          "lineIndex": 2
+        },
+        {
+          "t": 52207,
+          "type": "linePop",
+          "amount": 240,
+          "lineIndex": 2,
+          "multiplier": 6
+        },
+        {
+          "t": 53218,
+          "type": "paylineShow",
+          "lineIndex": 6
+        },
+        {
+          "t": 53219,
+          "type": "linePop",
+          "amount": 480,
+          "lineIndex": 6,
+          "multiplier": 6
+        },
+        {
+          "t": 54235,
+          "type": "paylineShow",
+          "lineIndex": 18
+        },
+        {
+          "t": 54235,
+          "type": "linePop",
+          "amount": 1800,
+          "lineIndex": 18,
+          "multiplier": 6
+        },
+        {
+          "t": 55252,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 56253,
+          "type": "winShow"
+        },
+        {
+          "t": 56253,
+          "type": "winUpdate",
+          "amount": 2520,
+          "winLevel": 6
+        },
+        {
+          "t": 63269,
+          "type": "winHide"
+        },
+        {
+          "t": 65685,
+          "type": "backdraftFx"
+        },
+        {
+          "t": 67056,
+          "type": "paylineShow",
+          "lineIndex": 12
+        },
+        {
+          "t": 67056,
+          "type": "linePop",
+          "amount": 300,
+          "lineIndex": 12,
+          "multiplier": 2
+        },
+        {
+          "t": 68069,
+          "type": "winRungs",
+          "level": 8,
+          "amount": 5580
+        },
+        {
+          "t": 76504,
+          "type": "shutterClose",
+          "card": {
+            "kind": "outro",
+            "title": "BACKDRAFT SPINS COMPLETE",
+            "value": "55.80×",
+            "subtitle": "15 Blaze Wilds · best ×2"
+          }
+        },
+        {
+          "t": 83270,
+          "type": "shutterOpen"
+        }
+      ]
+    }
+  ]
+}

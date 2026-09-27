@@ -1,0 +1,145 @@
+{
+  "at": "2026-09-26T22:23:34.484Z",
+  "browser": "chromium 153.0.8010.12 (full Chromium, SwiftShader GL, muted)",
+  "game": "http://127.0.0.1:3003/",
+  "rgs": "127.0.0.1:3243",
+  "results": [
+    {
+      "name": "base_backdraft_win@off@390x844",
+      "fixture": "base_backdraft_win",
+      "speed": "off",
+      "resume": false,
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 240,
+      "ms": 159701,
+      "errors": [],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$2.40",
+        "balance": "$10,001.40",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 240,
+      "afterSettle": {
+        "win": "$2.40",
+        "balance": "$10,001.40",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 49487,
+          "type": "backdraftFx"
+        },
+        {
+          "t": 62282,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 62282,
+          "type": "linePop",
+          "amount": 10,
+          "lineIndex": 1
+        },
+        {
+          "t": 73706,
+          "type": "paylineShow",
+          "lineIndex": 6
+        },
+        {
+          "t": 73706,
+          "type": "linePop",
+          "amount": 60,
+          "lineIndex": 6
+        },
+        {
+          "t": 85146,
+          "type": "paylineShow",
+          "lineIndex": 7
+        },
+        {
+          "t": 85146,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 7
+        },
+        {
+          "t": 98788,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 98788,
+          "type": "linePop",
+          "amount": 60,
+          "lineIndex": 10
+        },
+        {
+          "t": 110620,
+          "type": "paylineShow",
+          "lineIndex": 11
+        },
+        {
+          "t": 110620,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 11
+        },
+        {
+          "t": 120984,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 120984,
+          "type": "linePop",
+          "amount": 10,
+          "lineIndex": 16
+        },
+        {
+          "t": 132863,
+          "type": "paylinesAll"
+        }
+      ]
+    },
+    {
+      "name": "alarm_call_false@off@390x844",
+      "fixture": "alarm_call_false",
+      "speed": "off",
+      "resume": false,
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 0,
+      "ms": 43492,
+      "errors": [],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 0,
+      "afterSettle": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 15579,
+          "type": "alarmCallShow",
+          "outcome": "falseAlarm"
+        }
+      ]
+    }
+  ]
+}

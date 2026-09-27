@@ -1,0 +1,7 @@
+FAIL base_win@off@390x844           finalWin=50000 expected=50000 win=$500.00 console_errors=0 852878 ms
+   driver: page.screenshot: Timeout 30000ms exceeded.
+PASS base_win@turbo@390x844         finalWin=50000 expected=50000 win=$500.00 console_errors=0 475241 ms
+FAIL max_win@off@390x844            finalWin=null expected=undefined win=undefined console_errors=1 921851 ms
+   pageerror: Cannot read properties of undefined (reading 'indices')
+   driver: page.waitForFunction: Timeout 900000ms exceeded.
+EXIT 1

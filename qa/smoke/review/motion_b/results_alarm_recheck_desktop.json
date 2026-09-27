@@ -1,0 +1,51 @@
+{
+  "at": "2026-09-26T22:36:26.919Z",
+  "browser": "chromium 153.0.8010.12 (full Chromium, SwiftShader GL, muted)",
+  "game": "http://127.0.0.1:3003/",
+  "rgs": "127.0.0.1:3244",
+  "results": [
+    {
+      "name": "alarm_call_false@off@1440x900",
+      "fixture": "alarm_call_false",
+      "speed": "off",
+      "resume": false,
+      "passed": false,
+      "console_errors": 0,
+      "finalWin": 0,
+      "ms": 74881,
+      "errors": [
+        "driver: page.screenshot: Timeout 30000ms exceeded."
+      ],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 0,
+      "afterSettle": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 14141,
+          "type": "alarmCallShow",
+          "outcome": "falseAlarm"
+        }
+      ],
+      "atFail": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      }
+    }
+  ]
+}

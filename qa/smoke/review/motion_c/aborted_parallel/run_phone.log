@@ -1,0 +1,2 @@
+/Users/jbull/code/piggy-firefighters/qa/smoke/review/motion_c/run_vp.sh: line 11: 22963 Killed: 9               node qa/smoke/review/motion_c/smoke.mjs "$@"
+EXIT 137

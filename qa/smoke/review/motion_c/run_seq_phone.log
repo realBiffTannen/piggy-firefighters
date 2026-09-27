@@ -1,0 +1,13 @@
+START rescue_building_cleared@off 390x844 18:25:08
+PASS rescue_building_cleared@off@390x844 finalWin=2140 expected=2140 win=$21.40 console_errors=0 260954 ms
+EXIT 0
+DONE rescue_building_cleared@off 390x844 18:29:41
+START inferno_buy@off 390x844 18:29:41
+PASS inferno_buy@off@390x844        finalWin=4600 expected=4600 win=$46.00 console_errors=0 143694 ms
+EXIT 0
+DONE inferno_buy@off 390x844 18:32:13
+START backdraft_spins@off 390x844 18:32:13
+PASS backdraft_spins@off@390x844    finalWin=5580 expected=5580 win=$55.80 console_errors=0 166498 ms
+EXIT 0
+DONE backdraft_spins@off 390x844 18:35:29
+ALLDONE

@@ -1,0 +1,4 @@
+PASS base_backdraft_win@off@1440x900 finalWin=240 expected=240 win=$2.40 console_errors=0 186035 ms
+PASS alarm_call_false@off@1440x900  finalWin=0 expected=0 win=$0.00 console_errors=0 43689 ms
+FAIL base_trigger_rescue@off@1440x900 finalWin=null expected=undefined win=undefined console_errors=0 54269 ms
+   driver: page.waitForFunction: Target page, context or browser has been closed

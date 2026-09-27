@@ -1,0 +1,572 @@
+{
+  "at": "2026-09-26T22:17:13.248Z",
+  "browser": "chromium 153.0.8010.12 (full Chromium, SwiftShader GL, muted)",
+  "game": "http://127.0.0.1:3003/",
+  "rgs": "127.0.0.1:3041",
+  "results": [
+    {
+      "name": "base_win@off@390x844",
+      "fixture": "base_win",
+      "speed": "off",
+      "resume": false,
+      "passed": false,
+      "console_errors": 0,
+      "finalWin": 50000,
+      "ms": 852878,
+      "errors": [
+        "driver: page.screenshot: Timeout 30000ms exceeded."
+      ],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$500.00",
+        "balance": "$10,499.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 50000,
+      "afterSettle": {
+        "win": "$500.00",
+        "balance": "$10,499.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 52394,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 52395,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 1
+        },
+        {
+          "t": 72537,
+          "type": "paylineShow",
+          "lineIndex": 2
+        },
+        {
+          "t": 72538,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 2
+        },
+        {
+          "t": 92905,
+          "type": "paylineShow",
+          "lineIndex": 3
+        },
+        {
+          "t": 92905,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 3
+        },
+        {
+          "t": 115253,
+          "type": "paylineShow",
+          "lineIndex": 4
+        },
+        {
+          "t": 115253,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 4
+        },
+        {
+          "t": 137801,
+          "type": "paylineShow",
+          "lineIndex": 5
+        },
+        {
+          "t": 137802,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 5
+        },
+        {
+          "t": 160736,
+          "type": "paylineShow",
+          "lineIndex": 6
+        },
+        {
+          "t": 160736,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 6
+        },
+        {
+          "t": 182996,
+          "type": "paylineShow",
+          "lineIndex": 7
+        },
+        {
+          "t": 182996,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 7
+        },
+        {
+          "t": 203784,
+          "type": "paylineShow",
+          "lineIndex": 8
+        },
+        {
+          "t": 203784,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 8
+        },
+        {
+          "t": 224332,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 224332,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 9
+        },
+        {
+          "t": 246165,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 246165,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 10
+        },
+        {
+          "t": 271433,
+          "type": "paylineShow",
+          "lineIndex": 11
+        },
+        {
+          "t": 271434,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 11
+        },
+        {
+          "t": 291824,
+          "type": "paylineShow",
+          "lineIndex": 12
+        },
+        {
+          "t": 291825,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 12
+        },
+        {
+          "t": 308386,
+          "type": "paylineShow",
+          "lineIndex": 13
+        },
+        {
+          "t": 308387,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 13
+        },
+        {
+          "t": 321601,
+          "type": "paylineShow",
+          "lineIndex": 14
+        },
+        {
+          "t": 321601,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 14
+        },
+        {
+          "t": 337038,
+          "type": "paylineShow",
+          "lineIndex": 15
+        },
+        {
+          "t": 337038,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 15
+        },
+        {
+          "t": 354248,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 354249,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 16
+        },
+        {
+          "t": 374209,
+          "type": "paylineShow",
+          "lineIndex": 17
+        },
+        {
+          "t": 374210,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 17
+        },
+        {
+          "t": 392439,
+          "type": "paylineShow",
+          "lineIndex": 18
+        },
+        {
+          "t": 392439,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 18
+        },
+        {
+          "t": 409541,
+          "type": "paylineShow",
+          "lineIndex": 19
+        },
+        {
+          "t": 409541,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 19
+        },
+        {
+          "t": 427942,
+          "type": "paylineShow",
+          "lineIndex": 20
+        },
+        {
+          "t": 427942,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 20
+        },
+        {
+          "t": 446941,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 447945,
+          "type": "winRungs",
+          "level": 9,
+          "amount": 50000
+        }
+      ],
+      "atFail": {
+        "win": "$500.00",
+        "balance": "$10,499.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      }
+    },
+    {
+      "name": "base_win@turbo@390x844",
+      "fixture": "base_win",
+      "speed": "turbo",
+      "resume": false,
+      "passed": true,
+      "console_errors": 0,
+      "finalWin": 50000,
+      "ms": 475241,
+      "errors": [],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$500.00",
+        "balance": "$10,499.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 50000,
+      "afterSettle": {
+        "win": "$500.00",
+        "balance": "$10,499.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 36647,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 36648,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 1
+        },
+        {
+          "t": 49404,
+          "type": "paylineShow",
+          "lineIndex": 2
+        },
+        {
+          "t": 49405,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 2
+        },
+        {
+          "t": 59924,
+          "type": "paylineShow",
+          "lineIndex": 3
+        },
+        {
+          "t": 59924,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 3
+        },
+        {
+          "t": 70215,
+          "type": "paylineShow",
+          "lineIndex": 4
+        },
+        {
+          "t": 70215,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 4
+        },
+        {
+          "t": 84789,
+          "type": "paylineShow",
+          "lineIndex": 5
+        },
+        {
+          "t": 84790,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 5
+        },
+        {
+          "t": 94429,
+          "type": "paylineShow",
+          "lineIndex": 6
+        },
+        {
+          "t": 94429,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 6
+        },
+        {
+          "t": 104588,
+          "type": "paylineShow",
+          "lineIndex": 7
+        },
+        {
+          "t": 104588,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 7
+        },
+        {
+          "t": 114752,
+          "type": "paylineShow",
+          "lineIndex": 8
+        },
+        {
+          "t": 114752,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 8
+        },
+        {
+          "t": 131105,
+          "type": "paylineShow",
+          "lineIndex": 9
+        },
+        {
+          "t": 131106,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 9
+        },
+        {
+          "t": 141467,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 141468,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 10
+        },
+        {
+          "t": 150612,
+          "type": "paylineShow",
+          "lineIndex": 11
+        },
+        {
+          "t": 150612,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 11
+        },
+        {
+          "t": 159983,
+          "type": "paylineShow",
+          "lineIndex": 12
+        },
+        {
+          "t": 159983,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 12
+        },
+        {
+          "t": 169083,
+          "type": "paylineShow",
+          "lineIndex": 13
+        },
+        {
+          "t": 169084,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 13
+        },
+        {
+          "t": 178618,
+          "type": "paylineShow",
+          "lineIndex": 14
+        },
+        {
+          "t": 178618,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 14
+        },
+        {
+          "t": 188700,
+          "type": "paylineShow",
+          "lineIndex": 15
+        },
+        {
+          "t": 188701,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 15
+        },
+        {
+          "t": 198839,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 198839,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 16
+        },
+        {
+          "t": 207947,
+          "type": "paylineShow",
+          "lineIndex": 17
+        },
+        {
+          "t": 207947,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 17
+        },
+        {
+          "t": 216984,
+          "type": "paylineShow",
+          "lineIndex": 18
+        },
+        {
+          "t": 216984,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 18
+        },
+        {
+          "t": 227431,
+          "type": "paylineShow",
+          "lineIndex": 19
+        },
+        {
+          "t": 227432,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 19
+        },
+        {
+          "t": 238674,
+          "type": "paylineShow",
+          "lineIndex": 20
+        },
+        {
+          "t": 238675,
+          "type": "linePop",
+          "amount": 2500,
+          "lineIndex": 20
+        },
+        {
+          "t": 251609,
+          "type": "paylinesAll"
+        },
+        {
+          "t": 252063,
+          "type": "winRungs",
+          "level": 9,
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "name": "max_win@off@390x844",
+      "fixture": "max_win",
+      "speed": "off",
+      "resume": false,
+      "passed": false,
+      "console_errors": 1,
+      "finalWin": null,
+      "ms": 921851,
+      "errors": [
+        "pageerror: Cannot read properties of undefined (reading 'indices')",
+        "driver: page.waitForFunction: Timeout 900000ms exceeded."
+      ],
+      "failed": [],
+      "log": [
+        {
+          "t": 23271,
+          "type": "shutterClose",
+          "card": {
+            "kind": "intro",
+            "title": "RESCUE SPINS",
+            "subtitle": "10 SPINS · five rooms · every rescue +1x and +1 spin"
+          }
+        },
+        {
+          "t": 81854,
+          "type": "shutterOpen"
+        }
+      ],
+      "atFail": {
+        "win": "$0.00",
+        "balance": "$9,982.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": true
+      }
+    }
+  ]
+}

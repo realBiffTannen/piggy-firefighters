@@ -1,0 +1,200 @@
+{
+  "at": "2026-09-26T22:00:36.635Z",
+  "browser": "chromium 153.0.8010.12 (full Chromium, SwiftShader GL, muted)",
+  "game": "http://127.0.0.1:3003/",
+  "rgs": "127.0.0.1:3042",
+  "results": [
+    {
+      "name": "base_backdraft_win@off@390x844",
+      "fixture": "base_backdraft_win",
+      "speed": "off",
+      "resume": false,
+      "passed": false,
+      "console_errors": 0,
+      "finalWin": 240,
+      "ms": 271816,
+      "errors": [
+        "driver: page.screenshot: Timeout 30000ms exceeded."
+      ],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$2.40",
+        "balance": "$10,001.40",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 240,
+      "afterSettle": {
+        "win": "$2.40",
+        "balance": "$10,001.40",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 50518,
+          "type": "backdraftFx"
+        },
+        {
+          "t": 69215,
+          "type": "paylineShow",
+          "lineIndex": 1
+        },
+        {
+          "t": 69216,
+          "type": "linePop",
+          "amount": 10,
+          "lineIndex": 1
+        },
+        {
+          "t": 91643,
+          "type": "paylineShow",
+          "lineIndex": 6
+        },
+        {
+          "t": 91643,
+          "type": "linePop",
+          "amount": 60,
+          "lineIndex": 6
+        },
+        {
+          "t": 110313,
+          "type": "paylineShow",
+          "lineIndex": 7
+        },
+        {
+          "t": 110315,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 7
+        },
+        {
+          "t": 130025,
+          "type": "paylineShow",
+          "lineIndex": 10
+        },
+        {
+          "t": 130025,
+          "type": "linePop",
+          "amount": 60,
+          "lineIndex": 10
+        },
+        {
+          "t": 153351,
+          "type": "paylineShow",
+          "lineIndex": 11
+        },
+        {
+          "t": 153352,
+          "type": "linePop",
+          "amount": 50,
+          "lineIndex": 11
+        },
+        {
+          "t": 173366,
+          "type": "paylineShow",
+          "lineIndex": 16
+        },
+        {
+          "t": 173367,
+          "type": "linePop",
+          "amount": 10,
+          "lineIndex": 16
+        },
+        {
+          "t": 191564,
+          "type": "paylinesAll"
+        }
+      ],
+      "atFail": {
+        "win": "$2.40",
+        "balance": "$10,001.40",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      }
+    },
+    {
+      "name": "base_trigger_rescue@off@390x844",
+      "fixture": "base_trigger_rescue",
+      "speed": "off",
+      "resume": false,
+      "passed": false,
+      "console_errors": 1,
+      "finalWin": null,
+      "ms": 936810,
+      "errors": [
+        "pageerror: Cannot read properties of undefined (reading 'indices')",
+        "driver: page.waitForFunction: Timeout 900000ms exceeded."
+      ],
+      "failed": [],
+      "log": [
+        {
+          "t": 172824,
+          "type": "shutterClose",
+          "card": {
+            "kind": "intro",
+            "title": "RESCUE SPINS",
+            "subtitle": "10 SPINS · five rooms · every rescue +1x and +1 spin"
+          }
+        },
+        {
+          "t": 222336,
+          "type": "shutterOpen"
+        }
+      ],
+      "atFail": {
+        "win": "$0.00",
+        "balance": "$9,999.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": true
+      }
+    },
+    {
+      "name": "alarm_call_false@off@390x844",
+      "fixture": "alarm_call_false",
+      "speed": "off",
+      "resume": false,
+      "passed": false,
+      "console_errors": 0,
+      "finalWin": 0,
+      "ms": 117800,
+      "errors": [
+        "driver: page.screenshot: Timeout 30000ms exceeded."
+      ],
+      "failed": [],
+      "atFinalWin": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "expected": 0,
+      "afterSettle": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      },
+      "log": [
+        {
+          "t": 22740,
+          "type": "alarmCallShow",
+          "outcome": "falseAlarm"
+        }
+      ],
+      "atFail": {
+        "win": "$0.00",
+        "balance": "$9,988.00",
+        "featureSpins": null,
+        "rescueTotal": 0,
+        "rescueActive": false
+      }
+    }
+  ]
+}
