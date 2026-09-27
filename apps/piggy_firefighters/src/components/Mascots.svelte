@@ -21,7 +21,6 @@
 	import { sceneTex } from '../game/fx/sceneTextures.svelte';
 	import { stateRig, setChiefHandle } from '../game/fx/stateRig.svelte';
 	import { stateSpeed } from '../game/stateSpeed.svelte';
-	import { emberGround, emberFits } from '../game/hudBar';
 	import { stateRescue } from '../game/rescue/stateRescue.svelte';
 	import { winLevelMap } from '../game/winLevelMap';
 	import { rungLevelOfTier, type WinTier } from '../game/roundTier';
@@ -57,24 +56,15 @@
 				right: { x: frameR, y: frameB - h, w: Math.min(w, cell * 1.5), h: h * 0.8 },
 			};
 		}
-		// stacked: the ground under the frame (the free band the layout leaves below the board)
-		const groundTop = frameB;
-		// the bar's measured top (hudBar.ts): on a phone the HUD's info panel is its own second row, above `hudTop`
-		const groundBottom = sl.toMainY(sl.hudBarTop);
-		const h = Math.min(cell * 1.5, (groundBottom - groundTop) * 0.92);
-		const w = Math.min(cell * 1.6, sl.canvas.width / ms / 2.4);
-		// Ember sits on the HUD's ante chip when it stands in her ground (hudBar.ts emberGround)
-		const emberRight = sl.canvas.width * 0.96;
-		const emberTop = sl.toMainY(emberGround(sl.hudBarTop, sl.chip, emberRight - w * 0.8 * ms, emberRight));
-		const hR = Math.min(h * 0.85, (emberTop - groundTop) * 0.92);
+		// OWNER 2026-09-26: no mascots in the mobile view. Stacked layouts (and a wide layout too narrow for gutters) draw
+		// none: nothing is mounted, and the Rescue scene keeps its own hose (stateRig.chiefOnStage follows `visible`).
 		return {
-			visible: h > cell * 0.7,
-			// Ember stands only when her slot is a real figure: over a chip hugging the frame she would be a sliver (hudBar.ts)
-			rightVisible: emberFits(hR, cell),
+			visible: false,
+			rightVisible: false,
 			layout: 'portrait' as const,
 			scale: 0.8,
-			left: { x: sl.toMainX(sl.canvas.width * 0.04), y: groundBottom - h, w, h },
-			right: { x: sl.toMainX(emberRight) - w * 0.8, y: emberTop - hR, w: w * 0.8, h: hR },
+			left: { x: 0, y: 0, w: 0, h: 0 },
+			right: { x: 0, y: 0, w: 0, h: 0 },
 		};
 	});
 
