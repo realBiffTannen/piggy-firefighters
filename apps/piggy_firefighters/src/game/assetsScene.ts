@@ -80,6 +80,14 @@ entries.rung_fx_ring_shockwave = sprite('winrungs/fx/ring_shockwave.webp');
 entries.rung_fx_glint_4point = sprite('winrungs/fx/glint_4point.webp');
 entries.rung_fx_dust_puff = sprite('winrungs/fx/dust_puff.webp');
 entries.rung_fx_light_ray_wedge = sprite('winrungs/fx/light_ray_wedge.webp');
+// the rung stage's own light (derived locally by tools/art/derive_rung_light.py, numpy / Pillow, zero paid calls,
+// lineage in art-src/winrungs/source-record.json, `--check` in qa/gate; white on alpha, tinted per rung at
+// runtime by components/WinRungs.svelte): radial bloom behind the sign, the scrim's vignette, the drifting embers, the
+// shine band swept across the sign, the flat-topped light pool that recolours the plate in the rung's hue (normal
+// blend), and each sign's glow copy (its dilated, blurred silhouette at quarter scale)
+export const RUNG_FX_LOCAL = ['radial_bloom', 'vignette', 'ember_dot', 'shine_band', 'light_pool'] as const;
+for (const k of RUNG_FX_LOCAL) entries[`rung_fx_${k}`] = sprite(`winrungs/fx/${k}.webp`);
+for (const k of RUNG_SKINS) entries[`rung_fx_glow_${k}`] = sprite(`winrungs/fx/sign_glow_${k}.webp`);
 // the seven solid pieces are Blender toon turntables of this title's Meshy models (lane E, art-src/3d/render_turntables.py;
 // same 8 x 3 / 128 px / 24-frame geometry, true 3D tumble); droplet, ember and spark are FX and stay on the 2D sheets.
 for (const k of RUNG_PIECES)
@@ -143,7 +151,8 @@ export type LazyContext = { orientation: Orientation; mood: (typeof SCENE_MOODS)
  * The scene keys of each lazy set, resolved for the CURRENT orientation / mood at call time (game/lazyAssets.ts
  * ensureFeatureAssets). Rigs that ride with a set (pf_rookie with 'alarm', pf_rescued with 'rescue') are added there.
  *
- *   winrungs   the five signs + the ten piece sheets: warmed right after the gate, awaited before the first sign drop
+ *   winrungs   the five signs + the ten piece sheets + the stage light (bloom, vignette, ember, shine, sign glows):
+ *              warmed right after the gate, awaited before the first sign drop
  *   maxwin     the two max-win cards
  *   alarm      the mode cards on the door and on the Alarm Call card
  *   rescue     the Rescue block (42) + the rescue / inferno plate for this orientation
@@ -151,7 +160,12 @@ export type LazyContext = { orientation: Orientation; mood: (typeof SCENE_MOODS)
  *   bg         the plate for the current mood and orientation (an orientation change, a mood set without its plate)
  */
 export const LAZY_SETS: Record<LazyKind, (ctx: LazyContext) => string[]> = {
-	winrungs: () => [...RUNG_SKINS.map((k) => `rung_sign_${k}`), ...RUNG_PIECES.map((k) => `rung_piece_${k}`)],
+	winrungs: () => [
+		...RUNG_SKINS.map((k) => `rung_sign_${k}`),
+		...RUNG_PIECES.map((k) => `rung_piece_${k}`),
+		...RUNG_FX_LOCAL.map((k) => `rung_fx_${k}`),
+		...RUNG_SKINS.map((k) => `rung_fx_glow_${k}`),
+	],
 	maxwin: () => ['maxwin_card_landscape', 'maxwin_card_portrait'],
 	alarm: () => ['scene_card_alarm', 'scene_card_rescue', 'scene_card_inferno', 'scene_card_backdraft', 'scene_plate_station', 'scene_plate_gold', 'scene_plate_hazard', 'scene_plate_win', 'scene_plate_chain'],
 	rescue: ({ orientation }) => [...Object.keys(entries).filter((k) => k.startsWith('rescue_')), `bg_rescue_${orientation}`, `bg_inferno_${orientation}`],

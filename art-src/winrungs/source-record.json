@@ -1,0 +1,187 @@
+{
+  "asset_family": "winrungs/fx runtime light (radial bloom, light pool, vignette, ember, shine band, sign glow copies)",
+  "owner_lane": "Claude frontend lane (win rungs)",
+  "tool": "tools/art/derive_rung_light.py",
+  "paid_generation": "none: every file is computed locally with numpy + Pillow; no API call, no donor bytes, no text",
+  "consumer": "apps/piggy_firefighters/src/components/WinRungs.svelte via src/game/assetsScene.ts (lazy 'winrungs' set)",
+  "rerun": "python3 tools/art/derive_rung_light.py (after `derive_winrungs.py signs`, which the sign_glow files derive from)",
+  "gate": "python3 tools/art/derive_rung_light.py --check (qa/gate/run.mjs)",
+  "cost_estimate_usd_total": 0,
+  "entries": [
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/radial_bloom.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [],
+      "method": "radial falloff: 1 - 0.55*(r/0.35)^1.3 inside 35 %, 0.45*(1-(r-0.35)/0.65)^2.2 outside, 0 at r>=1",
+      "encoding": "webp lossless method 6",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 6176,
+      "sha256": "8d65115c58943eb8b7cd4fd3c92d538b8a5000c2208089ee88aa3f18ed4bb43a",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/light_pool.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [],
+      "method": "flat 1 to 40 % of the radius, smoothstep to 0 at the rim",
+      "encoding": "webp lossless method 6",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 7238,
+      "sha256": "40edcaaeac3158cb783ee19a7c09fb99de91ec5b5ed0309dc026b89a3e0ea51f",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/vignette.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [],
+      "method": "clamp((d-0.22)/0.78)^1.35, d = normalised corner distance",
+      "encoding": "webp lossless method 6",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 6794,
+      "sha256": "45487f05bed11b6d706dc73795d2d108f1647df1eba789f5fc2468a1a5807d83",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/ember_dot.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [],
+      "method": "gaussian halo (sigma .33, x.75) + gaussian core (sigma .1), cut at r>=1",
+      "encoding": "webp lossless method 6",
+      "size": [
+        64,
+        64
+      ],
+      "bytes": 982,
+      "sha256": "36d8200ad690e532444bbaec9effa5cc5ac58bbf0b0ce6fc5da77f360d00476f",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/shine_band.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [],
+      "method": "two gaussians across x (sigma .26 + .5 x sigma .07), ends feathered over 110 px (^1.5)",
+      "encoding": "webp lossless method 6",
+      "size": [
+        128,
+        512
+      ],
+      "bytes": 3524,
+      "sha256": "cb204b2f1d6756f24d99a6d14a192016f36e8f8e0d25f831b134b478c43468ce",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/sign_glow_big.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [
+        {
+          "path": "apps/piggy_firefighters/static/assets/winrungs/signs/big.webp",
+          "sha256": "99f2641f2c3dd84019ce946e1b0ec37cc0f89c9144f05d5a5752651045d90048"
+        }
+      ],
+      "method": "alpha of the sign, 1/4 scale (LANCZOS), 28 px pad, MaxFilter(5) dilate, GaussianBlur(8), normalised to max 1, gamma 0.85; runtime scale 4",
+      "encoding": "webp lossy q88 method 6",
+      "size": [
+        356,
+        238
+      ],
+      "bytes": 5406,
+      "sha256": "75c62e0e1cd75c26694b821c9251cbde6c1237bec51b83490ca19b9643292aa5",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/sign_glow_huge.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [
+        {
+          "path": "apps/piggy_firefighters/static/assets/winrungs/signs/huge.webp",
+          "sha256": "2a0faad946397b5a9e1f58cd021062ffbfb51de26cf08b7847d55ae24fe4ef89"
+        }
+      ],
+      "method": "alpha of the sign, 1/4 scale (LANCZOS), 28 px pad, MaxFilter(5) dilate, GaussianBlur(8), normalised to max 1, gamma 0.85; runtime scale 4",
+      "encoding": "webp lossy q88 method 6",
+      "size": [
+        356,
+        238
+      ],
+      "bytes": 5408,
+      "sha256": "d1a61927ce50fdfbd81e5e9a60a8315ea2f2c4fa26f7386244942018c6e5eb7f",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/sign_glow_mega.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [
+        {
+          "path": "apps/piggy_firefighters/static/assets/winrungs/signs/mega.webp",
+          "sha256": "a993de05f906a62aa97efc530087e22d72dd344a5a12f8edfd6fd9f381aa094b"
+        }
+      ],
+      "method": "alpha of the sign, 1/4 scale (LANCZOS), 28 px pad, MaxFilter(5) dilate, GaussianBlur(8), normalised to max 1, gamma 0.85; runtime scale 4",
+      "encoding": "webp lossy q88 method 6",
+      "size": [
+        356,
+        238
+      ],
+      "bytes": 5442,
+      "sha256": "eebbb6c4b201c0ea593d259590059c91adcb5a89b465b138bbac4b737ee9eba4",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/sign_glow_epic.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [
+        {
+          "path": "apps/piggy_firefighters/static/assets/winrungs/signs/epic.webp",
+          "sha256": "f56494cf1880d77301188a008c225ea39c02a55b56b53e7703355b113c1e5663"
+        }
+      ],
+      "method": "alpha of the sign, 1/4 scale (LANCZOS), 28 px pad, MaxFilter(5) dilate, GaussianBlur(8), normalised to max 1, gamma 0.85; runtime scale 4",
+      "encoding": "webp lossy q88 method 6",
+      "size": [
+        356,
+        238
+      ],
+      "bytes": 7792,
+      "sha256": "b4efa7e26a11ff3acd7c76fd2c5b555f1089e63ea0ed8b0479d767148ca963df",
+      "cost_estimate_usd": 0
+    },
+    {
+      "output": "apps/piggy_firefighters/static/assets/winrungs/fx/sign_glow_max.webp",
+      "model": "local-derivation",
+      "tool": "tools/art/derive_rung_light.py",
+      "inputs": [
+        {
+          "path": "apps/piggy_firefighters/static/assets/winrungs/signs/max.webp",
+          "sha256": "afbf8323fdf58b3874d7fde3ac92703b34d19e1e9c6713380e8d238586916d50"
+        }
+      ],
+      "method": "alpha of the sign, 1/4 scale (LANCZOS), 28 px pad, MaxFilter(5) dilate, GaussianBlur(8), normalised to max 1, gamma 0.85; runtime scale 4",
+      "encoding": "webp lossy q88 method 6",
+      "size": [
+        356,
+        238
+      ],
+      "bytes": 7214,
+      "sha256": "d71b6ce649b17fe81d3a92e874bc15dc37bdd0784d6b88a6134e68d14421ee67",
+      "cost_estimate_usd": 0
+    }
+  ]
+}
