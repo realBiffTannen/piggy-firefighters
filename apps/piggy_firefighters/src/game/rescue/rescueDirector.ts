@@ -28,7 +28,7 @@ import { stateScene, moodForBonus } from '../fx/stateScene.svelte';
 import { formatBookAmount, formatBookMultiple } from '../money';
 import { MODE_TITLE, MECHANIC, FEATURE } from '../names';
 import { CONTRACT } from '../rulesContent';
-import { rungLevelOfTier, MAX_WIN_LEVEL, type WinTier } from '../roundTier';
+import { rungLevelOfTier, MAX_WIN_LEVEL, WIN_CAP_BOOKED, type WinTier } from '../roundTier';
 import { roundStakeOf } from '../roundStake';
 import { gameSound } from '../audio';
 import { animBeats } from '../fx/animBeats';
@@ -38,6 +38,7 @@ import type { BookEvent, BookEventOfType, Cell } from '../typesBookEvent';
 import type { Position } from '../types';
 import type { EmitterEventShutter } from '../../components/scene/SceneShutter.svelte';
 import { stateRescue, stateBackdraftSpins, stateAlarmCall, resetRescueState } from './stateRescue.svelte';
+import { rescueBannerText, runningTotal } from './rescuePhone';
 
 type Ev<T extends BookEvent['type']> = BookEventOfType<T>;
 
@@ -212,6 +213,7 @@ export const rescueStart = async (e: Ev<'rescueStart'>) => {
 	stateRescue.rooms = e.rooms.map((room) => ({ reel: room.reel, fire: room.fire, start: room.fire, rescued: room.fire <= 0, sprayed: 0 }));
 	stateRescue.multiplier = e.multiplier;
 	stateRescue.building = 1;
+	stateRescue.lastRescue = 2;
 	stateRescue.rescued = 0;
 	stateRescue.spinsLeft = e.spins;
 	stateRescue.total = stateBet.winBookEventAmount ?? 0;
@@ -262,16 +264,22 @@ export const douse = async (e: Ev<'douse'>) => {
 			room.rescued = true;
 			if (rescue.prize) room.prize = rescue.prize;
 		}
+		// the room this beat is about, published BEFORE the beat: the phone drop's path is derived from it, and the rig
+		// runtime snapshots that path synchronously when the beat arrives (a queued second rescue keeps its own window)
+		stateRescue.lastRescue = rescue.reel;
 		stateRescue.rescued += 1;
+		// a phone's rail TOTAL takes the prize in with its plaque (the spin's setTotalWin then states the book's figure,
+		// which includes it); wide layouts keep TOTAL on setTotalWin alone
+		const stacked = stateGameDerived.sceneLayout().stacked;
+		if (stacked) stateRescue.total = runningTotal(stateRescue.total, rescue.prize, WIN_CAP_BOOKED);
 		// the badge climbs WITH the rescue it pays for (never past the book's figure for this douse, assigned below)
 		const step = stateRescue.bonus === 'inferno' ? CONTRACT.infernoStep : CONTRACT.rescueStep;
 		stateRescue.multiplier = Math.min(e.multiplier, stateRescue.multiplier + step);
 		// one beat per rescued room, as the room is marked (a skipped round's later rescues are dropped by the epoch)
 		animBeats.emit({ beat: 'rescue', reel: rescue.reel, skin: skinOf(rescue.reel), ...(rescue.prize ? { prize: rescue.prize / 100 } : {}), multiplier: e.multiplier }, epoch);
-		if (rescue.prize) {
-			showBanner(`RESCUED! +${formatBookAmount(rescue.prize)}`);
-			audioDirector.prize();
-		} else showBanner('RESCUED!');
+		// a phone says the prize once, on the plaque under the rescued room's sill (rescuePhone.rescueBannerText)
+		showBanner(rescueBannerText(rescue.prize ? formatBookAmount(rescue.prize) : null, stacked));
+		if (rescue.prize) audioDirector.prize();
 		audioDirector.rescue(e.multiplier);
 		await beat(420);
 	}
@@ -294,10 +302,16 @@ export const buildingCleared = async (e: Ev<'buildingCleared'>) => {
 	if (!stateRescue.active) return;
 	showBanner(`${MECHANIC.buildingCleared.toUpperCase()} · +${spinsWord(e.spinsAdded)}`);
 	audioDirector.buildingCleared();
-	// `building` is the 1-based ordinal just cleared: the rigs re-skin for the next one (rigLogic rescuedSkin)
+	// the beat WITH the banner: the crew celebrates in step with it, the rig runtime drops any ladder slide still queued
+	// from this douse, and the Trotters re-skin for the next building (rigLogic; `building` is the 1-based ordinal just
+	// cleared). The rigs re-show the Trotters at once, so the scene keeps the SAVED windows empty until the rooms reset
+	// below (RescueScene clearedRooms). No epoch: a skip must not drop it, or the new building would open empty.
 	animBeats.emit({ beat: 'buildingCleared', building: e.building, spinsAdded: e.spinsAdded });
 	await beat(900);
+	// the feature was torn down during the hold: nothing of it may re-appear
+	if (!stateRescue.active) return;
 	stateRescue.building = e.building + 1;
+	// a NEW rooms array: the scene's saved-window hold ends with it and the re-skinned Trotters appear in the burning rooms
 	stateRescue.rooms = stateRescue.rooms.map((room) => ({ ...room, fire: room.start, rescued: false, prize: undefined }));
 	stateRescue.spinsLeft = e.spinsLeft;
 	setFeatureSpins(e.spinsLeft);

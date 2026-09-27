@@ -28,6 +28,8 @@ export const stateRescue = $state({
 	multiplier: 1,
 	/** 1-based building number */
 	building: 1,
+	/** the reel of the room rescued last, written BEFORE its 'rescue' rig beat: the phone drop leaves that window */
+	lastRescue: 2,
 	rescued: 0,
 	spinsLeft: 0,
 	/** running ROUND total (booked units) as the book's setTotalWin states it */
@@ -64,6 +66,7 @@ export const resetRescueState = () => {
 	stateRescue.rooms = [];
 	stateRescue.multiplier = 1;
 	stateRescue.building = 1;
+	stateRescue.lastRescue = 2;
 	stateRescue.rescued = 0;
 	stateRescue.spinsLeft = 0;
 	stateRescue.total = 0;

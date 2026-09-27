@@ -11,6 +11,7 @@ import { gameSound } from './audio';
 import { SYMBOL_SIZE, BOARD_SIZES, INITIAL_BOARD, BOARD_DIMENSIONS, INITIAL_SYMBOL_STATE, TRIGGER_ALARMS } from './constants';
 import { createSpinReel, createSpinBoard, setPaddingSource, type SpinReel } from './reels/spinReels.svelte';
 import { stateRescue, stateBackdraftSpins } from './rescue/stateRescue.svelte';
+import { rescueBandCells } from './rescue/rescuePhone';
 import { anticipationCamera } from './reels/anticipationCamera.svelte';
 import { animBeats } from './fx/animBeats';
 import { BOARD_FRAME, RESCUE_ART } from './artMeta';
@@ -175,6 +176,9 @@ const ROOM_PX_PER_CELL = RESCUE_ART.pitch;
 /** The band (cells) reserved above the frame for the Backdraft Spins plate: the plate is 1.1 cells tall (RescueScene). */
 export const BACKDRAFT_BAND_CELLS = 1.3;
 export const BUILDING_BAND_CELLS = Math.round(((RESCUE_ART.facade.h - RESCUE_ART.rooms[0].box.y) / ROOM_PX_PER_CELL + 0.06) * 100) / 100;
+/** Phones (stacked): the facade band plus a 0.75-cell info rail above the cornice for BUILDING / TOTAL / xN, so nothing
+ *  sits on the windows (owner 2026-09-26). The phone board is width-bound at 390 / 430 px, so this costs no cell there. */
+export const BUILDING_BAND_CELLS_STACKED = rescueBandCells(BUILDING_BAND_CELLS, true);
 
 export type SceneLayout = ReturnType<typeof sceneLayout>;
 
@@ -202,7 +206,7 @@ const computeSceneLayout = () => {
 	const cellsW = BOARD_DIMENSIONS.x + sideCells;
 	// Backdraft Spins gets its own, smaller band for the brass spins plate (owner, 2026-09-25: the plate rode above the
 	// frame with no room reserved and was cut off at the top of the screen).
-	const band = stateRescue.active ? BUILDING_BAND_CELLS : stateBackdraftSpins.active ? BACKDRAFT_BAND_CELLS : 0;
+	const band = stateRescue.active ? (stacked ? BUILDING_BAND_CELLS_STACKED : BUILDING_BAND_CELLS) : stateBackdraftSpins.active ? BACKDRAFT_BAND_CELLS : 0;
 	const cellsH = BOARD_DIMENSIONS.y * r + 2 * m + (FRAME_OUT_TOP + FRAME_OUT_BOTTOM) * f + band;
 	const top = Math.max(6, ch * 0.02);
 
