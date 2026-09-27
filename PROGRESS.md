@@ -1,5 +1,14 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-26 — **PANEL CEILING RAISERS (items 1–5)** `b81fd18..HEAD` (plan `docs/superpowers/plans/2026-09-26-panel-ceiling-raisers.md`;
+  three-seat panel iteration 1 in `qa/stake-review/`). Phone mascots + bay-door bar stand on the HUD's measured bar top; splash
+  CSS gradients → painted furniture (2 paid sheets); authored pose B + C key frames for all 12 symbols (38 paid edits + 2
+  redraws; three-frame win cut through squashes; lazy after boot); painted bay-door plates; Backdraft Spins bay-door
+  intro/outro cards; one Chief on stage for BIG+; rescue multiplier badge climbs per rescue; owner listening pass recorded;
+  HUD bonus tile in the owner-supplied Lilita One. Spend today $10.80 (art, recorded). Gates added: hud_bar, symbol_motion,
+  splash_no_gradients, rig_beats, bonus_font (all PASS). Recorded motion review `qa/smoke/review/contract/MOTION_REVIEW_2026-09-26.md`.
+  OPEN: an unreproduced black-canvas pageerror ('reading "indices"') seen only under SwiftShader at load 100–300; pre-existing
+  check_cue_ids FAIL (WinRungs `rung_bed_${...}`, also at 9eac10c); `game/dist` not synced (owner: `! ./tools/build_dist.sh`).
 - 2026-09-25 — **LOW-END PERFORMANCE PASS** `968e8e8` + `game/dist` `d1db6bd` (owner: "optimize for devices without the latest hardware").
   Measured with a new throttled harness (`qa/perf/measure.mjs`: phone 390×844@3 at 6× CPU throttle, old laptop 1366×768 at 4×;
   `qa/perf/REPORT.md`). Boot on the phone profile: requests 383 → 140, transfer 31.7 → 11.7 MB, splash −22 %, shutter −11 %,
