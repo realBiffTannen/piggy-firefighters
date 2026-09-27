@@ -35,6 +35,8 @@ const DYNAMIC = {
 	'`total_win_${size}`': ['small', 'mid', 'big'].map((s) => `total_win_${s}`),
 	'`rung_bed_${r.key}`': RUNGS.map((k) => `rung_bed_${k}`),
 	'`rung_bed_${RUNGS[idx].key}`': RUNGS.map((k) => `rung_bed_${k}`),
+	// WinRungs: the first rung's bed is decoded before the first drop (AUD-5b); RUNGS[0] is 'big'
+	'`rung_bed_${RUNGS[0].key}`': ['rung_bed_big'],
 	'`rung_hit_${RUNGS[idx].key}`': RUNGS.map((k) => `rung_hit_${k}`),
 	'`sign_impact_${RUNGS[idx].skin}`': RUNGS.map((k) => `sign_impact_${k}`),
 	'`sign_impact_${RUNGS[0].skin}`': ['sign_impact_big'],
