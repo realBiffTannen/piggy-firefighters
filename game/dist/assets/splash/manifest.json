@@ -43,5 +43,14 @@
   "bottomBar": "shutter_bottom_bar.webp",
   "note": "Station 13 bay door; the same tiles ride on the in-game shutter (assetsScene scene_shutter_slats / scene_shutter_bar)."
  },
- "artDir": "assets/splash/"
+ "artDir": "assets/splash/",
+ "furniture": {
+  "board": "board.webp",
+  "chain": "chain.webp",
+  "nail": "nail.webp",
+  "beam": "beam.webp",
+  "dust": "dust.webp",
+  "hazard": "hazard.webp",
+  "note": "painted splash furniture (tools/art/derive_furniture.py): deck boards, chains, nails, the frame's brass beam (repeatable middle), shutter dust, the loading-bar hazard tile (drawn locally). Replaces the CSS gradients (SplashDeck.svelte / Splash.svelte)."
+ }
 }
