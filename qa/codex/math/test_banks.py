@@ -26,7 +26,7 @@ class BankTests(unittest.TestCase):
                     prefix = self.banks.trigger_prefix(self.state, mode, bonus, spins, 42)
                     book = self.banks.wrap_bonus(bank, prefix, 'natural', 99)
                     self.assertEqual(self.banks.canonical_bonus_hash(book), reference)
-                    self.assertEqual(book['payoutMultiplier'], 1500000)
+                    self.assertEqual(book['payoutMultiplier'], 2000000)
                     self.assertEqual(book['baseGameWins'], 0)
                     trigger = next(e for e in prefix if e['type'] == 'freeSpinTrigger')
                     self.assertEqual(trigger['totalFs'], spins)
@@ -39,7 +39,7 @@ class BankTests(unittest.TestCase):
         ante = self.banks.natural_factors('ante')
         self.assertEqual(sum(base.values()), 15100)
         for key, value in base.items():
-            self.assertEqual(ante[key], 2 * value)
+            self.assertEqual(ante[key], 5 * value)
         self.assertEqual(base['rescue', 10], 12600)
         self.assertEqual(base['inferno', 15], 11)
 

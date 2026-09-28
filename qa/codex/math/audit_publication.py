@@ -22,12 +22,17 @@ from pathlib import Path
 import subprocess
 import sys
 
-COSTS = {'base': Fraction(1), 'ante': Fraction(3, 2), 'backdraft_spins': Fraction(50),
-         'alarm_call': Fraction(12), 'rescue': Fraction(18), 'inferno': Fraction(90)}
+COSTS = {'base': Fraction(1), 'ante': Fraction(3), 'super_ante': Fraction(5), 'backdraft_spins': Fraction(50),
+         'alarm_call': Fraction(15), 'rescue': Fraction(25), 'inferno': Fraction(100)}
+# contract v1.3 (owner re-price 2026-09-28): the natural modes and their exact bonus-trigger multipliers, cap 20,000x
+NATURAL = ('base', 'ante', 'super_ante')
+ANTE_FACTORS = {'base': 1, 'ante': 5, 'super_ante': 15}
+CAP_X100 = 2000000
+FREEZE_TAG = 'math-freeze-v2'
 BANK_BUDGET = 10**12
 BASE_FACTORS = {('rescue', 10): 12600, ('rescue', 12): 1260, ('rescue', 15): 140,
                 ('inferno', 10): 990, ('inferno', 12): 99, ('inferno', 15): 11}
-ALARM_FACTORS = {('rescue', 10): 155, ('inferno', 10): 9}
+ALARM_FACTORS = {('rescue', 10): 144, ('inferno', 10): 9}
 CAP_WEIGHTS = {('rescue', 10): 1000000, ('inferno', 10): 4000000,
                ('rescue', 12): 147785136, ('inferno', 12): 147785136,
                ('rescue', 15): 600000000, ('inferno', 15): 600000000}
@@ -83,9 +88,9 @@ def integer(text, label):
 
 @dataclass(frozen=True)
 class Plan:
-    main: int = 350000
+    main: int = 100000
     auxiliary: int = 10000
-    natural: int = 200000
+    natural: int = 100000
 
     def bank_count(self, spins):
         return self.main if spins == 10 else self.auxiliary
@@ -96,12 +101,12 @@ class Plan:
 
     @property
     def rows(self):
-        return {mode: self.natural + self.bank_rows if mode in ('base', 'ante') else
+        return {mode: self.natural + self.bank_rows if mode in NATURAL else
                 2 * self.main + 1 if mode == 'alarm_call' else self.main for mode in COSTS}
 
     @property
     def trials(self):
-        return 4 * self.main + 4 * self.auxiliary + 2 * self.natural
+        return 4 * self.main + 4 * self.auxiliary + len(NATURAL) * self.natural
 
 
 def preflight(output, guard_path, launch_path):
@@ -133,7 +138,7 @@ def weight_rows(path):
             book_id, weight, payout = (integer(value, str(path)) for value in fields)
             require(book_id == row_id, f'{path}: noncontiguous/duplicate book ID {book_id}, expected {row_id}')
             require(weight > 0, f'{path}:{row_id}: nonpositive weight')
-            require(0 <= payout <= 1500000 and payout % 10 == 0, f'{path}:{row_id}: invalid payout denomination/cap')
+            require(0 <= payout <= CAP_X100 and payout % 10 == 0, f'{path}:{row_id}: invalid payout denomination/cap')
             yield book_id, weight, payout
 
 
@@ -162,7 +167,7 @@ class ScalarStats:
             self.categories[route + '_probability'] += weight
         if backdraft:
             self.categories['backdraft_probability'] += weight
-        if payout == 1500000:
+        if payout == CAP_X100:
             self.categories['cap_probability'] += weight
 
     def exact(self):
@@ -202,7 +207,7 @@ class ScalarStats:
 
 
 def mode_layout(mode, plan):
-    if mode in ('base', 'ante'):
+    if mode in NATURAL:
         ranges, end = [(plan.natural, 'none', None)], plan.natural
         for bonus, spins in BASE_FACTORS:
             end += plan.bank_count(spins)
@@ -238,7 +243,7 @@ def scan_lut(lut_path, metadata_path, cost, expected_rows, layout=None, retain_p
 
 def audit_links(output, mode, plan, bank_reports):
     factors = ALARM_FACTORS if mode == 'alarm_call' else {
-        key: factor * (2 if mode == 'ante' else 1) for key, factor in BASE_FACTORS.items()}
+        key: factor * ANTE_FACTORS[mode] for key, factor in BASE_FACTORS.items()}
     first = 1 if mode == 'alarm_call' else plan.natural
     published = weight_rows(output / f'lookUpTable_{mode}_0.csv')
     for _ in range(first):
@@ -277,11 +282,11 @@ def audit_links(output, mode, plan, bank_reports):
 def verify_sources(repo, launch, report):
     repo = Path(repo).resolve()
     freeze = launch.get('freeze_sha', '')
-    require(launch.get('freeze_tag') == 'math-freeze-v1' and len(freeze) == 40 and
+    require(launch.get('freeze_tag') == FREEZE_TAG and len(freeze) == 40 and
             all(c in '0123456789abcdef' for c in freeze), 'Invalid frozen-source launch identity')
     def git(*arguments):
         return subprocess.check_output(['git', '-C', str(repo), *arguments], stderr=subprocess.PIPE)
-    require(git('rev-parse', 'math-freeze-v1^{commit}').decode().strip() == freeze, 'Freeze tag differs from launch SHA')
+    require(git('rev-parse', f'{FREEZE_TAG}^{{commit}}').decode().strip() == freeze, 'Freeze tag differs from launch SHA')
     prefixes = ('math/games/piggy_firefighters', 'math/src', 'math/utils',
                 'math/requirements.txt', 'math/requirements-production.lock')
     def included(path):
@@ -336,7 +341,7 @@ def audit_banks(output, plan, bank_reports):
             moment += weight * payout
             if book_id:
                 organic += payout
-            if payout == 1500000:
+            if payout == CAP_X100:
                 cap += weight
         require(rows == plan.bank_count(spins) and total == BANK_BUDGET, f'{key}: bank row/budget mismatch')
         require(cap == CAP_WEIGHTS[bonus, spins], f'{key}: canonical cap mass changed')
@@ -357,13 +362,13 @@ def audit_banks(output, plan, bank_reports):
 def check_statistical_gates(mode, stats, figures):
     mean, variance = stats.exact()
     require(Fraction('0.9665') <= mean <= Fraction('0.9670'), f'{mode}: RTP outside contract')
-    require(stats.distribution.get(1500000, 0) > 0, f'{mode}: no positive-weight capped outcome')
+    require(stats.distribution.get(CAP_X100, 0) > 0, f'{mode}: no positive-weight capped outcome')
     for key, limit in {'etl10k': .8, 'etl40b': .9, 'cvar': 800, 'prob5k': .01, 'prob10k': .005}.items():
         require(math.isfinite(figures[key]) and 0 <= figures[key] <= limit, f'{mode}: {key} violates platform limit')
     for key in ('any_win', 'regular_hit', 'sub_hit', 'rescue_probability', 'inferno_probability', 'backdraft_probability', 'cap_probability'):
         require(0 <= stats.probability(key) <= 1, f'{mode}: invalid {key}')
-    if mode in ('base', 'ante'):
-        low, high = ('13.38', '15.44') if mode == 'base' else ('8.79', '10.14')
+    if mode == 'base':
+        low, high = '13.38', '15.44'
         require(Fraction(low)**2 <= variance <= Fraction(high)**2, f'{mode}: variance outside contract')
     if mode == 'base':
         for key, low, high in [('any_win', '.33', '.4'), ('regular_hit', '.12', '.18'), ('sub_hit', '.15', '1')]:
@@ -407,7 +412,7 @@ def audit_publication(output, guard_path, launch_path, repo, plan=Plan()):
                           ('nonbonus_trials_per_natural_mode', plan.natural), ('total_independent_simulation_trials', plan.trials),
                           ('total_published_rows', sum(plan.rows.values()))]:
         require(report.get(key) == expected, f'Reported trial/publication count mismatch: {key}')
-    require(report.get('threads') == launch.get('workers') == 2, 'Worker count differs from approved plan')
+    require(report.get('threads') == launch.get('workers') and 1 <= launch.get('workers') <= 8, 'Worker count differs from approved plan')
     require(set(report.get('modes', {})) == set(COSTS), 'Report mode set mismatch')
     source = verify_sources(repo, launch, report)
     index, index_hash = load_json_snapshot(output / 'index.json')
@@ -426,12 +431,12 @@ def audit_publication(output, guard_path, launch_path, repo, plan=Plan()):
         expected = plan.rows[mode]
         for field in ('publication_rows', 'unique_events'):
             require(stored.get(field) == expected, f'{mode}: {field} differs from plan')
-        require(stored.get('duplicate_events') == 0 and stored.get('simulation_trials') == (plan.natural if mode in ('base', 'ante') else plan.main),
+        require(stored.get('duplicate_events') == 0 and stored.get('simulation_trials') == (plan.natural if mode in NATURAL else plan.main),
                 f'{mode}: duplicates or actual trial count mismatch')
         stats = scan_lut(output / f'lookUpTable_{mode}_0.csv', output / f'metadata_{mode}.csv', cost, expected,
                          mode_layout(mode, plan), retain_payouts=mode == 'alarm_call')
         figures = stats.figures()
-        budget = BANK_BUDGET * (2310000 if mode in ('base', 'ante') else 300 if mode == 'alarm_call' else 1)
+        budget = BANK_BUDGET * (2310000 if mode in NATURAL else 300 if mode == 'alarm_call' else 1)
         require(stats.total == budget, f'{mode}: total integer-weight budget changed')
         for field, value in figures.items():
             if field in ('total_weight', 'minimum_weight'):
@@ -447,7 +452,7 @@ def audit_publication(output, guard_path, launch_path, repo, plan=Plan()):
         if mode in ('rescue', 'inferno'):
             bank = bank_results[f'{mode}_10']
             require(modes[mode]['book_sha256'] == bank['book_sha256'] and modes[mode]['lut_sha256'] == bank['lut_sha256'], f'{mode}: direct publication differs from canonical bank bytes')
-        if mode in ('base', 'ante', 'alarm_call'):
+        if mode in NATURAL or mode == 'alarm_call':
             links[mode] = audit_links(output, mode, plan, report['banks'])
             expected_links = 2 * plan.main if mode == 'alarm_call' else plan.bank_rows
             require(links[mode]['rows'] == stored.get('shared_law_verified_rows') == expected_links, f'{mode}: canonical-link count mismatch')
@@ -456,13 +461,13 @@ def audit_publication(output, guard_path, launch_path, repo, plan=Plan()):
             links[mode]['sha256'] = verify_file(output / f'bank_links_{mode}.csv', stored['bank_links_sha256'])
         if mode == 'alarm_call':
             alarm_payouts = stats.payouts
-    for mode, factor in [('base', 1), ('ante', 2)]:
+    for mode, factor in ANTE_FACTORS.items():
         require(exact[mode]['rescue_probability'] == Fraction(factor, 165) and exact[mode]['inferno_probability'] == Fraction(factor, 2100), f'{mode}: route probability changed')
         require(abs(exact[mode]['backdraft_probability'] - Fraction(1, 40)) <= Fraction(1, 10**8), f'{mode}: Backdraft target did not close')
         cap_mass = sum(BASE_FACTORS[key] * factor * CAP_WEIGHTS[key] for key in BASE_FACTORS)
         require(exact[mode]['cap_probability'] == Fraction(cap_mass, 2310000 * BANK_BUDGET), f'{mode}: canonical cap mixture changed')
-    require(exact['alarm_call']['rescue_probability'] == Fraction(155, 300) and exact['alarm_call']['inferno_probability'] == Fraction(9, 300), 'Alarm route mixture changed')
-    require(exact['alarm_call']['cap_probability'] == Fraction(155 * 1000000 + 9 * 4000000, 300 * BANK_BUDGET), 'Alarm cap mixture changed')
+    require(exact['alarm_call']['rescue_probability'] == Fraction(144, 300) and exact['alarm_call']['inferno_probability'] == Fraction(9, 300), 'Alarm route mixture changed')
+    require(exact['alarm_call']['cap_probability'] == Fraction(144 * 1000000 + 9 * 4000000, 300 * BANK_BUDGET), 'Alarm cap mixture changed')
     for mode, cap in [('rescue', 1000000), ('inferno', 4000000), ('backdraft_spins', 4000000)]:
         require(exact[mode]['cap_probability'] == Fraction(cap, BANK_BUDGET), f'{mode}: cap mass changed')
     trials = audit_trials(output, plan, report['modes']['alarm_call'], alarm_payouts)

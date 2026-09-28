@@ -37,8 +37,8 @@ class ModelTests(unittest.TestCase):
         for mode in self.config.mode_costs:
             with self.subTest(mode=mode):
                 book = self.state.simulate(mode, 7, 'cap')
-                self.assertEqual(book['payoutMultiplier'], 1500000)
-                self.assertEqual(sum(e['amount'] for e in book['events'] if e['type'] == 'setWin'), 1500000)
+                self.assertEqual(book['payoutMultiplier'], 2000000)
+                self.assertEqual(sum(e['amount'] for e in book['events'] if e['type'] == 'setWin'), 2000000)
                 self.assertEqual(len([e for e in book['events'] if e['type'] == 'wincap']), 1)
                 for e in book['events']:
                     if e['type'] == 'reveal':
@@ -48,11 +48,12 @@ class ModelTests(unittest.TestCase):
                             self.assertEqual([s['name'] for s in e['board'][r]], expected)
                     if e['type'] == 'winInfo':
                         self.assertEqual(sum(w['win'] for w in e['wins']), e['totalWin'])
-                        self.assertLessEqual(e['totalWin'], 1500000)
+                        self.assertLessEqual(e['totalWin'], 2000000)
 
     def test_backdraft_cap_uses_only_five_cells_per_spin(self):
         book = self.state.simulate('backdraft_spins', 7, 'cap')
-        self.assertEqual([e['amount'] for e in book['events'] if e['type'] == 'setWin'], [987500, 512500])
+        # 20,000x cap (v1.3): two full 9,875x spins and the 250x remainder
+        self.assertEqual([e['amount'] for e in book['events'] if e['type'] == 'setWin'], [987500, 987500, 25000])
         for e in book['events']:
             if e['type'] == 'backdraft':
                 self.assertEqual(e['count'], 5)
@@ -61,7 +62,7 @@ class ModelTests(unittest.TestCase):
     def test_natural_bonus_has_no_backdraft_and_maps_five_plus(self):
         from games.piggy_firefighters.game_config import initial_spins
         self.assertEqual([initial_spins(n) for n in (3, 4, 5, 6, 15)], [10, 12, 15, 15, 15])
-        for mode in ('base', 'ante'):
+        for mode in ('base', 'ante', 'super_ante'):
             book = self.state.simulate(mode, 78, 'rescue')
             self.assertNotIn('backdraft', [e['type'] for e in book['events']])
             self.assertEqual(next(e for e in book['events'] if e['type'] == 'rescueStart')['source'], 'natural')
@@ -69,11 +70,13 @@ class ModelTests(unittest.TestCase):
     def test_building_cleared_names_completed_building_for_runtime(self):
         book = self.state.simulate('rescue', 7, 'cap')
         events = [e for e in book['events'] if e['type'] == 'buildingCleared']
-        self.assertEqual([e['building'] for e in events], [1, 2, 3])
+        # 1-based ordinal of the cleared building, contiguous; the forced cap path clears at least three at 20,000x
+        self.assertEqual([e['building'] for e in events], list(range(1, len(events) + 1)))
+        self.assertGreaterEqual(len(events), 3)
 
     def test_inferno_prize_cap_clips_credit_before_any_line_award(self):
-        self.state.total_x100 = 1499700
-        self.state.cap_x100 = 1500000
+        self.state.total_x100 = 1999700
+        self.state.cap_x100 = 2000000
         rescues = [{'reel': 0, 'prize': 500}, {'reel': 1, 'prize': 10000}]
         credited = self.state.clip_prizes(rescues)
         self.assertEqual(credited, 300)

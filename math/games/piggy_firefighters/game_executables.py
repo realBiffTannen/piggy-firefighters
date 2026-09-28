@@ -2,7 +2,7 @@
 from .game_calculations import evaluate_lines, RescueState
 from .game_events import GameEvents
 from .game_config import (initial_spins, BASE_BLAZE_COUNTS, BUY_BLAZE_COUNTS,
-                          BLAZE_MULTIPLIERS, INFERNO_PRIZES_X100, BACKDRAFT_RATE)
+                          BLAZE_MULTIPLIERS, INFERNO_PRIZES_X100, BACKDRAFT_RATE, BASE_REEL_SETS)
 
 
 class GameExecutables(GameEvents):
@@ -48,7 +48,7 @@ class GameExecutables(GameEvents):
         return blaze
 
     def run_base(self, mode, criterion):
-        reel_set = 'BRA' if mode == 'ante' else 'BR0'
+        reel_set = BASE_REEL_SETS[mode]
         route = 'inferno' if criterion == 'cap' else criterion
         if criterion == 'tail_max':
             stops = [0] * 5

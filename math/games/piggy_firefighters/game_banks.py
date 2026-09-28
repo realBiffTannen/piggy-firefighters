@@ -5,19 +5,22 @@ import json
 import random
 from src.state.books import Book
 from .game_calculations import evaluate_lines
+from .game_config import ANTE_FACTORS, BASE_REEL_SETS, NATURAL_MODES
 
 BANK_BUDGET = 10**12
 NATURAL_DENOMINATOR = 2_310_000
 ALARM_DENOMINATOR = 300
-ALARM_FACTORS = {'rescue': 155, 'inferno': 9, 'falseAlarm': 136}
+# Alarm Call at 15x: Inferno fixed at 3 % (9/300), Rescue solved to close RTP at the 25x / 100x banks (144/300 = 48 %),
+# the False Alarm carries the rest (147/300 = 49 %): (144 * 24.175 + 9 * 96.7) / 300 = 14.505 = 0.967 * 15 exactly.
+ALARM_FACTORS = {'rescue': 144, 'inferno': 9, 'falseAlarm': 147}
 SPIN_CLASSES = (10, 12, 15)
 
 
 def natural_factors(mode):
-    """90/9/1 starting-class shares; ante doubles each exact natural rate."""
-    if mode not in ('base', 'ante'):
+    """90/9/1 starting-class shares; each ante tier multiplies every exact natural rate (ANTE_FACTORS: 5x, 15x)."""
+    if mode not in NATURAL_MODES:
         raise ValueError(mode)
-    factor = 1 if mode == 'base' else 2
+    factor = ANTE_FACTORS[mode]
     return {key: value * factor for key, value in {
         ('rescue', 10): 12600, ('rescue', 12): 1260, ('rescue', 15): 140,
         ('inferno', 10): 990, ('inferno', 12): 99, ('inferno', 15): 11}.items()}
@@ -50,7 +53,7 @@ def trigger_prefix(state, mode, bonus, spins, seed):
     count = {10: 3, 12: 4, 15: 5}[spins]
     digest = hashlib.sha256(f'pf-prefix-v1:{mode}:{bonus}:{spins}:{seed}'.encode()).digest()
     state.rng = random.Random(int.from_bytes(digest[:16], 'big'))
-    reel_set = 'BR0' if mode == 'base' else 'BRA'
+    reel_set = BASE_REEL_SETS[mode]
     buckets = state.stop_buckets[reel_set]
     for _ in range(256):
         alarm_reels = set(state.rng.sample(range(5), count))

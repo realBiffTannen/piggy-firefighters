@@ -48,8 +48,8 @@ class AuditTests(unittest.TestCase):
 
     def test_exact_moments_and_inclusive_cvar_quantile_tie(self):
         lut, meta = self.root / 'lut.csv', self.root / 'meta.csv'
-        write_rows(lut, [(0, 9990, 0), (1, 9, 100), (2, 1, 1500000)])
-        write_rows(meta, [(0, 0, 'none', False), (1, 100, 'none', True), (2, 1500000, 'inferno', False)])
+        write_rows(lut, [(0, 9990, 0), (1, 9, 100), (2, 1, 2000000)])
+        write_rows(meta, [(0, 0, 'none', False), (1, 100, 'none', True), (2, 2000000, 'inferno', False)])
         result = audit.scan_lut(lut, meta, audit.Fraction(1), 3)
         stats = result.figures()
         self.assertEqual(result.moment1, 1500900)
@@ -136,7 +136,7 @@ class AuditTests(unittest.TestCase):
         links = [audit.LINK_COLUMNS]
         for key, factor in audit.BASE_FACTORS.items():
             bonus, spins = key
-            rows = [(0, 999999000000, 0), (1, 1000000, 1500000)]
+            rows = [(0, 999999000000, 0), (1, 1000000, 2000000)]
             write_rows(self.root / 'banks' / f'weights_{bonus}_{spins}.csv', rows)
             hashes = [hashlib.sha256(f'{bonus}:{spins}:{i}'.encode()).hexdigest() for i in range(2)]
             banks[f'{bonus}_{spins}'] = {'full_event_bank_sha256': hashlib.sha256(b''.join(bytes.fromhex(h) for h in hashes)).hexdigest()}

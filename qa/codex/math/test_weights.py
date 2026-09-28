@@ -36,7 +36,7 @@ class WeightTests(unittest.TestCase):
     def test_large_publication_report_keeps_probabilities_and_second_moment(self):
         import math
         records = [(0, 'none', False), (50, 'none', True), (1000, 'rescue', False),
-                   (1500000, 'inferno', False)] * 8500
+                   (2000000, 'inferno', False)] * 8500
         weights = [10**12, 10**12, 10**12, 100] * 8500
         total = sum(weights)
         mean = math.fsum(w / total * r[0] / 100 for r, w in zip(records, weights))
@@ -50,7 +50,7 @@ class WeightTests(unittest.TestCase):
         from types import SimpleNamespace
         for mode in ('base', 'ante', 'alarm_call'):
             with self.assertRaises(self.weights.FitError):
-                self.weights.solve_mode(mode, [(0, 'none', False), (1500000, 'inferno', False)],
+                self.weights.solve_mode(mode, [(0, 'none', False), (2000000, 'inferno', False)],
                                         SimpleNamespace(mode_costs={mode: 1.5}))
 
 

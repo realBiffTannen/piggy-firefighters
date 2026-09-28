@@ -3,6 +3,7 @@ import hashlib
 import random
 from src.state.books import Book
 from .game_override import GameStateOverride
+from .game_config import NATURAL_MODES
 
 
 class GameState(GameStateOverride):
@@ -23,7 +24,7 @@ class GameState(GameStateOverride):
         self.cap_x100 = int(self.config.wincap * 100)
         self.total_x100 = self.base_x100 = self.free_x100 = 0
         self.wincap_triggered = False
-        if mode in ('base', 'ante'):
+        if mode in NATURAL_MODES:
             self.run_base(mode, criterion)
         elif mode == 'backdraft_spins':
             self.run_backdraft_spins(criterion == 'cap')

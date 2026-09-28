@@ -3,7 +3,10 @@ import math
 import numpy as np
 from scipy.optimize import minimize
 from scipy.special import logsumexp
-from .game_config import (RTP_TARGET, BASE_RESCUE_RATE, BASE_INFERNO_RATE, BACKDRAFT_RATE)
+from .game_config import (RTP_TARGET, BASE_RESCUE_RATE, BASE_INFERNO_RATE, BACKDRAFT_RATE, WINCAP, NATURAL_MODES,
+                          NONBONUS_SD, NONBONUS_TAIL40)
+
+CAP_X100 = WINCAP * 100
 
 
 class FitError(RuntimeError):
@@ -76,13 +79,13 @@ def integer_weights(probabilities, budget=10**18):
 
 def _mean_fit(payouts, target, cap_probability):
     payouts = np.asarray(payouts, dtype=float)
-    cap = payouts == 15000
+    cap = payouts == WINCAP
     ordinary = ~cap
     if not cap.any() or not ordinary.any():
         raise FitError('Need real cap and non-cap books')
     p = np.zeros(len(payouts))
     p[cap] = cap_probability / cap.sum()
-    mean = (target - cap_probability * 15000) / (1 - cap_probability)
+    mean = (target - cap_probability * WINCAP) / (1 - cap_probability)
     # Aggregate equal payouts: solve dimension depends on payout support, not book count.
     values, inverse, counts = np.unique(payouts[ordinary], return_inverse=True, return_counts=True)
     fitted, details = fit_probabilities(values[:, None], [mean], prior=counts.astype(float))
@@ -113,7 +116,7 @@ def summarize(records, weights, cost):
             counts[route + '_probability'] += weight
         if backdraft:
             counts['backdraft_probability'] += weight
-        if payout == 1500000:
+        if payout == CAP_X100:
             counts['cap_probability'] += weight
     return {'cost': cost, 'rtp': mean, 'sd_over_cost': math.sqrt(max(0, second - mean**2)),
             'total_weight': total, 'minimum_weight': int(min(weights)),
@@ -124,14 +127,14 @@ def solve_bank(records, target, cap_probability, budget):
     payouts = np.array([r[0] / 100 for r in records])
     p, details = _mean_fit(payouts, target, cap_probability)
     weights = integer_weights(p, budget)
-    cap_indices = np.flatnonzero(payouts == 15000)
+    cap_indices = np.flatnonzero(payouts == WINCAP)
     # Pin total cap mass after integerization, preserving positive rare rows.
     target_cap = round(budget * cap_probability)
     difference = target_cap - sum(int(weights[i]) for i in cap_indices)
     if target_cap < len(cap_indices):
         raise FitError('Bank budget cannot represent positive cap rows at target probability')
     weights[cap_indices[0]] += difference
-    weights[int(np.argmax(np.where(payouts < 15000, weights, 0)))] -= difference
+    weights[int(np.argmax(np.where(payouts < WINCAP, weights, 0)))] -= difference
     if min(weights) < 1 or sum(int(w) for w in weights) != budget:
         raise FitError('Cap rounding violated the bank budget')
     return weights, details
@@ -148,6 +151,42 @@ def solve_mode(mode, records, config):
     return weights, report
 
 
+def enforce_rtp_ceiling(records, weights, fixed_payout_x100, total_weight, cost, ceiling=None):
+    """Exact integer guard: the published RTP (nonbonus rows + immutable bank rows) must not exceed the 0.967 ceiling.
+
+    The max-entropy fit closes RTP to ~1e-7 relative and the 1e-8 margin in RTP_TARGET absorbs that for a pinned
+    second moment; an unpinned mode can land a few 1e-8 above (dev pass 2026-09-28: super_ante +1.05e-8). Units are
+    moved from the highest-paying nonbonus rows to the lowest-paying one (every row keeps >= 1 unit; the budget is
+    unchanged) until the exact rational RTP is at or below the ceiling. Returns (weights, units_moved).
+    """
+    from fractions import Fraction
+    ceiling = Fraction('0.967') if ceiling is None else Fraction(str(ceiling))
+    weights = [int(w) for w in weights]
+    payouts = [int(r[0]) for r in records]
+    limit = ceiling * Fraction(str(cost)) * 100 * total_weight  # x100 payout units
+    excess = fixed_payout_x100 + sum(w * p for w, p in zip(weights, payouts)) - limit
+    if excess <= 0:
+        return weights, 0
+    sink = min(range(len(payouts)), key=lambda i: payouts[i])
+    moved = 0
+    for i in sorted(range(len(payouts)), key=lambda i: -payouts[i]):
+        if excess <= 0:
+            break
+        drop = payouts[i] - payouts[sink]
+        if drop <= 0 or i == sink:
+            break
+        units = min(weights[i] - 1, -(-excess // drop))  # ceil, never below one unit
+        if units <= 0:
+            continue
+        weights[i] -= units
+        weights[sink] += units
+        excess -= units * drop
+        moved += units
+    if excess > 0:
+        raise FitError('RTP ceiling could not be enforced without emptying a row')
+    return weights, moved
+
+
 def solve_nonbonus(mode, records, banks, config):
     """Fit ONLY non-bonus rows to residual moments; canonical weights are read-only.
 
@@ -155,23 +194,23 @@ def solve_nonbonus(mode, records, banks, config):
     integer natural factor determines immutable unconditional contribution.
     """
     from .game_banks import BANK_BUDGET, NATURAL_DENOMINATOR, natural_factors
-    if mode not in ('base', 'ante') or any(r[1] != 'none' for r in records):
+    if mode not in NATURAL_MODES or any(r[1] != 'none' for r in records):
         raise FitError('Non-bonus fitting received a bonus row')
     cost = config.mode_costs[mode]
     factors = natural_factors(mode)
     total = BANK_BUDGET * NATURAL_DENOMINATOR
     nonbonus_budget = total - sum(factors.values()) * BANK_BUDGET
-    sd = 14.4 if mode == 'base' else 9.5
-    targets = [RTP_TARGET, sd * sd + RTP_TARGET**2, BACKDRAFT_RATE]
+    sd = NONBONUS_SD[mode]
+    targets = [RTP_TARGET] + ([sd * sd + RTP_TARGET**2] if sd is not None else []) + [BACKDRAFT_RATE]
     if mode == 'base':
         targets += [.22, .16]
     else:
-        targets += [.75]
+        targets += [NONBONUS_TAIL40[mode]]
 
     def features(rows):
         payouts = np.array([r[0] / 100 for r in rows])
         x = payouts / cost
-        columns = [x, x*x, np.array([r[2] for r in rows], dtype=float)]
+        columns = [x] + ([x*x] if sd is not None else []) + [np.array([r[2] for r in rows], dtype=float)]
         if mode == 'base':
             columns += [((x > 0) & (x < 1)).astype(float), (x >= 1).astype(float)]
         else:
@@ -188,6 +227,9 @@ def solve_nonbonus(mode, records, banks, config):
     unique, inverse, counts = np.unique(matrix, axis=0, return_inverse=True, return_counts=True)
     fitted, details = fit_probabilities(unique, adjusted, prior=counts.astype(float))
     weights = integer_weights(fitted[inverse] / counts[inverse], nonbonus_budget)
+    fixed_payout = sum(factor * sum(int(w) * int(r[0]) for w, r in zip(banks[key]['weights'], banks[key]['records']))
+                       for key, factor in factors.items())
+    weights, moved = enforce_rtp_ceiling(records, weights, fixed_payout, total, cost)
     details.update(fixed_bank_moments=fixed.tolist(), residual_nonbonus_targets=adjusted.tolist(),
-                   nonbonus_weight_budget=nonbonus_budget)
+                   nonbonus_weight_budget=nonbonus_budget, rtp_ceiling_units_moved=moved)
     return weights, details

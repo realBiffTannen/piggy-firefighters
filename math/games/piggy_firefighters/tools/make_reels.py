@@ -1,4 +1,9 @@
-"""Reproduce original deterministic reel CSVs; never runs on model import."""
+"""Reproduce the deterministic reel CSVs; never runs on model import.
+
+v1.3 (owner re-price 2026-09-28): FR0 carries 27 wilds per reel and FRI 15 so the organic 10-spin bonus means land
+near the set buy prices (Rescue 0.967 x 25 = 24.175x, Inferno 0.967 x 100 = 96.7x; the bank solver closes the last
+fraction). BRS (FIVE-ALARM BOOST) is BRA's strips written under its own name so the client can tell the tier apart.
+"""
 import csv
 import random
 from pathlib import Path
@@ -20,7 +25,7 @@ def build_reels():
             strip[0:3] = ['H1', 'H1', 'H1']
             if name in ('FR0', 'FRI'):
                 strip[8:11] = ['W', 'W', 'H1']
-            wild_count = {'BR0': 5, 'BRA': 5, 'BRB': 5, 'FR0': 24, 'FRI': 14}[name]
+            wild_count = {'BR0': 5, 'BRA': 5, 'BRB': 5, 'FR0': 27, 'FRI': 15}[name]
             if reel > 0 or name in ('FR0', 'FRI'):
                 for index in rng.sample(range(16, LENGTH - 3), wild_count):
                     strip[index] = 'W'
@@ -39,6 +44,9 @@ def build_reels():
             columns.append(strip)
         with (output / f'{name}.csv').open('w', newline='') as stream:
             csv.writer(stream, lineterminator='\n').writerows(zip(*columns))
+        if name == 'BRA':
+            with (output / 'BRS.csv').open('w', newline='') as stream:
+                csv.writer(stream, lineterminator='\n').writerows(zip(*columns))
 
 
 if __name__ == '__main__':

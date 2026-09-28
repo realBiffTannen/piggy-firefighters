@@ -1,7 +1,8 @@
-"""Bounded v1.2 shared-bank generation; simulation trials and publication rows differ.
+"""Bounded v1.3 shared-bank generation; simulation trials and publication rows differ.
 
 PF_SIMS=10000 PF_AUX_SIMS=1000 PF_THREADS=2 PF_OUTPUT=<new directory> python run.py
-Production requires the agreed tag and explicit counts; never overwrites outputs.
+Production requires the agreed tag (PF_FREEZE_TAG, default math-freeze-v2) and explicit counts (owner 2026-09-28:
+100,000 simulation trials per mode); never overwrites outputs.
 """
 import os
 for _thread_env in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS'):
@@ -24,7 +25,7 @@ MATH_ROOT = Path(__file__).resolve().parents[2]
 if str(MATH_ROOT) not in sys.path:
     sys.path.insert(0, str(MATH_ROOT))
 import zstandard as zstd
-from games.piggy_firefighters.game_config import GameConfig, GAME_DIR, RTP_TARGET
+from games.piggy_firefighters.game_config import GameConfig, GAME_DIR, RTP_TARGET, WINCAP, NATURAL_MODES
 from games.piggy_firefighters.gamestate import GameState
 from games.piggy_firefighters.game_weights import solve_mode, solve_bank, solve_nonbonus, summarize, FitError
 from games.piggy_firefighters.game_banks import (BANK_BUDGET, NATURAL_DENOMINATOR, ALARM_DENOMINATOR,
@@ -33,6 +34,9 @@ from games.piggy_firefighters.game_banks import (BANK_BUDGET, NATURAL_DENOMINATO
 from utils.analysis.distribution_functions import get_etl_cvar_p5k_10k_vales
 
 _STATE = None
+CAP_X100 = WINCAP * 100
+PRODUCTION_SIMS = 100000
+FREEZE_TAG = os.environ.get('PF_FREEZE_TAG', 'math-freeze-v2')
 
 
 def sha256_file(path):
@@ -105,7 +109,7 @@ def worker_init():
 
 
 def criterion_for(mode, index):
-    if mode in ('base', 'ante'):
+    if mode in NATURAL_MODES:
         if index == 0:
             return 'tail_max'
         if index <= 20:
@@ -165,11 +169,16 @@ class FixtureCollector:
                 names += ['base_trigger_' + start['bonus']]
             if not start and any(any(e.get('anticipation', [])) for e in book['events']):
                 names += ['base_anticipation_miss']
+        if mode in ('ante', 'super_ante'):
+            if start:
+                names += [f'{mode}_trigger_{start["bonus"]}']
+            elif book['payoutMultiplier'] and 'backdraft' not in kinds:
+                names += [f'{mode}_win']
         if mode == 'rescue':
             names += ['rescue_buy']
             if 'buildingCleared' in kinds:
                 names += ['rescue_building_cleared']
-            if book['payoutMultiplier'] == 1500000:
+            if book['payoutMultiplier'] == CAP_X100:
                 names += ['max_win']
         if mode == 'inferno':
             names += ['inferno_buy']
@@ -180,12 +189,12 @@ class FixtureCollector:
             names += ['alarm_call_' + ('false' if outcome == 'falseAlarm' else outcome)]
         if mode == 'backdraft_spins':
             names += ['backdraft_spins']
-            if book['payoutMultiplier'] == 1500000:
+            if book['payoutMultiplier'] == CAP_X100:
                 names += ['backdraft_max_win']
         for name in names:
             # Ordinary presentation fixtures should not all show the forced cap.
             wants_cap = name in ('max_win', 'backdraft_max_win')
-            if name not in self.found and (wants_cap or book['payoutMultiplier'] < 1500000):
+            if name not in self.found and (wants_cap or book['payoutMultiplier'] < CAP_X100):
                 self.found[name] = (mode, book)
 
     def write(self):
@@ -221,7 +230,7 @@ class FixtureCollector:
 def verify_round(book):
     events = book['events']
     payout = book['payoutMultiplier']
-    if payout % 10 or not 0 <= payout <= 1500000:
+    if payout % 10 or not 0 <= payout <= CAP_X100:
         raise AssertionError('Invalid payout denomination/cap')
     if events[-1]['type'] != 'finalWin' or events[-1]['amount'] != payout:
         raise AssertionError('Final payout mismatch')
@@ -286,8 +295,8 @@ def publication_violations(mode, report):
         violations['sd_over_cost'] = report['sd_over_cost']
     if report['rtp'] < .9665:
         violations['rtp_below_floor'] = report['rtp']
-    if mode in ('base', 'ante'):
-        low, high = (13.38, 15.44) if mode == 'base' else (8.79, 10.14)
+    if mode == 'base':
+        low, high = 13.38, 15.44
         if not low <= report['sd_over_cost'] <= high:
             violations['contract_sd'] = report['sd_over_cost']
     if mode == 'base':
@@ -331,7 +340,7 @@ def generate_bank(bonus, spins, count, threads, output, config, fixtures):
                   cap_probability_target=bank_cap_probability(bonus, spins), fit=fit,
                   full_event_bank_sha256=hashlib.sha256(b''.join(hashes)).hexdigest(),
                   cap_probability_actual=sum(int(w) for r, w in zip(writer.records, weights)
-                                             if r[0] == 1500000) / BANK_BUDGET)
+                                             if r[0] == CAP_X100) / BANK_BUDGET)
     lut = output / 'banks' / f'weights_{bonus}_{spins}.csv'
     report['lut_sha256'] = write_lut(lut, writer.records, weights)
     report['derived_buy_cost'] = organic_mean / config.rtp if spins == 10 else None
@@ -458,21 +467,21 @@ def main():
     natural = int(os.environ.get('PF_NATURAL_SIMS', '10000'))
     threads = int(os.environ.get('PF_THREADS', '2'))
     stage = os.environ.get('PF_STAGE', 'dev')
-    if count < 100 or auxiliary < 100 or natural < 100 or threads not in (1, 2):
-        raise SystemExit('Use counts>=100 and PF_THREADS=1 or2')
+    if count < 100 or auxiliary < 100 or natural < 100 or threads not in range(1, 9):
+        raise SystemExit('Use counts>=100 and PF_THREADS between 1 and 8')
     if stage not in ('dev', 'production'):
         raise SystemExit('PF_STAGE must be dev or production')
     if stage == 'dev' and (count > 10000 or auxiliary > 1000 or natural > 10000):
         raise SystemExit('Dev generation is capped at10k main and1k auxiliary class trials')
     if stage == 'production':
-        freeze = subprocess.check_output(['git', 'rev-parse', 'math-freeze-v1^{commit}'], text=True).strip()
+        freeze = subprocess.check_output(['git', 'rev-parse', f'{FREEZE_TAG}^{{commit}}'], text=True).strip()
         if os.environ.get('PF_FREEZE_SHA') != freeze:
-            raise SystemExit('PF_FREEZE_SHA must equal the agreed math-freeze-v1 commit')
-        if count != 350000 or any(key not in os.environ for key in ('PF_AUX_SIMS', 'PF_NATURAL_SIMS')):
-            raise SystemExit('Production needs350k bonus trials and explicit approved PF_AUX_SIMS/PF_NATURAL_SIMS counts')
+            raise SystemExit(f'PF_FREEZE_SHA must equal the agreed {FREEZE_TAG} commit')
+        if count != PRODUCTION_SIMS or any(key not in os.environ for key in ('PF_AUX_SIMS', 'PF_NATURAL_SIMS')):
+            raise SystemExit(f'Production needs {PRODUCTION_SIMS} bonus trials and explicit approved PF_AUX_SIMS/PF_NATURAL_SIMS counts')
         verify_frozen_sources(freeze, MATH_ROOT.parent, GAME_DIR)
     if os.environ.get('PF_MODES'):
-        raise SystemExit('Shared-bank generation publishes all six dependent modes together')
+        raise SystemExit('Shared-bank generation publishes all seven dependent modes together')
     config = GameConfig()
     state = GameState(config)
     output = Path(os.environ.get('PF_OUTPUT', str(GAME_DIR / 'library' / stage))).resolve()
@@ -498,11 +507,11 @@ def main():
     checkpoint()
     report['modes']['alarm_call'] = publish_alarm(count, banks, output, config, fixtures, state)
     checkpoint()
-    for mode in ('base', 'ante'):
+    for mode in NATURAL_MODES:
         report['modes'][mode] = publish_natural(mode, natural, threads, banks, output, config, fixtures, state)
         checkpoint()
     report['source_unchanged'] = before == source_hashes()
-    report['total_independent_simulation_trials'] = 4 * count + 2 * natural + 4 * auxiliary
+    report['total_independent_simulation_trials'] = 4 * count + len(NATURAL_MODES) * natural + 4 * auxiliary
     report['total_published_rows'] = sum(r['publication_rows'] for r in report['modes'].values())
     report['total_seconds'] = round(time.monotonic() - started, 3)
     checkpoint()

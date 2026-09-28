@@ -1,6 +1,7 @@
 """Game-local initialization; shared SDK files are never modified."""
 from src.state.state import GeneralGameState
 from .game_executables import GameExecutables
+from .game_config import BASE_REEL_SETS
 
 
 class GameStateOverride(GameExecutables, GeneralGameState):
@@ -9,7 +10,7 @@ class GameStateOverride(GameExecutables, GeneralGameState):
 
     def initialize_strip_indices(self):
         self.stop_buckets, self.stop_alarm_counts = {}, {}
-        for name in ('BR0', 'BRA'):
+        for name in BASE_REEL_SETS.values():
             self.stop_buckets[name], self.stop_alarm_counts[name] = [], []
             for strip in self.config.reels[name]:
                 buckets = {'none': [], 'alarm': [], 'golden': []}
