@@ -1,5 +1,28 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-28 — **OWNER RE-PRICE (contract v1.3, `math-freeze-v2`) · MASCOTS OUT · TROTTERVILLE F.D. · game/dist REBUILT**
+  `10ef511` (math v2) · `9a61961` (mascots, shield, card art) · `34afb50` (two ante tiers, prices, 20,000x, math promoted) · build commit.
+  Owner instructions today: (1) remove the Chief Hamm and Ember mascots — `pf_chief` / `pf_dog` Spine exports deleted, Mascots.svelte,
+  the win-plate chief, the chief hose hand-off and the boot rigs gone; Ember inpainted out of five card paintings (gen_art.py --mask,
+  5 paid calls); the Chief stays only as WILD / splash hero / thumbnail; (2) card 1's blank shield now reads TROTTERVILLE / 13 / FIRE
+  DEPT. (fictional Trotterville Fire Department, lettered locally by tools/art/letter_card_crest.py; names.ts DEPARTMENT/STATION);
+  (3) math redone: ALARM BOOST 3x for exactly 5x the natural chance of each bonus, NEW FIVE-ALARM BOOST `super_ante` 5x for 15x
+  (piggy-police's two-tier HUD ante chooser: `anteTiers` + `anteTierConfirm`, RAISE THE ALARM / NO BOOST, CONFIRM before arming),
+  Alarm Call 15x (144/9/147 of 300), Rescue 25x, Backdraft 50x, Inferno 100x, max win 20,000x every mode, 100,000 trials per mode.
+  Mechanism unchanged (shared canonical banks, exact integer natural factors 1/5/15; BRS = BRA's strips; FR0 27 / FRI 15 wilds put the
+  organic bonus means at the set prices; ante tiers pin the >= 40x-cost tail at 0.75, ante SD/cost 8.0, super ante 7.37 least-change;
+  an exact RTP-ceiling guard). Production PASS (740,000 trials → 1,520,001 rows, 8 workers, 2,121 s, peak 1,117 MiB); audit PASS
+  (`qa/codex/math/v2-audit.json`); promoted to `math/publish/` (`MANIFEST.json`, 15 files, 1,568,941,459 B); 22 real-book fixtures
+  synced (incl. ante / super_ante trigger + win); RTP 0.967 every mode (§9). Frontend: seven modes, chooser, rules sheet with the exact
+  frequencies, 20,000x everywhere, one super-ante card painting (1 paid call; art spend today $1.80 est., recorded). Gate 14/14 OK.
+  `game/dist` rebuilt: 756 files, 66,964 KiB, `bundle.fThyBaRl.js`, provenance PASS (digest `4ed05ff202b8…`), sumsSha256
+  `304398d3b508…` (`game/BUILD_INFO.md`); subpath-serving probe PASS; static smoke of that tree on the published v2 books
+  (`qa/smoke/static-2026-09-28/`): desktop 1440x900 + phone 390x844, boot → press → one real spin → ante chooser → feature sheet,
+  0 console errors / 0 page errors / 0 failed requests; frames show no mascot beside the reels, ALARM BOOST 3x OFF chip, the
+  chooser (3x / 5x / NO BOOST), the six feature cards at the new prices. Submission kit rebound (PRE_UPLOAD_CHECKLIST, BUILD_RECORD,
+  MATH_HANDOFF, `qa/submission/math_package_manifest.json`). NOT DONE: Codex's `rigLogic.ts` / `RigStage.svelte` /
+  `ANIMATION_CONTRACT.md` still carry inert mascot entries; `check_win_coins.mjs` sample text still says $15,000 (not an assertion);
+  the human gates (real-phone pass, rig motion review, art acceptance) remain open; no fixture-matrix smoke on this tree.
 - 2026-09-26 — **PANEL CEILING RAISERS (items 1–5)** `b81fd18..HEAD` (plan `docs/superpowers/plans/2026-09-26-panel-ceiling-raisers.md`;
   three-seat panel iteration 1 in `qa/stake-review/`). Phone mascots + bay-door bar stand on the HUD's measured bar top; splash
   CSS gradients → painted furniture (2 paid sheets); authored pose B + C key frames for all 12 symbols (38 paid edits + 2

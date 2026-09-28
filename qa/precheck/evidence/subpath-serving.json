@@ -1,12 +1,12 @@
 {
   "probe": "subpath-serving",
   "canary": false,
-  "dir": "/Users/jbull/code/piggy-firefighters/apps/piggy_firefighters/build",
-  "mount": "/v70",
-  "target": "http://127.0.0.1:3062/v70/",
+  "dir": "/Users/jbull/code/piggy-firefighters/game/dist",
+  "mount": "/v71",
+  "target": "http://127.0.0.1:3072/v71/",
   "rgs": "127.0.0.1:3061",
   "requests": {
-    "total": 385,
+    "total": 295,
     "failed": [],
     "escapedMount": [],
     "external": []

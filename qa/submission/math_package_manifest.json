@@ -1,197 +1,118 @@
 {
-  "game": "piggy_firefighters",
-  "purpose": "Submission-kit binding of the thirteen-file Engine math payload as it sits in math/publish now: sha256 + bytes recomputed from the bytes on disk and compared with math/publish/MANIFEST.json.",
-  "recomputed_at_utc": "2026-09-25T16:29:14+00:00",
-  "repo_head": "4796e8a7ef12c61dcb3c1271c407edd76a195c45",
-  "math_freeze_tag": {
-    "tag": "math-freeze-v1",
-    "commit": "38a6c2f75d6b624eab2ae4efbcd55ed467075127"
+ "bound_at": "2026-09-28",
+ "freeze": {
+  "tag": "math-freeze-v2",
+  "sha": "10ef51124dd8d7fac81ae11c148e952012177e3f",
+  "verified_source_files": 77
+ },
+ "manifest_sha256": "988b20d96c8ead74feb09c80ea6ca984b03ca0539d22681b98ed228d014e05a9",
+ "files": [
+  {
+   "file": "math/publish/books_alarm_call.jsonl.zst",
+   "bytes": 243439640,
+   "rows": null,
+   "sha256": "79c49a2b1e15e142812bfb5d06884216a8c835bf7de0584887ae2553bb9369bd",
+   "equal_to_manifest": true
   },
-  "publish_dir": "/Users/jbull/code/piggy-firefighters/math/publish",
-  "manifest": {
-    "path": "math/publish/MANIFEST.json",
-    "sha256": "dfc8bce40a6273f22eb27e7adfacdb3e909839ead3143186c7ac7eaf895d8096",
-    "bytes": 20076
+  {
+   "file": "math/publish/books_ante.jsonl.zst",
+   "bytes": 331501423,
+   "rows": null,
+   "sha256": "334831210060c174952edba552683dba5064b85ab8cffbbd1e53f0d82f3993f9",
+   "equal_to_manifest": true
   },
-  "index": {
-    "path": "math/publish/index.json",
-    "modes": [
-      {
-        "name": "base",
-        "cost": 1.0
-      },
-      {
-        "name": "ante",
-        "cost": 1.5
-      },
-      {
-        "name": "backdraft_spins",
-        "cost": 50.0
-      },
-      {
-        "name": "alarm_call",
-        "cost": 12.0
-      },
-      {
-        "name": "rescue",
-        "cost": 18.0
-      },
-      {
-        "name": "inferno",
-        "cost": 90.0
-      }
-    ]
+  {
+   "file": "math/publish/books_backdraft_spins.jsonl.zst",
+   "bytes": 53693881,
+   "rows": null,
+   "sha256": "9ef66dd9e713172c0be3045f9ed48081bb9a30c0c3804dcbed1e74b1c873a096",
+   "equal_to_manifest": true
   },
-  "file_count": 13,
-  "total_bytes": 3681029306,
-  "total_lut_lines": 3630001,
-  "comparison": "EQUAL",
-  "comparison_detail": "every file: recomputed sha256 == MANIFEST.json sha256 and on-disk bytes == MANIFEST.json bytes; LUT line counts == MANIFEST.json rows",
-  "method": "python3 hashlib.sha256 over the file bytes in 16 MiB chunks; bytes from the read length; LUT lines from wc -l",
-  "boundary": "Byte identity of the local directory only. Books are gitignored (math/publish/books_*.jsonl.zst) and exist only on this Mac; this record does not establish Engine ingestion, an upload, or approval.",
-  "files": [
-    {
-      "file": "index.json",
-      "bytes": 906,
-      "sha256": "6d758b5ba5a070178caa43a762d19f883f9511eb2c306d8f6cb5f2f5222d82ac",
-      "manifest_bytes": 906,
-      "manifest_sha256": "6d758b5ba5a070178caa43a762d19f883f9511eb2c306d8f6cb5f2f5222d82ac",
-      "manifest_rows": null,
-      "lut_lines": null,
-      "committed": true,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "books_base.jsonl.zst",
-      "bytes": 912009754,
-      "sha256": "a99461ac74deda54e2b7187724369ea42d90de16197ed2acc4d42b85a5f8a6be",
-      "manifest_bytes": 912009754,
-      "manifest_sha256": "a99461ac74deda54e2b7187724369ea42d90de16197ed2acc4d42b85a5f8a6be",
-      "manifest_rows": 940000,
-      "lut_lines": null,
-      "committed": false,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "lookUpTable_base_0.csv",
-      "bytes": 22041327,
-      "sha256": "73bd42fbc2b9f6c25ff992ce8c9f1b34a80983bd0a7ddbde0896b082cd9e95e8",
-      "manifest_bytes": 22041327,
-      "manifest_sha256": "73bd42fbc2b9f6c25ff992ce8c9f1b34a80983bd0a7ddbde0896b082cd9e95e8",
-      "manifest_rows": 940000,
-      "lut_lines": 940000,
-      "committed": true,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "books_ante.jsonl.zst",
-      "bytes": 912826613,
-      "sha256": "bbdca092385ef6179071de3ac62bc83cd649c7555dbec1dd5adee28a597601fc",
-      "manifest_bytes": 912826613,
-      "manifest_sha256": "bbdca092385ef6179071de3ac62bc83cd649c7555dbec1dd5adee28a597601fc",
-      "manifest_rows": 940000,
-      "lut_lines": null,
-      "committed": false,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "lookUpTable_ante_0.csv",
-      "bytes": 22100950,
-      "sha256": "67909bf1b34b5c7e797ad946e8b3c7682fb94f840a87c45d54719a8d108ab235",
-      "manifest_bytes": 22100950,
-      "manifest_sha256": "67909bf1b34b5c7e797ad946e8b3c7682fb94f840a87c45d54719a8d108ab235",
-      "manifest_rows": 940000,
-      "lut_lines": 940000,
-      "committed": true,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "books_backdraft_spins.jsonl.zst",
-      "bytes": 187904416,
-      "sha256": "89a0fddb65247b6e9062b0945af6f56e86980cd61447554deb0fbda88d1cdfe1",
-      "manifest_bytes": 187904416,
-      "manifest_sha256": "89a0fddb65247b6e9062b0945af6f56e86980cd61447554deb0fbda88d1cdfe1",
-      "manifest_rows": 350000,
-      "lut_lines": null,
-      "committed": false,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "lookUpTable_backdraft_spins_0.csv",
-      "bytes": 6900657,
-      "sha256": "858f2227b762690fbfe1d42297a3566de385e0ce4449254f8bfd405748433831",
-      "manifest_bytes": 6900657,
-      "manifest_sha256": "858f2227b762690fbfe1d42297a3566de385e0ce4449254f8bfd405748433831",
-      "manifest_rows": 350000,
-      "lut_lines": 350000,
-      "committed": true,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "books_alarm_call.jsonl.zst",
-      "bytes": 795277191,
-      "sha256": "24d548cee921eb3351724bff32766ecc708e2cf8466e7dc51395ffcf17ed5e3e",
-      "manifest_bytes": 795277191,
-      "manifest_sha256": "24d548cee921eb3351724bff32766ecc708e2cf8466e7dc51395ffcf17ed5e3e",
-      "manifest_rows": 700001,
-      "lut_lines": null,
-      "committed": false,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "lookUpTable_alarm_call_0.csv",
-      "bytes": 14862375,
-      "sha256": "020e56183dbffc859a05ae5171e151d8c38fff89e935a2b5514db16939bd2381",
-      "manifest_bytes": 14862375,
-      "manifest_sha256": "020e56183dbffc859a05ae5171e151d8c38fff89e935a2b5514db16939bd2381",
-      "manifest_rows": 700001,
-      "lut_lines": 700001,
-      "committed": true,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "books_rescue.jsonl.zst",
-      "bytes": 372117903,
-      "sha256": "8d6718567353e9e855aec809a7e414c50c16d3c082593e396493e560c2dcd28f",
-      "manifest_bytes": 372117903,
-      "manifest_sha256": "8d6718567353e9e855aec809a7e414c50c16d3c082593e396493e560c2dcd28f",
-      "manifest_rows": 350000,
-      "lut_lines": null,
-      "committed": false,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "lookUpTable_rescue_0.csv",
-      "bytes": 6729365,
-      "sha256": "c4983ed172b8ef579e505a5c5543dd563c11972dd1cae24dbc7040e3e4b30e84",
-      "manifest_bytes": 6729365,
-      "manifest_sha256": "c4983ed172b8ef579e505a5c5543dd563c11972dd1cae24dbc7040e3e4b30e84",
-      "manifest_rows": 350000,
-      "lut_lines": 350000,
-      "committed": true,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "books_inferno.jsonl.zst",
-      "bytes": 421285974,
-      "sha256": "9d6660c9baece6dc5a16b8c9a0f637c6fba9b3ee7eeae710721ae65cb35b3d40",
-      "manifest_bytes": 421285974,
-      "manifest_sha256": "9d6660c9baece6dc5a16b8c9a0f637c6fba9b3ee7eeae710721ae65cb35b3d40",
-      "manifest_rows": 350000,
-      "lut_lines": null,
-      "committed": false,
-      "equal_to_manifest": true
-    },
-    {
-      "file": "lookUpTable_inferno_0.csv",
-      "bytes": 6971875,
-      "sha256": "6beec9ce9b7b01523bb140c6a229b45c5911f3083eb1499c740526664eb59a96",
-      "manifest_bytes": 6971875,
-      "manifest_sha256": "6beec9ce9b7b01523bb140c6a229b45c5911f3083eb1499c740526664eb59a96",
-      "manifest_rows": 350000,
-      "lut_lines": 350000,
-      "committed": true,
-      "equal_to_manifest": true
-    }
-  ]
+  {
+   "file": "math/publish/books_base.jsonl.zst",
+   "bytes": 331197756,
+   "rows": null,
+   "sha256": "8b211860ff99c7449716778aa8acb5fbcaa8dcec739781fa4c9681c1a7f83dc9",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/books_inferno.jsonl.zst",
+   "bytes": 126529569,
+   "rows": null,
+   "sha256": "a098b7ca411cdacd12ddec2e03cb2a0b63897ff642ef2e6b20232f839e65c069",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/books_rescue.jsonl.zst",
+   "bytes": 116341775,
+   "rows": null,
+   "sha256": "75eae6e1ae594117d7103f843fb18f99bc17a502686dac9c49eb1706b6bd235d",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/books_super_ante.jsonl.zst",
+   "bytes": 331443763,
+   "rows": null,
+   "sha256": "1053cf90079c0cef6f5a0ce1765b074589e33fbe340dbe1b38b9b07ba945ed34",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/index.json",
+   "bytes": 1061,
+   "rows": null,
+   "sha256": "5aa72518f50ce1f7640db2109191158880303dbc9ae1272b22c741021c586edf",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/lookUpTable_alarm_call_0.csv",
+   "bytes": 4283430,
+   "rows": 200001,
+   "sha256": "bdb82bf1b06d199ba9929c18983b5b1b6e126d103c47806ae0d18f1a28938f87",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/lookUpTable_ante_0.csv",
+   "bytes": 8188966,
+   "rows": 340000,
+   "sha256": "f015a3a38b13317c285f2a6a9c7b704c048c3389e0740c11ca4d402dc47b693a",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/lookUpTable_backdraft_spins_0.csv",
+   "bytes": 1929319,
+   "rows": 100000,
+   "sha256": "b63b6bc191670d84f06ae3ecdf6d99d5c17dd52d90867b29e3fd19dd1e44bfd7",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/lookUpTable_base_0.csv",
+   "bytes": 8091934,
+   "rows": 340000,
+   "sha256": "03445cf397512db2fe93ebe2564ac4801c32edf1aa2969ee831e1ce3790afcf1",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/lookUpTable_inferno_0.csv",
+   "bytes": 1985797,
+   "rows": 100000,
+   "sha256": "a35523e0aaddc2e6c3d611d1c214254668e7772883e22bbd7a848a64b2f9df92",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/lookUpTable_rescue_0.csv",
+   "bytes": 1885172,
+   "rows": 100000,
+   "sha256": "22f881af26761348c0a15e394e2110976a9df8c28aadc2230c5be9c8a17d0de2",
+   "equal_to_manifest": true
+  },
+  {
+   "file": "math/publish/lookUpTable_super_ante_0.csv",
+   "bytes": 8427973,
+   "rows": 340000,
+   "sha256": "729f17745a7a1e68b84c381ff2a9342b013c868737f7ebdb46de3e6f49eaba03",
+   "equal_to_manifest": true
+  }
+ ],
+ "total_bytes": 1568941459,
+ "all_equal": true
 }

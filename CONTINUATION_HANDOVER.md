@@ -1,25 +1,33 @@
 # PIGGY FIREFIGHTERS — continuation handover
 
-Resume snapshot only; the ledger is `PROGRESS.md`. Refreshed 2026-09-25 (finishing pass on the Mac) by the coordinator.
+Resume snapshot only; the ledger is `PROGRESS.md`. Refreshed 2026-09-28 (owner re-price + mascot removal) by the coordinator.
 
 ## State
 - **Where the work lives:** repo `realBiffTannen/piggy-firefighters`, branch `claude/bold-bell-aoscdj`, local checkout
-  `/Users/jbull/code/piggy-firefighters` (the former Codex checkout; Codex's branch `codex/local-production-animation` is frozen at
-  `eda46c5`, its uncommitted work preserved verbatim in `d5531f0`). The owner's 2026-09-25 instruction: finish the game here, no
-  extensive testing. The coordinator now owns every lane; the per-path ownership table in the design of record is historical.
-- **Math: DONE.** Frozen `math-freeze-v1` = `38a6c2f75d6b624eab2ae4efbcd55ed467075127`; M3 production complete and audited PASS;
-  payload promoted to `math/publish/` (index + LUTs + `MANIFEST.json` in git; the six `books_*.jsonl.zst` are gitignored and sit on
-  disk here and in `math/games/piggy_firefighters/library/production-350k/`). Costs 1 / 1.5 / 12 / 18 / 50 / 90, RTP 0.967 every
-  mode, cap 15,000x. Report `docs/math/MATH_PF_REPORT.md`; contract §9 filled. Never modify `math/**`.
-- **Art / audio / thumbnails: DONE** (art-src + audio masters with provenance; 232 cues; PF-THUMB-01 tiles under `thumbnail/`).
-- **Rigs: EXPORTED, static gate PASS ×4** (`static/assets/spine/<rig>/`); authoring scripts and native `.spine` drafts under
-  `art-src/animation/rigs/<rig>/`. Recorded per-clip motion review and a human eye on mounted gameplay are NOT RUN.
-- **Frontend: Phase B complete**, staged build OK; final `game/dist` build, one smoke fixture per mode, pre-submission remediation,
-  jurisdiction sweep and the submission kit are the finishing pass's phase 2 (see the newest `PROGRESS.md` rows).
+  `/Users/jbull/code/piggy-firefighters`. The coordinator owns every lane (Codex idle; its 2026-09-25 instruction stands: finish
+  here, no extensive testing). Today's commits: `10ef511` (math v2), `9a61961` (mascots out, Trotterville shield, card art),
+  `34afb50` (two ante tiers, prices, 20,000x, math v2 promoted), then the `game/dist` build commit.
+- **Owner rulings 2026-09-28:** no mascots (the `pf_chief` / `pf_dog` rigs are deleted; the Chief remains only as WILD, splash
+  hero and thumbnail); Station 13 of the fictional **Trotterville Fire Department** (`names.ts DEPARTMENT`); modes re-priced —
+  base 1x, ALARM BOOST `ante` 3x for exactly 5x the natural chance of each bonus, FIVE-ALARM BOOST `super_ante` 5x for 15x
+  (second tier of the HUD ante chooser, `anteTiers` + `anteTierConfirm`), Alarm Call 15x, Rescue 25x, Backdraft 50x, Inferno 100x;
+  max win 20,000x every mode; 100,000 simulation trials per mode. Contract v1.3.
+- **Math: DONE at `math-freeze-v2`** = `10ef51124dd8d7fac81ae11c148e952012177e3f`. Production 2026-09-28 PASS (740,000 trials,
+  1,520,001 rows, 2,121 s, 8 workers), independent audit PASS (`qa/codex/math/v2-audit.json`), payload promoted to
+  `math/publish/` (`MANIFEST.json`; the seven `books_*.jsonl.zst` are gitignored and sit on disk here and in
+  `math/games/piggy_firefighters/library/production-100k/`). RTP 0.967 every mode; SD/cost base 14.40 / ante 8.00 / super
+  ante 7.37. Never modify `math/**` without a new freeze tag; `run.py` production requires `PF_FREEZE_TAG` (default v2).
+- **Art:** Ember inpainted out of five card paintings (`*_nodog`), FIVE-ALARM BOOST card painted, the Chief's splash shield
+  lettered (`tools/art/letter_card_crest.py`); six paid calls ($1.80 est.) recorded in `art-src/generated/source-record.json`.
+- **Rigs:** two remain (`pf_rookie`, `pf_rescued`). `rigLogic.ts` / `RigStage.svelte` still carry inert mascot entries.
+- **Frontend:** seven modes, HUD ante chooser with CONFIRM, rules sheet with the exact measured frequencies, 20,000x
+  everywhere; `node qa/gate/run.mjs` 14/14 OK; `game/dist` rebuilt (see `game/BUILD_INFO.md`, sumsSha256 `304398d3…`).
+- **Submission kit:** rebound 2026-09-28 (`docs/submission/PRE_UPLOAD_CHECKLIST.md`, `BUILD_RECORD.md`, `MATH_HANDOFF.md`,
+  `qa/submission/math_package_manifest.json`). Human gates (real-phone pass, rig motion review, art acceptance) still open.
 
 ## First safe next action
-Read the newest `PROGRESS.md` rows, then `docs/submission/PRE_UPLOAD_CHECKLIST.md`. If `game/BUILD_INFO.md` exists, the build it
-describes is the upload candidate; rebuild only with `./tools/build_dist.sh` and re-record the tree hash there.
+Read the newest `PROGRESS.md` row (2026-09-28), then `docs/submission/PRE_UPLOAD_CHECKLIST.md`. `game/BUILD_INFO.md` describes the
+upload candidate; rebuild only with `./tools/build_dist.sh` and re-record the tree hash there. Any math change needs a new freeze tag.
 
 ## Commands
 `pnpm install` (root) · dev `cd apps/piggy_firefighters && pnpm dev` (:3003) · mock RGS `PORT=<own> BOOKS_DIR=none node

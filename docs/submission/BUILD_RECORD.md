@@ -1,4 +1,30 @@
-# PIGGY FIREFIGHTERS — frontend build record (finishing pass, 2026-09-25)
+# PIGGY FIREFIGHTERS — frontend build record
+
+## 2026-09-28 — contract v1.3 build (current upload candidate)
+
+Written by the coordinator on 2026-09-28. `game/dist/` was built and synced by `./tools/build_dist.sh` from the tree
+committed as **`34afb50`** (`claude/bold-bell-aoscdj`; the stamp records head `9a61961 +local changes` because the build ran
+before that commit — the inputs are identical, proven by the provenance recomputation). Every check below is a machine
+check on the synced bytes; no human has reviewed this build.
+
+| Field | Value |
+|---|---|
+| Source commit | `34afb50` (build inputs); commits `10ef511` (math v2), `9a61961` (mascots out, Trotterville shield, card art), `34afb50` (two ante tiers, prices, 20,000x, math v2 promoted) |
+| Command → result | `./tools/build_dist.sh` → `BUILD OK`, `game/dist` synced, 65M; built 2026-09-28T15:34:22Z |
+| Provenance | `game/dist/provenance.json`: inputDigest `4ed05ff202b8223ae34cca0bc01570c9d6cd17440da9d9512a65b430044af02e` over 1,098 build inputs; `node qa/gate/check_provenance.mjs --dir game/dist` → PASS |
+| Bundle | `_app/immutable/bundle.fThyBaRl.js`; `index.html` sha256 `ddd885ad7da4e3c7ef302472e996f8049103c8d72bbe4b41c03b0461ddc78c58` |
+| Size / files | 756 regular files, 66,964 KiB (`du -sk`), `/rigs` viewer absent |
+| Content hash | **sumsSha256 `304398d3b508ada1114432dbc7d964b03dc6f72086811f8e5e5ef6396a32a59b`** (the LUCKY method, see `game/BUILD_INFO.md` for the exact command) |
+| Not reproducible | SvelteKit stamps `_app/version.json` into the bundle, so a rebuild of the same commit gets a new bundle name; pin runtime evidence to this sumsSha256 |
+| What is in it | seven modes at the owner's prices, the HUD ante chooser (ALARM BOOST / FIVE-ALARM BOOST, CONFIRM, NO BOOST), 20,000x everywhere, two rigs (`pf_rookie`, `pf_rescued`), no mascots, the re-derived card art, 0 `Stake Engine` strings |
+| Gate | `node qa/gate/run.mjs` 14/14 OK on these inputs (provenance PASS on `game/dist`) |
+| Subpath serving / static smoke | see the 2026-09-28 `PROGRESS.md` row (run after this record was written) |
+| Not run | fixture smoke matrix, renderer matrix, recorded rig motion review, real-phone pass |
+
+---
+
+## 2026-09-25 — finishing-pass build (superseded)
+
 
 Written by the coordinator on 2026-09-25 (13:35–13:50 EDT). It describes the **staged** build at
 `apps/piggy_firefighters/build/` produced by `./tools/build_dist.sh --no-sync` at commit **`968e8e8`** (tree clean apart

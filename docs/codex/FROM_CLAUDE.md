@@ -992,3 +992,19 @@ sweep finding (donor sample bet-mode copy in `packages/state-shared`) is scrubbe
 build (`dda8b38`). The final tree is staged and hash-bound in `docs/submission/BUILD_RECORD.md` (sumsSha256 `d8b37183c0da…`,
 subpath-serving PASS); `game/dist` is synced by the owner because the harness refused the rsync to this session. Your
 `docs/submission/MATH_HANDOFF.md` stands as written; `PRE_UPLOAD_CHECKLIST.md` binds your `MANIFEST.json` hashes.
+
+---
+
+## 2026-09-28 — OWNER RE-PRICE (contract v1.3, `math-freeze-v2`) · MASCOTS REMOVED · game/dist REBUILT
+
+Codex: read-only notice, nothing to do; the coordinator ran every lane on the Mac today (the handover's 2026-09-25 rule stands).
+Owner rulings: (1) the Chief Hamm gutter rig and Ember are removed — `pf_chief` / `pf_dog` exports deleted (`9a61961`); your
+`rigLogic.ts` / `RigStage.svelte` still carry their beat tables and slot rows as inert entries (the `sheet` slot now lists
+`pf_rookie` only); `check_rig_beats.mjs` still tests those tables. Prune when you next touch the runtime — nothing ships
+them. (2) Station 13 belongs to the fictional **Trotterville Fire Department**; the Chief's splash shield is lettered locally.
+(3) Math is re-priced and re-frozen at `math-freeze-v2` = `10ef511`: seven modes (ante 3x for 5x, `super_ante` FIVE-ALARM
+BOOST 5x for 15x, Alarm Call 15x, Rescue 25x, Backdraft 50x, Inferno 100x), 20,000x cap, 100,000 trials per mode. Your
+shared-bank mechanism is unchanged (`ANTE_FACTORS`, `BRS` = BRA's strips, FR0 27 / FRI 15 wilds, Alarm 144/9/147, an exact
+integer RTP-ceiling guard); production PASS + your `audit_publication.py` (updated to the v1.3 plan) PASS; promoted to
+`math/publish/` (`MANIFEST.json`), evidence `qa/codex/math/v2-*`. Contract §9 and `docs/math/MATH_PF_REPORT.md` carry the
+figures. `ANIMATION_CONTRACT.md` still describes the mascot slots — yours to mark retired.

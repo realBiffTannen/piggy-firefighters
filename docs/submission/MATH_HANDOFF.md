@@ -1,5 +1,34 @@
 # Piggy Firefighters — math submission handoff
 
+**Status: v1.3 PRODUCTION COMPLETE / AUDITED / PROMOTED (2026-09-28).** Owner re-price of 2026-09-28: seven modes — `base` 1x,
+`ante` ALARM BOOST 3x (exactly 5x the natural chance of each bonus), `super_ante` FIVE-ALARM BOOST 5x (exactly 15x), `alarm_call`
+15x, `rescue` 25x, `backdraft_spins` 50x, `inferno` 100x — max win **20,000x base bet in every mode**, contract v1.3, model frozen
+at annotated tag `math-freeze-v2` = commit **`10ef51124dd8d7fac81ae11c148e952012177e3f`**. Production (100,000 simulation trials per mode, 10,000 per auxiliary
+class: 740,000 trials → 1,520,001 publication rows, eight workers under the memory guard, 2,121 s, peak 1,117 MiB) exited 0 with
+`candidate_status == "PASS"` and `source_unchanged == true`; the independent audit `qa/codex/math/audit_publication.py` returned
+PASS (`qa/codex/math/v2-audit.json`, sha256 `2eb5213b033c4038841163f590caca9dc1f3d018761d37658d0969df30468c4c`); the fifteen-file payload (index + seven books + seven LUTs) is
+promoted to `math/publish/` with `MANIFEST.json` (sha256 `988b20d96c8ead74feb09c80ea6ca984b03ca0539d22681b98ed228d014e05a9`), sha256 equal on both sides for every file
+(`qa/submission/math_package_manifest.json`, 1,568,941,459 bytes); contract §9 and `docs/math/MATH_PF_REPORT.md` carry the
+measured figures. Fixtures: 22 real books synced to `server/fixtures/` (index sha256 `4e947f658751793fa612ed9dc03da91c7daa35efa29891c02526e287e5a37b56`).
+
+| Mode ID | Player title / selection | Charged cost × base bet | Actual trials | Publication rows |
+|---|---|---:|---:|---:|
+| `base` | Default spin | 1 | 100,000 nonbonus source trials | 340,000 |
+| `ante` | ALARM BOOST (activate tier 1) | 3 | 100,000 nonbonus source trials | 340,000 |
+| `super_ante` | FIVE-ALARM BOOST (activate tier 2) | 5 | 100,000 nonbonus source trials | 340,000 |
+| `backdraft_spins` | BACKDRAFT SPINS buy | 50 | 100,000 | 100,000 |
+| `alarm_call` | ALARM CALL buy | 15 | 100,000 weighted draws | 200,001 |
+| `rescue` | RESCUE SPINS buy | 25 | 100,000 | 100,000 |
+| `inferno` | INFERNO RESCUE buy | 100 | 100,000 | 100,000 |
+
+Buy cards appear in ascending price: Alarm Call 15×, Rescue 25×, Backdraft 50×, Inferno 100×; the two ante tiers are the HUD's
+ante chooser (one at a time, CONFIRM before arming). The output tree is
+`/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-100k/` (gitignored). Everything below this
+line is the 2026-09-25 M3 handoff (v1.2.2, 15,000x, 350k trials) and is SUPERSEDED; kept as history.
+
+---
+
+
 **Status: M3 COMPLETE / AUDITED / PROMOTED (2026-09-25).** Production exited 0 with `candidate_status == "PASS"`; the independent audit `qa/codex/math/audit_publication.py` returned PASS (`qa/codex/math/m3-audit.json`); the thirteen-file payload is promoted to `math/publish/` with `MANIFEST.json`; contract §9 is populated. Measured figures: `docs/math/MATH_PF_REPORT.md`. External integration and release gates (last section) remain open.
 
 The game is `piggy_firefighters`, a 5×3 reel game with 20 fixed paylines. The contract is `docs/GAME_CONTRACT.md` v1.2.2. The approved model is frozen at annotated tag `math-freeze-v1`, commit **`38a6c2f75d6b624eab2ae4efbcd55ed467075127`**. Amounts in books and LUTs are integers in hundredths of the **base bet**, not hundredths of a feature's price. Gross return is capped at **15,000× base bet in every mode**; valid final payouts are multiples of 10 (0.1× base bet).
