@@ -87,8 +87,8 @@ const PADDING = {
 
 /**
  * Which strips stream past. The reveal's `gameType` (written into stateGame before the spin) says base vs bonus; the
- * bonus kind / bet mode then picks the reel set (contract §3: BR0 base, BRA ante, BRB Backdraft Spins, FR0 Rescue
- * Spins, FRI Inferno Rescue). stateGame imports this module, so the game type arrives through a getter (no cycle).
+ * bonus kind / bet mode then picks the reel set (contract §3: BR0 base, BRA ante, BRS super ante (= BRA), BRB Backdraft
+ * Spins, FR0 Rescue Spins, FRI Inferno Rescue). stateGame imports this module, so the game type arrives through a getter (no cycle).
  */
 let paddingSource: () => { gameType: string; inferno: boolean } = () => ({ gameType: 'basegame', inferno: false });
 export const setPaddingSource = (source: typeof paddingSource) => {
@@ -100,7 +100,8 @@ const paddingFor = (reelIndex: number): RawSymbol[] => {
 	const { gameType, inferno } = paddingSource();
 	let set = PADDING.basegame;
 	if (gameType === 'freegame') set = mode === 'backdraft_spins' ? PADDING.backdraftgame : inferno ? PADDING.infernogame : PADDING.freegame;
-	else if (mode === 'ante') set = PADDING.antegame;
+	// BRS (FIVE-ALARM BOOST) is BRA's strips under its own name (math tools/make_reels.py): one padding set serves both
+	else if (mode === 'ante' || mode === 'super_ante') set = PADDING.antegame;
 	return set[reelIndex] ?? set[0];
 };
 

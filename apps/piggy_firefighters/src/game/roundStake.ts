@@ -4,8 +4,9 @@
  *
  * S comes from `config.betModes[mode].cost`. The mode is read from the BOOK first (a bought round opens with its own
  * entry event: `alarmCall` -> alarm_call, `backdraftSpinsStart` -> backdraft_spins, `rescueStart {source: buy}` ->
- * rescue / inferno) and from the SDK's `activeBetModeKey` for base vs ALARM BOOST (the HUD keeps the round's key until
- * the round is idle, and a resumed round keeps its own); a reveal on reel set `BRA` also says ante.
+ * rescue / inferno) and from the SDK's `activeBetModeKey` for base vs ALARM BOOST vs FIVE-ALARM BOOST (the HUD keeps the
+ * round's key until the round is idle, and a resumed round keeps its own); a reveal on reel set `BRA` also says ante,
+ * one on `BRS` says super_ante.
  */
 import { stateBet } from 'state-shared';
 
@@ -29,6 +30,7 @@ export const roundModeOf = (bookEvents: readonly BookEvent[]): ModeKey => {
 			if (event.source === 'buy') return event.bonus === 'inferno' ? 'inferno' : 'rescue';
 		}
 		if (event.type === 'reveal' && event.reelSet === 'BRA') return 'ante';
+		if (event.type === 'reveal' && event.reelSet === 'BRS') return 'super_ante';
 		if (event.type === 'reveal' || event.type === 'freeSpinTrigger' || event.type === 'rescueStart') break;
 	}
 	const key = String(stateBet.activeBetModeKey ?? '').toLowerCase();

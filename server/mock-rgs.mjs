@@ -22,8 +22,8 @@
  * any capture. `BOOKS_DIR=none` forces this mode.
  *
  * FIXTURES. `FIXTURES_DIR` (env) wins; default `server/fixtures` — the frontend
- * lane's DEV fixtures (tools/fixtures/make_fixtures.py; 15,000x cap, the six modes
- * of docs/GAME_CONTRACT.md §2 at the frozen math's costs). `FIXTURES_DIR=server/fixtures_m1`
+ * lane's DEV fixtures (tools/fixtures/make_fixtures.py; 20,000x cap, the seven modes
+ * of docs/GAME_CONTRACT.md §2 at the math-freeze-v2 costs). `FIXTURES_DIR=server/fixtures_m1`
  * serves the math lane's M1 books (real model simulations). Falls back to
  * math/games/piggy_firefighters/fixtures.
  *

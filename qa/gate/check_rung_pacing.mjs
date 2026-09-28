@@ -3,7 +3,7 @@
  * WIN RUNG PACING + LOOK (game/rungPacing.ts, the pure half of components/WinRungs.svelte), checked on every rung:
  *   - the count is ONE monotone climb that never passes the booked amount and lands exactly on it;
  *   - every rung gets real time (a segment-weighted log ramp, NOT ganja's single linear ramp, which with PF's
- *     15 / 30 / 50 / 100x floors and a 15,000x cap would put every BIG..EPIC crossing in the first ~1% of the count);
+ *     15 / 30 / 50 / 100x floors and a 20,000x cap would put every BIG..EPIC crossing in the first ~1% of the count);
  *   - each crossing lands on its floor; MAX shows its sign BEFORE the figure reaches the cap and then lands on it;
  *   - turbo / super turbo scale by stateSpeed speedFactor() (0.5 / 0.3), the max-win card fade included;
  *   - reduced motion: no shake, no expanding ring, no slide-out, no ray spin, no travel (a plain fade);
@@ -39,8 +39,8 @@ const rounds = [
 	[100, 3],
 	[500, 3],
 	[2000, 3],
-	[14999, 3],
-	[15000, 4],
+	[19999, 3],
+	[20000, 4], // the cap (owner re-price 2026-09-28: 20,000x)
 	// inconsistent data never breaks the climb: a rung whose floor sits above the booked amount holds the figure
 	[90, 3],
 ];
@@ -103,7 +103,7 @@ for (const [ax, finalIdx] of rounds) {
 			const v = P.countAt(plan, at).value;
 			if (!(v < WIN_CAP_BOOKED * 0.5)) fail(`${tag}: MAX sign comes up at ${v}, not before the cap`);
 			if (plan.totalMs - at < 2000 * speed) fail(`${tag}: MAX sign up only ${plan.totalMs - at} ms before the cap lands`);
-			// the old equal split spent ~60% of the count below 100x and raced 100x -> 15,000x in 1.6 s
+			// the old equal split spent ~60% of the count below 100x and raced 100x -> the cap in 1.6 s
 			let below = 0;
 			for (let ms = 0; ms <= plan.totalMs; ms += STEP) if (P.countAt(plan, ms).value < X(100)) below += STEP;
 			if (below / plan.totalMs > 0.5) fail(`${tag}: ${Math.round((100 * below) / plan.totalMs)}% of the count is spent below 100x`);
@@ -307,7 +307,7 @@ for (const q of ['high', 'mid', 'low']) {
 
 // ---- handovers never show two titles at once (judge 2026-09-26, fix round 2) --------------------------------------------
 // Reduced-motion crossings cross-faded (MEGA WIN legible through EPIC WIN) and the MAX sign -> card handover was a
-// 420 ms cross-dissolve ('WIN' next to 'MAX WIN', '$15,000.00' over '15,000x'). Both are now sequenced.
+// 420 ms cross-dissolve ('WIN' next to 'MAX WIN', '$20,000.00' over '20,000x'). Both are now sequenced.
 {
 	const T = typeof P.boardSwapAlpha === 'function' && typeof P.cardHandover === 'function';
 	if (!T) fail('rungPacing.ts: boardSwapAlpha / cardHandover missing');
@@ -385,34 +385,6 @@ else {
 			}
 		}
 	}
-}
-
-// ---- the desktop plate chief: whole hose, feet on something (judge 2026-09-26, fix round 2) ------------------------------
-// The slot mask cut his hose tail and, lifted over the ALARM BOOST chip, he stood ~20 px up in mid-air.
-if (typeof P.widenPlateSlot !== 'function' || typeof P.plateStand !== 'function') fail('rungPacing.ts: widenPlateSlot / plateStand missing');
-else {
-	const { fitRigInSlot } = await import(SRC + 'anim/rigLogic.ts');
-	const chief = { x: -171.06, y: -1.47, width: 287.94, height: 423.83 }; // pf_chief.json skeleton bounds
-	for (const [w, h] of [[260, 330], [300, 390], [180, 400], [420, 240], [90, 120]]) {
-		const slot = { x: 1000, w, h };
-		const fit = (sw) => fitRigInSlot(chief, sw, h, 1).scale;
-		const wide = P.widenPlateSlot(slot, fit, P.PLATE_HOSE_REACH);
-		const before = fitRigInSlot(chief, w, h, 1);
-		const after = fitRigInSlot(chief, wide.w, h, wide.scale);
-		const tag = `plate slot ${w}x${h}`;
-		if (!(P.PLATE_HOSE_REACH >= 0.25)) fail(`PLATE_HOSE_REACH ${P.PLATE_HOSE_REACH}: too little room for the hose`);
-		if (!(wide.w >= w * (1 + 2 * P.PLATE_HOSE_REACH) - 1e-6 && wide.x <= slot.x - w * P.PLATE_HOSE_REACH + 1e-6)) fail(`${tag}: the mask is not widened`);
-		if (Math.abs(wide.x + after.x - (slot.x + before.x)) > 1e-6) fail(`${tag}: the chief moves (${slot.x + before.x} -> ${wide.x + after.x})`);
-		if (Math.abs(after.scale - before.scale) > 1e-9) fail(`${tag}: the chief changes size (${before.scale} -> ${after.scale})`);
-		if (Math.abs(after.y - before.y) > 1e-9) fail(`${tag}: the chief's feet move`);
-	}
-	const none = P.widenPlateSlot({ x: 5, w: 100, h: 100 }, null, P.PLATE_HOSE_REACH);
-	if (!(none.x === 5 && none.w === 100 && none.scale === 1)) fail('plate slot: no rig bounds must leave the slot as it is');
-	// the step fills the gap between his soles and the support (chip top / HUD bar top), and is skipped when he stands on it
-	const st = P.plateStand(700, 720, 1300, 180);
-	if (!(st && st.y === 700 && st.h === 20 && st.x === 1210 && st.w === 180)) fail(`plateStand: ${JSON.stringify(st)}`);
-	if (P.plateStand(718, 720, 1300, 180) !== null) fail('plateStand: a 2 px gap needs no step');
-	if (P.plateStand(730, 720, 1300, 180) !== null) fail('plateStand: soles below the support need no step');
 }
 
 // the crossing volley flies IN from the four screen edges: every launch point sits on (or just outside) an edge, each

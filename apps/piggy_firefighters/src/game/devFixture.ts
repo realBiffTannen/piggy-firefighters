@@ -5,7 +5,7 @@
  * `...&fixture=base_trigger_rescue`) tells the mock RGS to return that
  * deterministic fixture book on the following play(s) and to charge that
  * fixture's mode cost. The mock reads them from `server/fixtures/` (the frontend
- * lane's hand-authored dev books, all six modes, 15,000x cap; see its
+ * lane's hand-authored dev books, all seven modes, 20,000x cap; see its
  * index.json) unless FIXTURES_DIR says otherwise. This is a
  * development affordance served only by `server/mock-rgs.mjs`; it is inert
  * against a real RGS (the POST simply fails and is swallowed) and is never part

@@ -13,10 +13,9 @@ file is what the player sees and hears.
 
 ## 1. World and tone
 
-**Station 13 of the Piggy Fire Department**, a red-brick firehouse on the edge of a cartoon city at dusk. The
+**Station 13 of the Trotterville Fire Department** (a fictional department; its name and the station number letter the chief's shield), a red-brick firehouse on the edge of a cartoon city at dusk. The
 crew are pigs (this is the Piggy family: pigs are the cast, unlike LUCKY). Tone: warm, heroic-comic, never
-grim — fire here is a bright, bouncy cartoon element; nobody is ever hurt, the rescued family waves and the
-dog steals the show. Comedy is situational (the rookie tangled in hose, the cat that will not come down, the
+grim — fire here is a bright, bouncy cartoon element; nobody is ever hurt and the rescued family waves. Comedy is situational (the rookie tangled in hose, the cat that will not come down, the
 chief's helmet that never fits) — no ethnic or body caricature, no violence, no real-world brands or badges.
 
 Art style = the Piggy family cartoon grammar: **thick dark-brown ink**, chunky rounded shapes, flat cel shading
@@ -30,9 +29,8 @@ used as composition references only), every paid call recorded in the lane's `so
 
 | Role | Name | Notes |
 |---|---|---|
-| Hero / WILD / splash | **Chief Hamm** — stout pig fire chief, white helmet with a brass "13" shield, red turnout coat with yellow reflective bands, moustache, brass bugle on the belt | WILD symbol (holds a WILD badge), mascot beside the reels, spray hero in the bonus |
+| Hero / WILD / splash | **Chief Hamm** — stout pig fire chief, white helmet with a brass "13" shield, red turnout coat with yellow reflective bands, moustache, brass bugle on the belt | WILD symbol (holds a WILD badge) and the first splash card (holds the department shield). OWNER 2026-09-28: the standing mascot rig beside the reels and the win-plate chief are REMOVED from the game (`pf_chief` export deleted) |
 | Rookie | **Sprocket** — lanky young pig, helmet too big, always mid-fumble with the hose | Ambient loops, Backdraft reaction, Alarm Call card presenter |
-| Dog | **Ember** — Dalmatian pup in a tiny helmet (the only non-pig) | Ambient, celebrates wins, barks at the alarm |
 | The rescued | **The Trotter family** — five skins of one rig: `grandma` (with her cat), `twins`, `dad` (bathrobe), `baby` (blanket), `teen` (headphones, oblivious) | One per room; room r of building b shows skin `[(r + b) mod 5]` so rescues vary across buildings; distinct silhouettes |
 
 ## 3. Reel symbols (contract §3)
@@ -58,8 +56,8 @@ anticipation reel. Every symbol sits in the same fit-box as the donor's.
 ## 4. Scenes
 
 - **Base game:** the truck bay of Station 13 seen from the street at dusk. The reel frame is the side of the
-  ladder truck (red panel, chrome rail, brass line-number plates). Chief Hamm stands left of the reels; Ember
-  sits right. Windows glow, a hydrant on the kerb, the alarm bell over the bay door (it swings on scatter lands).
+  ladder truck (red panel, chrome rail, brass line-number plates). No mascot stands beside the reels (owner
+  2026-09-28: the Chief Hamm and Ember rigs are removed). Windows glow, a hydrant on the kerb, the alarm bell over the bay door (it swings on scatter lands).
 - **Backdraft:** the bay door blows open in a flash, a wave of cartoon flame rolls across the reels and the
   ignited cells burst into Blaze Wilds; embers drift up; the frame's chrome catches an orange rim light for one
   second.
@@ -67,24 +65,25 @@ anticipation reel. Every symbol sits in the same fit-box as the donor's.
   (one window per reel column). The ladder rises from the truck to the block. Each room burns at level 2/1/0
   (roaring / smouldering / dark-and-safe with a pig waving from the sill). A W on reel r fires the hose from the
   truck nozzle to window r (spray arc, steam), a rescued pig slides down the ladder into a jump sheet held by
-  Sprocket and Ember, and the multiplier badge on the truck door ticks up.
+  Sprocket, and the multiplier badge on the truck door ticks up.
 - **Inferno Rescue:** the same block at night with a red sky, embers everywhere, gold-rimmed windows, the
   ladder in brass; rescues shower coins (the instant prize) and the badge ticks +2.
 - **Building cleared:** the truck reverses out, a new block slides in from the right with the siren; "NEXT
   BUILDING · +5 SPINS".
 - **Alarm Call:** Sprocket at the station dispatch board; the card flips to Rescue / Inferno / False Alarm
-  (the false alarm is a cat in a tree — Ember barks, nobody pays).
+  (the false alarm is a cat in a tree — nobody pays).
 - **Backdraft Spins:** the base scene with the bay door held open and the 5-spin counter on a brass plate.
 
 ## 5. Modes and copy hooks (contract §2)
 
 | Key | Cost | Title | Card line |
 |---|---|---|---|
-| ante | 1.5x | ALARM BOOST | 2x the chance to trigger Rescue Spins and Inferno Rescue |
-| backdraft_spins | 50x (tuned) | BACKDRAFT SPINS | 5 spins, every spin a Backdraft of 3–5 Blaze Wilds carrying x2–x10 that ADD UP along a line |
-| alarm_call | 12x | ALARM CALL | Rescue Spins · Inferno Rescue · or a False Alarm that wins nothing |
-| rescue | 18x | RESCUE SPINS | 10 spins, five rooms, every rescue +1x and +1 spin |
-| inferno | 90x | INFERNO RESCUE | 10 spins, rooms fall in one spray, every rescue +2x, +1 spin and a prize |
+| ante | 3x | ALARM BOOST | 5x the chance to trigger Rescue Spins and Inferno Rescue |
+| super_ante | 5x | FIVE-ALARM BOOST | 15x the chance to trigger Rescue Spins and Inferno Rescue (the second tier of the same ante chooser — "raise the alarm"; never on together with Alarm Boost) |
+| backdraft_spins | 50x | BACKDRAFT SPINS | 5 spins, every spin a Backdraft of 3–5 Blaze Wilds carrying x2–x10 that ADD UP along a line |
+| alarm_call | 15x | ALARM CALL | Rescue Spins · Inferno Rescue · or a False Alarm that wins nothing |
+| rescue | 25x | RESCUE SPINS | 10 spins, five rooms, every rescue +1x and +1 spin |
+| inferno | 100x | INFERNO RESCUE | 10 spins, rooms fall in one spray, every rescue +2x, +1 spin and a prize |
 
 Win rungs (art themed, names conventional and jurisdiction-safe): **BIG WIN** (≥ 15x) → **HUGE WIN** (≥ 30x) →
 **MEGA WIN** (≥ 50x) → **EPIC WIN** (≥ 100x) → **MAX WIN** (cap). Thresholds are x bet on the round total,

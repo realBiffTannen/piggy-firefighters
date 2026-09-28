@@ -1,15 +1,16 @@
 /**
  * PIGGY FIREFIGHTERS rules sheet content for the studio HUD.
  *
- * Mechanics: docs/GAME_CONTRACT.md §1-§8 (v1.2.2, incl. Codex copy audit F wording). Names: docs/PIGGY_FIREFIGHTERS_THEME.md §3-§5, through game/names.ts.
+ * Mechanics: docs/GAME_CONTRACT.md §1-§8 (v1.3, incl. Codex copy audit F wording). Names: docs/PIGGY_FIREFIGHTERS_THEME.md §3-§5, through game/names.ts.
  * Every figure is read from `config` (paytable, 20 lines, mode costs, max win), from CONTRACT below (rules the
- * contract fixes: spin counts, multiplier steps, prize values, the 3% Inferno share of Alarm Call), or is a frequency
- * in MEASURED below.
+ * contract fixes: spin counts, multiplier steps, prize values, the 3% Inferno share of Alarm Call, the 5x / 15x boost
+ * factors), or is a frequency in MEASURED below.
  *
- * MEASURED (frontend port, 2026-09-25): no production books exist yet (math lane, contract §9 is empty), so every
- * MEASURED frequency is `null` and the rules sheet OMITS the sentence or parenthesis that would print it. When Codex
- * publishes, set each value to the published figure with a `// measured:` provenance comment naming the report JSON
- * field and its raw value, and re-measure whenever the books are regenerated. Never print a guessed frequency.
+ * MEASURED (owner re-price 2026-09-28, the 100,000-trial model at tag math-freeze-v2): every frequency is filled. The
+ * trigger rates and Alarm Call shares are exact BY CONSTRUCTION of the math (integer natural factors and route weights,
+ * `math/games/piggy_firefighters/game_banks.py`), so they are printed as measured figures, each with a `// measured:`
+ * provenance comment naming the constant it comes from. A `null` figure is never printed (its sentence / parenthesis is
+ * left out of the sheet); re-measure whenever the books are regenerated. Never print a guessed frequency.
  *
  * Wording comes in two variants. Social casinos may not show cash vocabulary, so each sentence is written once as
  * `std` and once as `social`; the social text never says bet, pay(s), payline, paytable, buy, purchase, cost, wager,
@@ -33,7 +34,7 @@ export const generalDisclaimer = {
 } as const;
 
 /**
- * RULES THE CONTRACT FIXES (docs/GAME_CONTRACT.md v1.2.2) — not frequencies, so not measured. Values marked *(tuned)*
+ * RULES THE CONTRACT FIXES (docs/GAME_CONTRACT.md v1.3) — not frequencies, so not measured. Values marked *(tuned)*
  * in the contract (Backdraft count weights, prize weights) only change their WEIGHTS, never these lists. If the
  * contract version changes, re-read §4-§7 and update here (one place; hud.config.ts copySubs reads it too).
  */
@@ -57,28 +58,37 @@ export const CONTRACT = {
 	backdraftSpins: 5, // §7
 	backdraftSpinsBlaze: [3, 5] as const, // §7: 3-5 Blaze Wilds on every Backdraft Spins spin
 	backdraftSpinsMults: [2, 3, 5, 10] as const, // v1.1 §7: every Backdraft Spins Blaze Wild carries one of these
-	alarmCallInferno: '3%', // §2/§7: fixed share, not solved
-	anteChance: 2, // §2: exactly 2x the chance of each bonus
+	alarmCallInferno: '3%', // §2/§7: fixed share, not solved (ALARM_FACTORS inferno 9/300)
+	anteChance: 5, // §2: exactly 5x the chance of each bonus (ALARM BOOST, 3x)
+	superAnteChance: 15, // §2: exactly 15x the chance of each bonus (FIVE-ALARM BOOST, 5x)
 } as const;
 
 /**
- * FREQUENCIES — MEASURED from the published books (contract §9). `null` until the math lane publishes: a null figure
- * is never printed (its sentence / parenthesis is left out of the sheet).
+ * FREQUENCIES — MEASURED from the 2026-09-28 model (contract §9; 100,000 trials per mode). The trigger rates and the
+ * Alarm Call shares are exact by construction (`math/games/piggy_firefighters/game_banks.py`): `natural_factors(mode)`
+ * gives base 1/165 Rescue and 1/2100 Inferno, ante exactly 5x and super_ante exactly 15x those; `ALARM_FACTORS`
+ * splits Alarm Call 144 / 9 / 147 of 300. A null figure is never printed (its sentence / parenthesis is left out).
  */
 export const MEASURED: Record<string, string | null> = {
-	// base Rescue Spins trigger, "1 in N" (contract target 1 in 150-180) — report field rescue_1_in
-	rescueBase: null,
-	// ante Rescue Spins trigger (exactly 2x base) — report field rescue_1_in (ante)
-	rescueAnte: null,
-	// base Inferno Rescue trigger (target 1 in 1,800-2,500) — report field inferno_1_in
-	infernoBase: null,
-	// ante Inferno Rescue trigger (exactly 2x base) — report field inferno_1_in (ante)
-	infernoAnte: null,
-	// Backdraft rate in base / ante (target 1 in 35-50) — report field backdraft_1_in
-	backdraftBase: null,
-	// Alarm Call Rescue Spins share (solved, ~50%) and False Alarm share — report outcome_share
-	alarmCallRescue: null,
-	alarmCallFalse: null,
+	// base Rescue Spins trigger, "1 in N" — measured: game_banks.py natural_factors('base') rescue = 1/165
+	rescueBase: '1 in 165',
+	// ante Rescue Spins trigger (exactly 5x base) — measured: natural_factors('ante') rescue = 5/165 = 1/33
+	rescueAnte: '1 in 33',
+	// super ante Rescue Spins trigger (exactly 15x base) — measured: natural_factors('super_ante') rescue = 15/165 = 1/11
+	rescueSuperAnte: '1 in 11',
+	// base Inferno Rescue trigger — measured: game_banks.py natural_factors('base') inferno = 1/2100
+	infernoBase: '1 in 2,100',
+	// ante Inferno Rescue trigger (exactly 5x base) — measured: natural_factors('ante') inferno = 5/2100 = 1/420
+	infernoAnte: '1 in 420',
+	// super ante Inferno Rescue trigger (exactly 15x base) — measured: natural_factors('super_ante') inferno = 15/2100 = 1/140
+	infernoSuperAnte: '1 in 140',
+	// Backdraft rate in base / ante / super ante — measured: game_config.py BACKDRAFT_RATE = 1 / 40, pinned exactly by
+	// solve_nonbonus in every natural mode (unchanged from the 2026-09-25 model, contract §9)
+	backdraftBase: '1 in 40',
+	// Alarm Call Rescue Spins share and False Alarm share — measured: game_banks.py ALARM_FACTORS rescue 144/300,
+	// falseAlarm 147/300 (inferno 9/300 = CONTRACT.alarmCallInferno)
+	alarmCallRescue: '48%',
+	alarmCallFalse: '49%',
 	// contract §2: 96.7% in every mode; print the LUT-exact figure to 2 dp once measured (target band 0.9665-0.9670)
 	rtp: '96.70%',
 };
@@ -114,7 +124,7 @@ const modeCost = (key: string): number => {
 	return Number(m?.costMultiplier ?? m?.cost ?? 0);
 };
 
-/** The one maximum win, read from the mode table (15,000x in every mode). */
+/** The one maximum win, read from the mode table (20,000x in every mode). */
 const maxWinText = (): string => fmtX(Number(config.betModes.base.max_win));
 
 export const rulesSections = (): RulesSection[] => {
@@ -142,8 +152,8 @@ export const rulesSections = (): RulesSection[] => {
 			{
 				kind: 'para',
 				text: t({
-					std: `The ante chip switches ${FEATURE.ante} on and off. GET BONUS opens the feature cards. Every feature purchase asks for confirmation first.`,
-					social: `The ante chip switches ${FEATURE.ante} on and off. PLAY FEATURE opens the feature cards. Every feature entry asks for confirmation first.`,
+					std: `The ante chip opens ${MODE_TITLE.ante} and ${MODE_TITLE.super_ante}, one at a time. Choosing one shows what each spin will cost until you turn it off; it switches on only when you press CONFIRM. NO BOOST returns to the base game at once. GET BONUS opens the feature cards. Every feature purchase asks for confirmation first.`,
+					social: `The ante chip opens ${MODE_TITLE.ante} and ${MODE_TITLE.super_ante}, one at a time. Choosing one shows the amount each spin will use until you turn it off; it switches on only when you press CONFIRM. NO BOOST returns to the base game at once. PLAY FEATURE opens the feature cards. Every feature entry asks for confirmation first.`,
 				}),
 			},
 		] as RulesBlock[],
@@ -233,7 +243,7 @@ export const rulesSections = (): RulesSection[] => {
 					social: "Each spin's line wins are multiplied by the multiplier after that spin's rescues. The feature ends when the spins run out or the maximum win is reached. The multiplier has no ceiling.",
 				}),
 			},
-			...measuredNote([MEASURED.rescueBase, MEASURED.rescueAnte], () => `${FEATURE.rescue} starts on about ${MEASURED.rescueBase} base game spins (${MEASURED.rescueAnte} with ${FEATURE.ante}).`),
+			...measuredNote([MEASURED.rescueBase, MEASURED.rescueAnte, MEASURED.rescueSuperAnte], () => `${FEATURE.rescue} starts on about ${MEASURED.rescueBase} base game spins (${MEASURED.rescueAnte} with ${FEATURE.ante}, ${MEASURED.rescueSuperAnte} with ${FEATURE.superAnte}).`),
 		] as RulesBlock[],
 	};
 
@@ -251,7 +261,7 @@ export const rulesSections = (): RulesSection[] => {
 				}),
 			},
 			{ kind: 'para', text: `Clearing all ${CONTRACT.rooms} rooms brings the next building and +${CONTRACT.buildingSpins} spins, as in ${FEATURE.rescue}.` },
-			...measuredNote([MEASURED.infernoBase, MEASURED.infernoAnte], () => `${FEATURE.inferno} starts on about ${MEASURED.infernoBase} base game spins (${MEASURED.infernoAnte} with ${FEATURE.ante}).`),
+			...measuredNote([MEASURED.infernoBase, MEASURED.infernoAnte, MEASURED.infernoSuperAnte], () => `${FEATURE.inferno} starts on about ${MEASURED.infernoBase} base game spins (${MEASURED.infernoAnte} with ${FEATURE.ante}, ${MEASURED.infernoSuperAnte} with ${FEATURE.superAnte}).`),
 		] as RulesBlock[],
 	};
 
@@ -287,11 +297,15 @@ export const rulesSections = (): RulesSection[] => {
 		{ kind: 'para', text: t({ std: `${modeCost(key)}× the bet. ${std}`, social: `${modeCost(key)}× the play amount. ${soc}` }) },
 	];
 
-	// BET MODES in ascending price (contract v1.2.1 §2: the same order as the HUD's buy cards), ALARM BOOST first
-	const MODE_TEXT: Record<'ante' | 'backdraft_spins' | 'alarm_call' | 'rescue' | 'inferno', [string, string]> = {
+	// BET MODES in ascending price (contract §2: the same order as the HUD's buy cards), ALARM BOOST then FIVE-ALARM BOOST first
+	const MODE_TEXT: Record<'ante' | 'super_ante' | 'backdraft_spins' | 'alarm_call' | 'rescue' | 'inferno', [string, string]> = {
 		ante: [
 			`A toggle: every spin costs ${modeCost('ante')}× the base bet and has ${CONTRACT.anteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.anteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged.`,
 			`A toggle: every spin is played at ${modeCost('ante')}× the base play amount and has ${CONTRACT.anteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.anteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged.`,
+		],
+		super_ante: [
+			`A toggle: every spin costs ${modeCost('super_ante')}× the base bet and has ${CONTRACT.superAnteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.superAnteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged. ${FEATURE.ante} and ${FEATURE.superAnte} cannot be on together.`,
+			`A toggle: every spin is played at ${modeCost('super_ante')}× the base play amount and has ${CONTRACT.superAnteChance}× the chance to start ${FEATURE.rescue} and ${CONTRACT.superAnteChance}× the chance to start ${FEATURE.inferno}. The ${MECHANIC.backdraft} rate is unchanged. ${FEATURE.ante} and ${FEATURE.superAnte} cannot be on together.`,
 		],
 		backdraft_spins: [`Buys ${FEATURE.backdraftSpins} directly.`, `Enters ${FEATURE.backdraftSpins} directly.`],
 		alarm_call: [`Buys one ${FEATURE.alarmCall}.`, `Enters one ${FEATURE.alarmCall}.`],

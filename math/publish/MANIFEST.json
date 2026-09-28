@@ -1,512 +1,357 @@
 {
-  "game": "piggy_firefighters",
-  "contract": "docs/GAME_CONTRACT.md v1.2.2 section 9, Piggy Firefighters, FROZEN at math-freeze-v1, measured 2026-09-25",
-  "freeze": {
-    "tag": "math-freeze-v1",
-    "sha": "38a6c2f75d6b624eab2ae4efbcd55ed467075127",
-    "verified_source_files": 76
-  },
-  "source_output": "/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-350k",
-  "production_report": {
-    "path": "math/games/piggy_firefighters/library/production-350k/report.json",
-    "sha256": "4fccb1b7d95ebbd4c09a5509fe3c2be944016e64b3c4ba535250cb9c3a64164e",
-    "candidate_status": "PASS",
-    "source_unchanged": true,
-    "stage": "production"
-  },
-  "independent_audit": {
-    "path": "qa/codex/math/m3-audit.json",
-    "script": "qa/codex/math/audit_publication.py",
-    "status": "PASS",
-    "sha256": "34532cd44e41a789ea57a548d0d84cd2b962bc8f787817b4bc6bb93c8a44c4b3",
-    "checked_trial_count": 1840000,
-    "checked_publication_rows": 3630001,
-    "checked_canonical_links": 2180000,
-    "coverage": {
-      "statistics": "Independent exact integer/Fraction moments and scalar tail reductions",
-      "books": "Compressed bytes hashed; event payloads not replayed",
-      "canonical_events": "Ordered link digests compared to canonical bank report digests",
-      "event_legality_and_uniqueness": "Producer evidence checked, not independently re-derived"
-    }
-  },
-  "launch": {
-    "path": "qa/codex/math/m3-launch.json",
-    "launched_at_utc": "2026-09-25T04:29:39.994897+00:00",
-    "workers": 2,
-    "rss_limit_mib": 5120,
-    "process_group": 1510
-  },
-  "memory_guard": {
-    "path": "qa/codex/math/m3-production-memory.json",
-    "status": "COMPLETE",
-    "command_exit_code": 0,
-    "group_empty": true,
-    "peak_rss_mib": 627.34375,
-    "max_rss_mib": 5120,
-    "peak_processes": 4,
-    "elapsed_seconds": 5381.205
-  },
-  "runtime": {
-    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
-    "python_version": [
-      3,
-      12,
-      14
-    ],
-    "executable": "/Users/jbull/code/piggy-firefighters/math/env/bin/python",
-    "numpy": "2.2.5",
-    "scipy": "1.15.3",
-    "zstandard": "0.23.0"
-  },
-  "production_total_seconds": 5378.876,
-  "trials": {
-    "main_simulation_trials_per_mode": 350000,
-    "auxiliary_trials_per_bank": 10000,
-    "nonbonus_trials_per_natural_mode": 200000,
-    "total_independent_simulation_trials": 1840000,
-    "total_published_rows": 3630001
-  },
-  "expected_count": 3630001,
-  "excluded_modes": [],
-  "committed": "index.json, lookUpTable_<mode>_0.csv and this MANIFEST.json are committed; books_<mode>.jsonl.zst are gitignored (math/publish/books_*.jsonl.zst) and copied from the production tree above, sha256 verified both sides",
-  "index": {
-    "modes": [
-      {
-        "name": "base",
-        "cost": 1.0,
-        "events": "books_base.jsonl.zst",
-        "weights": "lookUpTable_base_0.csv"
-      },
-      {
-        "name": "ante",
-        "cost": 1.5,
-        "events": "books_ante.jsonl.zst",
-        "weights": "lookUpTable_ante_0.csv"
-      },
-      {
-        "name": "backdraft_spins",
-        "cost": 50.0,
-        "events": "books_backdraft_spins.jsonl.zst",
-        "weights": "lookUpTable_backdraft_spins_0.csv"
-      },
-      {
-        "name": "alarm_call",
-        "cost": 12.0,
-        "events": "books_alarm_call.jsonl.zst",
-        "weights": "lookUpTable_alarm_call_0.csv"
-      },
-      {
-        "name": "rescue",
-        "cost": 18.0,
-        "events": "books_rescue.jsonl.zst",
-        "weights": "lookUpTable_rescue_0.csv"
-      },
-      {
-        "name": "inferno",
-        "cost": 90.0,
-        "events": "books_inferno.jsonl.zst",
-        "weights": "lookUpTable_inferno_0.csv"
-      }
-    ]
-  },
-  "files": {
-    "index.json": {
-      "bytes": 906,
-      "sha256": "6d758b5ba5a070178caa43a762d19f883f9511eb2c306d8f6cb5f2f5222d82ac",
-      "committed": true
-    },
-    "books_base.jsonl.zst": {
-      "bytes": 912009754,
-      "sha256": "a99461ac74deda54e2b7187724369ea42d90de16197ed2acc4d42b85a5f8a6be",
-      "rows": 940000,
-      "unique_events": 940000,
-      "committed": false,
-      "row_count_source": "report.json publication_rows (audit hashed the compressed bytes; lines not re-counted)"
-    },
-    "lookUpTable_base_0.csv": {
-      "bytes": 22041327,
-      "sha256": "73bd42fbc2b9f6c25ff992ce8c9f1b34a80983bd0a7ddbde0896b082cd9e95e8",
-      "rows": 940000,
-      "committed": true,
-      "row_count_source": "wc -l of the promoted file"
-    },
-    "books_ante.jsonl.zst": {
-      "bytes": 912826613,
-      "sha256": "bbdca092385ef6179071de3ac62bc83cd649c7555dbec1dd5adee28a597601fc",
-      "rows": 940000,
-      "unique_events": 940000,
-      "committed": false,
-      "row_count_source": "report.json publication_rows (audit hashed the compressed bytes; lines not re-counted)"
-    },
-    "lookUpTable_ante_0.csv": {
-      "bytes": 22100950,
-      "sha256": "67909bf1b34b5c7e797ad946e8b3c7682fb94f840a87c45d54719a8d108ab235",
-      "rows": 940000,
-      "committed": true,
-      "row_count_source": "wc -l of the promoted file"
-    },
-    "books_backdraft_spins.jsonl.zst": {
-      "bytes": 187904416,
-      "sha256": "89a0fddb65247b6e9062b0945af6f56e86980cd61447554deb0fbda88d1cdfe1",
-      "rows": 350000,
-      "unique_events": 350000,
-      "committed": false,
-      "row_count_source": "report.json publication_rows (audit hashed the compressed bytes; lines not re-counted)"
-    },
-    "lookUpTable_backdraft_spins_0.csv": {
-      "bytes": 6900657,
-      "sha256": "858f2227b762690fbfe1d42297a3566de385e0ce4449254f8bfd405748433831",
-      "rows": 350000,
-      "committed": true,
-      "row_count_source": "wc -l of the promoted file"
-    },
-    "books_alarm_call.jsonl.zst": {
-      "bytes": 795277191,
-      "sha256": "24d548cee921eb3351724bff32766ecc708e2cf8466e7dc51395ffcf17ed5e3e",
-      "rows": 700001,
-      "unique_events": 700001,
-      "committed": false,
-      "row_count_source": "report.json publication_rows (audit hashed the compressed bytes; lines not re-counted)"
-    },
-    "lookUpTable_alarm_call_0.csv": {
-      "bytes": 14862375,
-      "sha256": "020e56183dbffc859a05ae5171e151d8c38fff89e935a2b5514db16939bd2381",
-      "rows": 700001,
-      "committed": true,
-      "row_count_source": "wc -l of the promoted file"
-    },
-    "books_rescue.jsonl.zst": {
-      "bytes": 372117903,
-      "sha256": "8d6718567353e9e855aec809a7e414c50c16d3c082593e396493e560c2dcd28f",
-      "rows": 350000,
-      "unique_events": 350000,
-      "committed": false,
-      "row_count_source": "report.json publication_rows (audit hashed the compressed bytes; lines not re-counted)"
-    },
-    "lookUpTable_rescue_0.csv": {
-      "bytes": 6729365,
-      "sha256": "c4983ed172b8ef579e505a5c5543dd563c11972dd1cae24dbc7040e3e4b30e84",
-      "rows": 350000,
-      "committed": true,
-      "row_count_source": "wc -l of the promoted file"
-    },
-    "books_inferno.jsonl.zst": {
-      "bytes": 421285974,
-      "sha256": "9d6660c9baece6dc5a16b8c9a0f637c6fba9b3ee7eeae710721ae65cb35b3d40",
-      "rows": 350000,
-      "unique_events": 350000,
-      "committed": false,
-      "row_count_source": "report.json publication_rows (audit hashed the compressed bytes; lines not re-counted)"
-    },
-    "lookUpTable_inferno_0.csv": {
-      "bytes": 6971875,
-      "sha256": "6beec9ce9b7b01523bb140c6a229b45c5911f3083eb1499c740526664eb59a96",
-      "rows": 350000,
-      "committed": true,
-      "row_count_source": "wc -l of the promoted file"
-    }
-  },
-  "modes": {
-    "base": {
-      "cost": 1.0,
-      "rtp": 0.9669999900266322,
-      "sd_over_cost": 14.400000000593572,
-      "total_weight": 2310000000000000000,
-      "minimum_weight": 95732420,
-      "any_win": 0.380000000000486,
-      "regular_hit": 0.15999999999747258,
-      "sub_hit": 0.22000000000301345,
-      "rescue_probability": 0.006060606060606061,
-      "inferno_probability": 0.0004761904761904762,
-      "backdraft_probability": 0.02499999999994957,
-      "cap_probability": 1.3333333325714285e-07,
-      "prob5k": 1.3333333325714285e-07,
-      "prob10k": 1.3333333325714285e-07,
-      "etl10k": 0.001999999998857143,
-      "etl40b": 0.5177903466403188,
-      "cvar": 378.4915137725488,
-      "publication_rows": 940000,
-      "unique_events": 940000,
-      "duplicate_events": 0,
-      "simulation_trials": 200000,
-      "book_sha256": "a99461ac74deda54e2b7187724369ea42d90de16197ed2acc4d42b85a5f8a6be",
-      "compressed_bytes": 912009754,
-      "lut_sha256": "73bd42fbc2b9f6c25ff992ce8c9f1b34a80983bd0a7ddbde0896b082cd9e95e8",
-      "weights_status": "PASS",
-      "exact_rtp_fraction": "797774991771971549/825000000000000000",
-      "exact_variance_over_cost_fraction": "987940800081446328190804434666741784193/4764375000000000000000000000000000000",
-      "embedded_bank_rows": 740000,
-      "shared_law_verified_rows": 740000,
-      "bank_links_sha256": "0dfd1f9b1ef29851b6427ac418763d351195c77d4a0b0169245370b4658b6de8",
-      "nonbonus_source_trials": 200000
-    },
-    "ante": {
-      "cost": 1.5,
-      "rtp": 0.96699999013723,
-      "sd_over_cost": 9.499999994675923,
-      "total_weight": 2310000000000000000,
-      "minimum_weight": 191464840,
-      "any_win": 0.3707439028571333,
-      "regular_hit": 0.061592700181972,
-      "sub_hit": 0.30915120267516133,
-      "rescue_probability": 0.012121212121212121,
-      "inferno_probability": 0.0009523809523809524,
-      "backdraft_probability": 0.025000000014316,
-      "cap_probability": 2.666666665142857e-07,
-      "prob5k": 2.666666665142857e-07,
-      "prob10k": 2.666666665142857e-07,
-      "etl10k": 0.003999999997714286,
-      "etl40b": 0.7499999996963793,
-      "cvar": 157.34358882845743,
-      "publication_rows": 940000,
-      "unique_events": 940000,
-      "duplicate_events": 0,
-      "simulation_trials": 200000,
-      "book_sha256": "bbdca092385ef6179071de3ac62bc83cd649c7555dbec1dd5adee28a597601fc",
-      "compressed_bytes": 912826613,
-      "lut_sha256": "67909bf1b34b5c7e797ad946e8b3c7682fb94f840a87c45d54719a8d108ab235",
-      "weights_status": "PASS",
-      "exact_rtp_fraction": "11168849886085007411/11550000000000000000",
-      "exact_variance_over_cost_fraction": "36118726834516029011321389290344225231237/400207500000000000000000000000000000000",
-      "embedded_bank_rows": 740000,
-      "shared_law_verified_rows": 740000,
-      "bank_links_sha256": "c4ab0838fb3a8395394b6cb08bc60999bc7d9faf67a8439aca50e27eded0c2e5",
-      "nonbonus_source_trials": 200000
-    },
-    "backdraft_spins": {
-      "cost": 50.0,
-      "rtp": 0.966999987504836,
-      "sd_over_cost": 0.977527337748647,
-      "total_weight": 1000000000000,
-      "minimum_weight": 2817110,
-      "any_win": 0.99993238936,
-      "regular_hit": 0.349157040608,
-      "sub_hit": 0.650775348752,
-      "rescue_probability": 0.0,
-      "inferno_probability": 0.0,
-      "backdraft_probability": 1.0,
-      "cap_probability": 4e-06,
-      "prob5k": 4e-06,
-      "prob10k": 4e-06,
-      "etl10k": 0.06,
-      "etl40b": 0.06,
-      "cvar": 11.314345103203323,
-      "publication_rows": 350000,
-      "unique_events": 350000,
-      "duplicate_events": 0,
-      "simulation_trials": 350000,
-      "book_sha256": "89a0fddb65247b6e9062b0945af6f56e86980cd61447554deb0fbda88d1cdfe1",
-      "compressed_bytes": 187904416,
-      "lut_sha256": "858f2227b762690fbfe1d42297a3566de385e0ce4449254f8bfd405748433831",
-      "weights_status": "PASS",
-      "exact_rtp_fraction": "241749996876209/250000000000000",
-      "exact_variance_over_cost_fraction": "59722481002872321241929788319/62500000000000000000000000000",
-      "derived_buy_cost": 49.495173689069496
-    },
-    "alarm_call": {
-      "cost": 12.0,
-      "rtp": 0.9669999905399147,
-      "sd_over_cost": 2.4409600761257746,
-      "total_weight": 300000000000000,
-      "minimum_weight": 22370211,
-      "any_win": 0.54634380864064,
-      "regular_hit": 0.27205549499288,
-      "sub_hit": 0.27428831364776,
-      "rescue_probability": 0.5166666666666667,
-      "inferno_probability": 0.03,
-      "backdraft_probability": 0.0,
-      "cap_probability": 6.366666666666667e-07,
-      "prob5k": 6.366666666666667e-07,
-      "prob10k": 6.366666666666667e-07,
-      "etl10k": 0.00955,
-      "etl40b": 0.15719914020754797,
-      "cvar": 36.470168987033716,
-      "publication_rows": 700001,
-      "unique_events": 700001,
-      "duplicate_events": 0,
-      "simulation_trials": 350000,
-      "book_sha256": "24d548cee921eb3351724bff32766ecc708e2cf8466e7dc51395ffcf17ed5e3e",
-      "compressed_bytes": 795277191,
-      "lut_sha256": "020e56183dbffc859a05ae5171e151d8c38fff89e935a2b5514db16939bd2381",
-      "weights_status": "PASS",
-      "exact_rtp_fraction": "90656249113117/93750000000000",
-      "exact_variance_over_cost_fraction": "5818638762929636301710185479/976562500000000000000000000",
-      "trial_method": "IID integer-weight draws from the composed canonical event law",
-      "trial_outcome_counts": {
-        "falseAlarm": 158644,
-        "rescue": 180775,
-        "inferno": 10581
-      },
-      "distinct_trial_book_ids": 151712,
-      "empirical_trial_mean_x": 11.618743142857143,
-      "composed_bank_rows": 700000,
-      "shared_law_verified_rows": 700000,
-      "bank_links_sha256": "9f6004b5f6c9ea24deeeb495d15640ed262a8205d1722e951082aaa23ba2e6c0",
-      "trials_sha256": "91bbd9921f0887681e94a03e9e330cfb82d414fe2b3af2373072fcfd2a4183e9"
-    },
-    "rescue": {
-      "cost": 18.0,
-      "rtp": 0.9669999902061167,
-      "sd_over_cost": 1.4391144104214484,
-      "total_weight": 1000000000000,
-      "minimum_weight": 1000000,
-      "any_win": 0.999384938961,
-      "regular_hit": 0.305280561086,
-      "sub_hit": 0.694104377875,
-      "rescue_probability": 1.0,
-      "inferno_probability": 0.0,
-      "backdraft_probability": 0.0,
-      "cap_probability": 1e-06,
-      "prob5k": 1e-06,
-      "prob10k": 1e-06,
-      "etl10k": 0.015,
-      "etl40b": 0.020231895397899997,
-      "cvar": 15.359488477566694,
-      "publication_rows": 350000,
-      "unique_events": 350000,
-      "duplicate_events": 0,
-      "simulation_trials": 350000,
-      "book_sha256": "8d6718567353e9e855aec809a7e414c50c16d3c082593e396493e560c2dcd28f",
-      "compressed_bytes": 372117903,
-      "lut_sha256": "c4983ed172b8ef579e505a5c5543dd563c11972dd1cae24dbc7040e3e4b30e84",
-      "weights_status": "PASS",
-      "exact_rtp_fraction": "58019999412367/60000000000000",
-      "exact_variance_over_cost_fraction": "22367343091852873924062371933/10800000000000000000000000000",
-      "shared_bank": "rescue_10",
-      "derived_buy_cost": 18.143711651564413
-    },
-    "inferno": {
-      "cost": 90.0,
-      "rtp": 0.9669999916896633,
-      "sd_over_cost": 1.0387386984812343,
-      "total_weight": 1000000000000,
-      "minimum_weight": 2485579,
-      "any_win": 0.999830783693,
-      "regular_hit": 0.303883275901,
-      "sub_hit": 0.695947507792,
-      "rescue_probability": 0.0,
-      "inferno_probability": 1.0,
-      "backdraft_probability": 0.0,
-      "cap_probability": 4e-06,
-      "prob5k": 4e-06,
-      "prob10k": 4e-06,
-      "etl10k": 0.06,
-      "etl40b": 0.06,
-      "cvar": 12.230044511511396,
-      "publication_rows": 350000,
-      "unique_events": 350000,
-      "duplicate_events": 0,
-      "simulation_trials": 350000,
-      "book_sha256": "9d6660c9baece6dc5a16b8c9a0f637c6fba9b3ee7eeae710721ae65cb35b3d40",
-      "compressed_bytes": 421285974,
-      "lut_sha256": "6beec9ce9b7b01523bb140c6a229b45c5911f3083eb1499c740526664eb59a96",
-      "weights_status": "PASS",
-      "exact_rtp_fraction": "290099997506899/300000000000000",
-      "exact_variance_over_cost_fraction": "873972247815215998860026634191/810000000000000000000000000000",
-      "shared_bank": "inferno_10",
-      "derived_buy_cost": 90.29688678719965
-    }
-  },
-  "banks": {
-    "rescue_10": {
-      "publication_rows": 350000,
-      "simulation_trials": 350000,
-      "ordinary_trials": 349999,
-      "weighted_target_mean_x": 17.40599982,
-      "ordinary_unweighted_mean_x": 17.544968985625673,
-      "cap_probability_target": 1e-06,
-      "cap_probability_actual": 1e-06,
-      "book_sha256": "8d6718567353e9e855aec809a7e414c50c16d3c082593e396493e560c2dcd28f",
-      "compressed_bytes": 372117903,
-      "lut_sha256": "c4983ed172b8ef579e505a5c5543dd563c11972dd1cae24dbc7040e3e4b30e84",
-      "full_event_bank_sha256": "0d1a59679acf426a36ffd35deb492b969ec6cfe6962b5d1f91c4bf7fdcf60acd"
-    },
-    "rescue_12": {
-      "publication_rows": 10000,
-      "simulation_trials": 10000,
-      "ordinary_trials": 9999,
-      "weighted_target_mean_x": 24.737543754375437,
-      "ordinary_unweighted_mean_x": 24.737543754375437,
-      "cap_probability_target": 0.00014778513612950702,
-      "cap_probability_actual": 0.000147785136,
-      "book_sha256": "ed845da99df670bd1aed227a44427c40d00cb6e83eee3b27301a96af1818440d",
-      "compressed_bytes": 13241132,
-      "lut_sha256": "e5175426a99da091dea0f6a9a6fa9c81e896835f5563a5b0518b483b7e4bd3fb",
-      "full_event_bank_sha256": "dccdb200082fbd389557c887a1567e92b4fd8b9763dfd247d55cdca92f41c2f6"
-    },
-    "rescue_15": {
-      "publication_rows": 10000,
-      "simulation_trials": 10000,
-      "ordinary_trials": 9999,
-      "weighted_target_mean_x": 36.28231823182318,
-      "ordinary_unweighted_mean_x": 36.28231823182318,
-      "cap_probability_target": 0.0006,
-      "cap_probability_actual": 0.0006,
-      "book_sha256": "8001ddcd0c8ec88e924acf9572d2309078d7cb3a7440fb43c12178d5e10785df",
-      "compressed_bytes": 17081453,
-      "lut_sha256": "d91e819d29b79bf75654f083406a1dec7db2786f6d922e2897f69e9051722a33",
-      "full_event_bank_sha256": "67b0f4c1f6addd58cc404019152059d5f0e6057506361f0e49939a42f39aa6b3"
-    },
-    "inferno_10": {
-      "publication_rows": 350000,
-      "simulation_trials": 350000,
-      "ordinary_trials": 349999,
-      "weighted_target_mean_x": 87.0299991,
-      "ordinary_unweighted_mean_x": 87.3170886202532,
-      "cap_probability_target": 4e-06,
-      "cap_probability_actual": 4e-06,
-      "book_sha256": "9d6660c9baece6dc5a16b8c9a0f637c6fba9b3ee7eeae710721ae65cb35b3d40",
-      "compressed_bytes": 421285974,
-      "lut_sha256": "6beec9ce9b7b01523bb140c6a229b45c5911f3083eb1499c740526664eb59a96",
-      "full_event_bank_sha256": "59420667384b6fc7076153c5bd72ba367c04ca8444e4a6e6e4cb38d9285b939d"
-    },
-    "inferno_12": {
-      "publication_rows": 10000,
-      "simulation_trials": 10000,
-      "ordinary_trials": 9999,
-      "weighted_target_mean_x": 107.0852385238524,
-      "ordinary_unweighted_mean_x": 107.0852385238524,
-      "cap_probability_target": 0.00014778513612950702,
-      "cap_probability_actual": 0.000147785136,
-      "book_sha256": "e7714e2cf2f60c61967a1595827c17cbeb192de7607aeeb817e55b3fbd501e72",
-      "compressed_bytes": 14571017,
-      "lut_sha256": "93afa3b6207a0760f05b53f20edd94ce62641755ca5fa626cc2c827c6967d9bd",
-      "full_event_bank_sha256": "51c64e897dab69245920720e59fb6b1bd6d19917391515a990cf787e6c2810cb"
-    },
-    "inferno_15": {
-      "publication_rows": 10000,
-      "simulation_trials": 10000,
-      "ordinary_trials": 9999,
-      "weighted_target_mean_x": 137.31638163816382,
-      "ordinary_unweighted_mean_x": 137.31638163816382,
-      "cap_probability_target": 0.0006,
-      "cap_probability_actual": 0.0006,
-      "book_sha256": "34ce8ec7a2a6fc4777ef544581b2e91e39b7996c4f985b0b93f51381c2bff6cc",
-      "compressed_bytes": 18347120,
-      "lut_sha256": "c5e5081f7f7f4fead6a5b13527f2e8a12e6cbf5e6bf875208ae140d3b8a9e9d1",
-      "full_event_bank_sha256": "18519a910f4cae8e4fae13caacdd4e4034323674480bc9732c5d4657e31cb0ae"
-    }
-  },
-  "fixtures": {
-    "source": "math/games/piggy_firefighters/fixtures/",
-    "promoted_to": "server/fixtures/",
-    "names": [
-      "alarm_call_false",
-      "alarm_call_inferno",
-      "alarm_call_rescue",
-      "backdraft_max_win",
-      "backdraft_spins",
-      "base_anticipation_miss",
-      "base_backdraft_win",
-      "base_nowin",
-      "base_trigger_inferno",
-      "base_trigger_rescue",
-      "base_win",
-      "inferno_buy",
-      "inferno_prizes",
-      "max_win",
-      "rescue_building_cleared",
-      "rescue_buy"
-    ]
+ "game": "piggy_firefighters",
+ "contract": "docs/GAME_CONTRACT.md v1.3 section 9, Piggy Firefighters, FROZEN at math-freeze-v2, measured 2026-09-28",
+ "freeze": {
+  "tag": "math-freeze-v2",
+  "sha": "10ef51124dd8d7fac81ae11c148e952012177e3f",
+  "verified_source_files": 77
+ },
+ "source_output": "/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-100k",
+ "production_report": {
+  "path": "math/games/piggy_firefighters/library/production-100k/report.json",
+  "sha256": "f30c729ffcb025fdf9c2db2900d68cc64077dddb2959cd9267712b5778fe3042",
+  "candidate_status": "PASS",
+  "source_unchanged": true,
+  "stage": "production"
+ },
+ "independent_audit": {
+  "path": "qa/codex/math/v2-audit.json",
+  "script": "qa/codex/math/audit_publication.py",
+  "status": "PASS",
+  "sha256": "2eb5213b033c4038841163f590caca9dc1f3d018761d37658d0969df30468c4c",
+  "checked_trial_count": 740000,
+  "checked_publication_rows": 1520001,
+  "checked_canonical_links": 920000,
+  "coverage": {
+   "statistics": "Independent exact integer/Fraction moments and scalar tail reductions",
+   "books": "Compressed bytes hashed; event payloads not replayed",
+   "canonical_events": "Ordered link digests compared to canonical bank report digests",
+   "event_legality_and_uniqueness": "Producer evidence checked, not independently re-derived"
   }
+ },
+ "launch": {
+  "path": "qa/codex/math/v2-launch.json",
+  "launched_at_utc": "2026-09-28T14:56:13Z",
+  "workers": 8,
+  "rss_limit_mib": 5120,
+  "process_group": 71395
+ },
+ "memory_guard": {
+  "path": "qa/codex/math/v2-production-memory.json",
+  "status": "COMPLETE",
+  "command_exit_code": 0,
+  "group_empty": true,
+  "peak_rss_mib": 1117.34375,
+  "max_rss_mib": 5120,
+  "peak_processes": 10,
+  "elapsed_seconds": 2122.392
+ },
+ "runtime": {
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "python_version": [
+   3,
+   12,
+   14
+  ],
+  "executable": "/Users/jbull/code/piggy-firefighters/math/env/bin/python",
+  "numpy": "2.2.5",
+  "scipy": "1.15.3",
+  "zstandard": "0.23.0"
+ },
+ "production_total_seconds": 2121.215,
+ "trials": {
+  "main_simulation_trials_per_mode": 100000,
+  "auxiliary_trials_per_bank": 10000,
+  "nonbonus_trials_per_natural_mode": 100000,
+  "total_independent_simulation_trials": 740000,
+  "total_published_rows": 1520001
+ },
+ "expected_count": 1520001,
+ "excluded_modes": [],
+ "committed": "index.json, lookUpTable_<mode>_0.csv and this MANIFEST.json are committed; books_<mode>.jsonl.zst are gitignored (math/publish/books_*.jsonl.zst) and copied from the production tree above, sha256 verified both sides",
+ "index": {
+  "modes": [
+   {
+    "name": "base",
+    "cost": 1.0,
+    "events": "books_base.jsonl.zst",
+    "weights": "lookUpTable_base_0.csv"
+   },
+   {
+    "name": "ante",
+    "cost": 3.0,
+    "events": "books_ante.jsonl.zst",
+    "weights": "lookUpTable_ante_0.csv"
+   },
+   {
+    "name": "super_ante",
+    "cost": 5.0,
+    "events": "books_super_ante.jsonl.zst",
+    "weights": "lookUpTable_super_ante_0.csv"
+   },
+   {
+    "name": "backdraft_spins",
+    "cost": 50.0,
+    "events": "books_backdraft_spins.jsonl.zst",
+    "weights": "lookUpTable_backdraft_spins_0.csv"
+   },
+   {
+    "name": "alarm_call",
+    "cost": 15.0,
+    "events": "books_alarm_call.jsonl.zst",
+    "weights": "lookUpTable_alarm_call_0.csv"
+   },
+   {
+    "name": "rescue",
+    "cost": 25.0,
+    "events": "books_rescue.jsonl.zst",
+    "weights": "lookUpTable_rescue_0.csv"
+   },
+   {
+    "name": "inferno",
+    "cost": 100.0,
+    "events": "books_inferno.jsonl.zst",
+    "weights": "lookUpTable_inferno_0.csv"
+   }
+  ]
+ },
+ "files": {
+  "books_alarm_call.jsonl.zst": {
+   "bytes": 243439640,
+   "sha256": "79c49a2b1e15e142812bfb5d06884216a8c835bf7de0584887ae2553bb9369bd"
+  },
+  "books_ante.jsonl.zst": {
+   "bytes": 331501423,
+   "sha256": "334831210060c174952edba552683dba5064b85ab8cffbbd1e53f0d82f3993f9"
+  },
+  "books_backdraft_spins.jsonl.zst": {
+   "bytes": 53693881,
+   "sha256": "9ef66dd9e713172c0be3045f9ed48081bb9a30c0c3804dcbed1e74b1c873a096"
+  },
+  "books_base.jsonl.zst": {
+   "bytes": 331197756,
+   "sha256": "8b211860ff99c7449716778aa8acb5fbcaa8dcec739781fa4c9681c1a7f83dc9"
+  },
+  "books_inferno.jsonl.zst": {
+   "bytes": 126529569,
+   "sha256": "a098b7ca411cdacd12ddec2e03cb2a0b63897ff642ef2e6b20232f839e65c069"
+  },
+  "books_rescue.jsonl.zst": {
+   "bytes": 116341775,
+   "sha256": "75eae6e1ae594117d7103f843fb18f99bc17a502686dac9c49eb1706b6bd235d"
+  },
+  "books_super_ante.jsonl.zst": {
+   "bytes": 331443763,
+   "sha256": "1053cf90079c0cef6f5a0ce1765b074589e33fbe340dbe1b38b9b07ba945ed34"
+  },
+  "index.json": {
+   "bytes": 1061,
+   "sha256": "5aa72518f50ce1f7640db2109191158880303dbc9ae1272b22c741021c586edf"
+  },
+  "lookUpTable_alarm_call_0.csv": {
+   "bytes": 4283430,
+   "sha256": "bdb82bf1b06d199ba9929c18983b5b1b6e126d103c47806ae0d18f1a28938f87",
+   "rows": 200001
+  },
+  "lookUpTable_ante_0.csv": {
+   "bytes": 8188966,
+   "sha256": "f015a3a38b13317c285f2a6a9c7b704c048c3389e0740c11ca4d402dc47b693a",
+   "rows": 340000
+  },
+  "lookUpTable_backdraft_spins_0.csv": {
+   "bytes": 1929319,
+   "sha256": "b63b6bc191670d84f06ae3ecdf6d99d5c17dd52d90867b29e3fd19dd1e44bfd7",
+   "rows": 100000
+  },
+  "lookUpTable_base_0.csv": {
+   "bytes": 8091934,
+   "sha256": "03445cf397512db2fe93ebe2564ac4801c32edf1aa2969ee831e1ce3790afcf1",
+   "rows": 340000
+  },
+  "lookUpTable_inferno_0.csv": {
+   "bytes": 1985797,
+   "sha256": "a35523e0aaddc2e6c3d611d1c214254668e7772883e22bbd7a848a64b2f9df92",
+   "rows": 100000
+  },
+  "lookUpTable_rescue_0.csv": {
+   "bytes": 1885172,
+   "sha256": "22f881af26761348c0a15e394e2110976a9df8c28aadc2230c5be9c8a17d0de2",
+   "rows": 100000
+  },
+  "lookUpTable_super_ante_0.csv": {
+   "bytes": 8427973,
+   "sha256": "729f17745a7a1e68b84c381ff2a9342b013c868737f7ebdb46de3e6f49eaba03",
+   "rows": 340000
+  }
+ },
+ "figures": {
+  "base": {
+   "cost": 1.0,
+   "rtp": 0.9669999878742263,
+   "sd_over_cost": 14.400000105568246,
+   "any_win": 0.37999999987783123,
+   "regular_hit": 0.15999999991756556,
+   "sub_hit": 0.21999999996026565,
+   "rescue_probability": 0.006060606060606061,
+   "inferno_probability": 0.0004761904761904762,
+   "backdraft_probability": 0.02499999965906665,
+   "cap_probability": 1.3333333325714285e-07,
+   "prob5k": 1.3333333325714285e-07,
+   "prob10k": 1.3333333325714285e-07,
+   "etl10k": 0.0026666666651428573,
+   "etl40b": 0.5160875568894547,
+   "cvar": 335.5346725734973,
+   "total_weight": 2310000000000000000,
+   "minimum_weight": 94117940,
+   "simulation_trials": 100000,
+   "publication_rows": 340000,
+   "unique_events": 340000,
+   "duplicate_events": 0,
+   "seconds": 466.013
+  },
+  "ante": {
+   "cost": 3.0,
+   "rtp": 0.9669999901196015,
+   "sd_over_cost": 8.000000000332466,
+   "any_win": 0.3903988396904904,
+   "regular_hit": 0.05983119894193791,
+   "sub_hit": 0.33056764074855244,
+   "rescue_probability": 0.030303030303030304,
+   "inferno_probability": 0.002380952380952381,
+   "backdraft_probability": 0.02500000000318054,
+   "cap_probability": 6.666666662857143e-07,
+   "prob5k": 6.666666662857143e-07,
+   "prob10k": 6.666666662857143e-07,
+   "etl10k": 0.013333333325714285,
+   "etl40b": 0.750000000038732,
+   "cvar": 79.87589531210894,
+   "total_weight": 2310000000000000000,
+   "minimum_weight": 1,
+   "simulation_trials": 100000,
+   "publication_rows": 340000,
+   "unique_events": 340000,
+   "duplicate_events": 0,
+   "seconds": 470.36
+  },
+  "super_ante": {
+   "cost": 5.0,
+   "rtp": 0.9669999899997073,
+   "sd_over_cost": 7.36725454553014,
+   "any_win": 0.4210635577259901,
+   "regular_hit": 0.10303588269616641,
+   "sub_hit": 0.3180276750298237,
+   "rescue_probability": 0.09090909090909091,
+   "inferno_probability": 0.007142857142857143,
+   "backdraft_probability": 0.02499999999997026,
+   "cap_probability": 1.999999998857143e-06,
+   "prob5k": 1.999999998857143e-06,
+   "prob10k": 1.999999998857143e-06,
+   "etl10k": 0.039999999977142854,
+   "etl40b": 0.7499999999942359,
+   "cvar": 102.87122954755826,
+   "total_weight": 2310000000000000000,
+   "minimum_weight": 1411769100,
+   "simulation_trials": 100000,
+   "publication_rows": 340000,
+   "unique_events": 340000,
+   "duplicate_events": 0,
+   "seconds": 462.126
+  },
+  "backdraft_spins": {
+   "cost": 50.0,
+   "rtp": 0.966999989096452,
+   "sd_over_cost": 1.1053963718443829,
+   "any_win": 0.999930776048,
+   "regular_hit": 0.349921828092,
+   "sub_hit": 0.650008947956,
+   "rescue_probability": 0.0,
+   "inferno_probability": 0.0,
+   "backdraft_probability": 1.0,
+   "cap_probability": 4e-06,
+   "prob5k": 4e-06,
+   "prob10k": 4e-06,
+   "etl10k": 0.08,
+   "etl40b": 0.08,
+   "cvar": 11.346431529712472,
+   "total_weight": 1000000000000,
+   "minimum_weight": 4000000,
+   "simulation_trials": 100000,
+   "publication_rows": 100000,
+   "unique_events": 100000,
+   "duplicate_events": 0,
+   "seconds": 21.994
+  },
+  "alarm_call": {
+   "cost": 15.0,
+   "rtp": 0.9669999874248814,
+   "sd_over_cost": 2.4844923924158144,
+   "any_win": 0.50981713375449,
+   "regular_hit": 0.26385070237557,
+   "sub_hit": 0.24596643137892,
+   "rescue_probability": 0.48,
+   "inferno_probability": 0.03,
+   "backdraft_probability": 0.0,
+   "cap_probability": 6e-07,
+   "prob5k": 6e-07,
+   "prob10k": 6e-07,
+   "etl10k": 0.012,
+   "etl40b": 0.18517432278059698,
+   "cvar": 35.93697476785853,
+   "total_weight": 300000000000000,
+   "minimum_weight": 36000000,
+   "simulation_trials": 100000,
+   "publication_rows": 200001,
+   "unique_events": 200001,
+   "duplicate_events": 0,
+   "seconds": 316.183
+  },
+  "rescue": {
+   "cost": 25.0,
+   "rtp": 0.966999986408888,
+   "sd_over_cost": 1.5076718366874935,
+   "any_win": 0.999625364574,
+   "regular_hit": 0.289199907656,
+   "sub_hit": 0.710425456918,
+   "rescue_probability": 1.0,
+   "inferno_probability": 0.0,
+   "backdraft_probability": 0.0,
+   "cap_probability": 1e-06,
+   "prob5k": 1e-06,
+   "prob10k": 1e-06,
+   "etl10k": 0.02,
+   "etl40b": 0.03936008795,
+   "cvar": 18.034319956570922,
+   "total_weight": 1000000000000,
+   "minimum_weight": 1000000,
+   "simulation_trials": 100000,
+   "publication_rows": 100000,
+   "unique_events": 100000,
+   "duplicate_events": 0,
+   "seconds": 41.452
+  },
+  "inferno": {
+   "cost": 100.0,
+   "rtp": 0.966999991488855,
+   "sd_over_cost": 1.089766600398433,
+   "any_win": 0.999898625299,
+   "regular_hit": 0.298276411171,
+   "sub_hit": 0.701622214128,
+   "rescue_probability": 0.0,
+   "inferno_probability": 1.0,
+   "backdraft_probability": 0.0,
+   "cap_probability": 4e-06,
+   "prob5k": 4e-06,
+   "prob10k": 4e-06,
+   "etl10k": 0.08,
+   "etl40b": 0.08,
+   "cvar": 12.354171433123122,
+   "total_weight": 1000000000000,
+   "minimum_weight": 4000000,
+   "simulation_trials": 100000,
+   "publication_rows": 100000,
+   "unique_events": 100000,
+   "duplicate_events": 0,
+   "seconds": 43.362
+  }
+ }
 }

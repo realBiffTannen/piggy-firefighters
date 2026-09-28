@@ -23,8 +23,10 @@
 	$effect(() => {
 		const mode = String(stateBet.activeBetModeKey ?? '').toLowerCase();
 		if (lastMode !== undefined && mode !== lastMode && audioManager.isUnlocked) {
-			if (mode === 'ante') audioManager.playCue('ante_on');
-			else if (lastMode === 'ante') audioManager.playCue('ante_off');
+			// both boost tiers (ALARM BOOST / FIVE-ALARM BOOST) share the one on/off cue pair; a tier swap plays ante_on
+			const isBoost = (m: string | undefined) => m === 'ante' || m === 'super_ante';
+			if (isBoost(mode)) audioManager.playCue('ante_on');
+			else if (isBoost(lastMode)) audioManager.playCue('ante_off');
 		}
 		lastMode = mode;
 	});

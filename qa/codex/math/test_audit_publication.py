@@ -52,15 +52,15 @@ class AuditTests(unittest.TestCase):
         write_rows(meta, [(0, 0, 'none', False), (1, 100, 'none', True), (2, 2000000, 'inferno', False)])
         result = audit.scan_lut(lut, meta, audit.Fraction(1), 3)
         stats = result.figures()
-        self.assertEqual(result.moment1, 1500900)
-        self.assertAlmostEqual(stats['rtp'], 1.5009)
-        self.assertAlmostEqual(stats['sd_over_cost'], math.sqrt(22500.0009 - 1.5009**2))
+        self.assertEqual(result.moment1, 2000900)
+        self.assertAlmostEqual(stats['rtp'], 2.0009)
+        self.assertAlmostEqual(stats['sd_over_cost'], math.sqrt(40000.0009 - 2.0009**2))
         self.assertEqual(stats['any_win'], .001)
         self.assertEqual(stats['cap_probability'], .0001)
-        self.assertEqual(stats['etl10k'], 1.5)
+        self.assertEqual(stats['etl10k'], 2.0)
         # Exactly99.9% is at zero. SDK CVaR includes every outcome tied at its
         # selected quantile; it does not fractionally trim to the top0.1%.
-        self.assertEqual(stats['cvar'], 1.5009)
+        self.assertEqual(stats['cvar'], 2.0009)
 
     def test_lut_metadata_mismatch_and_nonpositive_weight_fail(self):
         lut, meta = self.root / 'lut.csv', self.root / 'meta.csv'
@@ -111,8 +111,8 @@ class AuditTests(unittest.TestCase):
         git('init')
         git('add', 'math')
         git('commit', '-m', 'tiny synthetic freeze')
-        git('tag', '-a', 'math-freeze-v1', '-m', 'synthetic test')
-        launch = {'freeze_tag': 'math-freeze-v1', 'freeze_sha': git('rev-parse', 'HEAD'), 'interpreter': sys.executable}
+        git('tag', '-a', audit.FREEZE_TAG, '-m', 'synthetic test')
+        launch = {'freeze_tag': audit.FREEZE_TAG, 'freeze_sha': git('rev-parse', 'HEAD'), 'interpreter': sys.executable}
         report = {'source_sha256': {p.removeprefix('math/'): audit.digest(self.root / p) for p in paths},
                   'runtime': {**audit.RUNTIME, 'executable': sys.executable}}
         self.assertEqual(audit.verify_sources(self.root, launch, report)['verified_source_files'], 5)

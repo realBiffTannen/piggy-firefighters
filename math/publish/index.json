@@ -8,9 +8,15 @@
     },
     {
       "name": "ante",
-      "cost": 1.5,
+      "cost": 3.0,
       "events": "books_ante.jsonl.zst",
       "weights": "lookUpTable_ante_0.csv"
+    },
+    {
+      "name": "super_ante",
+      "cost": 5.0,
+      "events": "books_super_ante.jsonl.zst",
+      "weights": "lookUpTable_super_ante_0.csv"
     },
     {
       "name": "backdraft_spins",
@@ -20,19 +26,19 @@
     },
     {
       "name": "alarm_call",
-      "cost": 12.0,
+      "cost": 15.0,
       "events": "books_alarm_call.jsonl.zst",
       "weights": "lookUpTable_alarm_call_0.csv"
     },
     {
       "name": "rescue",
-      "cost": 18.0,
+      "cost": 25.0,
       "events": "books_rescue.jsonl.zst",
       "weights": "lookUpTable_rescue_0.csv"
     },
     {
       "name": "inferno",
-      "cost": 90.0,
+      "cost": 100.0,
       "events": "books_inferno.jsonl.zst",
       "weights": "lookUpTable_inferno_0.csv"
     }

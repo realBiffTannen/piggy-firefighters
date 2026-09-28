@@ -61,7 +61,7 @@ export const formatBookAmount = (bookEventAmount: number): string =>
 /** A book amount as a MULTIPLE of the base bet ("42×", "42.50×").
  *
  *  FRAMED CARDS SHOW THE MULTIPLE, NEVER A CURRENCY FIGURE (owner rule). A card is a picture of the
- *  result, and the player's bet is not knowable from it — the max-win card states the 15,000× cap flat for
+ *  result, and the player's bet is not knowable from it — the max-win card states the 20,000× cap flat for
  *  the same reason (components/WinRungs.svelte). Use this for anything drawn inside the signature
  *  dark-brown frame (game/fx/signPanel.ts); use `formatBookAmount` for meters, the HUD WIN field
  *  and the rung sign, which are tied to the round the player actually placed. */

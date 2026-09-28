@@ -437,15 +437,15 @@ export const maxwinMeta = {
 	"titleSafeArea": {
 		"landscape": {
 			"x": 0.04,
-			"y": 0.14,
-			"w": 0.36,
-			"h": 0.72
+			"y": 0.24,
+			"w": 0.46,
+			"h": 0.64
 		},
 		"portrait": {
-			"x": 0.1,
-			"y": 0.04,
-			"w": 0.8,
-			"h": 0.24
+			"x": 0.07,
+			"y": 0.06,
+			"w": 0.86,
+			"h": 0.34
 		}
 	}
 } as const;

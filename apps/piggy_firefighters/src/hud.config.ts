@@ -2,16 +2,20 @@
  * PIGGY FIREFIGHTERS × `@crashgalaxy/hud` — the ONE seam between this game and the packaged studio HUD.
  * `routes/+layout.svelte` mounts `<CrashGalaxyHud config={hudConfig}>` with this object.
  *
- * The six bet modes come from `game/generatedConfig.ts` (docs/GAME_CONTRACT.md §2); the host derives each mode's
- * KIND from the math flags. Player titles (theme §5, game/names.ts):
+ * The seven bet modes come from `game/generatedConfig.ts` (docs/GAME_CONTRACT.md §2 v1.3); the host derives each
+ * mode's KIND from the math flags. Player titles (theme §5, game/names.ts):
  *   base              1x, not a buy     -> default spin
- *   ante              1.5x, not a buy   -> "activate" toggle — ALARM BOOST
- *   alarm_call        12x, isBuyBonus   -> buy card — ALARM CALL
- *   rescue            18x, isBuyBonus   -> buy card — RESCUE SPINS
+ *   ante              3x, not a buy     -> "activate" tier ALARM BOOST: the chip opens the chooser (HUD `features.anteTiers`)
+ *   super_ante        5x, not a buy     -> a SECOND "activate" tier FIVE-ALARM BOOST: its own card and chooser row;
+ *                                          a chooser tier arms only on CONFIRM, which names the per-spin price
+ *                                          (HUD `features.anteTierConfirm`); NO BOOST turns it off in one press
+ *   alarm_call        15x, isBuyBonus   -> buy card — ALARM CALL
+ *   rescue            25x, isBuyBonus   -> buy card — RESCUE SPINS
  *   backdraft_spins   50x, isBuyBonus   -> buy card — BACKDRAFT SPINS
- *   inferno           90x, isBuyBonus   -> buy card — INFERNO RESCUE
- * (costs: the frozen math's MODE_COSTS, read from game/config.ts — never from this comment). Four cards in the sheet,
- * cost-ascending (contract v1.2.1 §2: the installed HUD sorts buy cards by price); the ante has its own card too.
+ *   inferno           100x, isBuyBonus  -> buy card — INFERNO RESCUE
+ * (costs: the math's MODE_COSTS at tag math-freeze-v2, read from game/config.ts — never from this comment). Four buy
+ * cards in the sheet, cost-ascending (contract §2: the installed HUD sorts buy cards by price); each ante tier has its
+ * own card too.
  *
  * Bet-mode copy and the board-fit geometry are wired here; the rules sheet is game/rulesContent.ts (std + social
  * wording, figures from config and, once published, the books).
@@ -35,9 +39,10 @@ import { featureOwnsInput, stateAlarmCall } from './game/rescue/stateRescue.svel
 import { stateScene } from './game/fx/stateScene.svelte';
 
 // ---- Ante always starts OFF --------------------------------------------------
-// The HUD restores the ante from localStorage at mount, which would re-arm a 1.5x-cost mode on a reload with no
+// The HUD restores the ante from localStorage at mount, which would re-arm a 3x- or 5x-cost mode on a reload with no
 // confirmation. A mode that changes what a spin costs must be the player's choice in THIS session, so the stored
-// flag is dropped before the HUD reads it.
+// flag is dropped before the HUD reads it. ONE key covers both tiers: the host writes `${gameId}-ante` = 'on' | 'off' |
+// the dearer tier's mode key (host/CrashGalaxyHud.svelte ANTE_KEY); it keeps no other ante key.
 try {
 	if (typeof localStorage !== 'undefined') localStorage.removeItem('piggy_firefighters-ante');
 } catch {
@@ -91,16 +96,31 @@ const stringOverrides = {
 	BUY_INFERNO_DESC: `${FEATURE.rescue} with rooms that fall in one spray: every rescue adds +2× to the multiplier, +1 spin and an instant prize of {prizes}.`,
 
 	// Short on purpose: the HUD titles the ante chip with this once, before the social flag is known, so it must read
-	// the same in both vocabularies.
+	// the same in both vocabularies. {cost} / {chance} come from copySubs (config + CONTRACT), never typed here.
 	BUY_ANTE_TITLE: MODE_TITLE.ante,
 	BUY_ANTE_SPEC: '{chance}× the chance to trigger',
 	BUY_ANTE_DESC: `A toggle, not an entry: spins at {cost}× the base amount with {chance}× the chance to trigger ${FEATURE.rescue} and ${FEATURE.inferno}.`,
+
+	// FIVE-ALARM BOOST (owner, 2026-09-28): the second `activate` tier. Same shape as the ALARM BOOST card; both
+	// bonuses scale by the one {chance} (CONTRACT.superAnteChance), so the copy may say "each" without naming a split.
+	BUY_SUPER_ANTE_TITLE: MODE_TITLE.super_ante,
+	BUY_SUPER_ANTE_SPEC: '{chance}× the chance to trigger',
+	BUY_SUPER_ANTE_DESC: `A toggle, not an entry: spins at {cost}× the base amount with {chance}× the chance to trigger ${FEATURE.rescue} and ${FEATURE.inferno}.`,
+
+	// The ante chooser (two tiers): its heading, its stand-down row and the CONFIRM line in this game's words (the HUD
+	// defaults say "ANTE", which names nothing a PIGGY FIREFIGHTERS player can see). One string each, identical in both
+	// vocabularies: "per spin", never bet / buy / cost / pay. `{price}` is the host's formatted per-spin amount.
+	HUD_ANTE_PICKER_TITLE: 'RAISE THE ALARM',
+	HUD_ANTE_PICKER_OFF: 'NO BOOST',
+	HUD_ANTE_CONFIRM_COST: '{price} PER SPIN UNTIL YOU TURN IT OFF',
 };
 
 const copySubs = (modeKey: string): Record<string, string | number> => {
 	switch (modeKey.toLowerCase()) {
 		case 'ante':
 			return { cost: config.betModes.ante.cost, chance: CONTRACT.anteChance };
+		case 'super_ante':
+			return { cost: config.betModes.super_ante.cost, chance: CONTRACT.superAnteChance };
 		case 'backdraft_spins':
 			return { spins: CONTRACT.backdraftSpins, blazeMin: CONTRACT.backdraftSpinsBlaze[0], blazeMax: CONTRACT.backdraftSpinsBlaze[1], mults: CONTRACT.backdraftSpinsMultText };
 		case 'alarm_call':
@@ -133,14 +153,18 @@ export const hudConfig: HudConfig = {
 	emitter: eventEmitter,
 	isIdle: () => stateXstateDerived.isIdle(),
 
-	// One ante (ALARM BOOST): no tier chooser. The buy plates are painted art, drawn smooth.
-	features: { anteTiers: false, smoothCardArt: true },
+	// TWO ante tiers (ALARM BOOST 3x, FIVE-ALARM BOOST 5x): the chip opens the HUD's chooser, each tier gets its own
+	// card, arming one disarms the other. anteTierConfirm: a press in the chooser only SELECTS a tier; a CONFIRM naming
+	// "{price} PER SPIN UNTIL YOU TURN IT OFF" arms it (the platform requires a confirmation before a high-cost mode
+	// activates). smoothCardArt: the buy plates are painted art, drawn smooth. All three are per-game opt-ins.
+	features: { anteTiers: true, anteTierConfirm: true, smoothCardArt: true },
 
 	// Feature-card art: one 768x512 webp per mode, no baked text (the HUD draws title, price and rules over it), the
 	// art lane's plates under static/assets/buycards (tools/art/derive_cards.py); basenames are kebab-case.
 	assets: { buyCardDir: './assets/buycards', buyCardExt: 'webp' },
 	betModeArt: {
 		ante: 'ante',
+		super_ante: 'super-ante',
 		backdraft_spins: 'backdraft-spins',
 		alarm_call: 'alarm-call',
 		rescue: 'rescue',

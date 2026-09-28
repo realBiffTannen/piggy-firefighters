@@ -8,10 +8,15 @@
 
 export const GAME_TITLE = 'PIGGY FIREFIGHTERS';
 
+/** The (fictional) department Station 13 belongs to (theme §1): on the chief's shield and in the splash copy. */
+export const DEPARTMENT = 'Trotterville Fire Department';
+export const STATION = 'Station 13';
+
 /** Bet-mode titles (theme §5), keyed by the internal bet-mode key. Used verbatim on buy cards, mode cards and rules
  *  headings. */
 export const MODE_TITLE = {
 	ante: 'ALARM BOOST',
+	super_ante: 'FIVE-ALARM BOOST',
 	backdraft_spins: 'BACKDRAFT SPINS',
 	alarm_call: 'ALARM CALL',
 	rescue: 'RESCUE SPINS',
@@ -21,6 +26,7 @@ export const MODE_TITLE = {
 /** The same names in running text (rules sentences, card subtitles, aria text). */
 export const FEATURE = {
 	ante: 'Alarm Boost',
+	superAnte: 'Five-Alarm Boost',
 	backdraftSpins: 'Backdraft Spins',
 	alarmCall: 'Alarm Call',
 	rescue: 'Rescue Spins',
@@ -64,7 +70,6 @@ export const SYMBOL_NAME: Record<string, string> = {
 export const CHARACTER = {
 	chief: 'Chief Hamm',
 	rookie: 'Sprocket',
-	dog: 'Ember',
 	family: 'the Trotter family',
 } as const;
 

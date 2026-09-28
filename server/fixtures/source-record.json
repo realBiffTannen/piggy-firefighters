@@ -2,22 +2,23 @@
   "kind": "actual_model_simulations_and_canonical_bank_compositions",
   "source_sha256": {
     "games/piggy_firefighters/__init__.py": "d21b8e84f71d4adb0b435f65201231b3f5f6a557d57351f22fe7ea68712b96fc",
-    "games/piggy_firefighters/game_banks.py": "45f185b63e302e27af3a5cba16ffd991cf1a2a22552b63cff856ace62a583aaa",
+    "games/piggy_firefighters/game_banks.py": "9b986ef80d95c19ec977884fe74b936fc0b2558a17270509eb3a12676be3f337",
     "games/piggy_firefighters/game_calculations.py": "5d2e6e750d780ccd02b699cc6ffe121ba0ff678c22b9ff97482172a90541aebe",
-    "games/piggy_firefighters/game_config.py": "ba3f745ec1fc3cc611a53726a9ec6c65bd792ee42a7b938ec409e2e3ffc62ecc",
+    "games/piggy_firefighters/game_config.py": "af1eb8f273473eb6a1dd6b2460b0890eb3f2b2544480349066258311ad917022",
     "games/piggy_firefighters/game_events.py": "56d8e2338281195326d9ce4f95f6b2048ae7e9938e6751d181ec26c0c17e750c",
-    "games/piggy_firefighters/game_executables.py": "2ab387dc05019f29d389e545f5182575815016a6838ee62b801956af402d3ef2",
-    "games/piggy_firefighters/game_override.py": "f05ad91fd2701763c7e291b3ec5a53eba0428772affe3628227d6309dda622bb",
+    "games/piggy_firefighters/game_executables.py": "688de3e7568c67dcdeb89b5022ccc277127cb53d0ef7be7c49500ab7d8384002",
+    "games/piggy_firefighters/game_override.py": "2a50cbd4cee94cc5fa73422a06298cbcaf31a8fe25edc3118bc32c3c81e1147f",
     "games/piggy_firefighters/game_paytable.py": "4bb856f47d31eedbd6b95dfb61c84feb6a3bb9d6cbc552990058530925cc70b7",
-    "games/piggy_firefighters/game_weights.py": "10d96b35f80a8e768fb31ef8b958b554326a807a0e19d4be632674cdf256190c",
-    "games/piggy_firefighters/gamestate.py": "b4fd66bd1e5b198c4ad8c4176c110d47c546d4ef2fe60a16e0a10748495882ec",
-    "games/piggy_firefighters/run.py": "e58746fad3a6a3d15aac268b5c84824ae3876a6f25b80e1b00779d4af80e6e54",
+    "games/piggy_firefighters/game_weights.py": "dd9689ccbf1b92a41caaf235cfd512f355d033deff8c41ec064b71628dcbebfe",
+    "games/piggy_firefighters/gamestate.py": "7a1dc54385af698f708b351a8c9ebc20c7b4ebba291f8d7a09197bcece109fbc",
+    "games/piggy_firefighters/run.py": "428b04ecd72f65062984f3a01ad5a608fea865b92de0bef3279be80beb927fc5",
     "games/piggy_firefighters/reels/BR0.csv": "8fadacab99f3a01696b5d292c54a3299b2b5ae6e4c69174150580d395069f5ed",
     "games/piggy_firefighters/reels/BRA.csv": "c38951682e9e39907aa98ec584c9cb65847bbf58be5be5566a9acf6e09344e7e",
     "games/piggy_firefighters/reels/BRB.csv": "8396f996a5fe321fecd58511d2a10668693cb69bc53dd1b68b9de55990a4acb2",
-    "games/piggy_firefighters/reels/FR0.csv": "ede46f2e9ab61a5061b51b6893f2a00e1504dda77cf73a7f54b08e6edd1dd9e4",
-    "games/piggy_firefighters/reels/FRI.csv": "f1407725a36cf817f5991c18727f87bbd5fff77f614f4faceb3dc10736d3c03b",
-    "games/piggy_firefighters/tools/make_reels.py": "db4dbc48276468a069aef7a76782be4520c99b8f6862ee0391bd0bd30d045e95",
+    "games/piggy_firefighters/reels/BRS.csv": "c38951682e9e39907aa98ec584c9cb65847bbf58be5be5566a9acf6e09344e7e",
+    "games/piggy_firefighters/reels/FR0.csv": "290401862adcf5d88b0af06f54e7f28f34dcbbd89e4bf010b0f536b6ef7bbc79",
+    "games/piggy_firefighters/reels/FRI.csv": "9b36277a3cba5b4716cd596f50a5202e67c397444cfb31ff661c5b7146b789ae",
+    "games/piggy_firefighters/tools/make_reels.py": "a68236cb5d911a0ca3c7ace0de30cfa54556422a3c23da236f00b1d12a9d264b",
     "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "src/calculations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "src/calculations/board.py": "4a32f7b911cc2c4152dcebc9460868b678e1c098483b71536ec74b09ce8245ee",
@@ -91,7 +92,7 @@
     },
     "alarm_call_inferno": {
       "mode": "alarm_call",
-      "publication_row_id": 350002,
+      "publication_row_id": 100002,
       "criterion": "bank_alarmCall_1",
       "origin": {
         "type": "canonical_bank_composition",
@@ -100,7 +101,7 @@
         "source_simulation_seed": 1,
         "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab"
       },
-      "sha256": "83a41d213fde7befba7d2154794b8402f203b3b1e820264aa36c3ede4c8ae78e"
+      "sha256": "32d174fec54ab2bc07f7586fbb46652718a9927ff7df1c6b6fcdb0055a4edb9d"
     },
     "alarm_call_rescue": {
       "mode": "alarm_call",
@@ -111,9 +112,71 @@
         "bank_key": "rescue_10",
         "source_book_id": 1,
         "source_simulation_seed": 1,
-        "canonical_event_sha256": "c0e914da83478bab57db1d2fbe7e32ddfac60958b568e47a14dbefb81c5339b8"
+        "canonical_event_sha256": "8670f4389fe181990cd99b7a120dd583acd2eb098c0a4ec9ddcd868f60e0e904"
       },
-      "sha256": "4cf5c92571247bb5663e40b8ee3963c750565752537c1ff45e7049afdb987e3e"
+      "sha256": "4e17f53e92d818b3fcd67f06dcb50d4b719e6dd512c6d016f6c7d90b06cca642"
+    },
+    "ante_trigger_inferno": {
+      "mode": "ante",
+      "publication_row_id": 220001,
+      "criterion": "bank_natural_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "inferno_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "ante",
+          "reel_set": "BRA",
+          "actual_stops": [
+            233,
+            356,
+            405,
+            212,
+            295
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "sha256": "69a10cacb58da6dc8708eac53b73b3b8b57d714590d60e3506dff466d140ee64"
+    },
+    "ante_trigger_rescue": {
+      "mode": "ante",
+      "publication_row_id": 100001,
+      "criterion": "bank_natural_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "rescue_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "8670f4389fe181990cd99b7a120dd583acd2eb098c0a4ec9ddcd868f60e0e904",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "ante",
+          "reel_set": "BRA",
+          "actual_stops": [
+            177,
+            374,
+            116,
+            226,
+            325
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "sha256": "277c37ac1839aabd905cd1e5300a2d5c48f4b656ab4e558a6c2b3953be9218a9"
+    },
+    "ante_win": {
+      "mode": "ante",
+      "publication_row_id": 0,
+      "criterion": "tail_max",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "sha256": "d23da74c711694873cded795ed464a0d4df4683c96eaf56b59e6c773db49ea2d"
     },
     "backdraft_max_win": {
       "mode": "backdraft_spins",
@@ -123,7 +186,7 @@
         "type": "direct_model_simulation",
         "simulation_seed": 0
       },
-      "sha256": "932a4aa1ac227caafbdde73d13bb9a4070599052150fcd3eb29f6c3285d5b68a"
+      "sha256": "312035554b94399bf2fbc2d0665255650850fe5b34769d4b2f935d871df49c96"
     },
     "backdraft_spins": {
       "mode": "backdraft_spins",
@@ -167,7 +230,7 @@
     },
     "base_trigger_inferno": {
       "mode": "base",
-      "publication_row_id": 570001,
+      "publication_row_id": 220001,
       "criterion": "bank_natural_1",
       "origin": {
         "type": "canonical_bank_composition",
@@ -189,18 +252,18 @@
           "line_award_x100": 0
         }
       },
-      "sha256": "7aba836b6b5628ac55ec90dca516c13b9007ea1039901aba8f0c36f482193f9e"
+      "sha256": "912a8613f44f896cfbbb80a9e088279d291b926bad543737b1cefe58199b5d53"
     },
     "base_trigger_rescue": {
       "mode": "base",
-      "publication_row_id": 200001,
+      "publication_row_id": 100001,
       "criterion": "bank_natural_1",
       "origin": {
         "type": "canonical_bank_composition",
         "bank_key": "rescue_10",
         "source_book_id": 1,
         "source_simulation_seed": 1,
-        "canonical_event_sha256": "c0e914da83478bab57db1d2fbe7e32ddfac60958b568e47a14dbefb81c5339b8",
+        "canonical_event_sha256": "8670f4389fe181990cd99b7a120dd583acd2eb098c0a4ec9ddcd868f60e0e904",
         "prefix": {
           "sampling_seed": 1,
           "mode": "base",
@@ -215,7 +278,7 @@
           "line_award_x100": 0
         }
       },
-      "sha256": "cfbb64b90d693a695eb39fa7b5c659d7ec367b5423b80a6105772ba0b03ddee6"
+      "sha256": "92577f34907fc2e54ac0db48614531b347a99da40327695cb2d4845cbee225aa"
     },
     "base_win": {
       "mode": "base",
@@ -255,17 +318,17 @@
         "type": "direct_model_simulation",
         "simulation_seed": 0
       },
-      "sha256": "a3e127119fedc191e36b10c7d194fada20dcd834e877d8cc6b2b900ba6a97f5f"
+      "sha256": "55f43e3242f7719a9d3f942a1a33f12b13d99d4ea8dc3be7fe2ba2a253cb93f7"
     },
     "rescue_building_cleared": {
       "mode": "rescue",
-      "publication_row_id": 25,
+      "publication_row_id": 11,
       "criterion": "ordinary",
       "origin": {
         "type": "direct_model_simulation",
-        "simulation_seed": 25
+        "simulation_seed": 11
       },
-      "sha256": "5109c053d3c8a3e3b90417782e2464c6e0f511e58a1fb4fa48805275aa11687c"
+      "sha256": "4991879aafe3cfec96bdbca6d2e464f9ba975ddd37bb334eafd9e7ad498cf5fd"
     },
     "rescue_buy": {
       "mode": "rescue",
@@ -275,7 +338,69 @@
         "type": "direct_model_simulation",
         "simulation_seed": 1
       },
-      "sha256": "68f89d63a59f0a00882fd470b848ce3608d6e01c2af188e9131c11bb0e9c519c"
+      "sha256": "d92ad12cef0ae05bad044e3c11091347a6ab657a607782830b09c1f4e97fc7af"
+    },
+    "super_ante_trigger_inferno": {
+      "mode": "super_ante",
+      "publication_row_id": 220001,
+      "criterion": "bank_natural_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "inferno_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "4ddfc1f28d8d694f7abadfda3cc43f23f30d6ede7b27e96d823ec586ace593ab",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "super_ante",
+          "reel_set": "BRS",
+          "actual_stops": [
+            246,
+            160,
+            131,
+            459,
+            421
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "sha256": "1f6e54c9943687403eb570d563bd837113284b92891649ac6bd74acf3e2a42f1"
+    },
+    "super_ante_trigger_rescue": {
+      "mode": "super_ante",
+      "publication_row_id": 100001,
+      "criterion": "bank_natural_1",
+      "origin": {
+        "type": "canonical_bank_composition",
+        "bank_key": "rescue_10",
+        "source_book_id": 1,
+        "source_simulation_seed": 1,
+        "canonical_event_sha256": "8670f4389fe181990cd99b7a120dd583acd2eb098c0a4ec9ddcd868f60e0e904",
+        "prefix": {
+          "sampling_seed": 1,
+          "mode": "super_ante",
+          "reel_set": "BRS",
+          "actual_stops": [
+            153,
+            216,
+            279,
+            271,
+            238
+          ],
+          "line_award_x100": 0
+        }
+      },
+      "sha256": "763b4116bf1f3cb52876a8083461b49ecdb6203c3e84164eec1f70ba24ab4ba3"
+    },
+    "super_ante_win": {
+      "mode": "super_ante",
+      "publication_row_id": 0,
+      "criterion": "tail_max",
+      "origin": {
+        "type": "direct_model_simulation",
+        "simulation_seed": 0
+      },
+      "sha256": "d9285bee6359c818fc1bf5b716aa3998ae5201d58b31b06c3a26d30dfb92badd"
     }
   }
 }

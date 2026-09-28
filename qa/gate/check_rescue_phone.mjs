@@ -242,7 +242,7 @@ is('turbo shortens the wait', plaqueAlpha(900, 0.6), 1);
 
 // ---- the rail TOTAL takes each prize in at its rescue (no TOTAL that disagrees with the plaques), never past the cap --
 is('running total adds the prize', runningTotal(0, 500, WIN_CAP_BOOKED), 500);
-is('running total clamps at 15,000x', runningTotal(WIN_CAP_BOOKED - 100, 500, WIN_CAP_BOOKED), WIN_CAP_BOOKED);
+is('running total clamps at 20,000x', runningTotal(WIN_CAP_BOOKED - 100, 500, WIN_CAP_BOOKED), WIN_CAP_BOOKED);
 is('no prize, no change', runningTotal(1100, undefined, WIN_CAP_BOOKED), 1100);
 
 is('fitWidth shrinks only', [fitWidth(200, 100), fitWidth(50, 100), fitWidth(0, 100)], [0.5, 1, 1]);

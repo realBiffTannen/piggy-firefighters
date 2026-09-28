@@ -6,7 +6,7 @@
  * informational only):
  *
  *   1. precedence — the stake check first: W <= S  ->  tier 0 (neutral: meter, line highlights and balance stay, but
- *      no rung, no celebration stinger, no plate). A 1.2x return on a 1.5x ante spin, or 50x on a 90x Inferno buy,
+ *      no rung, no celebration stinger, no plate). A 2.4x return on a 3x ante spin, or 50x on a 100x Inferno buy,
  *      is tier 0.
  *   2. then the floors, in BASE-BET units (W/B), never in cost units:
  *        tier 1 ordinary win   S < W < 15B
@@ -14,7 +14,7 @@
  *        tier 3 HUGE WIN       >= 30B
  *        tier 4 MEGA WIN       >= 50B
  *        tier 5 EPIC WIN       >= 100B
- *        tier 6 MAX WIN        the 15,000x cap (only on cap evidence: a `wincap` event)
+ *        tier 6 MAX WIN        the 20,000x cap (only on cap evidence: a `wincap` event)
  *
  * The numbering 0..6 is the `animBeat winTier` numbering (docs/ANIMATION_CONTRACT.md). Rungs play ONCE per round, on
  * the round total (base finalWin total, freeSpinEnd, backdraftSpinsEnd); per-spin wins inside a bonus get the ordinary
@@ -25,8 +25,8 @@
  */
 
 /** The max win, x the base bet (`math/games/piggy_firefighters/game_config.py` wincap; config.ts `max_win`). */
-export const WIN_CAP_X = 15000;
-/** The max win in BOOKED units (x100 of the base bet): 1,500,000 = 15,000x. Every drawn figure that could pass it
+export const WIN_CAP_X = 20000;
+/** The max win in BOOKED units (x100 of the base bet): 2,000,000 = 20,000x. Every drawn figure that could pass it
  *  (the WinRungs sign) is drawn as min(figure, WIN_CAP_BOOKED); booked amounts and settlement are never changed. */
 export const WIN_CAP_BOOKED = WIN_CAP_X * 100;
 
@@ -48,7 +48,7 @@ export const TIER_MAX: WinTier = 6;
  * The celebration tier of a round.
  * @param wBooked  booked round total W (x100 of the base bet)
  * @param costX    the charged cost S of the selected mode, x the base bet (config.betModes[mode].cost)
- * @param capped   the round hit the 15,000x cap (a `wincap` event) — the ONLY way to tier 6
+ * @param capped   the round hit the 20,000x cap (a `wincap` event) — the ONLY way to tier 6
  */
 export const roundTier = (wBooked: number, costX: number, capped: boolean): WinTier => {
 	const w = Number(wBooked) || 0;

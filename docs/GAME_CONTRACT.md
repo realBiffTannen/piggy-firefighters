@@ -1,5 +1,8 @@
-# Piggy Firefighters — game contract (v1.2.2 — FROZEN at math-freeze-v1, measured 2026-09-25)
+# Piggy Firefighters — game contract (v1.3 — owner re-price 2026-09-28, re-frozen at math-freeze-v2)
 
+v1.3 (2026-09-28, owner re-price): max win **20,000x** in every mode; `ante` 3x at **exactly 5x** each bonus; NEW
+`super_ante` 5x (**FIVE-ALARM BOOST**, reel set `BRS`) at **exactly 15x**; buy costs SET at 15x / 25x / 50x / 100x with
+the bonus densities tuned to them; Alarm Call routes 48% / 3% / 49%; 100,000 simulation trials per mode (§1, §2, §3, §9).
 v1.2.2 (2026-09-25): win-tier precedence — tier 0 whenever W ≤ S (charged cost), then base-bet floors (§8).
 v1.2.1 (2026-09-25, Codex copy audit F): card order = ascending price, Backdraft scope and WILD placement wording made exact (§2–§4).
 v1.2 (2026-09-25, Codex M2): shared canonical bonus banks, simulation trials vs publication rows (§2).
@@ -10,32 +13,43 @@ Wilds so 15,000x is genuinely reachable (§7); volatility bands re-derived from 
 Single source of truth for math, runtime book events, UI copy and help screens. Player-facing title
 **PIGGY FIREFIGHTERS**; internal game id `piggy_firefighters`. Platform name in player copy is **Engine**
 (never "Stake Engine"). Owner brief (2026-09-25): a **line-based** game in the Piggy family look and feel with a
-firefighting theme, **max win 15,000x**, **25–35% lower volatility than piggy-builders-3**, other math at the
-lanes' discretion. Numeric parameters marked *(tuned)* are owned by the math lane and become final only when
-measured from published books. The contract itself (rules, ids, event names, shapes) is owned by Claude and is
-FROZEN by the commit tagged `math-freeze-v1`; after that tag only §9 (measured figures) may change without a
-new contract version.
+firefighting theme, **max win 15,000x** (raised by the owner to **20,000x** on 2026-09-28, v1.3), **25–35% lower
+volatility than piggy-builders-3**, other math at the lanes' discretion. Numeric parameters marked *(tuned)* are
+owned by the math lane and become final only when measured from published books. The contract itself (rules, ids,
+event names, shapes) is owned by Claude and was FROZEN by the commit tagged `math-freeze-v1`, then re-frozen at
+`math-freeze-v2` with the v1.3 re-price; after that tag only §9 (measured figures) may change without a new
+contract version.
 
 ## 1. Definitions
 
 `B` base bet · `S` cost of the selected mode · `W` total gross return of the whole round including its bonus.
 RTP = `E[W]/S`; volatility = `SD(W/S)`; sub-hit = `0 < W < S`; regular hit = `W >= S`; any-win = `W > 0`. All
 prizes below are multiples of `B` ("x"). Book amounts are integers ×100 of `B`; LUT payouts are multiples of 10
-(0.1x). Every mode pays at most **15,000x** (`wincap`); a round whose gross return would exceed it is capped
-and emits `wincap`.
+(0.1x). Every mode pays at most **20,000x** (`wincap`; 15,000x before v1.3); a round whose gross return would exceed
+it is capped and emits `wincap`.
 
-## 2. Modes (authoritative ids; costs derived, RTP 96.7% every mode)
+## 2. Modes (authoritative ids; costs SET by the owner 2026-09-28, RTP 96.7% every mode)
 
 | Mode id | Cost `S` | Kind (HUD) | Player title | What it is |
 |---|---|---|---|---|
 | `base` | 1x | default spin | — | 5 reels × 3 rows, **20 fixed lines**, left to right. Backdraft modifier. 3+ ALARM trigger Rescue Spins; ≥1 GOLDEN ALARM among them → Inferno Rescue. |
-| `ante` | 1.5x | activate toggle | **ALARM BOOST** | Reel set `BRA`: **exactly 2x** the base probability of each bonus (Rescue Spins and Inferno Rescue separately); Backdraft rate unchanged. |
-| `backdraft_spins` | 50x *(tuned target; M1 organic 109x — see note)* | buy card | **BACKDRAFT SPINS** | 5 spins on reel set `BRB` (no alarms); **every spin gets a Backdraft** of 3–5 Blaze Wilds *(tuned weights)*, each carrying a **multiplier x2/x3/x5/x10** *(tuned)*; a line's win is multiplied by the SUM of the Blaze Wild multipliers on it (§7). |
-| `alarm_call` | 12x *(derived, M1)* | buy card | **ALARM CALL** | One card: Rescue Spins (share solved to close RTP, ≈50%) / Inferno Rescue (**3% fixed**) / **False Alarm** (the rest; pays 0). An awarded bonus plays exactly like the bought one. |
-| `rescue` | 18x *(derived, M1)* | buy card | **RESCUE SPINS** | Direct buy of the tier-1 bonus, 10 spins (§5). |
-| `inferno` | 90x *(derived, M1)* | buy card | **INFERNO RESCUE** | Direct buy of the tier-2 bonus, 10 spins (§6). Also reachable naturally (GOLDEN ALARM) and from Alarm Call. |
+| `ante` | 3x | activate toggle (tier 1 of the ante chooser) | **ALARM BOOST** | Reel set `BRA`: **exactly 5x** the base probability of each bonus (Rescue Spins and Inferno Rescue separately); Backdraft rate unchanged. Never on together with `super_ante`. |
+| `super_ante` | 5x | activate toggle (tier 2 of the same chooser) | **FIVE-ALARM BOOST** | Reel set `BRS`: **exactly 15x** the base probability of each bonus (Rescue Spins and Inferno Rescue separately); Backdraft rate unchanged. HUD: the ante chip opens a chooser holding both tiers; a press SELECTS a tier and CONFIRM (naming the per-spin amount) arms it; arming one disarms the other; NO BOOST returns to `base`. Never on together with `ante`. |
+| `backdraft_spins` | 50x | buy card | **BACKDRAFT SPINS** | 5 spins on reel set `BRB` (no alarms); **every spin gets a Backdraft** of 3–5 Blaze Wilds *(tuned weights)*, each carrying a **multiplier x2/x3/x5/x10** *(tuned)*; a line's win is multiplied by the SUM of the Blaze Wild multipliers on it (§7). |
+| `alarm_call` | 15x | buy card | **ALARM CALL** | One card: Rescue Spins (**48%**, 144/300) / Inferno Rescue (**3% fixed**, 9/300) / **False Alarm** (**49%**, 147/300; pays 0). An awarded bonus plays exactly like the bought one. |
+| `rescue` | 25x | buy card | **RESCUE SPINS** | Direct buy of the tier-1 bonus, 10 spins (§5). |
+| `inferno` | 100x | buy card | **INFERNO RESCUE** | Direct buy of the tier-2 bonus, 10 spins (§6). Also reachable naturally (GOLDEN ALARM) and from Alarm Call. |
 
-Buy costs are DERIVED: `cost = mean(bonus) / 0.967`, rounded to a whole multiple of the bet the HUD can show, then
+**Owner re-price 2026-09-28 (v1.3).** Costs are now SET by the owner — `alarm_call` 15x, `rescue` 25x,
+`backdraft_spins` 50x, `inferno` 100x; `ante` 3x, `super_ante` 5x — and the bonus reel densities are tuned so each
+bonus mean lands on `0.967 × cost` exactly. The Alarm Call routes are 144 / 9 / 147 of 300 (Rescue 48%, Inferno 3%,
+False Alarm 49%). Each mode is simulated with **100,000 trials** (superseding the 350,000 below); publication row
+counts follow the same law as before (the composed `alarm_call` file, the shared banks). The natural boost factors are
+integers by construction (`math/games/piggy_firefighters/game_banks.py natural_factors` / `ALARM_FACTORS`), so the
+ante / super ante rates are exactly 5x / 15x the base rates. The paragraph that follows records how the 2026-09-25
+costs were DERIVED and is kept as history.
+
+Buy costs were DERIVED (v1.2): `cost = mean(bonus) / 0.967`, rounded to a whole multiple of the bet the HUD can show, then
 the bonus reel densities are tuned so the mean lands on `0.967 × cost` exactly (the solver closes the last
 fraction with a tilt on the bonus books, never on the bought/natural split). **Pricing decision after Codex's M1
 (2026-09-25):** the organic means of the frozen rules are adopted for `rescue` (17.58x → **18x**), `inferno`
@@ -46,8 +60,9 @@ weights (within 3–5), keeping `mult 10` at ≥ 1.5% weight so the cap route st
 without breaking reachability, the derived organic cost is adopted instead and recorded here. Final costs are
 whatever `math/publish/index.json` carries after the freeze; the frontend reads them from `config.ts`, which must
 match that file byte for byte. Mode order in the HUD sheet = **ascending price** (the installed HUD sorts buy cards by price; no seam is
-faked): Alarm Call (12x), Rescue Spins (18x), Backdraft Spins (50x), Inferno Rescue (90x); Alarm Boost is the ante
-toggle. Every displayed and charged amount comes from the final `math/publish/index.json`, never from a comment.
+faked): Alarm Call (15x), Rescue Spins (25x), Backdraft Spins (50x), Inferno Rescue (100x); Alarm Boost (3x) and
+Five-Alarm Boost (5x) are the two tiers of the ante chooser, each with its own card. Every displayed and charged amount
+comes from the final `math/publish/index.json`, never from a comment.
 
 **Bonus law and publication counts (v1.2, 2026-09-25, Codex M2).** An awarded bonus plays exactly like the bought
 one: the FULL conditional event law of a bonus (every spin, douse, rescue, prize, spins added) is identical
@@ -68,8 +83,10 @@ Targets (base and ante measured against their own cost):
 - RTP exact from the LUT in `[0.9665, 0.9670]` for every mode.
 - **Volatility (owner rule):** base `SD/cost` **25–35% below piggy-builders-3's latest published base figure**.
   Codex recomputed the donor v2.7 LUTs (commit `e3ff80d54c5c8033312fa6cf79661617b3ae94f7`, hashes match its
-  MANIFEST): base SD/cost **20.5820**, ante **13.5190**. Target bands: **base 13.38–15.44 (aim 14.4)**, **ante
-  8.79–10.14 (aim 9.5)**. (v1.0 quoted the v2.4 report's 34.83 / 21.46, which are superseded.)
+  MANIFEST): base SD/cost **20.5820**, ante **13.5190**. Target bands: **base 13.38–15.44 (aim 14.4)** (unchanged
+  by v1.3); the **ante** band (v1.2: 8.79–10.14, aim 9.5, for the 1.5x / 2x ante) and the new **super ante** band are
+  re-measured against the 3x / 5x tiers — to be filled from the 2026-09-28 production report (§9). (v1.0 quoted the
+  v2.4 report's 34.83 / 21.46, which are superseded.)
 - Base any-win 33–40%, regular hit (≥ 1x) 12–18%, sub-hit ≥ 15% *(tuned)*.
 - Platform limits (checked by the math lane on every mode): etl10k ≤ 0.8, etl40b ≤ 0.9, cvar ≤ 800, unique
   books, payouts multiples of 0.1x, no cost multiplier above 1000x, **max win genuinely reachable in every mode by
@@ -79,8 +96,9 @@ Targets (base and ante measured against their own cost):
   the real line table: a full-H1 `BRB` window with all five middle-row cells ignited at x10 pays 9,875x in one
   spin, so two such spins in five reach the cap — the model keeps genuine strip stops for the capped fixture).
 - Natural trigger rates *(tuned targets)*: Rescue Spins 1 in 150–180 base spins; Inferno Rescue 1 in 1,800–2,500;
-  Backdraft 1 in 35–50; ante exactly 2x for both bonuses. Max win: base ≈ 1 in 5–10 million; bought Inferno
-  1 in 250,000; bought Rescue 1 in 1,000,000; Alarm Call = its route mix.
+  Backdraft 1 in 35–50; ante exactly 5x and super ante exactly 15x for both bonuses (v1.3; the model lands base at
+  1 in 165 / 1 in 2,100, so ante 1 in 33 / 1 in 420 and super ante 1 in 11 / 1 in 140). Max win: base ≈ 1 in 5–10
+  million; bought Inferno 1 in 250,000; bought Rescue 1 in 1,000,000; Alarm Call = its route mix.
 
 ## 3. Symbols and paytable (20 lines, pays in x TOTAL bet per line)
 
@@ -102,8 +120,8 @@ pays as H1 on a line of its own. Lines pay left to right from reel 1.
 | `GALARM` | **Golden Alarm** (gold bell, rare) | scatter, non-paying, counts as an ALARM in every way; routes the trigger to Inferno Rescue | — |
 
 Blaze Wilds created by a Backdraft (§4) are ordinary `W` in the evaluated board; the frontend draws them on fire.
-Reel sets: `BR0` base, `BRA` ante, `BRB` Backdraft Spins (no ALARM/GALARM), `FR0` Rescue Spins, `FRI` Inferno
-Rescue (no ALARM/GALARM in either; W on all five reels).
+Reel sets: `BR0` base, `BRA` ante, `BRS` super ante (v1.3; alarm density 15x base as `BRA` is 5x), `BRB` Backdraft
+Spins (no ALARM/GALARM), `FR0` Rescue Spins, `FRI` Inferno Rescue (no ALARM/GALARM in either; W on all five reels).
 
 ## 4. Base game
 
@@ -136,7 +154,7 @@ stop and before line wins are evaluated:
 3. **Building cleared.** When all five rooms are rescued in the same or an earlier spin, the crew moves to the
    **next building**: all rooms re-lit at level 2, **+5 spins**, multiplier kept (it never resets).
 4. **Pay.** Line wins of THIS spin are multiplied by the multiplier AFTER this spin's rescues.
-The bonus ends when spins run out or the cap is reached. The multiplier has no ceiling; the 15,000x cap has.
+The bonus ends when spins run out or the cap is reached. The multiplier has no ceiling; the 20,000x cap has.
 
 ## 6. Inferno Rescue (tier 2)
 
@@ -145,7 +163,7 @@ rooms at **fire level 1** (one W rescues a room), **+2 multiplier** per rescue, 
 per building cleared, and every rescued pig also carries an **instant prize** drawn from `{5: 50, 10: 30, 20: 14,
 50: 5, 100: 1}` x *(tuned)*, paid immediately and NOT multiplied. Same events with `bonus: "inferno"`.
 **Cap clipping.** Every amount written into a book (`douse.rescues[].prize`, line wins, `setWin`, `setTotalWin`) is
-already clipped to the remaining headroom under 15,000x, so the frontend adds what the book says and never draws
+already clipped to the remaining headroom under 20,000x, so the frontend adds what the book says and never draws
 an uncapped figure; raw pre-cap totals, if the math lane records them, are optional metadata the client ignores.
 
 ## 7. Alarm Call and Backdraft Spins
@@ -184,7 +202,7 @@ Standard SDK events keep their SDK shapes (`reveal`, `winInfo`, `setWin`, `setTo
 | `backdraftSpinsStart` / `backdraftSpinsEnd` | `{spins}` / `{amount}` | Backdraft Spins bookends |
 
 Event order when capped: `… winInfo → wincap → setWin → setTotalWin → (rescueEnd) → freeSpinEnd → finalWin`;
-the frontend shows the capped 15,000x on every meter (the family's r6 lesson: never draw an uncapped total).
+the frontend shows the capped 20,000x on every meter (the family's r6 lesson: never draw an uncapped total).
 
 **Win-tier rule (one table for every round; denominators and precedence pinned v1.2.2).** With `B` the base bet and
 `S` the charged cost of the selected mode (§1), the celebration tier is derived CLIENT-SIDE from the booked round
@@ -192,10 +210,10 @@ total `W` (family ruling 2026-09-24):
 1. **Precedence — the stake check first:** if `W ≤ S` the round is **tier 0** (neutral: ordinary accounting stays
    visible — win meter, line highlights, balance — but no celebratory rig clip, audio stinger or plate). This is the
    "no celebration at or below the stake" rule of `docs/AUDIO_DESIGN_NOTES.md` applied to what the player actually
-   paid: a 1.5x ante spin returning 1.2x, or a 90x Inferno buy returning 50x, is tier 0 even though 50x clears the
+   paid: a 3x ante spin returning 2.4x, or a 100x Inferno buy returning 50x, is tier 0 even though 50x clears the
    MEGA floor.
 2. **Then the floors, in BASE-BET units (`W/B`), never in cost units:** ordinary win (tier 1) when `S < W < 15B`;
-   BIG WIN ≥ 15B (tier 2); HUGE WIN ≥ 30B (3); MEGA WIN ≥ 50B (4); EPIC WIN ≥ 100B (5); MAX WIN at the 15,000x cap
+   BIG WIN ≥ 15B (tier 2); HUGE WIN ≥ 30B (3); MEGA WIN ≥ 50B (4); EPIC WIN ≥ 100B (5); MAX WIN at the 20,000x cap
    (6) — for base rounds and for Rescue/Inferno/Backdraft Spins/Alarm Call totals alike.
 The SDK `winLevel` fields in `setWin`/`freeSpinEnd` are informational; the client never reads them for
 presentation. Per-spin wins inside a bonus get the ordinary win presentation and count into the running total;
@@ -204,18 +222,38 @@ rungs play once, on the round total. The numbering 0..6 is the `animBeat winTier
 
 ## 9. Measured figures (math lane fills from published books)
 
-| Figure | base | ante | backdraft_spins | alarm_call | rescue | inferno |
-|---|---|---|---|---|---|---|
-| RTP (LUT exact) | 0.966999990027 | 0.966999990137 | 0.966999987505 | 0.966999990540 | 0.966999990206 | 0.966999991690 |
-| SD / cost | 14.4000 | 9.5000 | 0.9775 | 2.4410 | 1.4391 | 1.0387 |
-| any-win / regular hit / sub-hit | 38.00% / 16.00% / 22.00% | 37.07% / 6.16% / 30.92% | 99.99% / 34.92% / 65.08% | 54.63% / 27.21% / 27.43% | 99.94% / 30.53% / 69.41% | 99.98% / 30.39% / 69.59% |
-| Rescue Spins trigger | 1/165 (1 in 165.0) | 2/165 (1 in 82.5) | — | share 155/300 = 51.67% | — | — |
-| Inferno trigger | 1/2100 (1 in 2,100) | 1/1050 (1 in 1,050) | — | 9/300 = 3% | — | — |
-| Backdraft rate | 1/40 (0.0250000) | 1/40 (0.0250000) | every spin | — | — | — |
-| max win 15,000x | 1.3333e-7 (1 in 7.5M) | 2.6667e-7 (1 in 3.75M) | 4e-6 (1 in 250,000) | 6.3667e-7 (1 in 1.57M) | 1e-6 (1 in 1,000,000) | 4e-6 (1 in 250,000) |
-| etl10k / etl40b / cvar | 0.0020 / 0.5178 / 378.49 | 0.0040 / 0.7500 / 157.34 | 0.0600 / 0.0600 / 11.31 | 0.0096 / 0.1572 / 36.47 | 0.0150 / 0.0202 / 15.36 | 0.0600 / 0.0600 / 12.23 |
-| books / unique | 940,000 / 940,000 | 940,000 / 940,000 | 350,000 / 350,000 | 700,001 / 700,001 | 350,000 / 350,000 | 350,000 / 350,000 |
+**v1.3 — measured 2026-09-28 from the production LUTs** (`math/games/piggy_firefighters/library/production-100k/report.json`,
+sha256 `f30c729ffcb025fdf9c2db2900d68cc64077dddb2959cd9267712b5778fe3042`; 100,000 simulation trials per mode + 10,000 per auxiliary class = 740,000 trials,
+1,520,001 publication rows; independent audit `qa/codex/math/v2-audit.json` PASS, sha256 `2eb5213b033c4038841163f590caca9dc1f3d018761d37658d0969df30468c4c`;
+promoted to `math/publish/`, `MANIFEST.json` sha256 `988b20d96c8ead74feb09c80ea6ca984b03ca0539d22681b98ed228d014e05a9`; model frozen at `math-freeze-v2` = `10ef51124dd8d7fac81ae11c148e952012177e3f`).
+Amounts are x100 of the base bet; every LUT payout is a multiple of 10 within 0…2,000,000 (20,000x cap). RTP and SD are
+measured against each mode's own charged cost. The trigger and route probabilities are exact by construction (integer
+natural factors 1 / 5 / 15 over 2,310,000; Alarm Call 144 / 9 / 147 over 300).
 
-Measured 2026-09-25 from the M3 production LUTs (`math/games/piggy_firefighters/library/production-350k/report.json`,
-sha256 `4fccb1b7d95ebbd4c09a5509fe3c2be944016e64b3c4ba535250cb9c3a64164e`; independent audit `qa/codex/math/m3-audit.json` PASS;
-promoted to `math/publish/`, `MANIFEST.json`). Full figures: `docs/math/MATH_PF_REPORT.md`.
+| Figure | base | ante | super_ante | backdraft_spins | alarm_call | rescue | inferno |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| cost (x base bet) | 1.0 | 3.0 | 5.0 | 50.0 | 15.0 | 25.0 | 100.0 |
+| RTP (LUT exact) | 0.966999987874 | 0.966999990120 | 0.966999990000 | 0.966999989096 | 0.966999987425 | 0.966999986409 | 0.966999991489 |
+| SD / cost | 14.4000 | 8.0000 | 7.3673 | 1.1054 | 2.4845 | 1.5077 | 1.0898 |
+| any-win / regular hit / sub-hit | 38.00% / 16.00% / 22.00% | 39.04% / 5.98% / 33.06% | 42.11% / 10.30% / 31.80% | 99.99% / 34.99% / 65.00% | 50.98% / 26.39% / 24.60% | 99.96% / 28.92% / 71.04% | 99.99% / 29.83% / 70.16% |
+| Rescue Spins trigger | 1/165 (1 in 165.0) | 1/33 (1 in 33.0) | 1/11 (1 in 11.0) | — | share 144/300 = 48.00% | 1 | — |
+| Inferno trigger | 1/2100 (1 in 2,100.0) | 1/420 (1 in 420.0) | 1/140 (1 in 140.0) | — | share 9/300 = 3.00% | — | 1 |
+| Backdraft rate | 0.0250000 | 0.0250000 | 0.0250000 | every spin | — | — | — |
+| max win 20,000x | 1.3333e-07 (1 in 7,500,000.0) | 6.6667e-07 (1 in 1,500,000.0) | 2.0000e-06 (1 in 500,000.0) | 4.0000e-06 (1 in 250,000.0) | 6.0000e-07 (1 in 1,666,666.7) | 1.0000e-06 (1 in 1,000,000.0) | 4.0000e-06 (1 in 250,000.0) |
+| etl10k / etl40b / cvar | 0.0027 / 0.5161 / 335.53 | 0.0133 / 0.7500 / 79.88 | 0.0400 / 0.7500 / 102.87 | 0.0800 / 0.0800 / 11.35 | 0.0120 / 0.1852 / 35.94 | 0.0200 / 0.0394 / 18.03 | 0.0800 / 0.0800 / 12.35 |
+| actual simulation trials | 100,000 | 100,000 | 100,000 | 100,000 | 100,000 | 100,000 | 100,000 |
+| books / unique | 340,000 / 340,000 | 340,000 / 340,000 | 340,000 / 340,000 | 100,000 / 100,000 | 200,001 / 200,001 | 100,000 / 100,000 | 100,000 / 100,000 |
+| minimum weight | 94,117,940 | 1 | 1,411,769,100 | 4,000,000 | 36,000,000 | 1,000,000 | 4,000,000 |
+
+bank rescue_10: trials 100,000, organic mean 23.5764x, weighted target 24.1750x, cap 1.000e-06
+bank rescue_12: trials 10,000, organic mean 33.9033x, weighted target 33.9033x, cap 1.478e-04
+bank rescue_15: trials 10,000, organic mean 49.7090x, weighted target 49.7090x, cap 6.000e-04
+bank inferno_10: trials 100,000, organic mean 98.1035x, weighted target 96.7000x, cap 4.000e-06
+bank inferno_12: trials 10,000, organic mean 121.2065x, weighted target 121.2065x, cap 1.478e-04
+bank inferno_15: trials 10,000, organic mean 156.8276x, weighted target 156.8276x, cap 6.000e-04
+total seconds 2121.215, threads 8, trials 740,000, rows 1,520,001
+
+Volatility: base keeps its contract band (SD/cost 14.40, pinned); `ante` is pinned at 8.00 and `super_ante` is the
+least-change solution at 7.37 (both with the >= 40x-cost tail mass pinned at 0.75 against the 0.9 platform limit;
+`game_config.py NONBONUS_SD` / `NONBONUS_TAIL40`). The 2026-09-25 (v1.2.2, 15,000x, 350k) figures are in git history
+(`docs/math/MATH_PF_REPORT.md` §M3) and no longer describe the shipped model.

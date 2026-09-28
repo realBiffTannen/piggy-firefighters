@@ -1,4 +1,69 @@
-# Piggy Firefighters — M3 production math report (accepted, audited, promoted)
+# Piggy Firefighters — production math report
+
+## v1.3 production (2026-09-28, owner re-price; accepted, audited, promoted)
+
+**PASS against GAME_CONTRACT v1.3, frozen at `math-freeze-v2` (`10ef51124dd8d7fac81ae11c148e952012177e3f`).** Owner instruction of
+2026-09-28: ALARM BOOST `ante` 3x the bet for exactly 5x the natural chance of each bonus, a second tier FIVE-ALARM BOOST
+`super_ante` 5x for exactly 15x, Alarm Call 15x, Rescue Spins 25x, Backdraft Spins 50x, Inferno Rescue 100x, max win
+20,000x in every mode, 100,000 simulation trials per mode. Production ran on 2026-09-28 (launched 14:56:13 UTC) with the
+pinned interpreter `math/env/bin/python` (Python 3.12.14, NumPy 2.2.5, SciPy 1.15.3, zstandard 0.23.0), eight workers under
+`tools/codex/run_guard.py` (`qa/codex/math/v2-production-memory.json`: COMPLETE, group_empty, peak aggregate RSS 1,117 MiB of
+5,120), and completed with exit 0 in 2,121 s: `report.json.candidate_status == "PASS"`, `source_unchanged == true`, no
+platform violation in any mode. Output tree `math/games/piggy_firefighters/library/production-100k/` (gitignored).
+
+The independent audit `qa/codex/math/audit_publication.py` (updated to the v1.3 plan: seven modes, factors 1/5/15, Alarm
+144/9, cap 2,000,000, 100k/10k/100k) returned **PASS** — `qa/codex/math/v2-audit.json`, sha256 `2eb5213b033c4038841163f590caca9dc1f3d018761d37658d0969df30468c4c`: 740,000
+trials, 1,520,001 rows, 960,000 canonical bank links, every frozen source byte equal to the tag, every book/LUT/link/trial
+hash, all statistical, route and cap gates. Promotion: `tools/math/promote_publish.py` copied `index.json`, seven
+`books_<mode>.jsonl.zst` and seven `lookUpTable_<mode>_0.csv` byte for byte to `math/publish/` (sha256 on both sides, LUT
+rows equal to the report) and wrote `MANIFEST.json` (sha256 `988b20d96c8ead74feb09c80ea6ca984b03ca0539d22681b98ed228d014e05a9`; index sha256 `5aa72518f50ce1f7640db2109191158880303dbc9ae1272b22c741021c586edf`). Books are gitignored.
+
+### What changed in the model (freeze v1 → v2)
+- `MODE_COSTS` 1 / 3 / 5 / 50 / 15 / 25 / 100, `WINCAP` 20,000, `ANTE_FACTORS` {base 1, ante 5, super_ante 15} applied to the
+  same exact natural factors (90/9/1 starting-spin classes over 2,310,000); reel set `BRS` = `BRA`'s strips under its own
+  name so the client can tell the tier from the reveal.
+- Bonus prices: FR0 carries 27 wilds per reel (was 24) and FRI 15 (was 14) so the organic 10-spin means land at the set
+  prices (production: Rescue 23.58x organic vs 24.175 target, Inferno 98.10x vs 96.7; the bank solver closes the rest).
+- Alarm Call at 15x: Inferno fixed at 9/300, Rescue solved to 144/300, False Alarm 147/300 (exact 0.967 x 15).
+- The ante tiers' non-bonus fits pin the >= 40x-cost tail at 0.75 (etl40b limit 0.9); ante SD/cost pinned at 8.0, super
+  ante left to the least-change solution (7.37). An exact integer guard (`enforce_rtp_ceiling`) moves units from the
+  highest-paying non-bonus rows when a fit lands above the 0.967 ceiling (0 units needed in production).
+- Cap route books pay 2,000,000; the Backdraft Spins cap is two full 9,875x spins plus a 250x remainder.
+
+### Per-mode measured figures (exact from the promoted integer LUTs)
+
+| Figure | base | ante | super_ante | backdraft_spins | alarm_call | rescue | inferno |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| cost (x base bet) | 1.0 | 3.0 | 5.0 | 50.0 | 15.0 | 25.0 | 100.0 |
+| RTP (LUT exact) | 0.966999987874 | 0.966999990120 | 0.966999990000 | 0.966999989096 | 0.966999987425 | 0.966999986409 | 0.966999991489 |
+| SD / cost | 14.4000 | 8.0000 | 7.3673 | 1.1054 | 2.4845 | 1.5077 | 1.0898 |
+| any-win / regular hit / sub-hit | 38.00% / 16.00% / 22.00% | 39.04% / 5.98% / 33.06% | 42.11% / 10.30% / 31.80% | 99.99% / 34.99% / 65.00% | 50.98% / 26.39% / 24.60% | 99.96% / 28.92% / 71.04% | 99.99% / 29.83% / 70.16% |
+| Rescue Spins trigger | 1/165 (1 in 165.0) | 1/33 (1 in 33.0) | 1/11 (1 in 11.0) | — | share 144/300 = 48.00% | 1 | — |
+| Inferno trigger | 1/2100 (1 in 2,100.0) | 1/420 (1 in 420.0) | 1/140 (1 in 140.0) | — | share 9/300 = 3.00% | — | 1 |
+| Backdraft rate | 0.0250000 | 0.0250000 | 0.0250000 | every spin | — | — | — |
+| max win 20,000x | 1.3333e-07 (1 in 7,500,000.0) | 6.6667e-07 (1 in 1,500,000.0) | 2.0000e-06 (1 in 500,000.0) | 4.0000e-06 (1 in 250,000.0) | 6.0000e-07 (1 in 1,666,666.7) | 1.0000e-06 (1 in 1,000,000.0) | 4.0000e-06 (1 in 250,000.0) |
+| etl10k / etl40b / cvar | 0.0027 / 0.5161 / 335.53 | 0.0133 / 0.7500 / 79.88 | 0.0400 / 0.7500 / 102.87 | 0.0800 / 0.0800 / 11.35 | 0.0120 / 0.1852 / 35.94 | 0.0200 / 0.0394 / 18.03 | 0.0800 / 0.0800 / 12.35 |
+| actual simulation trials | 100,000 | 100,000 | 100,000 | 100,000 | 100,000 | 100,000 | 100,000 |
+| books / unique | 340,000 / 340,000 | 340,000 / 340,000 | 340,000 / 340,000 | 100,000 / 100,000 | 200,001 / 200,001 | 100,000 / 100,000 | 100,000 / 100,000 |
+| minimum weight | 94,117,940 | 1 | 1,411,769,100 | 4,000,000 | 36,000,000 | 1,000,000 | 4,000,000 |
+
+bank rescue_10: trials 100,000, organic mean 23.5764x, weighted target 24.1750x, cap 1.000e-06
+bank rescue_12: trials 10,000, organic mean 33.9033x, weighted target 33.9033x, cap 1.478e-04
+bank rescue_15: trials 10,000, organic mean 49.7090x, weighted target 49.7090x, cap 6.000e-04
+bank inferno_10: trials 100,000, organic mean 98.1035x, weighted target 96.7000x, cap 4.000e-06
+bank inferno_12: trials 10,000, organic mean 121.2065x, weighted target 121.2065x, cap 1.478e-04
+bank inferno_15: trials 10,000, organic mean 156.8276x, weighted target 156.8276x, cap 6.000e-04
+total seconds 2121.215, threads 8, trials 740,000, rows 1,520,001
+
+### Fixtures
+22 real-book fixtures (`math/games/piggy_firefighters/fixtures/`, synced verbatim to `server/fixtures/` by
+`tools/fixtures/sync_production_fixtures.py`): the 16 of M3 plus `ante_trigger_rescue`, `ante_trigger_inferno`, `ante_win`,
+`super_ante_trigger_rescue`, `super_ante_trigger_inferno`, `super_ante_win`. Their ids are publication ids of `math/publish`.
+
+---
+
+# M3 production math report (2026-09-25, v1.2.2 — SUPERSEDED by v1.3 above; kept as history)
+
 
 **M3 PASS against GAME_CONTRACT v1.2.2, frozen at `math-freeze-v1` (`38a6c2f75d6b624eab2ae4efbcd55ed467075127`).**
 Production ran on 2026-09-25 (launched 04:29:39 UTC) with the pinned interpreter `math/env/bin/python`

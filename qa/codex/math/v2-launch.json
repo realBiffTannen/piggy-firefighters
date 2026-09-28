@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETE",
+  "launched_at_utc": "2026-09-28T14:56:13Z",
+  "freeze_tag": "math-freeze-v2",
+  "freeze_sha": "10ef51124dd8d7fac81ae11c148e952012177e3f",
+  "main_trials_per_bonus": 100000,
+  "auxiliary_trials_per_bank": 10000,
+  "nonbonus_trials_per_natural_mode": 100000,
+  "expected_trials": 740000,
+  "expected_publication_rows": 1520001,
+  "workers": 8,
+  "rss_limit_mib": 5120,
+  "output": "/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-100k",
+  "interpreter": "/Users/jbull/code/piggy-firefighters/math/env/bin/python",
+  "process_group": 71395,
+  "command": "tools/codex/run_guard.py -- env PF_STAGE=production PF_SIMS=100000 PF_AUX_SIMS=10000 PF_NATURAL_SIMS=100000 PF_THREADS=8 PF_FREEZE_SHA=<sha> PF_OUTPUT=<out> math/env/bin/python math/games/piggy_firefighters/run.py"
+}

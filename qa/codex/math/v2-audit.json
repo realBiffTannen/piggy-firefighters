@@ -1,0 +1,308 @@
+{
+  "status": "PASS",
+  "output": "/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-100k",
+  "source": {
+    "freeze_sha": "10ef51124dd8d7fac81ae11c148e952012177e3f",
+    "verified_source_files": 77
+  },
+  "checked_trial_count": 740000,
+  "checked_publication_rows": 1520001,
+  "checked_canonical_links": 920000,
+  "modes": {
+    "base": {
+      "rows": 340000,
+      "computed": {
+        "cost": 1.0,
+        "total_weight": 2310000000000000000,
+        "minimum_weight": 94117940,
+        "rtp": 0.9669999878742263,
+        "sd_over_cost": 14.400000105568246,
+        "any_win": 0.37999999987783123,
+        "regular_hit": 0.15999999991756556,
+        "sub_hit": 0.21999999996026565,
+        "rescue_probability": 0.006060606060606061,
+        "inferno_probability": 0.0004761904761904762,
+        "backdraft_probability": 0.02499999965906665,
+        "cap_probability": 1.3333333325714285e-07,
+        "prob5k": 1.3333333325714285e-07,
+        "prob10k": 1.3333333325714285e-07,
+        "etl10k": 0.0026666666651428573,
+        "etl40b": 0.5160875568894553,
+        "cvar": 335.5346725734972
+      },
+      "exact_rtp": "4467539943978925067/4620000000000000000",
+      "exact_variance_over_cost": "4425974848894777401539053203351199045511/21344400000000000000000000000000000000",
+      "book_sha256": "8b211860ff99c7449716778aa8acb5fbcaa8dcec739781fa4c9681c1a7f83dc9",
+      "lut_sha256": "03445cf397512db2fe93ebe2564ac4801c32edf1aa2969ee831e1ce3790afcf1"
+    },
+    "ante": {
+      "rows": 340000,
+      "computed": {
+        "cost": 3.0,
+        "total_weight": 2310000000000000000,
+        "minimum_weight": 1,
+        "rtp": 0.9669999901196014,
+        "sd_over_cost": 8.000000000332466,
+        "any_win": 0.3903988396904904,
+        "regular_hit": 0.05983119894193791,
+        "sub_hit": 0.33056764074855244,
+        "rescue_probability": 0.030303030303030304,
+        "inferno_probability": 0.002380952380952381,
+        "backdraft_probability": 0.02500000000318054,
+        "cap_probability": 6.666666662857143e-07,
+        "prob5k": 6.666666662857143e-07,
+        "prob10k": 6.666666662857143e-07,
+        "etl10k": 0.013333333325714286,
+        "etl40b": 0.7500000000387336,
+        "cvar": 79.87589531210935
+      },
+      "exact_rtp": "67013099315288375033/69300000000000000000",
+      "exact_variance_over_cost": "307359360025546748669071536035050342248911/4802490000000000000000000000000000000000",
+      "book_sha256": "334831210060c174952edba552683dba5064b85ab8cffbbd1e53f0d82f3993f9",
+      "lut_sha256": "f015a3a38b13317c285f2a6a9c7b704c048c3389e0740c11ca4d402dc47b693a"
+    },
+    "super_ante": {
+      "rows": 340000,
+      "computed": {
+        "cost": 5.0,
+        "total_weight": 2310000000000000000,
+        "minimum_weight": 1411769100,
+        "rtp": 0.9669999899997073,
+        "sd_over_cost": 7.36725454553014,
+        "any_win": 0.4210635577259901,
+        "regular_hit": 0.10303588269616641,
+        "sub_hit": 0.3180276750298237,
+        "rescue_probability": 0.09090909090909091,
+        "inferno_probability": 0.007142857142857143,
+        "backdraft_probability": 0.02499999999997026,
+        "cap_probability": 1.999999998857143e-06,
+        "prob5k": 1.999999998857143e-06,
+        "prob10k": 1.999999998857143e-06,
+        "etl10k": 0.039999999977142854,
+        "etl40b": 0.7499999999942374,
+        "cvar": 102.87122954755829
+      },
+      "exact_rtp": "10153499894996926511/10500000000000000000",
+      "exact_variance_over_cost": "65823752050479004561140943136500319035669/1212750000000000000000000000000000000000",
+      "book_sha256": "1053cf90079c0cef6f5a0ce1765b074589e33fbe340dbe1b38b9b07ba945ed34",
+      "lut_sha256": "729f17745a7a1e68b84c381ff2a9342b013c868737f7ebdb46de3e6f49eaba03"
+    },
+    "backdraft_spins": {
+      "rows": 100000,
+      "computed": {
+        "cost": 50.0,
+        "total_weight": 1000000000000,
+        "minimum_weight": 4000000,
+        "rtp": 0.966999989096452,
+        "sd_over_cost": 1.1053963718443829,
+        "any_win": 0.999930776048,
+        "regular_hit": 0.349921828092,
+        "sub_hit": 0.650008947956,
+        "rescue_probability": 0.0,
+        "inferno_probability": 0.0,
+        "backdraft_probability": 1.0,
+        "cap_probability": 4e-06,
+        "prob5k": 4e-06,
+        "prob10k": 4e-06,
+        "etl10k": 0.08,
+        "etl40b": 0.08,
+        "cvar": 11.346431529712476
+      },
+      "exact_rtp": "241749997274113/250000000000000",
+      "exact_variance_over_cost": "76368821180420327069540063231/62500000000000000000000000000",
+      "book_sha256": "9ef66dd9e713172c0be3045f9ed48081bb9a30c0c3804dcbed1e74b1c873a096",
+      "lut_sha256": "b63b6bc191670d84f06ae3ecdf6d99d5c17dd52d90867b29e3fd19dd1e44bfd7"
+    },
+    "alarm_call": {
+      "rows": 200001,
+      "computed": {
+        "cost": 15.0,
+        "total_weight": 300000000000000,
+        "minimum_weight": 36000000,
+        "rtp": 0.9669999874248814,
+        "sd_over_cost": 2.4844923924158144,
+        "any_win": 0.50981713375449,
+        "regular_hit": 0.26385070237557,
+        "sub_hit": 0.24596643137892,
+        "rescue_probability": 0.48,
+        "inferno_probability": 0.03,
+        "backdraft_probability": 0.0,
+        "cap_probability": 6e-07,
+        "prob5k": 6e-07,
+        "prob10k": 6e-07,
+        "etl10k": 0.012,
+        "etl40b": 0.185174322780597,
+        "cvar": 35.936974767858494
+      },
+      "exact_rtp": "4834999937124407/5000000000000000",
+      "exact_variance_over_cost": "462952683597904288769979414695053/75000000000000000000000000000000",
+      "book_sha256": "79c49a2b1e15e142812bfb5d06884216a8c835bf7de0584887ae2553bb9369bd",
+      "lut_sha256": "bdb82bf1b06d199ba9929c18983b5b1b6e126d103c47806ae0d18f1a28938f87"
+    },
+    "rescue": {
+      "rows": 100000,
+      "computed": {
+        "cost": 25.0,
+        "total_weight": 1000000000000,
+        "minimum_weight": 1000000,
+        "rtp": 0.966999986408888,
+        "sd_over_cost": 1.5076718366874935,
+        "any_win": 0.999625364574,
+        "regular_hit": 0.289199907656,
+        "sub_hit": 0.710425456918,
+        "rescue_probability": 1.0,
+        "inferno_probability": 0.0,
+        "backdraft_probability": 0.0,
+        "cap_probability": 1e-06,
+        "prob5k": 1e-06,
+        "prob10k": 1e-06,
+        "etl10k": 0.02,
+        "etl40b": 0.03936008795,
+        "cvar": 18.03431995657092
+      },
+      "exact_rtp": "120874998301111/125000000000000",
+      "exact_variance_over_cost": "35516786986572503363776165679/15625000000000000000000000000",
+      "book_sha256": "75eae6e1ae594117d7103f843fb18f99bc17a502686dac9c49eb1706b6bd235d",
+      "lut_sha256": "22f881af26761348c0a15e394e2110976a9df8c28aadc2230c5be9c8a17d0de2"
+    },
+    "inferno": {
+      "rows": 100000,
+      "computed": {
+        "cost": 100.0,
+        "total_weight": 1000000000000,
+        "minimum_weight": 4000000,
+        "rtp": 0.966999991488855,
+        "sd_over_cost": 1.089766600398433,
+        "any_win": 0.999898625299,
+        "regular_hit": 0.298276411171,
+        "sub_hit": 0.701622214128,
+        "rescue_probability": 0.0,
+        "inferno_probability": 1.0,
+        "backdraft_probability": 0.0,
+        "cap_probability": 4e-06,
+        "prob5k": 4e-06,
+        "prob10k": 4e-06,
+        "etl10k": 0.08,
+        "etl40b": 0.08,
+        "cvar": 12.35417143312312
+      },
+      "exact_rtp": "193399998297771/200000000000000",
+      "exact_variance_over_cost": "47503649733758321702416431559/40000000000000000000000000000",
+      "book_sha256": "a098b7ca411cdacd12ddec2e03cb2a0b63897ff642ef2e6b20232f839e65c069",
+      "lut_sha256": "a35523e0aaddc2e6c3d611d1c214254668e7772883e22bbd7a848a64b2f9df92"
+    }
+  },
+  "banks": {
+    "rescue_10": {
+      "rows": 100000,
+      "total_weight": 1000000000000,
+      "cap_weight": 1000000,
+      "book_sha256": "75eae6e1ae594117d7103f843fb18f99bc17a502686dac9c49eb1706b6bd235d",
+      "lut_sha256": "22f881af26761348c0a15e394e2110976a9df8c28aadc2230c5be9c8a17d0de2"
+    },
+    "rescue_12": {
+      "rows": 10000,
+      "total_weight": 1000000000000,
+      "cap_weight": 147785136,
+      "book_sha256": "3186a8330772552e72b6372e78eb4d84ea4da0764cd30c622c3710d7c7f74719",
+      "lut_sha256": "66d32a31770cbcdd17cd2b41e3be58d6126c8c7f5c73054b94f719434176a326"
+    },
+    "rescue_15": {
+      "rows": 10000,
+      "total_weight": 1000000000000,
+      "cap_weight": 600000000,
+      "book_sha256": "29e375c70f39a12ebb07bf795ccbab14a9b7a385ff830c881a5a4a82277eb6f7",
+      "lut_sha256": "a0f39a30b9cce60082d26d813a4ca512b63b3b98781b7062a8e8fcc60dbe32d4"
+    },
+    "inferno_10": {
+      "rows": 100000,
+      "total_weight": 1000000000000,
+      "cap_weight": 4000000,
+      "book_sha256": "a098b7ca411cdacd12ddec2e03cb2a0b63897ff642ef2e6b20232f839e65c069",
+      "lut_sha256": "a35523e0aaddc2e6c3d611d1c214254668e7772883e22bbd7a848a64b2f9df92"
+    },
+    "inferno_12": {
+      "rows": 10000,
+      "total_weight": 1000000000000,
+      "cap_weight": 147785136,
+      "book_sha256": "096afa6aae7f77ae23c9c4e9cd91823eea4971270668049c18d53f397643857a",
+      "lut_sha256": "308ae24866d0f9fb87ba9dcdc13f5cb86ad69992ec1eb116e89c6e295877b032"
+    },
+    "inferno_15": {
+      "rows": 10000,
+      "total_weight": 1000000000000,
+      "cap_weight": 600000000,
+      "book_sha256": "7233dd0aea1e6be8e57e923fc9c5fab80c79f3a1ca680008a83955c024291095",
+      "lut_sha256": "1d2ac8051c1c33e16d43fce924528f3f784047e7f62002dc432af0cc76548c20"
+    }
+  },
+  "links": {
+    "base": {
+      "rows": 240000,
+      "canonical_digests": {
+        "rescue_10": "e9651559ed3bdf79dcb42c6daf9a55e454395d3893d9cc02aca5a29bc13444b5",
+        "rescue_12": "387861ccd7491be587a17ebf970f9e8e4455ce6d73ea8739b1e56785180cbb5b",
+        "rescue_15": "e5e829dcb21385853aa791f6ed722541170953ce04b1543da80fd4c7a494890a",
+        "inferno_10": "3252531beffb941a7938ba7a501ffc1ac11d4411901e29723991b7573a2001ed",
+        "inferno_12": "e3005646674310a1e8e0ed5d677d9e7c938f1aac0ae52ec15a8608cfbb3eb3a6",
+        "inferno_15": "f52685e0419a6e044a2e3da1ae47254fc1ed2523c038855f2657882551d13932"
+      },
+      "sha256": "23f7b1f030a3d84fade95dc86b97eb7b22ca2584922c910adf48d2acf2f0eb74"
+    },
+    "ante": {
+      "rows": 240000,
+      "canonical_digests": {
+        "rescue_10": "e9651559ed3bdf79dcb42c6daf9a55e454395d3893d9cc02aca5a29bc13444b5",
+        "rescue_12": "387861ccd7491be587a17ebf970f9e8e4455ce6d73ea8739b1e56785180cbb5b",
+        "rescue_15": "e5e829dcb21385853aa791f6ed722541170953ce04b1543da80fd4c7a494890a",
+        "inferno_10": "3252531beffb941a7938ba7a501ffc1ac11d4411901e29723991b7573a2001ed",
+        "inferno_12": "e3005646674310a1e8e0ed5d677d9e7c938f1aac0ae52ec15a8608cfbb3eb3a6",
+        "inferno_15": "f52685e0419a6e044a2e3da1ae47254fc1ed2523c038855f2657882551d13932"
+      },
+      "sha256": "8e23953e044662edcdb6a32f88a94d66f80f48858d21c0ee7ea50c729d8c723c"
+    },
+    "super_ante": {
+      "rows": 240000,
+      "canonical_digests": {
+        "rescue_10": "e9651559ed3bdf79dcb42c6daf9a55e454395d3893d9cc02aca5a29bc13444b5",
+        "rescue_12": "387861ccd7491be587a17ebf970f9e8e4455ce6d73ea8739b1e56785180cbb5b",
+        "rescue_15": "e5e829dcb21385853aa791f6ed722541170953ce04b1543da80fd4c7a494890a",
+        "inferno_10": "3252531beffb941a7938ba7a501ffc1ac11d4411901e29723991b7573a2001ed",
+        "inferno_12": "e3005646674310a1e8e0ed5d677d9e7c938f1aac0ae52ec15a8608cfbb3eb3a6",
+        "inferno_15": "f52685e0419a6e044a2e3da1ae47254fc1ed2523c038855f2657882551d13932"
+      },
+      "sha256": "07eb45694598fa281da904071a87d05301bf01d4d50dfb47ba0e608d15c07776"
+    },
+    "alarm_call": {
+      "rows": 200000,
+      "canonical_digests": {
+        "rescue_10": "e9651559ed3bdf79dcb42c6daf9a55e454395d3893d9cc02aca5a29bc13444b5",
+        "inferno_10": "3252531beffb941a7938ba7a501ffc1ac11d4411901e29723991b7573a2001ed"
+      },
+      "sha256": "06b6b851123e2ab266d8fc2c021d1c8db2d7a24c3f70783e7fdffcfca80a1f81"
+    }
+  },
+  "alarm_trials": {
+    "trials": 100000,
+    "distinct_selected_ids": 40961,
+    "outcomes": {
+      "falseAlarm": 48906,
+      "rescue": 48122,
+      "inferno": 2972
+    },
+    "sha256": "1253a0e362a590e52afe0bb259c6e9fa02ec2a254b578bb3e4abcc9905346fb6"
+  },
+  "completion_evidence_sha256": {
+    "qa/codex/math/v2-production-memory.json": "dd6599a8a8ec31d4c09224d41c0adc79df43b5fc2a2da65945cb137521768260",
+    "qa/codex/math/v2-launch.json": "f161f1f39370a62727a8187033beff4d2627127c2edad9dd77caa12605de2b36",
+    "/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-100k/report.json": "f30c729ffcb025fdf9c2db2900d68cc64077dddb2959cd9267712b5778fe3042",
+    "/Users/jbull/code/piggy-firefighters/math/games/piggy_firefighters/library/production-100k/index.json": "5aa72518f50ce1f7640db2109191158880303dbc9ae1272b22c741021c586edf"
+  },
+  "index_sha256": "5aa72518f50ce1f7640db2109191158880303dbc9ae1272b22c741021c586edf",
+  "coverage": {
+    "statistics": "Independent exact integer/Fraction moments and scalar tail reductions",
+    "books": "Compressed bytes hashed; event payloads not replayed",
+    "canonical_events": "Ordered link digests compared to canonical bank report digests",
+    "event_legality_and_uniqueness": "Producer evidence checked, not independently re-derived"
+  }
+}

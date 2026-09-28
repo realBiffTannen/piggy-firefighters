@@ -73,7 +73,7 @@ export const rescueBannerText = (prizeText: string | null | undefined, stacked: 
 /**
  * The phone rail's TOTAL at a rescue: the book's running total plus the prize the book just paid (inferno_prizes: two
  * 500 prizes read 0 -> 500 -> 1000 at their rescues, then the spin's setTotalWin 1100 states the book's figure, which
- * always includes them). Clamped to the 15,000x cap (roundTier WIN_CAP_BOOKED, passed in: this module imports
+ * always includes them). Clamped to the 20,000x cap (roundTier WIN_CAP_BOOKED, passed in: this module imports
  * nothing), so it can never show more than the round can pay.
  */
 export const runningTotal = (total: number, prize: number | null | undefined, cap: number): number =>

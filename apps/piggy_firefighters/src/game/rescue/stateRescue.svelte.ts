@@ -37,7 +37,7 @@ export const stateRescue = $state({
 	/** a transient banner over the scene: '+1 SPIN', 'NEXT BUILDING · +5 SPINS', 'RESCUE COMPLETE' */
 	banner: '' as string,
 	bannerSeq: 0,
-	/** the book hit the 15,000x cap */
+	/** the book hit the 20,000x cap */
 	capped: false,
 	/** stop / skip pressed during the feature: every hold collapses (never the event order) */
 	skip: false,

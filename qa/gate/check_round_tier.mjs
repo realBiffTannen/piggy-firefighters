@@ -20,17 +20,17 @@ const cases = [
 	[30, 1, false, 3, 'HUGE floor'],
 	[50, 1, false, 4, 'MEGA floor'],
 	[100, 1, false, 5, 'EPIC floor'],
-	[145.7, 18, false, 5, 'rescue_buy 145.7x = EPIC'],
-	[25, 18, false, 2, '20-49x Rescue total gets BIG'],
-	[35, 18, false, 3, '30-49x Rescue total gets HUGE'],
-	[60, 90, false, 0, '60x on a 90x Inferno buy'],
-	[54.3, 90, false, 0, 'inferno_buy dev fixture'],
-	[90, 90, false, 0, 'W = S on Inferno'],
-	[95, 90, false, 4, '95x on Inferno = MEGA'],
+	[145.7, 25, false, 5, 'rescue_buy 145.7x = EPIC'],
+	[28, 25, false, 2, '26-29x Rescue total gets BIG (above the 25x cost)'],
+	[35, 25, false, 3, '30-49x Rescue total gets HUGE'],
+	[60, 100, false, 0, '60x on a 100x Inferno buy'],
+	[54.3, 100, false, 0, 'inferno_buy dev fixture'],
+	[100, 100, false, 0, 'W = S on Inferno'],
+	[60, 50, false, 4, '60x on a 50x Backdraft Spins buy = MEGA'],
 	[20, 50, false, 0, 'under the Backdraft Spins cost'],
-	[12, 12, false, 0, 'Alarm Call W = S'],
-	[15000, 1, true, 6, 'the cap'],
-	[15000, 1, false, 5, 'no cap evidence: EPIC, never MAX'],
+	[15, 15, false, 0, 'Alarm Call W = S'],
+	[20000, 1, true, 6, 'the cap'],
+	[20000, 1, false, 5, 'no cap evidence: EPIC, never MAX'],
 	[0.5, 1, true, 0, 'stake check precedes the cap flag'],
 ];
 const problems = [];
@@ -41,7 +41,8 @@ for (const [w, s, capped, want, why] of cases) {
 const levels = [0, 1, 2, 3, 4, 5, 6].map(rungLevelOfTier).join(',');
 if (levels !== '0,0,6,7,8,9,10') problems.push(`rungLevelOfTier 0..6 = ${levels}, want 0,0,6,7,8,9,10`);
 if (RUNG_FLOORS_BOOKED.join(',') !== [1500, 3000, 5000, 10000, WIN_CAP_BOOKED].join(',')) problems.push(`RUNG_FLOORS_BOOKED = ${RUNG_FLOORS_BOOKED}`);
-if (WIN_CAP_BOOKED !== 1500000) problems.push(`WIN_CAP_BOOKED = ${WIN_CAP_BOOKED}, want 1500000 (15,000x)`);
+// owner re-price 2026-09-28 (contract v1.3): the cap is 20,000x in every mode
+if (WIN_CAP_BOOKED !== 2000000) problems.push(`WIN_CAP_BOOKED = ${WIN_CAP_BOOKED}, want 2000000 (20,000x)`);
 if (problems.length) {
 	console.error('FAIL check_round_tier');
 	for (const p of problems) console.error('  ' + p);
