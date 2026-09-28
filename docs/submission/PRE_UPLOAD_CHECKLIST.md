@@ -1,14 +1,14 @@
 # PIGGY FIREFIGHTERS — pre-upload checklist
 
-**REBOUND 2026-09-28 by the coordinator to contract v1.3 (math-freeze-v2, two ante tiers, owner prices, 20,000x) and the `34afb50` build of `game/dist`.** No upload or publication was performed. The math payload is promoted, audited and hash-bound; `game/dist` is built, stamped and hash-bound; the human gates (real-phone pass, recorded rig motion review, art acceptance) remain open. Nothing here is a claim of Engine approval.
+**REBOUND 2026-09-28 by the coordinator to contract v1.3.1 (math-freeze-v2, two ante tiers, owner prices, 20,000x, win tiers in cost units) and the current `game/dist` build (2026-09-28T15:56Z).** No upload or publication was performed. The math payload is promoted, audited and hash-bound; `game/dist` is built, stamped and hash-bound; the human gates (real-phone pass, recorded rig motion review, art acceptance) remain open. Nothing here is a claim of Engine approval.
 
 ## Upload candidates and exact paths
 
 | Candidate | Absolute local path | Status / hash binding |
 | --- | --- | --- |
-| Frontend directory | `/Users/jbull/code/piggy-firefighters/game/dist/` | **Synced 2026-09-28 from the `34afb50` tree** (`./tools/build_dist.sh`, provenance PASS on `game/dist`, 756 files / 66,964 KiB, bundle `bundle.fThyBaRl.js`); **sumsSha256 `304398d3b508ada1114432dbc7d964b03dc6f72086811f8e5e5ef6396a32a59b`** — `game/BUILD_INFO.md`. |
+| Frontend directory | `/Users/jbull/code/piggy-firefighters/game/dist/` | **Synced 2026-09-28 (v1.3.1)** (`./tools/build_dist.sh`, provenance PASS on `game/dist`, 756 files / 66,964 KiB, bundle `bundle.DllHVmeT.js`); **sumsSha256 `b72bb9ac9bff82db204d00eab799663cb9adf49251bafac3dc3a2bbd2d07a66b`** — `game/BUILD_INFO.md`. |
 | Frontend staged candidate | `/Users/jbull/code/piggy-firefighters/apps/piggy_firefighters/build/` | The same bytes as `game/dist` (the script stages there, then rsyncs). The `/rigs` dev viewer route is held out of the build by the script. |
-| Frontend build record | `/Users/jbull/code/piggy-firefighters/docs/submission/BUILD_RECORD.md` | 2026-09-28 record: provenance digest `4ed05ff202b8…` (PASS), `index.html` sha256 `ddd885ad7da4…`, sumsSha256 `304398d3b508…`. |
+| Frontend build record | `/Users/jbull/code/piggy-firefighters/docs/submission/BUILD_RECORD.md` | 2026-09-28 v1.3.1 record: provenance digest `8dc50bbd89db…` (PASS), `index.html` sha256 `e31a210653ef…`, sumsSha256 `b72bb9ac9bff…`. |
 | Math directory | `/Users/jbull/code/piggy-firefighters/math/publish/` | **PASS — bound 2026-09-28**: fifteen payload files (index + seven books + seven LUTs), 1,568,941,459 bytes, every sha256 / byte count / LUT row count recomputed and EQUAL to `MANIFEST.json` (`qa/submission/math_package_manifest.json`). Plus `MANIFEST.json` itself (not part of the Engine payload; harmless to include). |
 | Math publication manifest | `/Users/jbull/code/piggy-firefighters/math/publish/MANIFEST.json` | SHA-256 `988b20d96c8ead74feb09c80ea6ca984b03ca0539d22681b98ed228d014e05a9` — the file's hash, not a hash of the directory. |
 | Math independent audit | `/Users/jbull/code/piggy-firefighters/qa/codex/math/v2-audit.json` | SHA-256 `2eb5213b033c4038841163f590caca9dc1f3d018761d37658d0969df30468c4c` (equals `MANIFEST.json` → `independent_audit.sha256`); status PASS, 740,000 trials / 1,520,001 rows / 960,000 canonical links checked. |
@@ -52,14 +52,14 @@ Game `piggy_firefighters`, 5×3, 20 fixed lines, seven modes (base 1 / ante 3 / 
 
 ## Local gate evidence and remaining requirements
 
-- [x] Frontend gate `node qa/gate/run.mjs` run 2026-09-28 on the `34afb50` inputs: 14/14 OK (mode costs vs `index.json`; 22 round-tier cases; rung pacing; HUD bar; symbol motion; splash; rig beats; bonus font; 172 cue references in the 232-cue manifest; rescue phone; win coins; padding reels match the v2 reel CSVs; art meta; rung light; provenance PASS on `game/dist`).
-- [x] Final build `./tools/build_dist.sh` from the `34afb50` tree: BUILD OK, 756 files / 66,964 KiB, dev-only `/rigs` route excluded, provenance PASS, sumsSha256 `304398d3b508…`.
+- [x] Frontend gate `node qa/gate/run.mjs` run 2026-09-28 on the v1.3.1 inputs: 14/14 OK (mode costs vs `index.json`; 22 round-tier cases; rung pacing; HUD bar; symbol motion; splash; rig beats; bonus font; 172 cue references in the 232-cue manifest; rescue phone; win coins; padding reels match the v2 reel CSVs; art meta; rung light; provenance PASS on `game/dist`).
+- [x] Final build `./tools/build_dist.sh` (v1.3.1): BUILD OK, 756 files / 66,964 KiB, dev-only `/rigs` route excluded, provenance PASS, sumsSha256 `b72bb9ac9bff…`.
 - [x] Fixture smoke `qa/smoke/port/results.json` (2026-09-25T08:27Z, Chromium 141, dev server :3003 + mock RGS :3036, `--mute-audio`): 12/12 fixtures PASS, 0 console errors (base no-win/win/backdraft, ante, alarm_call false/rescue, rescue buy, inferno buy, base trigger rescue/inferno, max_win, backdraft_spins). This ran against the dev server, not the staged or final build.
 - [x] Two Spine 4.2.43 rigs installed under `apps/piggy_firefighters/static/assets/spine/{pf_rookie,pf_rescued}` (json + atlas + pages); the `pf_chief` and `pf_dog` mascot rigs were removed on the owner's instruction 2026-09-28. Every rig is original to this title.
 - [x] Original art (134 recorded OpenAI calls, `art-src/generated/source-record.json`; audit agent PASS with warnings), original audio (232 cues / 464 runtime files, `measure.py` PASS 16/16, −14 LUFS target), Blender-rendered win-rung solids and fountain coin (`769f254`, consumers `c111822`). Donor LUCKY art purged from `static/assets` (byte-identical files); donor audio replaced by the audio build (`PROGRESS.md`).
 - [x] Player copy says "Engine" (never the two-word name); the general disclaimer paragraph (`rulesContent.ts:30` std, `:32` social, identical, 466 chars) hashes to `ec5f997f27964a30e2c1535fa618e173d899546d06846f44efaa1b069d75e8ee`, equal to the bound live-template read — [GENERAL_DISCLAIMER_AUDIT.md](GENERAL_DISCLAIMER_AUDIT.md). The coordinator's live re-scrape today (11:55 EDT) agrees; this lane's own single fetch got only the loading shell.
 - [x] Tile files prepared and size-checked (`thumbnail/submission/README.md`); thumbnail validator PASS 8/8 and 14/14 agent checks (`thumbnail/source-record.json`).
-- [x] Final tree built, stamped, synced into `game/dist` and hash-bound (`docs/submission/BUILD_RECORD.md`, sumsSha256 `304398d3b508…`); static smoke and subpath-serving probe: see the 2026-09-28 `PROGRESS.md` row.
+- [x] Final tree built, stamped, synced into `game/dist` and hash-bound (`docs/submission/BUILD_RECORD.md`, sumsSha256 `b72bb9ac9bff…`); static smoke and subpath-serving probe: see the 2026-09-28 `PROGRESS.md` row.
 - [ ] Confirm the audited disclaimer, the seven mode prices, 96.70% and 20,000× render in the final artifact's rules sheet; recheck the live template if it changes before submission.
 - [x] Human listening pass (audio): done by the owner, 2026-09-26.
 - [ ] Real-phone motion/usability pass (390×844 class device: layout, input, normal/turbo/super-turbo, audio, resume/replay) — NOT RUN; local mock evidence is not device evidence.

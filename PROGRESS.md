@@ -1,5 +1,16 @@
 # PIGGY FIREFIGHTERS — ledger (newest first; coordinator writes, lanes append under their own heading)
 
+- 2026-09-28 (later) — **NO DISPLAY MODALS FOR SMALL WINS (contract §8 v1.3.1) · game/dist REBUILT**. Owner: "get rid of the
+  display modals for small wins". Cause: the win-tier floors (BIG 15x … EPIC 100x) and the centred count-up plaque (20x) were
+  measured in BASE-BET units, so the dearer modes raised modals for small returns — a 16x line on a 5x FIVE-ALARM spin (3.2x the
+  stake) got a BIG WIN sign, a 101x total on a 100x Inferno buy an EPIC sign, a 21x per-spin win inside a 25x Rescue buy the
+  count-up plaque. Now every threshold is in COST units (`game/roundTier.ts` roundTier / rungFloorsBooked / smallWinMaxBooked;
+  the rung sign paces on the round's own floors, `winRungs` carries `costX`): base unchanged (15x / 20x), ante 45x / 60x,
+  super ante 75x / 100x, Alarm Call 225x / 300x, Rescue 375x / 500x, Backdraft 750x / 1,000x, Inferno 1,500x / 2,000x
+  (`qa/smoke/static-2026-09-28/tier_probe.mjs`). Tier 0 (W <= S) unchanged. Contract §8, ANIMATION_CONTRACT winTier row and
+  `check_round_tier.mjs` (32 cases) updated; math untouched. Gate 14/14 OK; `game/dist` rebuilt: `bundle.DllHVmeT.js`,
+  provenance PASS (digest `8dc50bbd89db…`), sumsSha256 `b72bb9ac9bff…`; static smoke desktop + phone on the published books
+  0 errors (`results_v131.json`). Submission kit rebound to this build.
 - 2026-09-28 — **OWNER RE-PRICE (contract v1.3, `math-freeze-v2`) · MASCOTS OUT · TROTTERVILLE F.D. · game/dist REBUILT**
   `10ef511` (math v2) · `9a61961` (mascots, shield, card art) · `34afb50` (two ante tiers, prices, 20,000x, math promoted) · build commit.
   Owner instructions today: (1) remove the Chief Hamm and Ember mascots — `pf_chief` / `pf_dog` Spine exports deleted, Mascots.svelte,

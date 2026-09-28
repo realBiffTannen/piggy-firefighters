@@ -1,6 +1,23 @@
 # PIGGY FIREFIGHTERS — frontend build record
 
-## 2026-09-28 — contract v1.3 build (current upload candidate)
+## 2026-09-28 (later) — contract v1.3.1 build (current upload candidate)
+
+Same tree as the v1.3 record below plus the owner's "get rid of the display modals for small wins" change: win-tier floors
+and the centred count-up threshold in COST units (`game/roundTier.ts`, contract §8 v1.3.1). Math untouched (`math-freeze-v2`).
+
+| Field | Value |
+|---|---|
+| Source | the commit that carries this record (stamp: head `f6d1675 +local changes`, inputs byte-identical, provenance recomputed) |
+| Command → result | `./tools/build_dist.sh` → `BUILD OK`, `game/dist` synced; built 2026-09-28T15:56:11Z |
+| Provenance | inputDigest `8dc50bbd89db99b92dd4e4d19ad003f1b844f0bac319a8e96c09bb232f848f0e` over 1,098 inputs; `check_provenance` PASS |
+| Bundle | `_app/immutable/bundle.DllHVmeT.js`; `index.html` sha256 `e31a210653efe3c44e0a2cc4c35d7873d5d52d2f077cc49aaa76734c57de90bf` |
+| Size / files | 756 regular files, 66,964 KiB |
+| Content hash | **sumsSha256 `b72bb9ac9bff82db204d00eab799663cb9adf49251bafac3dc3a2bbd2d07a66b`** |
+| Gate / smoke | `node qa/gate/run.mjs` 14/14 OK; static smoke desktop + phone on the published v2 books, 0 console / page errors, 0 failed requests (`qa/smoke/static-2026-09-28/results_v131.json`); `qa/smoke/static-2026-09-28/tier_probe.mjs` prints the per-mode sign / plaque thresholds |
+
+---
+
+## 2026-09-28 — contract v1.3 build (superseded the same day by v1.3.1 above)
 
 Written by the coordinator on 2026-09-28. `game/dist/` was built and synced by `./tools/build_dist.sh` from the tree
 committed as **`34afb50`** (`claude/bold-bell-aoscdj`; the stamp records head `9a61961 +local changes` because the build ran

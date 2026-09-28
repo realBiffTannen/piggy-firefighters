@@ -7,14 +7,16 @@
 		level: number;
 		/** contract §8 round tier (2..6), the `animBeat winTier` numbering */
 		tier?: number;
+		/** the round's charged cost, x the base bet (config.betModes[mode].cost); the floors scale with it (v1.3.1) */
+		costX?: number;
 	};
 
-	import { RUNG_FLOORS_BOOKED } from '../game/roundTier';
+	import { rungFloorsBooked } from '../game/roundTier';
 
-	/** Rung floors BIG, HUGE, MEGA, EPIC, MAX in booked units: 15 / 30 / 50 / 100 x the base bet and the 20,000x cap
-	 *  (contract §8, game/roundTier.ts — the ONE table for every round). The climb never passes the landed level or
-	 *  the booked amount; these only pace it (game/rungPacing.ts). */
-	const THRESHOLDS: readonly number[] = RUNG_FLOORS_BOOKED;
+	/** Rung floors BIG, HUGE, MEGA, EPIC, MAX in booked units: 15 / 30 / 50 / 100 x the round's CHARGED COST and the
+	 *  20,000x cap (contract §8 v1.3.1, game/roundTier.ts — the ONE table for every round). The climb never passes the
+	 *  landed level or the booked amount; these only pace it (game/rungPacing.ts). */
+	const thresholdsFor = (costX: number | undefined): readonly number[] => rungFloorsBooked(costX ?? 1);
 </script>
 
 <script lang="ts">
@@ -203,8 +205,9 @@
 	let run: Run | undefined;
 	let presenting = false;
 
-	const present = async (amount: number, level: number, tier: WinRungTier) => {
+	const present = async (amount: number, level: number, tier: WinRungTier, costX?: number) => {
 		const finalIdx = Math.max(0, Math.min(4, level - 6));
+		const THRESHOLDS = thresholdsFor(costX);
 		// The signs, pieces, stage light and (MAX) the card are lazy (game/lazyAssets: memoised, instant once warm), and
 		// so is the BIG bed: both are resident BEFORE the first drop, so a 500x on the first spin after the gate never
 		// shows Texture.EMPTY or a silent sign. Only the FIRST rung's bed is waited on (AUD-5b); the higher rungs decode
@@ -1375,7 +1378,7 @@
 	};
 
 	context.eventEmitter.subscribeOnMount({
-		winRungs: async ({ amount, level, tier }) => {
+		winRungs: async ({ amount, level, tier, costX }) => {
 			// DEV ONLY (stripped from production builds): the smoke driver (qa/smoke/port/smoke.mjs) records every climb
 			if (import.meta.env.DEV && typeof window !== 'undefined') ((window as unknown as { __pffRungs?: unknown[] }).__pffRungs ??= []).push({ amount, level });
 			if (!root || run || presenting) return;
@@ -1384,7 +1387,7 @@
 			// the rung tier for the rig beats: 2 BIG … 6 MAX (rungLevelOfTier: level = tier + 4)
 			const rungTier = Math.max(2, Math.min(6, tier ?? level - 4)) as WinRungTier;
 			try {
-				await present(amount, level, rungTier);
+				await present(amount, level, rungTier, costX);
 			} finally {
 				presenting = false;
 				active = false;

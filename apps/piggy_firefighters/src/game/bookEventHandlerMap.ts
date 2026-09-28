@@ -13,7 +13,7 @@ import type { Position } from './types';
 import * as rescueDirector from './rescue/rescueDirector';
 import { stateRescue, stateBackdraftSpins } from './rescue/stateRescue.svelte';
 import { rollWinMeterTo, finishWinMeter, winRollMs } from './reels/winMeter';
-import { rungLevelOfTier, SMALL_WIN_MAX_BOOKED, type WinTier } from './roundTier';
+import { rungLevelOfTier, smallWinMaxBooked, type WinTier } from './roundTier';
 import { roundStakeOf, continuesIntoFeature } from './roundStake';
 import { animBeats } from './fx/animBeats';
 import { stateSpeed } from './stateSpeed.svelte';
@@ -24,12 +24,15 @@ const paceOf = (amount: number) => winLevelMap[amount >= 5000 ? 8 : amount >= 30
 
 /** The ordinary win presentation: the win figure (components/Win.svelte), plus the tier-sized stinger when `stinger`
  *  is given (tier 0 plays nothing: no celebration at or below the stake). */
-const showOrdinaryWin = async (amount: number, stinger?: WinTier) => {
+const showOrdinaryWin = async (amount: number, costX: number, stinger?: WinTier) => {
 	if (stinger !== undefined) gameSound.win(stinger);
-	// Owner, 2026-09-25: no centred figure for a small win (20x or less) — the HUD WIN meter rolls to the round total
-	// (`setTotalWin` below) and the line highlight shows where it came from. The overlay (count-up + coin shower) is
-	// only for a win above 20x, which in the base game is already a rung: in practice it is the feature's coin moment.
-	if (amount <= SMALL_WIN_MAX_BOOKED) return;
+	// Owner, 2026-09-25: no centred figure for a small win — the HUD WIN meter rolls to the round total (`setTotalWin`
+	// below) and the line highlight shows where it came from. Owner, 2026-09-28 ("get rid of the display modals for
+	// small wins"): small is measured against the CHARGED COST of the round (20x the cost or less), so a per-spin win
+	// inside a 25x Rescue buy or a line on a 5x FIVE-ALARM spin only gets the overlay (count-up + coin shower) when it
+	// is big for what was paid. In the base game anything above 15x is already a rung, so this is the feature's coin
+	// moment.
+	if (amount <= smallWinMaxBooked(costX)) return;
 	eventEmitter.broadcast({ type: 'winShow' });
 	await eventEmitter.broadcastAsync({ type: 'winUpdate', amount, winLevelData: paceOf(amount) });
 	eventEmitter.broadcast({ type: 'winHide' });
@@ -126,25 +129,25 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	 * whose round continues into a bonus, get the ORDINARY win presentation (the figure; no rungs, no stinger): the
 	 * rungs play once, on the round total (freeSpinEnd / backdraftSpinsEnd). A base / ante round without a bonus is
 	 * celebrated here at its round tier: 0 (W <= S) = the figure only, 1 = the figure + a small stinger, 2+ = the win
-	 * rungs (BIG 15x, HUGE 30x, MEGA 50x, EPIC 100x, MAX = the cap).
+	 * rungs (BIG 15x, HUGE 30x, MEGA 50x, EPIC 100x the charged cost, MAX = the cap; v1.3.1).
 	 */
 	setWin: async (bookEvent: BookEventOfType<'setWin'>, { bookEvents }: BookEventContext) => {
+		const round = roundStakeOf(bookEvents, stateRescue.capped);
 		if (inFeature() || continuesIntoFeature(bookEvents, bookEvent.index)) {
-			await showOrdinaryWin(bookEvent.amount);
+			await showOrdinaryWin(bookEvent.amount, round.cost);
 			return;
 		}
-		const round = roundStakeOf(bookEvents, stateRescue.capped);
 		const level = rungLevelOfTier(round.tier);
 		// the rig beat (docs/ANIMATION_CONTRACT.md animBeat winTier), same 0..6 numbering; amounts in bet multiples
 		animBeats.emit({ beat: 'winTier', tier: round.tier, amount: round.total / 100, x: round.total / 100 });
 		if (round.tier >= 6) animBeats.emit({ beat: 'maxWin', amount: round.total / 100 });
 		if (level) {
 			if (round.tier >= 6) void eventEmitter.broadcastAsync({ type: 'uiHide' });
-			await eventEmitter.broadcastAsync({ type: 'winRungs', amount: Math.max(bookEvent.amount, round.total), level, tier: round.tier });
+			await eventEmitter.broadcastAsync({ type: 'winRungs', amount: Math.max(bookEvent.amount, round.total), level, tier: round.tier, costX: round.cost });
 			if (round.tier >= 6) void eventEmitter.broadcastAsync({ type: 'uiShow' });
 			return;
 		}
-		await showOrdinaryWin(bookEvent.amount, round.tier);
+		await showOrdinaryWin(bookEvent.amount, round.cost, round.tier);
 	},
 	finalWin: async (bookEvent: BookEventOfType<'finalWin'>, { bookEvents }: BookEventContext) => {
 		finishWinMeter(); // the round's figure is final by STATE, whatever the clock says

@@ -1,4 +1,5 @@
-# Piggy Firefighters — game contract (v1.3 — owner re-price 2026-09-28, re-frozen at math-freeze-v2)
+# Piggy Firefighters — game contract (v1.3.1 — owner re-price 2026-09-28, re-frozen at math-freeze-v2; win tiers in cost units)
+v1.3.1 (2026-09-28, owner: "get rid of the display modals for small wins"): §8 win-tier floors and the centred count-up threshold are measured in COST units (15 / 30 / 50 / 100 S and 20 S), so no BIG..EPIC sign or count-up plaque for a return that is small on what the spin or buy cost; the base game is unchanged. Math untouched.
 
 v1.3 (2026-09-28, owner re-price): max win **20,000x** in every mode; `ante` 3x at **exactly 5x** each bonus; NEW
 `super_ante` 5x (**FIVE-ALARM BOOST**, reel set `BRS`) at **exactly 15x**; buy costs SET at 15x / 25x / 50x / 100x with
@@ -204,7 +205,7 @@ Standard SDK events keep their SDK shapes (`reveal`, `winInfo`, `setWin`, `setTo
 Event order when capped: `… winInfo → wincap → setWin → setTotalWin → (rescueEnd) → freeSpinEnd → finalWin`;
 the frontend shows the capped 20,000x on every meter (the family's r6 lesson: never draw an uncapped total).
 
-**Win-tier rule (one table for every round; denominators and precedence pinned v1.2.2).** With `B` the base bet and
+**Win-tier rule (one table for every round; precedence pinned v1.2.2, floors in cost units since v1.3.1).** With `B` the base bet and
 `S` the charged cost of the selected mode (§1), the celebration tier is derived CLIENT-SIDE from the booked round
 total `W` (family ruling 2026-09-24):
 1. **Precedence — the stake check first:** if `W ≤ S` the round is **tier 0** (neutral: ordinary accounting stays
@@ -212,9 +213,16 @@ total `W` (family ruling 2026-09-24):
    "no celebration at or below the stake" rule of `docs/AUDIO_DESIGN_NOTES.md` applied to what the player actually
    paid: a 3x ante spin returning 2.4x, or a 100x Inferno buy returning 50x, is tier 0 even though 50x clears the
    MEGA floor.
-2. **Then the floors, in BASE-BET units (`W/B`), never in cost units:** ordinary win (tier 1) when `S < W < 15B`;
-   BIG WIN ≥ 15B (tier 2); HUGE WIN ≥ 30B (3); MEGA WIN ≥ 50B (4); EPIC WIN ≥ 100B (5); MAX WIN at the 20,000x cap
-   (6) — for base rounds and for Rescue/Inferno/Backdraft Spins/Alarm Call totals alike.
+2. **Then the floors, in COST units (`W/S`) — v1.3.1, owner 2026-09-28 "get rid of the display modals for small wins":**
+   ordinary win (tier 1) when `S < W < 15S`; BIG WIN ≥ 15S (tier 2); HUGE WIN ≥ 30S (3); MEGA WIN ≥ 50S (4); EPIC WIN
+   ≥ 100S (5); MAX WIN at the 20,000x cap (6) — for base rounds and for Rescue/Inferno/Backdraft Spins/Alarm Call totals
+   alike. A win is celebrated for what it returned on what the player paid: a 16x line on a 5x FIVE-ALARM BOOST spin
+   (3.2x the stake) or a 101x total on a 100x Inferno buy is an ordinary win (meter, line highlight, small stinger), not a
+   sign. In the base game (`S = B`) this is the v1.2.2 table unchanged. *(v1.2.2 measured the floors in base-bet units,
+   which raised BIG..EPIC signs for small returns on the dearer modes; superseded.)*
+   **The centred count-up figure** (per-spin wins inside a feature and the base win of a spin that continues into a
+   feature; `showOrdinaryWin`) is shown only above **20S** — 20x the round's charged cost — otherwise the HUD WIN meter /
+   the feature's own total carries the figure.
 The SDK `winLevel` fields in `setWin`/`freeSpinEnd` are informational; the client never reads them for
 presentation. Per-spin wins inside a bonus get the ordinary win presentation and count into the running total;
 rungs play once, on the round total. The numbering 0..6 is the `animBeat winTier` numbering

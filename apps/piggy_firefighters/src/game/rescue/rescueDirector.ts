@@ -117,11 +117,12 @@ const spinsWord = (n: number) => `${n} ${n === 1 ? 'SPIN' : 'SPINS'}`;
 
 /** Contract §8: the round's celebration, once, on its total. Emits the rig beat (animBeat winTier, ANIMATION_CONTRACT)
  *  and climbs the win rungs from tier 2 (BIG 15x … MAX = the cap); tier 0 (W <= S) and 1 climb nothing. */
-const celebrateRound = async (tier: WinTier, total: number) => {
+const celebrateRound = async (tier: WinTier, total: number, costX: number) => {
 	animBeats.emit({ beat: 'winTier', tier, amount: total / 100, x: total / 100 });
 	if (tier >= 6) animBeats.emit({ beat: 'maxWin', amount: total / 100 });
 	const level = rungLevelOfTier(tier);
-	if (level) await eventEmitter.broadcastAsync({ type: 'winRungs', amount: total, level, tier });
+	// the sign paces its climb on the floors of THIS round's cost (contract §8 v1.3.1)
+	if (level) await eventEmitter.broadcastAsync({ type: 'winRungs', amount: total, level, tier, costX });
 };
 
 /** The book's rescueEnd figures for the outro card (never the client's own counters). */
@@ -353,7 +354,7 @@ export const freeSpinEnd = async (_e: Ev<'freeSpinEnd'>, bookEvents: BookEvent[]
 	const round = roundStakeOf(bookEvents, stateRescue.capped);
 	const total = round.total;
 	stateRescue.skip = false;
-	await celebrateRound(round.tier, total);
+	await celebrateRound(round.tier, total, round.cost);
 	audioDirector.total(round.tier, stateRescue.bonus);
 	const inferno = stateRescue.bonus === 'inferno';
 	// the book's rescueEnd figures: `buildings` is the number CLEARED (contract §8), never the client's next-building ordinal
@@ -451,7 +452,7 @@ export const backdraftSpinsEnd = async (e: Ev<'backdraftSpinsEnd'>, bookEvents: 
 	stateRescue.skip = false;
 	setFeatureSpins(0);
 	audioDirector.backdraftSpinsEnd();
-	await celebrateRound(round.tier, total);
+	await celebrateRound(round.tier, total, round.cost);
 	audioDirector.total(round.tier, 'backdraftSpins');
 	stateBackdraftSpins.total = total;
 	// the book's own figures for the card: how many Blaze Wilds lit, and the biggest multiplier among them

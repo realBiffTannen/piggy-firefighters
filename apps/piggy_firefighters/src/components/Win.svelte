@@ -10,8 +10,9 @@
 
 	/** Book amounts are integers x100 of the base bet. The COIN shower AND the count-up are reserved for
 	 *  wins ABOVE 20x (owner rules, 2026-09-19 and 2026-09-20: "get rid of coin countups on small wins").
-	 *  Since 2026-09-25 a win of 20x or less is not shown here at all (game/bookEventHandlerMap.ts
-	 *  `showOrdinaryWin` skips this overlay; the HUD WIN meter carries the figure). */
+	 *  Since 2026-09-25 a small win is not shown here at all, and since 2026-09-28 small means 20x the round's
+	 *  CHARGED COST or less (game/bookEventHandlerMap.ts `showOrdinaryWin` skips this overlay; the HUD WIN meter or
+	 *  the feature's own total carries the figure). This 1x-cost line only decides the coin shower once shown. */
 	export const COIN_COUNTUP_MIN_AMOUNT = SMALL_WIN_MAX_BOOKED;
 </script>
 

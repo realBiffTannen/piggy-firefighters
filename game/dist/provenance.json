@@ -1,10 +1,10 @@
 {
 	"schema": 1,
 	"game": "piggy_firefighters",
-	"builtAt": "2026-09-28T15:34:22.043Z",
-	"gitHead": "9a619614938ade395378aa327a20c6a4b423032a",
+	"builtAt": "2026-09-28T15:56:11.655Z",
+	"gitHead": "f6d167542d8b95f594dda0fb1b1f290731f91364",
 	"gitDirty": true,
-	"inputDigest": "4ed05ff202b8223ae34cca0bc01570c9d6cd17440da9d9512a65b430044af02e",
+	"inputDigest": "8dc50bbd89db99b92dd4e4d19ad003f1b844f0bac319a8e96c09bb232f848f0e",
 	"inputFileCount": 1098,
-	"indexHtmlSha": "ddd885ad7da4e3c7ef302472e996f8049103c8d72bbe4b41c03b0461ddc78c58"
+	"indexHtmlSha": "e31a210653efe3c44e0a2cc4c35d7873d5d52d2f077cc49aaa76734c57de90bf"
 }

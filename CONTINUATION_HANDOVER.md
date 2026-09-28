@@ -21,7 +21,8 @@ Resume snapshot only; the ledger is `PROGRESS.md`. Refreshed 2026-09-28 (owner r
   lettered (`tools/art/letter_card_crest.py`); six paid calls ($1.80 est.) recorded in `art-src/generated/source-record.json`.
 - **Rigs:** two remain (`pf_rookie`, `pf_rescued`). `rigLogic.ts` / `RigStage.svelte` still carry inert mascot entries.
 - **Frontend:** seven modes, HUD ante chooser with CONFIRM, rules sheet with the exact measured frequencies, 20,000x
-  everywhere; `node qa/gate/run.mjs` 14/14 OK; `game/dist` rebuilt (see `game/BUILD_INFO.md`, sumsSha256 `304398d3…`).
+  everywhere; win-tier floors and the count-up threshold in COST units (v1.3.1, owner: no display modals for small wins);
+  `node qa/gate/run.mjs` 14/14 OK; `game/dist` rebuilt (see `game/BUILD_INFO.md`, sumsSha256 `b72bb9ac9bff…`).
 - **Submission kit:** rebound 2026-09-28 (`docs/submission/PRE_UPLOAD_CHECKLIST.md`, `BUILD_RECORD.md`, `MATH_HANDOFF.md`,
   `qa/submission/math_package_manifest.json`). Human gates (real-phone pass, rig motion review, art acceptance) still open.
 

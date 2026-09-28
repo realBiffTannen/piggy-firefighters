@@ -1,0 +1,28 @@
+[
+  {
+    "label": "desktop",
+    "steps": [
+      "splash_card1",
+      "base_idle",
+      "spinning",
+      "after_spin",
+      "ante_chooser"
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "failed_requests": []
+  },
+  {
+    "label": "phone",
+    "steps": [
+      "splash_card1",
+      "base_idle",
+      "spinning",
+      "after_spin",
+      "ante_chooser"
+    ],
+    "console_errors": [],
+    "page_errors": [],
+    "failed_requests": []
+  }
+]
