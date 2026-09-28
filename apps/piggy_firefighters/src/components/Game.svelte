@@ -29,7 +29,6 @@
 	import PlayNotice from './notice/PlayNotice.svelte';
 	import UiSound from './UiSound.svelte';
 	import Background from './Background.svelte';
-	import Mascots from './Mascots.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import Anticipations from './Anticipations.svelte';
@@ -209,9 +208,6 @@
 		<!-- Splash (DOM, +layout.svelte) covers this; the board waits below. -->
 	{:else}
 		<ResumeBet />
-
-		<!-- Chief Hamm and Ember beside the reels (rig slots mascotLeft / mascotRight; nothing draws until a rig lands) -->
-		<Mascots />
 
 		<MainContainer>
 			<BoardFrame />

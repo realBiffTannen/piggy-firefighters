@@ -11,7 +11,7 @@
 
 	import { RUNG_FLOORS_BOOKED } from '../game/roundTier';
 
-	/** Rung floors BIG, HUGE, MEGA, EPIC, MAX in booked units: 15 / 30 / 50 / 100 x the base bet and the 15,000x cap
+	/** Rung floors BIG, HUGE, MEGA, EPIC, MAX in booked units: 15 / 30 / 50 / 100 x the base bet and the 20,000x cap
 	 *  (contract §8, game/roundTier.ts — the ONE table for every round). The climb never passes the landed level or
 	 *  the booked amount; these only pace it (game/rungPacing.ts). */
 	const THRESHOLDS: readonly number[] = RUNG_FLOORS_BOOKED;
@@ -46,7 +46,7 @@
 	//           stateSpeed speedFactor() (0.5 turbo, 0.3 super), the max-win card fade included.
 	//
 	// MAX ends on the max win card, which stays alive over its hold: a coin storm at three depths and glint pops (never
-	// over its title / 15,000x band), the embers, a shine across its plank every ~2 s, a slow breath, and the MAX rays
+	// over its title / 20,000x band), the embers, a shine across its plank every ~2 s, a slow breath, and the MAX rays
 	// turning around its edges. The desktop plate chief stands clear of the ALARM BOOST chip and leaves with the sign.
 	// Reduced motion: static light, no shake, no expanding ring, no travel, no slide-out; boards fade out then in (never
 	// two titles in one frame), the stage fades in and out, the sign fades out before the card fades in, the card is still. One press skips to the landed total (one flare), a second leaves.
@@ -54,10 +54,8 @@
 	//
 	// Imperative PIXI on the live container, ONE ticker callback, every display object pooled at the start of a climb
 	// and destroyed with the stage at its end; every count scales with the quality tier (game/quality.svelte).
-	import { onMount, untrack } from 'svelte';
-	import { Tween } from 'svelte/motion';
-	import { backOut, cubicOut } from 'svelte/easing';
-	import { Container, Graphics, PIXI, getContextApp } from 'pixi-svelte';
+	import { onMount } from 'svelte';
+	import { Container, PIXI, getContextApp } from 'pixi-svelte';
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
 
@@ -94,16 +92,10 @@
 		LIGHT_SIZE,
 		boardSwapAlpha,
 		cardHandover,
-		CARD_HANDOVER,
 		volleyKey,
 		volleyLaunch,
-		widenPlateSlot,
-		plateStand,
-		PLATE_HOSE_REACH,
 		type StageLight,
 	} from '../game/rungPacing';
-	import { fitRigInSlot } from '../game/anim/rigLogic';
-	import RigStage from './rigs/RigStage.svelte';
 
 	const context = getContext();
 	const app = getContextApp();
@@ -160,142 +152,6 @@
 	let root: PIXI.Container | undefined;
 	let active = $state(false);
 	let press: () => void = () => {};
-	// the celebrating chief (rig slot `winPlate`, docs/ANIMATION_CONTRACT.md) stands at the right of the amount plaque on
-	// wide layouts; phones (stacked) mount NO plate chief (owner 2026-09-26: no mascots in the mobile view)
-	let plateTier = $state<WinRungTier | 0>(0);
-	/** the landed board's right edge (main units), so the chief stands clear of the sign at every rung size */
-	let signRight = $state(0);
-	/** the HUD's ALARM BOOST chip (main units), measured when a climb starts; null while it is hidden (a bonus) */
-	let chipRect = $state<{ left: number; top: number } | null>(null);
-	const stacked = $derived(context.stateGameDerived.sceneLayout().stacked);
-	// the plate chief rises into place with the sign (reduced motion: instant) and leaves WITH it: the exit fades him over
-	// the stage's own out-fade (set by startOut / the MAX card), never a pop after finish(). The gutter chief has stepped
-	// out meanwhile (rigLogic).
-	const plateIn = new Tween(0, { duration: 320, easing: backOut });
-	let plateOutMs = 0;
-	$effect(() => {
-		const on = plateTier >= 2;
-		// untracked: the tween's own state must not become a dependency of this effect
-		untrack(() =>
-			void plateIn.set(on ? 1 : 0, on ? { duration: prefersReducedMotion() ? 0 : 320, easing: backOut } : { duration: plateOutMs, easing: cubicOut }),
-		);
-	});
-	const plateSlot = $derived.by(() => {
-		const bl = context.stateGameDerived.boardLayout();
-		const main = context.stateLayoutDerived.mainLayout();
-		const sl = context.stateGameDerived.sceneLayout();
-		const w = Math.min(bl.width * bl.scale * 0.5, main.width * 0.4);
-		let h = Math.min(w * 1.3, main.height * 0.42);
-		// wide layouts: he stands at the right of the amount plaque presenting it, feet on the HUD bar's measured top
-		// (hudBar.ts); the sign grows per rung, so he steps right of the landed board's edge, never over the sign
-		const barY = sl.toMainY(sl.hudBarTop);
-		const x = Math.min(main.width - w * 0.8, Math.max(bl.x + bl.width * bl.scale * 0.5 - w / 2, signRight - w * 0.12));
-		// ...and never on the ALARM BOOST chip (judge 2026-09-26: the chip drew over his boots for the whole climb). His
-		// body is the middle ~half of the slot (RigStage centres the feet): if it reaches over the chip he stands on a
-		// line just above the chip's measured top instead of the bar
-		let feet = barY;
-		let support = barY;
-		if (chipRect && x + w * 0.78 > chipRect.left) {
-			feet = Math.min(barY, chipRect.top - main.height * 0.008);
-			support = Math.min(barY, chipRect.top);
-			h = Math.min(h, feet * 0.62);
-		}
-		const y = Math.max(0, feet - h);
-		// the slot mask (rigs/SlotClip) is widened each side so his hose tail is never cut in a hard edge (judge
-		// 2026-09-26), with his centre, size and feet unchanged (rungPacing widenPlateSlot)
-		const bounds = chiefBounds();
-		const wide = widenPlateSlot({ x, w }, bounds ? (sw: number) => fitRigInSlot(bounds, sw, h, 1).scale : null, PLATE_HOSE_REACH);
-		// ...and he stands ON something: lifted over the chip he stood ~20 px up in mid-air, so a fire engine's running
-		// board (drawStand, the rungPacing plateStand rect) fills his soles (spine y 0) down to the chip / bar top
-		const fit = bounds ? fitRigInSlot(bounds, wide.w, h, wide.scale) : null;
-		// his skeleton origin (spine y 0 = his soles and the hose's floor line) in this container's px: RigStage centres him
-		const origin = fit ? { x: wide.w / 2, y: fit.y, s: fit.scale } : null;
-		const U = PLATE_STAND_UNITS;
-		const board = origin
-			? plateStand(y + origin.y - U.overlap * origin.s, support, wide.x + origin.x + ((U.left + U.right) / 2) * origin.s, (U.right - U.left) * origin.s)
-			: null;
-		// its rounded end stays on screen (he stands near the right edge in the bonus scenes)
-		const stand = board ? { ...board, w: Math.max(0, Math.min(board.x + board.w, main.width - main.width * 0.004) - board.x) } : null;
-		return {
-			x: wide.x,
-			y,
-			w: wide.w,
-			h,
-			scale: wide.scale,
-			layout: 'desktop' as const,
-			stand: stand ? { ...stand, x: stand.x - wide.x, y: stand.y - y } : null,
-			origin,
-		};
-	});
-	/** the chief's setup bounds (pf_chief.json skeleton; RigStage fits them), null until the boot rig has loaded */
-	const chiefBounds = (): { x: number; y: number; width: number; height: number } | null => {
-		const d = app.stateApp.loadedAssets?.pf_chief as unknown as { x?: number; y?: number; width?: number; height?: number } | undefined;
-		return d?.width && d?.height ? { x: d.x ?? 0, y: d.y ?? 0, width: d.width, height: d.height } : null;
-	};
-	/** the running board under him, in rig units about his skeleton origin: from past the hose's end (x -171, where the
-	 *  hose art stops in a flat cut, pf_chief.json, root-weighted so it never moves) to past his right boot; `overlap` lifts
-	 *  it under his soles so he stands ON it */
-	const PLATE_STAND_UNITS = { left: -192, right: 142, overlap: 2 };
-	/** the hose's cut end (pf_chief.json hose mesh, root-weighted: x -171, y 0.4..15.5) */
-	const HOSE_END = { x: -171, y0: 0.4, y1: 15.5 };
-	/** a brass hose coupling over the hose's flat cut end, so the hose ends in a fitting, not a hard edge (drawn in code,
-	 *  over the rig; flat cel tones, no gloss) */
-	const drawCoupling = (g: PIXI.Graphics, o: { x: number; y: number; s: number }) => {
-		const s = o.s;
-		const hw = 8.5 * s;
-		const top = o.y - (HOSE_END.y1 + 3.5) * s;
-		const bot = o.y - PLATE_STAND_UNITS.overlap * s;
-		const cx = o.x + (HOSE_END.x + 1.5) * s;
-		const lw = Math.max(1.2, 1.7 * s);
-		const r = 2.6 * s;
-		// Storz-style lugs above and below the collar, then the collar itself
-		g.roundRect(cx - 3.2 * s, top - 2.6 * s, 6.4 * s, bot - top + 2.6 * s, 1.6 * s).fill(0x2a1a10);
-		g.roundRect(cx - 3.2 * s + lw * 0.6, top - 2.6 * s + lw * 0.6, 6.4 * s - lw * 1.2, 3 * s, 1 * s).fill(0xb8862b);
-		g.roundRect(cx - hw, top, hw * 2, bot - top, r).fill(0x2a1a10);
-		g.roundRect(cx - hw + lw, top + lw, hw * 2 - lw * 2, bot - top - lw * 2, Math.max(0, r - lw)).fill(0xe9b23b);
-		g.rect(cx - hw + lw, top + lw, (hw * 2 - lw * 2) * 0.32, bot - top - lw * 2).fill(0xf5d26a);
-		for (const f of [0.52, 0.78]) g.rect(cx - hw + lw + (hw * 2 - lw * 2) * f - lw * 0.35, top + lw, lw * 0.7, bot - top - lw * 2).fill(0xb8862b);
-	};
-	/** a fire engine's side step: a diamond-plate steel tread on an engine-red riser, ink outline, brass rivets (drawn in
-	 *  code, no art), and a soft contact shadow under the boots */
-	const drawStand = (g: PIXI.Graphics, st: { x: number; y: number; w: number; h: number }, feetX: number) => {
-		const { x, y, w, h } = st;
-		const lw = Math.max(1.5, h * 0.12);
-		const r = Math.min(h * 0.3, 6);
-		const th = h * 0.46;
-		g.roundRect(x, y, w, h, r).fill(0x2a1a10);
-		g.roundRect(x + lw, y + lw, w - lw * 2, h - lw * 2, Math.max(0, r - lw)).fill(0xd7262b);
-		g.rect(x + lw, y + h - lw - h * 0.2, w - lw * 2, h * 0.2).fill(0x9c1a1e);
-		g.roundRect(x + lw, y + lw, w - lw * 2, th - lw, Math.max(0, r - lw)).fill(0xa9b3c1);
-		g.rect(x + lw, y + th - lw * 0.5, w - lw * 2, lw).fill(0x2a1a10);
-		g.rect(x + lw * 1.5, y + lw, w - lw * 3, Math.max(1, h * 0.08)).fill(0xe3e8ee);
-		// diamond plate: short slanted dashes, alternating
-		const step = Math.max(5, th * 0.9);
-		for (let i = 0, px = x + lw + step * 0.6; px < x + w - lw - step * 0.4; i += 1, px += step) {
-			const s = (i % 2 ? 1 : -1) * step * 0.18;
-			g.moveTo(px - s, y + th * 0.5 - th * 0.14).lineTo(px + s, y + th * 0.5 + th * 0.14);
-		}
-		g.stroke({ width: Math.max(1, th * 0.12), color: 0x6f7c90 });
-		for (const rx of [x + lw + h * 0.28, x + w - lw - h * 0.28]) g.circle(rx, y + th + (h - th) * 0.45, Math.max(1.2, h * 0.1)).fill(0xe9b23b);
-		// contact shadow under the boots
-		g.ellipse(feetX, y + lw, w * 0.3, Math.max(1.5, th * 0.32)).fill({ color: 0x1a0d05, alpha: 0.35 });
-	};
-	/** the HUD's ante chip in main units when it is on screen (the bonus hides it: app.html data-pff-feature) */
-	const measureChip = (): { left: number; top: number } | null => {
-		if (typeof document === 'undefined') return null;
-		const el = document.querySelector<HTMLElement>('.ante-chip');
-		if (!el) return null;
-		try {
-			if (typeof el.checkVisibility === 'function' && !el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true })) return null;
-		} catch {
-			/* older engines: the rect decides */
-		}
-		const r = el.getBoundingClientRect();
-		if (!(r.width > 0 && r.height > 0)) return null;
-		const sl = context.stateGameDerived.sceneLayout();
-		return { left: sl.toMainX(r.left), top: sl.toMainY(r.top) };
-	};
-
 	const tex = (key: string): PIXI.Texture =>
 		(app.stateApp.loadedAssets?.[key] as PIXI.Texture | undefined) ?? sceneTex(key) ?? PIXI.Texture.EMPTY;
 	const cue = (id: string) => {
@@ -392,13 +248,9 @@
 			const centreY = fit.centreY;
 			const k0 = signW0 / SIGN.w;
 			const grow = (rank: number) => signGrow(rank, phone);
-			// the chief steps clear of the board's right edge at the landed rung, breath included
-			signRight = cx + (BOARD.w / 2) * k0 * grow(finalIdx) * (1 + fxTop.breath);
-			chipRect = phone ? null : measureChip();
 			const mood = stateScene.mood;
 			// rig beat: the win-rung plate is in (docs/ANIMATION_CONTRACT.md bigWinStart, tier 2..6)
 			animBeats.emit({ beat: 'bigWinStart', tier, amount: amount / 100 });
-			plateTier = tier;
 
 			// ---- display tree ----
 			const shakeBox = new PIXI.Container();
@@ -523,14 +375,14 @@
 			const card = new PIXI.Sprite(PIXI.Texture.EMPTY);
 			card.anchor.set(0.5);
 			// THE MAX WIN CARD IS A CARD, NOT A PICTURE (owner, 2026-09-20: "a unique presentation card for the max win
-			// hit"). `cardBox` carries the art behind rounded corners, a gold frame, the MAX WIN title and the 15,000x
+			// hit"). `cardBox` carries the art behind rounded corners, a gold frame, the MAX WIN title and the 20,000x
 			// multiple on a plank (never a currency figure: owner ruling, see dressCard). Everything is a child of
 			// `cardBox`, so `finish()` destroys it with the rest of the stage.
 			const cardBox = new PIXI.Container();
 			cardBox.alpha = 0;
 			cardBox.addChild(card);
 			// the MAX card stays ALIVE over its hold (judge 2026-09-26: a frozen poster): a coin storm at three depths and
-			// pops of 4-point glints ride above it (never over the title / 15,000x band), a shine sweeps its plank and it
+			// pops of 4-point glints ride above it (never over the title / 20,000x band), a shine sweeps its plank and it
 			// breathes; the MAX rays keep turning around its edges
 			const cardFx = new PIXI.Container();
 			cardFx.alpha = 0;
@@ -973,7 +825,6 @@
 				run = undefined;
 				active = false;
 				animBeats.emit({ beat: 'bigWinEnd', tier, amount: amount / 100 });
-				plateTier = 0;
 				resolve();
 			};
 			// a hidden tab stops the ticker: the awaited event still resolves (game/rungPacing.ts watchdogMs)
@@ -982,9 +833,6 @@
 			const startOut = () => {
 				phase = 'out';
 				phaseT = 0;
-				// the plate chief leaves WITH the sign, inside the stage's own out-fade (reduced motion: the same plain fade)
-				plateOutMs = tl.outMs * 0.8;
-				plateTier = 0;
 				cue('rung_out');
 			};
 
@@ -1000,10 +848,6 @@
 				phase = 'card';
 				phaseT = 0;
 				cardShown = true;
-				// the card's own painting carries the Chief: the plate rig steps off WITH the sign, gone before the card lands
-				// (a second, fading chief read over the card's right edge), so there is never a second one
-				plateOutMs = tl.cardFadeMs * CARD_HANDOVER.signGone;
-				plateTier = 0;
 				const texture = tex(portraitCanvas ? 'maxwin_card_portrait' : 'maxwin_card_landscape');
 				card.texture = texture;
 				const ms = main.scale || 1;
@@ -1050,10 +894,10 @@
 					cardGlints.push({ s, t: 0, life: 650, wait: 180 + i * 240, size: 0 });
 				}
 			}
-			/** the additive shine swept across the card's 15,000x plank (dressCard), and the plank's x span in cardBox units */
+			/** the additive shine swept across the card's 20,000x plank (dressCard), and the plank's x span in cardBox units */
 			let cardShine: PIXI.Sprite | undefined;
 			let cardShineSpan: { x0: number; x1: number } | undefined;
-			/** the card's no-coin zone (the title and the 15,000x plank), stage units; set by layoutStorm */
+			/** the card's no-coin zone (the title and the 20,000x plank), stage units; set by layoutStorm */
 			let cardSafe = { x0: 0, y0: 0, x1: 0, y1: 0 };
 			/** where storm coins and glints may go: the card's art beside / under the title band, plus the margins */
 			let stormArea = { x0: 0, y0: 0, x1: 0, y1: 0 };
@@ -1133,7 +977,7 @@
 						g.wait = 250 + 900 * Math.random();
 					}
 				}
-				// the shine crosses the 15,000x plank every ~2 s
+				// the shine crosses the 20,000x plank every ~2 s
 				if (cardShine && cardShineSpan) {
 					const period = 2100;
 					const t = (cardClock % period) / 700;
@@ -1188,7 +1032,7 @@
 				// THE CARD CARRIES THE MULTIPLE, NEVER A CURRENCY FIGURE (owner, 2026-09-20: "the card should only be framed
 				// with the x multiple ... we don't know what the user's bet will be"). The rung sign before it has already
 				// counted up the player's real booked amount; the card is the moment's poster, and the one number that is
-				// true at every stake is the multiple: 15,000x in every mode, read from the mode table (never typed).
+				// true at every stake is the multiple: 20,000x in every mode, read from the mode table (never typed).
 				const multText = fmtX(Number(config.betModes.base.max_win));
 				const plankH = portraitCanvas ? band.h * 0.44 : band.h * 0.27;
 				const plankMaxW = band.w * (portraitCanvas ? 0.86 : 0.98);
@@ -1270,7 +1114,7 @@
 							else startOut();
 						}
 					} else if (phase === 'card') {
-						// never a cross-dissolve (judge: 'WIN' beside 'MAX WIN', '$15,000.00' over '15,000x'): the sign clears
+						// never a cross-dissolve (judge: 'WIN' beside 'MAX WIN', '$20,000.00' over '20,000x'): the sign clears
 						// under an additive flash and the card LANDS at full alpha with a short overshoot, then breathes
 						// 1.0 <-> 1.015. Reduced motion: the sign fades out, then the card fades in, still (rungPacing cardHandover)
 						const h = cardHandover(phaseT, tl.cardFadeMs, reduced);
@@ -1443,7 +1287,7 @@
 						e.s.x = e.base + Math.sin(clock * 0.0011 + e.wob) * view.w * 0.02;
 						const hgt = (e.s.y - view.y) / view.h;
 						e.s.alpha = (0.55 + 0.45 * Math.sin(clock * 0.012 + e.wob * 5)) * Math.min(1, hgt * 3) * Math.min(1, (1 - hgt) * 4);
-						// over the MAX card the embers never cross its title / 15,000x band
+						// over the MAX card the embers never cross its title / 20,000x band
 						if (cardShown && inSafe(e.s.x, e.s.y, 6)) e.s.alpha = 0;
 						if (e.s.y < view.y - 10) {
 							e.s.y = view.y + view.h + 10;
@@ -1567,27 +1411,6 @@
 		<Container>
 			<Grab ongrab={(node) => (root = node)} />
 		</Container>
-		<!-- the celebrating chief at the right of the amount plaque (rig slot `winPlate`); wide layouts only. He rises in
-		     with the sign and, on the exit, fades in place (never sinking onto the ALARM BOOST chip). He stands on a running
-		     board (drawStand) when the chip or the HUD bar would leave him in mid-air; the slot is widened for his hose -->
-		{#if !stacked}
-			<Container
-				x={plateSlot.x}
-				y={plateSlot.y + (prefersReducedMotion() || plateTier < 2 ? 0 : (1 - plateIn.current) * plateSlot.h * 0.3)}
-				alpha={Math.max(0, Math.min(1, plateIn.current))}
-				visible={plateIn.current > 0.01}
-			>
-				{#if plateSlot.stand}
-					{@const stand = plateSlot.stand}
-					<Graphics draw={(g) => drawStand(g, stand, plateSlot.origin?.x ?? stand.x + stand.w / 2)} />
-				{/if}
-				<RigStage {...{ slot: 'winPlate' as const }} width={plateSlot.w} height={plateSlot.h} scale={plateSlot.scale} layout={plateSlot.layout} reducedMotion={prefersReducedMotion()} />
-				{#if plateSlot.origin}
-					{@const origin = plateSlot.origin}
-					<Graphics draw={(g) => drawCoupling(g, origin)} />
-				{/if}
-			</Container>
-		{/if}
 	</MainContainer>
 </Container>
 

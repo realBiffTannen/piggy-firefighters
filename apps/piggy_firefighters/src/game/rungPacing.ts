@@ -5,15 +5,15 @@
  * THE COUNT is one monotone climb, drawn as a SEGMENT-WEIGHTED LOG RAMP. Segment r shows rung r (0 BIG .. 4 MAX) and
  * climbs from the rung's floor to the next one; inside a segment the figure grows at a steady RATE (linear in log10
  * of the value), and each segment lasts `rungMs + decadeMs x decades climbed`, so every rung gets real time on screen
- * and a long climb (100x -> 15,000x) gets more of it than a short one (30x -> 50x). Ganja's single linear ramp is the
- * wrong model for this title: with floors of 15 / 30 / 50 / 100x and a 15,000x cap it would put every BIG..EPIC
+ * and a long climb (100x -> 20,000x) gets more of it than a short one (30x -> 50x). Ganja's single linear ramp is the
+ * wrong model for this title: with floors of 15 / 30 / 50 / 100x and a 20,000x cap it would put every BIG..EPIC
  * crossing in the first ~1% of the count. The old equal split spent ~60% of a max win below 100x and only showed
  * MAX once the figure was already capped.
  *
  *   - the count starts at 2x the base bet (never a few cents under a BIG WIN sign);
  *   - crossings below MAX land exactly on their floor (15 / 30 / 50 / 100x, clamped to the booked amount);
- *   - MAX comes up at a tenth of the cap (1,500x), BEFORE the figure reaches it, then accelerates and slams in on
- *     exactly 15,000x; every other landing eases out into the booked figure;
+ *   - MAX comes up at a tenth of the cap (2,000x), BEFORE the figure reaches it, then accelerates and slams in on
+ *     exactly 20,000x; every other landing eases out into the booked figure;
  *   - `speed` is stateSpeed speedFactor(): 1 normal, 0.5 turbo, 0.3 super turbo. It scales the whole plan.
  *
  * Amounts are BOOKED units (x100 of the base bet), as in game/roundTier.ts; the floors are passed in
@@ -33,7 +33,7 @@ export const RUNG_COUNT = {
 	landMs: 650,
 	/** MAX's own segment is the longest: the sign is up well before the cap lands */
 	maxMs: 1100,
-	/** the MAX sign comes up at this share of the cap floor (1,500x of 15,000x) */
+	/** the MAX sign comes up at this share of the cap floor (2,000x of 20,000x) */
 	maxRevealShare: 0.1,
 	/** the first figure: 2x the base bet (booked 200) */
 	startBooked: 200,
@@ -382,33 +382,6 @@ export const volleyKey = (i: number, n: number, offset = 0): number => {
 	if (!(n > 1)) return 0;
 	const stride = [3, 1, 5, 7, 9, 11, 13].find((s) => gcd(4 + s, n) === 1) ?? 1;
 	return (((i + stride * Math.floor(i / 4) + offset) % n) + n) % n;
-};
-
-// ---- the desktop plate chief (rig slot winPlate) ----------------------------------------------------------------------------
-
-/** The plate slot's mask is widened by this share of its width on EACH side: the chief's hose tail swings past his setup
- *  bounds in his celebrate / big_win clips and the slot mask (rigs/SlotClip) cut it in a hard vertical edge. */
-export const PLATE_HOSE_REACH = 0.3;
-
-/** Widen the plate slot's mask without moving or resizing the chief: RigStage centres him in the slot and fits his setup
- *  bounds, so the wider slot keeps his centre, and `scale` (RigStage's layout scale, which can only shrink the fit)
- *  undoes the larger fit. `fit(w)` is the fitted scale for slot width w (rigLogic fitRigInSlot); null (no rig data yet)
- *  leaves the slot as it is. */
-export const widenPlateSlot = (slot: { x: number; w: number }, fit: ((w: number) => number) | null, reach: number): { x: number; w: number; scale: number } => {
-	if (!fit || !(reach > 0)) return { x: slot.x, w: slot.w, scale: 1 };
-	const ext = slot.w * reach;
-	const w = slot.w + 2 * ext;
-	const a = fit(slot.w);
-	const b = fit(w);
-	return { x: slot.x - ext, w, scale: b > 0 && a > 0 ? Math.min(1, a / b) : 1 };
-};
-
-/** The step the plate chief stands on when he is lifted over the ALARM BOOST chip (or stands clear of the HUD bar): it
- *  fills the gap from his soles down to the support line, `stance` wide under his feet. None for a gap under 3 px. */
-export const plateStand = (soles: number, support: number, cx: number, stance: number): { x: number; y: number; w: number; h: number } | null => {
-	const h = support - soles;
-	if (!(h >= 3) || !(stance > 0)) return null;
-	return { x: cx - stance / 2, y: soles, w: stance, h };
 };
 
 /**

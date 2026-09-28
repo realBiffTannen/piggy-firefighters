@@ -16,7 +16,7 @@ The .json skeletons are not copied: game/assets.ts keeps pointing at the origina
 The rig exports themselves are never touched. Re-run after any rig re-export.
 
     python3 tools/perf/derive_spine_lod.py            # all rigs
-    python3 tools/perf/derive_spine_lod.py pf_chief   # one rig
+    python3 tools/perf/derive_spine_lod.py pf_rookie  # one rig
 """
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 APP = os.path.join(ROOT, "apps", "piggy_firefighters")
 SRC = os.path.join(APP, "static", "assets", "spine")
 OUT = os.path.join(APP, "static", "assets", "spine-lod")
-RIGS = ("pf_chief", "pf_dog", "pf_rookie", "pf_rescued")
+RIGS = ("pf_rookie", "pf_rescued")
 
 
 def page_line_indices(lines: list[str]) -> list[int]:

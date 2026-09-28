@@ -12,13 +12,13 @@
 	// counter is the HUD's (setFeatureSpins).
 	//
 	// RIGS (docs/ANIMATION_CONTRACT.md v1.1): the rescued Trotters wave in the windows (`rescueRoom` x5), slide down the
-	// ladder (`ladder`, the path in slot coordinates) into the sheet held by Sprocket and Ember (`sheet`). Until Codex's
+	// ladder (`ladder`, the path in slot coordinates) into the sheet held by Sprocket (`sheet`). Until Codex's
 	// exports exist the slots draw nothing and the procedural fallback plays: a brass tag with the Trotter's name hops to
 	// the ladder, slides down and lands in the sheet, publishing the runtime's `landingBus` arrival so sheet rigs (if
 	// any) still react.
 	//
 	// PHONES (stacked layouts; owner 2026-09-26 "This view is not clear at all", and no mascots in the mobile view): no
-	// ladder, no jump sheet, no Sprocket / Ember, no hose nozzle and no water jet across the reels (splash + steam at the
+	// ladder, no jump sheet, no Sprocket, no hose nozzle and no water jet across the reels (splash + steam at the
 	// window only). The band is taller by an info rail above the cornice (stateGame BUILDING_BAND_CELLS_STACKED) that
 	// carries BUILDING / TOTAL / xN off the windows, so the flames and smoke over the cornice show; the transient banner
 	// rides that rail (one layer at a time), never the middle reel row. The window Trotters stand lower and smaller, so the
@@ -45,7 +45,6 @@
 	import { boardTicker } from '../../game/reels/boardTicker';
 	import { sceneTex } from '../../game/fx/sceneTextures.svelte';
 	import { audioDirector } from '../../game/fx/audioDirector';
-	import { stateRig, chiefNozzleTip } from '../../game/fx/stateRig.svelte';
 	import { stateSpeed } from '../../game/stateSpeed.svelte';
 	import { stateRescue, stateBackdraftSpins } from '../../game/rescue/stateRescue.svelte';
 	import { BOARD_FRAME, RESCUE_ART, rescueProp } from '../../game/artMeta';
@@ -227,16 +226,8 @@
 	const nozzleAt = $derived(
 		ladder ? { x: ladder.foot.x + S * 1.25, y: frameBottom + S * 0.3, rot: -0.55 } : { x: S * 0.55, y: frameBottom + S * 0.42, rot: -0.7 },
 	);
-	/** the chief rig stands in his gutter: he holds the hose, so the scene's own hose and nozzle stay away */
-	const chiefHoldsHose = $derived(rigRegistry.has('pf_chief') && stateRig.chiefOnStage);
-	/** where the water leaves the nozzle (board units): the chief rig's `nozzle_tip` (the spraying tip the rig
-	 *  published, else the mounted chief's bone right now), or the prop nozzle's tip */
+	/** where the water leaves the nozzle (board units): the prop nozzle's tip */
 	const nozzleTip = () => {
-		const tip = stateRig.nozzleTip ?? (chiefHoldsHose ? chiefNozzleTip() : null);
-		if (fxNode && tip) {
-			const p = fxNode.toLocal(new PIXI.Point(tip.x, tip.y));
-			return { x: p.x, y: p.y };
-		}
 		const n = nozzleAt;
 		return { x: n.x + Math.cos(n.rot) * NOZZLE_W * 0.48, y: n.y + Math.sin(n.rot) * NOZZLE_W * 0.48 };
 	};
@@ -682,9 +673,9 @@
 
 <Container x={bl().x} y={bl().y} scale={bl().zoomScale} pivot={{ x: W / 2, y: H / 2 }}>
 	{#if stateRescue.active && bandH > 0}
-		<!-- the hose from the truck (off the left edge) to the nozzle; hidden when the chief rig sprays himself, and on
-		     phones (no jet crosses the reels there, so no idle nozzle under them) -->
-		{#if !chiefHoldsHose && !stacked}
+		<!-- the hose from the truck (off the left edge) to the nozzle; hidden on phones (no jet crosses the reels there,
+		     so no idle nozzle under them) -->
+		{#if !stacked}
 			{#if tex('rescue_hose_segment')}
 				{#each hoseTiles as hx (hx)}
 					<BaseSprite texture={tex('rescue_hose_segment')} x={hx} y={nozzleAt.y + NOZZLE_H * 0.12} width={HOSE_TILE_W + 0.5} height={HOSE_H} anchor={{ x: 0, y: 0.5 }} />
@@ -769,7 +760,7 @@
 		{/if}
 
 		<!-- rigs: the Trotters at their windows (phones: lower and smaller, so the fire shows; empty through the NEXT
-		     BUILDING hold), the ladder actor (phones: the drop down its own column), Sprocket + Ember with the sheet (wide
+		     BUILDING hold), the ladder actor (phones: the drop down its own column), Sprocket with the sheet (wide
 		     layouts only: no mascots in the mobile view) -->
 		{#each stateRescue.rooms as room (room.reel)}
 			{@const ts = trotterSlot(windowRect(room.reel), stacked)}

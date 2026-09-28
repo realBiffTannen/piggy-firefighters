@@ -13,7 +13,7 @@ One paid 1536x1024 painting per mode serves BOTH its buy card and its splash car
                                         titleSafeArea and a measured calm ratio ("MAX WIN" + multiple drawn at runtime).
 
 Default spec (override with --spec <json> using the same keys; sources are names under art-src/generated):
-  buycards: ante, backdraft-spins, alarm-call, rescue, inferno   <- cards/card_{ante,backdraft,alarm,rescue,inferno}
+  buycards: ante, super-ante, backdraft-spins, alarm-call, rescue, inferno   <- cards/card_{ante_nodog,super_ante,backdraft,alarm_nodog,rescue,inferno}
   splash:   card_chief, card_lines, card_backdraft, card_alarm, card_rescue, card_maxwin (the last from the portrait
             max-win painting). Ids follow static/assets/splash/manifest.json (the frontend's mirror; never edited here).
 
@@ -34,25 +34,30 @@ from art_common import (QA, exists_src, label_font, load_rgb, out_root, prepare_
 SPEC = {
     # key -> [painting, zoom, fx, fy]
     "buycards": {
-        "ante": ["cards/card_ante", 1.0, 0.5, 0.5],
+        # owner 2026-09-28: the Ember mascot is out of the game — the *_nodog paintings are masked inpaints of the
+        # accepted originals (tools/art/gen_art.py --mask); super-ante is the FIVE-ALARM BOOST tier's own painting
+        "ante": ["cards/card_ante_nodog", 1.0, 0.5, 0.5],
+        "super-ante": ["cards/card_super_ante", 1.0, 0.5, 0.5],
         "backdraft-spins": ["cards/card_backdraft", 1.0, 0.5, 0.5],
-        "alarm-call": ["cards/card_alarm", 1.0, 0.5, 0.5],
+        "alarm-call": ["cards/card_alarm_nodog", 1.0, 0.5, 0.5],
         "rescue": ["cards/card_rescue", 1.0, 0.5, 0.5],
         "inferno": ["cards/card_inferno", 1.0, 0.5, 0.5],
     },
     # id -> [painting, fx, fy]
     "splash": {
-        "card_chief": ["cards/card_chief", 0.5, 0.5],
-        "card_lines": ["cards/card_lines", 0.5, 0.5],
+        # card_chief_crest = the accepted painting with the Trotterville F.D. shield lettered locally
+        # (tools/art/letter_card_crest.py); *_nodog as above
+        "card_chief": ["cards/card_chief_crest", 0.5, 0.5],
+        "card_lines": ["cards/card_lines_nodog", 0.5, 0.5],
         "card_backdraft": ["cards/card_backdraft", 0.5, 0.5],
-        "card_alarm": ["cards/card_alarm", 0.5, 0.5],
+        "card_alarm": ["cards/card_alarm_nodog", 0.5, 0.5],
         "card_rescue": ["cards/card_rescue", 0.5, 0.5],
-        "card_maxwin": ["cards/maxwin_portrait", 0.5, 0.58],
+        "card_maxwin": ["cards/maxwin_portrait_nodog", 0.5, 0.58],
     },
     "maxwin": {
-        "landscape": {"src": "cards/maxwin_16_9", "file": "max_win_card_16x9.webp", "size": [1600, 900],
+        "landscape": {"src": "cards/maxwin_16_9_nodog", "file": "max_win_card_16x9.webp", "size": [1600, 900],
                       "zoom": 1.0, "fx": 0.5, "fy": 0.5, "titleSafeArea": {"x": 0.04, "y": 0.24, "w": 0.46, "h": 0.64}},
-        "portrait": {"src": "cards/maxwin_portrait", "file": "max_win_card_portrait.webp", "size": [900, 1400],
+        "portrait": {"src": "cards/maxwin_portrait_nodog", "file": "max_win_card_portrait.webp", "size": [900, 1400],
                      "zoom": 1.0, "fx": 0.5, "fy": 0.5, "titleSafeArea": {"x": 0.07, "y": 0.06, "w": 0.86, "h": 0.34}},
     },
 }

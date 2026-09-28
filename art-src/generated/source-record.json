@@ -7480,5 +7480,267 @@
     },
     "seconds": 30.4,
     "superseded": "art-src/generated/symbols/superseded/sym_tall_w_blaze_b.20260926T162650.png"
+  },
+  {
+    "asset": "card_ante_nodog",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nINPAINT ONLY THE TRANSPARENT MASK REGION of this painting; every pixel outside the mask stays exactly as it is (same characters, same colours, same lines). Inside the region: REMOVE the Dalmatian puppy completely \u2014 no dog, no animal, no new character, no helmet, no collar, no paws \u2014 and continue the surrounding scene through it seamlessly in the same hand-inked flat cel cartoon style: the same brick wall, stone, red bay-door slats, street, water, coins, truck panels or ladder that border the region, with their lines, perspective and shading carried straight across. Where a hose or another object passes through the region, continue that object naturally. No text, no letters, no numbers, no logos, no watermark.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_nodog_inpaint.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/card_ante.png"
+    ],
+    "mask_path": "art-src/generated/cards/masks/card_ante_nodog_mask.png",
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "owner 2026-09-28: the Ember mascot is removed from the game; masked inpaint of cards/card_ante without the Dalmatian",
+    "attempt": 1,
+    "ts": "2026-09-28T10:47:12",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_ante_nodog.png",
+    "sha256": "4e44268821f96416af454755233cd9b7471d4e48b883cd003c23cb21f1b458bf",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1940,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 404
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3312
+    },
+    "seconds": 30.1
+  },
+  {
+    "asset": "card_alarm_nodog",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nINPAINT ONLY THE TRANSPARENT MASK REGION of this painting; every pixel outside the mask stays exactly as it is (same characters, same colours, same lines). Inside the region: REMOVE the Dalmatian puppy completely \u2014 no dog, no animal, no new character, no helmet, no collar, no paws \u2014 and continue the surrounding scene through it seamlessly in the same hand-inked flat cel cartoon style: the same brick wall, stone, red bay-door slats, street, water, coins, truck panels or ladder that border the region, with their lines, perspective and shading carried straight across. Where a hose or another object passes through the region, continue that object naturally. No text, no letters, no numbers, no logos, no watermark.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_nodog_inpaint.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/card_alarm.png"
+    ],
+    "mask_path": "art-src/generated/cards/masks/card_alarm_nodog_mask.png",
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "owner 2026-09-28: the Ember mascot is removed from the game; masked inpaint of cards/card_alarm without the Dalmatian",
+    "attempt": 1,
+    "ts": "2026-09-28T10:47:42",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_alarm_nodog.png",
+    "sha256": "d2570a9cd647669260f7726bc8b0461ac6aee2aa91c6b0ef5e067a32c77e283d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1940,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 404
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3312
+    },
+    "seconds": 34.3
+  },
+  {
+    "asset": "card_lines_nodog",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nINPAINT ONLY THE TRANSPARENT MASK REGION of this painting; every pixel outside the mask stays exactly as it is (same characters, same colours, same lines). Inside the region: REMOVE the Dalmatian puppy completely \u2014 no dog, no animal, no new character, no helmet, no collar, no paws \u2014 and continue the surrounding scene through it seamlessly in the same hand-inked flat cel cartoon style: the same brick wall, stone, red bay-door slats, street, water, coins, truck panels or ladder that border the region, with their lines, perspective and shading carried straight across. Where a hose or another object passes through the region, continue that object naturally. No text, no letters, no numbers, no logos, no watermark.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_nodog_inpaint.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/card_lines.png"
+    ],
+    "mask_path": "art-src/generated/cards/masks/card_lines_nodog_mask.png",
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "owner 2026-09-28: the Ember mascot is removed from the game; masked inpaint of cards/card_lines without the Dalmatian",
+    "attempt": 1,
+    "ts": "2026-09-28T10:48:16",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_lines_nodog.png",
+    "sha256": "420b3e5884e356a7e40144acfbad181b71f39dcb3f2bec78da826383b3a49996",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1940,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 404
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3312
+    },
+    "seconds": 33.7
+  },
+  {
+    "asset": "maxwin_16_9_nodog",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nINPAINT ONLY THE TRANSPARENT MASK REGION of this painting; every pixel outside the mask stays exactly as it is (same characters, same colours, same lines). Inside the region: REMOVE the Dalmatian puppy completely \u2014 no dog, no animal, no new character, no helmet, no collar, no paws \u2014 and continue the surrounding scene through it seamlessly in the same hand-inked flat cel cartoon style: the same brick wall, stone, red bay-door slats, street, water, coins, truck panels or ladder that border the region, with their lines, perspective and shading carried straight across. Where a hose or another object passes through the region, continue that object naturally. No text, no letters, no numbers, no logos, no watermark.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_nodog_inpaint.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/maxwin_16_9.png"
+    ],
+    "mask_path": "art-src/generated/cards/masks/maxwin_16_9_nodog_mask.png",
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "owner 2026-09-28: the Ember mascot is removed from the game; masked inpaint of cards/maxwin_16_9 without the Dalmatian",
+    "attempt": 1,
+    "ts": "2026-09-28T10:48:50",
+    "status": "OK",
+    "output": "art-src/generated/cards/maxwin_16_9_nodog.png",
+    "sha256": "32d423089924f5b16f58e89dba9d7a054109593fda5d3942236b49ba4e2fd53d",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1940,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 404
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3312
+    },
+    "seconds": 30.4
+  },
+  {
+    "asset": "maxwin_portrait_nodog",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1024x1536",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nINPAINT ONLY THE TRANSPARENT MASK REGION of this painting; every pixel outside the mask stays exactly as it is (same characters, same colours, same lines). Inside the region: REMOVE the Dalmatian puppy completely \u2014 no dog, no animal, no new character, no helmet, no collar, no paws \u2014 and continue the surrounding scene through it seamlessly in the same hand-inked flat cel cartoon style: the same brick wall, stone, red bay-door slats, street, water, coins, truck panels or ladder that border the region, with their lines, perspective and shading carried straight across. Where a hose or another object passes through the region, continue that object naturally. No text, no letters, no numbers, no logos, no watermark.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/cards_nodog_inpaint.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/cards/maxwin_portrait.png"
+    ],
+    "mask_path": "art-src/generated/cards/masks/maxwin_portrait_nodog_mask.png",
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "owner 2026-09-28: the Ember mascot is removed from the game; masked inpaint of cards/maxwin_portrait without the Dalmatian",
+    "attempt": 1,
+    "ts": "2026-09-28T10:49:20",
+    "status": "OK",
+    "output": "art-src/generated/cards/maxwin_portrait_nodog.png",
+    "sha256": "c17785f51ce035a09103761f40bcd8f2461fc35b1e04b73f02a17cd5b1535c78",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 1940,
+      "input_tokens_details": {
+        "image_tokens": 1536,
+        "text_tokens": 404
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 3312
+    },
+    "seconds": 32.3
+  },
+  {
+    "asset": "card_super_ante",
+    "batch": "cards",
+    "lane": "ART",
+    "endpoint": "images/edits",
+    "requested_model": "gpt-image-2.5-sunburst",
+    "size": "1536x1024",
+    "quality": "high",
+    "n": 1,
+    "transparent": false,
+    "prompt": "Same 2D cartoon style as our slot-game family: a bold, thick, dark-brown ink outline on every shape; chunky, rounded, slightly exaggerated forms; flat cel shading with ONE hard shadow tone per surface; a small saturated palette: engine red #D7262B, brass gold #E9B23B, hydrant yellow #F5D23C, hose cream #F4E9D2, smoke blue-grey #7C8AA0, dusk navy #1E2A4A (flame orange #FF7A1A only for fire and effects). Backgrounds are simplified into flat, readable shapes with clear value separation between foreground, midground and sky. This is a hand-inked cel painting: not photorealistic, not a glossy 3D render, with no airbrushed gradients, no lens flare and no bloom haze. Fully opaque image. No text, no letters, no numbers, no signage lettering, no logos, no watermark, no emoji. No hard hats, no construction machinery, no police imagery, no lanterns, no dragons, no real-world brands or badges.\n\nThe cast are cartoon pigs. When a reference image shows our studio pig, keep ITS head shape, snout, ears, eye style (white eyes, round black pupils, one white catch-light), body proportions and ink style exactly. REPLACE its costume completely: the reference wears an old outfit that must NOT appear, so there is no hard hat, no hi-vis vest, no rolled plan and no work boots from the reference. The character is friendly and heroic-comic, never a caricature. The comedy comes from the situation, never from body or ethnic features. Nobody is ever hurt.\n\nCARD LAYOUT (strict): this painting is cut two ways, a wide strip made from the middle 44 percent of the image height, and a centre square made from the middle two thirds of the width. So keep the whole main action compact inside the central 60 percent of the width and the central half of the height; faces, the key object and its silhouette must sit on the horizontal middle line of the picture. The outer edges hold only simple supporting background that can be cropped away without losing anything. Big, bold, simple shapes that read at a small thumbnail size; one clear focal point; strong value contrast between the subject and the background. Every pig face shows white eyes with round black pupils and one hard white catch-light, friendly and heroic-comic, never angry. Absolutely no text, letters, numbers, prices, currency signs, signage lettering, logos, UI buttons or frames anywhere.\n\nImage 1 is OUR HERO Chief Hamm: keep his identity exactly (short flat wide pink snout, pink ears, thick dark-brown chevron moustache, confident near-level brows, the white fire helmet with a plain BLANK brass shield plate on its front, the engine-red turnout coat with hydrant-yellow reflective bands and brass clasps, black belt, brass bugle on his hip). Image 2 is our firehouse at dusk: use its red-brick wall, cream stone arch, red roll-up slat bay door and the brass alarm bell on its red box above the arch as the setting, in exactly that style. Image 3 is that brass alarm bell on its red box, our bonus symbol.\nPaint this card picture, the FIVE-ALARM call: the same closer, lower camera looking slightly up at the top of the bay door arch of Image 2, but now FIVE of the brass alarm bells of Image 3 stand in a row along the top of the arch, every one of them RINGING HARD at once: bells tilted mid-swing, hammers blurred, bold hydrant-yellow motion arcs and flat cream sound rings overlapping from bell to bell, and red alert lamps under the cornice flashing with flat orange light cones, a few flat gold sparks in the air. Directly below the bells and in front of the closed red slat door, framed by the arch: Chief Hamm ALONE, big and centred, half-length, both arms thrown up in a triumphant all-hands call-out, mouth wide open in a mighty joyful shout, his brass bugle raised high in one fist, the other hand a clenched cartoon fist; his face sits on the horizontal middle line of the picture. Warm lit upstairs windows either side, dusk sky just visible above the cornice. Nobody else in the picture: no dog, no other pig. The mood: the biggest call of the year, everything ringing, all hands on deck.",
+    "prompt_files": [
+      "art-src/generated/prompts/_style_painting.txt",
+      "art-src/generated/prompts/_style_character_nolabel.txt",
+      "art-src/generated/prompts/_card_layout.txt",
+      "art-src/generated/prompts/cards_card_super_ante.txt"
+    ],
+    "reference_paths": [
+      "art-src/generated/hero/chief_hamm_master.png",
+      "art-src/generated/scene/plate_base_16_9.png",
+      "art-src/generated/symbols/sym_sq_alarm.png"
+    ],
+    "mask_path": null,
+    "cost_estimate_usd": 0.3,
+    "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
+    "note": "owner 2026-09-28: new FIVE-ALARM BOOST (super_ante 5x) feature card; buycards/super-ante.webp",
+    "attempt": 1,
+    "ts": "2026-09-28T10:49:53",
+    "status": "OK",
+    "output": "art-src/generated/cards/card_super_ante.png",
+    "sha256": "1d54e570849add8e0bea646c90a2dce53f9a684e19bb9a38a42ca0a09b5813ae",
+    "actual_model": "gpt-image-2.5-sunburst",
+    "usage": {
+      "input_tokens": 5066,
+      "input_tokens_details": {
+        "image_tokens": 4096,
+        "text_tokens": 970
+      },
+      "output_tokens": 1372,
+      "output_tokens_details": {
+        "image_tokens": 1372,
+        "text_tokens": 0
+      },
+      "total_tokens": 6438
+    },
+    "seconds": 34.3
   }
 ]

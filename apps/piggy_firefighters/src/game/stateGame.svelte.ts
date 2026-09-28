@@ -88,8 +88,8 @@ setPaddingSource(() => ({ gameType: stateGame.gameType, inferno: stateRescue.act
 // ---- SCENE LAYOUT -----------------------------------------------------------
 // One function places everything that shares the play area: the reels, the
 // truck-panel frame that wraps ONLY the reels, the world gutters left and right of it
-// (desktop / landscape) or above and below it (portrait), the mascot's standing
-// spot, and the bonus furniture hung on the frame. All maths is done in SCREEN
+// (desktop / landscape) or above and below it (portrait), and the bonus furniture
+// hung on the frame. All maths is done in SCREEN
 // px and converted to main-design units once, so the HUD (which reads the reel
 // rect back through `HudConfig.boardGeometry`) and the canvas agree exactly.
 //
@@ -166,7 +166,7 @@ export const watchAnteChip = () => {
 		window.removeEventListener('resize', onResize);
 	};
 };
-const MASCOT_GUTTER = 0.95; // cells of gutter the mascot needs beside the reels
+const MASCOT_GUTTER = 0.95; // cells of world kept visible beside the reels on wide screens (the former mascot gutters)
 // RESCUE SCENE (contract §5): the burning apartment block stands ABOVE the reels, one room per reel column. While the
 // scene is up the layout reserves this band (in cells) above the frame, so the board shrinks a little to make room.
 // The rescue director only raises the scene while the bay-door shutter covers the play area, so the board never

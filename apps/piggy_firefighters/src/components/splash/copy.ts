@@ -19,7 +19,7 @@
 import { stateUrlDerived } from 'state-shared';
 
 import config from '../../game/config';
-import { FEATURE, GAME_TITLE, MECHANIC, MODE_TITLE, SYMBOL_NAME } from '../../game/names';
+import { DEPARTMENT, FEATURE, GAME_TITLE, MECHANIC, MODE_TITLE, STATION, SYMBOL_NAME } from '../../game/names';
 import { CONTRACT } from '../../game/rulesContent';
 import messagesMap from '../../i18n/messagesMap';
 
@@ -95,7 +95,7 @@ const FALLBACK: Record<string, string> = {
 	SPLASH_PRESS: 'PRESS ANYWHERE TO START',
 
 	SPLASH_CARD_CHIEF_TITLE: SYMBOL_NAME.W.toUpperCase(),
-	SPLASH_CARD_CHIEF_BODY: 'The chief of Station 13 is WILD: he stands in for every paying symbol on the line.',
+	SPLASH_CARD_CHIEF_BODY: `The chief of ${DEPARTMENT}'s ${STATION} is WILD: he stands in for every paying symbol on the line.`,
 
 	SPLASH_CARD_LINES_TITLE: '{lines} LINES',
 	SPLASH_CARD_LINES_BODY: '{lines} fixed lines, left to right. The best win on each line counts.',

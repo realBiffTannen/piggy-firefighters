@@ -10,6 +10,8 @@ gen_art_b: never overwrite an output; piggy-police gen_batch: 4 attempts with 8*
 400/401/403, /v1/images/generations when there is no reference image).
 
   with references -> POST https://api.openai.com/v1/images/edits        multipart, each ref as image[]
+  --mask <png>    -> the same call with a `mask` (inpainting: the mask is a PNG the size of the FIRST reference whose
+                     fully transparent pixels mark the region to repaint; everything else is kept)
   no references   -> POST https://api.openai.com/v1/images/generations  JSON
   fields: model (default gpt-image-2.5-sunburst), prompt, size, n=1, quality (default high),
           background=transparent with --transparent
@@ -126,12 +128,13 @@ def append_record(record, row):
             fcntl.flock(lk, fcntl.LOCK_UN)
 
 
-def build_request(api_base, key, model, size, quality, prompt, refs, transparent):
+def build_request(api_base, key, model, size, quality, prompt, refs, transparent, mask=None):
     if refs:
         fields = [("model", model), ("prompt", prompt), ("size", size), ("n", "1"), ("quality", quality)]
         if transparent:
             fields.append(("background", "transparent"))
-        body, boundary = multipart(fields, [("image[]", r) for r in refs])
+        files = [("image[]", r) for r in refs] + ([("mask", mask)] if mask else [])
+        body, boundary = multipart(fields, files)
         req = urllib.request.Request(f"{api_base}/images/edits", data=body, method="POST")
         req.add_header("Content-Type", f"multipart/form-data; boundary={boundary}")
         endpoint = "images/edits"
@@ -178,6 +181,7 @@ def main(argv=None):
     ap.add_argument("--quality", default="high", choices=("high", "medium", "low", "auto"))
     ap.add_argument("--transparent", action="store_true", help="background=transparent (sprites)")
     ap.add_argument("--ref", nargs="+", default=[], help="reference PNG(s) -> images/edits (image[]); none -> generations")
+    ap.add_argument("--mask", default="", help="inpainting mask PNG (transparent = repaint), same size as the first --ref")
     ap.add_argument("--prompt", default="")
     ap.add_argument("--prompt-file", default="")
     ap.add_argument("--preamble", action="append", help="style preamble file(s) prepended to the prompt")
@@ -213,13 +217,20 @@ def main(argv=None):
         if os.path.splitext(rp)[1].lower() not in (".png", ".jpg", ".jpeg", ".webp"):
             ap.error(f"reference must be png/jpg/webp: {r}")
         refs.append(rp)
+    mask = None
+    if a.mask:
+        mask = os.path.abspath(a.mask if os.path.isabs(a.mask) else os.path.join(REPO, a.mask))
+        if not refs:
+            ap.error("--mask needs a --ref (the image to repaint)")
+        if not os.path.isfile(mask) or os.path.splitext(mask)[1].lower() != ".png":
+            ap.error(f"mask must be an existing PNG: {a.mask}")
     out = os.path.join(gen_dir, a.batch, f"{a.name}.png")
     if not re.search(r"\bno (text|letters|lettering|words)\b", prompt, re.I):
         print("warning: the prompt has no 'no text' clause (gpt-image cannot letter; letter locally)", file=sys.stderr)
 
     cost = COST_EST.get(a.size, 0.30)
     plan = {"endpoint": "images/edits" if refs else "images/generations", "model": a.model, "size": a.size,
-            "quality": a.quality, "transparent": a.transparent, "refs": [rel(r) for r in refs],
+            "quality": a.quality, "transparent": a.transparent, "refs": [rel(r) for r in refs], "mask": rel(mask) if mask else None,
             "output": rel(out), "record": rel(record), "cost_estimate_usd": cost, "prompt_chars": len(prompt),
             "prompt_files": prompt_files, "exists": os.path.exists(out)}
     if a.dry_run:
@@ -238,13 +249,13 @@ def main(argv=None):
     base_row = {"asset": a.name, "batch": a.batch, "lane": "ART", "endpoint": plan["endpoint"],
                 "requested_model": a.model, "size": a.size, "quality": a.quality, "n": 1,
                 "transparent": a.transparent, "prompt": prompt, "prompt_files": prompt_files,
-                "reference_paths": [rel(r) for r in refs], "cost_estimate_usd": cost,
+                "reference_paths": [rel(r) for r in refs], "mask_path": rel(mask) if mask else None, "cost_estimate_usd": cost,
                 "cost_basis": "conservative per-call estimate; failed attempts are recorded because they may bill",
                 "note": a.note}
     t_all = time.time()
     last_err = None
     for attempt in range(1, ATTEMPTS + 1):
-        req, endpoint = build_request(a.api_base, key, a.model, a.size, a.quality, prompt, refs, a.transparent)
+        req, endpoint = build_request(a.api_base, key, a.model, a.size, a.quality, prompt, refs, a.transparent, mask)
         t0 = time.time()
         row = dict(base_row, attempt=attempt, ts=time.strftime("%Y-%m-%dT%H:%M:%S"))
         try:

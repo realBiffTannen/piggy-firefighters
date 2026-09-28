@@ -23,7 +23,7 @@
   const app = getContextApp();
   const rigs = $derived(({
     mascotLeft: ['pf_chief'], mascotRight: ['pf_dog'], cardPresenter: ['pf_rookie'],
-    rescueRoom: ['pf_rescued'], ladder: ['pf_rescued'], sheet: ['pf_rookie','pf_dog'], winPlate: ['pf_chief'],
+    rescueRoom: ['pf_rescued'], ladder: ['pf_rescued'], sheet: ['pf_rookie'], winPlate: ['pf_chief'],
   } satisfies Record<RigSlot, RigName[]>)[props.slot]);
   const path = $derived(props.path ?? (props.fromX !== undefined && props.fromY !== undefined && props.toX !== undefined && props.toY !== undefined
     ? { fromX: props.fromX, fromY: props.fromY, toX: props.toX, toY: props.toY } : undefined));
