@@ -18,7 +18,7 @@
 	},
 	"dependencies": {
 		"svelte": "5.20.5",
-		"@sveltejs/kit": "2.17.3",
+		"@sveltejs/kit": "3.0.0",
 		"utils-bet": "workspace:*",
 		"@lingui/core": "5.2.0"
 	}
